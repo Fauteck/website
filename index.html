@@ -58,20 +58,36 @@
 
     <div id="desktop-icons" role="list" aria-label="Desktop">
 
-      <div class="desktop-icon" data-window="about" role="listitem" tabindex="0"
-           aria-label="about.md — Über Niklas Fauteck">
-        <div class="icon-wrap" data-color="blue">
-          <svg viewBox="0 0 28 28" fill="none"><rect x="4" y="2" width="16" height="22" rx="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><path d="M16 2v6h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="13" x2="17" y2="13" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="17" x2="17" y2="17" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="21" x2="13" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
-        <span class="icon-label">about.md</span>
-      </div>
-
       <div class="desktop-icon" data-window="career" role="listitem" tabindex="0"
            aria-label="Arbeitsplatz — Karriere und Werdegang">
         <div class="icon-wrap" data-color="amber">
           <svg viewBox="0 0 28 28" fill="none"><rect x="2" y="8" width="24" height="17" rx="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><path d="M9 8V6a2 2 0 012-2h6a2 2 0 012 2v2" stroke="white" stroke-width="1.5"/><line x1="2" y1="14" x2="26" y2="14" stroke="white" stroke-width="1.5"/></svg>
         </div>
         <span class="icon-label">Arbeitsplatz</span>
+      </div>
+
+      <div class="desktop-icon" data-window="eigenedateien" role="listitem" tabindex="0"
+           aria-label="Eigene Dateien — Persönliche Dokumente">
+        <div class="icon-wrap" data-color="yellow">
+          <svg viewBox="0 0 28 28" fill="none"><path d="M3 7h8l2 3h12v15H3V7z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="icon-label">Eigene Dateien</span>
+      </div>
+
+      <div class="desktop-icon" data-window="trash" role="listitem" tabindex="0"
+           aria-label="Papierkorb — Anti-Patterns">
+        <div class="icon-wrap" data-color="red">
+          <svg viewBox="0 0 28 28" fill="none"><path d="M5 8h18M10 8V6a2 2 0 012-2h4a2 2 0 012 2v2M9 8l1 16h8l1-16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="12" x2="16" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="icon-label">Papierkorb</span>
+      </div>
+
+      <div class="desktop-icon" data-window="about" role="listitem" tabindex="0"
+           aria-label="about.md — Über Niklas Fauteck">
+        <div class="icon-wrap" data-color="blue">
+          <svg viewBox="0 0 28 28" fill="none"><rect x="4" y="2" width="16" height="22" rx="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><path d="M16 2v6h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="13" x2="17" y2="13" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="17" x2="17" y2="17" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="21" x2="13" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="icon-label">about.md</span>
       </div>
 
       <div class="desktop-icon" data-window="terminal" role="listitem" tabindex="0"
@@ -130,14 +146,6 @@
         <span class="icon-label">Netzwerk</span>
       </div>
 
-      <div class="desktop-icon" data-window="trash" role="listitem" tabindex="0"
-           aria-label="Papierkorb — Anti-Patterns">
-        <div class="icon-wrap" data-color="red">
-          <svg viewBox="0 0 28 28" fill="none"><path d="M5 8h18M10 8V6a2 2 0 012-2h4a2 2 0 012 2v2M9 8l1 16h8l1-16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="12" x2="16" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
-        <span class="icon-label">Papierkorb</span>
-      </div>
-
     </div><!-- /#desktop-icons -->
 
     <!-- Context Menu -->
@@ -160,9 +168,26 @@
   <!-- ═══════════════════════════════════════════
        TASKBAR
   ═══════════════════════════════════════════ -->
+  <!-- Start Menu -->
+  <div id="start-menu" class="start-menu" aria-hidden="true" role="menu">
+    <div class="sm-header">NiklasOS</div>
+    <div class="sm-apps" id="sm-apps-list"></div>
+    <div class="sm-sep"></div>
+    <button class="sm-shutdown-btn" id="sm-shutdown" role="menuitem">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="7" y1="3" x2="7" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Ausschalten
+    </button>
+  </div>
+
+  <!-- Shutdown Overlay -->
+  <div id="shutdown-overlay" aria-hidden="true">
+    <div class="shutdown-spinner"></div>
+    <div class="shutdown-text">Wird heruntergefahren...</div>
+  </div>
+
   <nav id="taskbar" aria-label="Taskleiste">
     <div class="tb-left">
-      <button class="tb-app-btn" id="tb-apps-btn" aria-label="Apps" title="Alle Apps">
+      <button class="tb-app-btn" id="tb-apps-btn" aria-label="Startmenü" title="Startmenü">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <rect x="1" y="1" width="5" height="5" rx="1" fill="currentColor"/>
           <rect x="10" y="1" width="5" height="5" rx="1" fill="currentColor"/>

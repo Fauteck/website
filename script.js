@@ -69,6 +69,61 @@ const WIN_CONFIGS = {
     defaultW: 540, defaultH: 460,
     svgPath: 'M5 8h18M10 8V6a2 2 0 012-2h4a2 2 0 012 2v2M9 8l1 16h8l1-16M12 12v8M16 12v8',
   },
+  eigenedateien: {
+    title: 'Eigene Dateien',
+    color: 'yellow',
+    defaultW: 580, defaultH: 460,
+    svgPath: 'M3 7h8l2 3h12v15H3V7z',
+  },
+  // Mobile-only apps
+  chatgpt: {
+    title: 'ChatGPT',
+    color: 'green',
+    defaultW: 460, defaultH: 500,
+    svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM9 14l3-6 3 6M10.5 11.5h5',
+  },
+  claudeapp: {
+    title: 'Claude',
+    color: 'orange',
+    defaultW: 460, defaultH: 500,
+    svgPath: 'M12 3C7 3 4 7 4 12s3 9 8 9c2 0 4-1 5.5-2.5M20 9c0-3-2-6-5-7',
+  },
+  outlook: {
+    title: 'Outlook',
+    color: 'blue',
+    defaultW: 500, defaultH: 480,
+    svgPath: 'M2 6h20v16H2zM22 6L12 14 2 6M7 10h6M7 14h4',
+  },
+  teams: {
+    title: 'Teams',
+    color: 'indigo',
+    defaultW: 520, defaultH: 480,
+    svgPath: 'M16 11a4 4 0 10-8 0 4 4 0 008 0zM3 20v-1a7 7 0 0114 0v1M20 8a3 3 0 110 6M23 20v-1a5 5 0 00-3-4.6',
+  },
+  jira: {
+    title: 'Jira',
+    color: 'blue',
+    defaultW: 540, defaultH: 500,
+    svgPath: 'M14 4L4 14l4 4 10-10-4-4zM10 8l-6 6 4 4 6-6',
+  },
+  github: {
+    title: 'GitHub',
+    color: 'purple',
+    defaultW: 520, defaultH: 480,
+    svgPath: 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22',
+  },
+  rss: {
+    title: 'Feedly',
+    color: 'teal',
+    defaultW: 460, defaultH: 480,
+    svgPath: 'M4 11a9 9 0 019 9M4 4a16 16 0 0116 16M5 19h.01',
+  },
+  filesapp: {
+    title: 'Dateien',
+    color: 'amber',
+    defaultW: 460, defaultH: 460,
+    svgPath: 'M3 7h8l2 3h12v15H3V7z',
+  },
 };
 
 // ─────────────────────────────────────────────────
@@ -324,16 +379,25 @@ function updateTaskbar() {
 function initWindowContent(id, el) {
   const body = el.querySelector('.win-body');
   const contentFns = {
-    about:         buildAbout,
-    career:        buildCareer,
-    terminal:      buildTerminal,
-    sysmon:        buildSysmon,
-    bambu:         buildBambu,
-    homeassistant: buildHA,
-    packages:      buildPackages,
-    changelog:     buildChangelog,
-    network:       buildNetwork,
-    trash:         buildTrash,
+    about:          buildAbout,
+    career:         buildCareer,
+    terminal:       buildTerminal,
+    sysmon:         buildSysmon,
+    bambu:          buildBambu,
+    homeassistant:  buildHA,
+    packages:       buildPackages,
+    changelog:      buildChangelog,
+    network:        buildNetwork,
+    trash:          buildTrash,
+    eigenedateien:  buildEigeneDateien,
+    chatgpt:        buildChatGPT,
+    claudeapp:      buildClaudeApp,
+    outlook:        buildOutlook,
+    teams:          buildTeams,
+    jira:           buildJira,
+    github:         buildGitHub,
+    rss:            buildRSS,
+    filesapp:       buildFilesApp,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
@@ -350,12 +414,13 @@ function buildAbout(body) {
     </div>
     <div class="about-content">
       <h1>Niklas Fauteck</h1>
-      <div class="about-role">Head of Digital Transformation &middot; RTL Deutschland</div>
+      <div class="about-role">Head of Digital Transformation Kommunikation &middot; RTL Deutschland</div>
       <hr class="about-hr">
       <p>
-        Ich übersetze zwischen Kommunikation und Technologie – und baue Systeme,
-        die Menschen wirklich nutzen. Seit über 16 Jahren an der Schnittstelle
-        zwischen Medien, Kommunikation und digitaler Transformation.
+        Bei RTL Deutschland baue ich die digitalen Systeme, die unsere Kommunikation
+        am Laufen halten – Media Hub, PICTRON, MDC. Ich verstehe sowohl, was Redakteure
+        brauchen, als auch was IT liefern kann. Das macht mich zur Schnittstelle, die
+        beide Seiten versteht – und übersetzt.
       </p>
       <h2>Kernthesen</h2>
       <ul class="about-theses">
@@ -381,37 +446,37 @@ const CAREER_DATA = [
   {
     id: 'rtl',
     icon: '🏢',
-    name: '2023 – heute',
+    name: 'seit 08/2023',
     sub: 'RTL Deutschland',
-    title: 'Head of Digital Transformation',
-    company: 'RTL Deutschland GmbH',
-    period: '2023 – heute',
+    title: 'Head of Digital Transformation Kommunikation',
+    company: 'RTL Deutschland',
+    period: 'seit 08/2023',
     responsibilities: [
-      'Führung digitaler Transformationsinitiativen für eine der größten Mediengruppen Deutschlands',
-      'Schnittstellenfunktion zwischen Redaktion, Produktentwicklung und Technologie',
-      'Aufbau und Skalierung KI-gestützter Workflows und Automation-Pipelines',
-      'Strategische Begleitung von Tool-Einführungen mit Fokus auf Nutzeradoption',
-      'Brückenbauer zwischen technischen Teams und Nicht-Technikern',
+      'Verantwortlich für die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation',
+      'Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows (Media Hub, PICTRON, MDC)',
+      'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
+      'Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung und Go-Live-Verantwortung',
+      'Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams',
     ],
     impact: [
-      'Nachhaltige Adoption neuer Tools durch konsequenten Fokus auf Anwenderperspektive',
-      'Systematische Prozessautomation im redaktionellen und operativen Umfeld',
+      'Zentrale digitale Plattform für 1.700+ Journalist:innen aufgebaut und weiterentwickelt',
+      'Systematische Prozessautomation und KI-Integration im redaktionellen Umfeld',
       'Kulturwandel hin zu datengetriebenen, pragmatisch umgesetzten Entscheidungen',
     ],
   },
   {
     id: 'newsdesk',
     icon: '📰',
-    name: '2020 – 2023',
-    sub: 'Newsdesk Kommunikation',
-    title: 'Digital Project Management',
-    company: 'Newsdesk Kommunikation',
-    period: '2020 – 2023',
+    name: '08/2020 – 08/2023',
+    sub: 'RTL Deutschland',
+    title: 'Leiter Newsdesk Kommunikation / Senior Manager Kommunikation & PR',
+    company: 'RTL Deutschland',
+    period: '08/2020 – 08/2023',
     responsibilities: [
-      'Projektleitung für digitale Kommunikationslösungen mit Fokus auf Tool-Integration',
-      'Prozessoptimierung und Digitalisierung von Kommunikations-Workflows',
-      'Einführung und Adoption digitaler Werkzeuge in bestehenden Teams',
-      'Schnittstellenarbeit zwischen Kunden, Konzept und Entwicklung',
+      'Leitung des zentralen Newsdesk Kommunikation und Weiterentwicklung der Kommunikationsprozesse',
+      'Weiterentwicklung des Media Hub als zentrale digitale Plattform für Presse- und Unternehmenskommunikation',
+      'Steuerung komplexer Kommunikations- und Digitalprojekte in enger Zusammenarbeit mit IT und Fachbereichen',
+      'Etablierung klarer Prozesse, Rollen und Schnittstellen zur Verbesserung von Effizienz und Transparenz',
     ],
     impact: [
       'Erfolgreiche Tool-Rollouts mit hoher Nutzerakzeptanz und nachhaltiger Nutzung',
@@ -421,15 +486,16 @@ const CAREER_DATA = [
   {
     id: 'vox2',
     icon: '📺',
-    name: '2019 – 2020',
-    sub: 'VOX & RTL+',
-    title: 'Online Redaktion',
-    company: 'VOX & RTL+',
-    period: '2019 – 2020',
+    name: '03/2019 – 08/2020',
+    sub: 'VOX / RTL+',
+    title: 'Senior Manager Kommunikation & PR',
+    company: 'VOX / RTL+',
+    period: '03/2019 – 08/2020',
     responsibilities: [
-      'Redaktionelle und digitale Content-Arbeit für TV-Sender und Streaming-Plattform',
-      'Digitale Content-Strategie und -Produktion für unterschiedliche Zielgruppen',
-      'Schnittstellenarbeit zwischen Content-Teams und Plattformtechnologie',
+      'Verantwortung für strategische und operative Kommunikationsarbeit im Umfeld nationaler TV- und Streamingformate',
+      'Themenkoordination und strategische Planung der externen Kommunikation',
+      'Krisenkommunikation sowie Entwicklung konsistenter Narrative über verschiedene Kanäle',
+      'Digitale Formatkommunikation in enger Abstimmung mit Redaktion, Marketing und Produktion',
     ],
     impact: [
       'Fundiertes Verständnis für Plattform-Logiken und digitale Verbreitungswege',
@@ -439,15 +505,15 @@ const CAREER_DATA = [
   {
     id: 'vox1',
     icon: '📣',
-    name: '2015 – 2019',
+    name: '08/2015 – 03/2019',
     sub: 'VOX',
-    title: 'PR & Kommunikation',
-    company: 'VOX Fernsehen GmbH',
-    period: '2015 – 2019',
+    title: 'Presse- & Junior-Pressereferent',
+    company: 'VOX',
+    period: '08/2015 – 03/2019',
     responsibilities: [
-      'Pressearbeit und Kommunikationsstrategie für einen der bekanntesten deutschen TV-Sender',
-      'Digitale PR, Social Media und Onlinekommunikation',
-      'Aufbau erster digitaler Workflows und Kommunikationsprozesse',
+      'Mitarbeit in der Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation',
+      'Planung und Umsetzung von Pressearbeit und Kommunikationskampagnen',
+      'Koordination von Inhalten zwischen Redaktion, Produktion und externen Partnern',
     ],
     impact: [
       'Entdeckung der Leidenschaft für Schnittstellen zwischen Kommunikation und Technologie',
@@ -459,16 +525,16 @@ const CAREER_DATA = [
     icon: '🎓',
     name: '2009 – 2013',
     sub: 'H-BRS',
-    title: 'B.A. Wirtschaftskommunikation',
+    title: 'B.Sc. Technikjournalismus / PR',
     company: 'Hochschule Bonn-Rhein-Sieg',
     period: '2009 – 2013',
     responsibilities: [
-      'Studium der Wirtschaftskommunikation an der Hochschule Bonn-Rhein-Sieg',
-      'Schwerpunkte: Marketing, PR, Medien und Wirtschaft',
-      'Grundlage für das Verständnis von Kommunikation als wirtschaftliche Disziplin',
+      'Studium Technikjournalismus / PR an der Hochschule Bonn-Rhein-Sieg',
+      'Schwerpunkt: Vermittlung komplexer technischer und wissenschaftlicher Inhalte für unterschiedliche Zielgruppen',
+      'Bachelorarbeit: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen"',
     ],
     impact: [
-      'Solide Basis für die Verbindung von Kommunikation, Marketing und Business-Logik',
+      'Fundiertes Fundament für die Verbindung von Technologie, Wissenschaftskommunikation und PR',
     ],
   },
 ];
@@ -923,47 +989,109 @@ function buildSysmon(body) {
 }
 
 // ─────────────────────────────────────────────────
-// BAMBU STUDIO (3D PRINT)
+// BAMBU STUDIO (3D PRINT — redesigned)
 // ─────────────────────────────────────────────────
 function buildBambu(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
   body.innerHTML = `
-    <div class="bambu">
-      <div class="bambu-header">
-        <h3>Bambu Studio — 3D-Druck</h3>
-        <span class="bambu-status" id="bambu-status">Bereit</span>
+    <div class="bam-wrap">
+      <!-- Top Tabs -->
+      <div class="bam-tabs">
+        <span class="bam-tab">Vorbereiten</span>
+        <span class="bam-tab active">Vorschau ✦</span>
+        <span class="bam-tab">Gerät</span>
+        <span class="bam-tab">Projekt</span>
+        <span class="bam-tab">Kalibrierung</span>
+        <div style="flex:1"></div>
+        <span class="bam-status-badge" id="bambu-status">Bereit</span>
       </div>
-      <div class="bambu-viewport">
-        <div class="print-cube-scene">
-          <div class="print-cube" id="print-cube">
-            <div class="cube-face front"></div>
-            <div class="cube-face back"></div>
-            <div class="cube-face right"></div>
-            <div class="cube-face left"></div>
-            <div class="cube-face top"></div>
-            <div class="cube-face bottom"></div>
+
+      <!-- Main layout: sidebar | viewport | results -->
+      <div class="bam-main">
+
+        <!-- Left Sidebar -->
+        <div class="bam-sidebar">
+          <div class="bam-sidebar-section">Drucker</div>
+          <div class="bam-sidebar-item bam-printer">
+            <div class="bam-printer-icon">🖨️</div>
+            <div>
+              <div class="bam-sidebar-label">Bambu Lab P1S</div>
+              <div class="bam-sidebar-sub">Cool Plate</div>
+            </div>
+          </div>
+          <div class="bam-sync-btn">↺ Sync Infos</div>
+
+          <div class="bam-sidebar-section" style="margin-top:10px">Projekt Filamente</div>
+          <div class="bam-sidebar-item">
+            <span class="bam-filament-dot" style="background:#e5e5e5"></span>
+            <div>
+              <div class="bam-sidebar-label">1 · TPU 95A</div>
+              <div class="bam-sidebar-sub">0.4 · Standard</div>
+            </div>
+          </div>
+
+          <div class="bam-sidebar-section" style="margin-top:10px">Prozess</div>
+          <div class="bam-sidebar-item">
+            <div>
+              <div class="bam-sidebar-label">0.08mm High Quality</div>
+              <div class="bam-sidebar-sub">@BBL X1C</div>
+            </div>
+          </div>
+
+          <div class="bam-sidebar-section" style="margin-top:10px">Schichthöhe</div>
+          <div class="bam-kv-row"><span class="bam-k">Schichthöhe</span><span class="bam-v">0,08 mm</span></div>
+          <div class="bam-kv-row"><span class="bam-k">Erste Schicht</span><span class="bam-v">0,2 mm</span></div>
+        </div>
+
+        <!-- Center: LinkedIn Post Embed -->
+        <div class="bam-viewport">
+          <iframe
+            src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7439337480501477376"
+            frameborder="0"
+            allowfullscreen
+            title="LinkedIn Post: 3D-Druck Katheterspiegelhalter"
+            loading="lazy"
+          ></iframe>
+          <div class="bam-viewport-fallback">
+            <div class="bam-fallback-icon">🖨️</div>
+            <div class="bam-fallback-title">Katheterspiegelhalter_v3</div>
+            <div class="bam-fallback-sub">TPU 95A · Bambu Lab P1S · 1h 33min</div>
+            <a href="https://www.linkedin.com/posts/activity-7439337480501477376-niwS" target="_blank" rel="noopener" class="bam-fallback-link">→ Post auf LinkedIn ansehen</a>
           </div>
         </div>
-      </div>
-      <div class="bambu-controls">
-        <div class="bambu-row">
-          <span class="bambu-label">Druckfortschritt</span>
-          <span class="bambu-val" id="bambu-pct">0%</span>
-        </div>
-        <div class="bambu-row">
-          <div class="bambu-progress-track">
-            <div class="bambu-progress-fill" id="bambu-fill"></div>
+
+        <!-- Right: Slicing Result -->
+        <div class="bam-results">
+          <div class="bam-results-title">Slicing-Ergebnis</div>
+
+          <div class="bam-results-section">Farbschema · Filament</div>
+          <div class="bam-result-row">
+            <span class="bam-filament-dot" style="background:#e5e5e5"></span>
+            <span class="bam-r-label">Filament</span>
+            <span class="bam-r-val">1</span>
           </div>
+
+          <div class="bam-results-section" style="margin-top:8px">Filamentverbrauch</div>
+          <div class="bam-result-row"><span class="bam-r-label">Modell</span><span class="bam-r-val">12,22 g</span></div>
+          <div class="bam-result-row"><span class="bam-r-label">Stützen</span><span class="bam-r-val">0,21 g</span></div>
+          <div class="bam-result-row"><span class="bam-r-label">Gesamt</span><span class="bam-r-val bam-r-bold">12,43 g</span></div>
+          <div class="bam-result-row"><span class="bam-r-label">Kosten</span><span class="bam-r-val">0,52 €</span></div>
+
+          <div class="bam-results-section" style="margin-top:8px">Geschätzte Zeit</div>
+          <div class="bam-result-row"><span class="bam-r-label">Vorbereitung</span><span class="bam-r-val">7m 47s</span></div>
+          <div class="bam-result-row"><span class="bam-r-label">Modell</span><span class="bam-r-val">1h 25m</span></div>
+          <div class="bam-result-row"><span class="bam-r-label">Gesamt</span><span class="bam-r-val bam-r-bold">1h 33m</span></div>
+
+          <div class="bam-progress-row" style="margin-top:10px">
+            <span class="bam-r-label">Fortschritt</span>
+            <span class="bam-r-val" id="bambu-pct">0%</span>
+          </div>
+          <div class="bam-progress-track"><div class="bam-progress-fill" id="bambu-fill"></div></div>
+
+          <button class="bam-print-btn" id="bambu-btn">Druckplatte drucken</button>
         </div>
-        <div class="bambu-row">
-          <span class="bambu-label">Modell</span>
-        </div>
-        <div class="bambu-selector">
-          <div class="bambu-chip active" data-model="bracket">Halterung</div>
-          <div class="bambu-chip" data-model="case">Gehäuse</div>
-          <div class="bambu-chip" data-model="tool">Werkzeug</div>
-          <div class="bambu-chip" data-model="deco">Dekor</div>
-        </div>
-        <button class="bambu-start-btn" id="bambu-btn">▶ Druck starten</button>
+
       </div>
     </div>
   `;
@@ -977,13 +1105,6 @@ function buildBambu(body) {
   const pctEl  = body.querySelector('#bambu-pct');
   const status = body.querySelector('#bambu-status');
 
-  body.querySelectorAll('.bambu-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      body.querySelectorAll('.bambu-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-    });
-  });
-
   btn.addEventListener('click', () => {
     if (printing) return;
     printing = true;
@@ -991,6 +1112,8 @@ function buildBambu(body) {
     btn.disabled = true;
     btn.textContent = '⏳ Druckt...';
     status.textContent = 'Druckt';
+    status.style.background = 'rgba(251,146,60,0.15)';
+    status.style.color = '#c2410c';
 
     interval = setInterval(() => {
       progress += Math.random() * 2.5 + 0.5;
@@ -1001,7 +1124,17 @@ function buildBambu(body) {
         btn.disabled = false;
         btn.textContent = '▶ Erneut drucken';
         status.textContent = '✓ Fertig!';
-        setTimeout(() => { progress = 0; fill.style.width = '0%'; pctEl.textContent = '0%'; status.textContent = 'Bereit'; btn.textContent = '▶ Druck starten'; }, 3000);
+        status.style.background = 'rgba(82,183,136,0.15)';
+        status.style.color = '#2d6a4f';
+        setTimeout(() => {
+          progress = 0;
+          fill.style.width = '0%';
+          pctEl.textContent = '0%';
+          status.textContent = 'Bereit';
+          status.style.background = '';
+          status.style.color = '';
+          btn.textContent = 'Druckplatte drucken';
+        }, 3000);
       }
       fill.style.width = progress + '%';
       pctEl.textContent = Math.round(progress) + '%';
@@ -1287,6 +1420,344 @@ function buildTrash(body) {
 }
 
 // ─────────────────────────────────────────────────
+// MOBILE APP CONTENT BUILDERS
+// ─────────────────────────────────────────────────
+
+function buildChatGPT(body) {
+  body.innerHTML = `
+    <div class="mob-chat-wrap">
+      <div class="mob-chat-header">
+        <div class="mob-chat-title">ChatGPT</div>
+        <div class="mob-chat-model">GPT-4o</div>
+      </div>
+      <div class="mob-chat-messages">
+        <div class="mob-msg mob-msg-user">Erstelle mir eine Rückgabe-Meldung für mein 3D-Druck-Filament. Das TPU ist nach dem Drucken sehr klebrig geworden.</div>
+        <div class="mob-msg mob-msg-ai">
+          <div class="mob-msg-icon">🤖</div>
+          <div>Hier ist eine höfliche Rückgabe-Meldung:<br><br>
+          <em>"Sehr geehrte Damen und Herren, leider muss ich das erworbene TPU 95A zurückgeben. Nach dem Druckvorgang wies das Filament eine ungewöhnlich hohe Klebrigkeit auf, die auf einen Qualitätsmangel hindeutet. Ich bitte um Rückerstattung oder Umtausch..."</em><br><br>
+          Soll ich noch einen freundlicheren Ton wählen? 😄</div>
+        </div>
+        <div class="mob-msg mob-msg-user">Nein danke, aber schreib mir lieber einen Docker-Compose-Stack für Home Assistant</div>
+        <div class="mob-msg mob-msg-ai">
+          <div class="mob-msg-icon">🤖</div>
+          <div>Gerne! Hier ist ein minimaler Stack:<br><br>
+          <code style="font-size:11px;background:rgba(0,0,0,0.1);padding:2px 4px;border-radius:3px">services:\n  homeassistant:\n    image: ghcr.io/home-assistant/home-assistant:stable\n    restart: unless-stopped\n    network_mode: host\n    volumes:\n      - ./config:/config</code>
+          </div>
+        </div>
+      </div>
+      <div class="mob-chat-input">
+        <div class="mob-chat-field">Nachricht senden…</div>
+      </div>
+    </div>
+  `;
+}
+
+function buildClaudeApp(body) {
+  body.innerHTML = `
+    <div class="mob-chat-wrap">
+      <div class="mob-chat-header">
+        <div class="mob-chat-title" style="color:#ea580c">Claude</div>
+        <div class="mob-chat-model">claude-sonnet-4</div>
+      </div>
+      <div class="mob-chat-messages">
+        <div class="mob-msg mob-msg-user">Hilf mir meinen Docker-Stack zu optimieren. Ich hab 12 Container und die Response-Times sind zu hoch.</div>
+        <div class="mob-msg mob-msg-ai">
+          <div class="mob-msg-icon" style="background:linear-gradient(135deg,#ea580c,#c2410c)">C</div>
+          <div>12 Container – das klingt nach einem gut durchdachten Setup! 🎉<br><br>
+          Für bessere Response-Times würde ich zunächst prüfen:<br>
+          1. <strong>Network Mode</strong>: Nutze <code>bridge</code> statt <code>host</code> nur wenn nötig<br>
+          2. <strong>Resource Limits</strong>: Setze CPU/Memory-Limits pro Container<br>
+          3. <strong>Health Checks</strong>: Vermeide zu häufige /health-Abfragen<br><br>
+          Welcher Container macht die meisten Probleme?</div>
+        </div>
+        <div class="mob-msg mob-msg-user">Portainer reagiert manchmal sehr langsam</div>
+        <div class="mob-msg mob-msg-ai">
+          <div class="mob-msg-icon" style="background:linear-gradient(135deg,#ea580c,#c2410c)">C</div>
+          <div>Klassisches Problem bei Portainer! Das liegt meist daran, dass Portainer alle Container-Stats in Echtzeit abfragt. Versuch mal <code>PORTAINER_POLL_INTERVAL=10</code> zu erhöhen oder die "Live-Statistiken" in den Settings zu deaktivieren. Das reduziert den Overhead deutlich. 🐳</div>
+        </div>
+      </div>
+      <div class="mob-chat-input">
+        <div class="mob-chat-field">Nachricht senden…</div>
+      </div>
+    </div>
+  `;
+}
+
+function buildOutlook(body) {
+  const mails = [
+    { from: 'IT-Support RTL', subject: 'Wartungsfenster: Media Hub Update', time: '09:12', unread: true, preview: 'Geplantes Wartungsfenster morgen von 22:00-02:00 Uhr...' },
+    { from: 'Produktteam', subject: 'Sprint Review – Einladung', time: '08:47', unread: true, preview: 'Hallo Niklas, hiermit lädt das Produktteam zum Sprint-Review ein...' },
+    { from: 'Jira Automation', subject: '[KOMM-4821] Status geändert: Done', time: 'Gestern', unread: false, preview: 'Das Ticket "Media Hub: Bild-Upload optimieren" wurde auf Done gesetzt.' },
+    { from: 'Confluence', subject: 'Seite aktualisiert: Systemarchitektur', time: 'Gestern', unread: false, preview: 'Max Mustermann hat die Seite "Systemarchitektur 2026" bearbeitet.' },
+    { from: 'GitHub', subject: '[docker-configs] PR #47 merged', time: 'Di.', unread: false, preview: 'Pull Request #47 "Update Home Assistant to 2026.3" wurde gemergt.' },
+    { from: 'Bambu Lab', subject: 'Druckauftrag abgeschlossen', time: 'Mo.', unread: false, preview: 'Ihr Druckauftrag "Katheterspiegelhalter_v3" wurde erfolgreich abgeschlossen (7h 23min).' },
+  ];
+  body.innerHTML = `
+    <div class="mob-mail-wrap">
+      <div class="mob-mail-header">
+        <span style="font-weight:600">Posteingang</span>
+        <span class="mob-mail-badge">2</span>
+      </div>
+      <div class="mob-mail-list">
+        ${mails.map(m => `
+          <div class="mob-mail-item${m.unread ? ' unread' : ''}">
+            <div class="mob-mail-avatar">${m.from[0]}</div>
+            <div class="mob-mail-body">
+              <div class="mob-mail-from">${m.from}</div>
+              <div class="mob-mail-subject">${m.subject}</div>
+              <div class="mob-mail-preview">${m.preview}</div>
+            </div>
+            <div class="mob-mail-time">${m.time}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function buildTeams(body) {
+  body.innerHTML = `
+    <div class="mob-teams-wrap">
+      <div class="mob-teams-header">Teams</div>
+      <div class="mob-teams-channels">
+        <div class="mob-teams-ch active">💬 Allgemein</div>
+        <div class="mob-teams-ch">🖥️ Digital Transformation</div>
+        <div class="mob-teams-ch">🤖 KI-Workflows</div>
+        <div class="mob-teams-ch">📢 Announcements</div>
+      </div>
+      <div class="mob-teams-messages">
+        <div class="mob-teams-msg">
+          <strong>Max M.</strong> <span class="mob-teams-time">10:32</span><br>
+          Hat jemand schon das neue Media Hub Deployment getestet?
+        </div>
+        <div class="mob-teams-msg">
+          <strong>Sarah K.</strong> <span class="mob-teams-time">10:35</span><br>
+          Ja, lief durch. Portainer hat alles sauber deployt 👍
+        </div>
+        <div class="mob-teams-msg teams-self">
+          <strong>Niklas F.</strong> <span class="mob-teams-time">10:37</span><br>
+          Super! Ich check noch den Health-Endpoint und gebe grünes Licht.
+        </div>
+        <div class="mob-teams-msg">
+          <strong>IT-Support</strong> <span class="mob-teams-time">11:04</span><br>
+          Reminder: Wartungsfenster heute Nacht 22-02 Uhr für Server-Updates
+        </div>
+        <div class="mob-teams-msg teams-self">
+          <strong>Niklas F.</strong> <span class="mob-teams-time">11:06</span><br>
+          Danke! Ich stelle die Monitoring-Alerts entsprechend stumm 🔕
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function buildJira(body) {
+  const tickets = [
+    { id: 'KOMM-4822', title: 'Media Hub: Performance-Optimierung Suchindex', status: 'In Progress', priority: '🔴', assignee: 'NF' },
+    { id: 'KOMM-4819', title: 'KI-Workflow: Automatische Textkomprimierung', status: 'Review', priority: '🟠', assignee: 'NF' },
+    { id: 'KOMM-4815', title: 'PICTRON: Neue Bildkategorie hinzufügen', status: 'Done', priority: '🟡', assignee: 'MK' },
+    { id: 'KOMM-4810', title: 'MDC: Export-Funktion überarbeiten', status: 'Waiting for IT', priority: '🟠', assignee: 'NF' },
+    { id: 'KOMM-4808', title: 'Dashboard: Power BI Integration testen', status: 'Todo', priority: '🟡', assignee: 'NF' },
+  ];
+  const statusColors = {
+    'In Progress': '#3b82f6', 'Review': '#8b5cf6', 'Done': '#10b981',
+    'Waiting for IT': '#f59e0b', 'Todo': '#6b7280',
+  };
+  body.innerHTML = `
+    <div class="mob-jira-wrap">
+      <div class="mob-jira-header">
+        <span style="font-weight:600">Sprint: März 2026</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.4)">5 Tickets</span>
+      </div>
+      <div class="mob-jira-list">
+        ${tickets.map(t => `
+          <div class="mob-jira-ticket">
+            <div class="mob-jira-top">
+              <span class="mob-jira-id">${t.id}</span>
+              <span class="mob-jira-status" style="background:${statusColors[t.status]}22;color:${statusColors[t.status]}">${t.status}</span>
+            </div>
+            <div class="mob-jira-title">${t.priority} ${t.title}</div>
+            <div class="mob-jira-meta">
+              <span class="mob-jira-avatar">${t.assignee}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function buildGitHub(body) {
+  const repos = [
+    { name: 'docker-configs', lang: '🐳 YAML', stars: 0, desc: 'GitOps Infra — Portainer, Home Assistant, NiklasOS', updated: 'vor 2h' },
+    { name: 'niklas-os-website', lang: '🌐 JS', stars: 0, desc: 'NiklasOS — persönliche Website als Desktop-OS', updated: 'vor 3h' },
+    { name: 'n8n-workflows', lang: '⚡ JSON', stars: 0, desc: 'KI-Automatisierungen und Workflow-Templates', updated: 'gestern' },
+    { name: 'ha-automations', lang: '🏠 YAML', stars: 0, desc: 'Home Assistant Automationen & Scripts', updated: 'vor 3 Tagen' },
+  ];
+  const weeks = Array.from({length: 52}, (_, i) => Math.random() > 0.6 ? Math.ceil(Math.random() * 4) : 0);
+  const levels = ['#0d1117','#0e4429','#006d32','#26a641','#39d353'];
+  body.innerHTML = `
+    <div class="mob-gh-wrap">
+      <div class="mob-gh-header">
+        <span style="font-weight:600">niklasfauteck</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.4)">4 Repositories</span>
+      </div>
+      <div class="mob-gh-contrib">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:4px">Contribution-Aktivität</div>
+        <div class="mob-gh-grid">
+          ${weeks.map(v => `<div class="mob-gh-cell" style="background:${levels[v]}"></div>`).join('')}
+        </div>
+      </div>
+      <div class="mob-gh-repos">
+        ${repos.map(r => `
+          <div class="mob-gh-repo">
+            <div class="mob-gh-repo-name">${r.name}</div>
+            <div class="mob-gh-repo-desc">${r.desc}</div>
+            <div class="mob-gh-repo-meta">
+              <span>${r.lang}</span>
+              <span style="color:rgba(255,255,255,0.3)">${r.updated}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function buildRSS(body) {
+  const feeds = [
+    { source: 'Heise Online', title: 'KI-Modelle 2026: Was jetzt wirklich produktiv einsetzbar ist', time: 'vor 1h', cat: '🤖' },
+    { source: 't3n', title: 'Docker-Alternativen im Test: Podman, Colima und Co.', time: 'vor 3h', cat: '🐳' },
+    { source: 'Meedia', title: 'RTL startet neues Streaming-Angebot für Nachrichten', time: 'vor 5h', cat: '📺' },
+    { source: 'Home Assistant Blog', title: '2026.3 Release: Matter-Support und neue Energie-Dashboards', time: 'gestern', cat: '🏠' },
+    { source: 'GitHub Blog', title: 'GitHub Copilot bekommt neuen Agent-Modus', time: 'gestern', cat: '💻' },
+    { source: 'Bambu Lab', title: 'Neues Filament: TPU 95A Transparent jetzt erhältlich', time: 'vor 2 Tagen', cat: '🖨️' },
+  ];
+  body.innerHTML = `
+    <div class="mob-rss-wrap">
+      <div class="mob-rss-header">Feedly · Meine Feeds</div>
+      <div class="mob-rss-list">
+        ${feeds.map(f => `
+          <div class="mob-rss-item">
+            <div class="mob-rss-meta">
+              <span class="mob-rss-cat">${f.cat}</span>
+              <span class="mob-rss-source">${f.source}</span>
+              <span class="mob-rss-time">${f.time}</span>
+            </div>
+            <div class="mob-rss-title">${f.title}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function buildFilesApp(body) {
+  return buildEigeneDateien(body);
+}
+
+// ─────────────────────────────────────────────────
+// EIGENE DATEIEN
+// ─────────────────────────────────────────────────
+function buildEigeneDateien(body) {
+  const files = [
+    { icon: '📄', name: 'Niklas_CV.pdf',             type: 'PDF',  size: '142 KB', action: null },
+    { icon: '📝', name: 'Steuererklärung 2025.docx', type: 'DOCX', size: '88 KB',  action: 'crash' },
+    { icon: '📊', name: 'Projektziele_2026.xlsx',    type: 'XLSX', size: '34 KB',  action: null },
+    { icon: '🗜️', name: 'HomeAssistant_Backup.tar.gz', type: 'GZ', size: '2,3 MB', action: null },
+    { icon: '🖼️', name: 'Katheterspiegelhalter_v3.3mf', type: '3MF', size: '1,1 MB', action: null },
+  ];
+
+  body.innerHTML = `
+    <div class="ef-wrap">
+      <div class="ef-toolbar">
+        <div class="ef-toolbar-btns">
+          <div class="ef-toolbar-btn" title="Zurück">‹</div>
+          <div class="ef-toolbar-btn" title="Vor">›</div>
+          <div class="ef-toolbar-btn" title="Hoch">↑</div>
+        </div>
+        <div class="ef-path">/Niklas/Eigene Dateien</div>
+      </div>
+      <div class="ef-body">
+        <div class="ef-sidebar">
+          <div class="ef-sidebar-section">Orte</div>
+          <div class="ef-sidebar-item active"><span class="ef-si-icon">📁</span> Eigene Dateien</div>
+          <div class="ef-sidebar-item"><span class="ef-si-icon">🖥️</span> Desktop</div>
+          <div class="ef-sidebar-item"><span class="ef-si-icon">🗑️</span> Papierkorb</div>
+        </div>
+        <div class="ef-main">
+          <div class="ef-list-header">
+            <span class="ef-col-name">Name</span>
+            <span class="ef-col-type">Typ</span>
+            <span class="ef-col-size">Größe</span>
+          </div>
+          ${files.map(f => `
+            <div class="ef-file${f.action === 'crash' ? ' ef-file-docx' : ''}" data-action="${f.action || ''}">
+              <span class="ef-file-icon">${f.icon}</span>
+              <span class="ef-col-name ef-file-name">${f.name}</span>
+              <span class="ef-col-type">${f.type}</span>
+              <span class="ef-col-size">${f.size}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="ef-statusbar">5 Objekte · 3,7 MB</div>
+    </div>
+
+    <!-- Word Crash Dialog -->
+    <div class="word-crash-overlay" id="word-crash-overlay" style="display:none">
+      <div class="word-crash-dialog">
+        <div class="word-crash-titlebar">
+          <span class="word-crash-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-right:6px;vertical-align:-3px">
+              <rect width="16" height="16" rx="2" fill="#2B579A"/>
+              <text x="3" y="12" font-size="10" font-weight="bold" fill="white" font-family="Arial">W</text>
+            </svg>
+            Microsoft Word — Fehler
+          </span>
+          <button class="word-crash-close" id="word-crash-close">✕</button>
+        </div>
+        <div class="word-crash-body">
+          <div class="word-crash-icon">⚠️</div>
+          <div class="word-crash-content">
+            <div class="word-crash-code">FEHLER 0x0000STEUER</div>
+            <p>Word konnte <strong>"Steuererklärung 2025.docx"</strong> nicht öffnen.</p>
+            <p style="margin-top:8px;font-size:12px;color:#555">
+              Das Dokument enthält Ausgaben, die das Finanzamt als "nicht abzugsfähig"
+              eingestuft hat (u.a. Docker-Server, 3D-Drucker-Filament, Smart-Home-Geräte).
+              Word verweigert das Öffnen aus Solidarität mit dem Finanzamt.
+            </p>
+            <p style="margin-top:8px;font-size:12px;color:#555">
+              <strong>Mögliche Lösungen:</strong><br>
+              • Steuerberater beauftragen (Kosten: abzugsfähig)<br>
+              • Datei löschen (nicht empfohlen)<br>
+              • Auf nächstes Jahr verschieben (bewährt)
+            </p>
+          </div>
+        </div>
+        <div class="word-crash-footer">
+          <button class="word-crash-btn" id="word-crash-ok">OK, ich versuchs nächstes Jahr</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Word crash on docx click
+  body.querySelectorAll('.ef-file-docx').forEach(el => {
+    el.addEventListener('dblclick', () => {
+      const overlay = body.querySelector('#word-crash-overlay');
+      if (overlay) overlay.style.display = 'flex';
+    });
+  });
+  const closeBtn = body.querySelector('#word-crash-close');
+  const okBtn    = body.querySelector('#word-crash-ok');
+  const overlay  = body.querySelector('#word-crash-overlay');
+  if (closeBtn) closeBtn.addEventListener('click', () => { overlay.style.display = 'none'; });
+  if (okBtn)    okBtn.addEventListener('click',    () => { overlay.style.display = 'none'; });
+}
+
+// ─────────────────────────────────────────────────
 // DESKTOP ICONS
 // ─────────────────────────────────────────────────
 function initDesktopIcons() {
@@ -1345,15 +1816,67 @@ function initContextMenu() {
 }
 
 // ─────────────────────────────────────────────────
-// TASKBAR APP BUTTON (shows/opens all windows)
+// START MENU
 // ─────────────────────────────────────────────────
 function initTaskbarAppsBtn() {
-  const btn = document.getElementById('tb-apps-btn');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    // Show a quick overlay listing all windows, or just open about
-    openWindow('about');
+  const btn     = document.getElementById('tb-apps-btn');
+  const menu    = document.getElementById('start-menu');
+  const appList = document.getElementById('sm-apps-list');
+  if (!btn || !menu) return;
+
+  // Populate app list from WIN_CONFIGS
+  Object.entries(WIN_CONFIGS).forEach(([id, cfg]) => {
+    const bg = COLOR_MAP[cfg.color] || 'linear-gradient(135deg,#52b788,#2d6a4f)';
+    const item = document.createElement('div');
+    item.className = 'sm-app-item';
+    item.setAttribute('role', 'menuitem');
+    item.innerHTML = `
+      <div class="sm-app-icon" style="background:${bg}">
+        <svg viewBox="0 0 28 28" fill="none">
+          <path d="${cfg.svgPath}" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span>${cfg.title}</span>
+    `;
+    item.addEventListener('click', () => {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      openWindow(id);
+    });
+    if (appList) appList.appendChild(item);
   });
+
+  // Toggle menu
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = menu.classList.toggle('open');
+    menu.setAttribute('aria-hidden', String(!isOpen));
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (!menu.contains(e.target) && e.target !== btn) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Shutdown button
+  const shutdownBtn     = document.getElementById('sm-shutdown');
+  const shutdownOverlay = document.getElementById('shutdown-overlay');
+  if (shutdownBtn && shutdownOverlay) {
+    shutdownBtn.addEventListener('click', () => {
+      menu.classList.remove('open');
+      shutdownOverlay.classList.add('show');
+      shutdownOverlay.setAttribute('aria-hidden', 'false');
+      setTimeout(() => {
+        window.location.href = 'https://niklasfauteck.de/me/';
+      }, 2200);
+    });
+  }
 }
 
 // ─────────────────────────────────────────────────
@@ -1394,17 +1917,26 @@ const MOB_LABELS = {
   terminal:      'Terminal',
   sysmon:        'System',
   bambu:         'Bambu',
-  homeassistant: 'Home',
+  homeassistant: 'Home Asst.',
   packages:      'Apps',
   changelog:     'Changelog',
   network:       'Kontakt',
   trash:         'Papierkorb',
+  eigenedateien: 'Dateien',
+  chatgpt:       'ChatGPT',
+  claudeapp:     'Claude',
+  outlook:       'Outlook',
+  teams:         'Teams',
+  jira:          'Jira',
+  github:        'GitHub',
+  rss:           'Feedly',
+  filesapp:      'Dateien',
 };
 
 // Page 1 apps (main homescreen), Page 2 remainder
-const MOB_PAGE1 = ['about', 'career', 'terminal', 'homeassistant', 'bambu', 'sysmon'];
-const MOB_PAGE2 = ['packages', 'changelog', 'network', 'trash'];
-const MOB_DOCK  = ['terminal', 'network', 'about', 'career'];
+const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams'];
+const MOB_PAGE2 = ['jira', 'github', 'homeassistant', 'rss', 'filesapp', 'bambu'];
+const MOB_DOCK  = ['outlook', 'network', 'about', 'github'];
 
 const COLOR_MAP = {
   blue: 'linear-gradient(135deg,#2563eb,#1d4ed8)',
@@ -1416,7 +1948,8 @@ const COLOR_MAP = {
   indigo: 'linear-gradient(135deg,#4f46e5,#3730a3)',
   pink: 'linear-gradient(135deg,#db2777,#9d174d)',
   cyan: 'linear-gradient(135deg,#0891b2,#0e7490)',
-  red: 'linear-gradient(135deg,#dc2626,#991b1b)',
+  red:    'linear-gradient(135deg,#dc2626,#991b1b)',
+  yellow: 'linear-gradient(135deg,#ca8a04,#a16207)',
 };
 
 function makeMobAppIcon(id, wrapClass, labelClass) {
@@ -1554,16 +2087,25 @@ function openMobileWindow(id) {
   document.getElementById('mobile-home').setAttribute('aria-hidden', 'true');
 
   const contentFns = {
-    about:         buildAbout,
-    career:        buildCareer,
-    terminal:      buildTerminal,
-    sysmon:        buildSysmon,
-    bambu:         buildBambu,
-    homeassistant: buildHA,
-    packages:      buildPackages,
-    changelog:     buildChangelog,
-    network:       buildNetwork,
-    trash:         buildTrash,
+    about:          buildAbout,
+    career:         buildCareer,
+    terminal:       buildTerminal,
+    sysmon:         buildSysmon,
+    bambu:          buildBambu,
+    homeassistant:  buildHA,
+    packages:       buildPackages,
+    changelog:      buildChangelog,
+    network:        buildNetwork,
+    trash:          buildTrash,
+    eigenedateien:  buildEigeneDateien,
+    chatgpt:        buildChatGPT,
+    claudeapp:      buildClaudeApp,
+    outlook:        buildOutlook,
+    teams:          buildTeams,
+    jira:           buildJira,
+    github:         buildGitHub,
+    rss:            buildRSS,
+    filesapp:       buildFilesApp,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
