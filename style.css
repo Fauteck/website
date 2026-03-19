@@ -2114,21 +2114,14 @@ kbd.search-esc {
   letter-spacing: -2px;
   line-height: 1;
   margin-bottom: 6px;
+  text-align: center;
 }
 .mob-clock-meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  text-align: center;
 }
 #mob-clock-date {
   font-size: 13px;
   color: rgba(255,255,255,0.45);
-}
-.mob-clock-device {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: rgba(82,183,136,0.6);
-  letter-spacing: 0.3px;
 }
 
 /* Status Widget */
