@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niklas Fauteck — Personal Branding</title>
+  <meta name="description" content="Niklas Fauteck — Head of Digital Transformation. Klassische Übersicht.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #52b788;
+      --accent-dark: #2d6a4f;
+      --bg: #f7f8f6;
+      --text: #1a1f2c;
+      --text-secondary: #4a5568;
+      --font: 'DM Sans', system-ui, sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 60px 24px; }
+    .header { text-align: center; margin-bottom: 48px; }
+    .avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 32px; font-weight: 600; color: #fff;
+    }
+    h1 { font-size: 28px; font-weight: 600; margin-bottom: 4px; }
+    .subtitle { color: var(--text-secondary); font-size: 15px; }
+    .section { margin-bottom: 36px; }
+    .section h2 {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--accent-dark); margin-bottom: 12px;
+    }
+    .section p { color: var(--text-secondary); font-size: 15px; }
+    .card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .card-title { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
+    .card-meta { font-size: 13px; color: var(--text-secondary); }
+    .links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .links a {
+      color: var(--accent-dark); font-size: 14px; font-weight: 500;
+      text-decoration: none; padding: 8px 16px;
+      border: 1px solid rgba(82,183,136,0.3); border-radius: 8px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .links a:hover { background: rgba(82,183,136,0.08); border-color: var(--accent); }
+    .os-link {
+      display: inline-block; margin-top: 24px;
+      font-size: 13px; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .os-link:hover { color: var(--accent); }
+    footer {
+      text-align: center; padding: 32px 24px;
+      font-size: 12px; color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="avatar">N</div>
+      <h1>Niklas Fauteck</h1>
+      <p class="subtitle">Head of Digital Transformation — RTL Deutschland</p>
+    </div>
+
+    <div class="section">
+      <h2>Kurzprofil</h2>
+      <p>Brückenbauer zwischen Kommunikation und Technologie. Systemdenker. Pragmatiker. Ich verbinde strategische Kommunikation mit technologischer Umsetzung — und bringe beides in Einklang.</p>
+    </div>
+
+    <div class="section">
+      <h2>Erfahrung</h2>
+      <div class="card">
+        <div class="card-title">Head of Digital Transformation</div>
+        <div class="card-meta">RTL Deutschland — seit 2023</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Senior Manager Digital Communication</div>
+        <div class="card-meta">RTL Deutschland — 2021–2023</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Manager Corporate Communication</div>
+        <div class="card-meta">Mediengruppe RTL — 2019–2021</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Kontakt</h2>
+      <div class="links">
+        <a href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:niklas@fauteck.eu">E-Mail</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="/" class="os-link">&larr; NiklasOS erleben</a>
+    </div>
+  </div>
+  <footer>&copy; 2026 Niklas Fauteck</footer>
+</body>
+</html>

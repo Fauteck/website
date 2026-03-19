@@ -2134,6 +2134,99 @@ function escapeHtml(str) {
 }
 
 // ─────────────────────────────────────────────────
+// LOGIN / LOCK SCREEN
+// ─────────────────────────────────────────────────
+function updateLoginClock() {
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  const timeStr = hh + ':' + mm;
+  const dateStr = now.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+  const ids = ['login-time', 'login-date', 'lock-time', 'lock-date'];
+  const vals = [timeStr, dateStr, timeStr, dateStr];
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = vals[i];
+  });
+}
+
+function initLoginScreen(onComplete) {
+  const loginScreen = document.getElementById('login-screen');
+  if (!loginScreen) { onComplete(); return; }
+
+  loginScreen.style.display = 'flex';
+  requestAnimationFrame(() => loginScreen.classList.add('visible'));
+  updateLoginClock();
+
+  const form = document.getElementById('login-form');
+  const input = document.getElementById('login-password');
+
+  function doLogin() {
+    loginScreen.classList.add('hidden');
+    loginScreen.addEventListener('transitionend', () => {
+      loginScreen.remove();
+      onComplete();
+    }, { once: true });
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    doLogin();
+  });
+
+  // Also allow Enter on empty field
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      doLogin();
+    }
+  });
+}
+
+function initLockScreen(onComplete) {
+  const lockScreen = document.getElementById('lock-screen');
+  if (!lockScreen) { onComplete(); return; }
+
+  lockScreen.style.display = 'flex';
+  requestAnimationFrame(() => lockScreen.classList.add('visible'));
+  updateLoginClock();
+
+  const dots = lockScreen.querySelectorAll('.lock-dot');
+  let pin = '';
+
+  function doUnlock() {
+    dots.forEach(d => d.classList.add('success'));
+    setTimeout(() => {
+      lockScreen.classList.add('hidden');
+      lockScreen.addEventListener('transitionend', () => {
+        lockScreen.remove();
+        onComplete();
+      }, { once: true });
+    }, 300);
+  }
+
+  lockScreen.querySelectorAll('.lock-key[data-key]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      if (key === 'del') {
+        if (pin.length > 0) {
+          pin = pin.slice(0, -1);
+          dots[pin.length].classList.remove('filled');
+        }
+        return;
+      }
+      if (pin.length >= 4) return;
+      pin += key;
+      dots[pin.length - 1].classList.add('filled');
+      if (pin.length === 4) {
+        setTimeout(doUnlock, 200);
+      }
+    });
+  });
+}
+
+// ─────────────────────────────────────────────────
 // BOOT SEQUENCE
 // ─────────────────────────────────────────────────
 function boot() {
@@ -2157,6 +2250,18 @@ function boot() {
     }, delay);
   });
 
+  function initDesktop() {
+    updateClock();
+    setInterval(updateClock, 10000);
+    initDesktopIcons();
+    initContextMenu();
+    initTaskbarAppsBtn();
+    initMobile();
+    setTimeout(() => openWindow('about'), 350);
+  }
+
+  const isMobile = window.innerWidth < 768;
+
   setTimeout(() => {
     if (bootBar) bootBar.style.width = '100%';
     setTimeout(() => {
@@ -2165,16 +2270,11 @@ function boot() {
         bootScreen.remove();
       }, { once: true });
 
-      // Init everything after boot
-      updateClock();
-      setInterval(updateClock, 10000);
-      initDesktopIcons();
-      initContextMenu();
-      initTaskbarAppsBtn();
-      initMobile();
-
-      // Open about.md after short delay
-      setTimeout(() => openWindow('about'), 350);
+      if (isMobile) {
+        initLockScreen(initDesktop);
+      } else {
+        initLoginScreen(initDesktop);
+      }
     }, 300);
   }, 2100);
 }
