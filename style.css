@@ -4066,3 +4066,506 @@ kbd.search-esc {
 }
 .bambu-mob-nav-btn.bambu-mob-nav-active { color: #22c55e; }
 
+/* ───────────────────────────────────────────────────
+   BAMBU 3D PRINT ANIMATION
+─────────────────────────────────────────────────── */
+.bam-model-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 16px;
+  background: #12131a;
+}
+.bam-model-svg {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+.bam-model-label {
+  font-size: 12px;
+  color: rgba(205,214,244,0.6);
+  font-family: var(--font-mono);
+  margin-top: 10px;
+}
+.bam-model-scene .bam-fallback-link {
+  font-size: 11px;
+  color: #89b4fa;
+  margin-top: 6px;
+}
+.bam-model-scene.printing .bam-print-head {
+  animation: bam-head-move 0.6s ease-in-out infinite alternate;
+}
+@keyframes bam-head-move {
+  0% { transform: translateX(-10px); }
+  100% { transform: translateX(10px); }
+}
+@keyframes bam-print {
+  from { height: 0; }
+  to { height: 80px; }
+}
+
+/* ───────────────────────────────────────────────────
+   OUTLOOK FAB LABEL
+─────────────────────────────────────────────────── */
+.mob-mail-fab {
+  width: auto;
+  padding: 10px 18px;
+  border-radius: 24px;
+  gap: 8px;
+}
+.mob-mail-fab-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ───────────────────────────────────────────────────
+   GAMES FOLDER
+─────────────────────────────────────────────────── */
+.games-folder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--win-body);
+}
+.games-folder-header {
+  padding: 16px 20px 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.games-folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  flex: 1;
+}
+.games-folder-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 12px 8px;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+.games-folder-item:hover {
+  background: rgba(0,0,0,0.04);
+}
+.games-folder-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.games-folder-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* ───────────────────────────────────────────────────
+   SOLITAIRE
+─────────────────────────────────────────────────── */
+.sol-wrap {
+  height: 100%;
+  background: #1a5c2e;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: auto;
+  position: relative;
+}
+.sol-top-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.sol-spacer { flex: 1; }
+.sol-stock, .sol-waste, .sol-foundation {
+  cursor: pointer;
+}
+.sol-card {
+  width: 56px;
+  height: 78px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  user-select: none;
+}
+.sol-card-back {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+.sol-card-face {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  padding: 4px;
+  cursor: pointer;
+  transition: box-shadow 0.15s;
+}
+.sol-card-face:hover {
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.5);
+}
+.sol-card-selected {
+  box-shadow: 0 0 0 3px #facc15 !important;
+}
+.sol-card-empty {
+  background: rgba(255,255,255,0.08);
+  border: 2px dashed rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.sol-card-refresh {
+  font-size: 22px;
+  cursor: pointer;
+}
+.sol-card-corner {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+.sol-card-center {
+  font-size: 20px;
+  text-align: center;
+  line-height: 1;
+}
+.sol-tableau {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+.sol-tableau-col {
+  position: relative;
+  width: 56px;
+  min-height: 78px;
+  cursor: pointer;
+}
+.sol-tableau-card {
+  position: absolute;
+  left: 0;
+}
+.sol-win-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 10;
+}
+.sol-win-msg {
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+}
+.sol-new-game {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ───────────────────────────────────────────────────
+   MEMORY
+─────────────────────────────────────────────────── */
+.mem-wrap {
+  height: 100%;
+  background: #1a1a2e;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.mem-header {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+.mem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  flex: 1;
+  align-content: center;
+}
+.mem-card {
+  aspect-ratio: 1;
+  perspective: 600px;
+  cursor: pointer;
+}
+.mem-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+}
+.mem-card-flipped .mem-card-inner {
+  transform: rotateY(180deg);
+}
+.mem-card-front, .mem-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+.mem-card-front {
+  background: linear-gradient(135deg, #3b82f6, #7c3aed);
+  color: rgba(255,255,255,0.5);
+  font-size: 22px;
+  font-weight: 700;
+}
+.mem-card-back {
+  background: #2a2a4a;
+  transform: rotateY(180deg);
+}
+.mem-card-matched .mem-card-back {
+  background: rgba(34,197,94,0.2);
+  box-shadow: 0 0 12px rgba(34,197,94,0.3);
+}
+.mem-win {
+  height: 100%;
+  background: #1a1a2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #fff;
+}
+.mem-win-icon { font-size: 48px; }
+.mem-win-title { font-size: 22px; font-weight: 700; }
+.mem-win-stats { font-size: 14px; color: rgba(255,255,255,0.6); }
+.mem-new-game {
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* ───────────────────────────────────────────────────
+   TETRIS
+─────────────────────────────────────────────────── */
+.tet-wrap {
+  display: flex;
+  height: 100%;
+  background: #0d1117;
+  gap: 12px;
+  padding: 12px;
+}
+.tet-main {
+  position: relative;
+  flex-shrink: 0;
+}
+.tet-main canvas {
+  display: block;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+.tet-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 80px;
+}
+.tet-info-box {
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.tet-info-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.tet-info-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-mono);
+}
+.tet-info-box canvas {
+  display: block;
+  margin-top: 4px;
+  border-radius: 4px;
+}
+.tet-controls-hint {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.6;
+  margin-top: auto;
+}
+.tet-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 4px;
+}
+.tet-game-over {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+.tet-final-score {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+}
+.tet-restart {
+  background: #0d9488;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ───────────────────────────────────────────────────
+   NETWORK WINDOW
+─────────────────────────────────────────────────── */
+.net-wrap {
+  height: 100%;
+  background: #0d1117;
+  position: relative;
+  overflow: hidden;
+}
+.net-svg {
+  width: 100%;
+  height: 100%;
+}
+.net-node { cursor: pointer; }
+.net-node:hover circle {
+  opacity: 0.4;
+  stroke-width: 2.5;
+}
+.net-tooltip {
+  position: absolute;
+  background: rgba(20,28,22,0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(82,183,136,0.3);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+.net-legend {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+}
+.net-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.net-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.net-edge {
+  animation: net-pulse 3s ease-in-out infinite;
+}
+@keyframes net-pulse {
+  0%, 100% { opacity: 0.12; }
+  50% { opacity: 0.25; }
+}
+
+/* ───────────────────────────────────────────────────
+   ACHIEVEMENT TOASTS
+─────────────────────────────────────────────────── */
+.achievement-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(20,28,22,0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(82,183,136,0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100000;
+  transform: translateX(120%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  max-width: 340px;
+}
+.achievement-toast.show {
+  transform: translateX(0);
+}
+.ach-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.ach-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4ade80;
+}
+.ach-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 2px;
+}
+
+/* ───────────────────────────────────────────────────
+   MATRIX RAIN (Terminal)
+─────────────────────────────────────────────────── */
+@keyframes matrix-fall {
+  0% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(140px); opacity: 0; }
+}
+
+/* ───────────────────────────────────────────────────
+   ICON COLOR: CYAN
+─────────────────────────────────────────────────── */
+.icon-wrap[data-color="cyan"] { background: linear-gradient(135deg, #0891b2, #0e7490); }
+
