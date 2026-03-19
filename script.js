@@ -2376,10 +2376,22 @@ function initMobile() {
     });
   }
 
-  // Status bar tap → Quick Settings
+  // Notification indicator tap → Notification Panel
+  const notifBtn = document.getElementById('mob-notif-indicator');
+  if (notifBtn) {
+    notifBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleNotifPanel();
+    });
+  }
+
+  // Status bar tap → Quick Settings (but not on notif button)
   const statusBar = document.getElementById('mob-status-bar');
   if (statusBar) {
-    statusBar.addEventListener('click', toggleQuickSettings);
+    statusBar.addEventListener('click', e => {
+      if (e.target.closest('#mob-notif-indicator')) return;
+      toggleQuickSettings();
+    });
   }
 
   // QS tiles: tap to show brief tooltip
@@ -2411,10 +2423,12 @@ function initMobile() {
     }
   });
 
-  // Close QS on tap outside
+  // Close QS and Notif Panel on tap outside
   document.getElementById('mob-pages-wrap')?.addEventListener('click', () => {
     document.getElementById('mob-quick-settings')?.classList.remove('open');
     document.getElementById('mob-quick-settings')?.setAttribute('aria-hidden', 'true');
+    document.getElementById('mob-notif-panel')?.classList.remove('open');
+    document.getElementById('mob-notif-panel')?.setAttribute('aria-hidden', 'true');
   });
 
   // Back button
@@ -2422,9 +2436,22 @@ function initMobile() {
   if (backBtn) backBtn.addEventListener('click', closeMobileWindow);
 }
 
+function toggleNotifPanel() {
+  const np = document.getElementById('mob-notif-panel');
+  if (!np) return;
+  // Close quick settings if open
+  const qs = document.getElementById('mob-quick-settings');
+  if (qs) { qs.classList.remove('open'); qs.setAttribute('aria-hidden', 'true'); }
+  const isOpen = np.classList.toggle('open');
+  np.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+}
+
 function toggleQuickSettings() {
   const qs = document.getElementById('mob-quick-settings');
   if (!qs) return;
+  // Close notification panel if open
+  const np = document.getElementById('mob-notif-panel');
+  if (np) { np.classList.remove('open'); np.setAttribute('aria-hidden', 'true'); }
   const isOpen = qs.classList.toggle('open');
   qs.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
 }
@@ -2437,9 +2464,11 @@ function openMobileWindow(id) {
   const body  = document.getElementById('mob-win-body');
   const title = document.getElementById('mob-win-title');
 
-  // Close quick settings if open
+  // Close quick settings and notification panel if open
   const qs = document.getElementById('mob-quick-settings');
   if (qs) { qs.classList.remove('open'); qs.setAttribute('aria-hidden', 'true'); }
+  const np = document.getElementById('mob-notif-panel');
+  if (np) { np.classList.remove('open'); np.setAttribute('aria-hidden', 'true'); }
 
   body.innerHTML = '';
   title.textContent = MOB_LABELS[id] || cfg.title;
