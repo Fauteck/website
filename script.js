@@ -124,6 +124,19 @@ const WIN_CONFIGS = {
     defaultW: 460, defaultH: 460,
     svgPath: 'M3 7h8l2 3h12v15H3V7z',
   },
+  // Game apps
+  snake: {
+    title: 'Snake',
+    color: 'green',
+    defaultW: 420, defaultH: 500,
+    svgPath: 'M6 20c0-4 3-4 3-8s-3-4-3-8M10 4h4c2 0 3 1 3 3v2c0 2-1 3-3 3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3h4M22 8a2 2 0 100-4 2 2 0 000 4',
+  },
+  minesweeper: {
+    title: 'Minesweeper',
+    color: 'red',
+    defaultW: 460, defaultH: 540,
+    svgPath: 'M14 3v4M7 7l3 3M21 7l-3 3M14 11a3 3 0 100 6 3 3 0 000-6zM5 21h18M8 21l2-7M20 21l-2-7',
+  },
 };
 
 // ─────────────────────────────────────────────────
@@ -398,6 +411,8 @@ function initWindowContent(id, el) {
     github:         buildGitHub,
     rss:            buildRSS,
     filesapp:       buildFilesApp,
+    snake:          buildSnake,
+    minesweeper:    buildMinesweeper,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
@@ -1758,6 +1773,350 @@ function buildEigeneDateien(body) {
 }
 
 // ─────────────────────────────────────────────────
+// SNAKE GAME
+// ─────────────────────────────────────────────────
+function buildSnake(body) {
+  body.style.padding = '0';
+  body.innerHTML = `
+    <div class="snake-game">
+      <div class="snake-header">
+        <div class="snake-score">Score: <span id="snake-score-val">0</span></div>
+        <div class="snake-best">Best: <span id="snake-best-val">0</span></div>
+      </div>
+      <canvas id="snake-canvas" width="300" height="300"></canvas>
+      <div class="snake-controls">
+        <div class="snake-ctrl-row"><button class="snake-btn" data-dir="up">▲</button></div>
+        <div class="snake-ctrl-row">
+          <button class="snake-btn" data-dir="left">◀</button>
+          <button class="snake-btn" data-dir="down">▼</button>
+          <button class="snake-btn" data-dir="right">▶</button>
+        </div>
+      </div>
+      <div class="snake-overlay" id="snake-overlay">
+        <div class="snake-overlay-text">
+          <div class="snake-overlay-title">Snake</div>
+          <div class="snake-overlay-sub">Tap to start</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const canvas = body.querySelector('#snake-canvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = body.querySelector('#snake-score-val');
+  const bestEl = body.querySelector('#snake-best-val');
+  const overlay = body.querySelector('#snake-overlay');
+  const overlayTitle = overlay.querySelector('.snake-overlay-title');
+  const overlaySub = overlay.querySelector('.snake-overlay-sub');
+
+  const GRID = 15;
+  const CELL = canvas.width / GRID;
+  let snake, dir, nextDir, food, score, best = 0, gameLoop, running = false;
+
+  function reset() {
+    snake = [{ x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }];
+    dir = { x: 1, y: 0 };
+    nextDir = { x: 1, y: 0 };
+    score = 0;
+    scoreEl.textContent = '0';
+    placeFood();
+  }
+
+  function placeFood() {
+    do {
+      food = { x: Math.floor(Math.random() * GRID), y: Math.floor(Math.random() * GRID) };
+    } while (snake.some(s => s.x === food.x && s.y === food.y));
+  }
+
+  function draw() {
+    // Background
+    ctx.fillStyle = '#1a1a2e';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Grid lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i <= GRID; i++) {
+      ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, canvas.height); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(canvas.width, i * CELL); ctx.stroke();
+    }
+
+    // Food
+    ctx.fillStyle = '#ef4444';
+    ctx.shadowColor = '#ef4444';
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL / 2.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Snake
+    snake.forEach((seg, i) => {
+      const alpha = 1 - (i / snake.length) * 0.5;
+      ctx.fillStyle = i === 0 ? '#4ade80' : `rgba(74, 222, 128, ${alpha})`;
+      ctx.shadowColor = '#4ade80';
+      ctx.shadowBlur = i === 0 ? 6 : 0;
+      const pad = i === 0 ? 1 : 2;
+      ctx.beginPath();
+      ctx.roundRect(seg.x * CELL + pad, seg.y * CELL + pad, CELL - pad * 2, CELL - pad * 2, 4);
+      ctx.fill();
+    });
+    ctx.shadowBlur = 0;
+  }
+
+  function update() {
+    dir = nextDir;
+    const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+
+    // Wall collision
+    if (head.x < 0 || head.x >= GRID || head.y < 0 || head.y >= GRID) return gameOver();
+    // Self collision
+    if (snake.some(s => s.x === head.x && s.y === head.y)) return gameOver();
+
+    snake.unshift(head);
+    if (head.x === food.x && head.y === food.y) {
+      score += 10;
+      scoreEl.textContent = score;
+      placeFood();
+    } else {
+      snake.pop();
+    }
+    draw();
+  }
+
+  function gameOver() {
+    running = false;
+    clearInterval(gameLoop);
+    if (score > best) { best = score; bestEl.textContent = best; }
+    overlayTitle.textContent = 'Game Over';
+    overlaySub.textContent = `Score: ${score} — Tap to retry`;
+    overlay.classList.add('show');
+  }
+
+  function start() {
+    overlay.classList.remove('show');
+    reset();
+    draw();
+    running = true;
+    gameLoop = setInterval(update, 120);
+  }
+
+  function setDir(x, y) {
+    if (dir.x === -x && dir.y === -y) return; // no reverse
+    nextDir = { x, y };
+  }
+
+  // Touch / click controls
+  body.querySelectorAll('.snake-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      if (!running) return;
+      const d = btn.dataset.dir;
+      if (d === 'up') setDir(0, -1);
+      if (d === 'down') setDir(0, 1);
+      if (d === 'left') setDir(-1, 0);
+      if (d === 'right') setDir(1, 0);
+    });
+  });
+
+  // Keyboard controls
+  function keyHandler(e) {
+    if (!running) return;
+    if (e.key === 'ArrowUp' || e.key === 'w') { e.preventDefault(); setDir(0, -1); }
+    if (e.key === 'ArrowDown' || e.key === 's') { e.preventDefault(); setDir(0, 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'a') { e.preventDefault(); setDir(-1, 0); }
+    if (e.key === 'ArrowRight' || e.key === 'd') { e.preventDefault(); setDir(1, 0); }
+  }
+  document.addEventListener('keydown', keyHandler);
+
+  // Swipe controls
+  let touchStartX = 0, touchStartY = 0;
+  canvas.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  canvas.addEventListener('touchend', e => {
+    if (!running) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      setDir(dx > 0 ? 1 : -1, 0);
+    } else {
+      setDir(0, dy > 0 ? 1 : -1);
+    }
+  }, { passive: true });
+
+  overlay.addEventListener('click', start);
+
+  // Initial draw
+  reset();
+  draw();
+  overlay.classList.add('show');
+}
+
+// ─────────────────────────────────────────────────
+// MINESWEEPER GAME
+// ─────────────────────────────────────────────────
+function buildMinesweeper(body) {
+  body.style.padding = '0';
+
+  const ROWS = 9, COLS = 9, MINES = 10;
+  let board, revealed, flagged, gameOver, firstClick, minesLeft, timerVal, timerInt;
+
+  function init() {
+    board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+    revealed = Array.from({ length: ROWS }, () => Array(COLS).fill(false));
+    flagged = Array.from({ length: ROWS }, () => Array(COLS).fill(false));
+    gameOver = false;
+    firstClick = true;
+    minesLeft = MINES;
+    timerVal = 0;
+    clearInterval(timerInt);
+    render();
+  }
+
+  function placeMines(safeR, safeC) {
+    let placed = 0;
+    while (placed < MINES) {
+      const r = Math.floor(Math.random() * ROWS);
+      const c = Math.floor(Math.random() * COLS);
+      if (board[r][c] === -1) continue;
+      if (Math.abs(r - safeR) <= 1 && Math.abs(c - safeC) <= 1) continue;
+      board[r][c] = -1;
+      placed++;
+    }
+    // Calculate numbers
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        if (board[r][c] === -1) continue;
+        let count = 0;
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            const nr = r + dr, nc = c + dc;
+            if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && board[nr][nc] === -1) count++;
+          }
+        }
+        board[r][c] = count;
+      }
+    }
+  }
+
+  function reveal(r, c) {
+    if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return;
+    if (revealed[r][c] || flagged[r][c]) return;
+    revealed[r][c] = true;
+    if (board[r][c] === 0) {
+      for (let dr = -1; dr <= 1; dr++)
+        for (let dc = -1; dc <= 1; dc++)
+          reveal(r + dr, c + dc);
+    }
+  }
+
+  function checkWin() {
+    for (let r = 0; r < ROWS; r++)
+      for (let c = 0; c < COLS; c++)
+        if (board[r][c] !== -1 && !revealed[r][c]) return false;
+    return true;
+  }
+
+  const NUM_COLORS = ['', '#2563eb', '#059669', '#dc2626', '#7c3aed', '#b45309', '#0891b2', '#1a1a2e', '#6b7280'];
+
+  function render() {
+    const minesDisplay = String(minesLeft).padStart(3, '0');
+    const timeDisplay = String(timerVal).padStart(3, '0');
+
+    let gridHtml = '';
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        let cls = 'ms-cell';
+        let content = '';
+        if (revealed[r][c]) {
+          cls += ' ms-revealed';
+          if (board[r][c] === -1) {
+            cls += ' ms-mine';
+            content = '<svg viewBox="0 0 16 16" fill="none" width="14" height="14"><circle cx="8" cy="8" r="4" fill="currentColor"/><line x1="8" y1="2" x2="8" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="11" x2="8" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="8" x2="5" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+          } else if (board[r][c] > 0) {
+            content = `<span style="color:${NUM_COLORS[board[r][c]]};font-weight:700">${board[r][c]}</span>`;
+          }
+        } else if (flagged[r][c]) {
+          cls += ' ms-flagged';
+          content = '🚩';
+        }
+        gridHtml += `<div class="${cls}" data-r="${r}" data-c="${c}">${content}</div>`;
+      }
+    }
+
+    let statusFace = '🙂';
+    let statusMsg = '';
+    if (gameOver === 'lost') { statusFace = '😵'; statusMsg = 'Game Over!'; }
+    if (gameOver === 'won') { statusFace = '😎'; statusMsg = 'Gewonnen!'; }
+
+    body.innerHTML = `
+      <div class="ms-wrap">
+        <div class="ms-toolbar">
+          <div class="ms-counter">${minesDisplay}</div>
+          <button class="ms-reset" id="ms-reset">${statusFace}</button>
+          <div class="ms-counter">${timeDisplay}</div>
+        </div>
+        <div class="ms-grid" id="ms-grid">${gridHtml}</div>
+        ${statusMsg ? `<div class="ms-status">${statusMsg} <span class="ms-play-again">Neues Spiel</span></div>` : ''}
+      </div>
+    `;
+
+    // Event listeners
+    body.querySelector('#ms-reset').addEventListener('click', init);
+    const playAgain = body.querySelector('.ms-play-again');
+    if (playAgain) playAgain.addEventListener('click', init);
+
+    if (!gameOver) {
+      body.querySelectorAll('.ms-cell:not(.ms-revealed)').forEach(cell => {
+        cell.addEventListener('click', () => {
+          const r = +cell.dataset.r, c = +cell.dataset.c;
+          if (flagged[r][c]) return;
+          if (firstClick) {
+            firstClick = false;
+            placeMines(r, c);
+            timerInt = setInterval(() => { timerVal++; updateTimerDisplay(); }, 1000);
+          }
+          if (board[r][c] === -1) {
+            // Reveal all mines
+            for (let rr = 0; rr < ROWS; rr++)
+              for (let cc = 0; cc < COLS; cc++)
+                if (board[rr][cc] === -1) revealed[rr][cc] = true;
+            gameOver = 'lost';
+            clearInterval(timerInt);
+            render();
+            return;
+          }
+          reveal(r, c);
+          if (checkWin()) {
+            gameOver = 'won';
+            clearInterval(timerInt);
+          }
+          render();
+        });
+
+        cell.addEventListener('contextmenu', e => {
+          e.preventDefault();
+          const r = +cell.dataset.r, c = +cell.dataset.c;
+          if (revealed[r][c] || gameOver) return;
+          flagged[r][c] = !flagged[r][c];
+          minesLeft += flagged[r][c] ? -1 : 1;
+          render();
+        });
+      });
+    }
+  }
+
+  function updateTimerDisplay() {
+    const el = body.querySelector('.ms-counter:last-child');
+    if (el) el.textContent = String(timerVal).padStart(3, '0');
+  }
+
+  init();
+}
+
+// ─────────────────────────────────────────────────
 // DESKTOP ICONS
 // ─────────────────────────────────────────────────
 function initDesktopIcons() {
@@ -1931,11 +2290,13 @@ const MOB_LABELS = {
   github:        'GitHub',
   rss:           'Feedly',
   filesapp:      'Dateien',
+  snake:         'Snake',
+  minesweeper:   'Minesweeper',
 };
 
 // Page 1 apps (main homescreen), Page 2 remainder
 const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams'];
-const MOB_PAGE2 = ['jira', 'github', 'homeassistant', 'rss', 'filesapp', 'bambu'];
+const MOB_PAGE2 = ['jira', 'github', 'homeassistant', 'rss', 'filesapp', 'snake'];
 const MOB_DOCK  = ['outlook', 'network', 'about', 'github'];
 
 const COLOR_MAP = {
@@ -2106,6 +2467,8 @@ function openMobileWindow(id) {
     github:         buildGitHub,
     rss:            buildRSS,
     filesapp:       buildFilesApp,
+    snake:          buildSnake,
+    minesweeper:    buildMinesweeper,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
