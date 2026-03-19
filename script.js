@@ -10,10 +10,10 @@
 // ─────────────────────────────────────────────────
 const WIN_CONFIGS = {
   about: {
-    title: 'about.md',
-    color: 'blue',
-    defaultW: 600, defaultH: 500,
-    svgPath: 'M4 2h12l6 6v22H4V2zM16 2v6h6M7 13h10M7 17h10M7 21h6',
+    title: 'Brave',
+    color: 'orange',
+    defaultW: 640, defaultH: 520,
+    svgPath: 'M12 2L4 6v6c0 5.5 3.4 10.7 8 13 4.6-2.3 8-7.5 8-13V6L12 2zM12 8c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z',
   },
   career: {
     title: 'Arbeitsplatz',
@@ -142,6 +142,12 @@ const WIN_CONFIGS = {
     color: 'red',
     defaultW: 460, defaultH: 540,
     svgPath: 'M14 3v4M7 7l3 3M21 7l-3 3M14 11a3 3 0 100 6 3 3 0 000-6zM5 21h18M8 21l2-7M20 21l-2-7',
+  },
+  placeholder: {
+    title: 'Mehr',
+    color: 'indigo',
+    defaultW: 0, defaultH: 0,
+    svgPath: 'M3 7h8l2 3h12v15H3V7z',
   },
 };
 
@@ -428,34 +434,63 @@ function initWindowContent(id, el) {
 // ABOUT.MD CONTENT
 // ─────────────────────────────────────────────────
 function buildAbout(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.display = 'flex';
+  body.style.flexDirection = 'column';
   body.innerHTML = `
-    <div class="about-toolbar">
-      <span>Niklas</span>
-      <span class="bc-sep">/</span>
-      <span style="color:#2d6a4f;font-weight:600">about.md</span>
+    <div class="brave-chrome">
+      <div class="brave-toolbar">
+        <div class="brave-nav-btns">
+          <button class="brave-nav-btn" disabled aria-label="Zurück">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="brave-nav-btn" disabled aria-label="Vorwärts">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="brave-nav-btn" aria-label="Aktualisieren">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8A5 5 0 103 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 5v3h-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="brave-address-bar">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:#52b788;flex-shrink:0"><path d="M7 1.5C4 1.5 2 4 2 7s2 5.5 5 5.5 5-2.5 5-5.5-2-5.5-5-5.5zM7 1.5v11M2 7h10M2.5 4.5Q4.5 6 7 6t4.5-1.5M2.5 9.5Q4.5 8 7 8t4.5 1.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span class="brave-url">fauteck.eu/about</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:#52b788;margin-left:auto;flex-shrink:0"><path d="M7 1l1.5 3 3.5.5-2.5 2.5.6 3.5L7 9l-3.1 1.5.6-3.5L2 4.5 5.5 4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="brave-toolbar-right">
+          <button class="brave-nav-btn" aria-label="Brave Shields">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 3v4c0 3 2.5 5.7 6 7 3.5-1.3 6-4 6-7V3L8 1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.5 8l1.5 1.5L10.5 6" stroke="#fb923c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="brave-nav-btn" aria-label="Menü">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="4" r="1.2" fill="currentColor"/><circle cx="8" cy="8" r="1.2" fill="currentColor"/><circle cx="8" cy="12" r="1.2" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="about-content">
-      <h1>Niklas Fauteck</h1>
-      <div class="about-role">Head of Digital Transformation Kommunikation &middot; RTL Deutschland</div>
-      <hr class="about-hr">
-      <p>
-        Bei RTL Deutschland baue ich die digitalen Systeme, die unsere Kommunikation
-        am Laufen halten – Media Hub, PICTRON, MDC. Ich verstehe sowohl, was Redakteure
-        brauchen, als auch was IT liefern kann. Das macht mich zur Schnittstelle, die
-        beide Seiten versteht – und übersetzt.
-      </p>
-      <h2>Kernthesen</h2>
-      <ul class="about-theses">
-        <li>Digitalisierung ist kein Selbstzweck, sondern Mittel für Wirkung</li>
-        <li>Das beste Tool ist das, das Reibung reduziert</li>
-        <li>Technologie versteht man nur, wenn man sie selbst anfasst</li>
-        <li>Komplexität verstehen – Einfachheit liefern</li>
-        <li>Systeme, die laufen, sind besser als solche, die präsentiert werden</li>
-      </ul>
-      <div class="about-cta">
-        <button class="btn-primary" onclick="openWindow('career')">💼 Arbeitsplatz öffnen</button>
-        <button class="btn-ghost"   onclick="openWindow('terminal')">$ Terminal starten</button>
-        <button class="btn-ghost"   onclick="openWindow('network')">→ Kontakt</button>
+    <div class="brave-content">
+      <div class="about-content">
+        <h1>Niklas Fauteck</h1>
+        <div class="about-role">Head of Digital Transformation Kommunikation &middot; RTL Deutschland</div>
+        <hr class="about-hr">
+        <p>
+          Bei RTL Deutschland baue ich die digitalen Systeme, die unsere Kommunikation
+          am Laufen halten – Media Hub, PICTRON, MDC. Ich verstehe sowohl, was Redakteure
+          brauchen, als auch was IT liefern kann. Das macht mich zur Schnittstelle, die
+          beide Seiten versteht – und übersetzt.
+        </p>
+        <h2>Kernthesen</h2>
+        <ul class="about-theses">
+          <li>Digitalisierung ist kein Selbstzweck, sondern Mittel für Wirkung</li>
+          <li>Das beste Tool ist das, das Reibung reduziert</li>
+          <li>Technologie versteht man nur, wenn man sie selbst anfasst</li>
+          <li>Komplexität verstehen – Einfachheit liefern</li>
+          <li>Systeme, die laufen, sind besser als solche, die präsentiert werden</li>
+        </ul>
+        <div class="about-cta">
+          <button class="btn-primary" onclick="openWindow('career')">💼 Arbeitsplatz öffnen</button>
+          <button class="btn-ghost"   onclick="openWindow('terminal')">$ Terminal starten</button>
+          <button class="btn-ghost"   onclick="openWindow('network')">→ Kontakt</button>
+        </div>
       </div>
     </div>
   `;
@@ -634,6 +669,11 @@ function buildCareerMobile(body) {
   }
 }
 
+// Drive letters for career entries
+const CAREER_DRIVES = ['C:', 'D:', 'E:', 'F:', 'G:'];
+const CAREER_DRIVE_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+const CAREER_DRIVE_FILLS  = [85, 60, 40, 30, 20]; // fake usage %
+
 function buildCareer(body) {
   if (window.innerWidth < 768) return buildCareerMobile(body);
 
@@ -641,89 +681,125 @@ function buildCareer(body) {
   body.style.overflow = 'hidden';
   body.style.display = 'flex';
   body.style.flexDirection = 'column';
+  body.style.background = '#f0f0f0';
 
-  const html = `
-    <div class="fm-wrap">
-      <div class="fm-toolbar">
-        <div class="fm-toolbar-btns">
-          <div class="fm-toolbar-btn" title="Zurück">‹</div>
-          <div class="fm-toolbar-btn" title="Vor">›</div>
-          <div class="fm-toolbar-btn" title="Hoch">↑</div>
-        </div>
-        <div class="fm-path">/Niklas/Karriere</div>
+  const drivesHtml = CAREER_DATA.map((e, i) => `
+    <div class="ap-drive${i === 0 ? ' active' : ''}" data-career-id="${e.id}" tabindex="0">
+      <div class="ap-drive-icon">
+        <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+          <rect x="4" y="14" width="40" height="26" rx="3" fill="${CAREER_DRIVE_COLORS[i]}" opacity="0.15" stroke="${CAREER_DRIVE_COLORS[i]}" stroke-width="1.8"/>
+          <rect x="4" y="14" width="40" height="10" rx="3" fill="${CAREER_DRIVE_COLORS[i]}" opacity="0.3"/>
+          <circle cx="38" cy="19" r="3" fill="${CAREER_DRIVE_COLORS[i]}"/>
+          <circle cx="30" cy="19" r="3" fill="${CAREER_DRIVE_COLORS[i]}" opacity="0.5"/>
+          <rect x="8" y="30" width="${Math.round(32 * CAREER_DRIVE_FILLS[i] / 100)}" height="5" rx="2" fill="${CAREER_DRIVE_COLORS[i]}" opacity="0.7"/>
+          <rect x="8" y="30" width="32" height="5" rx="2" stroke="${CAREER_DRIVE_COLORS[i]}" stroke-width="1" fill="none"/>
+        </svg>
       </div>
-      <div class="fm-body">
-        <div class="fm-sidebar">
-          <div class="fm-sidebar-section">Orte</div>
-          <div class="fm-sidebar-item active" data-nav="career"><span class="fm-si-icon">💼</span> Karriere</div>
-          <div class="fm-sidebar-item" data-nav="sysmon"><span class="fm-si-icon">📊</span> System Monitor</div>
-          <div class="fm-sidebar-item" data-nav="packages"><span class="fm-si-icon">📦</span> Installierte Apps</div>
-          <div class="fm-sidebar-section" style="margin-top:8px">Schnell</div>
-          <div class="fm-sidebar-item" data-nav="network"><span class="fm-si-icon">🌐</span> Netzwerk</div>
-          <div class="fm-sidebar-item" data-nav="trash"><span class="fm-si-icon">🗑️</span> Papierkorb</div>
-        </div>
-        <div class="fm-main">
-          <div class="fm-list" id="fm-entry-list">
-            <div class="fm-list-header"><span>Zeitraum &amp; Position</span></div>
-            ${CAREER_DATA.map((e, i) => `
-              <div class="fm-entry${i === 0 ? ' active' : ''}" data-career-id="${e.id}">
-                <span class="fm-entry-icon">${e.icon}</span>
-                <div class="fm-entry-info">
-                  <div class="fm-entry-name">${e.name}</div>
-                  <div class="fm-entry-sub">${e.sub}</div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-          <div class="fm-detail" id="fm-detail-pane"></div>
-        </div>
+      <div class="ap-drive-info">
+        <div class="ap-drive-label">${e.sub}</div>
+        <div class="ap-drive-letter">(${CAREER_DRIVES[i] || '?:'})</div>
+        <div class="ap-drive-period">${e.period}</div>
       </div>
     </div>
-  `;
-  body.innerHTML = html;
+  `).join('');
 
-  // Show first entry by default
+  body.innerHTML = `
+    <div class="ap-wrap">
+      <div class="ap-toolbar">
+        <div class="ap-toolbar-btns">
+          <div class="ap-toolbar-btn" title="Zurück">‹</div>
+          <div class="ap-toolbar-btn" title="Vor">›</div>
+          <div class="ap-toolbar-btn" title="Hoch">↑</div>
+        </div>
+        <div class="ap-path">/Niklas/Arbeitsplatz</div>
+        <div class="ap-view-btns">
+          <div class="ap-toolbar-btn ap-btn-active" title="Symbole">⊞</div>
+          <div class="ap-toolbar-btn" title="Liste">☰</div>
+        </div>
+      </div>
+      <div class="ap-body">
+        <div class="ap-sidebar">
+          <div class="ap-sidebar-section">Orte</div>
+          <div class="ap-sidebar-item active" data-nav="career">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><rect x="1" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 5V4a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.3"/></svg>
+            Arbeitsplatz
+          </div>
+          <div class="ap-sidebar-item" data-nav="eigenedateien">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M1 4h6l1.5 2H15v8H1V4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            Eigene Dateien
+          </div>
+          <div class="ap-sidebar-item" data-nav="network">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><ellipse cx="8" cy="8" rx="3" ry="6" stroke="currentColor" stroke-width="1.3"/><line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.2"/></svg>
+            Netzwerk
+          </div>
+          <div class="ap-sidebar-item" data-nav="trash">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 5h10M6 5V3a1 1 0 011-1h2a1 1 0 011 1v2M5 5l.7 9h4.6l.7-9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Papierkorb
+          </div>
+        </div>
+        <div class="ap-main">
+          <div class="ap-section-label">Laufwerke</div>
+          <div class="ap-drives-grid" id="ap-drives-grid">
+            ${drivesHtml}
+          </div>
+          <div class="ap-detail-pane" id="ap-detail-pane" style="display:none"></div>
+        </div>
+      </div>
+      <div class="ap-statusbar" id="ap-statusbar">5 Objekte</div>
+    </div>
+  `;
+
+  // Show first by default
   showCareerDetail(body, CAREER_DATA[0].id);
 
-  // Entry click
-  body.querySelectorAll('.fm-entry').forEach(el => {
+  body.querySelectorAll('.ap-drive').forEach(el => {
     el.addEventListener('click', () => {
-      body.querySelectorAll('.fm-entry').forEach(e => e.classList.remove('active'));
+      body.querySelectorAll('.ap-drive').forEach(e => e.classList.remove('active'));
       el.classList.add('active');
       showCareerDetail(body, el.dataset.careerId);
     });
+    el.addEventListener('dblclick', () => {
+      // double click could expand detail, same as single for now
+    });
   });
 
-  // Sidebar navigation
-  body.querySelectorAll('.fm-sidebar-item[data-nav]').forEach(el => {
+  body.querySelectorAll('.ap-sidebar-item[data-nav]').forEach(el => {
     el.addEventListener('click', () => {
-      const target = el.dataset.nav;
-      if (target !== 'career') openWindow(target);
+      const t = el.dataset.nav;
+      if (t !== 'career') openWindow(t);
     });
   });
 }
 
 function showCareerDetail(body, careerId) {
   const data = CAREER_DATA.find(e => e.id === careerId);
-  const pane = body.querySelector('#fm-detail-pane');
+  // Support both old fm-detail-pane and new ap-detail-pane
+  const pane = body.querySelector('#ap-detail-pane') || body.querySelector('#fm-detail-pane');
   if (!data || !pane) return;
 
+  pane.style.display = 'block';
   pane.innerHTML = `
-    <div class="fm-detail-title">${data.title}</div>
-    <div class="fm-detail-company">${data.company}</div>
-    <div class="fm-detail-period">${data.period}</div>
-    <div class="fm-detail-section">
+    <div class="ap-detail-header">
+      <span class="ap-detail-icon">${data.icon}</span>
+      <div>
+        <div class="ap-detail-title">${data.title}</div>
+        <div class="ap-detail-company">${data.company}</div>
+        <div class="ap-detail-period">${data.period}</div>
+      </div>
+    </div>
+    <div class="ap-detail-section">
       <h4>Verantwortung</h4>
-      <ul class="fm-detail-list">
+      <ul class="ap-detail-list">
         ${data.responsibilities.map(r => `<li>${r}</li>`).join('')}
       </ul>
     </div>
-    <div class="fm-detail-section">
+    ${data.impact.length ? `
+    <div class="ap-detail-section">
       <h4>Wirkung</h4>
-      <ul class="fm-detail-list">
+      <ul class="ap-detail-list">
         ${data.impact.map(i => `<li>${i}</li>`).join('')}
       </ul>
-    </div>
+    </div>` : ''}
   `;
 }
 
@@ -1088,7 +1164,178 @@ function buildSysmon(body) {
 // ─────────────────────────────────────────────────
 // BAMBU STUDIO (3D PRINT — redesigned)
 // ─────────────────────────────────────────────────
+function buildBambuMobile(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.display = 'flex';
+  body.style.flexDirection = 'column';
+  body.style.background = '#111';
+  body.style.color = '#fff';
+  body.style.height = '100%';
+
+  body.innerHTML = `
+    <div class="bambu-mob-wrap">
+      <!-- Top bar -->
+      <div class="bambu-mob-topbar">
+        <div class="bambu-mob-printer-info">
+          <div class="bambu-mob-printer-icon">
+            <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
+              <rect x="3" y="12" width="18" height="9" rx="1.5" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.3"/>
+              <path d="M7 12V7l5-3 5 3v5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="16" r="1.5" fill="white" opacity="0.7"/>
+            </svg>
+          </div>
+          <div>
+            <div class="bambu-mob-printer-name">P1S</div>
+            <div class="bambu-mob-printer-status"><span class="bambu-mob-online-dot"></span>Online</div>
+          </div>
+        </div>
+        <div class="bambu-mob-topbar-actions">
+          <button class="bambu-mob-icon-btn">+</button>
+          <button class="bambu-mob-icon-btn">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <button class="bambu-mob-icon-btn" style="position:relative">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2c-2.8 0-5 2.2-5 5v4.5l-1.2 1.2c-.3.3-.1.8.3.8h11.8c.4 0 .6-.5.3-.8L15 11.5V7c0-2.8-2.2-5-5-5zM8.5 16a1.5 1.5 0 003 0" stroke="currentColor" stroke-width="1.3"/></svg>
+            <span class="bambu-mob-notif-dot"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Camera / Preview section -->
+      <div class="bambu-mob-camera">
+        <button class="bambu-mob-timelapse">
+          <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><rect x="2" y="4" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M14 7l4-2v10l-4-2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Zeitraffer
+          <svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="bambu-mob-camera-inner">
+          <div class="bambu-mob-logo">
+            <svg viewBox="0 0 60 30" fill="none" width="90" height="45">
+              <path d="M4 4h8v8H4zM14 4h8v8h-8zM4 14h8v8H4z" fill="white" opacity="0.9"/>
+              <text x="26" y="22" font-size="14" font-weight="600" fill="white" font-family="Arial, sans-serif">Bambu</text>
+              <text x="26" y="28" font-size="8" fill="rgba(255,255,255,0.6)" font-family="Arial, sans-serif">Lab</text>
+            </svg>
+          </div>
+          <button class="bambu-mob-play-btn">
+            <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" fill="white"/><path d="M10 8l6 4-6 4V8z" fill="#111"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Job card -->
+      <div class="bambu-mob-scroll">
+        <div class="bambu-mob-card">
+          <div class="bambu-mob-job-row">
+            <div class="bambu-mob-job-thumb">
+              <div style="width:44px;height:44px;background:#1a1a1a;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#666">11</div>
+            </div>
+            <div class="bambu-mob-job-info">
+              <div class="bambu-mob-job-title">Gridfinity Box Lite – Filamentfreundliche Behälter</div>
+              <div class="bambu-mob-job-sub">ORIGINAL – Box Lite 1x</div>
+              <div class="bambu-mob-job-progress-row">
+                <span class="bambu-mob-pct">100%</span>
+                <span class="bambu-mob-success">Erfolgreich</span>
+              </div>
+              <div class="bambu-mob-progress-track"><div class="bambu-mob-progress-fill" style="width:100%"></div></div>
+            </div>
+          </div>
+          <button class="bambu-mob-reprint">
+            <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="M4 10a6 6 0 116 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M4 14V10H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Erneut drucken
+          </button>
+        </div>
+
+        <div class="bambu-mob-divider"></div>
+
+        <!-- Rating section -->
+        <div class="bambu-mob-card">
+          <div class="bambu-mob-rating-title">Wie würden Sie das Druckprofil bewerten?</div>
+          <div class="bambu-mob-stars">
+            ${[1,2,3,4,5].map(i => `<svg class="bambu-mob-star" viewBox="0 0 24 24" fill="none" width="36" height="36" data-star="${i}"><path d="M12 2l2.9 6.3L22 9.3l-5 4.8 1.2 6.9L12 18l-6.2 3 1.2-6.9-5-4.8 7.1-1z" stroke="#666" stroke-width="1.5" stroke-linejoin="round"/></svg>`).join('')}
+          </div>
+        </div>
+
+        <div class="bambu-mob-divider"></div>
+
+        <!-- Drucker section -->
+        <div class="bambu-mob-card">
+          <div class="bambu-mob-section-header">
+            <div class="bambu-mob-section-title">
+              <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="2" y="9" width="16" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 9V6l5-3 5 3v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              Drucker
+            </div>
+            <span class="bambu-mob-see-all">Alles ansehen <svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+          </div>
+          <div class="bambu-mob-stats-row">
+            <div class="bambu-mob-stat-chip">
+              <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="M10 2 Q10 18 10 2" stroke="none"/><path d="M5 16V6M10 16V3M15 16V9" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="bambu-mob-stat-val">21 <span>°C / 0°C</span></div>
+            </div>
+            <div class="bambu-mob-stat-chip">
+              <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="M4 16c0-4 2.5-6 6-6s6 2 6 6" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/><path d="M4 12c0-2 2.5-4 6-4s6 2 6 4" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <div class="bambu-mob-stat-val">17 <span>°C / 0°C</span></div>
+            </div>
+            <div class="bambu-mob-stat-chip">
+              <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><circle cx="10" cy="10" r="6" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M10 4a6 6 0 014.2 10.2" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="bambu-mob-stat-val">100<span>%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bambu-mob-divider"></div>
+
+        <!-- Filament section -->
+        <div class="bambu-mob-card">
+          <div class="bambu-mob-section-header">
+            <div class="bambu-mob-section-title">
+              <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.3"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.3"/></svg>
+              Filament
+            </div>
+            <span class="bambu-mob-see-all">Alles ansehen <svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+          </div>
+        </div>
+
+        <div style="height:70px"></div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="bambu-mob-nav">
+        <button class="bambu-mob-nav-btn">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Modelle</span>
+        </button>
+        <button class="bambu-mob-nav-btn bambu-mob-nav-active">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="12" width="18" height="9" rx="1.5" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1.5"/><path d="M7 12V7l5-3 5 3v5" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Geräte</span>
+        </button>
+        <button class="bambu-mob-nav-btn">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20v-1a8 8 0 0116 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Ich</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  // Star rating interaction
+  body.querySelectorAll('.bambu-mob-star').forEach((star, idx, arr) => {
+    star.addEventListener('click', () => {
+      arr.forEach((s, i) => {
+        const path = s.querySelector('path');
+        if (i <= idx) {
+          path.setAttribute('fill', '#22c55e');
+          path.setAttribute('stroke', '#22c55e');
+        } else {
+          path.setAttribute('fill', 'none');
+          path.setAttribute('stroke', '#666');
+        }
+      });
+    });
+  });
+}
+
 function buildBambu(body) {
+  if (window.innerWidth < 768) return buildBambuMobile(body);
   body.style.padding = '0';
   body.style.overflow = 'hidden';
   body.innerHTML = `
@@ -1242,75 +1489,158 @@ function buildBambu(body) {
 // ─────────────────────────────────────────────────
 // HOME ASSISTANT
 // ─────────────────────────────────────────────────
-const HA_ROOMS = [
-  { id: 'wohnzimmer', name: 'Wohnzimmer', on: true,  temp: 21 },
-  { id: 'kueche',     name: 'Küche',      on: false, temp: 20 },
-  { id: 'schlafzimmer',name: 'Schlafzimmer', on: false, temp: 18 },
-  { id: 'buero',      name: 'Büro',       on: true,  temp: 22 },
-];
-
 function buildHA(body) {
-  const roomsHtml = HA_ROOMS.map(r => `
-    <div class="ha-room${r.on ? ' lit' : ''}" id="ha-room-${r.id}">
-      <div class="ha-room-top">
-        <span class="ha-room-name">${r.name}</span>
-        <button class="ha-light-btn${r.on ? ' on' : ''}" data-room="${r.id}"
-                aria-label="Licht ${r.name} ${r.on ? 'an' : 'aus'}"></button>
-      </div>
-      <div class="ha-temp-row">
-        <span class="ha-temp-label">Temp</span>
-        <input class="ha-temp-slider" type="range" min="16" max="26"
-               value="${r.temp}" data-room="${r.id}">
-        <span class="ha-temp-val" id="ha-temp-${r.id}">${r.temp}°C</span>
-      </div>
-    </div>
-  `).join('');
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.background = '#111827';
+  body.style.color = '#f3f4f6';
+
+  const HA_DOORS = [
+    { id: 'vorne',    label: 'Vorne',   open: true,  color: '#ef4444' },
+    { id: 'garten',  label: 'Garten',  open: true,  color: '#ef4444' },
+    { id: 'keller',  label: 'Keller',  open: false, color: '#22c55e' },
+    { id: 'garage',  label: 'Garage',  open: false, color: '#22c55e' },
+    { id: 'carport', label: 'Carport', open: false, color: '#22c55e' },
+    { id: 'hinten',  label: 'Hinten',  open: false, color: '#22c55e' },
+  ];
+
+  const doorSvgOpen  = `<svg viewBox="0 0 28 28" fill="none" width="28" height="28"><rect x="4" y="2" width="14" height="22" rx="1.5" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.3"/><path d="M18 4l6 2v16l-6 2V4z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.3" stroke-linejoin="round"/><circle cx="16.5" cy="14" r="1.5" fill="white" opacity="0.8"/></svg>`;
+  const doorSvgClosed = `<svg viewBox="0 0 28 28" fill="none" width="28" height="28"><rect x="4" y="2" width="20" height="24" rx="1.5" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.3"/><circle cx="20" cy="14" r="1.5" fill="white" opacity="0.8"/></svg>`;
 
   body.innerHTML = `
-    <div class="ha-wrap">
-      <div class="ha-header">
-        <div class="ha-pulse"></div>
-        <h3>Home Assistant</h3>
+    <div class="ha-dash-wrap">
+      <!-- Status row -->
+      <div class="ha-dash-status-row">
+        <div class="ha-dash-chip ha-dash-chip-gray">
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1L2 4v4c0 3.5 2.5 6.7 6 8 3.5-1.3 6-4.5 6-8V4L8 1z" stroke="white" stroke-width="1.2"/></svg>
+          Bereit
+        </div>
+        <div class="ha-dash-chip ha-dash-chip-green">
+          <svg viewBox="0 0 16 16" fill="none" width="10" height="10"><circle cx="8" cy="8" r="4" fill="#22c55e"/></svg>
+          aktiv
+        </div>
+        <div class="ha-dash-chip ha-dash-chip-orange">
+          <svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M8 2L3 7v7h10V7L8 2z" stroke="#fb923c" stroke-width="1.2" stroke-linejoin="round"/><rect x="6" y="10" width="4" height="4" rx="0.5" stroke="#fb923c" stroke-width="1.2"/></svg>
+          Zuhause
+        </div>
       </div>
-      <div class="ha-status-bar">
-        <div class="ha-stat"><span class="ha-stat-label">Räume</span><span class="ha-stat-val" id="ha-lights-on">2 an</span></div>
-        <div class="ha-stat"><span class="ha-stat-label">Ø Temperatur</span><span class="ha-stat-val" id="ha-avg-temp">20.3°C</span></div>
-        <div class="ha-stat"><span class="ha-stat-label">Status</span><span class="ha-stat-val">● verbunden</span></div>
+
+      <!-- Weather -->
+      <div class="ha-dash-weather">
+        <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="4" stroke="#fbbf24" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.9 4.9l1.4 1.4M13.7 13.7l1.4 1.4M4.9 15.1l1.4-1.4M13.7 6.3l1.4-1.4" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="ha-dash-temp">10,8 °C</span>
       </div>
-      <div class="ha-rooms">${roomsHtml}</div>
+
+      <!-- Mindfulness quote -->
+      <div class="ha-dash-quote">
+        <p>Fühle, wie deine Füße den Boden berühren – Schritt für Schritt. – Achte dabei bewusst auf deinen Atem und die Sinneseindrücke um dich.</p>
+        <button class="ha-dash-share-btn" title="Teilen">
+          <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="M15 7a2 2 0 100-4 2 2 0 000 4zM5 12a2 2 0 100-4 2 2 0 000 4zM15 17a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.4"/><path d="M7 11l6 3M13 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Section separator -->
+      <div class="ha-dash-sep">
+        <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2L4 7v11h12V7L10 2z" stroke="rgba(255,255,255,0.4)" stroke-width="1.3" stroke-linejoin="round"/><rect x="7" y="12" width="6" height="6" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/></svg>
+        <div class="ha-dash-sep-line"></div>
+        <div class="ha-dash-sep-icons">
+          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M1 9 Q4 5 8 5 Q12 5 15 9" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 11 Q5.5 8 8 8 Q10.5 8 13 11" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="13.5" r="1.2" fill="rgba(255,255,255,0.5)"/></svg>
+          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M1 9 Q4 5 8 5 Q12 5 15 9" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 11 Q5.5 8 8 8 Q10.5 8 13 11" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="13.5" r="1.2" fill="rgba(255,255,255,0.5)"/></svg>
+        </div>
+        <span class="ha-dash-outdoor-temp">6,3 °C</span>
+      </div>
+
+      <!-- Door controls -->
+      <div class="ha-dash-doors-wrap">
+        <div class="ha-dash-doors">
+          ${HA_DOORS.map(d => `
+            <div class="ha-door-btn" data-door="${d.id}" data-open="${d.open}">
+              <div class="ha-door-icon" style="border-color:${d.open ? '#ef4444' : '#22c55e'}">
+                ${d.open ? doorSvgOpen : doorSvgClosed}
+              </div>
+              <span class="ha-door-label">${d.label}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Quick icons row -->
+      <div class="ha-dash-quick-row">
+        <button class="ha-dash-quick-btn">
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="7" r="3" stroke="rgba(255,79,79,0.9)" stroke-width="1.4"/><path d="M4 18v-1a6 6 0 0112 0v1" stroke="rgba(255,79,79,0.9)" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="ha-dash-quick-btn">
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 3v3M10 14v3M3 10h3M14 10h3M5.6 5.6l2.1 2.1M12.3 12.3l2.1 2.1M5.6 14.4l2.1-2.1M12.3 7.7l2.1-2.1" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="ha-dash-quick-btn">
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="3" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="ha-dash-quick-btn">
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="7" r="3" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"/><path d="M4 18v-1a6 6 0 0112 0v1" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Water / status chips -->
+      <div class="ha-dash-status-chips">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 2C5 8 3 10 3 12a5 5 0 0010 0c0-2-2-4-5-10z" stroke="rgba(96,165,250,0.8)" stroke-width="1.3" stroke-linejoin="round" fill="rgba(96,165,250,0.15)"/></svg>
+        <span class="ha-dash-sc">Aus</span>
+        <span class="ha-dash-sc ha-dash-sc-active">Auto</span>
+        <span class="ha-dash-sc">Aus</span>
+        <span class="ha-dash-sc">Aus</span>
+        <span class="ha-dash-sc ha-dash-sc-active">Ein</span>
+      </div>
+
+      <!-- Wohnzimmer section -->
+      <div class="ha-dash-room-section">
+        <div class="ha-dash-room-header">
+          <div class="ha-dash-room-title">
+            <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M2 9h16v9H2zM2 9l8-7 8 7" stroke="rgba(255,255,255,0.7)" stroke-width="1.3" stroke-linejoin="round"/><path d="M6 18v-5a1 1 0 011-1h6a1 1 0 011 1v5" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/></svg>
+            Wohnzimmer
+          </div>
+          <div class="ha-dash-room-meta">
+            <span class="ha-dash-heat-badge">🔴 Heizbetrieb · 19,8 °C</span>
+            <span class="ha-dash-tv-badge">📱 MagentaTV</span>
+          </div>
+        </div>
+        <div class="ha-dash-dials">
+          ${[
+            { label: 'Couch', svgPath: 'M3 13h14v4H3zM3 13c0-2 1-3 3-3h8c2 0 3 1 3 3M3 17v1M17 17v1', val: 62 },
+            { label: 'Tisch', svgPath: 'M2 10h16v2H2zM4 12v6M14 12v6M3 10V6h14v4', val: 40 },
+            { label: 'Küche', svgPath: 'M4 4h16v3H4zM5 7v13M10 7v13M15 7v13M4 13h16', val: 55 },
+          ].map(d => `
+            <div class="ha-dial-item">
+              <div class="ha-dial-circle">
+                <svg viewBox="0 0 80 80" width="80" height="80" class="ha-dial-svg">
+                  <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+                  <circle cx="40" cy="40" r="32" fill="none" stroke="#06b6d4" stroke-width="6"
+                    stroke-dasharray="${Math.round(d.val * 2.01)} 201"
+                    stroke-dashoffset="50" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <div class="ha-dial-icon">
+                  <svg viewBox="0 0 28 28" fill="none" width="24" height="24">
+                    <path d="${d.svgPath}" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <button class="ha-dial-menu">⋮</button>
+              </div>
+              <span class="ha-dial-label">${d.label}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
     </div>
   `;
 
-  const state = {};
-  HA_ROOMS.forEach(r => { state[r.id] = { on: r.on, temp: r.temp }; });
-
-  function updateStats() {
-    const on = Object.values(state).filter(r => r.on).length;
-    const avg = Object.values(state).reduce((s, r) => s + r.temp, 0) / HA_ROOMS.length;
-    const el1 = body.querySelector('#ha-lights-on');
-    const el2 = body.querySelector('#ha-avg-temp');
-    if (el1) el1.textContent = on + ' an';
-    if (el2) el2.textContent = avg.toFixed(1) + '°C';
-  }
-
-  body.querySelectorAll('.ha-light-btn').forEach(btn => {
+  // Door toggle
+  body.querySelectorAll('.ha-door-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = btn.dataset.room;
-      state[id].on = !state[id].on;
-      btn.classList.toggle('on', state[id].on);
-      const room = body.querySelector(`#ha-room-${id}`);
-      if (room) room.classList.toggle('lit', state[id].on);
-      updateStats();
-    });
-  });
-
-  body.querySelectorAll('.ha-temp-slider').forEach(slider => {
-    slider.addEventListener('input', () => {
-      const id = slider.dataset.room;
-      state[id].temp = parseInt(slider.value);
-      const val = body.querySelector(`#ha-temp-${id}`);
-      if (val) val.textContent = slider.value + '°C';
-      updateStats();
+      const isOpen = btn.dataset.open === 'true';
+      const newOpen = !isOpen;
+      btn.dataset.open = String(newOpen);
+      const iconEl = btn.querySelector('.ha-door-icon');
+      iconEl.style.borderColor = newOpen ? '#ef4444' : '#22c55e';
+      iconEl.innerHTML = newOpen ? doorSvgOpen : doorSvgClosed;
     });
   });
 }
@@ -1425,7 +1755,12 @@ const CHANGELOG_DATA = [
 ];
 
 function buildChangelog(body) {
-  const html = CHANGELOG_DATA.map(v => `
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.display = 'flex';
+  body.style.flexDirection = 'column';
+
+  const changelogHtml = CHANGELOG_DATA.map(v => `
     <div class="cl-version${v.current ? ' cl-ver-current' : ''}">
       <div class="cl-ver-header">
         <span class="cl-ver-tag">${v.ver}</span>
@@ -1438,7 +1773,46 @@ function buildChangelog(body) {
     </div>
   `).join('');
 
-  body.innerHTML = `<div class="changelog">${html}</div>`;
+  const karriereHtml = CAREER_DATA.map(e => `
+    <div class="cl-career-item">
+      <div class="cl-career-dot-wrap">
+        <div class="cl-career-dot"></div>
+        <div class="cl-career-line"></div>
+      </div>
+      <div class="cl-career-card">
+        <div class="cl-career-period">${e.period}</div>
+        <div class="cl-career-title">${e.title}</div>
+        <div class="cl-career-company">${e.icon} ${e.company}</div>
+        <ul class="cl-career-list">
+          ${e.impact.slice(0,2).map(i => `<li>${i}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+
+  body.innerHTML = `
+    <div class="cl-tabs-bar">
+      <button class="cl-tab active" data-tab="changelog">Changelog</button>
+      <button class="cl-tab" data-tab="karriere">Karriere</button>
+    </div>
+    <div class="cl-tab-content" id="cl-content-changelog" style="flex:1;overflow-y:auto">
+      <div class="changelog">${changelogHtml}</div>
+    </div>
+    <div class="cl-tab-content" id="cl-content-karriere" style="flex:1;overflow-y:auto;display:none;padding:16px">
+      <div class="cl-career-timeline">${karriereHtml}</div>
+    </div>
+  `;
+
+  body.querySelectorAll('.cl-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      body.querySelectorAll('.cl-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.dataset.tab;
+      body.querySelectorAll('.cl-tab-content').forEach(c => {
+        c.style.display = c.id === `cl-content-${target}` ? 'block' : 'none';
+      });
+    });
+  });
 }
 
 // ─────────────────────────────────────────────────
@@ -1922,12 +2296,20 @@ function buildFilesAppMobile(body) {
 // EIGENE DATEIEN
 // ─────────────────────────────────────────────────
 function buildEigeneDateien(body) {
+  const EF_ICONS = {
+    PDF: `<svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect x="2" y="2" width="28" height="28" rx="3" fill="#dc2626"/><text x="5" y="22" font-size="10" font-weight="700" fill="white" font-family="Arial">PDF</text></svg>`,
+    DOCX: `<svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect x="2" y="2" width="28" height="28" rx="3" fill="#2563eb"/><text x="8" y="22" font-size="13" font-weight="700" fill="white" font-family="Arial">W</text></svg>`,
+    XLSX: `<svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect x="2" y="2" width="28" height="28" rx="3" fill="#16a34a"/><path d="M8 10l6 12M14 10L8 22" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="18" y="10" width="7" height="4" rx="1" fill="rgba(255,255,255,0.5)"/><rect x="18" y="16" width="7" height="4" rx="1" fill="rgba(255,255,255,0.7)"/></svg>`,
+    GZ: `<svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect x="2" y="2" width="28" height="28" rx="3" fill="#6b7280"/><path d="M10 8h12v16H10zM14 12h4M14 16h4M14 20h4" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M16 6v3M16 23v3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    '3MF': `<svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect x="2" y="2" width="28" height="28" rx="3" fill="#0d9488"/><path d="M16 6l8 5v10l-8 5-8-5V11z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 11l8 5 8-5M16 16v10" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  };
+
   const files = [
-    { icon: '📄', name: 'Niklas_CV.pdf',             type: 'PDF',  size: '142 KB', action: null },
-    { icon: '📝', name: 'Steuererklärung 2025.docx', type: 'DOCX', size: '88 KB',  action: 'crash' },
-    { icon: '📊', name: 'Projektziele_2026.xlsx',    type: 'XLSX', size: '34 KB',  action: null },
-    { icon: '🗜️', name: 'HomeAssistant_Backup.tar.gz', type: 'GZ', size: '2,3 MB', action: null },
-    { icon: '🖼️', name: 'Katheterspiegelhalter_v3.3mf', type: '3MF', size: '1,1 MB', action: null },
+    { svgIcon: EF_ICONS.PDF,  name: 'Niklas_CV.pdf',               type: 'PDF',  size: '142 KB', action: null },
+    { svgIcon: EF_ICONS.DOCX, name: 'Steuererklärung 2025.docx',   type: 'DOCX', size: '88 KB',  action: 'crash' },
+    { svgIcon: EF_ICONS.XLSX, name: 'Projektziele_2026.xlsx',       type: 'XLSX', size: '34 KB',  action: null },
+    { svgIcon: EF_ICONS.GZ,   name: 'HomeAssistant_Backup.tar.gz',  type: 'GZ',   size: '2,3 MB', action: null },
+    { svgIcon: EF_ICONS['3MF'], name: 'Katheterspiegelhalter_v3.3mf', type: '3MF', size: '1,1 MB', action: null },
   ];
 
   body.innerHTML = `
@@ -1943,19 +2325,26 @@ function buildEigeneDateien(body) {
       <div class="ef-body">
         <div class="ef-sidebar">
           <div class="ef-sidebar-section">Orte</div>
-          <div class="ef-sidebar-item active"><span class="ef-si-icon">📁</span> Eigene Dateien</div>
-          <div class="ef-sidebar-item"><span class="ef-si-icon">🖥️</span> Desktop</div>
-          <div class="ef-sidebar-item"><span class="ef-si-icon">🗑️</span> Papierkorb</div>
+          <div class="ef-sidebar-item active"><span class="ef-si-icon">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M1 4h5l1.5 2H15v8H1V4z" fill="#fbbf24" stroke="#d97706" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </span> Eigene Dateien</div>
+          <div class="ef-sidebar-item"><span class="ef-si-icon">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><rect x="1" y="3" width="14" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 3V2M11 3V2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </span> Desktop</div>
+          <div class="ef-sidebar-item"><span class="ef-si-icon">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 5h10M6 5V3a1 1 0 011-1h2a1 1 0 011 1v2M5 5l.7 9h4.6l.7-9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span> Papierkorb</div>
         </div>
         <div class="ef-main">
           <div class="ef-list-header">
+            <span class="ef-col-icon"></span>
             <span class="ef-col-name">Name</span>
             <span class="ef-col-type">Typ</span>
             <span class="ef-col-size">Größe</span>
           </div>
           ${files.map(f => `
             <div class="ef-file${f.action === 'crash' ? ' ef-file-docx' : ''}" data-action="${f.action || ''}">
-              <span class="ef-file-icon">${f.icon}</span>
+              <span class="ef-col-icon ef-file-icon">${f.svgIcon}</span>
               <span class="ef-col-name ef-file-name">${f.name}</span>
               <span class="ef-col-type">${f.type}</span>
               <span class="ef-col-size">${f.size}</span>
@@ -2674,7 +3063,7 @@ function initSearchOverlay() {
 
   function renderResults(query) {
     const q = query.toLowerCase().trim();
-    const entries = Object.entries(WIN_CONFIGS);
+    const entries = Object.entries(WIN_CONFIGS).filter(([id]) => id !== 'placeholder');
     const filtered = q
       ? entries.filter(([, cfg]) => cfg.title.toLowerCase().includes(q))
       : entries;
@@ -2786,7 +3175,7 @@ function updateClock() {
 
 // Mobile label overrides (shorter/more fitting for homescreen)
 const MOB_LABELS = {
-  about:         'About',
+  about:         'Brave',
   career:        'Karriere',
   terminal:      'Terminal',
   sysmon:        'System',
@@ -2808,12 +3197,13 @@ const MOB_LABELS = {
   snake:         'Snake',
   minesweeper:   'Minesweeper',
   photos:        'Fotos',
+  placeholder:   'Mehr',
 };
 
-// Page 1 apps (main homescreen), Page 2 remainder
-const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams'];
-const MOB_PAGE2 = ['jira', 'github', 'homeassistant', 'rss', 'filesapp', 'photos', 'snake'];
-const MOB_DOCK  = ['outlook', 'network', 'about', 'github'];
+// Page 1 apps (main homescreen), Page 2: placeholder for future use
+const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams', 'jira', 'github', 'homeassistant', 'rss', 'filesapp', 'photos', 'snake', 'network', 'changelog'];
+const MOB_PAGE2 = ['placeholder'];
+const MOB_DOCK  = ['about', 'network', 'outlook', 'github'];
 
 const COLOR_MAP = {
   blue: 'linear-gradient(135deg,#2563eb,#1d4ed8)',
@@ -2846,7 +3236,10 @@ function makeMobAppIcon(id, wrapClass, labelClass) {
     </div>
     <span class="${labelClass}">${label}</span>
   `;
-  div.addEventListener('click', () => openMobileWindow(id));
+  div.addEventListener('click', () => {
+    if (id === 'placeholder') return; // no-op for placeholder
+    openMobileWindow(id);
+  });
   return div;
 }
 
@@ -2873,6 +3266,25 @@ function initMobile() {
     const el = makeMobAppIcon(id, 'mob-dock-wrap', 'mob-dock-label');
     if (el) dock.appendChild(el);
   });
+
+  // Changelog floating shortcut (bottom-right above dock)
+  const mobileHome = document.getElementById('mobile-home');
+  if (mobileHome) {
+    const clShortcut = document.createElement('div');
+    clShortcut.id = 'mob-changelog-shortcut';
+    clShortcut.setAttribute('aria-label', 'Changelog');
+    clShortcut.innerHTML = `
+      <div class="mob-cls-wrap" style="background:linear-gradient(135deg,#db2777,#9d174d)">
+        <svg viewBox="0 0 28 28" fill="none" width="24" height="24">
+          <circle cx="14" cy="14" r="11" stroke="white" stroke-width="1.5"/>
+          <path d="M14 8v6l4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="mob-cls-label">Changelog</span>
+    `;
+    clShortcut.addEventListener('click', () => openMobileWindow('changelog'));
+    mobileHome.appendChild(clShortcut);
+  }
 
   // Page swipe → dot indicator
   const pagesWrap = document.getElementById('mob-pages-wrap');
