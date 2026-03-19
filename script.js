@@ -3267,25 +3267,6 @@ function initMobile() {
     if (el) dock.appendChild(el);
   });
 
-  // Changelog floating shortcut (bottom-right above dock)
-  const mobileHome = document.getElementById('mobile-home');
-  if (mobileHome) {
-    const clShortcut = document.createElement('div');
-    clShortcut.id = 'mob-changelog-shortcut';
-    clShortcut.setAttribute('aria-label', 'Changelog');
-    clShortcut.innerHTML = `
-      <div class="mob-cls-wrap" style="background:linear-gradient(135deg,#db2777,#9d174d)">
-        <svg viewBox="0 0 28 28" fill="none" width="24" height="24">
-          <circle cx="14" cy="14" r="11" stroke="white" stroke-width="1.5"/>
-          <path d="M14 8v6l4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span class="mob-cls-label">Changelog</span>
-    `;
-    clShortcut.addEventListener('click', () => openMobileWindow('changelog'));
-    mobileHome.appendChild(clShortcut);
-  }
-
   // Page swipe → dot indicator
   const pagesWrap = document.getElementById('mob-pages-wrap');
   const dots = document.querySelectorAll('.mob-dot');
@@ -3359,9 +3340,64 @@ function initMobile() {
     document.getElementById('mob-notif-panel')?.setAttribute('aria-hidden', 'true');
   });
 
-  // Back button
-  const backBtn = document.getElementById('mob-back');
-  if (backBtn) backBtn.addEventListener('click', closeMobileWindow);
+  // Swipe-up on nav pill to close app (Android-style gesture)
+  const navBar = document.querySelector('#mobile-window .mob-nav-bar');
+  if (navBar) {
+    let startY = 0;
+    let swiping = false;
+    const mw = document.getElementById('mobile-window');
+
+    navBar.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      swiping = true;
+      mw.classList.add('swiping');
+      navBar.classList.add('dragging');
+    }, { passive: true });
+
+    navBar.addEventListener('touchmove', (e) => {
+      if (!swiping) return;
+      const dy = startY - e.touches[0].clientY;
+      if (dy > 0) {
+        mw.style.transform = `translateY(-${dy * 0.6}px)`;
+        mw.style.opacity = Math.max(0.3, 1 - dy / 400);
+      }
+    }, { passive: true });
+
+    navBar.addEventListener('touchend', (e) => {
+      if (!swiping) return;
+      swiping = false;
+      mw.classList.remove('swiping');
+      navBar.classList.remove('dragging');
+      const endY = e.changedTouches[0].clientY;
+      const dy = startY - endY;
+
+      if (dy > 80) {
+        // Swipe was far enough → animate out then close
+        mw.style.transition = 'transform 0.25s ease-out, opacity 0.25s ease-out';
+        mw.style.transform = 'translateY(-100%)';
+        mw.style.opacity = '0';
+        setTimeout(() => {
+          // Reset inline styles, remove show so CSS puts it at translateY(100%)
+          mw.style.transition = '';
+          mw.style.transform = '';
+          mw.style.opacity = '';
+          mw.classList.remove('show');
+          mw.setAttribute('aria-hidden', 'true');
+          document.getElementById('mobile-home').setAttribute('aria-hidden', 'false');
+          document.getElementById('mob-win-body').innerHTML = '';
+        }, 260);
+      } else {
+        // Snap back
+        mw.style.transition = 'transform 0.2s ease-out, opacity 0.2s ease-out';
+        mw.style.transform = '';
+        mw.style.opacity = '';
+        setTimeout(() => { mw.style.transition = ''; }, 200);
+      }
+    });
+
+    // Tap on pill as fallback
+    navBar.addEventListener('click', closeMobileWindow);
+  }
 }
 
 function toggleNotifPanel() {
@@ -3390,7 +3426,6 @@ function openMobileWindow(id) {
 
   const mw    = document.getElementById('mobile-window');
   const body  = document.getElementById('mob-win-body');
-  const title = document.getElementById('mob-win-title');
 
   // Close quick settings and notification panel if open
   const qs = document.getElementById('mob-quick-settings');
@@ -3399,7 +3434,6 @@ function openMobileWindow(id) {
   if (np) { np.classList.remove('open'); np.setAttribute('aria-hidden', 'true'); }
 
   body.innerHTML = '';
-  title.textContent = MOB_LABELS[id] || cfg.title;
   mw.setAttribute('aria-hidden', 'false');
   mw.classList.add('show');
   document.getElementById('mobile-home').setAttribute('aria-hidden', 'true');
