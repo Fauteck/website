@@ -279,9 +279,12 @@ a:hover { text-decoration: underline; }
 }
 
 .login-hint {
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
   letter-spacing: 0.3px;
+  background: rgba(255,255,255,0.08);
+  padding: 5px 12px;
+  border-radius: 6px;
 }
 
 .login-skip {
@@ -415,6 +418,15 @@ a:hover { text-decoration: underline; }
 }
 .lock-key-del {
   color: rgba(255,255,255,0.4);
+}
+
+.lock-hint {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.3px;
+  background: rgba(255,255,255,0.08);
+  padding: 5px 12px;
+  border-radius: 6px;
 }
 
 .lock-skip {
