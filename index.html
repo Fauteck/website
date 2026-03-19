@@ -10,9 +10,9 @@
   <meta property="og:title" content="NiklasOS — Niklas Fauteck">
   <meta property="og:description" content="Ein persönliches Betriebssystem für Kommunikation, Technologie und pragmatische Innovation.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fauteck.eu">
+  <meta property="og:url" content="https://fauteck.github.io/website/">
   <meta property="og:locale" content="de_DE">
-  <link rel="canonical" href="https://fauteck.eu">
+  <link rel="canonical" href="https://fauteck.github.io/website/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,13 +24,16 @@
     "name": "Niklas Fauteck",
     "jobTitle": "Head of Digital Transformation",
     "worksFor": { "@type": "Organization", "name": "RTL Deutschland" },
-    "url": "https://fauteck.eu",
+    "url": "https://fauteck.github.io/website/",
     "description": "Brückenbauer zwischen Kommunikation und Technologie. Systemdenker. Pragmatiker.",
     "sameAs": ["https://linkedin.com/in/niklas-fauteck"]
   }
   </script>
 </head>
 <body>
+
+  <!-- Skip to content (Accessibility) -->
+  <a href="#desktop" class="sr-only sr-only-focusable" id="skip-to-content">Zum Inhalt springen</a>
 
   <!-- ═══════════════════════════════════════════
        BOOT SCREEN
@@ -48,6 +51,7 @@
         <div class="boot-bar" id="boot-bar"></div>
       </div>
       <div class="boot-status" id="boot-status">Initialisierung...</div>
+      <button id="boot-skip" class="boot-skip-btn">Überspringen</button>
     </div>
   </div>
 
@@ -187,7 +191,7 @@
         </div>
       </div><!-- /.dig-topcenter -->
 
-      <!-- Top-right: Changelog, Netzwerk -->
+      <!-- Top-right: Changelog, Netzwerk, Blog, Projekte, Empfehlungen -->
       <div class="dig dig-topright">
         <div class="desktop-icon" data-window="changelog" role="listitem" tabindex="0"
              aria-label="Changelog — Versionsverlauf">
@@ -203,6 +207,30 @@
             <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="4" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><circle cx="5" cy="7" r="2.5" stroke="white" stroke-width="1.2"/><circle cx="23" cy="7" r="2.5" stroke="white" stroke-width="1.2"/><circle cx="5" cy="21" r="2.5" stroke="white" stroke-width="1.2"/><circle cx="23" cy="21" r="2.5" stroke="white" stroke-width="1.2"/><line x1="7" y1="9" x2="12" y2="12" stroke="white" stroke-width="1" opacity="0.6"/><line x1="21" y1="9" x2="16" y2="12" stroke="white" stroke-width="1" opacity="0.6"/><line x1="7" y1="19" x2="12" y2="16" stroke="white" stroke-width="1" opacity="0.6"/><line x1="21" y1="19" x2="16" y2="16" stroke="white" stroke-width="1" opacity="0.6"/></svg>
           </div>
           <span class="icon-label">Netzwerk</span>
+        </div>
+
+        <div class="desktop-icon" data-window="blog" role="listitem" tabindex="0"
+             aria-label="Texteditor — Blog">
+          <div class="icon-wrap" data-color="green">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="4" y="4" width="20" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5"/><path d="M8 9h12M8 13h8M8 17h10" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Blog</span>
+        </div>
+
+        <div class="desktop-icon" data-window="projects" role="listitem" tabindex="0"
+             aria-label="Projekte — Case Studies">
+          <div class="icon-wrap" data-color="blue">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M3 7h8l2 3h12v15H3V7z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 15h8M10 19h5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Projekte</span>
+        </div>
+
+        <div class="desktop-icon" data-window="testimonials" role="listitem" tabindex="0"
+             aria-label="Empfehlungen — Social Proof">
+          <div class="icon-wrap" data-color="cyan">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M4 6h20v12H13l-5 4v-4H4V6z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10h12M8 14h8" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Empfehlungen</span>
         </div>
       </div><!-- /.dig-topright -->
 
@@ -298,6 +326,13 @@
     </div>
     <div class="tb-center" id="tb-windows" aria-label="Offene Fenster"></div>
     <div class="tb-right">
+      <button class="tb-contact-btn" id="tb-contact-btn" aria-label="Kontakt aufnehmen" title="Kontakt aufnehmen">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M2 4h12v9H9l-3 2.5V13H2V4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M5 7.5h6M5 10h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span>Kontakt</span>
+      </button>
       <div class="tb-indicator" title="Erreichbar">
         <span class="tb-pulse"></span>
         <span class="tb-indicator-label">online</span>

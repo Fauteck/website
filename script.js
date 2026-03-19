@@ -167,6 +167,24 @@ const WIN_CONFIGS = {
     defaultW: 620, defaultH: 500,
     svgPath: 'M14 14m-4 0a4 4 0 108 0 4 4 0 00-8 0M14 3v7M14 18v7M3 14h7M18 14h7M6 6l5 5M17 17l5 5M6 22l5-5M17 11l5-5',
   },
+  blog: {
+    title: 'Texteditor',
+    color: 'green',
+    defaultW: 740, defaultH: 560,
+    svgPath: 'M4 4h20v20H4zM8 8h12M8 12h8M8 16h10',
+  },
+  projects: {
+    title: 'Projekte',
+    color: 'blue',
+    defaultW: 800, defaultH: 580,
+    svgPath: 'M3 7h8l2 3h12v15H3V7zM10 15h8M10 19h5',
+  },
+  testimonials: {
+    title: 'Empfehlungen',
+    color: 'cyan',
+    defaultW: 640, defaultH: 520,
+    svgPath: 'M4 6h20v12H13l-5 4v-4H4V6zM8 10h12M8 14h8',
+  },
   placeholder: {
     title: 'Mehr',
     color: 'indigo',
@@ -459,6 +477,9 @@ function initWindowContent(id, el) {
     memory:         buildMemory,
     tetris:         buildTetris,
     network:        buildNetwork,
+    blog:           buildBlog,
+    projects:       buildProjects,
+    testimonials:   buildTestimonials,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
@@ -745,6 +766,10 @@ function buildCareer(body) {
           <div class="ap-toolbar-btn" title="Hoch">↑</div>
         </div>
         <div class="ap-path">/Niklas/Arbeitsplatz</div>
+        <a href="full/cv-niklas-fauteck.pdf" download="Niklas_Fauteck_CV.pdf" class="ap-cv-download" title="Lebenslauf herunterladen">
+          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M8 2v8M5 7l3 3 3-3M3 12h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          CV (PDF)
+        </a>
         <div class="ap-view-btns">
           <div class="ap-toolbar-btn ap-btn-active" title="Symbole">⊞</div>
           <div class="ap-toolbar-btn" title="Liste">☰</div>
@@ -861,6 +886,15 @@ const TERM_COMMANDS = {
     { t: 'accent',  v: '  matrix          → 🐇' },
     { t: 'accent',  v: '  coffee          → ☕' },
     { t: 'accent',  v: '  clear           → Terminal leeren' },
+    { t: 'empty' },
+    { t: 'success', v: 'Für Recruiter & Auftraggeber:' },
+    { t: 'empty' },
+    { t: 'accent',  v: '  download cv     → Lebenslauf herunterladen (PDF)' },
+    { t: 'accent',  v: '  references      → Empfehlungen' },
+    { t: 'accent',  v: '  availability    → Verfügbarkeit' },
+    { t: 'accent',  v: '  contact         → Kontaktdaten' },
+    { t: 'accent',  v: '  projects        → Ausgewählte Projekte' },
+    { t: 'accent',  v: '  interview       → Gespräch vereinbaren' },
   ],
   whoami: () => [
     { t: 'out', v: 'niklas-fauteck' },
@@ -897,7 +931,7 @@ const TERM_COMMANDS = {
     { t: 'dim', v: 'Verfügbar: Gespräche, Projekte, Kaffee' },
   ],
   'cat readme.md': () => [
-    { t: 'bold',    v: '# NiklasOS — fauteck.eu' },
+    { t: 'bold',    v: '# NiklasOS — Personal Branding OS' },
     { t: 'empty' },
     { t: 'dim',     v: 'Statische Portfolio-Website als interaktives Betriebssystem.' },
     { t: 'dim',     v: 'Vanilla HTML · CSS · JavaScript — Zero Dependencies.' },
@@ -1142,6 +1176,76 @@ const TERM_COMMANDS = {
     { t: 'empty' },
     { t: 'success', v: 'Energiepegel: ████████░░ 80%' },
     { t: 'dim', v: 'Optimal für komplexe Systemarchitektur.' },
+  ],
+  // ── Recruiter Commands ──
+  'download cv': () => {
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.href = 'full/cv-niklas-fauteck.pdf';
+      a.download = 'Niklas_Fauteck_CV.pdf';
+      a.click();
+    }, 300);
+    return [
+      { t: 'success', v: 'Lebenslauf wird heruntergeladen...' },
+      { t: 'dim', v: '→ Niklas_Fauteck_CV.pdf' },
+      { t: 'empty' },
+      { t: 'dim', v: 'Alternativ: Karrierefenster öffnen für interaktive Version.' },
+    ];
+  },
+  'references': () => [
+    { t: 'bold', v: '# Empfehlungen' },
+    { t: 'empty' },
+    { t: 'accent', v: '"Niklas hat die seltene Fähigkeit, technische Komplexität in' },
+    { t: 'accent', v: ' verständliche Lösungen zu übersetzen, die von Teams tatsächlich' },
+    { t: 'accent', v: ' angenommen werden."' },
+    { t: 'dim', v: '    — Kolleg:in bei RTL Deutschland' },
+    { t: 'empty' },
+    { t: 'accent', v: '"Pragmatisch, lösungsorientiert und immer mit dem Blick auf den' },
+    { t: 'accent', v: ' echten Nutzen für die Anwender."' },
+    { t: 'dim', v: '    — Stakeholder Digital Projects' },
+    { t: 'empty' },
+    { t: 'success', v: 'Ausführliche Empfehlungen: linkedin.com/in/niklas-fauteck' },
+  ],
+  'availability': () => [
+    { t: 'bold', v: '# Verfügbarkeit' },
+    { t: 'empty' },
+    { t: 'success', v: 'Status:   Aktuell in Festanstellung bei RTL Deutschland' },
+    { t: 'accent', v: 'Offen für: Spannende Gespräche, Projekte und neue Perspektiven' },
+    { t: 'empty' },
+    { t: 'out', v: 'Reaktionszeit: In der Regel innerhalb von 24h' },
+    { t: 'out', v: 'Timezone:      Europe/Berlin (CET/CEST)' },
+    { t: 'empty' },
+    { t: 'dim', v: 'Kontakt: niklas@fauteck.eu · linkedin.com/in/niklas-fauteck' },
+  ],
+  'contact': () => [
+    { t: 'bold', v: '# Kontakt' },
+    { t: 'empty' },
+    { t: 'success', v: 'E-Mail:     niklas@fauteck.eu' },
+    { t: 'success', v: 'LinkedIn:   linkedin.com/in/niklas-fauteck' },
+    { t: 'empty' },
+    { t: 'out', v: 'Reaktionszeit: In der Regel innerhalb von 24h' },
+    { t: 'out', v: 'Bevorzugt:     E-Mail oder LinkedIn-Nachricht' },
+    { t: 'empty' },
+    { t: 'dim', v: 'Auch erreichbar via: sudo hire niklas' },
+  ],
+  'projects': () => {
+    const lines = [
+      { t: 'bold', v: '# Ausgewählte Projekte' },
+      { t: 'empty' },
+    ];
+    PROJECTS_DATA.forEach(p => {
+      lines.push({ t: 'success', v: `[${p.name}] ${p.period}` });
+      lines.push({ t: 'out', v: `  Rolle: ${p.role}` });
+      lines.push({ t: 'accent', v: `  Impact: ${p.impact}` });
+      lines.push({ t: 'empty' });
+    });
+    return lines;
+  },
+  'interview': () => [
+    { t: 'success', v: 'Am besten per E-Mail vereinbaren:' },
+    { t: 'out', v: '→ niklas@fauteck.eu' },
+    { t: 'empty' },
+    { t: 'dim', v: 'Ich freue mich auf das Gespräch.' },
   ],
 };
 
@@ -3023,6 +3127,22 @@ function initContextMenu() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') menu.classList.remove('show');
   });
+
+  // CTA Contact Button in Taskbar
+  const contactBtn = document.getElementById('tb-contact-btn');
+  if (contactBtn) {
+    contactBtn.addEventListener('click', () => openWindow('outlook'));
+  }
+
+  // Keyboard Shortcuts (Ctrl+1..4, Ctrl+0)
+  document.addEventListener('keydown', e => {
+    if (!e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) return;
+    const shortcuts = { '1': 'about', '2': 'career', '3': 'terminal', '4': 'sysmon', '0': 'outlook' };
+    if (shortcuts[e.key]) {
+      e.preventDefault();
+      openWindow(shortcuts[e.key]);
+    }
+  });
 }
 
 // ─────────────────────────────────────────────────
@@ -4154,12 +4274,15 @@ const MOB_LABELS = {
   memory:        'Memory',
   tetris:        'Tetris',
   network:       'Netzwerk',
+  blog:          'Blog',
+  projects:      'Projekte',
+  testimonials:  'Empfehlungen',
   placeholder:   'Mehr',
 };
 
 // Page 1 apps (main homescreen), Page 2: placeholder for future use
 const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams', 'jira', 'github', 'homeassistant', 'rss', 'filesapp', 'photos', 'snake', 'changelog'];
-const MOB_PAGE2 = ['placeholder'];
+const MOB_PAGE2 = ['blog', 'projects', 'testimonials'];
 const MOB_DOCK  = ['about', 'outlook', 'career', 'github'];
 
 const COLOR_MAP = {
@@ -4422,6 +4545,9 @@ function openMobileWindow(id) {
     memory:         buildMemory,
     tetris:         buildTetris,
     network:        buildNetwork,
+    blog:           buildBlog,
+    projects:       buildProjects,
+    testimonials:   buildTestimonials,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
@@ -4435,6 +4561,360 @@ function closeMobileWindow() {
   setTimeout(() => {
     document.getElementById('mob-win-body').innerHTML = '';
   }, 340);
+}
+
+// ─────────────────────────────────────────────────
+// BLOG (Texteditor-Fenster)
+// ─────────────────────────────────────────────────
+const BLOG_POSTS = [
+  {
+    id: 'ai-workflows',
+    title: 'Warum KI-Workflows wichtiger sind als KI-Tools',
+    date: '2026-03-10',
+    tags: ['KI', 'Automation', 'Strategie'],
+    content: `Die meisten Unternehmen starten ihre KI-Reise mit der Frage: "Welches Tool sollen wir nutzen?" — Die bessere Frage wäre: "Welchen Prozess wollen wir verbessern?"
+
+Ein einzelnes KI-Tool löst selten ein Gesamtproblem. Erst wenn man es in einen Workflow einbettet — mit klaren Eingaben, definierten Übergaben und messbarem Output — entsteht echter Mehrwert.
+
+Bei RTL haben wir genau das gemacht: Statt einfach ChatGPT-Lizenzen zu verteilen, haben wir zuerst die Prozesse identifiziert, die am meisten von Automatisierung profitieren. Dann haben wir maßgeschneiderte Workflows gebaut — mit n8n, Claude und internen APIs.
+
+Das Ergebnis: Nicht ein Tool, das alle nutzen, sondern Workflows, die tatsächlich Zeit sparen.
+
+Drei Prinzipien für KI-Workflows:
+→ Prozess vor Tool: Erst den Ablauf verstehen, dann automatisieren
+→ Adoption vor Features: Lieber weniger Funktionen, die alle nutzen
+→ Iteration vor Perfektion: Klein starten, messen, verbessern`,
+  },
+  {
+    id: 'digital-transformation-lessons',
+    title: 'Was ich in 6 Jahren Digital Transformation gelernt habe',
+    date: '2026-02-18',
+    tags: ['Transformation', 'Leadership', 'Lessons Learned'],
+    content: `Digitale Transformation ist kein IT-Projekt. Es ist ein Kulturprojekt mit technischen Mitteln. Diese Erkenntnis hat mich Jahre gekostet — hier sind die wichtigsten Learnings:
+
+1. Menschen vor Tools
+Jede Einführung scheitert, wenn die Nutzer nicht mitgenommen werden. Der beste Tech-Stack der Welt ist wertlos ohne Adoption.
+
+2. Kleine Siege zuerst
+Große Visionen brauchen kleine, sichtbare Erfolge als Fundament. Ein automatisierter Prozess, der einer Redakteurin 30 Minuten pro Tag spart, überzeugt mehr als jede PowerPoint-Strategie.
+
+3. Übersetzen ist eine Kernkompetenz
+Zwischen IT und Fachabteilung zu vermitteln ist keine Nebentätigkeit — es ist die zentrale Aufgabe in der digitalen Transformation.
+
+4. Pragmatismus schlägt Perfektion
+Die 80%-Lösung, die morgen live ist, hat mehr Impact als die 100%-Lösung, die nie fertig wird.
+
+5. Systeme statt Silos
+Echte Transformation passiert, wenn isolierte Tools zu einem vernetzten System werden, das Informationsflüsse ermöglicht statt behindert.`,
+  },
+  {
+    id: 'home-assistant-automation',
+    title: 'Smart Home als Automation-Playground',
+    date: '2026-01-22',
+    tags: ['Home Assistant', 'Automation', 'IoT'],
+    content: `Mein Home Assistant Setup ist mehr als ein Smart Home — es ist ein Experimentierfeld für Automatisierungslogik, das direkt in meine berufliche Arbeit einfließt.
+
+Die Parallelen zwischen Smart Home Automations und Enterprise-Workflows sind erstaunlich:
+→ Trigger → Condition → Action (wie in n8n oder Make.com)
+→ State Management über Entitäten (wie Business-Objekte)
+→ Dashboards für Monitoring (wie BI-Dashboards)
+
+Konkret laufen bei mir:
+• Anwesenheitsbasierte Klima- und Lichtsteuerung
+• Automatische Benachrichtigungen bei anomalem Energieverbrauch
+• Integration mit 3D-Drucker (Bambu Lab) für Statusupdates
+• Custom Dashboards für jeden Raum
+
+Was ich daraus für den Beruf mitnehme: Automation ist nur so gut wie ihr Kontext. Ohne klare Trigger und saubere Datenquellen produziert man nur Chaos mit höherer Geschwindigkeit.`,
+  },
+];
+
+function buildBlog(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.display = 'flex';
+  body.style.flexDirection = 'column';
+  body.style.background = '#1e1e2e';
+
+  const postListHtml = BLOG_POSTS.map((p, i) => `
+    <div class="blog-list-item${i === 0 ? ' active' : ''}" data-post="${p.id}">
+      <div class="blog-list-title">${escapeHtml(p.title)}</div>
+      <div class="blog-list-meta">${p.date} · ${p.tags.join(', ')}</div>
+    </div>
+  `).join('');
+
+  function renderPost(post) {
+    const lines = post.content.split('\n');
+    return lines.map(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return '<div class="blog-line blog-line-empty">&nbsp;</div>';
+      if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${escapeHtml(trimmed)}</div>`;
+      if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${escapeHtml(trimmed)}</div>`;
+      if (trimmed.startsWith('•')) return `<div class="blog-line blog-line-list">${escapeHtml(trimmed)}</div>`;
+      return `<div class="blog-line">${escapeHtml(trimmed)}</div>`;
+    }).join('');
+  }
+
+  body.innerHTML = `
+    <div class="blog-wrap">
+      <div class="blog-sidebar">
+        <div class="blog-sidebar-header">
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 2h12v12H2z" stroke="currentColor" stroke-width="1.3"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Artikel
+        </div>
+        <div class="blog-list">${postListHtml}</div>
+      </div>
+      <div class="blog-main">
+        <div class="blog-editor-tabs">
+          <span class="blog-tab active" data-post="${BLOG_POSTS[0].id}">${escapeHtml(BLOG_POSTS[0].title.substring(0, 30))}…</span>
+        </div>
+        <div class="blog-editor-bar">
+          <span class="blog-file-path">~/blog/${BLOG_POSTS[0].id}.md</span>
+          <span class="blog-file-lang">Markdown</span>
+        </div>
+        <div class="blog-content" id="blog-content">
+          <div class="blog-line-numbers" id="blog-line-nums"></div>
+          <div class="blog-text" id="blog-text">${renderPost(BLOG_POSTS[0])}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Line numbers
+  function updateLineNums() {
+    const textEl = body.querySelector('#blog-text');
+    const numsEl = body.querySelector('#blog-line-nums');
+    const lineCount = textEl.querySelectorAll('.blog-line').length;
+    numsEl.innerHTML = Array.from({length: lineCount}, (_, i) => `<span>${i + 1}</span>`).join('');
+  }
+  updateLineNums();
+
+  // Sidebar clicks
+  body.querySelectorAll('.blog-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      body.querySelectorAll('.blog-list-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const post = BLOG_POSTS.find(p => p.id === item.dataset.post);
+      if (!post) return;
+      body.querySelector('#blog-text').innerHTML = renderPost(post);
+      body.querySelector('.blog-file-path').textContent = `~/blog/${post.id}.md`;
+      body.querySelector('.blog-tab').textContent = post.title.substring(0, 30) + '…';
+      body.querySelector('.blog-tab').dataset.post = post.id;
+      updateLineNums();
+    });
+  });
+}
+
+// ─────────────────────────────────────────────────
+// PROJECTS (Case Studies)
+// ─────────────────────────────────────────────────
+const PROJECTS_DATA = [
+  {
+    name: 'Media Hub',
+    period: '2020 – heute',
+    role: 'Product Owner & Projektleitung',
+    desc: 'Zentrale digitale Plattform für Presse- und Unternehmenskommunikation bei RTL Deutschland. Aufgebaut als Single Point of Truth für 1.700+ Journalist:innen.',
+    tech: ['Confluence', 'Jira', 'Custom CMS', 'Analytics'],
+    impact: 'Nutzung durch 1.700+ Journalist:innen · Messbare Effizienzsteigerung in der Kommunikation',
+  },
+  {
+    name: 'KI-Workflow-Integration',
+    period: '2024 – heute',
+    role: 'Strategische Leitung & Umsetzung',
+    desc: 'Systematische Integration von KI-Tools in redaktionelle und kommunikative Workflows. Fokus auf echte Prozessverbesserung statt Tool-Showcase.',
+    tech: ['Claude', 'ChatGPT', 'n8n', 'Make.com', 'Custom APIs'],
+    impact: 'Automatisierte Content-Prozesse · Reduzierung manueller Routineaufgaben um ca. 40%',
+  },
+  {
+    name: 'Prozessautomation Kommunikation',
+    period: '2023 – heute',
+    role: 'Konzeption & Implementierung',
+    desc: 'Aufbau automatisierter Workflows für wiederkehrende Kommunikationsprozesse — von Monitoring über Distribution bis Reporting.',
+    tech: ['n8n', 'Power BI', 'GitHub Actions', 'Docker'],
+    impact: 'Durchgängig automatisierte Pipelines · Echtzeit-Dashboards für Entscheidungsträger',
+  },
+  {
+    name: 'Tool-Adoption & Change Management',
+    period: '2020 – heute',
+    role: 'Strategische Steuerung',
+    desc: 'Planung und Durchführung von Tool-Einführungen mit Fokus auf nachhaltige Nutzerakzeptanz. Vom Onboarding über Schulung bis zur iterativen Weiterentwicklung.',
+    tech: ['Confluence', 'Notion', 'Miro', 'Custom Trainings'],
+    impact: 'Hohe Adoptionsraten bei allen Tool-Rollouts · Nachhaltige Nutzung statt Shelf-Ware',
+  },
+];
+
+function buildProjects(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'auto';
+  body.style.background = '#f7f8f6';
+
+  const cardsHtml = PROJECTS_DATA.map(p => `
+    <div class="proj-card">
+      <div class="proj-card-header">
+        <div class="proj-card-name">${escapeHtml(p.name)}</div>
+        <div class="proj-card-period">${escapeHtml(p.period)}</div>
+      </div>
+      <div class="proj-card-role">${escapeHtml(p.role)}</div>
+      <div class="proj-card-desc">${escapeHtml(p.desc)}</div>
+      <div class="proj-card-tech">${p.tech.map(t => `<span class="proj-tag">${escapeHtml(t)}</span>`).join('')}</div>
+      <div class="proj-card-impact">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><polyline points="2,12 6,6 10,9 14,3" stroke="#059669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ${escapeHtml(p.impact)}
+      </div>
+    </div>
+  `).join('');
+
+  body.innerHTML = `
+    <div class="proj-wrap">
+      <div class="proj-toolbar">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 5h5l1.5 2H14v8H2V5z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+        <span>/Niklas/Projekte</span>
+      </div>
+      <div class="proj-grid">${cardsHtml}</div>
+    </div>
+  `;
+}
+
+// ─────────────────────────────────────────────────
+// TESTIMONIALS / SOCIAL PROOF
+// ─────────────────────────────────────────────────
+const TESTIMONIALS_DATA = [
+  {
+    quote: 'Niklas hat die seltene Fähigkeit, technische Komplexität in verständliche Lösungen zu übersetzen, die von Teams tatsächlich angenommen werden.',
+    name: 'Empfehlung via LinkedIn',
+    role: 'Kolleg:in bei RTL Deutschland',
+  },
+  {
+    quote: 'Pragmatisch, lösungsorientiert und immer mit dem Blick auf den echten Nutzen für die Anwender. Genau so sollte digitale Transformation funktionieren.',
+    name: 'Empfehlung via LinkedIn',
+    role: 'Stakeholder Digital Projects',
+  },
+  {
+    quote: 'Was Niklas von anderen unterscheidet: Er implementiert nicht nur Tools, er sorgt dafür, dass Menschen sie auch wirklich nutzen.',
+    name: 'Empfehlung via LinkedIn',
+    role: 'Zusammenarbeit im Bereich Change Management',
+  },
+];
+
+const ACHIEVEMENTS_DATA = [
+  { icon: '📊', label: 'Media Hub', value: '1.700+ Nutzer:innen' },
+  { icon: '🤖', label: 'KI-Workflows', value: '~40% weniger Routineaufgaben' },
+  { icon: '⚡', label: 'Automatisierung', value: 'Durchgängig automatisierte Pipelines' },
+  { icon: '🎯', label: 'Tool-Adoption', value: 'Hohe Akzeptanz bei allen Rollouts' },
+];
+
+function buildTestimonials(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'auto';
+  body.style.background = '#f7f8f6';
+
+  const quotesHtml = TESTIMONIALS_DATA.map(t => `
+    <div class="testi-card">
+      <div class="testi-quote">"${escapeHtml(t.quote)}"</div>
+      <div class="testi-author">
+        <div class="testi-name">${escapeHtml(t.name)}</div>
+        <div class="testi-role">${escapeHtml(t.role)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const achievementsHtml = ACHIEVEMENTS_DATA.map(a => `
+    <div class="testi-achievement">
+      <div class="testi-ach-icon">${a.icon}</div>
+      <div class="testi-ach-info">
+        <div class="testi-ach-label">${escapeHtml(a.label)}</div>
+        <div class="testi-ach-value">${escapeHtml(a.value)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  body.innerHTML = `
+    <div class="testi-wrap">
+      <div class="testi-section-title">Empfehlungen</div>
+      <div class="testi-quotes">${quotesHtml}</div>
+      <div class="testi-section-title" style="margin-top:24px">Achievements</div>
+      <div class="testi-achievements">${achievementsHtml}</div>
+      <div class="testi-note">Ausführliche Empfehlungen auf <a href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener">LinkedIn</a></div>
+    </div>
+  `;
+}
+
+// ─────────────────────────────────────────────────
+// ONBOARDING TOUR
+// ─────────────────────────────────────────────────
+function startOnboardingTour() {
+  if (localStorage.getItem('niklasOS_tourDone')) return;
+
+  const steps = [
+    { target: '[data-window="career"]', title: 'Arbeitsplatz', desc: 'Mein Werdegang und meine Karrierestationen.' },
+    { target: '[data-window="sysmon"]', title: 'System Monitor', desc: 'Skills und Kompetenzen auf einen Blick.' },
+    { target: '[data-window="terminal"]', title: 'Terminal', desc: 'Interaktives Terminal — tippe "help" für Befehle.' },
+    { target: '#tb-contact-btn', title: 'Kontakt', desc: 'Direkt Kontakt aufnehmen — per E-Mail oder LinkedIn.' },
+  ];
+
+  let currentStep = 0;
+  const overlay = document.createElement('div');
+  overlay.id = 'onboarding-overlay';
+  overlay.innerHTML = `
+    <div class="onb-backdrop"></div>
+    <div class="onb-tooltip">
+      <div class="onb-step-indicator"></div>
+      <div class="onb-title"></div>
+      <div class="onb-desc"></div>
+      <div class="onb-actions">
+        <button class="onb-skip">Tour überspringen</button>
+        <button class="onb-next">Weiter</button>
+      </div>
+    </div>
+    <div class="onb-highlight"></div>
+  `;
+  document.body.appendChild(overlay);
+
+  function showStep(idx) {
+    const step = steps[idx];
+    const target = document.querySelector(step.target);
+    if (!target) { finish(); return; }
+
+    const rect = target.getBoundingClientRect();
+    const highlight = overlay.querySelector('.onb-highlight');
+    highlight.style.top = (rect.top - 6) + 'px';
+    highlight.style.left = (rect.left - 6) + 'px';
+    highlight.style.width = (rect.width + 12) + 'px';
+    highlight.style.height = (rect.height + 12) + 'px';
+
+    const tooltip = overlay.querySelector('.onb-tooltip');
+    overlay.querySelector('.onb-title').textContent = step.title;
+    overlay.querySelector('.onb-desc').textContent = step.desc;
+    overlay.querySelector('.onb-step-indicator').textContent = `${idx + 1} / ${steps.length}`;
+    overlay.querySelector('.onb-next').textContent = idx === steps.length - 1 ? 'Fertig' : 'Weiter';
+
+    // Position tooltip near target
+    const tooltipH = 140;
+    let top = rect.bottom + 16;
+    if (top + tooltipH > window.innerHeight) top = rect.top - tooltipH - 16;
+    let left = rect.left;
+    if (left + 280 > window.innerWidth) left = window.innerWidth - 296;
+    if (left < 16) left = 16;
+    tooltip.style.top = top + 'px';
+    tooltip.style.left = left + 'px';
+
+    requestAnimationFrame(() => overlay.classList.add('visible'));
+  }
+
+  function finish() {
+    localStorage.setItem('niklasOS_tourDone', '1');
+    overlay.classList.remove('visible');
+    setTimeout(() => overlay.remove(), 400);
+  }
+
+  overlay.querySelector('.onb-skip').addEventListener('click', finish);
+  overlay.querySelector('.onb-next').addEventListener('click', () => {
+    currentStep++;
+    if (currentStep >= steps.length) finish();
+    else showStep(currentStep);
+  });
+
+  setTimeout(() => showStep(0), 600);
 }
 
 // ─────────────────────────────────────────────────
@@ -4549,22 +5029,8 @@ function boot() {
   const bootScreen = document.getElementById('boot-screen');
   const bootBar    = document.getElementById('boot-bar');
   const bootStatus = document.getElementById('boot-status');
-
-  const steps = [
-    [0,    'Initialisierung...'],
-    [300,  'Kernel laden...'],
-    [700,  'Prozesse starten...'],
-    [1100, 'Fenster-Manager laden...'],
-    [1500, 'Desktop einrichten...'],
-    [1900, 'Bereit.'],
-  ];
-
-  steps.forEach(([delay, msg]) => {
-    setTimeout(() => {
-      if (bootStatus) bootStatus.textContent = msg;
-      if (bootBar) bootBar.style.width = ((delay / 1900) * 100) + '%';
-    }, delay);
-  });
+  const isMobile = window.innerWidth < 768;
+  let bootAborted = false;
 
   function initDesktop() {
     updateClock();
@@ -4578,27 +5044,84 @@ function boot() {
       setTimeout(showFakeCall,    3 * 60 * 1000);
       setTimeout(showFakeMessage, 4 * 60 * 1000);
     }
-    setTimeout(() => openWindow('about'), 350);
+    // Handle deep-linking via hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash && WIN_CONFIGS[hash]) {
+      setTimeout(() => openWindow(hash), 350);
+    } else {
+      setTimeout(() => openWindow('about'), 350);
+    }
+    // Save visited state for return visitors
+    localStorage.setItem('niklasOS_visited', '1');
+    // Start onboarding tour for first-time desktop visitors
+    if (!isMobile) {
+      setTimeout(startOnboardingTour, 1200);
+    }
   }
 
-  const isMobile = window.innerWidth < 768;
+  function finishBoot() {
+    if (bootAborted) return;
+    bootAborted = true;
+    if (bootBar) bootBar.style.width = '100%';
+    bootScreen.classList.add('hidden');
+    bootScreen.addEventListener('transitionend', () => {
+      bootScreen.remove();
+    }, { once: true });
+    if (isMobile) {
+      initLockScreen(initDesktop);
+    } else {
+      initLoginScreen(initDesktop);
+    }
+  }
+
+  // Returning visitor: skip boot + login entirely
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (localStorage.getItem('niklasOS_visited') || reducedMotion) {
+    bootScreen.remove();
+    const loginScreen = document.getElementById('login-screen');
+    if (loginScreen) loginScreen.remove();
+    const lockScreen = document.getElementById('lock-screen');
+    if (lockScreen) lockScreen.remove();
+    initDesktop();
+    return;
+  }
+
+  // Boot skip button
+  const skipBtn = document.getElementById('boot-skip');
+  if (skipBtn) {
+    skipBtn.addEventListener('click', finishBoot);
+  }
+
+  // Faster boot steps
+  const steps = [
+    [0,    'Initialisierung...'],
+    [200,  'Kernel laden...'],
+    [400,  'Prozesse starten...'],
+    [600,  'Fenster-Manager laden...'],
+    [800,  'Desktop einrichten...'],
+    [1000, 'Bereit.'],
+  ];
+
+  steps.forEach(([delay, msg]) => {
+    setTimeout(() => {
+      if (bootAborted) return;
+      if (bootStatus) bootStatus.textContent = msg;
+      if (bootBar) bootBar.style.width = ((delay / 1000) * 100) + '%';
+    }, delay);
+  });
 
   setTimeout(() => {
-    if (bootBar) bootBar.style.width = '100%';
-    setTimeout(() => {
-      bootScreen.classList.add('hidden');
-      bootScreen.addEventListener('transitionend', () => {
-        bootScreen.remove();
-      }, { once: true });
-
-      if (isMobile) {
-        initLockScreen(initDesktop);
-      } else {
-        initLoginScreen(initDesktop);
-      }
-    }, 300);
-  }, 2100);
+    finishBoot();
+  }, 1200);
 }
+
+// ─────────────────────────────────────────────────
+// HASH ROUTING
+// ─────────────────────────────────────────────────
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && WIN_CONFIGS[hash]) openWindow(hash);
+});
 
 // ─────────────────────────────────────────────────
 // ENTRY POINT
