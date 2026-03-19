@@ -124,6 +124,12 @@ const WIN_CONFIGS = {
     defaultW: 460, defaultH: 460,
     svgPath: 'M3 7h8l2 3h12v15H3V7z',
   },
+  photos: {
+    title: 'Google Fotos',
+    color: 'blue',
+    defaultW: 580, defaultH: 520,
+    svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM8 10h12M14 4v10',
+  },
   // Game apps
   snake: {
     title: 'Snake',
@@ -413,6 +419,7 @@ function initWindowContent(id, el) {
     filesapp:       buildFilesApp,
     snake:          buildSnake,
     minesweeper:    buildMinesweeper,
+    photos:         buildPhotos,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
@@ -554,7 +561,82 @@ const CAREER_DATA = [
   },
 ];
 
+function buildCareerMobile(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.display = 'flex';
+  body.style.flexDirection = 'column';
+  body.style.background = '#f7f8f6';
+
+  body.innerHTML = `
+    <div class="mob-career-wrap">
+      <div class="mob-career-header">
+        <span>💼</span>
+        <span>Karriere</span>
+      </div>
+      <div class="mob-career-timeline">
+        ${CAREER_DATA.map((e, i) => `
+          <div class="mob-career-item" data-career-idx="${i}">
+            <div class="mob-career-connector">
+              <div class="mob-career-dot"></div>
+              ${i < CAREER_DATA.length - 1 ? '<div class="mob-career-line"></div>' : ''}
+            </div>
+            <div class="mob-career-card">
+              <div class="mob-career-card-header">
+                <div>
+                  <div class="mob-career-period">${e.period}</div>
+                  <div class="mob-career-title">${e.title}</div>
+                  <div class="mob-career-company">${e.company}</div>
+                </div>
+                <div class="mob-career-toggle">▼</div>
+              </div>
+              <div class="mob-career-details" style="display:none">
+                <div class="mob-career-section-label">Verantwortung</div>
+                <ul class="mob-career-list">
+                  ${e.responsibilities.map(r => `<li>${r}</li>`).join('')}
+                </ul>
+                ${e.impact.length ? `
+                  <div class="mob-career-section-label" style="margin-top:10px">Impact</div>
+                  <ul class="mob-career-list mob-career-list-impact">
+                    ${e.impact.map(r => `<li>${r}</li>`).join('')}
+                  </ul>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // Expand/collapse on tap
+  body.querySelectorAll('.mob-career-item').forEach(item => {
+    const header  = item.querySelector('.mob-career-card-header');
+    const details = item.querySelector('.mob-career-details');
+    const toggle  = item.querySelector('.mob-career-toggle');
+    header.addEventListener('click', () => {
+      const open = details.style.display !== 'none';
+      details.style.display = open ? 'none' : 'block';
+      toggle.textContent = open ? '▼' : '▲';
+      item.querySelector('.mob-career-dot').classList.toggle('active', !open);
+    });
+  });
+
+  // Open first item by default
+  const firstItem = body.querySelector('.mob-career-item');
+  if (firstItem) {
+    const d = firstItem.querySelector('.mob-career-details');
+    const t = firstItem.querySelector('.mob-career-toggle');
+    const dot = firstItem.querySelector('.mob-career-dot');
+    if (d) d.style.display = 'block';
+    if (t) t.textContent = '▲';
+    if (dot) dot.classList.add('active');
+  }
+}
+
 function buildCareer(body) {
+  if (window.innerWidth < 768) return buildCareerMobile(body);
+
   body.style.padding = '0';
   body.style.overflow = 'hidden';
   body.style.display = 'flex';
@@ -1509,7 +1591,7 @@ function buildOutlook(body) {
     { from: 'Bambu Lab', subject: 'Druckauftrag abgeschlossen', time: 'Mo.', unread: false, preview: 'Ihr Druckauftrag "Katheterspiegelhalter_v3" wurde erfolgreich abgeschlossen (7h 23min).' },
   ];
   body.innerHTML = `
-    <div class="mob-mail-wrap">
+    <div class="mob-mail-wrap" style="position:relative;height:100%;overflow:hidden;">
       <div class="mob-mail-header">
         <span style="font-weight:600">Posteingang</span>
         <span class="mob-mail-badge">2</span>
@@ -1527,8 +1609,82 @@ function buildOutlook(body) {
           </div>
         `).join('')}
       </div>
+
+      <!-- Compose FAB -->
+      <button class="mob-mail-fab" id="mob-mail-fab" aria-label="Neue E-Mail verfassen" title="Neue E-Mail">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 13.5L13.5 3l3.5 3.5L6.5 17H3v-3.5z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M11 5l3.5 3.5" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </button>
+
+      <!-- Compose overlay -->
+      <div class="mob-mail-compose" id="mob-mail-compose" aria-hidden="true">
+        <div class="mob-mail-compose-header">
+          <button class="mob-mail-compose-close" id="mob-mail-compose-close" aria-label="Schließen">✕</button>
+          <span>Neue E-Mail</span>
+          <div style="width:28px"></div>
+        </div>
+        <div class="mob-mail-compose-body">
+          <div class="mob-mail-compose-field">
+            <label>An</label>
+            <input type="email" value="me@fauteck.eu" readonly class="mob-mail-compose-input mob-mail-compose-to">
+          </div>
+          <div class="mob-mail-compose-sep"></div>
+          <div class="mob-mail-compose-field">
+            <label>Betreff</label>
+            <input type="text" id="mob-mail-subject" placeholder="Betreff…" class="mob-mail-compose-input">
+          </div>
+          <div class="mob-mail-compose-sep"></div>
+          <textarea id="mob-mail-message" class="mob-mail-compose-textarea" placeholder="Hallo Niklas,&#10;&#10;ich habe deine Website entdeckt und wollte mich kurz vorstellen…" rows="8"></textarea>
+        </div>
+        <div class="mob-mail-compose-footer">
+          <div id="mob-mail-compose-success" class="mob-mail-compose-success" style="display:none">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#16a34a" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Mail-Client wird geöffnet…
+          </div>
+          <a class="mob-mail-compose-send" id="mob-mail-compose-send" href="#" aria-label="Senden">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l14-6-6 14-2-5-6-3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Senden
+          </a>
+        </div>
+      </div>
     </div>
   `;
+
+  // FAB → open compose
+  const fab     = body.querySelector('#mob-mail-fab');
+  const compose = body.querySelector('#mob-mail-compose');
+  const closeBtn= body.querySelector('#mob-mail-compose-close');
+  const sendBtn = body.querySelector('#mob-mail-compose-send');
+  const success = body.querySelector('#mob-mail-compose-success');
+
+  fab.addEventListener('click', () => {
+    compose.classList.add('open');
+    compose.setAttribute('aria-hidden', 'false');
+    body.querySelector('#mob-mail-subject')?.focus();
+  });
+
+  closeBtn.addEventListener('click', () => {
+    compose.classList.remove('open');
+    compose.setAttribute('aria-hidden', 'true');
+  });
+
+  sendBtn.addEventListener('click', e => {
+    e.preventDefault();
+    const subj = (body.querySelector('#mob-mail-subject')?.value || '').trim();
+    const msg  = (body.querySelector('#mob-mail-message')?.value || '').trim();
+    const mailtoUrl = `mailto:me@fauteck.eu?subject=${encodeURIComponent(subj || 'Kontakt über NiklasOS')}&body=${encodeURIComponent(msg)}`;
+    sendBtn.style.display = 'none';
+    success.style.display = 'flex';
+    setTimeout(() => { window.location.href = mailtoUrl; }, 800);
+    setTimeout(() => {
+      compose.classList.remove('open');
+      compose.setAttribute('aria-hidden', 'true');
+      sendBtn.style.display = '';
+      success.style.display = 'none';
+    }, 3000);
+  });
 }
 
 function buildTeams(body) {
@@ -1669,7 +1825,97 @@ function buildRSS(body) {
 }
 
 function buildFilesApp(body) {
+  if (window.innerWidth < 768) return buildFilesAppMobile(body);
   return buildEigeneDateien(body);
+}
+
+function buildFilesAppMobile(body) {
+  const files = [
+    { icon: '📄', name: 'Niklas_CV.pdf',             type: 'PDF',  size: '142 KB', action: null,    color: '#dc2626' },
+    { icon: '📝', name: 'Steuererklärung 2025.docx', type: 'DOCX', size: '88 KB',  action: 'crash', color: '#2563eb' },
+    { icon: '📊', name: 'Projektziele_2026.xlsx',    type: 'XLSX', size: '34 KB',  action: null,    color: '#16a34a' },
+    { icon: '🗜️', name: 'HomeAssistant_Backup.tar.gz', type: 'GZ', size: '2,3 MB', action: null,   color: '#d97706' },
+    { icon: '🖼️', name: 'Katheterspiegelhalter_v3.3mf', type: '3MF', size: '1,1 MB', action: null, color: '#7c3aed' },
+  ];
+
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.innerHTML = `
+    <div class="mob-files-wrap">
+      <div class="mob-files-header">
+        <span>Eigene Dateien</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="12" y1="12" x2="16" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="mob-files-scroll">
+        <div class="mob-files-section-label">Zuletzt geöffnet</div>
+        <div class="mob-files-recent">
+          <div class="mob-files-recent-item">📄 <span>Niklas_CV.pdf</span></div>
+          <div class="mob-files-recent-item">📊 <span>Projektziele_2026.xlsx</span></div>
+        </div>
+        <div class="mob-files-section-label" style="margin-top:16px">Alle Dateien</div>
+        <div class="mob-files-grid">
+          ${files.map(f => `
+            <div class="mob-file-card${f.action === 'crash' ? ' mob-file-card-docx' : ''}">
+              <div class="mob-file-card-icon">${f.icon}</div>
+              <div class="mob-file-card-name">${f.name}</div>
+              <div class="mob-file-card-size">${f.type} · ${f.size}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Word Crash Dialog (reused) -->
+    <div class="word-crash-overlay" id="word-crash-overlay" style="display:none">
+      <div class="word-crash-dialog">
+        <div class="word-crash-titlebar">
+          <span class="word-crash-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-right:6px;vertical-align:-3px">
+              <rect width="16" height="16" rx="2" fill="#2B579A"/>
+              <text x="3" y="12" font-size="10" font-weight="bold" fill="white" font-family="Arial">W</text>
+            </svg>
+            Microsoft Word — Fehler
+          </span>
+          <button class="word-crash-close" id="word-crash-close">✕</button>
+        </div>
+        <div class="word-crash-body">
+          <div class="word-crash-icon">⚠️</div>
+          <div class="word-crash-content">
+            <div class="word-crash-code">FEHLER 0x0000STEUER</div>
+            <p>Word konnte <strong>"Steuererklärung 2025.docx"</strong> nicht öffnen.</p>
+            <p style="margin-top:8px;font-size:12px;color:#555">
+              Das Dokument enthält Ausgaben, die das Finanzamt als "nicht abzugsfähig"
+              eingestuft hat (u.a. Docker-Server, 3D-Drucker-Filament, Smart-Home-Geräte).
+            </p>
+            <p style="margin-top:8px;font-size:12px;color:#555">
+              <strong>Mögliche Lösungen:</strong><br>
+              • Steuerberater beauftragen (Kosten: abzugsfähig)<br>
+              • Datei löschen (nicht empfohlen)<br>
+              • Auf nächstes Jahr verschieben (bewährt)
+            </p>
+          </div>
+        </div>
+        <div class="word-crash-footer">
+          <button class="word-crash-btn" id="word-crash-ok">OK, ich versuchs nächstes Jahr</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  body.querySelectorAll('.mob-file-card-docx').forEach(el => {
+    el.addEventListener('click', () => {
+      const overlay = body.querySelector('#word-crash-overlay');
+      if (overlay) overlay.style.display = 'flex';
+    });
+  });
+  const closeBtn = body.querySelector('#word-crash-close');
+  const okBtn    = body.querySelector('#word-crash-ok');
+  const overlay  = body.querySelector('#word-crash-overlay');
+  if (closeBtn) closeBtn.addEventListener('click', () => { overlay.style.display = 'none'; });
+  if (okBtn)    okBtn.addEventListener('click',    () => { overlay.style.display = 'none'; });
 }
 
 // ─────────────────────────────────────────────────
@@ -2175,6 +2421,118 @@ function initContextMenu() {
 }
 
 // ─────────────────────────────────────────────────
+// GOOGLE PHOTOS
+// ─────────────────────────────────────────────────
+function buildPhotos(body) {
+  const isMob = window.innerWidth < 768;
+
+  const albums = [
+    { name: '2025',         count: 48, grad: 'linear-gradient(135deg,#2563eb,#7c3aed)' },
+    { name: 'RTL Events',   count: 23, grad: 'linear-gradient(135deg,#dc2626,#d97706)' },
+    { name: '3D Druck',     count: 17, grad: 'linear-gradient(135deg,#059669,#0d9488)' },
+    { name: 'Zuhause',      count: 34, grad: 'linear-gradient(135deg,#ea580c,#d97706)' },
+    { name: 'Reisen',       count: 12, grad: 'linear-gradient(135deg,#0891b2,#2563eb)' },
+    { name: 'Smart Home',   count: 9,  grad: 'linear-gradient(135deg,#7c3aed,#db2777)' },
+  ];
+
+  // Fake photo tiles: 18 gradient placeholders with subtle pattern variations
+  const tilePalettes = [
+    '#1d4ed8', '#2563eb', '#7c3aed', '#6d28d9', '#dc2626', '#b91c1c',
+    '#059669', '#065f46', '#d97706', '#b45309', '#0891b2', '#0e7490',
+    '#db2777', '#9d174d', '#16a34a', '#ea580c', '#4f46e5', '#0f766e',
+  ];
+
+  const cols = isMob ? 3 : 4;
+
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.display = 'flex';
+  body.style.flexDirection = 'column';
+
+  body.innerHTML = `
+    <div class="photos-wrap">
+      <div class="photos-header">
+        <span class="photos-logo">
+          <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+          &nbsp;Fotos
+        </span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="photos-search-icon">
+          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="12" y1="12" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="photos-scroll" id="photos-scroll">
+
+        <!-- Albums -->
+        <div class="photos-section-label">Alben</div>
+        <div class="photos-albums">
+          ${albums.map(a => `
+            <div class="photos-album" data-album="${a.name}">
+              <div class="photos-album-cover" style="background:${a.grad}">
+                <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
+                  <rect x="4" y="8" width="20" height="14" rx="2" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/>
+                  <circle cx="9" cy="13" r="2" fill="white" opacity="0.7"/>
+                  <path d="M4 19l5-4 4 3 4-5 5 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </div>
+              <div class="photos-album-name">${a.name}</div>
+              <div class="photos-album-count">${a.count} Fotos</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Photo grid -->
+        <div class="photos-section-label" style="margin-top:16px">Zuletzt · März 2026</div>
+        <div class="photos-grid" style="grid-template-columns:repeat(${cols},1fr)">
+          ${tilePalettes.map((c, i) => `
+            <div class="photos-tile" style="background:${c};opacity:${0.7 + (i % 4) * 0.075}" data-tile="${i}">
+              ${i === 3 ? '<div class="photos-tile-icon">🏠</div>' : ''}
+              ${i === 7 ? '<div class="photos-tile-icon">🖨️</div>' : ''}
+              ${i === 11 ? '<div class="photos-tile-icon">🎬</div>' : ''}
+              ${i === 15 ? '<div class="photos-tile-icon">✈️</div>' : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="photos-lightbox" id="photos-lightbox" style="display:none">
+        <button class="photos-lb-close" id="photos-lb-close">✕</button>
+        <div class="photos-lb-img" id="photos-lb-img"></div>
+        <div class="photos-lb-caption" id="photos-lb-caption">März 2026</div>
+      </div>
+    </div>
+  `;
+
+  // Album click → filter label
+  body.querySelectorAll('.photos-album').forEach(el => {
+    el.addEventListener('click', () => {
+      body.querySelector('.photos-section-label:last-of-type').textContent =
+        el.dataset.album + ' · ' + albums.find(a => a.name === el.dataset.album)?.count + ' Fotos';
+      body.querySelectorAll('.photos-album').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+    });
+  });
+
+  // Tile click → lightbox
+  body.querySelectorAll('.photos-tile').forEach((tile, i) => {
+    tile.addEventListener('click', () => {
+      const lb     = body.querySelector('#photos-lightbox');
+      const lbImg  = body.querySelector('#photos-lb-img');
+      const lbCap  = body.querySelector('#photos-lb-caption');
+      lb.style.display = 'flex';
+      lbImg.style.background = tilePalettes[i];
+      lbCap.textContent = `Foto ${i + 1} von 18 · März 2026`;
+    });
+  });
+
+  body.querySelector('#photos-lb-close')?.addEventListener('click', () => {
+    body.querySelector('#photos-lightbox').style.display = 'none';
+  });
+}
+
+// ─────────────────────────────────────────────────
 // START MENU
 // ─────────────────────────────────────────────────
 function initTaskbarAppsBtn() {
@@ -2239,6 +2597,163 @@ function initTaskbarAppsBtn() {
 }
 
 // ─────────────────────────────────────────────────
+// MOBILE FAKE CALL & MESSAGE
+// ─────────────────────────────────────────────────
+function showFakeCall() {
+  const overlay = document.getElementById('mob-fake-call');
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'false');
+  overlay.classList.add('visible');
+
+  function dismiss() {
+    overlay.classList.remove('visible');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+
+  document.getElementById('mfc-decline')?.addEventListener('click', dismiss, { once: true });
+  document.getElementById('mfc-accept')?.addEventListener('click', () => {
+    // Show "connected" state briefly
+    const content = overlay.querySelector('.mfc-content');
+    if (content) {
+      const actions = content.querySelector('.mfc-actions');
+      const labels  = content.querySelector('.mfc-labels');
+      const sub     = content.querySelector('.mfc-sub');
+      if (actions) actions.style.display = 'none';
+      if (labels)  labels.style.display  = 'none';
+      if (sub)     sub.textContent = 'Verbunden…';
+    }
+    setTimeout(dismiss, 3000);
+  }, { once: true });
+}
+
+function showFakeMessage() {
+  const banner = document.getElementById('mob-fake-msg');
+  if (!banner) return;
+  banner.setAttribute('aria-hidden', 'false');
+  banner.classList.add('visible');
+
+  function hideBanner() {
+    banner.classList.remove('visible');
+    banner.setAttribute('aria-hidden', 'true');
+  }
+
+  banner.addEventListener('click', () => {
+    hideBanner();
+    openMobileWindow('teams');
+  }, { once: true });
+
+  setTimeout(hideBanner, 6000);
+}
+
+// ─────────────────────────────────────────────────
+// SEARCH OVERLAY
+// ─────────────────────────────────────────────────
+function initSearchOverlay() {
+  const searchBtn     = document.getElementById('tb-search-btn');
+  const overlay       = document.getElementById('search-overlay');
+  const searchInput   = document.getElementById('search-input');
+  const resultsBox    = document.getElementById('search-results');
+  if (!searchBtn || !overlay || !searchInput || !resultsBox) return;
+
+  let activeIdx = -1;
+
+  function openSearch() {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    searchInput.value = '';
+    renderResults('');
+    setTimeout(() => searchInput.focus(), 50);
+    activeIdx = -1;
+  }
+
+  function closeSearch() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    searchInput.blur();
+  }
+
+  function renderResults(query) {
+    const q = query.toLowerCase().trim();
+    const entries = Object.entries(WIN_CONFIGS);
+    const filtered = q
+      ? entries.filter(([, cfg]) => cfg.title.toLowerCase().includes(q))
+      : entries;
+
+    if (filtered.length === 0) {
+      resultsBox.innerHTML = `<div class="search-no-results">Keine Ergebnisse für „${query}"</div>`;
+      activeIdx = -1;
+      return;
+    }
+
+    resultsBox.innerHTML = filtered.map(([id, cfg], i) => {
+      const bg = COLOR_MAP[cfg.color] || 'linear-gradient(135deg,#52b788,#2d6a4f)';
+      return `
+        <div class="search-result-item" data-id="${id}" data-idx="${i}">
+          <div class="search-result-icon" style="background:${bg}">
+            <svg viewBox="0 0 28 28" fill="none">
+              <path d="${cfg.svgPath}" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="search-result-name">${cfg.title}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    resultsBox.querySelectorAll('.search-result-item').forEach(item => {
+      item.addEventListener('click', () => {
+        closeSearch();
+        openWindow(item.dataset.id);
+      });
+    });
+    activeIdx = -1;
+  }
+
+  function getItems() {
+    return Array.from(resultsBox.querySelectorAll('.search-result-item'));
+  }
+
+  function setActive(idx) {
+    const items = getItems();
+    items.forEach(el => el.classList.remove('active'));
+    if (idx >= 0 && idx < items.length) {
+      items[idx].classList.add('active');
+      items[idx].scrollIntoView({ block: 'nearest' });
+    }
+    activeIdx = idx;
+  }
+
+  searchBtn.addEventListener('click', e => { e.stopPropagation(); openSearch(); });
+
+  searchInput.addEventListener('input', () => renderResults(searchInput.value));
+
+  searchInput.addEventListener('keydown', e => {
+    const items = getItems();
+    if (e.key === 'Escape') { closeSearch(); return; }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActive(Math.min(activeIdx + 1, items.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActive(Math.max(activeIdx - 1, 0));
+    } else if (e.key === 'Enter') {
+      if (activeIdx >= 0 && items[activeIdx]) {
+        closeSearch();
+        openWindow(items[activeIdx].dataset.id);
+      } else if (items.length > 0) {
+        closeSearch();
+        openWindow(items[0].dataset.id);
+      }
+    }
+  });
+
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeSearch();
+  });
+}
+
+// ─────────────────────────────────────────────────
 // CLOCK
 // ─────────────────────────────────────────────────
 function updateClock() {
@@ -2292,11 +2807,12 @@ const MOB_LABELS = {
   filesapp:      'Dateien',
   snake:         'Snake',
   minesweeper:   'Minesweeper',
+  photos:        'Fotos',
 };
 
 // Page 1 apps (main homescreen), Page 2 remainder
 const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams'];
-const MOB_PAGE2 = ['jira', 'github', 'homeassistant', 'rss', 'filesapp', 'snake'];
+const MOB_PAGE2 = ['jira', 'github', 'homeassistant', 'rss', 'filesapp', 'photos', 'snake'];
 const MOB_DOCK  = ['outlook', 'network', 'about', 'github'];
 
 const COLOR_MAP = {
@@ -2498,6 +3014,7 @@ function openMobileWindow(id) {
     filesapp:       buildFilesApp,
     snake:          buildSnake,
     minesweeper:    buildMinesweeper,
+    photos:         buildPhotos,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
@@ -2648,7 +3165,12 @@ function boot() {
     initDesktopIcons();
     initContextMenu();
     initTaskbarAppsBtn();
+    initSearchOverlay();
     initMobile();
+    if (isMobile) {
+      setTimeout(showFakeCall,    3 * 60 * 1000);
+      setTimeout(showFakeMessage, 4 * 60 * 1000);
+    }
     setTimeout(() => openWindow('about'), 350);
   }
 
