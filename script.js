@@ -170,7 +170,7 @@ const WIN_CONFIGS = {
   blog: {
     title: 'Texteditor',
     color: 'green',
-    defaultW: 740, defaultH: 560,
+    defaultW: 960, defaultH: 680,
     svgPath: 'M4 4h20v20H4zM8 8h12M8 12h8M8 16h10',
   },
   projects: {
@@ -4813,66 +4813,6 @@ function closeMobileWindow() {
 // ─────────────────────────────────────────────────
 const BLOG_POSTS = [
   {
-    id: 'ai-workflows',
-    title: 'Warum KI-Workflows wichtiger sind als KI-Tools',
-    date: '2026-03-10',
-    tags: ['KI', 'Automation', 'Strategie'],
-    content: `Die meisten Unternehmen starten ihre KI-Reise mit der Frage: "Welches Tool sollen wir nutzen?" — Die bessere Frage wäre: "Welchen Prozess wollen wir verbessern?"
-
-Ein einzelnes KI-Tool löst selten ein Gesamtproblem. Erst wenn man es in einen Workflow einbettet — mit klaren Eingaben, definierten Übergaben und messbarem Output — entsteht echter Mehrwert.
-
-Bei RTL haben wir genau das gemacht: Statt einfach ChatGPT-Lizenzen zu verteilen, haben wir zuerst die Prozesse identifiziert, die am meisten von Automatisierung profitieren. Dann haben wir maßgeschneiderte Workflows gebaut — mit n8n, Claude und internen APIs.
-
-Das Ergebnis: Nicht ein Tool, das alle nutzen, sondern Workflows, die tatsächlich Zeit sparen.
-
-Drei Prinzipien für KI-Workflows:
-→ Prozess vor Tool: Erst den Ablauf verstehen, dann automatisieren
-→ Adoption vor Features: Lieber weniger Funktionen, die alle nutzen
-→ Iteration vor Perfektion: Klein starten, messen, verbessern`,
-  },
-  {
-    id: 'digital-transformation-lessons',
-    title: 'Was ich in 6 Jahren Digital Transformation gelernt habe',
-    date: '2026-02-18',
-    tags: ['Transformation', 'Leadership', 'Lessons Learned'],
-    content: `Digitale Transformation ist kein IT-Projekt. Es ist ein Kulturprojekt mit technischen Mitteln. Diese Erkenntnis hat mich Jahre gekostet — hier sind die wichtigsten Learnings:
-
-1. Menschen vor Tools
-Jede Einführung scheitert, wenn die Nutzer nicht mitgenommen werden. Der beste Tech-Stack der Welt ist wertlos ohne Adoption.
-
-2. Kleine Siege zuerst
-Große Visionen brauchen kleine, sichtbare Erfolge als Fundament. Ein automatisierter Prozess, der einer Redakteurin 30 Minuten pro Tag spart, überzeugt mehr als jede PowerPoint-Strategie.
-
-3. Übersetzen ist eine Kernkompetenz
-Zwischen IT und Fachabteilung zu vermitteln ist keine Nebentätigkeit — es ist die zentrale Aufgabe in der digitalen Transformation.
-
-4. Pragmatismus schlägt Perfektion
-Die 80%-Lösung, die morgen live ist, hat mehr Impact als die 100%-Lösung, die nie fertig wird.
-
-5. Systeme statt Silos
-Echte Transformation passiert, wenn isolierte Tools zu einem vernetzten System werden, das Informationsflüsse ermöglicht statt behindert.`,
-  },
-  {
-    id: 'home-assistant-automation',
-    title: 'Smart Home als Automation-Playground',
-    date: '2026-01-22',
-    tags: ['Home Assistant', 'Automation', 'IoT'],
-    content: `Mein Home Assistant Setup ist mehr als ein Smart Home — es ist ein Experimentierfeld für Automatisierungslogik, das direkt in meine berufliche Arbeit einfließt.
-
-Die Parallelen zwischen Smart Home Automations und Enterprise-Workflows sind erstaunlich:
-→ Trigger → Condition → Action (wie in n8n oder Make.com)
-→ State Management über Entitäten (wie Business-Objekte)
-→ Dashboards für Monitoring (wie BI-Dashboards)
-
-Konkret laufen bei mir:
-• Anwesenheitsbasierte Klima- und Lichtsteuerung
-• Automatische Benachrichtigungen bei anomalem Energieverbrauch
-• Integration mit 3D-Drucker (Bambu Lab) für Statusupdates
-• Custom Dashboards für jeden Raum
-
-Was ich daraus für den Beruf mitnehme: Automation ist nur so gut wie ihr Kontext. Ohne klare Trigger und saubere Datenquellen produziert man nur Chaos mit höherer Geschwindigkeit.`,
-  },
-  {
     id: 'gofundme',
     title: 'GoFundMe: Barrierefreier Umbau für unsere Familie',
     date: '2025-10-01',
@@ -5072,7 +5012,7 @@ function buildBlog(body) {
   body.style.overflow = 'hidden';
   body.style.display = 'flex';
   body.style.flexDirection = 'column';
-  body.style.background = '#1e1e2e';
+  body.style.background = '#ffffff';
 
   const postListHtml = BLOG_POSTS.map((p, i) => `
     <div class="blog-list-item${i === 0 ? ' active' : ''}" data-post="${p.id}">
