@@ -85,7 +85,7 @@ const WIN_CONFIGS = {
   outlook: {
     title: 'Outlook',
     color: 'blue',
-    defaultW: 660, defaultH: 560,
+    defaultW: 900, defaultH: 600,
     svgPath: 'M2 6h20v16H2zM22 6L12 14 2 6M7 10h6M7 14h4',
   },
   teams: {
@@ -2250,13 +2250,252 @@ function buildClaudeApp(body) {
 
 function buildOutlook(body) {
   const mails = [
-    { from: 'IT-Support RTL', subject: 'Wartungsfenster: Media Hub Update', time: '09:12', unread: true, preview: 'Geplantes Wartungsfenster morgen von 22:00-02:00 Uhr...' },
-    { from: 'Produktteam', subject: 'Sprint Review – Einladung', time: '08:47', unread: true, preview: 'Hallo Niklas, hiermit lädt das Produktteam zum Sprint-Review ein...' },
-    { from: 'Jira Automation', subject: '[KOMM-4821] Status geändert: Done', time: 'Gestern', unread: false, preview: 'Das Ticket "Media Hub: Bild-Upload optimieren" wurde auf Done gesetzt.' },
-    { from: 'Confluence', subject: 'Seite aktualisiert: Systemarchitektur', time: 'Gestern', unread: false, preview: 'Max Mustermann hat die Seite "Systemarchitektur 2026" bearbeitet.' },
-    { from: 'GitHub', subject: '[docker-configs] PR #47 merged', time: 'Di.', unread: false, preview: 'Pull Request #47 "Update Home Assistant to 2026.3" wurde gemergt.' },
-    { from: 'Bambu Lab', subject: 'Druckauftrag abgeschlossen', time: 'Mo.', unread: false, preview: 'Ihr Druckauftrag "Katheterspiegelhalter_v3" wurde erfolgreich abgeschlossen (7h 23min).' },
+    { from: 'IT-Support RTL', subject: 'Wartungsfenster: Media Hub Update', time: '09:12', date: '19. Mrz 2026, 09:12', unread: true,
+      preview: 'Geplantes Wartungsfenster morgen von 22:00-02:00 Uhr...',
+      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: 'Technik-Team',
+      body: '<p>Hallo zusammen,</p><p>wir planen ein Wartungsfenster <b>morgen von 22:00 bis 02:00 Uhr</b> für das Media Hub Update auf Version 4.2. Während dieser Zeit kann es zu kurzzeitigen Ausfällen kommen.</p><p>Bitte stellt sicher, dass keine kritischen Prozesse in diesem Zeitraum laufen. Bei Fragen wendet euch an den IT-Support.</p><p>Viele Grüße,<br>IT-Support RTL</p>' },
+    { from: 'Produktteam', subject: 'Sprint Review – Einladung', time: '08:47', date: '19. Mrz 2026, 08:47', unread: true,
+      preview: 'Hallo Niklas, hiermit lädt das Produktteam zum Sprint-Review ein...',
+      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      body: '<p>Hallo Niklas,</p><p>hiermit laden wir dich herzlich zum <b>Sprint Review am Freitag, 21. März um 14:00 Uhr</b> ein. Wir werden die Ergebnisse des aktuellen Sprints vorstellen und die nächsten Schritte besprechen.</p><p>Agenda:<br>1. Demo der neuen Suchfunktion<br>2. Performance-Verbesserungen Media Hub<br>3. Ausblick Sprint 12</p><p>Beste Grüße,<br>Das Produktteam</p>' },
+    { from: 'Jira Automation', subject: '[KOMM-4821] Status geändert: Done', time: 'Gestern', date: '18. Mrz 2026, 16:30', unread: false,
+      preview: 'Das Ticket "Media Hub: Bild-Upload optimieren" wurde auf Done gesetzt.',
+      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      body: '<p>Das Ticket <b>KOMM-4821</b> &quot;Media Hub: Bild-Upload optimieren&quot; wurde von Sarah K. auf <span style="color:#10b981;font-weight:600">Done</span> gesetzt.</p><p>Änderungen:<br>- Bildkomprimierung auf WebP umgestellt<br>- Upload-Limit auf 25 MB erhöht<br>- Fortschrittsanzeige implementiert</p>' },
+    { from: 'Confluence', subject: 'Seite aktualisiert: Systemarchitektur', time: 'Gestern', date: '18. Mrz 2026, 14:15', unread: false,
+      preview: 'Max Mustermann hat die Seite "Systemarchitektur 2026" bearbeitet.',
+      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      body: '<p>Max Mustermann hat die Seite <b>&quot;Systemarchitektur 2026&quot;</b> im Bereich Technik-Dokumentation bearbeitet.</p><p>Änderungen: Neues Diagramm für Microservice-Kommunikation hinzugefügt, API-Gateway-Konfiguration aktualisiert.</p><p><a href="#" style="color:#0078d4">Seite anzeigen</a></p>' },
+    { from: 'GitHub', subject: '[docker-configs] PR #47 merged', time: 'Di.', date: '17. Mrz 2026, 11:22', unread: false,
+      preview: 'Pull Request #47 "Update Home Assistant to 2026.3" wurde gemergt.',
+      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      body: '<p>Pull Request <b>#47</b> &quot;Update Home Assistant to 2026.3&quot; wurde erfolgreich in <code>main</code> gemergt.</p><p>Änderungen:<br>- Home Assistant Core auf 2026.3.1<br>- HACS auf v2.1.0<br>- Neue Zigbee2MQTT-Konfiguration</p><p>CI/CD Pipeline: <span style="color:#10b981">&#10003; Alle Checks bestanden</span></p>' },
+    { from: 'Bambu Lab', subject: 'Druckauftrag abgeschlossen', time: 'Mo.', date: '16. Mrz 2026, 19:45', unread: false,
+      preview: 'Ihr Druckauftrag "Katheterspiegelhalter_v3" wurde erfolgreich abgeschlossen (7h 23min).',
+      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      body: '<p>Ihr Druckauftrag wurde erfolgreich abgeschlossen!</p><p><b>Datei:</b> Katheterspiegelhalter_v3.3mf<br><b>Drucker:</b> Bambu Lab X1C<br><b>Material:</b> PLA Basic (Weiß)<br><b>Dauer:</b> 7h 23min<br><b>Verbrauch:</b> 48g</p><p>Der Drucker ist bereit für den nächsten Auftrag.</p>' },
   ];
+
+  const isDesktop = !!body.closest('.window');
+  if (isDesktop) {
+    buildOutlookDesktop(body, mails);
+  } else {
+    buildOutlookMobile(body, mails);
+  }
+}
+
+function buildOutlookDesktop(body, mails) {
+  body.style.overflow = 'hidden';
+
+  const folders = [
+    { name: 'Posteingang', icon: '&#9993;', count: 2, id: 'inbox' },
+    { name: 'Entwürfe', icon: '&#9998;', count: 0, id: 'drafts' },
+    { name: 'Gesendet', icon: '&#10148;', count: 0, id: 'sent' },
+    { name: 'Gelöscht', icon: '&#128465;', count: 0, id: 'deleted' },
+    { name: 'Archiv', icon: '&#128451;', count: 0, id: 'archive' },
+    { name: 'Junk-E-Mail', icon: '&#9888;', count: 0, id: 'junk' },
+  ];
+
+  body.innerHTML = `
+    <div class="ol-desk-wrap">
+      <div class="ol-desk-toolbar">
+        <div class="ol-desk-tabs">
+          <span class="ol-desk-tab active">Start</span>
+          <span class="ol-desk-tab">Ansicht</span>
+          <span class="ol-desk-tab">Hilfe</span>
+        </div>
+        <div class="ol-desk-actions">
+          <button class="ol-desk-action-btn ol-desk-new-mail" title="Neue E-Mail">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 13.5L13.5 3l3.5 3.5L6.5 17H3v-3.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 5l3.5 3.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Neue E-Mail</span>
+          </button>
+          <button class="ol-desk-action-btn" title="Löschen">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 6h10M8 6V4h4v2M6 6v10a1 1 0 001 1h6a1 1 0 001-1V6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Löschen</span>
+          </button>
+          <button class="ol-desk-action-btn" title="Archivieren">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="4" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M4 8v7a1 1 0 001 1h10a1 1 0 001-1V8M8 12h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            <span>Archivieren</span>
+          </button>
+          <button class="ol-desk-action-btn" title="Antworten">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 5L3 10l5 5M3 10h10a4 4 0 014 4v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Antworten</span>
+          </button>
+          <button class="ol-desk-action-btn" title="Weiterleiten">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M12 5l5 5-5 5M17 10H7a4 4 0 00-4 4v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Weiterleiten</span>
+          </button>
+        </div>
+      </div>
+      <div class="ol-desk-main">
+        <div class="ol-desk-sidebar">
+          <div class="ol-desk-account">
+            <div class="ol-desk-account-avatar">N</div>
+            <div class="ol-desk-account-info">
+              <div class="ol-desk-account-name">Niklas Fauteck</div>
+              <div class="ol-desk-account-mail">niklas@fauteck.eu</div>
+            </div>
+          </div>
+          <div class="ol-desk-folders">
+            ${folders.map(f => `
+              <div class="ol-desk-folder${f.id === 'inbox' ? ' active' : ''}" data-folder="${f.id}">
+                <span class="ol-desk-folder-icon">${f.icon}</span>
+                <span class="ol-desk-folder-name">${f.name}</span>
+                ${f.count > 0 ? `<span class="ol-desk-folder-count">${f.count}</span>` : ''}
+              </div>
+            `).join('')}
+          </div>
+          <div class="ol-desk-sidebar-contact">
+            <div class="ol-desk-contact-status"><span class="ol-desk-contact-dot">●</span> Erreichbar</div>
+            <a class="ol-desk-contact-link" href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener noreferrer">
+              <span class="ol-desk-contact-icon" style="color:#0a66c2">in</span> LinkedIn
+            </a>
+            <a class="ol-desk-contact-link" href="mailto:niklas@fauteck.eu">
+              <span class="ol-desk-contact-icon" style="color:#52b788">✉</span> E-Mail
+            </a>
+          </div>
+        </div>
+        <div class="ol-desk-maillist">
+          <div class="ol-desk-maillist-header">
+            <span>Posteingang</span>
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" style="opacity:0.4;cursor:pointer"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="ol-desk-maillist-items">
+            ${mails.map((m, i) => `
+              <div class="ol-desk-mail-item${m.unread ? ' unread' : ''}${i === 0 ? ' active' : ''}" data-idx="${i}">
+                ${m.unread ? '<div class="ol-desk-mail-unread-dot"></div>' : '<div class="ol-desk-mail-unread-dot" style="visibility:hidden"></div>'}
+                <div class="ol-desk-mail-avatar">${m.from[0]}</div>
+                <div class="ol-desk-mail-content">
+                  <div class="ol-desk-mail-from">${m.from}</div>
+                  <div class="ol-desk-mail-subject">${m.subject}</div>
+                  <div class="ol-desk-mail-preview">${m.preview}</div>
+                </div>
+                <div class="ol-desk-mail-time">${m.time}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="ol-desk-readpane">
+          <div class="ol-desk-read-content"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // --- Reading pane logic ---
+  const readPane = body.querySelector('.ol-desk-read-content');
+  const mailItems = body.querySelectorAll('.ol-desk-mail-item');
+
+  function showMail(idx) {
+    const m = mails[idx];
+    readPane.innerHTML = `
+      <div class="ol-desk-read-subject">${m.subject}</div>
+      <div class="ol-desk-read-meta">
+        <div class="ol-desk-read-avatar">${m.from[0]}</div>
+        <div class="ol-desk-read-meta-info">
+          <div class="ol-desk-read-from">${m.from}</div>
+          <div class="ol-desk-read-to">An: ${m.to}${m.cc ? ' &nbsp;|&nbsp; Cc: ' + m.cc : ''}</div>
+        </div>
+        <div class="ol-desk-read-date">${m.date}</div>
+      </div>
+      <div class="ol-desk-read-body">${m.body}</div>
+    `;
+  }
+
+  function selectMail(idx) {
+    mailItems.forEach(el => el.classList.remove('active'));
+    const target = body.querySelector(`.ol-desk-mail-item[data-idx="${idx}"]`);
+    if (target) {
+      target.classList.remove('unread');
+      target.classList.add('active');
+      const dot = target.querySelector('.ol-desk-mail-unread-dot');
+      if (dot) dot.style.visibility = 'hidden';
+    }
+    showMail(idx);
+  }
+
+  mailItems.forEach(el => {
+    el.addEventListener('click', () => selectMail(parseInt(el.dataset.idx)));
+  });
+
+  // Show first mail on load
+  showMail(0);
+
+  // --- Folder click ---
+  body.querySelectorAll('.ol-desk-folder').forEach(f => {
+    f.addEventListener('click', () => {
+      body.querySelectorAll('.ol-desk-folder').forEach(ff => ff.classList.remove('active'));
+      f.classList.add('active');
+      if (f.dataset.folder !== 'inbox') {
+        readPane.innerHTML = '<div class="ol-desk-read-empty">Keine E-Mails in diesem Ordner.</div>';
+        body.querySelector('.ol-desk-maillist-items').innerHTML = '<div class="ol-desk-read-empty" style="padding:24px;font-size:13px;color:#6b7280">Keine E-Mails</div>';
+        body.querySelector('.ol-desk-maillist-header span').textContent = f.querySelector('.ol-desk-folder-name').textContent;
+      } else {
+        body.querySelector('.ol-desk-maillist-header span').textContent = 'Posteingang';
+        body.querySelector('.ol-desk-maillist-items').innerHTML = mails.map((m, i) => `
+          <div class="ol-desk-mail-item${m.unread ? ' unread' : ''}${i === 0 ? ' active' : ''}" data-idx="${i}">
+            ${m.unread ? '<div class="ol-desk-mail-unread-dot"></div>' : '<div class="ol-desk-mail-unread-dot" style="visibility:hidden"></div>'}
+            <div class="ol-desk-mail-avatar">${m.from[0]}</div>
+            <div class="ol-desk-mail-content">
+              <div class="ol-desk-mail-from">${m.from}</div>
+              <div class="ol-desk-mail-subject">${m.subject}</div>
+              <div class="ol-desk-mail-preview">${m.preview}</div>
+            </div>
+            <div class="ol-desk-mail-time">${m.time}</div>
+          </div>
+        `).join('');
+        body.querySelectorAll('.ol-desk-mail-item').forEach(el => {
+          el.addEventListener('click', () => selectMail(parseInt(el.dataset.idx)));
+        });
+        showMail(0);
+      }
+    });
+  });
+
+  // --- Compose (Neue E-Mail) ---
+  body.querySelector('.ol-desk-new-mail').addEventListener('click', () => {
+    readPane.innerHTML = `
+      <div class="ol-desk-compose">
+        <div class="ol-desk-compose-field">
+          <label>An</label>
+          <input type="email" value="me@fauteck.eu" readonly class="ol-desk-compose-input ol-desk-compose-to">
+        </div>
+        <div class="ol-desk-compose-sep"></div>
+        <div class="ol-desk-compose-field">
+          <label>Betreff</label>
+          <input type="text" class="ol-desk-compose-input" id="ol-desk-subject" placeholder="Betreff...">
+        </div>
+        <div class="ol-desk-compose-sep"></div>
+        <textarea class="ol-desk-compose-textarea" id="ol-desk-message" placeholder="Hallo Niklas,&#10;&#10;ich habe deine Website entdeckt und wollte mich kurz vorstellen..." rows="10"></textarea>
+        <div class="ol-desk-compose-footer">
+          <div class="ol-desk-compose-success" id="ol-desk-compose-success" style="display:none">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#16a34a" stroke-width="1.5"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Mail-Client wird geöffnet...
+          </div>
+          <a href="#" class="ol-desk-compose-send" id="ol-desk-compose-send">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M2 9l14-6-6 14-2-5-6-3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Senden
+          </a>
+        </div>
+      </div>
+    `;
+    body.querySelector('#ol-desk-subject')?.focus();
+    const sendBtn = body.querySelector('#ol-desk-compose-send');
+    const success = body.querySelector('#ol-desk-compose-success');
+    sendBtn.addEventListener('click', e => {
+      e.preventDefault();
+      const subj = (body.querySelector('#ol-desk-subject')?.value || '').trim();
+      const msg  = (body.querySelector('#ol-desk-message')?.value || '').trim();
+      const mailtoUrl = `mailto:me@fauteck.eu?subject=${encodeURIComponent(subj || 'Kontakt über NiklasOS')}&body=${encodeURIComponent(msg)}`;
+      sendBtn.style.display = 'none';
+      success.style.display = 'flex';
+      setTimeout(() => { window.location.href = mailtoUrl; }, 800);
+      setTimeout(() => { sendBtn.style.display = ''; success.style.display = 'none'; }, 3000);
+    });
+  });
+}
+
+function buildOutlookMobile(body, mails) {
   body.innerHTML = `
     <div class="mob-mail-wrap" style="position:relative;height:100%;overflow:hidden;">
       <div class="mob-mail-header">
@@ -2264,7 +2503,13 @@ function buildOutlook(body) {
         <span class="mob-mail-badge">2</span>
       </div>
 
-      <!-- Contact info (from Netzwerk) -->
+      <div class="mob-mail-tabs">
+        <span class="mob-mail-tab active">Fokus</span>
+        <span class="mob-mail-tab">Sonstige</span>
+        <span class="mob-mail-tab-filter">Filter</span>
+      </div>
+
+      <!-- Contact info -->
       <div class="outlook-contact-section">
         <div class="outlook-contact-status">
           <span>●</span>
