@@ -12,13 +12,13 @@ const WIN_CONFIGS = {
   about: {
     title: 'Brave',
     color: 'orange',
-    defaultW: 640, defaultH: 520,
+    defaultW: 640, defaultH: 640,
     svgPath: 'M12 2L4 6v6c0 5.5 3.4 10.7 8 13 4.6-2.3 8-7.5 8-13V6L12 2zM12 8c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z',
   },
   career: {
     title: 'Arbeitsplatz',
     color: 'amber',
-    defaultW: 780, defaultH: 520,
+    defaultW: 960, defaultH: 640,
     svgPath: 'M2 8h24v17H2zM9 8V6a2 2 0 012-2h6a2 2 0 012 2v2M2 14h24',
   },
   terminal: {
@@ -36,7 +36,7 @@ const WIN_CONFIGS = {
   bambu: {
     title: 'Bambu Studio',
     color: 'teal',
-    defaultW: 560, defaultH: 480,
+    defaultW: 760, defaultH: 580,
     svgPath: 'M4 14h20v10H4zM8 14V8l6-4 6 4v6M14 4v10',
   },
   homeassistant: {
@@ -85,7 +85,7 @@ const WIN_CONFIGS = {
   outlook: {
     title: 'Outlook',
     color: 'blue',
-    defaultW: 500, defaultH: 480,
+    defaultW: 660, defaultH: 560,
     svgPath: 'M2 6h20v16H2zM22 6L12 14 2 6M7 10h6M7 14h4',
   },
   teams: {
@@ -136,6 +136,36 @@ const WIN_CONFIGS = {
     color: 'red',
     defaultW: 460, defaultH: 540,
     svgPath: 'M14 3v4M7 7l3 3M21 7l-3 3M14 11a3 3 0 100 6 3 3 0 000-6zM5 21h18M8 21l2-7M20 21l-2-7',
+  },
+  games: {
+    title: 'Games',
+    color: 'red',
+    defaultW: 500, defaultH: 420,
+    svgPath: 'M6 4h16v16H6zM2 8h4M2 12h4M2 16h4M11 9v6M8 12h6',
+  },
+  solitaire: {
+    title: 'Solitär',
+    color: 'green',
+    defaultW: 720, defaultH: 560,
+    svgPath: 'M4 4h6v8H4zM14 4h6v8H14zM9 12h6v8H9z',
+  },
+  memory: {
+    title: 'Memory',
+    color: 'purple',
+    defaultW: 440, defaultH: 480,
+    svgPath: 'M4 4h8v8H4zM16 4h8v8H16zM4 16h8v8H4zM16 16h8v8H16z',
+  },
+  tetris: {
+    title: 'Tetris',
+    color: 'teal',
+    defaultW: 380, defaultH: 540,
+    svgPath: 'M6 2h4v4H6zM10 2h4v4H10zM10 6h4v4H10zM14 6h4v4H14z',
+  },
+  network: {
+    title: 'Netzwerk',
+    color: 'cyan',
+    defaultW: 620, defaultH: 500,
+    svgPath: 'M14 14m-4 0a4 4 0 108 0 4 4 0 00-8 0M14 3v7M14 18v7M3 14h7M18 14h7M6 6l5 5M17 17l5 5M6 22l5-5M17 11l5-5',
   },
   placeholder: {
     title: 'Mehr',
@@ -191,6 +221,11 @@ function openWindow(id) {
   focusWindow(id);
   updateTaskbar();
   initWindowContent(id, el);
+
+  // Multitasking achievement
+  if (openWindows.size >= 8 && typeof showAchievement === 'function') {
+    showAchievement('Multitasking-Experte', 'RAM: 97%. Aber es läuft.');
+  }
 }
 
 function closeWindow(id) {
@@ -419,6 +454,11 @@ function initWindowContent(id, el) {
     snake:          buildSnake,
     minesweeper:    buildMinesweeper,
     photos:         buildPhotos,
+    games:          buildGames,
+    solitaire:      buildSolitaire,
+    memory:         buildMemory,
+    tetris:         buildTetris,
+    network:        buildNetwork,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
@@ -814,6 +854,11 @@ const TERM_COMMANDS = {
     { t: 'accent',  v: '  history         → Interaktionshistorie' },
     { t: 'accent',  v: '  fortune         → Weisheit des Tages' },
     { t: 'accent',  v: '  man niklas      → Manual Page' },
+    { t: 'accent',  v: '  neofetch        → System-Info' },
+    { t: 'accent',  v: '  cowsay <text>   → ASCII-Kuh' },
+    { t: 'accent',  v: '  apt list        → Paket-Verwaltung' },
+    { t: 'accent',  v: '  matrix          → 🐇' },
+    { t: 'accent',  v: '  coffee          → ☕' },
     { t: 'accent',  v: '  clear           → Terminal leeren' },
   ],
   whoami: () => [
@@ -992,6 +1037,79 @@ const TERM_COMMANDS = {
     { t: 'out', v: '64 bytes from niklas-fauteck: time=11ms' },
     { t: 'success', v: 'Status: reachable · Response: fast · Connection: open' },
   ],
+  'apt list --installed': () => {
+    const lines = [{ t: 'bold', v: 'Installierte Pakete:' }, { t: 'empty' }];
+    PACKAGES.forEach(cat => {
+      lines.push({ t: 'success', v: `[${cat.cat}]` });
+      cat.items.forEach(p => {
+        lines.push({ t: 'out', v: `  ${p.name}/${p.ver} [installiert]` });
+      });
+      lines.push({ t: 'empty' });
+    });
+    return lines;
+  },
+  'apt list': () => [
+    { t: 'dim', v: 'Hinweis: Nutze --installed für alle installierten Pakete.' },
+  ],
+  'sudo apt update': () => [
+    { t: 'success', v: 'Hit:1 https://niklasos.dev stable InRelease' },
+    { t: 'success', v: 'Hit:2 https://niklasos.dev/ai stable InRelease' },
+    { t: 'success', v: 'Hit:3 https://niklasos.dev/tools stable InRelease' },
+    { t: 'out', v: 'Paketlisten werden gelesen... Fertig' },
+    { t: 'out', v: 'Abhängigkeitsbaum wird aufgebaut... Fertig' },
+    { t: 'success', v: 'Alle Pakete sind aktuell.' },
+  ],
+  'neofetch': () => [
+    { t: 'accent', v: '        ╭──────────────╮' },
+    { t: 'accent', v: '        │   ███╗  ██╗  │    OS: NiklasOS 2026 LTS' },
+    { t: 'accent', v: '        │   ████╗ ██║  │    Host: Niklas Fauteck' },
+    { t: 'accent', v: '        │   ██╔████║   │    Uptime: 6 Jahre (RTL)' },
+    { t: 'accent', v: '        │   ██║╚████║  │    Shell: bash (Pragmatismus)' },
+    { t: 'accent', v: '        │   ██║ ╚███║  │    CPU: bridge_business_tech @ 98%' },
+    { t: 'accent', v: '        │   ╚═╝  ╚══╝  │    Memory: 12/16 GB (Ideen/Kapazität)' },
+    { t: 'accent', v: '        ╰──────────────╯    GPU: curiosity_engine (ALWAYS ON)' },
+    { t: 'empty' },
+    { t: 'dim', v: '  ██ ██ ██ ██ ██ ██ ██ ██' },
+  ],
+  'cowsay': () => [
+    { t: 'err', v: 'Usage: cowsay <message>' },
+    { t: 'dim', v: 'Beispiel: cowsay niklas' },
+  ],
+  'cowsay niklas': () => {
+    const theses = [
+      'Technologie ist nur gut, wenn Menschen sie nutzen.',
+      'Adoption > Implementierung.',
+      'Pragmatismus schlägt Perfektion.',
+      'Systeme bauen, die laufen.',
+      'Wirkung statt Buzzwords.',
+    ];
+    const t = theses[Math.floor(Math.random() * theses.length)];
+    return [
+      { t: 'out', v: ' _' + '_'.repeat(t.length + 2) + '_' },
+      { t: 'out', v: '< ' + t + ' >' },
+      { t: 'out', v: ' -' + '-'.repeat(t.length + 2) + '-' },
+      { t: 'out', v: '        \\   ^__^' },
+      { t: 'out', v: '         \\  (oo)\\_______' },
+      { t: 'out', v: '            (__)\\       )\\/\\' },
+      { t: 'out', v: '                ||----w |' },
+      { t: 'out', v: '                ||     ||' },
+    ];
+  },
+  'sudo rm -rf /': () => [
+    { t: 'err', v: 'Netter Versuch. 😏' },
+    { t: 'dim', v: 'Läuft in einer VM. Keine Chance.' },
+  ],
+  'coffee': () => [
+    { t: 'out', v: '    ( (' },
+    { t: 'out', v: '     ) )' },
+    { t: 'out', v: '  ........' },
+    { t: 'out', v: '  |      |]' },
+    { t: 'out', v: '  \\      /' },
+    { t: 'out', v: '   `----´' },
+    { t: 'empty' },
+    { t: 'success', v: 'Energiepegel: ████████░░ 80%' },
+    { t: 'dim', v: 'Optimal für komplexe Systemarchitektur.' },
+  ],
 };
 
 function buildTerminal(body) {
@@ -1069,6 +1187,10 @@ function processTermCmd(cmd, output) {
     output.innerHTML = '';
     return;
   }
+  if (cmd === 'matrix') {
+    runMatrixEffect(output);
+    return;
+  }
   const handler = TERM_COMMANDS[cmd];
   if (handler) {
     const result = typeof handler === 'function' ? handler() : handler;
@@ -1080,6 +1202,38 @@ function processTermCmd(cmd, output) {
   }
   appendTermLines(output, [{ t: 'empty' }]);
   output.scrollTop = output.scrollHeight;
+
+  // Easter egg tracking
+  if (typeof trackTermCmd === 'function') trackTermCmd(cmd);
+}
+
+function runMatrixEffect(output) {
+  const container = document.createElement('div');
+  container.className = 'matrix-rain';
+  container.style.cssText = 'position:relative;height:120px;overflow:hidden;background:#000;border-radius:4px;margin:4px 0;';
+  output.appendChild(container);
+
+  const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ01234567890ABCDEF';
+  const cols = 30;
+  for (let i = 0; i < cols; i++) {
+    const col = document.createElement('span');
+    col.style.cssText = `position:absolute;left:${(i/cols)*100}%;top:-20px;color:#4ade80;font-family:var(--font-mono);font-size:11px;writing-mode:vertical-rl;opacity:${0.3+Math.random()*0.7};animation:matrix-fall ${1+Math.random()*2}s linear ${Math.random()*2}s infinite;`;
+    let text = '';
+    for (let j = 0; j < 8; j++) text += chars[Math.floor(Math.random()*chars.length)];
+    col.textContent = text;
+    container.appendChild(col);
+  }
+
+  setTimeout(() => {
+    container.remove();
+    appendTermLines(output, [
+      { t: 'success', v: 'Wake up, Niklas...' },
+      { t: 'dim', v: 'The Matrix has you.' },
+    ]);
+    appendTermLines(output, [{ t: 'empty' }]);
+    output.scrollTop = output.scrollHeight;
+    if (typeof showAchievement === 'function') showAchievement('Dev Mode', 'Du hast die Matrix betreten.');
+  }, 3000);
 }
 
 function appendTermLines(output, lines) {
@@ -1381,19 +1535,45 @@ function buildBambu(body) {
           <div class="bam-kv-row"><span class="bam-k">Erste Schicht</span><span class="bam-v">0,2 mm</span></div>
         </div>
 
-        <!-- Center: LinkedIn Post Embed -->
+        <!-- Center: 3D Print Animation -->
         <div class="bam-viewport">
-          <iframe
-            src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7439337480501477376"
-            frameborder="0"
-            allowfullscreen
-            title="LinkedIn Post: 3D-Druck Katheterspiegelhalter"
-            loading="lazy"
-          ></iframe>
-          <div class="bam-viewport-fallback">
-            <div class="bam-fallback-icon">🖨️</div>
-            <div class="bam-fallback-title">Katheterspiegelhalter_v3</div>
-            <div class="bam-fallback-sub">TPU 95A · Bambu Lab P1S · 1h 33min</div>
+          <div class="bam-model-scene" id="bam-scene">
+            <svg viewBox="0 0 300 260" class="bam-model-svg">
+              <defs>
+                <clipPath id="print-clip">
+                  <rect class="print-clip-rect" x="75" y="180" width="150" height="0"/>
+                </clipPath>
+                <linearGradient id="plate-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2a2a3a"/>
+                  <stop offset="100%" stop-color="#1a1a2a"/>
+                </linearGradient>
+              </defs>
+              <!-- Build plate grid -->
+              <g class="bam-plate">
+                <path d="M50 200 L150 240 L250 200 L150 160 Z" fill="url(#plate-grad)" stroke="#3a3a5a" stroke-width="1"/>
+                <line x1="70" y1="196" x2="170" y2="236" stroke="#2a2a4a" stroke-width="0.5" opacity="0.4"/>
+                <line x1="90" y1="192" x2="190" y2="232" stroke="#2a2a4a" stroke-width="0.5" opacity="0.4"/>
+                <line x1="110" y1="188" x2="210" y2="228" stroke="#2a2a4a" stroke-width="0.5" opacity="0.4"/>
+                <line x1="130" y1="184" x2="230" y2="224" stroke="#2a2a4a" stroke-width="0.5" opacity="0.4"/>
+                <line x1="90" y1="216" x2="190" y2="176" stroke="#2a2a4a" stroke-width="0.5" opacity="0.4"/>
+                <line x1="110" y1="224" x2="210" y2="184" stroke="#2a2a4a" stroke-width="0.5" opacity="0.4"/>
+                <line x1="130" y1="232" x2="230" y2="192" stroke="#2a2a4a" stroke-width="0.5" opacity="0.4"/>
+              </g>
+              <!-- Model body (clipped by print animation) -->
+              <g clip-path="url(#print-clip)">
+                <!-- Isometric holder shape -->
+                <path d="M120 180 L120 120 L150 105 L180 120 L180 180 L150 195 Z" fill="#4ade80" opacity="0.85"/>
+                <path d="M180 120 L180 180 L150 195 L150 135 Z" fill="#22c55e" opacity="0.7"/>
+                <path d="M120 120 L150 105 L180 120 L150 135 Z" fill="#86efac" opacity="0.6"/>
+                <!-- Hole in the holder -->
+                <ellipse cx="150" cy="150" rx="12" ry="8" fill="#12131a" opacity="0.8"/>
+              </g>
+              <!-- Print head line -->
+              <line class="bam-print-head" x1="100" y1="180" x2="200" y2="180" stroke="#f59e0b" stroke-width="2" opacity="0.8" stroke-dasharray="4 4">
+                <animate attributeName="stroke-dashoffset" from="0" to="-8" dur="0.3s" repeatCount="indefinite"/>
+              </line>
+            </svg>
+            <div class="bam-model-label">Katheterspiegelhalter_v3</div>
             <a href="https://www.linkedin.com/posts/activity-7439337480501477376-niwS" target="_blank" rel="noopener" class="bam-fallback-link">→ Post auf LinkedIn ansehen</a>
           </div>
         </div>
@@ -1442,6 +1622,10 @@ function buildBambu(body) {
   const pctEl  = body.querySelector('#bambu-pct');
   const status = body.querySelector('#bambu-status');
 
+  const scene = body.querySelector('#bam-scene');
+  const clipRect = body.querySelector('.print-clip-rect');
+  const printHead = body.querySelector('.bam-print-head');
+
   btn.addEventListener('click', () => {
     if (printing) return;
     printing = true;
@@ -1451,6 +1635,9 @@ function buildBambu(body) {
     status.textContent = 'Druckt';
     status.style.background = 'rgba(251,146,60,0.15)';
     status.style.color = '#c2410c';
+
+    if (scene) scene.classList.add('printing');
+    if (clipRect) clipRect.setAttribute('height', '0');
 
     interval = setInterval(() => {
       progress += Math.random() * 2.5 + 0.5;
@@ -1463,6 +1650,7 @@ function buildBambu(body) {
         status.textContent = '✓ Fertig!';
         status.style.background = 'rgba(82,183,136,0.15)';
         status.style.color = '#2d6a4f';
+        if (scene) scene.classList.remove('printing');
         setTimeout(() => {
           progress = 0;
           fill.style.width = '0%';
@@ -1471,10 +1659,21 @@ function buildBambu(body) {
           status.style.background = '';
           status.style.color = '';
           btn.textContent = 'Druckplatte drucken';
+          if (clipRect) clipRect.setAttribute('height', '0');
         }, 3000);
       }
       fill.style.width = progress + '%';
       pctEl.textContent = Math.round(progress) + '%';
+      if (clipRect) {
+        const h = (progress / 100) * 80;
+        clipRect.setAttribute('height', String(h));
+        clipRect.setAttribute('y', String(180 - h));
+      }
+      if (printHead) {
+        const headY = 180 - (progress / 100) * 80;
+        printHead.setAttribute('y1', String(headY));
+        printHead.setAttribute('y2', String(headY));
+      }
     }, 200);
   });
 }
@@ -1971,6 +2170,7 @@ function buildOutlook(body) {
           <path d="M3 13.5L13.5 3l3.5 3.5L6.5 17H3v-3.5z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
           <path d="M11 5l3.5 3.5" stroke="white" stroke-width="1.5"/>
         </svg>
+        <span class="mob-mail-fab-label">Mail schreiben</span>
       </button>
 
       <!-- Compose overlay -->
@@ -2701,6 +2901,7 @@ function buildMinesweeper(body) {
                 if (board[rr][cc] === -1) revealed[rr][cc] = true;
             gameOver = 'lost';
             clearInterval(timerInt);
+            if (typeof showAchievement === 'function' && firstClick === false) showAchievement('Pech gehabt', 'Pech. Aber auch das gehört zum Job.');
             render();
             return;
           }
@@ -2708,6 +2909,7 @@ function buildMinesweeper(body) {
           if (checkWin()) {
             gameOver = 'won';
             clearInterval(timerInt);
+            if (typeof showAchievement === 'function') showAchievement('Minenräumer', 'Kein Zufall. Kein Glück. Nur Logik.');
           }
           render();
         });
@@ -2788,6 +2990,743 @@ function initContextMenu() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') menu.classList.remove('show');
   });
+}
+
+// ─────────────────────────────────────────────────
+// GAMES FOLDER
+// ─────────────────────────────────────────────────
+function buildGames(body) {
+  body.style.padding = '0';
+  const games = [
+    { id: 'minesweeper', label: 'Minesweeper', icon: '💣', color: '#dc2626' },
+    { id: 'solitaire',   label: 'Solitär',     icon: '🃏', color: '#059669' },
+    { id: 'memory',      label: 'Memory',       icon: '🧠', color: '#7c3aed' },
+    { id: 'snake',       label: 'Snake',         icon: '🐍', color: '#22c55e' },
+    { id: 'tetris',      label: 'Tetris',        icon: '🧱', color: '#0d9488' },
+  ];
+
+  body.innerHTML = `
+    <div class="games-folder">
+      <div class="games-folder-header">Games</div>
+      <div class="games-folder-grid">
+        ${games.map(g => `
+          <div class="games-folder-item" data-game="${g.id}">
+            <div class="games-folder-icon" style="background:${g.color}">${g.icon}</div>
+            <div class="games-folder-label">${g.label}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  body.querySelectorAll('.games-folder-item').forEach(item => {
+    item.addEventListener('click', () => openWindow(item.dataset.game));
+  });
+}
+
+// ─────────────────────────────────────────────────
+// SOLITAIRE (Klondike — Click-to-Move)
+// ─────────────────────────────────────────────────
+function buildSolitaire(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+
+  const SUITS = ['♠','♥','♦','♣'];
+  const SUIT_COLORS = { '♠':'black','♣':'black','♥':'red','♦':'red' };
+  const RANKS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+
+  let deck, stock, waste, foundations, tableau, selected;
+
+  function makeDeck() {
+    const d = [];
+    for (const s of SUITS) for (const r of RANKS) d.push({ suit: s, rank: r, faceUp: false });
+    for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [d[i],d[j]]=[d[j],d[i]]; }
+    return d;
+  }
+
+  function rankVal(r) { return RANKS.indexOf(r); }
+
+  function init() {
+    deck = makeDeck();
+    stock = [];
+    waste = [];
+    foundations = [[],[],[],[]];
+    tableau = [[],[],[],[],[],[],[]];
+    selected = null;
+
+    let idx = 0;
+    for (let col = 0; col < 7; col++) {
+      for (let row = 0; row <= col; row++) {
+        const card = deck[idx++];
+        card.faceUp = row === col;
+        tableau[col].push(card);
+      }
+    }
+    stock = deck.slice(idx);
+    stock.forEach(c => c.faceUp = false);
+    render();
+  }
+
+  function canPlaceOnTableau(card, destCol) {
+    const dest = tableau[destCol];
+    if (dest.length === 0) return card.rank === 'K';
+    const top = dest[dest.length - 1];
+    if (!top.faceUp) return false;
+    return SUIT_COLORS[card.suit] !== SUIT_COLORS[top.suit] && rankVal(card.rank) === rankVal(top.rank) - 1;
+  }
+
+  function canPlaceOnFoundation(card, fi) {
+    const f = foundations[fi];
+    if (f.length === 0) return card.rank === 'A';
+    const top = f[f.length - 1];
+    return card.suit === top.suit && rankVal(card.rank) === rankVal(top.rank) + 1;
+  }
+
+  function tryAutoFoundation(card, source, sourceIdx) {
+    for (let fi = 0; fi < 4; fi++) {
+      if (canPlaceOnFoundation(card, fi)) {
+        if (source === 'waste') waste.pop();
+        else if (source === 'tableau') {
+          tableau[sourceIdx].pop();
+          const col = tableau[sourceIdx];
+          if (col.length > 0 && !col[col.length-1].faceUp) col[col.length-1].faceUp = true;
+        }
+        foundations[fi].push(card);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function handleSelect(type, colIdx, cardIdx) {
+    if (selected) {
+      // Try to place
+      if (type === 'tableau') {
+        const cards = selected.type === 'tableau'
+          ? tableau[selected.col].slice(selected.cardIdx)
+          : [selected.card];
+        if (canPlaceOnTableau(cards[0], colIdx)) {
+          if (selected.type === 'tableau') {
+            tableau[selected.col].splice(selected.cardIdx);
+            const srcCol = tableau[selected.col];
+            if (srcCol.length && !srcCol[srcCol.length-1].faceUp) srcCol[srcCol.length-1].faceUp = true;
+          } else if (selected.type === 'waste') {
+            waste.pop();
+          }
+          tableau[colIdx].push(...cards);
+          selected = null;
+          render();
+          return;
+        }
+      } else if (type === 'foundation') {
+        const card = selected.type === 'tableau'
+          ? tableau[selected.col][tableau[selected.col].length-1]
+          : selected.card;
+        if (selected.type === 'tableau' && selected.cardIdx !== tableau[selected.col].length - 1) { selected = null; render(); return; }
+        if (canPlaceOnFoundation(card, colIdx)) {
+          if (selected.type === 'tableau') {
+            tableau[selected.col].pop();
+            const srcCol = tableau[selected.col];
+            if (srcCol.length && !srcCol[srcCol.length-1].faceUp) srcCol[srcCol.length-1].faceUp = true;
+          } else if (selected.type === 'waste') {
+            waste.pop();
+          }
+          foundations[colIdx].push(card);
+          selected = null;
+          render();
+          checkWin();
+          return;
+        }
+      }
+      selected = null;
+      render();
+      return;
+    }
+    // Select
+    if (type === 'waste' && waste.length) {
+      selected = { type: 'waste', card: waste[waste.length-1] };
+    } else if (type === 'tableau' && tableau[colIdx].length && tableau[colIdx][cardIdx] && tableau[colIdx][cardIdx].faceUp) {
+      selected = { type: 'tableau', col: colIdx, cardIdx: cardIdx, card: tableau[colIdx][cardIdx] };
+    }
+    render();
+  }
+
+  function drawFromStock() {
+    if (stock.length === 0) {
+      stock = waste.reverse();
+      stock.forEach(c => c.faceUp = false);
+      waste = [];
+    } else {
+      const card = stock.pop();
+      card.faceUp = true;
+      waste.push(card);
+    }
+    selected = null;
+    render();
+  }
+
+  function checkWin() {
+    if (foundations.every(f => f.length === 13)) {
+      setTimeout(() => {
+        const overlay = body.querySelector('.sol-win-overlay');
+        if (overlay) overlay.style.display = 'flex';
+      }, 300);
+    }
+  }
+
+  function renderCard(card, isSelected) {
+    if (!card.faceUp) return '<div class="sol-card sol-card-back"></div>';
+    const color = SUIT_COLORS[card.suit] === 'red' ? '#dc2626' : '#1a1a2e';
+    const sel = isSelected ? ' sol-card-selected' : '';
+    return `<div class="sol-card sol-card-face${sel}" style="color:${color}">
+      <span class="sol-card-corner">${card.rank}${card.suit}</span>
+      <span class="sol-card-center">${card.suit}</span>
+    </div>`;
+  }
+
+  function render() {
+    const foundationHtml = foundations.map((f, fi) => {
+      const top = f.length ? renderCard(f[f.length-1], false) : '<div class="sol-card sol-card-empty">♠</div>';
+      return `<div class="sol-foundation" data-fi="${fi}">${top}</div>`;
+    }).join('');
+
+    const stockHtml = stock.length
+      ? '<div class="sol-card sol-card-back"></div>'
+      : '<div class="sol-card sol-card-empty sol-card-refresh">↺</div>';
+
+    const wasteHtml = waste.length
+      ? renderCard(waste[waste.length-1], selected && selected.type === 'waste')
+      : '<div class="sol-card sol-card-empty"></div>';
+
+    const tableauHtml = tableau.map((col, ci) => {
+      if (!col.length) return `<div class="sol-tableau-col" data-col="${ci}"><div class="sol-card sol-card-empty"></div></div>`;
+      return `<div class="sol-tableau-col" data-col="${ci}">
+        ${col.map((card, idx) => {
+          const isSel = selected && selected.type === 'tableau' && selected.col === ci && idx >= selected.cardIdx;
+          return `<div class="sol-tableau-card" data-idx="${idx}" style="top:${idx * 22}px">${renderCard(card, isSel)}</div>`;
+        }).join('')}
+      </div>`;
+    }).join('');
+
+    body.innerHTML = `
+      <div class="sol-wrap">
+        <div class="sol-top-row">
+          <div class="sol-stock" id="sol-stock">${stockHtml}</div>
+          <div class="sol-waste" id="sol-waste">${wasteHtml}</div>
+          <div class="sol-spacer"></div>
+          ${foundationHtml}
+        </div>
+        <div class="sol-tableau" id="sol-tableau">${tableauHtml}</div>
+        <div class="sol-win-overlay" style="display:none">
+          <div class="sol-win-msg">🎉 Gewonnen!</div>
+          <button class="sol-new-game">Neues Spiel</button>
+        </div>
+      </div>
+    `;
+
+    // Events
+    body.querySelector('#sol-stock').addEventListener('click', drawFromStock);
+    body.querySelector('#sol-waste').addEventListener('click', () => handleSelect('waste'));
+    body.querySelectorAll('.sol-foundation').forEach(el => {
+      el.addEventListener('click', () => handleSelect('foundation', +el.dataset.fi));
+    });
+    body.querySelectorAll('.sol-tableau-col').forEach(col => {
+      col.addEventListener('click', e => {
+        const cardEl = e.target.closest('.sol-tableau-card');
+        const ci = +col.dataset.col;
+        if (cardEl) {
+          const idx = +cardEl.dataset.idx;
+          // Double-click to auto-foundation
+          handleSelect('tableau', ci, idx);
+        } else {
+          handleSelect('tableau', ci, 0);
+        }
+      });
+    });
+    const winBtn = body.querySelector('.sol-new-game');
+    if (winBtn) winBtn.addEventListener('click', init);
+  }
+
+  init();
+}
+
+// ─────────────────────────────────────────────────
+// MEMORY GAME
+// ─────────────────────────────────────────────────
+function buildMemory(body) {
+  body.style.padding = '0';
+
+  const EMOJIS = ['🚀','🎯','⚡','🔥','🌟','💡','🎨','🔧'];
+  let cards, flipped, matched, moves, startTime, timerInt, lockBoard;
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+    return arr;
+  }
+
+  function init() {
+    cards = shuffle([...EMOJIS, ...EMOJIS].map((emoji, i) => ({ emoji, id: i, flipped: false, matched: false })));
+    flipped = [];
+    matched = 0;
+    moves = 0;
+    lockBoard = false;
+    startTime = Date.now();
+    clearInterval(timerInt);
+    render();
+    timerInt = setInterval(updateTimer, 1000);
+  }
+
+  function updateTimer() {
+    const el = body.querySelector('#mem-timer');
+    if (el) {
+      const secs = Math.floor((Date.now() - startTime) / 1000);
+      el.textContent = `${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')}`;
+    }
+  }
+
+  function flipCard(idx) {
+    if (lockBoard || cards[idx].flipped || cards[idx].matched) return;
+    cards[idx].flipped = true;
+    flipped.push(idx);
+
+    if (flipped.length === 2) {
+      moves++;
+      lockBoard = true;
+      const [a, b] = flipped;
+      if (cards[a].emoji === cards[b].emoji) {
+        cards[a].matched = true;
+        cards[b].matched = true;
+        matched += 2;
+        flipped = [];
+        lockBoard = false;
+        render();
+        if (matched === cards.length) {
+          clearInterval(timerInt);
+          setTimeout(() => showWin(), 500);
+        }
+      } else {
+        render();
+        setTimeout(() => {
+          cards[a].flipped = false;
+          cards[b].flipped = false;
+          flipped = [];
+          lockBoard = false;
+          render();
+        }, 800);
+      }
+    } else {
+      render();
+    }
+  }
+
+  function showWin() {
+    const secs = Math.floor((Date.now() - startTime) / 1000);
+    const time = `${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')}`;
+    body.innerHTML = `
+      <div class="mem-win">
+        <div class="mem-win-icon">🎉</div>
+        <div class="mem-win-title">Gewonnen!</div>
+        <div class="mem-win-stats">Zeit: ${time} · Züge: ${moves}</div>
+        <button class="mem-new-game" id="mem-restart">Neues Spiel</button>
+      </div>
+    `;
+    body.querySelector('#mem-restart').addEventListener('click', init);
+  }
+
+  function render() {
+    body.innerHTML = `
+      <div class="mem-wrap">
+        <div class="mem-header">
+          <span class="mem-stat">Züge: ${moves}</span>
+          <span class="mem-stat" id="mem-timer">0:00</span>
+        </div>
+        <div class="mem-grid">
+          ${cards.map((c, i) => `
+            <div class="mem-card ${c.flipped || c.matched ? 'mem-card-flipped' : ''} ${c.matched ? 'mem-card-matched' : ''}" data-idx="${i}">
+              <div class="mem-card-inner">
+                <div class="mem-card-front">?</div>
+                <div class="mem-card-back">${c.emoji}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    body.querySelectorAll('.mem-card').forEach(el => {
+      el.addEventListener('click', () => flipCard(+el.dataset.idx));
+    });
+  }
+
+  init();
+}
+
+// ─────────────────────────────────────────────────
+// TETRIS GAME
+// ─────────────────────────────────────────────────
+function buildTetris(body) {
+  body.style.padding = '0';
+
+  const COLS = 10, ROWS = 20, CELL = 22;
+  const COLORS = ['#00000000','#00f0f0','#0000f0','#f0a000','#f0f000','#00f000','#a000f0','#f00000'];
+  const PIECES = [
+    [[1,1,1,1]],
+    [[2,0,0],[2,2,2]],
+    [[0,0,3],[3,3,3]],
+    [[4,4],[4,4]],
+    [[0,5,5],[5,5,0]],
+    [[0,6,0],[6,6,6]],
+    [[7,7,0],[0,7,7]],
+  ];
+
+  let board, piece, piecePos, nextPiece, score, level, lines, gameOver, dropInterval, gameLoop;
+
+  function init() {
+    board = Array.from({length: ROWS}, () => Array(COLS).fill(0));
+    score = 0; level = 1; lines = 0; gameOver = false;
+    clearInterval(gameLoop);
+    nextPiece = randomPiece();
+    spawnPiece();
+    dropInterval = 800;
+    gameLoop = setInterval(tick, dropInterval);
+    render();
+  }
+
+  function randomPiece() {
+    return JSON.parse(JSON.stringify(PIECES[Math.floor(Math.random() * PIECES.length)]));
+  }
+
+  function spawnPiece() {
+    piece = nextPiece;
+    nextPiece = randomPiece();
+    piecePos = { x: Math.floor((COLS - piece[0].length) / 2), y: 0 };
+    if (collides(piece, piecePos)) {
+      gameOver = true;
+      clearInterval(gameLoop);
+    }
+  }
+
+  function collides(p, pos) {
+    for (let r = 0; r < p.length; r++)
+      for (let c = 0; c < p[r].length; c++)
+        if (p[r][c]) {
+          const nx = pos.x + c, ny = pos.y + r;
+          if (nx < 0 || nx >= COLS || ny >= ROWS) return true;
+          if (ny >= 0 && board[ny][nx]) return true;
+        }
+    return false;
+  }
+
+  function merge() {
+    for (let r = 0; r < piece.length; r++)
+      for (let c = 0; c < piece[r].length; c++)
+        if (piece[r][c] && piecePos.y + r >= 0)
+          board[piecePos.y + r][piecePos.x + c] = piece[r][c];
+  }
+
+  function clearLines() {
+    let cleared = 0;
+    for (let r = ROWS - 1; r >= 0; r--) {
+      if (board[r].every(c => c !== 0)) {
+        board.splice(r, 1);
+        board.unshift(Array(COLS).fill(0));
+        cleared++;
+        r++;
+      }
+    }
+    if (cleared) {
+      const pts = [0, 100, 300, 500, 800];
+      score += (pts[cleared] || 800) * level;
+      lines += cleared;
+      level = Math.floor(lines / 10) + 1;
+      clearInterval(gameLoop);
+      dropInterval = Math.max(100, 800 - (level - 1) * 70);
+      gameLoop = setInterval(tick, dropInterval);
+    }
+  }
+
+  function rotate() {
+    const rotated = piece[0].map((_, i) => piece.map(row => row[i]).reverse());
+    if (!collides(rotated, piecePos)) piece = rotated;
+  }
+
+  function move(dx) {
+    const newPos = { x: piecePos.x + dx, y: piecePos.y };
+    if (!collides(piece, newPos)) piecePos = newPos;
+  }
+
+  function tick() {
+    const newPos = { x: piecePos.x, y: piecePos.y + 1 };
+    if (collides(piece, newPos)) {
+      merge();
+      clearLines();
+      spawnPiece();
+    } else {
+      piecePos = newPos;
+    }
+    render();
+  }
+
+  function hardDrop() {
+    while (!collides(piece, { x: piecePos.x, y: piecePos.y + 1 })) piecePos.y++;
+    merge();
+    clearLines();
+    spawnPiece();
+    render();
+  }
+
+  function render() {
+    const canvas = body.querySelector('#tet-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#0d1117';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    for (let r = 0; r < ROWS; r++)
+      for (let c = 0; c < COLS; c++)
+        ctx.strokeRect(c * CELL, r * CELL, CELL, CELL);
+
+    // Board
+    for (let r = 0; r < ROWS; r++)
+      for (let c = 0; c < COLS; c++)
+        if (board[r][c]) {
+          ctx.fillStyle = COLORS[board[r][c]];
+          ctx.fillRect(c*CELL+1, r*CELL+1, CELL-2, CELL-2);
+        }
+
+    // Current piece
+    if (!gameOver && piece)
+      for (let r = 0; r < piece.length; r++)
+        for (let c = 0; c < piece[r].length; c++)
+          if (piece[r][c]) {
+            ctx.fillStyle = COLORS[piece[r][c]];
+            ctx.fillRect((piecePos.x+c)*CELL+1, (piecePos.y+r)*CELL+1, CELL-2, CELL-2);
+          }
+
+    // Next piece preview
+    const preview = body.querySelector('#tet-next');
+    if (preview) {
+      const pctx = preview.getContext('2d');
+      pctx.fillStyle = '#0d1117';
+      pctx.fillRect(0, 0, preview.width, preview.height);
+      if (nextPiece)
+        for (let r = 0; r < nextPiece.length; r++)
+          for (let c = 0; c < nextPiece[r].length; c++)
+            if (nextPiece[r][c]) {
+              pctx.fillStyle = COLORS[nextPiece[r][c]];
+              pctx.fillRect(c*18+4, r*18+4, 16, 16);
+            }
+    }
+
+    // Score display
+    const scoreEl = body.querySelector('#tet-score');
+    const levelEl = body.querySelector('#tet-level');
+    const linesEl = body.querySelector('#tet-lines');
+    if (scoreEl) scoreEl.textContent = score;
+    if (levelEl) levelEl.textContent = level;
+    if (linesEl) linesEl.textContent = lines;
+
+    if (gameOver) {
+      const overlay = body.querySelector('.tet-overlay');
+      if (overlay) overlay.style.display = 'flex';
+    }
+  }
+
+  body.innerHTML = `
+    <div class="tet-wrap">
+      <div class="tet-main">
+        <canvas id="tet-canvas" width="${COLS*CELL}" height="${ROWS*CELL}"></canvas>
+        <div class="tet-overlay" style="display:none">
+          <div class="tet-game-over">Game Over</div>
+          <div class="tet-final-score">Score: <span id="tet-final">0</span></div>
+          <button class="tet-restart" id="tet-restart">Neues Spiel</button>
+        </div>
+      </div>
+      <div class="tet-sidebar">
+        <div class="tet-info-box">
+          <div class="tet-info-label">Nächstes</div>
+          <canvas id="tet-next" width="80" height="60"></canvas>
+        </div>
+        <div class="tet-info-box">
+          <div class="tet-info-label">Score</div>
+          <div class="tet-info-val" id="tet-score">0</div>
+        </div>
+        <div class="tet-info-box">
+          <div class="tet-info-label">Level</div>
+          <div class="tet-info-val" id="tet-level">1</div>
+        </div>
+        <div class="tet-info-box">
+          <div class="tet-info-label">Lines</div>
+          <div class="tet-info-val" id="tet-lines">0</div>
+        </div>
+        <div class="tet-controls-hint">
+          ← → Bewegen<br>↑ Drehen<br>↓ Soft Drop<br>Space Hard Drop
+        </div>
+      </div>
+    </div>
+  `;
+
+  function keyHandler(e) {
+    if (gameOver) return;
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); move(-1); render(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); move(1);  render(); }
+    if (e.key === 'ArrowUp')    { e.preventDefault(); rotate(); render(); }
+    if (e.key === 'ArrowDown')  { e.preventDefault(); tick(); }
+    if (e.key === ' ')          { e.preventDefault(); hardDrop(); }
+  }
+  document.addEventListener('keydown', keyHandler);
+
+  body.querySelector('#tet-restart').addEventListener('click', () => {
+    init();
+  });
+
+  init();
+}
+
+// ─────────────────────────────────────────────────
+// NETWORK WINDOW
+// ─────────────────────────────────────────────────
+function buildNetwork(body) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+
+  const nodes = [
+    { id: 'niklas',  label: 'Niklas',          x: 280, y: 220, r: 28, cat: 'center', desc: 'Head of Digital Transformation' },
+    { id: 'rtl',     label: 'RTL Deutschland',  x: 120, y: 100, r: 20, cat: 'work',   desc: 'Arbeitgeber seit 2020' },
+    { id: 'claude',  label: 'KI / Claude',      x: 420, y: 100, r: 20, cat: 'tech',   desc: 'AI-gestützte Workflows' },
+    { id: 'ha',      label: 'Home Assistant',    x: 480, y: 220, r: 18, cat: 'tech',   desc: 'Smart Home Automation' },
+    { id: 'bambu',   label: 'Bambu 3D-Druck',   x: 440, y: 340, r: 18, cat: 'tech',   desc: 'Bambu Lab P1S & X1C' },
+    { id: 'github',  label: 'GitHub',            x: 280, y: 380, r: 18, cat: 'tech',   desc: 'Open Source & Projekte' },
+    { id: 'linkedin',label: 'LinkedIn',          x: 120, y: 340, r: 18, cat: 'work',   desc: 'Professionelles Netzwerk' },
+    { id: 'media',   label: 'Media Hub',         x: 80,  y: 220, r: 18, cat: 'private',desc: 'Medien-Infrastruktur' },
+    { id: 'pictron', label: 'PICTRON',           x: 180, y: 160, r: 16, cat: 'work',   desc: 'Ehem. Arbeitgeber' },
+    { id: 'mdc',     label: 'MDC',               x: 380, y: 160, r: 16, cat: 'work',   desc: 'Medienmanagement' },
+  ];
+
+  const edges = [
+    ['niklas','rtl'],['niklas','claude'],['niklas','ha'],['niklas','bambu'],
+    ['niklas','github'],['niklas','linkedin'],['niklas','media'],
+    ['niklas','pictron'],['niklas','mdc'],
+    ['rtl','pictron'],['rtl','mdc'],['claude','github'],['ha','bambu'],
+  ];
+
+  const catColors = { center: '#4ade80', work: '#3b82f6', private: '#f59e0b', tech: '#8b5cf6' };
+
+  const edgesHtml = edges.map(([a,b], i) => {
+    const na = nodes.find(n=>n.id===a), nb = nodes.find(n=>n.id===b);
+    return `<line x1="${na.x}" y1="${na.y}" x2="${nb.x}" y2="${nb.y}" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" class="net-edge"/>
+      <circle r="3" fill="${catColors[na.cat]}" opacity="0.7">
+        <animateMotion dur="${2+i*0.3}s" repeatCount="indefinite" path="M${na.x},${na.y} L${nb.x},${nb.y}"/>
+      </circle>`;
+  }).join('');
+
+  const nodesHtml = nodes.map(n => {
+    const pulse = n.id === 'niklas' ? '<animate attributeName="r" values="28;32;28" dur="2s" repeatCount="indefinite"/>' : '';
+    return `<g class="net-node" data-id="${n.id}">
+      <circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${catColors[n.cat]}" opacity="0.2" stroke="${catColors[n.cat]}" stroke-width="1.5">${pulse}</circle>
+      <text x="${n.x}" y="${n.y + 4}" text-anchor="middle" fill="white" font-size="${n.id==='niklas'?'12':'10'}" font-family="var(--font-ui)" font-weight="${n.id==='niklas'?'600':'400'}">${n.label}</text>
+    </g>`;
+  }).join('');
+
+  body.innerHTML = `
+    <div class="net-wrap">
+      <svg viewBox="0 0 560 440" class="net-svg">
+        ${edgesHtml}
+        ${nodesHtml}
+      </svg>
+      <div class="net-tooltip" id="net-tooltip" style="display:none"></div>
+      <div class="net-legend">
+        <span class="net-legend-item"><span class="net-legend-dot" style="background:#3b82f6"></span>Arbeit</span>
+        <span class="net-legend-item"><span class="net-legend-dot" style="background:#f59e0b"></span>Privat</span>
+        <span class="net-legend-item"><span class="net-legend-dot" style="background:#8b5cf6"></span>Technik</span>
+      </div>
+    </div>
+  `;
+
+  const tooltip = body.querySelector('#net-tooltip');
+  body.querySelectorAll('.net-node').forEach(nodeEl => {
+    nodeEl.style.cursor = 'pointer';
+    nodeEl.addEventListener('mouseenter', e => {
+      const n = nodes.find(nd => nd.id === nodeEl.dataset.id);
+      if (!n) return;
+      tooltip.textContent = `${n.label}: ${n.desc}`;
+      tooltip.style.display = 'block';
+      const rect = body.getBoundingClientRect();
+      tooltip.style.left = (e.clientX - rect.left + 10) + 'px';
+      tooltip.style.top = (e.clientY - rect.top - 30) + 'px';
+    });
+    nodeEl.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+  });
+}
+
+// ─────────────────────────────────────────────────
+// ACHIEVEMENT / EASTER EGG SYSTEM
+// ─────────────────────────────────────────────────
+const _achievements = new Set();
+function showAchievement(title, desc) {
+  if (_achievements.has(title)) return;
+  _achievements.add(title);
+  const toast = document.createElement('div');
+  toast.className = 'achievement-toast';
+  toast.innerHTML = `<div class="ach-icon">🏆</div><div class="ach-body"><div class="ach-title">${title}</div><div class="ach-desc">${desc}</div></div>`;
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('show'));
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 400);
+  }, 3000);
+}
+
+// Konami Code
+(function initKonami() {
+  const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let idx = 0;
+  document.addEventListener('keydown', e => {
+    if (e.key === code[idx]) { idx++; if (idx === code.length) { idx = 0; triggerDevMode(); } }
+    else idx = 0;
+  });
+})();
+
+function triggerDevMode() {
+  showAchievement('Dev Mode', 'Konami Code aktiviert. Du bist ein Profi.');
+  // Brief matrix overlay
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:99999;pointer-events:none;display:flex;align-items:center;justify-content:center;';
+  overlay.innerHTML = '<div style="color:#4ade80;font-family:var(--font-mono);font-size:24px;text-align:center;animation:fadeIn 0.5s">DEV MODE ACTIVATED<br><span style="font-size:14px;opacity:0.6">↑↑↓↓←→←→BA</span></div>';
+  document.body.appendChild(overlay);
+  setTimeout(() => overlay.remove(), 2000);
+}
+
+// Track open windows for multitasking achievement
+const _origOpenWindow = typeof openWindow !== 'undefined' ? null : null;
+
+// Clock click counter
+let _clockClicks = 0;
+document.addEventListener('click', e => {
+  if (e.target.closest('.tb-clock') || e.target.closest('#tb-time') || e.target.closest('#tb-date')) {
+    _clockClicks++;
+    if (_clockClicks === 5) showAchievement('Zeitverschwendung', 'Du hast 5 Sekunden verschwendet. Gut investiert.');
+  }
+});
+
+// Terminal command tracking for Easter eggs
+let _termCmdHistory = [];
+let _manNiklasCount = 0;
+function trackTermCmd(cmd) {
+  _termCmdHistory.push(cmd);
+  if (cmd === 'man niklas') {
+    _manNiklasCount++;
+    if (_manNiklasCount >= 3) showAchievement('Manual-Leser', 'Das Manual ändert sich nicht. Aber du hast es 3× gelesen.');
+  }
+  // Check whoami + ls + skills sequence
+  const last3 = _termCmdHistory.slice(-3);
+  if (last3.length === 3 && last3[0] === 'whoami' && last3[1] === 'ls' && last3[2] === 'skills') {
+    showAchievement('Detektiv', 'whoami → ls → skills. Systematisch.');
+  }
 }
 
 // ─────────────────────────────────────────────────
@@ -3177,6 +4116,11 @@ const MOB_LABELS = {
   snake:         'Snake',
   minesweeper:   'Minesweeper',
   photos:        'Fotos',
+  games:         'Games',
+  solitaire:     'Solitär',
+  memory:        'Memory',
+  tetris:        'Tetris',
+  network:       'Netzwerk',
   placeholder:   'Mehr',
 };
 
@@ -3440,6 +4384,11 @@ function openMobileWindow(id) {
     snake:          buildSnake,
     minesweeper:    buildMinesweeper,
     photos:         buildPhotos,
+    games:          buildGames,
+    solitaire:      buildSolitaire,
+    memory:         buildMemory,
+    tetris:         buildTetris,
+    network:        buildNetwork,
   };
   if (contentFns[id]) contentFns[id](body, id);
 }
