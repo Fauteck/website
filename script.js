@@ -4627,6 +4627,199 @@ Konkret laufen bei mir:
 
 Was ich daraus für den Beruf mitnehme: Automation ist nur so gut wie ihr Kontext. Ohne klare Trigger und saubere Datenquellen produziert man nur Chaos mit höherer Geschwindigkeit.`,
   },
+  {
+    id: 'gofundme',
+    title: 'GoFundMe: Barrierefreier Umbau für unsere Familie',
+    date: '2025-10-01',
+    tags: ['Persönlich', 'Familie', 'GoFundMe'],
+    content: `Manchmal verändert ein einziger Tag das ganze Leben. Im November 2022 erlitt meine Frau Aylin nach einer Tumor-OP eine Teilquerschnittslähmung. Unser Sohn war damals gerade ein Jahr alt. Seitdem kämpfen wir uns Schritt für Schritt durch einen neuen Alltag \u2013 voller zusätzlicher Herausforderungen und Kosten, die weit über das hinausgehen, was ein Pflegegrad abdeckt.
+
+Umbauten am Haus, ein größeres Auto, Therapien und Hilfsmittel \u2013 vieles mussten wir bereits stemmen. Doch eine zentrale Maßnahme steht noch bevor:
+
+→ Wir möchten unseren Anbau im Garten barrierefrei zum Wohnraum umbauen, damit Aylin alles Notwendige im Erdgeschoss hat.
+
+Dafür starten wir eine GoFundMe-Kampagne. Jeder Beitrag hilft uns, unserem Ziel näher zu kommen \u2013 sei es durch eine Spende oder das Teilen des Links in eurem Netzwerk.
+
+→ Hier geht\u2019s zur Kampagne: https://lnkd.in/eX8HATQ9
+
+Vielen Dank für jede Form der Unterstützung!`,
+  },
+  {
+    id: 'depression',
+    title: 'Depression',
+    date: '2024-10-10',
+    tags: ['Persönlich', 'Mental Health'],
+    content: `→ Triggerwarnung: Dieser Text handelt von Depression und Panikattacken.
+
+Ich bin in eine Depression gerutscht.
+
+Ich habe lange überlegt, ob ich das schreiben soll. Zum einen bin ich sowieso nicht mehr wahnsinnig in Social Media aktiv. Zum anderen fühlt es sich bei aller eigenen Akzeptanz, dass ich diese Krankheit habe und es eine ist, an, als würde ich eine Schwäche preisgeben. Was natürlich Blödsinn ist. Denn eine Depression sucht sich niemand aus. Und ich bin in guten Momenten stolz auf mich, das schon erkannt zu haben und aktiv dagegen anzugehen. Und vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt.
+
+1. Der Hintergrund
+
+Vor zwei Jahren ist unser Leben als Familie ziemlich durchgeschüttelt worden. In Folge einer Tumorbehandlung am Rücken war meine Frau und Mutter unseres damals gerade einjährigen Sohnes teilquerschnittsgelähmt und musste sich zurück ins Leben kämpfen. Während ich vier Monate lang alleinsorgend war.
+
+Seitdem ist viel passiert. Das akute Gefühl direkt nach dem Schicksalsschlag, dass alles immer kurz davor ist, gegen die Wand zu fahren, und ich mehr Verantwortung für uns alle trage, um durch die weitere Zeit zu kommen, konnte ich bei allen Fortschritten meiner Frau offenbar nie ganz ablegen. Vermutlich fing da schon die Depression an, an meinen Kräften zu nagen.
+
+2. Die Energiebilanz bei Null
+
+Denn egal was wir gemeinsam Schönes unternahmen \u2013 es war immer eine riesige Anstrengung für mich. Die Energiebilanz aus Einsatz und Ertrag war für mich meist bei maximal 0. Ich hatte durchgehend eine Grundanspannung in mir, die mir teilweise bis zur Gurgel hochging, auch wenn ich einfach nur nach der Arbeit auf dem Spieleteppich mit meinem Sohn und seinen Autos spielte.
+
+Ich dachte, naja, okay, so ist das halt mit Kind mit der durchgehenden Anspannung, stell dich nicht an, bist du halt schwach, dass das so anstrengend ist, aber das ist für alle so. Musst du eben aushalten, andere schaffen das ja auch.
+
+→ Ich weiß mittlerweile, dass das Quatsch ist.
+
+3. Der Abstieg
+
+Ich habe Ende August an einem Mittwochmorgen gemerkt, das ich so antriebslos und unkonzentriert bin, dass ich nicht arbeiten kann \u2013 und bin zum Hausarzt gegangen. Ach, reicht, wenn sie mich erstmal diese Woche krank schreiben. Nächste Woche geht es sicher wieder. Ging\u2019s nicht. Und es wurde schlechter.
+
+Ich verstehe, wieso man davon spricht, dass man in eine Depression "rutscht". Obwohl ich durch zwei Jahre Gesprächstherapie wusste, dass es gerade in die falsche Richtung läuft \u2013 einmal losgeruscht, war es schwer sie aufzuhalten.
+
+Ich bekam täglich Panikattacken. Ich konnte keine strukturierten, lösungsorientierten Gedanken mehr fassen. In meinem Kopf waren nur Probleme, es war laut, unorganisiert und schnell. Wie ein Feuerwerk, bei dem jeder grell leuchtende Funke ein Gedanke ist. Kurz da, peng, weg. Tausende gleichzeitig. Und dann direkt die nächste Rakete.
+
+Ich war bei der kleinsten Anforderung an mich komplett überfordert. "Kannst du gleich noch die Spülmaschine ausräumen?" \u2013 zack, gelähmt. Ich konnte nicht. Als hätte ich eine Bleiweste an, die mich daran hindert aufzustehen.
+
+Ich konnte abends nicht vor 2 Uhr einschlafen, war früh wach, war wahnsinnig platt und erschöpft, aber der Kopf war so laut und ich so unter Spannung, dass ein Mittagsschlaf nahezu ein Ding der Unmöglichkeit war. Ich kam nicht zur Ruhe. Und wenn ich doch kurz eingenickt war, war ich danach niedergeschlagener als vorher. Diese körperliche Anspannung sorgte zudem für ein andauerndes Körpergefühl wie bei einem heftigen Kater nach durchzechter Nacht.
+
+4. Dagegen ankämpfen
+
+Ich konnte nicht mehr aufs Smartphone schauen, alles überforderte mich. Ich fing an mit Yoga, spazierte stundenlang durch die Felder, versuchte es mit Meditation, Achtsamkeitsübungen, progressiver Muskelentspannung. Ich fuhr Rad. Das powert aus, dachte ich mir, da bist du danach so richtig positiv platt. Denkste. Zehn Minuten nach der Radtour ging\u2019s mit gleichlautem Alarm im Oberstübchen wieder weiter. Trotzdem: Beschäftigt bleiben, damit ich kurz die Gedanken zur Ruhe bringen kann \u2013 wie fürchterlich anstrengend.
+
+Ich konnte in den depressivsten Wochen auch nicht mehr meine Lieblingsmusik hören. Punk und Ska haben mich überreizt. Ich fing dann wieder langsam an, bewusst Low Fi oder Klassik zu hören.
+
+5. Medikamente und Schuldgefühl
+
+Mir war klar: Ich brauche auch medikamentöse Unterstützung, um da rauszukommen, weil die vielen Werkzeuge, die ich kannte, um meine Tage trotzdem aktiv zu gestalten, nicht ausreichten. Und dann machte mir aber die Unbekannte "Antidepressivum" Tage vor der ersten Einnahme noch zusätzlich Bauchschmerzen. Unnötig, weiß ich jetzt.
+
+Ich konnte den meisten Aufgaben im Haushalt und mit Kind nicht mehr nachkommen und meine Frau musste mich hier extrem entlasten. Und dann sagt dir die Depression: Fühl dich doch jetzt mal schuldig dafür, dass du deine Familie gerade im Stich lässt! Was ein Kokolores, weiß ich selbst. Wusste ich im Zweifel auch zwei Stunden vorher und am nächsten Morgen, aber dann sitzt man da abends heulend auf der Couch.
+
+6. Unterstützung
+
+Ich bin so dankbar für mein privates Umfeld, in dem ich immer offen über meine Gefühle sprechen kann. Ich habe einen empathischen Hausarzt, eine kompetente Psychiaterin und eine Psychotherapeutin, die seit zwei Jahren meine Umstände und die Themen kennt. Ich fühle mich gut unterstützt.
+
+7. Es wird besser
+
+Das Antidepressivum beginnt zu wirken. Es ist eben keine Schmerztablette, sondern dauert ein paar Wochen. Faszinierend, dass ich schon innere Ruhe, die ich wirklich gar nicht mehr kannte, in einzelnen Momenten spüre \u2013 auch wenn mein Sohn mal zetert, dann bin ich vielleicht genervt, aber mir hängt die Spannung nicht mehr bis zum Hals. Ein krasses Gefühl.
+
+Wenn meine Frau eine Idee für einen Ausflug hat, ist in guten Momenten nicht mehr spontan der verkrampfte Gedanke an die damit verbundene Anstrengung da, sondern: Ja, können wir machen. Plötzlich ist vorstellbar, dass einem schöne Erlebnisse mehr Energie geben als sie kosten, geil. Dafür lohnt es sich doch, sich da weiter rauszuwühlen.
+
+Aus drei Tage mal krank geschrieben sind mittlerweile sieben Wochen geworden. Und ein paar kommen sicher noch dazu, bis auch wieder an Arbeit zu denken ist. Bis dahin hole ich mir zuhause Stück für Stück meinen Alltag zurück. Zeit, in der ich mich und diese Krankheit besser kennenlerne.
+
+8. Neu lernen, achtsam zu sein
+
+Ich muss neu lernen, achtsam zu mir selbst zu sein und nicht nur zweckmäßig Aufgaben zu erfüllen. Das habe ich in den letzten Jahren verlernt. Ich war die Tage morgens in einem Cafe frühstücken. Alleine irgendwo sitzen und essen, hätte ich früher nie gemacht, wie cringe. Ist es aber gar nicht, verrückt. Tut sogar mal ganz gut. Sich eine Badewanne einlassen und dabei Kerzen und Musik anmachen. Den Kaffee nicht to go trinken, sondern bewusst am Morgen in den Garten setzen und Eichhörnchen beobachten. Mit dem Kleinen in Ruhe Duplo bauen.
+
+→ Alles wird wieder ok.`,
+  },
+  {
+    id: 'neue-position',
+    title: 'Neue Position',
+    date: '2023-08-01',
+    tags: ['Karriere', 'RTL', 'Persönlich'],
+    content: `Dieses Jahr ist für mich privat herausfordernd, meine Frau ist nach einer Tumorbehandlung im November letzten Jahres ab der Halswirbelsäule teilquerschnittsgelähmt und kämpft sich zurück ins Leben. Ich war vier Monate lang alleinsorgend mit unserem Sohn zuhause, der zu dem Zeitpunkt gerade 1 Jahr alt geworden war.
+
+Da gehen einem tausend Fragen durch den Kopf, selten hatten wir Antworten.
+
+→ Danke an RTL Deutschland, dass ich mir zumindest zu meinem Job keine Fragen stellen musste und ich nach den ersten Monaten in Teilzeit zurückkommen konnte.
+
+Jetzt freue ich mich auf die Aufgaben in meiner neuen Position als Head of Digital Transformation in der Kommunikation, um mit den Teams noch mehr aus unseren Workflows und Tools herauszuholen und die technischen Produkte in der PR auszubauen.
+
+Danke an Eva Messerschmidt für das Vertrauen und vielen Dank an meine bisherige Teamleiterin Julia Kikillis für die Möglichkeiten, mich in den letzten Jahren immer weiterentwickeln zu können.
+
+→ Der größte Dank gilt aber meiner Frau, die immer weitermacht, egal wie schwer es ist.`,
+  },
+  {
+    id: 'abschied-science-slam',
+    title: 'Abschied vom Science Slam',
+    date: '2022-03-06',
+    tags: ['Science Slam', 'Moderation', 'Abschied'],
+    content: `→ 9 Jahre, 38 Events, über 200 Vorträge \u2013 und phantastische Menschen kennengelernt. Danke!
+
+Der Bonner Science Slam im Januar 2020 wird voraussichtlich der letzte gewesen sein, den ich moderiert habe. Anfang Mai würde zwar der nächste stattfinden, bei dem ich auf der Bühne stehen könnte, aber ich mache die Lena. Bei weiter hohen Infektionszahlen und immer weniger Corona-Maßnahmen ist mein Gefühl: Die Zeit ist noch nicht reif.
+
+Seit Juli 2013 habe ich insgesamt 38 Science Slams moderiert, 200 Mal Slammer:innen auf die Bühne geholt, die in nur zehn Minuten ihr Forschungsthema möglichst leicht verständlich und unterhaltsam präsentieren mussten. Und der Applaus des Publikums entschied am Ende des Abends, wer die \u201EGoldenen Boxhandschuhe der Wissenschaft\u201C gewann, wem Ruhm und Ehre zuteilwurde.
+
+1. Wertvolle Erfahrung, schöne Erinnerungen
+
+Wenn mir der Veranstalter LUUPS die nächsten Termine zugerufen hat, war ich am Start. Na klaro. Aber jetzt kommt es wiederholt vor, dass ich doch ein paar Wochen vorher abgesagt habe, weil mich mein persönliches Empfinden, ob so viel Publikum und die aktuelle Corona-Lage zusammenpassen, zweifeln ließ. Doch ich will nicht unzuverlässig erscheinen. Daher wird sich ein:e andere:r freuen, die Termine zu blocken und der Wissenschaft eine Bühne zu geben.
+
+Ich habe das Moderieren immer nur zum Spaß gemacht. Das kann nicht jede:r in der Kulturbranche sagen, daher habe ich volles Verständnis, dass Künstler:innen & Co. versuchen, Veranstaltungen auch unter diesen Bedingungen sicher zu planen und durchzuführen.
+
+Für mich war es eine unglaublich wertvolle Erfahrung, die einen vernünftigen Abschluss verdient hätte. Doch auf Standby zu sein, um doch irgendwann zumindest ein letztes Mal einen Slam zu moderieren \u2013 das erscheint mir nach so langer Pause nicht richtig zu sein. In über zwei Jahren Corona hat sich bei mir so viel verändert, dass ich froh bin über diese schönen Erinnerungen, anstatt Gefahr zu laufen, eingerostet einen für mein Gefühl miesen letzten Slam hinzulegen.
+
+2. Phantastische Menschen auf und hinter der Bühne
+
+Ich habe unglaublich interessante, schlaue, sympathische Menschen kennengelernt: Juli Tkotz, Rufina Fingerhut, Mai Thi Nguyen-Kim, Franca Parianen, Jutta Teuwsen, Elisabeth Mettke, Janina Otto, Carrie Ankerstein, Constantin Wurthmann, Johannes von Borstel, Sebastian Lotzkat, Dong-Seon Chang, Darius Rupalla, Johannes Schildgen, Peter Westerhoff, Reinhard Remfort, Kai Jäger, Johannes Kretzschmar, Aniruddha Dutta und viele viele mehr.
+
+Alles renommierte Wissenschaftler:innen, erfolgreiche Podcaster:innen, Deutsche Science-Slam-Meister:innen, die Bücher geschrieben haben, TV-Sendungen moderieren, zu denen es Wikipedia-Einträge gibt. Und ich Dödel dazwischen. Es war mir eine Ehre, mit ihnen die Bühne geteilt zu haben.
+
+→ Danke auch an das LUUPS-Team hinter der Bühne: Sveda, Julia, Karsten, Sebastian, Nils, Leo, Ronja, Rebecca und alle anderen. Das war locker eine 12 von 10 auf der Applaus-Skala.
+
+3. Die Locations
+
+Hätte ich vorher auch nicht gedacht, dass ich beispielsweise mal auf der Kleinkunstbühne des Bonner Pantheon stehen werde \u2013 und die Location mit insgesamt 18 Abenden sowas wie mein Science-Slam-Wohnzimmer wurde.
+
+Geslamt wurde auch in coolen Läden wie dem Club Bahnhof Ehrenfeld in Köln oder dem Franz in Aachen, in Hörsälen in Bonn und Bochum, es gab Auftritte beim \u201EBochum Total\u201C-Festival, in Museen wie der DASA in Dortmund oder der Bonner Bundeskunsthalle, bei der ExtraSchicht in der Jahrhunderthalle Bochum oder vor fünf Leuten im KulturCafe des AStA Bochum.
+
+4. Highlight: TV-Aufzeichnung für VOX
+
+Eine besondere Erinnerung wird eine Pilotaufzeichnung für VOX bleiben, die ich 2015 moderieren durfte. Eine Mischung aus \u201ELet\u2019s Dance\u201C und Science Slam, mit Jury und prominenten Slammer:innen. Eine Idee, die entstand, als ich im Volontariat Station in der VOX-Redaktion gemacht habe und die Kolleg:innen dort Feuer und Flamme für den Science Slam waren.
+
+Lampenfieber war bei jedem Slam dabei, aber besonders ging mir die Pumpe als sich der damalige VOX-Chefredakteur zum nächsten Slam als Gast ankündigte. Und vor Kameras mit Regie im Ohr war\u2019s dann auch noch mal etwas anderes als bloß vor Publikum im Saal. Aus der Showidee wurde zwar nichts, es lag aber angeblich nicht an mir. Ich will das mal glauben, zumindest ließ VOX mich danach sogar durch Pressekonferenzen moderieren.
+
+5. Der Anfang von allem
+
+Alles nur, weil ich 2013 meine Bachelor-Arbeit zum Thema geschrieben habe: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen". Sperriger Titel mit einem Kolloquium im Science-Slam-Style.
+
+→ Mach\u2019s gut, Science Slam! Bis bald \u2013 dann als Gast vor der Bühne.`,
+  },
+  {
+    id: 'jahresrueckblick-2021',
+    title: 'Jahresrückblick 2021',
+    date: '2022-01-01',
+    tags: ['Jahresrückblick', 'Persönlich'],
+    content: `Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert.
+
+1. Vater geworden
+
+Ich bin Vater geworden. Das ist vor allem eine Leistung meiner Frau, wow. Nicht in Worte zu fassen. Mit einer nicht einfachen Schwangerschaft und turbulenten ersten Wochen nach der Geburt, bei denen ich hoffentlich so gut es geht unterstützt habe.
+
+Danach kommt erst Mal lange nichts. Noch nie so viel Glück und Verantwortung gespürt wie jetzt. Und so viele Windeln gewechselt. Aber freue mich auf jede weitere. Und alles was kommt. Riesig.
+
+2. Pandemie \u2013 Jahr zwei
+
+Pandemie Schmandemie. Scheiße wie für alle. Kaum physische Kontakte, um schwangere Frau und Kind zu schützen. Noch vorsichtiger als sowieso schon. Setzt ganz schön zu.
+
+→ Aber hey: Geboostert. Lasst euch impfen. Wir schaffen das!
+
+3. Freunde & Familie
+
+Ohne wäre das Jahr ganz schön trist geworden. Egal ob nahezu tägliche Sprachnotizen, feste Sim-Racing-Termine jede Woche, gemeinsame Podcasts, regelmäßige Kaffee-Calls in Teams, schreiben dass man aneinander denkt, auch wenn man sich nicht sieht. Mentale und ganz konkrete Unterstützung im Wochenbett.
+
+→ Unschätzbarer Wert. Dankbar.
+
+4. Sommer
+
+Der war sogar richtig gut. Und trägt einen mit Hoffnung auf einen vergleichbar tollen im eigenen Garten in 2022 durch Herbst und Winter.
+
+5. Newsdesk bei RTL
+
+Zusammen ein geiles Newsdesk-Team in der RTL Kommunikation geformt. Bin als Leiter stolz, was wir 2021 geschafft haben. Und froh, so viel Unterstützung und Rückhalt nicht nur von meinen Vorgesetzten zu spüren, sondern auch aus dem Team.
+
+→ Gutes Gefühl: Die Herausforderungen 2022 werden wir gemeinsam wuppen.
+
+6. Bierbrauen
+
+Ziemlich trivial, aber: Ich habe mein erstes eigenes Bier gebraut. Und mein zweites mit besserem Brau-Equipment. Well, das eskalierte schnell. Und hat am Ende sogar geschmeckt. Fast so gut wie die vielen Craftbiere, die ich so bei untappd einscanne.
+
+7. Lego
+
+Alte Klemmbausteine vom Speicher meiner Eltern gerettet. Ab in die Waschmaschine und versucht, sie wieder in den originalen Sets zu sortieren. Dann kam die Schwangerschaft dazwischen. Aber Plan steht, dass der Kleine dann irgendwann Papas alte Ritterburg aufbauen kann.
+
+Man kann sagen: Das war ein gutes Jahr. Ich lass\u2019 mir das von "Big C" nicht kaputtdeuten. Aber ohne wäre schon schöner gewesen.
+
+→ Jetzt aber auf in ein Jahr 2022, das uns am Ende hoffentlich alle irgendwie positiv überrascht und in dem wir unseren persönlichen Zielen alle näherkommen. Haut rein!`,
+  },
 ];
 
 function buildBlog(body) {
