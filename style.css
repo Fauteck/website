@@ -2315,61 +2315,39 @@ kbd.search-esc {
   transform: translateY(0);
 }
 
-.mob-win-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: max(14px, env(safe-area-inset-top, 14px)) 16px 12px;
-  background: var(--win-tb-active);
-  flex-shrink: 0;
-  gap: 12px;
-}
-#mob-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 12px 6px 8px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  color: var(--win-tb-text);
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  -webkit-tap-highlight-color: transparent;
-  white-space: nowrap;
-}
-#mob-back svg { flex-shrink: 0; }
-#mob-win-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--win-tb-text);
-  flex: 1;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 #mob-win-body {
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  padding-top: max(14px, env(safe-area-inset-top, 14px));
 }
 
-/* Android nav bar pill at bottom */
+/* Android nav bar pill at bottom – swipe target */
 .mob-nav-bar {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: max(28px, env(safe-area-inset-bottom, 28px));
+  height: max(36px, env(safe-area-inset-bottom, 36px));
   padding-bottom: max(6px, env(safe-area-inset-bottom, 6px));
   background: var(--win-tb-active);
   flex-shrink: 0;
+  touch-action: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .mob-nav-pill {
-  width: 120px; height: 4px;
-  border-radius: 2px;
-  background: rgba(255,255,255,0.2);
+  width: 140px; height: 5px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.35);
+  transition: transform 0.15s, background 0.15s;
+}
+.mob-nav-bar:active .mob-nav-pill,
+.mob-nav-bar.dragging .mob-nav-pill {
+  transform: scaleX(1.15);
+  background: rgba(255,255,255,0.6);
+}
+#mobile-window.swiping {
+  transition: none;
 }
 
 /* Mobile terminal tweaks */
@@ -4019,24 +3997,3 @@ kbd.search-esc {
 }
 .bambu-mob-nav-btn.bambu-mob-nav-active { color: #22c55e; }
 
-/* ═══════════════════════════════════════════════════
-   MOBILE CHANGELOG SHORTCUT
-═══════════════════════════════════════════════════ */
-#mob-changelog-shortcut {
-  position: absolute;
-  right: 16px;
-  bottom: calc(var(--mob-dock-h, 90px) + 32px);
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  cursor: pointer; z-index: 10;
-}
-.mob-cls-wrap {
-  width: 52px; height: 52px; border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.45);
-  transition: transform 0.12s;
-}
-#mob-changelog-shortcut:hover .mob-cls-wrap { transform: scale(1.05); }
-.mob-cls-label {
-  font-size: 10px; color: rgba(255,255,255,0.72);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
-}
