@@ -57,12 +57,6 @@ const WIN_CONFIGS = {
     defaultW: 520, defaultH: 480,
     svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM14 8v6l4 4',
   },
-  network: {
-    title: 'Netzwerk',
-    color: 'cyan',
-    defaultW: 500, defaultH: 420,
-    svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM14 3c-3 0-5 5-5 11s2 11 5 11M14 3c3 0 5 5 5 11s-2 11-5 11M3 14h22M5 9h18M5 19h18',
-  },
   trash: {
     title: 'Papierkorb',
     color: 'red',
@@ -412,7 +406,6 @@ function initWindowContent(id, el) {
     homeassistant:  buildHA,
     packages:       buildPackages,
     changelog:      buildChangelog,
-    network:        buildNetwork,
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
     chatgpt:        buildChatGPT,
@@ -489,7 +482,7 @@ function buildAbout(body) {
         <div class="about-cta">
           <button class="btn-primary" onclick="openWindow('career')">💼 Arbeitsplatz öffnen</button>
           <button class="btn-ghost"   onclick="openWindow('terminal')">$ Terminal starten</button>
-          <button class="btn-ghost"   onclick="openWindow('network')">→ Kontakt</button>
+          <button class="btn-ghost"   onclick="openWindow('outlook')">→ Kontakt</button>
         </div>
       </div>
     </div>
@@ -728,9 +721,9 @@ function buildCareer(body) {
             <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M1 4h6l1.5 2H15v8H1V4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
             Eigene Dateien
           </div>
-          <div class="ap-sidebar-item" data-nav="network">
-            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><ellipse cx="8" cy="8" rx="3" ry="6" stroke="currentColor" stroke-width="1.3"/><line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.2"/></svg>
-            Netzwerk
+          <div class="ap-sidebar-item" data-nav="outlook">
+            <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><rect x="1" y="3" width="14" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1 3l7 5 7-5" stroke="currentColor" stroke-width="1.3"/></svg>
+            Outlook
           </div>
           <div class="ap-sidebar-item" data-nav="trash">
             <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 5h10M6 5V3a1 1 0 011-1h2a1 1 0 011 1v2M5 5l.7 9h4.6l.7-9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1815,42 +1808,6 @@ function buildChangelog(body) {
   });
 }
 
-// ─────────────────────────────────────────────────
-// NETWORK / CONTACT
-// ─────────────────────────────────────────────────
-function buildNetwork(body) {
-  body.innerHTML = `
-    <div class="network">
-      <div class="network-status">
-        <span>●</span>
-        <span class="net-online">niklas-fauteck</span>
-        <span>ist erreichbar</span>
-        <span class="net-ping">Response &lt; 48h</span>
-      </div>
-      <div class="net-connections">
-        <div class="net-conn">
-          <div class="net-conn-icon" style="background:rgba(10,102,194,0.12);font-size:22px">in</div>
-          <div class="net-conn-info">
-            <div class="net-conn-name">LinkedIn</div>
-            <div class="net-conn-desc">Niklas Fauteck · Head of Digital Transformation</div>
-          </div>
-          <a class="net-conn-action" href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener noreferrer">Verbinden</a>
-        </div>
-        <div class="net-conn">
-          <div class="net-conn-icon" style="background:rgba(82,183,136,0.12);font-size:20px">✉</div>
-          <div class="net-conn-info">
-            <div class="net-conn-name">E-Mail</div>
-            <div class="net-conn-desc">niklas@fauteck.eu · direkt &amp; unkompliziert</div>
-          </div>
-          <a class="net-conn-action" href="mailto:niklas@fauteck.eu">Schreiben</a>
-        </div>
-      </div>
-      <div style="margin-top:16px;padding:12px 14px;background:rgba(82,183,136,0.06);border-radius:8px;font-size:13px;color:#4a5568;line-height:1.6">
-        <strong style="color:#2d6a4f">Gesprächsthemen:</strong> Digitale Transformation · KI-Workflows · Smart Home · 3D-Druck · Automationen · pragmatische Systemarbeit
-      </div>
-    </div>
-  `;
-}
 
 // ─────────────────────────────────────────────────
 // TRASH / PAPIERKORB
@@ -1970,6 +1927,30 @@ function buildOutlook(body) {
         <span style="font-weight:600">Posteingang</span>
         <span class="mob-mail-badge">2</span>
       </div>
+
+      <!-- Contact info (from Netzwerk) -->
+      <div class="outlook-contact-section">
+        <div class="outlook-contact-status">
+          <span>●</span>
+          <span class="outlook-contact-online">niklas-fauteck</span>
+          <span>ist erreichbar</span>
+          <span class="outlook-contact-ping">Response &lt; 48h</span>
+        </div>
+        <div class="outlook-contact-links">
+          <a class="outlook-contact-link" href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener noreferrer">
+            <span class="outlook-contact-icon" style="background:rgba(10,102,194,0.12)">in</span>
+            <span>LinkedIn</span>
+          </a>
+          <a class="outlook-contact-link" href="mailto:niklas@fauteck.eu">
+            <span class="outlook-contact-icon" style="background:rgba(82,183,136,0.12)">✉</span>
+            <span>E-Mail</span>
+          </a>
+        </div>
+        <div class="outlook-contact-topics">
+          <strong>Gesprächsthemen:</strong> Digitale Transformation · KI-Workflows · Smart Home · 3D-Druck · Automationen · pragmatische Systemarbeit
+        </div>
+      </div>
+
       <div class="mob-mail-list">
         ${mails.map(m => `
           <div class="mob-mail-item${m.unread ? ' unread' : ''}">
@@ -3183,7 +3164,6 @@ const MOB_LABELS = {
   homeassistant: 'Home Asst.',
   packages:      'Apps',
   changelog:     'Changelog',
-  network:       'Kontakt',
   trash:         'Papierkorb',
   eigenedateien: 'Dateien',
   chatgpt:       'ChatGPT',
@@ -3201,9 +3181,9 @@ const MOB_LABELS = {
 };
 
 // Page 1 apps (main homescreen), Page 2: placeholder for future use
-const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams', 'jira', 'github', 'homeassistant', 'rss', 'filesapp', 'photos', 'snake', 'network', 'changelog'];
+const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams', 'jira', 'github', 'homeassistant', 'rss', 'filesapp', 'photos', 'snake', 'changelog'];
 const MOB_PAGE2 = ['placeholder'];
-const MOB_DOCK  = ['about', 'network', 'outlook', 'github'];
+const MOB_DOCK  = ['about', 'outlook', 'career', 'github'];
 
 const COLOR_MAP = {
   blue: 'linear-gradient(135deg,#2563eb,#1d4ed8)',
@@ -3447,7 +3427,6 @@ function openMobileWindow(id) {
     homeassistant:  buildHA,
     packages:       buildPackages,
     changelog:      buildChangelog,
-    network:        buildNetwork,
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
     chatgpt:        buildChatGPT,
