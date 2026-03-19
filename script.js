@@ -3418,7 +3418,13 @@ function buildGames(body) {
   `;
 
   body.querySelectorAll('.games-folder-item').forEach(item => {
-    item.addEventListener('click', () => openWindow(item.dataset.game));
+    item.addEventListener('click', () => {
+      if (document.getElementById('mobile-window')?.classList.contains('show')) {
+        openMobileWindow(item.dataset.game);
+      } else {
+        openWindow(item.dataset.game);
+      }
+    });
   });
 }
 
@@ -4497,7 +4503,7 @@ const MOB_LABELS = {
   career:        'Karriere',
   terminal:      'Terminal',
   sysmon:        'System',
-  bambu:         'Bambu',
+  bambu:         'Bambu App',
   homeassistant: 'Home Asst.',
   packages:      'Apps',
   changelog:     'Changelog',
@@ -4526,9 +4532,9 @@ const MOB_LABELS = {
 };
 
 // Page 1 apps (main homescreen), Page 2: placeholder for future use
-const MOB_PAGE1 = ['about', 'career', 'chatgpt', 'claudeapp', 'outlook', 'teams', 'jira', 'github', 'homeassistant', 'rss', 'filesapp', 'photos', 'snake', 'changelog'];
-const MOB_PAGE2 = ['blog', 'projects', 'testimonials'];
-const MOB_DOCK  = ['about', 'outlook', 'career', 'github'];
+const MOB_PAGE1 = ['career', 'photos', 'claudeapp', 'teams', 'jira', 'github', 'games', 'filesapp', 'projects', 'testimonials'];
+const MOB_PAGE2 = ['homeassistant', 'chatgpt', 'changelog', 'bambu'];
+const MOB_DOCK  = ['about', 'outlook', 'blog'];
 
 const COLOR_MAP = {
   blue: 'linear-gradient(135deg,#2563eb,#1d4ed8)',
@@ -4664,6 +4670,82 @@ function initMobile() {
     document.getElementById('mob-notif-panel')?.classList.remove('open');
     document.getElementById('mob-notif-panel')?.setAttribute('aria-hidden', 'true');
   });
+
+  // Swipe-up to close notification panel
+  const notifPanel = document.getElementById('mob-notif-panel');
+  if (notifPanel) {
+    let npStartY = 0;
+    let npSwiping = false;
+    notifPanel.addEventListener('touchstart', (e) => {
+      npStartY = e.touches[0].clientY;
+      npSwiping = true;
+    }, { passive: true });
+    notifPanel.addEventListener('touchmove', (e) => {
+      if (!npSwiping) return;
+      const dy = npStartY - e.touches[0].clientY;
+      if (dy > 0) {
+        notifPanel.style.transition = 'none';
+        notifPanel.style.transform = `translateY(-${dy}px)`;
+      }
+    }, { passive: true });
+    notifPanel.addEventListener('touchend', (e) => {
+      if (!npSwiping) return;
+      npSwiping = false;
+      const dy = npStartY - e.changedTouches[0].clientY;
+      if (dy > 60) {
+        notifPanel.style.transition = 'transform 0.25s ease-out';
+        notifPanel.style.transform = 'translateY(-110%)';
+        setTimeout(() => {
+          notifPanel.classList.remove('open');
+          notifPanel.setAttribute('aria-hidden', 'true');
+          notifPanel.style.transition = '';
+          notifPanel.style.transform = '';
+        }, 260);
+      } else {
+        notifPanel.style.transition = 'transform 0.2s ease-out';
+        notifPanel.style.transform = 'translateY(0)';
+        setTimeout(() => { notifPanel.style.transition = ''; }, 200);
+      }
+    });
+  }
+
+  // Swipe-up to close quick settings panel
+  const qsPanel = document.getElementById('mob-quick-settings');
+  if (qsPanel) {
+    let qsStartY = 0;
+    let qsSwiping = false;
+    qsPanel.addEventListener('touchstart', (e) => {
+      qsStartY = e.touches[0].clientY;
+      qsSwiping = true;
+    }, { passive: true });
+    qsPanel.addEventListener('touchmove', (e) => {
+      if (!qsSwiping) return;
+      const dy = qsStartY - e.touches[0].clientY;
+      if (dy > 0) {
+        qsPanel.style.transition = 'none';
+        qsPanel.style.transform = `translateY(-${dy}px)`;
+      }
+    }, { passive: true });
+    qsPanel.addEventListener('touchend', (e) => {
+      if (!qsSwiping) return;
+      qsSwiping = false;
+      const dy = qsStartY - e.changedTouches[0].clientY;
+      if (dy > 60) {
+        qsPanel.style.transition = 'transform 0.25s ease-out';
+        qsPanel.style.transform = 'translateY(-110%)';
+        setTimeout(() => {
+          qsPanel.classList.remove('open');
+          qsPanel.setAttribute('aria-hidden', 'true');
+          qsPanel.style.transition = '';
+          qsPanel.style.transform = '';
+        }, 260);
+      } else {
+        qsPanel.style.transition = 'transform 0.2s ease-out';
+        qsPanel.style.transform = 'translateY(0)';
+        setTimeout(() => { qsPanel.style.transition = ''; }, 200);
+      }
+    });
+  }
 
   // Swipe-up on nav pill to close app (Android-style gesture)
   const navBar = document.querySelector('#mobile-window .mob-nav-bar');
