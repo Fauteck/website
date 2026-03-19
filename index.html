@@ -292,6 +292,13 @@
     <!-- Status Bar -->
     <div id="mob-status-bar" role="banner" aria-label="Statusleiste">
       <span class="mob-sb-device">niklas.phone</span>
+      <button id="mob-notif-indicator" class="mob-sb-notif-btn" aria-label="Benachrichtigungen anzeigen" title="2 neue Benachrichtigungen">
+        <svg class="mob-sb-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1.5C5.8 1.5 4 3.3 4 5.5V9l-1.2 1.2c-.3.3-.1.8.3.8h9.8c.4 0 .6-.5.3-.8L12 9V5.5C12 3.3 10.2 1.5 8 1.5z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <path d="M6.5 12a1.5 1.5 0 003 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="mob-notif-badge">2</span>
+      </button>
       <div class="mob-sb-right">
         <span id="mob-sb-time">--:--</span>
         <svg class="mob-sb-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -305,6 +312,49 @@
           <path d="M13 7v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div>
+    </div>
+
+    <!-- Notification Panel (slides down from top) -->
+    <div id="mob-notif-panel" aria-hidden="true" role="region" aria-label="Benachrichtigungen">
+      <div class="mob-np-handle"></div>
+
+      <!-- Status Chips -->
+      <div class="mob-np-status">
+        <div class="mob-status-chips">
+          <span class="mob-chip"><span class="mob-chip-dot"></span>Focus: 92%</span>
+          <span class="mob-chip"><span class="mob-chip-dot"></span>Curiosity: High</span>
+          <span class="mob-chip"><span class="mob-chip-dot"></span>Pragmatism: Stable</span>
+          <span class="mob-chip mob-chip-dim"><span class="mob-chip-dot mob-chip-dot-dim"></span>Noise Filter: Active</span>
+        </div>
+      </div>
+
+      <!-- Notification Cards -->
+      <div class="mob-np-cards">
+        <div class="mob-widget mob-widget-notif" aria-label="Benachrichtigung">
+          <div class="mob-notif-icon" style="background: linear-gradient(135deg,#ea580c,#c2410c)">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 9L8 3l6 6" stroke="white" stroke-width="1.2" stroke-linecap="round"/><rect x="5" y="9" width="6" height="5" rx="0.5" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.2"/></svg>
+          </div>
+          <div class="mob-notif-body">
+            <span class="mob-notif-app">Home Assistant</span>
+            <span class="mob-notif-msg">New automation deployed</span>
+          </div>
+          <span class="mob-notif-time">2m ago</span>
+        </div>
+
+        <div class="mob-widget mob-widget-notif" aria-label="Benachrichtigung">
+          <div class="mob-notif-icon" style="background: linear-gradient(135deg,#0d9488,#0f766e)">
+            <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="8" width="10" height="5" rx="1" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.2"/><path d="M5 8V5l3-2 3 2v3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="mob-notif-body">
+            <span class="mob-notif-app">Bambu Studio</span>
+            <span class="mob-notif-msg">Print job completed (7h 23min)</span>
+          </div>
+          <span class="mob-notif-time">14m ago</span>
+        </div>
+      </div>
+
+      <!-- Quick Settings -->
+      <div class="mob-np-divider"></div>
     </div>
 
     <!-- Quick Settings Panel (slides down) -->
@@ -372,39 +422,6 @@
               <span id="mob-clock-date">---</span>
               <span class="mob-clock-device">niklas.phone</span>
             </div>
-          </div>
-
-          <!-- Status Widget -->
-          <div class="mob-widget mob-widget-status" aria-label="Status-Widget">
-            <div class="mob-status-chips">
-              <span class="mob-chip"><span class="mob-chip-dot"></span>Focus: 92%</span>
-              <span class="mob-chip"><span class="mob-chip-dot"></span>Curiosity: High</span>
-              <span class="mob-chip"><span class="mob-chip-dot"></span>Pragmatism: Stable</span>
-              <span class="mob-chip mob-chip-dim"><span class="mob-chip-dot mob-chip-dot-dim"></span>Noise Filter: Active</span>
-            </div>
-          </div>
-
-          <!-- Notification Cards -->
-          <div class="mob-widget mob-widget-notif" aria-label="Benachrichtigung">
-            <div class="mob-notif-icon" style="background: linear-gradient(135deg,#ea580c,#c2410c)">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M2 9L8 3l6 6" stroke="white" stroke-width="1.2" stroke-linecap="round"/><rect x="5" y="9" width="6" height="5" rx="0.5" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.2"/></svg>
-            </div>
-            <div class="mob-notif-body">
-              <span class="mob-notif-app">Home Assistant</span>
-              <span class="mob-notif-msg">New automation deployed</span>
-            </div>
-            <span class="mob-notif-time">2m ago</span>
-          </div>
-
-          <div class="mob-widget mob-widget-notif" aria-label="Benachrichtigung">
-            <div class="mob-notif-icon" style="background: linear-gradient(135deg,#0d9488,#0f766e)">
-              <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="8" width="10" height="5" rx="1" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.2"/><path d="M5 8V5l3-2 3 2v3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="mob-notif-body">
-              <span class="mob-notif-app">Bambu Studio</span>
-              <span class="mob-notif-msg">Print job completed (7h 23min)</span>
-            </div>
-            <span class="mob-notif-time">14m ago</span>
           </div>
 
         </div><!-- /.mob-widgets -->
