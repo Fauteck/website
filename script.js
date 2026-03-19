@@ -5103,20 +5103,27 @@ function buildBlog(body) {
     </div>
   `).join('');
 
+  const mobileNavHtml = BLOG_POSTS.map((p, i) => `
+    <button class="blog-mob-nav-btn${i === 0 ? ' active' : ''}" data-post="${p.id}">
+      ${escapeHtml(p.title)}
+    </button>
+  `).join('');
+
   function renderPost(post) {
     const lines = post.content.split('\n');
     return lines.map(line => {
       const trimmed = line.trim();
       if (!trimmed) return '<div class="blog-line blog-line-empty">&nbsp;</div>';
-      if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${escapeHtml(trimmed)}</div>`;
-      if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${escapeHtml(trimmed)}</div>`;
-      if (trimmed.startsWith('•')) return `<div class="blog-line blog-line-list">${escapeHtml(trimmed)}</div>`;
-      return `<div class="blog-line">${escapeHtml(trimmed)}</div>`;
+      if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${linkifyText(escapeHtml(trimmed))}</div>`;
+      if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${linkifyText(escapeHtml(trimmed))}</div>`;
+      if (trimmed.startsWith('•')) return `<div class="blog-line blog-line-list">${linkifyText(escapeHtml(trimmed))}</div>`;
+      return `<div class="blog-line">${linkifyText(escapeHtml(trimmed))}</div>`;
     }).join('');
   }
 
   body.innerHTML = `
     <div class="blog-wrap">
+      <div class="blog-mob-nav">${mobileNavHtml}</div>
       <div class="blog-sidebar">
         <div class="blog-sidebar-header">
           <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 2h12v12H2z" stroke="currentColor" stroke-width="1.3"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
@@ -5154,7 +5161,28 @@ function buildBlog(body) {
     item.addEventListener('click', () => {
       body.querySelectorAll('.blog-list-item').forEach(i => i.classList.remove('active'));
       item.classList.add('active');
+      body.querySelectorAll('.blog-mob-nav-btn').forEach(b => b.classList.remove('active'));
+      const mobBtn = body.querySelector(`.blog-mob-nav-btn[data-post="${item.dataset.post}"]`);
+      if (mobBtn) mobBtn.classList.add('active');
       const post = BLOG_POSTS.find(p => p.id === item.dataset.post);
+      if (!post) return;
+      body.querySelector('#blog-text').innerHTML = renderPost(post);
+      body.querySelector('.blog-file-path').textContent = `~/blog/${post.id}.md`;
+      body.querySelector('.blog-tab').textContent = post.title.substring(0, 30) + '…';
+      body.querySelector('.blog-tab').dataset.post = post.id;
+      updateLineNums();
+    });
+  });
+
+  // Mobile nav clicks
+  body.querySelectorAll('.blog-mob-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      body.querySelectorAll('.blog-mob-nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      body.querySelectorAll('.blog-list-item').forEach(i => i.classList.remove('active'));
+      const sidebarItem = body.querySelector(`.blog-list-item[data-post="${btn.dataset.post}"]`);
+      if (sidebarItem) sidebarItem.classList.add('active');
+      const post = BLOG_POSTS.find(p => p.id === btn.dataset.post);
       if (!post) return;
       body.querySelector('#blog-text').innerHTML = renderPost(post);
       body.querySelector('.blog-file-path').textContent = `~/blog/${post.id}.md`;
@@ -5387,6 +5415,13 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+function linkifyText(escapedHtml) {
+  return escapedHtml.replace(
+    /(https?:\/\/[^\s<>&"]+)/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
 }
 
 // ─────────────────────────────────────────────────
