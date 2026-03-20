@@ -549,8 +549,10 @@ a:hover { text-decoration: underline; }
   text-align: center;
   line-height: 1.3;
   text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-  max-width: 82px;
+  max-width: 96px;
   word-break: break-word;
+  hyphens: none;
+  -webkit-hyphens: none;
 }
 
 /* ───────────────────────────────────────────────────
@@ -2840,7 +2842,24 @@ kbd.search-esc {
 }
 .ol-desk-action-btn:hover { background: #e5e7eb; }
 .ol-desk-action-btn svg { width: 18px; height: 18px; }
-.ol-desk-new-mail { color: #0078d4; font-weight: 600; }
+.ol-desk-new-mail {
+  color: #fff !important; font-weight: 600;
+  background: #0078d4 !important; border-radius: 6px;
+  padding: 6px 14px !important;
+  animation: ol-pulse-mail 2s ease-in-out infinite;
+  position: relative;
+}
+.ol-desk-new-mail::after {
+  content: 'Funktioniert wirklich!';
+  position: absolute;
+  bottom: -20px; left: 50%; transform: translateX(-50%);
+  font-size: 9px; font-weight: 400; color: #0078d4;
+  white-space: nowrap; opacity: 0.8;
+}
+@keyframes ol-pulse-mail {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,120,212,0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(0,120,212,0); }
+}
 
 /* Main 3-column layout */
 .ol-desk-main { display: flex; flex: 1; overflow: hidden; }
@@ -3341,16 +3360,61 @@ kbd.search-esc {
 .mob-career-list-impact li::before { color: #d97706; }
 
 /* Teams */
-.mob-teams-wrap { display: flex; flex-direction: column; height: 100%; background: #1a1b2e; color: rgba(255,255,255,0.85); }
-.mob-teams-header { padding: 12px 16px; background: #1f2040; font-size: 15px; font-weight: 600; color: #7b83eb; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.mob-teams-channels { display: flex; gap: 4px; padding: 8px 12px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.mob-teams-channels::-webkit-scrollbar { display: none; }
-.mob-teams-ch { padding: 5px 10px; border-radius: 4px; font-size: 12px; color: rgba(255,255,255,0.5); white-space: nowrap; cursor: pointer; }
-.mob-teams-ch.active { background: rgba(123,131,235,0.15); color: #7b83eb; }
-.mob-teams-messages { flex: 1; overflow-y: auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
-.mob-teams-msg { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.8); }
-.mob-teams-msg.teams-self { color: rgba(123,131,235,0.9); }
-.mob-teams-time { font-size: 10px; color: rgba(255,255,255,0.3); margin-left: 6px; }
+/* Teams shared */
+.teams-chat-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+.teams-chat-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; transition: background 0.12s; position: relative; }
+.teams-chat-item:hover, .teams-chat-item.active { background: rgba(123,131,235,0.1); }
+.teams-chat-info { flex: 1; min-width: 0; }
+.teams-chat-name-row { display: flex; justify-content: space-between; align-items: center; }
+.teams-chat-name { font-size: 13px; font-weight: 600; }
+.teams-chat-time { font-size: 10px; color: rgba(255,255,255,0.35); }
+.teams-chat-preview { font-size: 12px; color: rgba(255,255,255,0.45); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+.teams-chat-badge { background: #6366f1; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+
+/* Teams messages */
+.teams-msg { display: flex; gap: 8px; align-items: flex-start; padding: 4px 0; }
+.teams-msg-self { flex-direction: row-reverse; }
+.teams-msg-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+.teams-msg-bubble { max-width: 75%; }
+.teams-msg-self .teams-msg-bubble { background: rgba(99,102,241,0.15); border-radius: 12px 12px 2px 12px; padding: 8px 12px; }
+.teams-msg:not(.teams-msg-self) .teams-msg-bubble { background: rgba(255,255,255,0.06); border-radius: 12px 12px 12px 2px; padding: 8px 12px; }
+.teams-msg-sender { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+.teams-msg-text { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+.teams-msg-time { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 3px; text-align: right; }
+
+/* Teams Mobile */
+.teams-mob-wrap { display: flex; flex-direction: column; height: 100%; background: #1b1b2f; color: rgba(255,255,255,0.9); }
+.teams-mob-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.teams-mob-title { font-size: 20px; font-weight: 700; color: white; }
+.teams-mob-compose { background: none; border: none; font-size: 16px; cursor: pointer; }
+.teams-mob-search { display: flex; align-items: center; gap: 8px; margin: 8px 14px; padding: 8px 12px; background: rgba(255,255,255,0.06); border-radius: 8px; font-size: 13px; color: rgba(255,255,255,0.35); }
+.teams-mob-chats { flex: 1; overflow-y: auto; }
+.teams-mob-tabs { display: flex; justify-content: space-around; padding: 6px 0; border-top: 1px solid rgba(255,255,255,0.06); background: #1f1f3a; }
+.teams-mob-tab-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: rgba(255,255,255,0.4); cursor: pointer; padding: 4px 8px; }
+.teams-mob-tab-item.active { color: #7b83eb; }
+.teams-mob-tab-item svg { color: inherit; }
+
+/* Teams Desktop */
+.teams-desk-wrap { display: flex; height: 100%; background: #1b1b2f; color: rgba(255,255,255,0.9); }
+.teams-desk-sidebar { width: 56px; background: #201f3a; display: flex; flex-direction: column; align-items: center; padding: 12px 0; gap: 4px; flex-shrink: 0; }
+.teams-desk-sb-top { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.teams-desk-sb-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; border-radius: 6px; cursor: pointer; font-size: 9px; color: rgba(255,255,255,0.5); transition: background 0.12s; }
+.teams-desk-sb-item:hover { background: rgba(255,255,255,0.06); }
+.teams-desk-sb-item.active { color: #7b83eb; background: rgba(123,131,235,0.12); }
+.teams-desk-sb-bottom { margin-top: auto; }
+.teams-desk-sb-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 600; }
+.teams-desk-chatlist { width: 240px; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; flex-shrink: 0; }
+.teams-desk-chatlist-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; font-size: 15px; font-weight: 700; }
+.teams-desk-compose { background: none; border: none; font-size: 14px; cursor: pointer; }
+.teams-desk-chats { flex: 1; overflow-y: auto; }
+.teams-desk-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.teams-desk-main-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.teams-desk-main-name { font-size: 14px; font-weight: 600; }
+.teams-desk-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.teams-desk-compose-bar { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+.teams-desk-input { flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 8px 12px; color: white; font-size: 13px; outline: none; }
+.teams-desk-input:focus { border-color: #6366f1; }
+.teams-desk-send { background: #6366f1; border: none; border-radius: 6px; padding: 6px 10px; cursor: pointer; color: white; display: flex; align-items: center; }
 
 /* Jira */
 .mob-jira-wrap { display: flex; flex-direction: column; height: 100%; background: #f4f5f7; }
@@ -3695,9 +3759,9 @@ kbd.search-esc {
 }
 .snake-ctrl-row { display: flex; gap: 4px; }
 .snake-btn {
-  width: 52px; height: 52px; border-radius: 12px;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7); font-size: 18px; cursor: pointer;
+  width: 72px; height: 72px; border-radius: 14px;
+  background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.8); font-size: 26px; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: background 0.15s;
   -webkit-tap-highlight-color: transparent;
@@ -4099,24 +4163,53 @@ kbd.search-esc {
 }
 .ha2-temp-name { font-size: 12px; color: #444; font-weight: 500; }
 
-/* Bottom-left: scenes + sensors + trash */
-.ha2-bottom-left { display: flex; flex-direction: column; gap: 8px; }
-.ha2-scene-btns { display: flex; flex-direction: column; gap: 4px; }
+/* Scenes */
+.ha2-scene-btns { display: flex; flex-wrap: wrap; gap: 6px; }
 .ha2-scene-btn {
-  width: 100%; text-align: left; padding: 7px 10px;
+  padding: 7px 12px;
   background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 6px;
-  font-size: 12px; color: #374151; cursor: pointer; transition: background 0.12s;
+  font-size: 12px; color: #374151; cursor: pointer; transition: background 0.12s, border-color 0.12s;
 }
 .ha2-scene-btn:hover { background: #eef0f2; }
-.ha2-sensor-rows { display: flex; flex-direction: column; gap: 3px; }
-.ha2-sensor-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; padding: 2px 0; }
-.ha2-sensor-name { flex: 1; }
 .ha2-sensor-val { color: #9ca3af; font-size: 11px; }
-.ha2-section-title { font-size: 12px; font-weight: 600; color: #374151; }
-.ha2-trash-rows { display: flex; flex-direction: column; gap: 3px; }
-.ha2-trash-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
-.ha2-trash-name { flex: 1; }
-.ha2-trash-days { color: #9ca3af; font-size: 11px; }
+.ha2-sensor-ok { color: #16a34a; }
+
+/* HA Control rows */
+.ha2-ctrl-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #555; padding: 3px 0; }
+.ha2-ctrl-row > span:first-child { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* HA Toggle switches */
+.ha2-toggle {
+  position: relative; width: 38px; height: 20px; border-radius: 10px; border: none; cursor: pointer;
+  background: #d1d5db; transition: background 0.2s; flex-shrink: 0;
+}
+.ha2-toggle::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+.ha2-toggle[data-on="true"] { background: #3b82f6; }
+.ha2-toggle[data-on="true"]::after { transform: translateX(18px); }
+
+/* HA Sliders */
+.ha2-slider-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.ha2-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 80px; height: 6px; border-radius: 3px;
+  background: #e5e7eb; outline: none; cursor: pointer;
+}
+.ha2-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px;
+  border-radius: 50%; background: var(--ha-color, #3b82f6);
+  cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.ha2-slider::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--ha-color, #3b82f6); border: none;
+  cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.ha2-slider-val { font-size: 11px; color: #6b7280; min-width: 36px; text-align: right; }
 
 /* Doors card */
 .ha2-doors-card { display: flex; flex-direction: column; gap: 3px; padding: 10px 12px !important; }
@@ -4637,9 +4730,18 @@ kbd.search-esc {
   padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   overflow: auto;
   position: relative;
+}
+.sol-hint-bar {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  flex-shrink: 0;
 }
 .sol-top-row {
   display: flex;
@@ -4675,7 +4777,8 @@ kbd.search-esc {
   box-shadow: 0 0 0 2px rgba(59,130,246,0.5);
 }
 .sol-card-selected {
-  box-shadow: 0 0 0 3px #facc15 !important;
+  box-shadow: 0 0 0 3px #facc15, 0 0 12px rgba(250,204,21,0.5) !important;
+  transform: translateY(-2px);
 }
 .sol-card-empty {
   background: rgba(255,255,255,0.08);
@@ -5344,6 +5447,13 @@ kbd.search-esc {
 }
 .blog-line { min-height: 1.8em; }
 .blog-line-empty { min-height: 1.8em; }
+.blog-line-title {
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+  padding-bottom: 2px;
+}
 .blog-line-heading {
   color: #e11d48;
   font-weight: 600;
