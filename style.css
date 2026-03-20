@@ -3968,6 +3968,280 @@ kbd.search-esc {
 .ha-dial-label { font-size: 11px; color: rgba(255,255,255,0.5); }
 
 /* ═══════════════════════════════════════════════════
+   HOME ASSISTANT v2 – REDESIGNED UI
+═══════════════════════════════════════════════════ */
+
+/* Layout wrapper */
+.ha2-wrap { display: flex; height: 100%; overflow: hidden; }
+.ha2-desktop { display: flex; flex-direction: column; width: 100%; height: 100%; background: #f5f5f5; }
+.ha2-mobile  { display: none; flex-direction: column; width: 100%; height: 100%; background: #f5f5f5; overflow-y: auto; }
+.ha2-wrap.ha2-narrow .ha2-desktop { display: none; }
+.ha2-wrap.ha2-narrow .ha2-mobile  { display: flex; }
+
+/* Top navigation bar */
+.ha2-topnav {
+  display: flex; align-items: center;
+  background: #1976d2; height: 44px; padding: 0 4px;
+  gap: 0; flex-shrink: 0; overflow-x: auto;
+}
+.ha2-topnav::-webkit-scrollbar { display: none; }
+.ha2-icon-btn {
+  background: none; border: none; color: white;
+  cursor: pointer; padding: 6px 8px; flex-shrink: 0; line-height: 1;
+}
+.ha2-tab {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: rgba(255,255,255,0.72); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.4px; cursor: pointer;
+  padding: 0 9px; height: 44px; white-space: nowrap; flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s;
+}
+.ha2-tab.ha2-tab-active { color: white; border-bottom-color: white; }
+
+/* Sidebar + body */
+.ha2-body { display: flex; flex: 1; overflow: hidden; }
+.ha2-sidebar {
+  width: 44px; background: #1565c0;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 0; gap: 2px; flex-shrink: 0;
+}
+.ha2-sb-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: transparent; border: none;
+  color: rgba(255,255,255,0.55); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.ha2-sb-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+.ha2-sb-btn.ha2-sb-active { background: rgba(255,255,255,0.2); color: white; }
+
+/* Scrollable content */
+.ha2-content {
+  flex: 1; overflow-y: auto; padding: 10px; background: #f5f5f5;
+}
+.ha2-content::-webkit-scrollbar { width: 4px; }
+.ha2-content::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+
+/* Grid */
+.ha2-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+/* Card base */
+.ha2-card {
+  background: white; border-radius: 8px;
+  padding: 10px 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  position: relative;
+}
+.ha2-card-label {
+  font-size: 10px; color: #888; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.ha2-card-val-row { display: flex; align-items: center; gap: 8px; }
+.ha2-card-value { font-size: 20px; font-weight: 600; color: #1a1a1a; }
+.ha2-card-menu {
+  position: absolute; top: 6px; right: 8px;
+  background: none; border: none; color: #bbb; cursor: pointer; font-size: 18px;
+}
+
+/* Thermostat card */
+.ha2-thermo-card {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+}
+.ha2-thermo-arc-wrap {
+  position: relative; display: flex;
+  align-items: center; justify-content: center;
+}
+.ha2-thermo-overlay {
+  position: absolute; display: flex; flex-direction: column;
+  align-items: center; pointer-events: none;
+}
+.ha2-thermo-temp { font-size: 26px; font-weight: 300; color: #1a1a1a; line-height: 1; }
+.ha2-thermo-current { font-size: 14px; color: #555; }
+.ha2-thermo-mode { font-size: 10px; color: #999; text-align: center; }
+.ha2-thermo-icons { display: flex; gap: 8px; }
+.ha2-thermo-icon-btn {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(0,0,0,0.05); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: #666;
+}
+.ha2-thermo-icon-btn.ha2-thermo-icon-active { background: rgba(249,115,22,0.1); }
+.ha2-thermo-label { font-size: 12px; font-weight: 600; color: #555; letter-spacing: 0.4px; }
+
+/* Weather card */
+.ha2-weather-top { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+.ha2-weather-desc { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+.ha2-weather-temp { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+.ha2-weather-loc { font-size: 11px; color: #999; }
+.ha2-forecast { display: flex; justify-content: space-between; gap: 2px; }
+.ha2-fc-day { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.ha2-fc-label { font-size: 10px; color: #888; }
+.ha2-fc-lo { font-size: 10px; color: #aaa; }
+.ha2-fc-hi { font-size: 10px; font-weight: 600; color: #444; }
+
+/* Temperature stack */
+.ha2-temp-stack { display: flex; flex-direction: column; gap: 8px; }
+.ha2-temp-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 10px !important;
+}
+.ha2-temp-arc {
+  position: relative; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.ha2-temp-val-overlay {
+  position: absolute; bottom: 10px;
+  font-size: 9px; font-weight: 700; color: #1a1a1a;
+  text-align: center; pointer-events: none; white-space: nowrap;
+}
+.ha2-temp-name { font-size: 12px; color: #444; font-weight: 500; }
+
+/* Bottom-left: scenes + sensors + trash */
+.ha2-bottom-left { display: flex; flex-direction: column; gap: 8px; }
+.ha2-scene-btns { display: flex; flex-direction: column; gap: 4px; }
+.ha2-scene-btn {
+  width: 100%; text-align: left; padding: 7px 10px;
+  background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 6px;
+  font-size: 12px; color: #374151; cursor: pointer; transition: background 0.12s;
+}
+.ha2-scene-btn:hover { background: #eef0f2; }
+.ha2-sensor-rows { display: flex; flex-direction: column; gap: 3px; }
+.ha2-sensor-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; padding: 2px 0; }
+.ha2-sensor-name { flex: 1; }
+.ha2-sensor-val { color: #9ca3af; font-size: 11px; }
+.ha2-section-title { font-size: 12px; font-weight: 600; color: #374151; }
+.ha2-trash-rows { display: flex; flex-direction: column; gap: 3px; }
+.ha2-trash-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
+.ha2-trash-name { flex: 1; }
+.ha2-trash-days { color: #9ca3af; font-size: 11px; }
+
+/* Doors card */
+.ha2-doors-card { display: flex; flex-direction: column; gap: 3px; padding: 10px 12px !important; }
+.ha2-door-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; padding: 4px 0; border-bottom: 1px solid #f5f5f5;
+}
+.ha2-door-dot {
+  width: 10px; height: 10px; background: #3b82f6;
+  border-radius: 2px; flex-shrink: 0;
+}
+.ha2-door-name { flex: 1; color: #444; font-size: 12px; }
+.ha2-door-state { font-size: 11px; color: #9ca3af; }
+.ha2-balcony-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.ha2-balcony-title { flex: 1; font-size: 12px; font-weight: 600; color: #374151; }
+.ha2-balcony-badge {
+  width: 22px; height: 22px; border-radius: 50%; background: #22c55e;
+  display: flex; align-items: center; justify-content: center;
+}
+.ha2-balcony-btn {
+  background: none; border: none; color: #1976d2;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.4px;
+  cursor: pointer; padding: 4px 0; text-align: left; display: block;
+}
+
+/* ── MOBILE LAYOUT ── */
+.ha2-mob-header {
+  display: flex; align-items: center; background: #1976d2;
+  padding: 0 4px; height: 50px; gap: 2px; flex-shrink: 0;
+}
+.ha2-mob-hbtn {
+  background: none; border: none; color: white;
+  font-size: 18px; cursor: pointer; padding: 6px 8px; line-height: 1;
+}
+.ha2-mob-tab {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.4px; cursor: pointer;
+  padding: 0 8px; height: 50px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.ha2-mob-tab.ha2-mob-tab-active { color: white; border-bottom-color: white; }
+
+/* User presence */
+.ha2-mob-presence {
+  display: flex; gap: 16px; padding: 14px 16px;
+  background: white; border-bottom: 1px solid #f0f0f0;
+}
+.ha2-mob-person { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ha2-mob-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2.5px solid #f97316; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.ha2-mob-badge {
+  background: #f97316; color: white; font-size: 9px;
+  font-weight: 700; padding: 2px 5px; border-radius: 3px; letter-spacing: 0.3px;
+}
+.ha2-mob-name { font-size: 11px; color: #666; }
+
+/* Room section */
+.ha2-mob-room { background: white; border-bottom: 1px solid #f0f0f0; }
+.ha2-mob-room-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px 8px;
+}
+.ha2-mob-room-title { font-size: 17px; font-weight: 600; color: #1a1a1a; }
+.ha2-mob-dev-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 16px; border-bottom: 1px solid #f5f5f5;
+}
+.ha2-mob-dev-name { flex: 1; font-size: 14px; color: #1a1a1a; }
+
+/* Toggle switch */
+.ha2-mob-toggle {
+  width: 42px; height: 24px; border-radius: 12px;
+  background: #d1d5db; border: none; cursor: pointer;
+  position: relative; flex-shrink: 0; transition: background 0.2s;
+}
+.ha2-mob-toggle::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  transition: transform 0.2s;
+}
+.ha2-mob-toggle[data-on="true"] { background: #22c55e; }
+.ha2-mob-toggle[data-on="true"]::after { transform: translateX(18px); }
+.ha2-mob-toggle-disabled { opacity: 0.55; cursor: default; }
+
+/* Mobile thermostat */
+.ha2-mob-thermo {
+  background: white; display: flex; flex-direction: column;
+  align-items: center; padding: 16px 16px 12px; position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ha2-mob-menu-btn {
+  position: absolute; top: 10px; right: 14px;
+  background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer;
+}
+.ha2-mob-thermo-arc {
+  position: relative; display: flex;
+  align-items: center; justify-content: center;
+}
+.ha2-mob-thermo-text {
+  position: absolute; display: flex; flex-direction: column;
+  align-items: center; pointer-events: none;
+}
+.ha2-mob-thermo-big { font-size: 44px; font-weight: 300; color: #1a1a1a; line-height: 1; }
+.ha2-mob-thermo-unit { font-size: 20px; font-weight: 300; vertical-align: super; }
+.ha2-mob-thermo-cur { font-size: 16px; color: #555; margin-top: 2px; }
+.ha2-mob-thermo-mode { font-size: 12px; color: #999; }
+.ha2-mob-thermo-brand {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: #555; font-weight: 500; margin-top: 8px;
+}
+
+/* Media bar */
+.ha2-mob-media {
+  display: flex; align-items: center; gap: 10px;
+  background: #c62828; color: white;
+  padding: 13px 16px; font-size: 14px; font-weight: 500; flex-shrink: 0;
+}
+.ha2-mob-media-btn { background: none; border: none; color: white; cursor: pointer; font-size: 18px; }
+
+/* ═══════════════════════════════════════════════════
    ARBEITSPLATZ (Windows My Computer)
 ═══════════════════════════════════════════════════ */
 .ap-wrap {

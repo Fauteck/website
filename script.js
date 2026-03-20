@@ -1821,157 +1821,354 @@ function buildBambu(body) {
 function buildHA(body) {
   body.style.padding = '0';
   body.style.overflow = 'hidden';
-  body.style.background = '#111827';
-  body.style.color = '#f3f4f6';
+  body.style.background = '#f5f5f5';
+  body.style.color = '#1a1a1a';
 
-  const HA_DOORS = [
-    { id: 'vorne',    label: 'Vorne',   open: true,  color: '#ef4444' },
-    { id: 'garten',  label: 'Garten',  open: true,  color: '#ef4444' },
-    { id: 'keller',  label: 'Keller',  open: false, color: '#22c55e' },
-    { id: 'garage',  label: 'Garage',  open: false, color: '#22c55e' },
-    { id: 'carport', label: 'Carport', open: false, color: '#22c55e' },
-    { id: 'hinten',  label: 'Hinten',  open: false, color: '#22c55e' },
+  // SVG arc gauge helper: draws a 240° sweep arc gauge
+  function arcSvg(value, min, max, r, size, color, sw) {
+    const cx = size / 2, cy = size / 2;
+    const C = 2 * Math.PI * r;
+    const arcLen = C * (240 / 360);
+    const pct = Math.max(0, Math.min(1, (value - min) / (max - min)));
+    const fill = pct * arcLen;
+    const gap = C - arcLen;
+    const fillGap = C - fill;
+    return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e8eaed" stroke-width="${sw}"
+        stroke-dasharray="${arcLen.toFixed(1)} ${gap.toFixed(1)}"
+        stroke-linecap="round" transform="rotate(-210 ${cx} ${cy})"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}"
+        stroke-dasharray="${fill.toFixed(1)} ${fillGap.toFixed(1)}"
+        stroke-linecap="round" transform="rotate(-210 ${cx} ${cy})"/>
+    </svg>`;
+  }
+
+  const DESKTOP_TABS = ['ÜBERSICHT','BADEZIMMER','FLUR','KÜCHE','WOHNZIMMER','SCHLAFZIMMER','BALKON'];
+
+  const TEMPS = [
+    { label: 'Wohnraum',        val: 23.4, display: '23,4 °C', color: '#3b82f6' },
+    { label: 'Badezimmer',      val: 24,   display: '24 °C',   color: '#3b82f6' },
+    { label: 'Außentemperatur', val: 14.8, display: '14,8 °C', color: '#3b82f6' },
   ];
 
-  const doorSvgOpen  = `<svg viewBox="0 0 28 28" fill="none" width="28" height="28"><rect x="4" y="2" width="14" height="22" rx="1.5" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.3"/><path d="M18 4l6 2v16l-6 2V4z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.3" stroke-linejoin="round"/><circle cx="16.5" cy="14" r="1.5" fill="white" opacity="0.8"/></svg>`;
-  const doorSvgClosed = `<svg viewBox="0 0 28 28" fill="none" width="28" height="28"><rect x="4" y="2" width="20" height="24" rx="1.5" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.3"/><circle cx="20" cy="14" r="1.5" fill="white" opacity="0.8"/></svg>`;
+  const FORECAST = [
+    { day: 'Mi', type: 'sun',  lo: '13,3', hi: '24,4' },
+    { day: 'Do', type: 'sun',  lo: '14,5', hi: '26,4' },
+    { day: 'Fr', type: 'rain', lo: '16,0', hi: '23,8' },
+    { day: 'Sa', type: 'cloud',lo: '16,3', hi: '21,1' },
+    { day: 'So', type: 'cloud',lo: '14,8', hi: '19,7' },
+  ];
+
+  function forecastIcon(type) {
+    if (type === 'sun')  return `<circle cx="8" cy="8" r="3" fill="#fbbf24"/><path d="M8 2v1M8 13v1M2 8h1M13 8h1M3.5 3.5l.7.7M10.8 10.8l.7.7M3.5 12.5l.7-.7M10.8 5.2l.7-.7" stroke="#fbbf24" stroke-width="1.2" stroke-linecap="round"/>`;
+    if (type === 'rain') return `<path d="M2 9c0-2 2-4 4-4h5a3 3 0 010 6H5a3 3 0 01-3-3z" fill="#d1d5db"/><path d="M5 12v2M8 12v2M11 12v2" stroke="#93c5fd" stroke-width="1.2" stroke-linecap="round"/>`;
+    return `<path d="M2 9c0-2 2-4 4-4h5a3 3 0 010 6H5a3 3 0 01-3-3z" fill="#d1d5db"/>`;
+  }
 
   body.innerHTML = `
-    <div class="ha-dash-wrap">
-      <!-- Status row -->
-      <div class="ha-dash-status-row">
-        <div class="ha-dash-chip ha-dash-chip-gray">
-          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1L2 4v4c0 3.5 2.5 6.7 6 8 3.5-1.3 6-4.5 6-8V4L8 1z" stroke="white" stroke-width="1.2"/></svg>
-          Bereit
+    <div class="ha2-wrap">
+
+      <!-- ══ DESKTOP LAYOUT ══ -->
+      <div class="ha2-desktop">
+
+        <!-- Top navigation bar -->
+        <div class="ha2-topnav">
+          <button class="ha2-icon-btn" style="font-size:18px">☰</button>
+          ${DESKTOP_TABS.map((t, i) => `<button class="ha2-tab${i === 0 ? ' ha2-tab-active' : ''}">${t}</button>`).join('')}
+          <div style="flex:1"></div>
+          <button class="ha2-icon-btn" style="font-size:20px">⋮</button>
         </div>
-        <div class="ha-dash-chip ha-dash-chip-green">
-          <svg viewBox="0 0 16 16" fill="none" width="10" height="10"><circle cx="8" cy="8" r="4" fill="#22c55e"/></svg>
-          aktiv
-        </div>
-        <div class="ha-dash-chip ha-dash-chip-orange">
-          <svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M8 2L3 7v7h10V7L8 2z" stroke="#fb923c" stroke-width="1.2" stroke-linejoin="round"/><rect x="6" y="10" width="4" height="4" rx="0.5" stroke="#fb923c" stroke-width="1.2"/></svg>
-          Zuhause
-        </div>
-      </div>
 
-      <!-- Weather -->
-      <div class="ha-dash-weather">
-        <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="4" stroke="#fbbf24" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.9 4.9l1.4 1.4M13.7 13.7l1.4 1.4M4.9 15.1l1.4-1.4M13.7 6.3l1.4-1.4" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span class="ha-dash-temp">10,8 °C</span>
-      </div>
+        <!-- Body: sidebar + content -->
+        <div class="ha2-body">
 
-      <!-- Mindfulness quote -->
-      <div class="ha-dash-quote">
-        <p>Fühle, wie deine Füße den Boden berühren – Schritt für Schritt. – Achte dabei bewusst auf deinen Atem und die Sinneseindrücke um dich.</p>
-        <button class="ha-dash-share-btn" title="Teilen">
-          <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="M15 7a2 2 0 100-4 2 2 0 000 4zM5 12a2 2 0 100-4 2 2 0 000 4zM15 17a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.4"/><path d="M7 11l6 3M13 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-
-      <!-- Section separator -->
-      <div class="ha-dash-sep">
-        <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2L4 7v11h12V7L10 2z" stroke="rgba(255,255,255,0.4)" stroke-width="1.3" stroke-linejoin="round"/><rect x="7" y="12" width="6" height="6" rx="0.5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/></svg>
-        <div class="ha-dash-sep-line"></div>
-        <div class="ha-dash-sep-icons">
-          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M1 9 Q4 5 8 5 Q12 5 15 9" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 11 Q5.5 8 8 8 Q10.5 8 13 11" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="13.5" r="1.2" fill="rgba(255,255,255,0.5)"/></svg>
-          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M1 9 Q4 5 8 5 Q12 5 15 9" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 11 Q5.5 8 8 8 Q10.5 8 13 11" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="13.5" r="1.2" fill="rgba(255,255,255,0.5)"/></svg>
-        </div>
-        <span class="ha-dash-outdoor-temp">6,3 °C</span>
-      </div>
-
-      <!-- Door controls -->
-      <div class="ha-dash-doors-wrap">
-        <div class="ha-dash-doors">
-          ${HA_DOORS.map(d => `
-            <div class="ha-door-btn" data-door="${d.id}" data-open="${d.open}">
-              <div class="ha-door-icon" style="border-color:${d.open ? '#ef4444' : '#22c55e'}">
-                ${d.open ? doorSvgOpen : doorSvgClosed}
-              </div>
-              <span class="ha-door-label">${d.label}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Quick icons row -->
-      <div class="ha-dash-quick-row">
-        <button class="ha-dash-quick-btn">
-          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="7" r="3" stroke="rgba(255,79,79,0.9)" stroke-width="1.4"/><path d="M4 18v-1a6 6 0 0112 0v1" stroke="rgba(255,79,79,0.9)" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </button>
-        <button class="ha-dash-quick-btn">
-          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 3v3M10 14v3M3 10h3M14 10h3M5.6 5.6l2.1 2.1M12.3 12.3l2.1 2.1M5.6 14.4l2.1-2.1M12.3 7.7l2.1-2.1" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </button>
-        <button class="ha-dash-quick-btn">
-          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="3" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </button>
-        <button class="ha-dash-quick-btn">
-          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="7" r="3" stroke="rgba(255,255,255,0.5)" stroke-width="1.4"/><path d="M4 18v-1a6 6 0 0112 0v1" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-
-      <!-- Water / status chips -->
-      <div class="ha-dash-status-chips">
-        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 2C5 8 3 10 3 12a5 5 0 0010 0c0-2-2-4-5-10z" stroke="rgba(96,165,250,0.8)" stroke-width="1.3" stroke-linejoin="round" fill="rgba(96,165,250,0.15)"/></svg>
-        <span class="ha-dash-sc">Aus</span>
-        <span class="ha-dash-sc ha-dash-sc-active">Auto</span>
-        <span class="ha-dash-sc">Aus</span>
-        <span class="ha-dash-sc">Aus</span>
-        <span class="ha-dash-sc ha-dash-sc-active">Ein</span>
-      </div>
-
-      <!-- Wohnzimmer section -->
-      <div class="ha-dash-room-section">
-        <div class="ha-dash-room-header">
-          <div class="ha-dash-room-title">
-            <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M2 9h16v9H2zM2 9l8-7 8 7" stroke="rgba(255,255,255,0.7)" stroke-width="1.3" stroke-linejoin="round"/><path d="M6 18v-5a1 1 0 011-1h6a1 1 0 011 1v5" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/></svg>
-            Wohnzimmer
+          <!-- Left sidebar -->
+          <div class="ha2-sidebar">
+            <button class="ha2-sb-btn ha2-sb-active" title="Übersicht">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="2" y="2" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="2" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="11" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="11" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
+            </button>
+            <button class="ha2-sb-btn" title="Energie">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M11 2L4 12h7l-2 6 9-10h-7l2-6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="ha2-sb-btn" title="Personen">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M4 18v-1a6 6 0 0112 0v1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+            <button class="ha2-sb-btn" title="Listen">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M4 5h12M4 10h8M4 15h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+            <button class="ha2-sb-btn" title="Statistiken">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M2 16V10l4-4 4 4 4-6v12H2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="ha2-sb-btn" title="Kalender">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="3" y="4" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3 8h14M7 4V2M13 4V2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+            <button class="ha2-sb-btn" title="Medien">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><polygon points="5,3 17,10 5,17" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </button>
+            <div style="flex:1"></div>
+            <button class="ha2-sb-btn" title="Einstellungen">
+              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.6 4.6l1.4 1.4M14 14l1.4 1.4M4.6 15.4l1.4-1.4M14 6l1.4-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
           </div>
-          <div class="ha-dash-room-meta">
-            <span class="ha-dash-heat-badge">🔴 Heizbetrieb · 19,8 °C</span>
-            <span class="ha-dash-tv-badge">📱 MagentaTV</span>
-          </div>
-        </div>
-        <div class="ha-dash-dials">
-          ${[
-            { label: 'Couch', svgPath: 'M3 13h14v4H3zM3 13c0-2 1-3 3-3h8c2 0 3 1 3 3M3 17v1M17 17v1', val: 62 },
-            { label: 'Tisch', svgPath: 'M2 10h16v2H2zM4 12v6M14 12v6M3 10V6h14v4', val: 40 },
-            { label: 'Küche', svgPath: 'M4 4h16v3H4zM5 7v13M10 7v13M15 7v13M4 13h16', val: 55 },
-          ].map(d => `
-            <div class="ha-dial-item">
-              <div class="ha-dial-circle">
-                <svg viewBox="0 0 80 80" width="80" height="80" class="ha-dial-svg">
-                  <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
-                  <circle cx="40" cy="40" r="32" fill="none" stroke="#06b6d4" stroke-width="6"
-                    stroke-dasharray="${Math.round(d.val * 2.01)} 201"
-                    stroke-dashoffset="50" stroke-linecap="round" transform="rotate(-90 40 40)"/>
-                </svg>
-                <div class="ha-dial-icon">
-                  <svg viewBox="0 0 28 28" fill="none" width="24" height="24">
-                    <path d="${d.svgPath}" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+
+          <!-- Main content -->
+          <div class="ha2-content">
+            <div class="ha2-grid">
+
+              <!-- Modus card -->
+              <div class="ha2-card">
+                <div class="ha2-card-label">Modus</div>
+                <div class="ha2-card-val-row">
+                  <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M3 9l7-7 7 7v9a1 1 0 01-1 1H4a1 1 0 01-1-1z" stroke="#1976d2" stroke-width="1.5" fill="rgba(25,118,210,0.1)"/><path d="M8 19v-7h4v7" stroke="#1976d2" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  <span class="ha2-card-value">Zuhause</span>
                 </div>
-                <button class="ha-dial-menu">⋮</button>
               </div>
-              <span class="ha-dial-label">${d.label}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
 
-    </div>
+              <!-- Fahrzeit card -->
+              <div class="ha2-card">
+                <div class="ha2-card-label">Fahrzeit ins Büro</div>
+                <div class="ha2-card-val-row">
+                  <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M2 9h16l-2-5H4L2 9z" stroke="#1976d2" stroke-width="1.4" fill="rgba(25,118,210,0.1)"/><rect x="2" y="9" width="16" height="6" rx="1" stroke="#1976d2" stroke-width="1.4" fill="rgba(25,118,210,0.05)"/><circle cx="6" cy="16" r="1.5" stroke="#1976d2" stroke-width="1.3"/><circle cx="14" cy="16" r="1.5" stroke="#1976d2" stroke-width="1.3"/></svg>
+                  <span class="ha2-card-value">17 <span style="font-size:13px;font-weight:400;color:#777">min</span></span>
+                </div>
+              </div>
+
+              <!-- Thermostat card (spans 2 rows) -->
+              <div class="ha2-card ha2-thermo-card" style="grid-row:span 2">
+                <button class="ha2-card-menu">⋮</button>
+                <div class="ha2-thermo-arc-wrap">
+                  ${arcSvg(24, 15, 30, 52, 130, '#f97316', 10)}
+                  <div class="ha2-thermo-overlay">
+                    <span class="ha2-thermo-temp">24°C</span>
+                    <span class="ha2-thermo-current">5,0</span>
+                    <span class="ha2-thermo-mode">Leerlauf · Zuhause</span>
+                  </div>
+                </div>
+                <div class="ha2-thermo-icons">
+                  <button class="ha2-thermo-icon-btn" title="Zeitplan">
+                    <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="3" y="4" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3 8h14M7 4V2M13 4V2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  </button>
+                  <button class="ha2-thermo-icon-btn ha2-thermo-icon-active" title="Heizen">
+                    <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z" stroke="#f97316" stroke-width="1.4" fill="rgba(249,115,22,0.15)"/></svg>
+                  </button>
+                  <button class="ha2-thermo-icon-btn" title="Aus">
+                    <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M10 6v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  </button>
+                </div>
+                <div class="ha2-thermo-label">Heizung</div>
+              </div>
+
+              <!-- Weather card -->
+              <div class="ha2-card ha2-weather-card">
+                <div class="ha2-weather-top">
+                  <svg viewBox="0 0 40 40" fill="none" width="34" height="34"><circle cx="20" cy="20" r="9" fill="#fbbf24"/><path d="M20 7v3M20 30v3M7 20h3M30 20h3M10.5 10.5l2.1 2.1M27.4 27.4l2.1 2.1M10.5 29.5l2.1-2.1M27.4 12.6l2.1-2.1" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  <div>
+                    <div class="ha2-weather-desc">Sonnig</div>
+                    <div class="ha2-weather-temp">17,2 °C</div>
+                    <div class="ha2-weather-loc">Rostock <span style="color:#bbb">· 0 mm</span></div>
+                  </div>
+                </div>
+                <div class="ha2-forecast">
+                  ${FORECAST.map(f => `
+                    <div class="ha2-fc-day">
+                      <span class="ha2-fc-label">${f.day}</span>
+                      <svg viewBox="0 0 16 16" fill="none" width="14" height="14">${forecastIcon(f.type)}</svg>
+                      <span class="ha2-fc-lo">${f.lo}°</span>
+                      <span class="ha2-fc-hi">${f.hi}°</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Temperature stack (center col) -->
+              <div class="ha2-temp-stack">
+                ${TEMPS.map(t => `
+                  <div class="ha2-card ha2-temp-card">
+                    <div class="ha2-temp-arc">
+                      ${arcSvg(t.val, 0, 40, 28, 72, t.color, 7)}
+                      <div class="ha2-temp-val-overlay">${t.display}</div>
+                    </div>
+                    <span class="ha2-temp-name">${t.label}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- Scene buttons + sensors + trash (spans 2 cols) -->
+              <div class="ha2-card ha2-bottom-left" style="grid-column:span 2">
+                <div class="ha2-scene-btns">
+                  <button class="ha2-scene-btn">💡 Alle Lampen aus</button>
+                  <button class="ha2-scene-btn">💡 Standard-Beleuchtung</button>
+                  <button class="ha2-scene-btn">💡 Stimmung</button>
+                </div>
+                <div class="ha2-sensor-rows">
+                  <div class="ha2-sensor-row">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 2C5 8 3 10 3 12a5 5 0 0010 0c0-2-2-4-5-10z" stroke="#9ca3af" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                    <span class="ha2-sensor-name">Wassersensor Bad</span>
+                    <span class="ha2-sensor-val">Trocken</span>
+                  </div>
+                  <div class="ha2-sensor-row">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 2C5 8 3 10 3 12a5 5 0 0010 0c0-2-2-4-5-10z" stroke="#9ca3af" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                    <span class="ha2-sensor-name">Wassersensor Küche</span>
+                    <span class="ha2-sensor-val">Trocken</span>
+                  </div>
+                </div>
+                <div class="ha2-section-title">Abfall-Abholtermine</div>
+                <div class="ha2-trash-rows">
+                  <div class="ha2-trash-row">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 4h10M5 4V3h6v1M6 7v5M10 7v5M4 4l1 9h6l1-9" stroke="#6b7280" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="ha2-trash-name">Bioabfall</span>
+                    <span class="ha2-trash-days">7 Tage</span>
+                  </div>
+                  <div class="ha2-trash-row">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 4h10M5 4V3h6v1M6 7v5M10 7v5M4 4l1 9h6l1-9" stroke="#6b7280" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="ha2-trash-name">Altpapier</span>
+                    <span class="ha2-trash-days">9 Tage</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Door/window status -->
+              <div class="ha2-card ha2-doors-card">
+                ${['Wohnungstür','Balkontür','WZ-Fenster links unten','WZ-Fenster links oben','WZ-Fenster rechts unten'].map(d => `
+                  <div class="ha2-door-row">
+                    <span class="ha2-door-dot"></span>
+                    <span class="ha2-door-name">${d}</span>
+                    <span class="ha2-door-state">Geschlossen</span>
+                  </div>
+                `).join('')}
+                <div class="ha2-balcony-row">
+                  <span class="ha2-balcony-title">Überwachung Balkon</span>
+                  <span class="ha2-balcony-badge">
+                    <svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M3 8l4 4 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <button class="ha2-balcony-btn">AKTIVIEREN · ZUHAUSE</button>
+                <button class="ha2-balcony-btn">AKTIVIEREN · UNTERWEGS</button>
+              </div>
+
+            </div><!-- /ha2-grid -->
+          </div><!-- /ha2-content -->
+        </div><!-- /ha2-body -->
+      </div><!-- /ha2-desktop -->
+
+      <!-- ══ MOBILE LAYOUT ══ -->
+      <div class="ha2-mobile">
+
+        <!-- Header -->
+        <div class="ha2-mob-header">
+          <button class="ha2-mob-hbtn">☰</button>
+          <button class="ha2-mob-tab ha2-mob-tab-active">WOONKAMER</button>
+          <button class="ha2-mob-tab">APPARATEN</button>
+          <button class="ha2-mob-hbtn" style="font-size:20px;font-weight:300">›</button>
+          <div style="flex:1"></div>
+          <button class="ha2-mob-hbtn">⋮</button>
+        </div>
+
+        <!-- User presence -->
+        <div class="ha2-mob-presence">
+          <div class="ha2-mob-person">
+            <div class="ha2-mob-avatar">
+              <svg viewBox="0 0 44 44" fill="none" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#e8edf2"/><circle cx="22" cy="17" r="8" fill="#b0bec5"/><ellipse cx="22" cy="38" rx="13" ry="9" fill="#b0bec5"/></svg>
+            </div>
+            <div class="ha2-mob-badge">THUIS</div>
+            <span class="ha2-mob-name">Linda</span>
+          </div>
+          <div class="ha2-mob-person">
+            <div class="ha2-mob-avatar">
+              <svg viewBox="0 0 44 44" fill="none" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#dbeafe"/><circle cx="22" cy="17" r="8" fill="#90caf9"/><ellipse cx="22" cy="38" rx="13" ry="9" fill="#90caf9"/></svg>
+            </div>
+            <div class="ha2-mob-badge">THUIS</div>
+            <span class="ha2-mob-name">Daan</span>
+          </div>
+        </div>
+
+        <!-- Room section -->
+        <div class="ha2-mob-room">
+          <div class="ha2-mob-room-header">
+            <span class="ha2-mob-room-title">Woonkamer</span>
+            <button class="ha2-mob-toggle" data-on="false"></button>
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2l2.5 7h7l-5.7 4.1 2.2 6.9L10 15.8l-6 4.2 2.2-6.9L.5 9h7z" stroke="#3b82f6" stroke-width="1.3" fill="rgba(59,130,246,0.12)"/></svg>
+            <span class="ha2-mob-dev-name">Lamp bank</span>
+            <button class="ha2-mob-toggle" data-on="false"></button>
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2a5 5 0 00-3 9v3h6v-3a5 5 0 00-3-9z" stroke="#3b82f6" stroke-width="1.3" fill="rgba(59,130,246,0.1)"/><path d="M8 14h4M9 17h2" stroke="#3b82f6" stroke-width="1.3" stroke-linecap="round"/></svg>
+            <span class="ha2-mob-dev-name">Lamp bij vuur</span>
+            <button class="ha2-mob-toggle" data-on="false"></button>
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="8" stroke="#9ca3af" stroke-width="1.3"/><path d="M7 10a3 3 0 016 0" stroke="#9ca3af" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="10" r="1.5" fill="#9ca3af"/></svg>
+            <span class="ha2-mob-dev-name">Verwarming Fan stekker</span>
+            <button class="ha2-mob-toggle ha2-mob-toggle-disabled" data-on="true"></button>
+          </div>
+        </div>
+
+        <!-- Thermostat -->
+        <div class="ha2-mob-thermo">
+          <button class="ha2-mob-menu-btn">⋮</button>
+          <div class="ha2-mob-thermo-arc">
+            ${arcSvg(20, 15, 30, 56, 144, '#f97316', 10)}
+            <div class="ha2-mob-thermo-text">
+              <span class="ha2-mob-thermo-big">20<sup class="ha2-mob-thermo-unit">°C</sup></span>
+              <span class="ha2-mob-thermo-cur">19,0</span>
+              <span class="ha2-mob-thermo-mode">Verwarmen · Clock</span>
+            </div>
+          </div>
+          <div class="ha2-mob-thermo-brand">
+            <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z" fill="#f97316" opacity="0.85"/></svg>
+            Nefit
+          </div>
+        </div>
+
+        <!-- Media bar -->
+        <div class="ha2-mob-media">
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="2" y="6" width="10" height="8" rx="1" stroke="white" stroke-width="1.3"/><path d="M12 9l6-3v8l-6-3V9z" stroke="white" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          <span>Woonkamer</span>
+          <div style="flex:1"></div>
+          <button class="ha2-mob-media-btn">⋮</button>
+        </div>
+
+      </div><!-- /ha2-mobile -->
+
+    </div><!-- /ha2-wrap -->
   `;
 
-  // Door toggle
-  body.querySelectorAll('.ha-door-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const isOpen = btn.dataset.open === 'true';
-      const newOpen = !isOpen;
-      btn.dataset.open = String(newOpen);
-      const iconEl = btn.querySelector('.ha-door-icon');
-      iconEl.style.borderColor = newOpen ? '#ef4444' : '#22c55e';
-      iconEl.innerHTML = newOpen ? doorSvgOpen : doorSvgClosed;
+  // Desktop tab switching
+  body.querySelectorAll('.ha2-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      body.querySelectorAll('.ha2-tab').forEach(t => t.classList.remove('ha2-tab-active'));
+      tab.classList.add('ha2-tab-active');
     });
   });
+
+  // Mobile tab switching
+  body.querySelectorAll('.ha2-mob-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      body.querySelectorAll('.ha2-mob-tab').forEach(t => t.classList.remove('ha2-mob-tab-active'));
+      tab.classList.add('ha2-mob-tab-active');
+    });
+  });
+
+  // Toggle switches (mobile)
+  body.querySelectorAll('.ha2-mob-toggle:not(.ha2-mob-toggle-disabled)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const on = btn.dataset.on === 'true';
+      btn.dataset.on = String(!on);
+    });
+  });
+
+  // Responsive: switch layouts below 500px
+  const wrap = body.querySelector('.ha2-wrap');
+  if (wrap && typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(entries => {
+      for (const e of entries) {
+        wrap.classList.toggle('ha2-narrow', e.contentRect.width < 500);
+      }
+    });
+    ro.observe(body);
+  }
 }
 
 // ─────────────────────────────────────────────────
