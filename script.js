@@ -18,7 +18,7 @@ const WIN_CONFIGS = {
   career: {
     title: 'Arbeitsplatz',
     color: 'amber',
-    defaultW: 960, defaultH: 640,
+    defaultW: 960, defaultH: 720,
     svgPath: 'M2 8h24v17H2zM9 8V6a2 2 0 012-2h6a2 2 0 012 2v2M2 14h24',
   },
   terminal: {
@@ -28,9 +28,9 @@ const WIN_CONFIGS = {
     svgPath: 'M2 4h24v20H2zM7 11l4 4-4 4M13 19h8',
   },
   sysmon: {
-    title: 'System Monitor',
+    title: 'Task-Manager',
     color: 'purple',
-    defaultW: 640, defaultH: 500,
+    defaultW: 920, defaultH: 620,
     svgPath: 'M2 4h24v20H2zM4 20l4-7 4 4 4-8 4 6 4-12',
   },
   bambu: {
@@ -216,7 +216,28 @@ let windowOpenCount = 0;
 // ─────────────────────────────────────────────────
 // WINDOW MANAGER
 // ─────────────────────────────────────────────────
+// Map packages/projects to Task-Manager tabs
+const TM_TAB_REDIRECT = { packages: 'appverlauf', projects: 'dienste' };
+let _tmInitialTab = null;
+
 function openWindow(id) {
+  // Redirect packages/projects → Task-Manager with specific tab
+  if (TM_TAB_REDIRECT[id]) {
+    const tab = TM_TAB_REDIRECT[id];
+    if (openWindows.has('sysmon')) {
+      const w = openWindows.get('sysmon');
+      if (w.state === 'minimized') restoreWindow('sysmon');
+      else focusWindow('sysmon');
+      // Switch to the target tab
+      const btn = w.el.querySelector(`.tm-nav-item[data-tab="${tab}"]`);
+      if (btn) btn.click();
+      return;
+    }
+    // Open sysmon fresh with this tab
+    _tmInitialTab = tab;
+    id = 'sysmon';
+  }
+
   if (!WIN_CONFIGS[id]) return;
 
   // If already open: restore/focus
@@ -495,7 +516,14 @@ function initWindowContent(id, el) {
     projects:       buildProjects,
     testimonials:   buildTestimonials,
   };
-  if (contentFns[id]) contentFns[id](body, id);
+  if (contentFns[id]) {
+    if (id === 'sysmon' && typeof _tmInitialTab !== 'undefined' && _tmInitialTab) {
+      contentFns[id](body, id, _tmInitialTab);
+      _tmInitialTab = null;
+    } else {
+      contentFns[id](body, id);
+    }
+  }
 }
 
 // ─────────────────────────────────────────────────
@@ -953,7 +981,7 @@ const TERM_COMMANDS = {
     { t: 'success', v: '[Features]' },
     { t: 'out',     v: '  Boot-Sequenz & Login       Terminal (~20 Befehle)' },
     { t: 'out',     v: '  Fenstermanager (Drag/Resize)  Spiele (Snake, Tetris, ...)' },
-    { t: 'out',     v: '  System Monitor             Bambu Studio & Home Assistant' },
+    { t: 'out',     v: '  Task-Manager               Bambu Studio & Home Assistant' },
     { t: 'out',     v: '  Desktop-Kontextmenü        Globale Suche' },
     { t: 'out',     v: '  Mobile Lock/Home-Screen    Fake Calls & Messages' },
     { t: 'empty' },
@@ -1410,53 +1438,321 @@ const SYSMON_PROCESSES = [
   { name: 'noise_filter',           val: 'ACTIVE', pct: 75, status: '✓ aktiv' },
 ];
 
-function buildSysmon(body) {
-  body.style.overflow = 'auto';
-  const rows = SYSMON_PROCESSES.map(p => `
-    <tr>
-      <td class="sysmon-proc">${p.name}</td>
-      <td class="sysmon-bar-cell">
-        <div class="sysmon-bar-track">
-          <div class="sysmon-bar-fill" data-pct="${p.pct}"></div>
-        </div>
-      </td>
-      <td class="sysmon-val">${p.val}</td>
-      <td class="sysmon-status">${p.status}</td>
-    </tr>
+// ── Task-Manager Skills Data ──
+const TM_SKILLS = [
+  { cat: 'AI & Automation', skills: [
+    { name: 'Prompt Engineering',     pct: 100, level: 'expert' },
+    { name: 'AI Workflow Design',     pct: 100, level: 'expert' },
+    { name: 'n8n / Make.com',         pct: 80,  level: 'advanced' },
+    { name: 'Vibecoding',             pct: 85,  level: 'advanced' },
+  ]},
+  { cat: 'Digital Transformation', skills: [
+    { name: 'Strategy & Roadmapping', pct: 100, level: 'expert' },
+    { name: 'Change Management',      pct: 100, level: 'expert' },
+    { name: 'Tool Adoption',          pct: 100, level: 'expert' },
+    { name: 'Stakeholder Mgmt',       pct: 85,  level: 'advanced' },
+  ]},
+  { cat: 'Technical', skills: [
+    { name: 'Docker / Containerizing', pct: 60, level: 'intermediate' },
+    { name: 'GitHub / GitOps',         pct: 65, level: 'intermediate' },
+    { name: 'Home Assistant',          pct: 85, level: 'advanced' },
+    { name: '3D Printing (FDM)',       pct: 80, level: 'advanced' },
+  ]},
+];
+
+// ── Leistung chart state ──
+let tmPerfInterval = null;
+
+function buildSysmon(body, _id, initialTab) {
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+  body.style.display = 'flex';
+  body.style.flexDirection = 'column';
+  body.style.height = '100%';
+
+  const tabs = [
+    { id: 'prozesse',    label: 'Prozesse',     icon: '<svg viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
+    { id: 'leistung',    label: 'Leistung',     icon: '<svg viewBox="0 0 18 18" fill="none"><polyline points="2,14 5,8 8,11 11,5 14,9 17,3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+    { id: 'benutzer',    label: 'Benutzer',     icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 16c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
+    { id: 'appverlauf',  label: 'App-Verlauf',  icon: '<svg viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>' },
+    { id: 'dienste',     label: 'Dienste',      icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M9 1v3M9 14v3M1 9h3M14 9h3M3.3 3.3l2.1 2.1M12.6 12.6l2.1 2.1M3.3 14.7l2.1-2.1M12.6 5.4l2.1-2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>' },
+  ];
+
+  const startTab = initialTab || 'prozesse';
+
+  const navHtml = tabs.map(t => `
+    <button class="tm-nav-item${t.id === startTab ? ' active' : ''}" data-tab="${t.id}">
+      ${t.icon}<span>${t.label}</span>
+    </button>
   `).join('');
 
   body.innerHTML = `
-    <div class="sysmon">
-      <div class="sysmon-header">
-        <div class="sysmon-title">SYSTEM MONITOR — Niklas Fauteck</div>
-        <div class="sysmon-uptitle">UPTIME: 16+ Jahre</div>
+    <div class="tm-wrap">
+      <div class="tm-sidebar expanded" id="tm-sidebar">
+        <button class="tm-sidebar-toggle" id="tm-sidebar-toggle">
+          <svg viewBox="0 0 18 18" fill="none" width="18" height="18"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Task-Manager</span>
+        </button>
+        <nav class="tm-nav">${navHtml}</nav>
       </div>
-      <table class="sysmon-table">
-        <thead>
-          <tr>
-            <th>PROZESS</th>
-            <th>AUSLASTUNG</th>
-            <th>WERT</th>
-            <th>STATUS</th>
-          </tr>
-        </thead>
+      <div class="tm-content" id="tm-content"></div>
+    </div>
+  `;
+
+  const sidebar = body.querySelector('#tm-sidebar');
+  const content = body.querySelector('#tm-content');
+
+  // Toggle sidebar
+  body.querySelector('#tm-sidebar-toggle').addEventListener('click', () => {
+    sidebar.classList.toggle('expanded');
+  });
+
+  // Tab switching
+  body.querySelectorAll('.tm-nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      body.querySelectorAll('.tm-nav-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTmTab(content, btn.dataset.tab);
+    });
+  });
+
+  renderTmTab(content, startTab);
+}
+
+function renderTmTab(container, tabId) {
+  // Clean up any running intervals
+  if (tmPerfInterval) { clearInterval(tmPerfInterval); tmPerfInterval = null; }
+
+  switch (tabId) {
+    case 'prozesse':  return renderTmProzesse(container);
+    case 'leistung':  return renderTmLeistung(container);
+    case 'benutzer':  return renderTmBenutzer(container);
+    case 'appverlauf': return renderTmApps(container);
+    case 'dienste':   return renderTmDienste(container);
+  }
+}
+
+function renderTmProzesse(el) {
+  const rows = SYSMON_PROCESSES.map(p => `
+    <tr>
+      <td class="tm-proc-name">${p.name}</td>
+      <td class="tm-proc-bar-cell">
+        <div class="tm-proc-bar-track">
+          <div class="tm-proc-bar-fill" data-pct="${p.pct}"></div>
+        </div>
+      </td>
+      <td class="tm-proc-val">${p.val}</td>
+      <td class="tm-proc-status">${p.status}</td>
+    </tr>
+  `).join('');
+
+  el.innerHTML = `
+    <div class="tm-proc">
+      <div class="tm-proc-header">
+        <div class="tm-proc-title">PROZESSE — Niklas Fauteck</div>
+        <div class="tm-proc-uptime">UPTIME: 16+ Jahre</div>
+      </div>
+      <table>
+        <thead><tr>
+          <th>PROZESS</th><th>AUSLASTUNG</th><th>WERT</th><th>STATUS</th>
+        </tr></thead>
         <tbody>${rows}</tbody>
       </table>
-      <div class="sysmon-footer">
-        <div class="sysmon-kv"><span class="k">Kernel</span><span class="v">Communication × Technology</span></div>
-        <div class="sysmon-kv"><span class="k">Shell</span><span class="v">Pragmatism 2026.03</span></div>
-        <div class="sysmon-kv"><span class="k">Standort</span><span class="v">Köln, Deutschland</span></div>
-        <div class="sysmon-kv"><span class="k">Erreichbar</span><span class="v">niklas@fauteck.eu</span></div>
+      <div class="tm-proc-footer">
+        <div class="tm-proc-kv"><span class="k">Kernel</span><span class="v">Communication × Technology</span></div>
+        <div class="tm-proc-kv"><span class="k">Shell</span><span class="v">Pragmatism 2026.03</span></div>
+        <div class="tm-proc-kv"><span class="k">Standort</span><span class="v">Köln, Deutschland</span></div>
+        <div class="tm-proc-kv"><span class="k">Erreichbar</span><span class="v">niklas@fauteck.eu</span></div>
+      </div>
+    </div>
+  `;
+  setTimeout(() => {
+    el.querySelectorAll('.tm-proc-bar-fill').forEach(b => { b.style.width = b.dataset.pct + '%'; });
+  }, 150);
+}
+
+function renderTmLeistung(el) {
+  // Generate initial random data for the chart
+  const dataPoints = 60;
+  let chartData = Array.from({ length: dataPoints }, () => 40 + Math.random() * 50);
+
+  const resources = [
+    { label: 'Fokus', val: '92%', sub: 'bridge_business_tech' },
+    { label: 'Kapazität', val: '82%', sub: '13.0 / 15.8 GB' },
+    { label: 'Netzwerk', val: 'Stabil', sub: '8,0 KBit/s' },
+    { label: 'GPU', val: '4%', sub: 'curiosity_engine' },
+  ];
+
+  const resHtml = resources.map((r, i) => {
+    const sparkPts = Array.from({ length: 10 }, (_, j) => {
+      const y = 18 - (10 + Math.random() * 8);
+      return `${j * 7},${y}`;
+    }).join(' ');
+    return `
+      <div class="tm-perf-res-item${i === 0 ? ' active' : ''}" data-res="${i}">
+        <div class="tm-perf-res-label">${r.label}</div>
+        <div class="tm-perf-res-val">${r.val}</div>
+        <div class="tm-perf-res-sub">${r.sub}</div>
+        <svg class="tm-perf-res-spark" viewBox="0 0 63 20"><polyline points="${sparkPts}"/></svg>
+      </div>
+    `;
+  }).join('');
+
+  const termLines = [
+    { dim: '[init]', val: ' NiklasOS kernel loaded — Communication × Technology' },
+    { dim: '[proc]', val: ' bridge_business_tech @ 98% — ✓ aktiv' },
+    { dim: '[proc]', val: ' automation_daemon @ HIGH — ✓ läuft' },
+    { dim: '[proc]', val: ' curiosity_process @ ALWAYS — ✓ läuft' },
+    { dim: '[sys] ', val: ' Standort: Köln · Shell: Pragmatism 2026.03' },
+    { dim: '[net] ', val: ' niklas@fauteck.eu — erreichbar' },
+  ];
+  const termHtml = termLines.map(l => `<div class="tm-perf-term-line"><span class="dim">${l.dim}</span><span class="val">${l.val}</span></div>`).join('');
+
+  el.innerHTML = `
+    <div class="tm-perf">
+      <div class="tm-perf-resources">${resHtml}</div>
+      <div class="tm-perf-chart-area">
+        <div class="tm-perf-chart-title">% Auslastung</div>
+        <div class="tm-perf-chart-box">
+          <div class="tm-perf-chart-pct" id="tm-chart-pct">${Math.round(chartData[chartData.length - 1])}%</div>
+          <div class="tm-perf-chart-label">60 Sekunden</div>
+          <svg viewBox="0 0 600 200" preserveAspectRatio="none" id="tm-chart-svg">
+            <defs>
+              <linearGradient id="tm-perf-gradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#52b788" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#52b788" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g class="tm-perf-chart-grid" id="tm-chart-grid"></g>
+            <polygon class="tm-perf-chart-fill" id="tm-chart-fill"/>
+            <polyline class="tm-perf-chart-line" id="tm-chart-line"/>
+          </svg>
+        </div>
+        <div class="tm-perf-metrics">
+          <div class="tm-perf-metric"><span class="k">Kernel</span><span class="v">Communication × Technology</span></div>
+          <div class="tm-perf-metric"><span class="k">Shell</span><span class="v">Pragmatism 2026.03</span></div>
+          <div class="tm-perf-metric"><span class="k">Standort</span><span class="v">Köln, DE</span></div>
+          <div class="tm-perf-metric"><span class="k">Erreichbar</span><span class="v">niklas@fauteck.eu</span></div>
+        </div>
+        <div class="tm-perf-terminal">${termHtml}</div>
       </div>
     </div>
   `;
 
-  // Animate bars after a brief delay
-  setTimeout(() => {
-    body.querySelectorAll('.sysmon-bar-fill').forEach(el => {
-      el.style.width = el.dataset.pct + '%';
+  // Draw chart grid
+  const gridEl = el.querySelector('#tm-chart-grid');
+  let gridSvg = '';
+  for (let i = 1; i <= 4; i++) gridSvg += `<line x1="0" y1="${i * 40}" x2="600" y2="${i * 40}"/>`;
+  for (let i = 1; i < 6; i++) gridSvg += `<line x1="${i * 100}" y1="0" x2="${i * 100}" y2="200"/>`;
+  gridEl.innerHTML = gridSvg;
+
+  function updateChart() {
+    chartData.push(40 + Math.random() * 50);
+    if (chartData.length > dataPoints) chartData.shift();
+
+    const line = el.querySelector('#tm-chart-line');
+    const fill = el.querySelector('#tm-chart-fill');
+    const pctEl = el.querySelector('#tm-chart-pct');
+    if (!line) return;
+
+    const step = 600 / (dataPoints - 1);
+    const pts = chartData.map((v, i) => `${i * step},${200 - v * 2}`).join(' ');
+    line.setAttribute('points', pts);
+    fill.setAttribute('points', `0,200 ${pts} 600,200`);
+    pctEl.textContent = Math.round(chartData[chartData.length - 1]) + '%';
+  }
+
+  updateChart();
+  tmPerfInterval = setInterval(updateChart, 1500);
+
+  // Resource tab click (visual only)
+  el.querySelectorAll('.tm-perf-res-item').forEach(item => {
+    item.addEventListener('click', () => {
+      el.querySelectorAll('.tm-perf-res-item').forEach(r => r.classList.remove('active'));
+      item.classList.add('active');
     });
-  }, 200);
+  });
+}
+
+function renderTmBenutzer(el) {
+  const catsHtml = TM_SKILLS.map(cat => `
+    <div class="tm-skill-cat">
+      <div class="tm-skill-cat-title">${cat.cat}</div>
+      ${cat.skills.map(s => `
+        <div class="tm-skill-row">
+          <div class="tm-skill-label">${s.name}</div>
+          <div class="tm-skill-bar-track">
+            <div class="tm-skill-bar-fill" data-pct="${s.pct}"></div>
+          </div>
+          <div class="tm-skill-level">${s.level}</div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+
+  el.innerHTML = `
+    <div class="tm-users">
+      <div class="tm-users-header"># Capability Report — niklas-fauteck v2026.03</div>
+      ${catsHtml}
+    </div>
+  `;
+
+  setTimeout(() => {
+    el.querySelectorAll('.tm-skill-bar-fill').forEach(b => { b.style.width = b.dataset.pct + '%'; });
+  }, 150);
+}
+
+function renderTmApps(el) {
+  const catsHtml = PACKAGES.map(cat => `
+    <div class="tm-apps-cat">
+      <div class="tm-apps-cat-title">${cat.cat}</div>
+      ${cat.items.map(p => `
+        <div class="tm-apps-item">
+          <span class="tm-apps-name">${p.name}</span>
+          <span class="tm-apps-ver">${p.ver}</span>
+          <span class="tm-apps-check">✓ installiert</span>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+
+  el.innerHTML = `
+    <div class="tm-apps">
+      <div class="tm-apps-header">
+        <div class="tm-apps-title">App-Verlauf</div>
+        <div class="tm-apps-cmd">apt list --installed</div>
+      </div>
+      ${catsHtml}
+    </div>
+  `;
+}
+
+function renderTmDienste(el) {
+  const cardsHtml = PROJECTS_DATA.map(p => `
+    <div class="tm-svc-card">
+      <div class="tm-svc-card-header">
+        <div class="tm-svc-name">${escapeHtml(p.name)}</div>
+        <div class="tm-svc-period">${escapeHtml(p.period)}</div>
+      </div>
+      <div class="tm-svc-role">${escapeHtml(p.role)}</div>
+      <div class="tm-svc-desc">${escapeHtml(p.desc)}</div>
+      <div class="tm-svc-tech">${p.tech.map(t => `<span class="tm-svc-tag">${escapeHtml(t)}</span>`).join('')}</div>
+      <div class="tm-svc-impact">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><polyline points="2,12 6,6 10,9 14,3" stroke="#52b788" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ${escapeHtml(p.impact)}
+      </div>
+    </div>
+  `).join('');
+
+  el.innerHTML = `
+    <div class="tm-services">
+      <div class="tm-services-header">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 5h5l1.5 2H14v8H2V5z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+        /Niklas/Dienste
+      </div>
+      ${cardsHtml}
+    </div>
+  `;
 }
 
 // ─────────────────────────────────────────────────
@@ -5135,7 +5431,7 @@ const MOB_LABELS = {
   about:         'Brave',
   career:        'Karriere',
   terminal:      'Terminal',
-  sysmon:        'System',
+  sysmon:        'Dev Tools',
   bambu:         'Bambu App',
   homeassistant: 'Home Asst.',
   packages:      'Apps',
@@ -5511,7 +5807,12 @@ function openMobileWindow(id) {
     projects:       buildProjects,
     testimonials:   buildTestimonials,
   };
-  if (contentFns[id]) contentFns[id](body, id);
+  // Redirect packages/projects to Task-Manager with tab on mobile too
+  if (TM_TAB_REDIRECT[id]) {
+    buildSysmon(body, 'sysmon', TM_TAB_REDIRECT[id]);
+  } else if (contentFns[id]) {
+    contentFns[id](body, id);
+  }
 }
 
 function closeMobileWindow() {
@@ -5977,7 +6278,7 @@ function startOnboardingTour() {
 
   const steps = [
     { target: '[data-window="career"]', title: 'Arbeitsplatz', desc: 'Mein Werdegang und meine Karrierestationen.' },
-    { target: '[data-window="sysmon"]', title: 'System Monitor', desc: 'Skills und Kompetenzen auf einen Blick.' },
+    { target: '[data-window="sysmon"]', title: 'Task-Manager', desc: 'Skills, Leistung und Kompetenzen auf einen Blick.' },
     { target: '[data-window="terminal"]', title: 'Terminal', desc: 'Interaktives Terminal — tippe "help" für Befehle.' },
     { target: '#tb-contact-btn', title: 'Kontakt', desc: 'Direkt Kontakt aufnehmen — per E-Mail oder LinkedIn.' },
   ];
