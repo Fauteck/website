@@ -155,6 +155,30 @@ const WIN_CONFIGS = {
     defaultW: 380, defaultH: 540,
     svgPath: 'M6 2h4v4H6zM10 2h4v4H10zM10 6h4v4H10zM14 6h4v4H14z',
   },
+  pong: {
+    title: 'Pong',
+    color: 'blue',
+    defaultW: 420, defaultH: 500,
+    svgPath: 'M4 4h2v20H4zM22 4h2v20H22zM13 14a2 2 0 100-4 2 2 0 000 4z',
+  },
+  tictactoe: {
+    title: 'Tic-Tac-Toe',
+    color: 'pink',
+    defaultW: 380, defaultH: 460,
+    svgPath: 'M10 4v20M18 4v20M4 10h20M4 18h20',
+  },
+  flappybird: {
+    title: 'Flappy Bird',
+    color: 'yellow',
+    defaultW: 360, defaultH: 540,
+    svgPath: 'M12 8a4 4 0 108 0 4 4 0 00-8 0zM6 2v24M22 2v10M22 18v6',
+  },
+  sudoku: {
+    title: 'Sudoku',
+    color: 'amber',
+    defaultW: 440, defaultH: 540,
+    svgPath: 'M3 3h22v22H3zM3 10.3h22M3 17.6h22M10.3 3v22M17.6 3v22',
+  },
   blog: {
     title: 'Texteditor',
     color: 'green',
@@ -463,6 +487,10 @@ function initWindowContent(id, el) {
     solitaire:      buildSolitaire,
     memory:         buildMemory,
     tetris:         buildTetris,
+    pong:           buildPong,
+    tictactoe:      buildTicTacToe,
+    flappybird:     buildFlappyBird,
+    sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
     testimonials:   buildTestimonials,
@@ -3680,6 +3708,387 @@ function initContextMenu() {
 }
 
 // ─────────────────────────────────────────────────
+// PONG
+// ─────────────────────────────────────────────────
+function buildPong(body) {
+  body.style.padding = '0';
+  body.innerHTML = `
+    <div class="pong-wrap">
+      <div class="pong-scores"><span id="pong-ai-score">0</span> — <span id="pong-player-score">0</span></div>
+      <canvas id="pong-canvas" width="300" height="400"></canvas>
+      <div class="pong-overlay" id="pong-overlay">
+        <div class="pong-overlay-title">Pong</div>
+        <div class="pong-overlay-sub">Tap to start</div>
+      </div>
+    </div>
+  `;
+  const canvas = body.querySelector('#pong-canvas');
+  const ctx = canvas.getContext('2d');
+  const overlay = body.querySelector('#pong-overlay');
+  const W = canvas.width, H = canvas.height;
+  const PADDLE_W = 60, PADDLE_H = 8, BALL_R = 5, WIN_SCORE = 5;
+  let playerX, aiX, ballX, ballY, ballVX, ballVY, playerScore, aiScore, running, animId;
+
+  function reset() {
+    playerX = W / 2 - PADDLE_W / 2;
+    aiX = W / 2 - PADDLE_W / 2;
+    ballX = W / 2; ballY = H / 2;
+    const angle = (Math.random() * 0.8 + 0.2) * (Math.random() < 0.5 ? 1 : -1);
+    ballVX = 3 * angle; ballVY = 3 * (Math.random() < 0.5 ? 1 : -1);
+    playerScore = 0; aiScore = 0;
+    body.querySelector('#pong-player-score').textContent = '0';
+    body.querySelector('#pong-ai-score').textContent = '0';
+  }
+
+  function resetBall() {
+    ballX = W / 2; ballY = H / 2;
+    const angle = (Math.random() * 0.8 + 0.2) * (Math.random() < 0.5 ? 1 : -1);
+    ballVX = 3 * angle; ballVY = 3 * (Math.random() < 0.5 ? 1 : -1);
+  }
+
+  function draw() {
+    ctx.fillStyle = '#0f172a'; ctx.fillRect(0, 0, W, H);
+    ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#3b82f6'; ctx.fillRect(aiX, 12, PADDLE_W, PADDLE_H);
+    ctx.fillStyle = '#22c55e'; ctx.fillRect(playerX, H - 20, PADDLE_W, PADDLE_H);
+    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(ballX, ballY, BALL_R, 0, Math.PI * 2); ctx.fill();
+  }
+
+  function update() {
+    ballX += ballVX; ballY += ballVY;
+    if (ballX - BALL_R < 0 || ballX + BALL_R > W) ballVX = -ballVX;
+    // AI paddle
+    const aiCenter = aiX + PADDLE_W / 2;
+    if (aiCenter < ballX - 8) aiX += 2.5;
+    else if (aiCenter > ballX + 8) aiX -= 2.5;
+    aiX = Math.max(0, Math.min(W - PADDLE_W, aiX));
+    // Player paddle collision
+    if (ballY + BALL_R >= H - 20 && ballX >= playerX && ballX <= playerX + PADDLE_W && ballVY > 0) {
+      ballVY = -ballVY; ballVX += ((ballX - (playerX + PADDLE_W / 2)) / (PADDLE_W / 2)) * 2;
+    }
+    // AI paddle collision
+    if (ballY - BALL_R <= 20 && ballX >= aiX && ballX <= aiX + PADDLE_W && ballVY < 0) {
+      ballVY = -ballVY;
+    }
+    // Score
+    if (ballY > H + 10) { aiScore++; body.querySelector('#pong-ai-score').textContent = aiScore; resetBall(); }
+    if (ballY < -10) { playerScore++; body.querySelector('#pong-player-score').textContent = playerScore; resetBall(); }
+    if (playerScore >= WIN_SCORE || aiScore >= WIN_SCORE) {
+      running = false;
+      overlay.querySelector('.pong-overlay-title').textContent = playerScore >= WIN_SCORE ? 'Du gewinnst!' : 'KI gewinnt!';
+      overlay.querySelector('.pong-overlay-sub').textContent = `${playerScore} — ${aiScore} · Tap to retry`;
+      overlay.style.display = 'flex';
+      return;
+    }
+    draw();
+    if (running) animId = requestAnimationFrame(update);
+  }
+
+  function start() {
+    overlay.style.display = 'none'; reset(); running = true; animId = requestAnimationFrame(update);
+  }
+
+  // Controls
+  canvas.addEventListener('mousemove', e => { if (!running) return; const r = canvas.getBoundingClientRect(); playerX = ((e.clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); });
+  canvas.addEventListener('touchmove', e => { if (!running) return; e.preventDefault(); const r = canvas.getBoundingClientRect(); playerX = ((e.touches[0].clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); }, { passive: false });
+  document.addEventListener('keydown', e => { if (!running) return; if (e.key === 'ArrowLeft') playerX = Math.max(0, playerX - 20); if (e.key === 'ArrowRight') playerX = Math.min(W - PADDLE_W, playerX + 20); });
+  overlay.addEventListener('click', start);
+  reset(); draw();
+}
+
+// ─────────────────────────────────────────────────
+// TIC-TAC-TOE
+// ─────────────────────────────────────────────────
+function buildTicTacToe(body) {
+  body.style.padding = '0';
+  let board, gameOver, turn;
+
+  function checkWin(b) {
+    const lines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    for (const [a,c,d] of lines) { if (b[a] && b[a] === b[c] && b[a] === b[d]) return { winner: b[a], line: [a,c,d] }; }
+    return b.includes('') ? null : { winner: 'draw', line: [] };
+  }
+
+  function minimax(b, isMax) {
+    const result = checkWin(b);
+    if (result) { if (result.winner === 'O') return 10; if (result.winner === 'X') return -10; return 0; }
+    if (isMax) {
+      let best = -Infinity;
+      for (let i = 0; i < 9; i++) { if (b[i] === '') { b[i] = 'O'; best = Math.max(best, minimax(b, false)); b[i] = ''; } }
+      return best;
+    } else {
+      let best = Infinity;
+      for (let i = 0; i < 9; i++) { if (b[i] === '') { b[i] = 'X'; best = Math.min(best, minimax(b, true)); b[i] = ''; } }
+      return best;
+    }
+  }
+
+  function aiMove() {
+    let bestScore = -Infinity, bestIdx = -1;
+    for (let i = 0; i < 9; i++) {
+      if (board[i] === '') { board[i] = 'O'; const score = minimax(board, false); board[i] = ''; if (score > bestScore) { bestScore = score; bestIdx = i; } }
+    }
+    if (bestIdx >= 0) board[bestIdx] = 'O';
+  }
+
+  function render() {
+    const result = checkWin(board);
+    let statusText = turn === 'X' ? 'Dein Zug (X)' : 'KI denkt...';
+    if (result) {
+      gameOver = true;
+      if (result.winner === 'X') statusText = 'Du gewinnst! 🎉';
+      else if (result.winner === 'O') statusText = 'KI gewinnt!';
+      else statusText = 'Unentschieden!';
+    }
+    body.innerHTML = `
+      <div class="ttt-wrap">
+        <div class="ttt-status">${statusText}</div>
+        <div class="ttt-grid">
+          ${board.map((c, i) => {
+            const win = result && result.line.includes(i) ? ' ttt-win' : '';
+            const cls = c === 'X' ? ' ttt-x' : c === 'O' ? ' ttt-o' : '';
+            return `<button class="ttt-cell${cls}${win}" data-idx="${i}" ${c || gameOver ? 'disabled' : ''}>${c}</button>`;
+          }).join('')}
+        </div>
+        <button class="ttt-new-game">Neues Spiel</button>
+      </div>
+    `;
+    body.querySelector('.ttt-new-game').addEventListener('click', init);
+    body.querySelectorAll('.ttt-cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        const idx = +cell.dataset.idx;
+        if (board[idx] || gameOver) return;
+        board[idx] = 'X';
+        turn = 'O';
+        const r = checkWin(board);
+        if (!r) { aiMove(); turn = 'X'; }
+        render();
+      });
+    });
+  }
+
+  function init() { board = Array(9).fill(''); gameOver = false; turn = 'X'; render(); }
+  init();
+}
+
+// ─────────────────────────────────────────────────
+// FLAPPY BIRD
+// ─────────────────────────────────────────────────
+function buildFlappyBird(body) {
+  body.style.padding = '0';
+  body.innerHTML = `
+    <div class="fb-wrap">
+      <div class="fb-scores"><span>Score: <strong id="fb-score">0</strong></span><span>Best: <strong id="fb-best">0</strong></span></div>
+      <canvas id="fb-canvas" width="280" height="400"></canvas>
+      <div class="fb-overlay" id="fb-overlay">
+        <div class="fb-overlay-title">Flappy Bird</div>
+        <div class="fb-overlay-sub">Tap or Space to start</div>
+      </div>
+    </div>
+  `;
+  const canvas = body.querySelector('#fb-canvas');
+  const ctx = canvas.getContext('2d');
+  const overlay = body.querySelector('#fb-overlay');
+  const W = canvas.width, H = canvas.height;
+  const GRAVITY = 0.35, FLAP = -6, PIPE_W = 40, GAP = 120, PIPE_SPEED = 2, BIRD_SIZE = 14;
+  let birdY, birdV, pipes, score, best = 0, running, animId, frameCount;
+
+  function reset() {
+    birdY = H / 2; birdV = 0; pipes = []; score = 0; frameCount = 0;
+    body.querySelector('#fb-score').textContent = '0';
+  }
+
+  function addPipe() {
+    const topH = 50 + Math.random() * (H - GAP - 120);
+    pipes.push({ x: W + 10, topH, scored: false });
+  }
+
+  function draw() {
+    // Sky
+    ctx.fillStyle = '#1a1a2e'; ctx.fillRect(0, 0, W, H);
+    // Ground
+    ctx.fillStyle = '#2d4a22'; ctx.fillRect(0, H - 30, W, 30);
+    ctx.fillStyle = '#3d6b2e'; ctx.fillRect(0, H - 30, W, 4);
+    // Pipes
+    pipes.forEach(p => {
+      ctx.fillStyle = '#22c55e';
+      ctx.fillRect(p.x, 0, PIPE_W, p.topH);
+      ctx.fillRect(p.x, p.topH + GAP, PIPE_W, H - p.topH - GAP - 30);
+      ctx.fillStyle = '#16a34a';
+      ctx.fillRect(p.x - 3, p.topH - 16, PIPE_W + 6, 16);
+      ctx.fillRect(p.x - 3, p.topH + GAP, PIPE_W + 6, 16);
+    });
+    // Bird
+    ctx.fillStyle = '#facc15';
+    ctx.beginPath();
+    ctx.arc(60, birdY, BIRD_SIZE, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.arc(66, birdY - 3, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#1a1a2e';
+    ctx.beginPath(); ctx.arc(68, birdY - 3, 2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#f97316';
+    ctx.fillRect(72, birdY, 8, 4);
+  }
+
+  function update() {
+    frameCount++;
+    birdV += GRAVITY;
+    birdY += birdV;
+    if (frameCount % 90 === 0) addPipe();
+    pipes.forEach(p => { p.x -= PIPE_SPEED; });
+    pipes = pipes.filter(p => p.x + PIPE_W > -10);
+    // Score
+    pipes.forEach(p => {
+      if (!p.scored && p.x + PIPE_W < 60) { p.scored = true; score++; body.querySelector('#fb-score').textContent = score; }
+    });
+    // Collision
+    const hit = pipes.some(p => {
+      if (60 + BIRD_SIZE > p.x && 60 - BIRD_SIZE < p.x + PIPE_W) {
+        if (birdY - BIRD_SIZE < p.topH || birdY + BIRD_SIZE > p.topH + GAP) return true;
+      }
+      return false;
+    });
+    if (hit || birdY + BIRD_SIZE > H - 30 || birdY - BIRD_SIZE < 0) {
+      running = false;
+      if (score > best) { best = score; body.querySelector('#fb-best').textContent = best; }
+      overlay.querySelector('.fb-overlay-title').textContent = 'Game Over';
+      overlay.querySelector('.fb-overlay-sub').textContent = `Score: ${score} · Tap to retry`;
+      overlay.style.display = 'flex';
+      return;
+    }
+    draw();
+    if (running) animId = requestAnimationFrame(update);
+  }
+
+  function flap() { if (running) birdV = FLAP; }
+  function start() { overlay.style.display = 'none'; reset(); running = true; addPipe(); animId = requestAnimationFrame(update); }
+
+  canvas.addEventListener('click', () => { if (running) flap(); });
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); if (running) flap(); }, { passive: false });
+  document.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); if (running) flap(); } });
+  overlay.addEventListener('click', start);
+  reset(); draw();
+}
+
+// ─────────────────────────────────────────────────
+// SUDOKU
+// ─────────────────────────────────────────────────
+function buildSudoku(body) {
+  body.style.padding = '0';
+  let solution, puzzle, selected;
+
+  function generateBoard() {
+    const b = Array.from({ length: 9 }, () => Array(9).fill(0));
+    function isValid(b, r, c, n) {
+      for (let i = 0; i < 9; i++) { if (b[r][i] === n || b[i][c] === n) return false; }
+      const br = Math.floor(r / 3) * 3, bc = Math.floor(c / 3) * 3;
+      for (let i = br; i < br + 3; i++) for (let j = bc; j < bc + 3; j++) { if (b[i][j] === n) return false; }
+      return true;
+    }
+    function fill(b) {
+      for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
+        if (b[r][c] === 0) {
+          const nums = [1,2,3,4,5,6,7,8,9].sort(() => Math.random() - 0.5);
+          for (const n of nums) { if (isValid(b, r, c, n)) { b[r][c] = n; if (fill(b)) return true; b[r][c] = 0; } }
+          return false;
+        }
+      }
+      return true;
+    }
+    fill(b);
+    return b;
+  }
+
+  function makePuzzle(sol) {
+    const p = sol.map(r => [...r]);
+    let remove = 42 + Math.floor(Math.random() * 6);
+    while (remove > 0) {
+      const r = Math.floor(Math.random() * 9), c = Math.floor(Math.random() * 9);
+      if (p[r][c] !== 0) { p[r][c] = 0; remove--; }
+    }
+    return p;
+  }
+
+  function hasConflict(r, c) {
+    const val = puzzle[r][c];
+    if (!val) return false;
+    for (let i = 0; i < 9; i++) { if (i !== c && puzzle[r][i] === val) return true; if (i !== r && puzzle[i][c] === val) return true; }
+    const br = Math.floor(r / 3) * 3, bc = Math.floor(c / 3) * 3;
+    for (let i = br; i < br + 3; i++) for (let j = bc; j < bc + 3; j++) { if (!(i === r && j === c) && puzzle[i][j] === val) return true; }
+    return false;
+  }
+
+  function isComplete() {
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) { if (puzzle[r][c] === 0 || hasConflict(r, c)) return false; }
+    return true;
+  }
+
+  function render() {
+    const won = isComplete();
+    body.innerHTML = `
+      <div class="sdk-wrap">
+        <div class="sdk-header">
+          <span class="sdk-title">Sudoku</span>
+          ${won ? '<span class="sdk-won">🎉 Gelöst!</span>' : ''}
+        </div>
+        <div class="sdk-grid">
+          ${puzzle.map((row, r) => row.map((val, c) => {
+            const given = solution[r][c] === val && val !== 0 && makePuzzle._origPuzzle && makePuzzle._origPuzzle[r][c] !== 0;
+            const isGiven = render._given && render._given[r][c];
+            const conflict = val !== 0 && hasConflict(r, c) ? ' sdk-conflict' : '';
+            const sel = selected && selected[0] === r && selected[1] === c ? ' sdk-selected' : '';
+            const boxRight = c % 3 === 2 && c < 8 ? ' sdk-box-right' : '';
+            const boxBottom = r % 3 === 2 && r < 8 ? ' sdk-box-bottom' : '';
+            return `<div class="sdk-cell${isGiven ? ' sdk-given' : ''}${conflict}${sel}${boxRight}${boxBottom}" data-r="${r}" data-c="${c}">${val || ''}</div>`;
+          }).join('')).join('')}
+        </div>
+        <div class="sdk-numpad">
+          ${[1,2,3,4,5,6,7,8,9].map(n => `<button class="sdk-num-btn" data-num="${n}">${n}</button>`).join('')}
+          <button class="sdk-num-btn sdk-num-del" data-num="0">✕</button>
+        </div>
+        <div class="sdk-actions">
+          <button class="sdk-action-btn" id="sdk-new">Neues Spiel</button>
+          <button class="sdk-action-btn" id="sdk-solve">Lösen</button>
+        </div>
+      </div>
+    `;
+
+    body.querySelectorAll('.sdk-cell:not(.sdk-given)').forEach(cell => {
+      cell.addEventListener('click', () => {
+        selected = [+cell.dataset.r, +cell.dataset.c];
+        render();
+      });
+    });
+    body.querySelectorAll('.sdk-num-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!selected) return;
+        const [r, c] = selected;
+        if (render._given[r][c]) return;
+        puzzle[r][c] = +btn.dataset.num;
+        render();
+      });
+    });
+    body.querySelector('#sdk-new')?.addEventListener('click', init);
+    body.querySelector('#sdk-solve')?.addEventListener('click', () => {
+      puzzle = solution.map(r => [...r]);
+      selected = null;
+      render();
+    });
+  }
+
+  function init() {
+    solution = generateBoard();
+    puzzle = makePuzzle(solution);
+    render._given = puzzle.map(r => r.map(v => v !== 0));
+    selected = null;
+    render();
+  }
+  init();
+}
+
+// ─────────────────────────────────────────────────
 // GAMES FOLDER
 // ─────────────────────────────────────────────────
 function buildGames(body) {
@@ -3690,6 +4099,10 @@ function buildGames(body) {
     { id: 'memory',      label: 'Memory',       icon: '🧠', color: '#7c3aed' },
     { id: 'snake',       label: 'Snake',         icon: '🐍', color: '#22c55e' },
     { id: 'tetris',      label: 'Tetris',        icon: '🧱', color: '#0d9488' },
+    { id: 'pong',        label: 'Pong',          icon: '🏓', color: '#3b82f6' },
+    { id: 'tictactoe',   label: 'Tic-Tac-Toe',   icon: '❌', color: '#ec4899' },
+    { id: 'flappybird',  label: 'Flappy Bird',    icon: '🐦', color: '#eab308' },
+    { id: 'sudoku',      label: 'Sudoku',         icon: '🔢', color: '#f59e0b' },
   ];
 
   body.innerHTML = `
@@ -5090,6 +5503,10 @@ function openMobileWindow(id) {
     solitaire:      buildSolitaire,
     memory:         buildMemory,
     tetris:         buildTetris,
+    pong:           buildPong,
+    tictactoe:      buildTicTacToe,
+    flappybird:     buildFlappyBird,
+    sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
     testimonials:   buildTestimonials,
