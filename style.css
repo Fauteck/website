@@ -5015,6 +5015,22 @@ kbd.search-esc {
   background: #e8e9ec;
   font-family: var(--font-mono);
 }
+.blog-editor-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.blog-rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.blog-rss-link:hover {
+  color: #f97316;
+}
 .blog-content {
   flex: 1;
   display: flex;

@@ -5137,7 +5137,13 @@ function buildBlog(body) {
         </div>
         <div class="blog-editor-bar">
           <span class="blog-file-path">~/blog/${BLOG_POSTS[0].id}.md</span>
-          <span class="blog-file-lang">Markdown</span>
+          <span class="blog-editor-bar-right">
+            <a href="feed.xml" target="_blank" class="blog-rss-link" title="RSS Feed abonnieren">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
+              RSS
+            </a>
+            <span class="blog-file-lang">Markdown</span>
+          </span>
         </div>
         <div class="blog-content" id="blog-content">
           <div class="blog-line-numbers" id="blog-line-nums"></div>
@@ -5539,9 +5545,18 @@ function boot() {
       setTimeout(showFakeCall,    3 * 60 * 1000);
       setTimeout(showFakeMessage, 4 * 60 * 1000);
     }
-    // Handle deep-linking via hash
+    // Handle deep-linking via hash (supports #blog/post-id)
     const hash = window.location.hash.replace('#', '');
-    if (hash && WIN_CONFIGS[hash]) {
+    if (hash && hash.startsWith('blog/')) {
+      const postId = hash.substring(5);
+      setTimeout(() => {
+        openWindow('blog');
+        setTimeout(() => {
+          const item = document.querySelector(`.blog-list-item[data-post="${postId}"]`);
+          if (item) item.click();
+        }, 100);
+      }, 350);
+    } else if (hash && WIN_CONFIGS[hash]) {
       setTimeout(() => openWindow(hash), 350);
     } else {
       setTimeout(() => openWindow('about'), 350);
@@ -5615,7 +5630,16 @@ function boot() {
 // ─────────────────────────────────────────────────
 window.addEventListener('hashchange', () => {
   const hash = window.location.hash.replace('#', '');
-  if (hash && WIN_CONFIGS[hash]) openWindow(hash);
+  if (hash && hash.startsWith('blog/')) {
+    const postId = hash.substring(5);
+    openWindow('blog');
+    setTimeout(() => {
+      const item = document.querySelector(`.blog-list-item[data-post="${postId}"]`);
+      if (item) item.click();
+    }, 100);
+  } else if (hash && WIN_CONFIGS[hash]) {
+    openWindow(hash);
+  }
 });
 
 // ─────────────────────────────────────────────────
