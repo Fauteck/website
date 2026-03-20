@@ -42,7 +42,7 @@ const WIN_CONFIGS = {
   homeassistant: {
     title: 'Home Assistant',
     color: 'orange',
-    defaultW: 620, defaultH: 500,
+    defaultW: 920, defaultH: 580,
     svgPath: 'M3 13L14 4l11 9M7 13h14v11H7zM11 18h6v6h-6z',
   },
   packages: {
@@ -91,7 +91,7 @@ const WIN_CONFIGS = {
   teams: {
     title: 'Teams',
     color: 'indigo',
-    defaultW: 520, defaultH: 480,
+    defaultW: 780, defaultH: 540,
     svgPath: 'M16 11a4 4 0 10-8 0 4 4 0 008 0zM3 20v-1a7 7 0 0114 0v1M20 8a3 3 0 110 6M23 20v-1a5 5 0 00-3-4.6',
   },
   jira: {
@@ -105,12 +105,6 @@ const WIN_CONFIGS = {
     color: 'purple',
     defaultW: 520, defaultH: 480,
     svgPath: 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22',
-  },
-  rss: {
-    title: 'Feedly',
-    color: 'teal',
-    defaultW: 460, defaultH: 480,
-    svgPath: 'M4 11a9 9 0 019 9M4 4a16 16 0 0116 16M5 19h.01',
   },
   filesapp: {
     title: 'Dateien',
@@ -161,11 +155,29 @@ const WIN_CONFIGS = {
     defaultW: 380, defaultH: 540,
     svgPath: 'M6 2h4v4H6zM10 2h4v4H10zM10 6h4v4H10zM14 6h4v4H14z',
   },
-  network: {
-    title: 'Netzwerk',
-    color: 'cyan',
-    defaultW: 620, defaultH: 500,
-    svgPath: 'M14 14m-4 0a4 4 0 108 0 4 4 0 00-8 0M14 3v7M14 18v7M3 14h7M18 14h7M6 6l5 5M17 17l5 5M6 22l5-5M17 11l5-5',
+  pong: {
+    title: 'Pong',
+    color: 'blue',
+    defaultW: 420, defaultH: 500,
+    svgPath: 'M4 4h2v20H4zM22 4h2v20H22zM13 14a2 2 0 100-4 2 2 0 000 4z',
+  },
+  tictactoe: {
+    title: 'Tic-Tac-Toe',
+    color: 'pink',
+    defaultW: 380, defaultH: 460,
+    svgPath: 'M10 4v20M18 4v20M4 10h20M4 18h20',
+  },
+  flappybird: {
+    title: 'Flappy Bird',
+    color: 'yellow',
+    defaultW: 360, defaultH: 540,
+    svgPath: 'M12 8a4 4 0 108 0 4 4 0 00-8 0zM6 2v24M22 2v10M22 18v6',
+  },
+  sudoku: {
+    title: 'Sudoku',
+    color: 'amber',
+    defaultW: 440, defaultH: 540,
+    svgPath: 'M3 3h22v22H3zM3 10.3h22M3 17.6h22M10.3 3v22M17.6 3v22',
   },
   blog: {
     title: 'Texteditor',
@@ -467,7 +479,6 @@ function initWindowContent(id, el) {
     teams:          buildTeams,
     jira:           buildJira,
     github:         buildGitHub,
-    rss:            buildRSS,
     filesapp:       buildFilesApp,
     snake:          buildSnake,
     minesweeper:    buildMinesweeper,
@@ -476,7 +487,10 @@ function initWindowContent(id, el) {
     solitaire:      buildSolitaire,
     memory:         buildMemory,
     tetris:         buildTetris,
-    network:        buildNetwork,
+    pong:           buildPong,
+    tictactoe:      buildTicTacToe,
+    flappybird:     buildFlappyBird,
+    sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
     testimonials:   buildTestimonials,
@@ -508,7 +522,7 @@ function buildAbout(body) {
         </div>
         <div class="brave-address-bar">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:#52b788;flex-shrink:0"><path d="M7 1.5C4 1.5 2 4 2 7s2 5.5 5 5.5 5-2.5 5-5.5-2-5.5-5-5.5zM7 1.5v11M2 7h10M2.5 4.5Q4.5 6 7 6t4.5-1.5M2.5 9.5Q4.5 8 7 8t4.5 1.5" stroke="currentColor" stroke-width="1.2"/></svg>
-          <span class="brave-url">fauteck.eu/about</span>
+          <span class="brave-url">niklasfauteck.de</span>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:#52b788;margin-left:auto;flex-shrink:0"><path d="M7 1l1.5 3 3.5.5-2.5 2.5.6 3.5L7 9l-3.1 1.5.6-3.5L2 4.5 5.5 4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
         </div>
         <div class="brave-toolbar-right">
@@ -1091,7 +1105,7 @@ const TERM_COMMANDS = {
     { t: 'empty' },
     { t: 'success', v: 'Das klingt nach einem ausgezeichneten Plan.' },
     { t: 'out', v: 'Schreib mir: niklas@fauteck.eu' },
-    { t: 'out', v: 'Oder direkt: linkedin.com/in/niklas-fauteck' },
+    { t: 'out', v: 'Oder direkt: www.linkedin.com/in/fauteck/' },
   ],
   'rm bureaucracy': () => [
     { t: 'err', v: "rm: cannot remove 'bureaucracy': Permission denied" },
@@ -1204,7 +1218,7 @@ const TERM_COMMANDS = {
     { t: 'accent', v: ' echten Nutzen für die Anwender."' },
     { t: 'dim', v: '    — Stakeholder Digital Projects' },
     { t: 'empty' },
-    { t: 'success', v: 'Ausführliche Empfehlungen: linkedin.com/in/niklas-fauteck' },
+    { t: 'success', v: 'Ausführliche Empfehlungen: www.linkedin.com/in/fauteck/' },
   ],
   'availability': () => [
     { t: 'bold', v: '# Verfügbarkeit' },
@@ -1215,13 +1229,13 @@ const TERM_COMMANDS = {
     { t: 'out', v: 'Reaktionszeit: In der Regel innerhalb von 24h' },
     { t: 'out', v: 'Timezone:      Europe/Berlin (CET/CEST)' },
     { t: 'empty' },
-    { t: 'dim', v: 'Kontakt: niklas@fauteck.eu · linkedin.com/in/niklas-fauteck' },
+    { t: 'dim', v: 'Kontakt: niklas@fauteck.eu · www.linkedin.com/in/fauteck/' },
   ],
   'contact': () => [
     { t: 'bold', v: '# Kontakt' },
     { t: 'empty' },
     { t: 'success', v: 'E-Mail:     niklas@fauteck.eu' },
-    { t: 'success', v: 'LinkedIn:   linkedin.com/in/niklas-fauteck' },
+    { t: 'success', v: 'LinkedIn:   www.linkedin.com/in/fauteck/' },
     { t: 'empty' },
     { t: 'out', v: 'Reaktionszeit: In der Regel innerhalb von 24h' },
     { t: 'out', v: 'Bevorzugt:     E-Mail oder LinkedIn-Nachricht' },
@@ -1824,7 +1838,6 @@ function buildHA(body) {
   body.style.background = '#f5f5f5';
   body.style.color = '#1a1a1a';
 
-  // SVG arc gauge helper: draws a 240° sweep arc gauge
   function arcSvg(value, min, max, r, size, color, sw) {
     const cx = size / 2, cy = size / 2;
     const C = 2 * Math.PI * r;
@@ -1845,24 +1858,14 @@ function buildHA(body) {
 
   const DESKTOP_TABS = ['ÜBERSICHT','BADEZIMMER','FLUR','KÜCHE','WOHNZIMMER','SCHLAFZIMMER','BALKON'];
 
-  const TEMPS = [
-    { label: 'Wohnraum',        val: 23.4, display: '23,4 °C', color: '#3b82f6' },
-    { label: 'Badezimmer',      val: 24,   display: '24 °C',   color: '#3b82f6' },
-    { label: 'Außentemperatur', val: 14.8, display: '14,8 °C', color: '#3b82f6' },
-  ];
-
-  const FORECAST = [
-    { day: 'Mi', type: 'sun',  lo: '13,3', hi: '24,4' },
-    { day: 'Do', type: 'sun',  lo: '14,5', hi: '26,4' },
-    { day: 'Fr', type: 'rain', lo: '16,0', hi: '23,8' },
-    { day: 'Sa', type: 'cloud',lo: '16,3', hi: '21,1' },
-    { day: 'So', type: 'cloud',lo: '14,8', hi: '19,7' },
-  ];
-
-  function forecastIcon(type) {
-    if (type === 'sun')  return `<circle cx="8" cy="8" r="3" fill="#fbbf24"/><path d="M8 2v1M8 13v1M2 8h1M13 8h1M3.5 3.5l.7.7M10.8 10.8l.7.7M3.5 12.5l.7-.7M10.8 5.2l.7-.7" stroke="#fbbf24" stroke-width="1.2" stroke-linecap="round"/>`;
-    if (type === 'rain') return `<path d="M2 9c0-2 2-4 4-4h5a3 3 0 010 6H5a3 3 0 01-3-3z" fill="#d1d5db"/><path d="M5 12v2M8 12v2M11 12v2" stroke="#93c5fd" stroke-width="1.2" stroke-linecap="round"/>`;
-    return `<path d="M2 9c0-2 2-4 4-4h5a3 3 0 010 6H5a3 3 0 01-3-3z" fill="#d1d5db"/>`;
+  function makeToggle(id, on) {
+    return `<button class="ha2-toggle" data-ha-toggle="${id}" data-on="${on ? 'true' : 'false'}"></button>`;
+  }
+  function makeSlider(id, val, min, max, unit, color) {
+    return `<div class="ha2-slider-wrap">
+      <input type="range" class="ha2-slider" data-ha-slider="${id}" min="${min}" max="${max}" value="${val}" style="--ha-color:${color||'#3b82f6'}">
+      <span class="ha2-slider-val" data-ha-slider-val="${id}">${val}${unit}</span>
+    </div>`;
   }
 
   body.innerHTML = `
@@ -1870,19 +1873,13 @@ function buildHA(body) {
 
       <!-- ══ DESKTOP LAYOUT ══ -->
       <div class="ha2-desktop">
-
-        <!-- Top navigation bar -->
         <div class="ha2-topnav">
           <button class="ha2-icon-btn" style="font-size:18px">☰</button>
           ${DESKTOP_TABS.map((t, i) => `<button class="ha2-tab${i === 0 ? ' ha2-tab-active' : ''}">${t}</button>`).join('')}
           <div style="flex:1"></div>
           <button class="ha2-icon-btn" style="font-size:20px">⋮</button>
         </div>
-
-        <!-- Body: sidebar + content -->
         <div class="ha2-body">
-
-          <!-- Left sidebar -->
           <div class="ha2-sidebar">
             <button class="ha2-sb-btn ha2-sb-active" title="Übersicht">
               <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="2" y="2" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="2" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="11" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="11" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
@@ -1893,57 +1890,40 @@ function buildHA(body) {
             <button class="ha2-sb-btn" title="Personen">
               <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M4 18v-1a6 6 0 0112 0v1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             </button>
-            <button class="ha2-sb-btn" title="Listen">
-              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M4 5h12M4 10h8M4 15h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-            </button>
-            <button class="ha2-sb-btn" title="Statistiken">
-              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M2 16V10l4-4 4 4 4-6v12H2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="ha2-sb-btn" title="Kalender">
-              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="3" y="4" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3 8h14M7 4V2M13 4V2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-            </button>
-            <button class="ha2-sb-btn" title="Medien">
-              <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><polygon points="5,3 17,10 5,17" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-            </button>
-            <div style="flex:1"></div>
             <button class="ha2-sb-btn" title="Einstellungen">
               <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.6 4.6l1.4 1.4M14 14l1.4 1.4M4.6 15.4l1.4-1.4M14 6l1.4-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             </button>
           </div>
-
-          <!-- Main content -->
           <div class="ha2-content">
             <div class="ha2-grid">
 
-              <!-- Modus card -->
+              <!-- Modus + Fahrzeit -->
               <div class="ha2-card">
                 <div class="ha2-card-label">Modus</div>
                 <div class="ha2-card-val-row">
-                  <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M3 9l7-7 7 7v9a1 1 0 01-1 1H4a1 1 0 01-1-1z" stroke="#1976d2" stroke-width="1.5" fill="rgba(25,118,210,0.1)"/><path d="M8 19v-7h4v7" stroke="#1976d2" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M3 9l7-7 7 7v9a1 1 0 01-1 1H4a1 1 0 01-1-1z" stroke="#1976d2" stroke-width="1.5" fill="rgba(25,118,210,0.1)"/></svg>
                   <span class="ha2-card-value">Zuhause</span>
                 </div>
               </div>
-
-              <!-- Fahrzeit card -->
               <div class="ha2-card">
                 <div class="ha2-card-label">Fahrzeit ins Büro</div>
                 <div class="ha2-card-val-row">
-                  <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M2 9h16l-2-5H4L2 9z" stroke="#1976d2" stroke-width="1.4" fill="rgba(25,118,210,0.1)"/><rect x="2" y="9" width="16" height="6" rx="1" stroke="#1976d2" stroke-width="1.4" fill="rgba(25,118,210,0.05)"/><circle cx="6" cy="16" r="1.5" stroke="#1976d2" stroke-width="1.3"/><circle cx="14" cy="16" r="1.5" stroke="#1976d2" stroke-width="1.3"/></svg>
+                  <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M2 9h16l-2-5H4L2 9z" stroke="#1976d2" stroke-width="1.4" fill="rgba(25,118,210,0.1)"/><rect x="2" y="9" width="16" height="6" rx="1" stroke="#1976d2" stroke-width="1.4"/></svg>
                   <span class="ha2-card-value">17 <span style="font-size:13px;font-weight:400;color:#777">min</span></span>
                 </div>
               </div>
 
-              <!-- Thermostat card (spans 2 rows) -->
+              <!-- Thermostat -->
               <div class="ha2-card ha2-thermo-card" style="grid-row:span 2">
-                <button class="ha2-card-menu">⋮</button>
                 <div class="ha2-thermo-arc-wrap">
                   ${arcSvg(24, 15, 30, 52, 130, '#f97316', 10)}
                   <div class="ha2-thermo-overlay">
-                    <span class="ha2-thermo-temp">24°C</span>
+                    <span class="ha2-thermo-temp" id="ha-thermo-display">24°C</span>
                     <span class="ha2-thermo-current">5,0</span>
                     <span class="ha2-thermo-mode">Leerlauf · Zuhause</span>
                   </div>
                 </div>
+                ${makeSlider('thermostat', 24, 15, 30, '°C', '#f97316')}
                 <div class="ha2-thermo-icons">
                   <button class="ha2-thermo-icon-btn" title="Zeitplan">
                     <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="3" y="4" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3 8h14M7 4V2M13 4V2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
@@ -1955,95 +1935,108 @@ function buildHA(body) {
                     <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M10 6v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
                   </button>
                 </div>
-                <div class="ha2-thermo-label">Heizung</div>
               </div>
 
-              <!-- Weather card -->
-              <div class="ha2-card ha2-weather-card">
-                <div class="ha2-weather-top">
-                  <svg viewBox="0 0 40 40" fill="none" width="34" height="34"><circle cx="20" cy="20" r="9" fill="#fbbf24"/><path d="M20 7v3M20 30v3M7 20h3M30 20h3M10.5 10.5l2.1 2.1M27.4 27.4l2.1 2.1M10.5 29.5l2.1-2.1M27.4 12.6l2.1-2.1" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/></svg>
-                  <div>
-                    <div class="ha2-weather-desc">Sonnig</div>
-                    <div class="ha2-weather-temp">17,2 °C</div>
-                    <div class="ha2-weather-loc">Rostock <span style="color:#bbb">· 0 mm</span></div>
-                  </div>
-                </div>
-                <div class="ha2-forecast">
-                  ${FORECAST.map(f => `
-                    <div class="ha2-fc-day">
-                      <span class="ha2-fc-label">${f.day}</span>
-                      <svg viewBox="0 0 16 16" fill="none" width="14" height="14">${forecastIcon(f.type)}</svg>
-                      <span class="ha2-fc-lo">${f.lo}°</span>
-                      <span class="ha2-fc-hi">${f.hi}°</span>
-                    </div>
-                  `).join('')}
-                </div>
+              <!-- Lights section -->
+              <div class="ha2-card" style="grid-column:span 2">
+                <div class="ha2-card-label">💡 Beleuchtung</div>
+                <div class="ha2-ctrl-row"><span>Wohnzimmer</span>${makeSlider('light-wz', 80, 0, 100, '%', '#fbbf24')}</div>
+                <div class="ha2-ctrl-row"><span>Schlafzimmer</span>${makeSlider('light-sz', 0, 0, 100, '%', '#fbbf24')}</div>
+                <div class="ha2-ctrl-row"><span>Küche</span>${makeSlider('light-ku', 60, 0, 100, '%', '#fbbf24')}</div>
+                <div class="ha2-ctrl-row"><span>Flur</span>${makeSlider('light-fl', 40, 0, 100, '%', '#fbbf24')}</div>
+                <div class="ha2-ctrl-row"><span>Badezimmer</span>${makeSlider('light-ba', 100, 0, 100, '%', '#fbbf24')}</div>
               </div>
 
-              <!-- Temperature stack (center col) -->
-              <div class="ha2-temp-stack">
-                ${TEMPS.map(t => `
-                  <div class="ha2-card ha2-temp-card">
-                    <div class="ha2-temp-arc">
-                      ${arcSvg(t.val, 0, 40, 28, 72, t.color, 7)}
-                      <div class="ha2-temp-val-overlay">${t.display}</div>
-                    </div>
-                    <span class="ha2-temp-name">${t.label}</span>
-                  </div>
-                `).join('')}
+              <!-- Temperature sensors -->
+              <div class="ha2-card">
+                <div class="ha2-card-label">🌡️ Temperaturen</div>
+                <div class="ha2-ctrl-row"><span>Wohnzimmer</span><span class="ha2-sensor-val">23,4 °C</span></div>
+                <div class="ha2-ctrl-row"><span>Badezimmer</span><span class="ha2-sensor-val">24,0 °C</span></div>
+                <div class="ha2-ctrl-row"><span>Außen</span><span class="ha2-sensor-val">14,8 °C</span></div>
+                <div class="ha2-ctrl-row"><span>Schlafzimmer</span><span class="ha2-sensor-val">21,2 °C</span></div>
               </div>
 
-              <!-- Scene buttons + sensors + trash (spans 2 cols) -->
-              <div class="ha2-card ha2-bottom-left" style="grid-column:span 2">
+              <!-- Toggle switches -->
+              <div class="ha2-card" style="grid-column:span 2">
+                <div class="ha2-card-label">⚡ Steckdosen & Geräte</div>
+                <div class="ha2-ctrl-row"><span>TV-Steckdose</span>${makeToggle('plug-tv', true)}</div>
+                <div class="ha2-ctrl-row"><span>Ventilator Wohnzimmer</span>${makeToggle('plug-fan', false)}</div>
+                <div class="ha2-ctrl-row"><span>Heizlüfter Bad</span>${makeToggle('plug-heater', true)}</div>
+                <div class="ha2-ctrl-row"><span>Stehlampe Schlafzimmer</span>${makeToggle('plug-lamp', false)}</div>
+                <div class="ha2-ctrl-row"><span>Ladestation</span>${makeToggle('plug-charger', true)}</div>
+                <div class="ha2-ctrl-row"><span>Nachtlicht Kinderzimmer</span>${makeToggle('plug-nightlight', true)}</div>
+              </div>
+
+              <!-- Heating per room -->
+              <div class="ha2-card">
+                <div class="ha2-card-label">🔥 Heizung</div>
+                <div class="ha2-ctrl-row"><span>Wohnzimmer</span>${makeSlider('heat-wz', 22, 15, 28, '°C', '#ef4444')}</div>
+                <div class="ha2-ctrl-row"><span>Schlafzimmer</span>${makeSlider('heat-sz', 19, 15, 28, '°C', '#ef4444')}</div>
+                <div class="ha2-ctrl-row"><span>Badezimmer</span>${makeSlider('heat-ba', 24, 15, 28, '°C', '#ef4444')}</div>
+                <div class="ha2-ctrl-row"><span>Kinderzimmer</span>${makeSlider('heat-ki', 21, 15, 28, '°C', '#ef4444')}</div>
+              </div>
+
+              <!-- Rolladen / Blinds -->
+              <div class="ha2-card">
+                <div class="ha2-card-label">🪟 Rollläden</div>
+                <div class="ha2-ctrl-row"><span>Wohnzimmer</span>${makeSlider('blind-wz', 100, 0, 100, '%', '#6366f1')}</div>
+                <div class="ha2-ctrl-row"><span>Schlafzimmer</span>${makeSlider('blind-sz', 0, 0, 100, '%', '#6366f1')}</div>
+                <div class="ha2-ctrl-row"><span>Küche</span>${makeSlider('blind-ku', 80, 0, 100, '%', '#6366f1')}</div>
+              </div>
+
+              <!-- Scenes -->
+              <div class="ha2-card" style="grid-column:span 2">
+                <div class="ha2-card-label">🎬 Szenen</div>
                 <div class="ha2-scene-btns">
                   <button class="ha2-scene-btn">💡 Alle Lampen aus</button>
-                  <button class="ha2-scene-btn">💡 Standard-Beleuchtung</button>
-                  <button class="ha2-scene-btn">💡 Stimmung</button>
-                </div>
-                <div class="ha2-sensor-rows">
-                  <div class="ha2-sensor-row">
-                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 2C5 8 3 10 3 12a5 5 0 0010 0c0-2-2-4-5-10z" stroke="#9ca3af" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                    <span class="ha2-sensor-name">Wassersensor Bad</span>
-                    <span class="ha2-sensor-val">Trocken</span>
-                  </div>
-                  <div class="ha2-sensor-row">
-                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 2C5 8 3 10 3 12a5 5 0 0010 0c0-2-2-4-5-10z" stroke="#9ca3af" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                    <span class="ha2-sensor-name">Wassersensor Küche</span>
-                    <span class="ha2-sensor-val">Trocken</span>
-                  </div>
-                </div>
-                <div class="ha2-section-title">Abfall-Abholtermine</div>
-                <div class="ha2-trash-rows">
-                  <div class="ha2-trash-row">
-                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 4h10M5 4V3h6v1M6 7v5M10 7v5M4 4l1 9h6l1-9" stroke="#6b7280" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="ha2-trash-name">Bioabfall</span>
-                    <span class="ha2-trash-days">7 Tage</span>
-                  </div>
-                  <div class="ha2-trash-row">
-                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 4h10M5 4V3h6v1M6 7v5M10 7v5M4 4l1 9h6l1-9" stroke="#6b7280" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="ha2-trash-name">Altpapier</span>
-                    <span class="ha2-trash-days">9 Tage</span>
-                  </div>
+                  <button class="ha2-scene-btn">💡 Standard</button>
+                  <button class="ha2-scene-btn">🎬 Film-Abend</button>
+                  <button class="ha2-scene-btn">🌙 Nachtmodus</button>
+                  <button class="ha2-scene-btn">🌿 Energiesparen</button>
+                  <button class="ha2-scene-btn">☀️ Guten Morgen</button>
                 </div>
               </div>
 
-              <!-- Door/window status -->
-              <div class="ha2-card ha2-doors-card">
-                ${['Wohnungstür','Balkontür','WZ-Fenster links unten','WZ-Fenster links oben','WZ-Fenster rechts unten'].map(d => `
-                  <div class="ha2-door-row">
-                    <span class="ha2-door-dot"></span>
-                    <span class="ha2-door-name">${d}</span>
-                    <span class="ha2-door-state">Geschlossen</span>
-                  </div>
+              <!-- Automations + devices -->
+              <div class="ha2-card">
+                <div class="ha2-card-label">🤖 Automationen</div>
+                <div class="ha2-ctrl-row"><span>Abwesenheitsmodus</span>${makeToggle('auto-away', false)}</div>
+                <div class="ha2-ctrl-row"><span>Bewegungsmelder Flur</span>${makeToggle('auto-motion', true)}</div>
+                <div class="ha2-ctrl-row"><span>Nachtabsenkung</span>${makeToggle('auto-night', true)}</div>
+                <div class="ha2-ctrl-row"><span>Fenster-offen-Erkennung</span>${makeToggle('auto-window', true)}</div>
+              </div>
+
+              <!-- Sensors + Status -->
+              <div class="ha2-card">
+                <div class="ha2-card-label">📊 Sensoren</div>
+                <div class="ha2-ctrl-row"><span>Wassersensor Bad</span><span class="ha2-sensor-val ha2-sensor-ok">Trocken</span></div>
+                <div class="ha2-ctrl-row"><span>Wassersensor Küche</span><span class="ha2-sensor-val ha2-sensor-ok">Trocken</span></div>
+                <div class="ha2-ctrl-row"><span>Rauchmelder</span><span class="ha2-sensor-val ha2-sensor-ok">OK</span></div>
+                <div class="ha2-ctrl-row"><span>Luftfeuchtigkeit WZ</span><span class="ha2-sensor-val">52%</span></div>
+                <div class="ha2-ctrl-row"><span>CO₂ Wohnzimmer</span><span class="ha2-sensor-val">680 ppm</span></div>
+              </div>
+
+              <!-- Door/Window + Vacuum + Trash -->
+              <div class="ha2-card" style="grid-column:span 2">
+                <div class="ha2-card-label">🚪 Türen & Fenster</div>
+                ${['Wohnungstür','Balkontür','WZ-Fenster links','WZ-Fenster rechts','Schlafzimmer-Fenster'].map(d => `
+                  <div class="ha2-door-row"><span class="ha2-door-dot"></span><span class="ha2-door-name">${d}</span><span class="ha2-door-state">Geschlossen</span></div>
                 `).join('')}
-                <div class="ha2-balcony-row">
-                  <span class="ha2-balcony-title">Überwachung Balkon</span>
-                  <span class="ha2-balcony-badge">
-                    <svg viewBox="0 0 16 16" fill="none" width="12" height="12"><path d="M3 8l4 4 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                </div>
-                <button class="ha2-balcony-btn">AKTIVIEREN · ZUHAUSE</button>
-                <button class="ha2-balcony-btn">AKTIVIEREN · UNTERWEGS</button>
+              </div>
+
+              <div class="ha2-card">
+                <div class="ha2-card-label">🧹 Staubsauger</div>
+                <div class="ha2-ctrl-row"><span>Roborock S8</span>${makeToggle('vacuum', false)}</div>
+                <div class="ha2-ctrl-row"><span>Saugstärke</span>${makeSlider('vacuum-pwr', 50, 0, 100, '%', '#10b981')}</div>
+                <div class="ha2-ctrl-row"><span>Status</span><span class="ha2-sensor-val">Dock · 98%</span></div>
+              </div>
+
+              <div class="ha2-card">
+                <div class="ha2-card-label">🗑️ Abfalltermine</div>
+                <div class="ha2-ctrl-row"><span>Bioabfall</span><span class="ha2-sensor-val">7 Tage</span></div>
+                <div class="ha2-ctrl-row"><span>Altpapier</span><span class="ha2-sensor-val">9 Tage</span></div>
+                <div class="ha2-ctrl-row"><span>Gelber Sack</span><span class="ha2-sensor-val">3 Tage</span></div>
+                <div class="ha2-ctrl-row"><span>Restmüll</span><span class="ha2-sensor-val">14 Tage</span></div>
               </div>
 
             </div><!-- /ha2-grid -->
@@ -2053,85 +2046,107 @@ function buildHA(body) {
 
       <!-- ══ MOBILE LAYOUT ══ -->
       <div class="ha2-mobile">
-
-        <!-- Header -->
         <div class="ha2-mob-header">
           <button class="ha2-mob-hbtn">☰</button>
-          <button class="ha2-mob-tab ha2-mob-tab-active">WOONKAMER</button>
-          <button class="ha2-mob-tab">APPARATEN</button>
-          <button class="ha2-mob-hbtn" style="font-size:20px;font-weight:300">›</button>
+          <button class="ha2-mob-tab ha2-mob-tab-active">ÜBERSICHT</button>
+          <button class="ha2-mob-tab">GERÄTE</button>
           <div style="flex:1"></div>
           <button class="ha2-mob-hbtn">⋮</button>
         </div>
 
-        <!-- User presence -->
         <div class="ha2-mob-presence">
           <div class="ha2-mob-person">
             <div class="ha2-mob-avatar">
               <svg viewBox="0 0 44 44" fill="none" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#e8edf2"/><circle cx="22" cy="17" r="8" fill="#b0bec5"/><ellipse cx="22" cy="38" rx="13" ry="9" fill="#b0bec5"/></svg>
             </div>
-            <div class="ha2-mob-badge">THUIS</div>
-            <span class="ha2-mob-name">Linda</span>
+            <div class="ha2-mob-badge">ZUHAUSE</div>
+            <span class="ha2-mob-name">Niklas</span>
           </div>
           <div class="ha2-mob-person">
             <div class="ha2-mob-avatar">
               <svg viewBox="0 0 44 44" fill="none" width="44" height="44"><circle cx="22" cy="22" r="22" fill="#dbeafe"/><circle cx="22" cy="17" r="8" fill="#90caf9"/><ellipse cx="22" cy="38" rx="13" ry="9" fill="#90caf9"/></svg>
             </div>
-            <div class="ha2-mob-badge">THUIS</div>
-            <span class="ha2-mob-name">Daan</span>
+            <div class="ha2-mob-badge">ZUHAUSE</div>
+            <span class="ha2-mob-name">Aylin</span>
           </div>
         </div>
 
-        <!-- Room section -->
         <div class="ha2-mob-room">
           <div class="ha2-mob-room-header">
-            <span class="ha2-mob-room-title">Woonkamer</span>
-            <button class="ha2-mob-toggle" data-on="false"></button>
+            <span class="ha2-mob-room-title">Wohnzimmer</span>
+            ${makeToggle('mob-wz-all', true)}
           </div>
           <div class="ha2-mob-dev-row">
-            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2l2.5 7h7l-5.7 4.1 2.2 6.9L10 15.8l-6 4.2 2.2-6.9L.5 9h7z" stroke="#3b82f6" stroke-width="1.3" fill="rgba(59,130,246,0.12)"/></svg>
-            <span class="ha2-mob-dev-name">Lamp bank</span>
-            <button class="ha2-mob-toggle" data-on="false"></button>
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2a5 5 0 00-3 9v3h6v-3a5 5 0 00-3-9z" stroke="#fbbf24" stroke-width="1.3" fill="rgba(251,191,36,0.1)"/></svg>
+            <span class="ha2-mob-dev-name">Deckenlampe</span>
+            ${makeSlider('mob-light-wz', 80, 0, 100, '%', '#fbbf24')}
           </div>
           <div class="ha2-mob-dev-row">
-            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2a5 5 0 00-3 9v3h6v-3a5 5 0 00-3-9z" stroke="#3b82f6" stroke-width="1.3" fill="rgba(59,130,246,0.1)"/><path d="M8 14h4M9 17h2" stroke="#3b82f6" stroke-width="1.3" stroke-linecap="round"/></svg>
-            <span class="ha2-mob-dev-name">Lamp bij vuur</span>
-            <button class="ha2-mob-toggle" data-on="false"></button>
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2a5 5 0 00-3 9v3h6v-3a5 5 0 00-3-9z" stroke="#fbbf24" stroke-width="1.3" fill="rgba(251,191,36,0.1)"/></svg>
+            <span class="ha2-mob-dev-name">Stehlampe</span>
+            ${makeToggle('mob-lamp-steh', false)}
           </div>
           <div class="ha2-mob-dev-row">
-            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="10" cy="10" r="8" stroke="#9ca3af" stroke-width="1.3"/><path d="M7 10a3 3 0 016 0" stroke="#9ca3af" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="10" r="1.5" fill="#9ca3af"/></svg>
-            <span class="ha2-mob-dev-name">Verwarming Fan stekker</span>
-            <button class="ha2-mob-toggle ha2-mob-toggle-disabled" data-on="true"></button>
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z" stroke="#ef4444" stroke-width="1.3" fill="rgba(239,68,68,0.1)"/></svg>
+            <span class="ha2-mob-dev-name">Heizung</span>
+            ${makeSlider('mob-heat-wz', 22, 15, 28, '°C', '#ef4444')}
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="3" y="3" width="14" height="14" rx="2" stroke="#6366f1" stroke-width="1.3"/><path d="M3 10h14" stroke="#6366f1" stroke-width="1.3"/></svg>
+            <span class="ha2-mob-dev-name">Rollladen</span>
+            ${makeSlider('mob-blind-wz', 100, 0, 100, '%', '#6366f1')}
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="4" y="4" width="12" height="12" rx="1" stroke="#9ca3af" stroke-width="1.3"/></svg>
+            <span class="ha2-mob-dev-name">TV-Steckdose</span>
+            ${makeToggle('mob-plug-tv', true)}
           </div>
         </div>
 
-        <!-- Thermostat -->
+        <div class="ha2-mob-room">
+          <div class="ha2-mob-room-header">
+            <span class="ha2-mob-room-title">Schlafzimmer</span>
+            ${makeToggle('mob-sz-all', false)}
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2a5 5 0 00-3 9v3h6v-3a5 5 0 00-3-9z" stroke="#fbbf24" stroke-width="1.3" fill="rgba(251,191,36,0.1)"/></svg>
+            <span class="ha2-mob-dev-name">Nachtlicht</span>
+            ${makeToggle('mob-lamp-night', true)}
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z" stroke="#ef4444" stroke-width="1.3" fill="rgba(239,68,68,0.1)"/></svg>
+            <span class="ha2-mob-dev-name">Heizung</span>
+            ${makeSlider('mob-heat-sz', 19, 15, 28, '°C', '#ef4444')}
+          </div>
+          <div class="ha2-mob-dev-row">
+            <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="3" y="3" width="14" height="14" rx="2" stroke="#6366f1" stroke-width="1.3"/><path d="M3 10h14" stroke="#6366f1" stroke-width="1.3"/></svg>
+            <span class="ha2-mob-dev-name">Rollladen</span>
+            ${makeSlider('mob-blind-sz', 0, 0, 100, '%', '#6366f1')}
+          </div>
+        </div>
+
         <div class="ha2-mob-thermo">
-          <button class="ha2-mob-menu-btn">⋮</button>
           <div class="ha2-mob-thermo-arc">
-            ${arcSvg(20, 15, 30, 56, 144, '#f97316', 10)}
+            ${arcSvg(22, 15, 30, 56, 144, '#f97316', 10)}
             <div class="ha2-mob-thermo-text">
-              <span class="ha2-mob-thermo-big">20<sup class="ha2-mob-thermo-unit">°C</sup></span>
-              <span class="ha2-mob-thermo-cur">19,0</span>
-              <span class="ha2-mob-thermo-mode">Verwarmen · Clock</span>
+              <span class="ha2-mob-thermo-big">22<sup class="ha2-mob-thermo-unit">°C</sup></span>
+              <span class="ha2-mob-thermo-cur">21,4</span>
+              <span class="ha2-mob-thermo-mode">Heizen · Zuhause</span>
             </div>
           </div>
-          <div class="ha2-mob-thermo-brand">
-            <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z" fill="#f97316" opacity="0.85"/></svg>
-            Nefit
-          </div>
         </div>
 
-        <!-- Media bar -->
-        <div class="ha2-mob-media">
-          <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="2" y="6" width="10" height="8" rx="1" stroke="white" stroke-width="1.3"/><path d="M12 9l6-3v8l-6-3V9z" stroke="white" stroke-width="1.3" stroke-linejoin="round"/></svg>
-          <span>Woonkamer</span>
-          <div style="flex:1"></div>
-          <button class="ha2-mob-media-btn">⋮</button>
+        <div class="ha2-mob-room" style="margin-top:6px">
+          <div class="ha2-mob-room-header"><span class="ha2-mob-room-title">🎬 Szenen</span></div>
+          <div class="ha2-scene-btns">
+            <button class="ha2-scene-btn">💡 Alles aus</button>
+            <button class="ha2-scene-btn">🎬 Film</button>
+            <button class="ha2-scene-btn">🌙 Nacht</button>
+            <button class="ha2-scene-btn">☀️ Morgen</button>
+          </div>
         </div>
 
       </div><!-- /ha2-mobile -->
-
     </div><!-- /ha2-wrap -->
   `;
 
@@ -2151,11 +2166,36 @@ function buildHA(body) {
     });
   });
 
-  // Toggle switches (mobile)
-  body.querySelectorAll('.ha2-mob-toggle:not(.ha2-mob-toggle-disabled)').forEach(btn => {
+  // Toggle switches
+  body.querySelectorAll('.ha2-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const on = btn.dataset.on === 'true';
       btn.dataset.on = String(!on);
+    });
+  });
+
+  // Sliders with live value display
+  body.querySelectorAll('.ha2-slider').forEach(slider => {
+    slider.addEventListener('input', () => {
+      const id = slider.dataset.haSlider;
+      const valEl = body.querySelector(`[data-ha-slider-val="${id}"]`);
+      if (valEl) {
+        const unit = valEl.textContent.replace(/[\d.,]+/, '').trim();
+        valEl.textContent = slider.value + unit;
+      }
+      if (id === 'thermostat') {
+        const display = body.querySelector('#ha-thermo-display');
+        if (display) display.textContent = slider.value + '°C';
+      }
+    });
+  });
+
+  // Scene button visual feedback
+  body.querySelectorAll('.ha2-scene-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.style.background = 'rgba(25,118,210,0.15)';
+      btn.style.borderColor = '#1976d2';
+      setTimeout(() => { btn.style.background = ''; btn.style.borderColor = ''; }, 800);
     });
   });
 
@@ -2544,7 +2584,7 @@ function buildOutlookDesktop(body, mails) {
           </div>
           <div class="ol-desk-sidebar-contact">
             <div class="ol-desk-contact-status"><span class="ol-desk-contact-dot">●</span> Erreichbar</div>
-            <a class="ol-desk-contact-link" href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener noreferrer">
+            <a class="ol-desk-contact-link" href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener noreferrer">
               <span class="ol-desk-contact-icon" style="color:#0a66c2">in</span> LinkedIn
             </a>
             <a class="ol-desk-contact-link" href="mailto:niklas@fauteck.eu">
@@ -2715,7 +2755,7 @@ function buildOutlookMobile(body, mails) {
           <span class="outlook-contact-ping">Response &lt; 48h</span>
         </div>
         <div class="outlook-contact-links">
-          <a class="outlook-contact-link" href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener noreferrer">
+          <a class="outlook-contact-link" href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener noreferrer">
             <span class="outlook-contact-icon" style="background:rgba(10,102,194,0.12)">in</span>
             <span>LinkedIn</span>
           </a>
@@ -2822,39 +2862,146 @@ function buildOutlookMobile(body, mails) {
 }
 
 function buildTeams(body) {
-  body.innerHTML = `
-    <div class="mob-teams-wrap">
-      <div class="mob-teams-header">Teams</div>
-      <div class="mob-teams-channels">
-        <div class="mob-teams-ch active">💬 Allgemein</div>
-        <div class="mob-teams-ch">🖥️ Digital Transformation</div>
-        <div class="mob-teams-ch">🤖 KI-Workflows</div>
-        <div class="mob-teams-ch">📢 Announcements</div>
+  body.style.padding = '0';
+  body.style.overflow = 'hidden';
+
+  const isMobile = window.innerWidth < 768;
+
+  const chats = [
+    { name: 'PR-Team RTL', initials: 'PR', color: '#6366f1', time: '10:42', preview: 'Sarah: Sprint Review Slides sind fertig 📊', unread: 2 },
+    { name: 'Max Müller', initials: 'MM', color: '#3b82f6', time: '10:35', preview: 'Media Hub Deployment läuft sauber 👍', unread: 0 },
+    { name: 'Digital Transformation', initials: 'DT', color: '#8b5cf6', time: '09:55', preview: 'Niklas: Guter Punkt, lass uns das…', unread: 0 },
+    { name: 'KI-Workflows', initials: 'KI', color: '#10b981', time: 'gestern', preview: 'Julia: Das n8n-Template ist live', unread: 0 },
+    { name: 'Eva Messerschmidt', initials: 'EM', color: '#f59e0b', time: 'gestern', preview: 'Klasse Arbeit beim Rollout! 🎉', unread: 0 },
+    { name: 'IT-Support', initials: 'IT', color: '#ef4444', time: 'gestern', preview: 'Wartungsfenster heute Nacht 22-02 Uhr', unread: 0 },
+    { name: 'Announcements', initials: '📢', color: '#64748b', time: 'Mo', preview: 'HR: Neuer Onboarding-Prozess ab April', unread: 0 },
+  ];
+
+  const messages = [
+    { sender: 'Max Müller', initials: 'MM', color: '#3b82f6', time: '10:32', text: 'Hat jemand schon das neue Media Hub Deployment getestet? Bei mir lief der Health-Check gerade durch.', self: false },
+    { sender: 'Sarah Koch', initials: 'SK', color: '#ec4899', time: '10:33', text: 'Ja, lief bei mir auch durch. Portainer zeigt alles grün an 👍', self: false },
+    { sender: 'Niklas Fauteck', initials: 'NF', color: '#f97316', time: '10:35', text: 'Super! Ich check noch den Health-Endpoint und gebe dann grünes Licht für Production.', self: true },
+    { sender: 'Max Müller', initials: 'MM', color: '#3b82f6', time: '10:37', text: 'Top, danke! Die Docker-Logs sehen auch sauber aus. Keine Fehler im neuen Container.', self: false },
+    { sender: 'Niklas Fauteck', initials: 'NF', color: '#f97316', time: '10:38', text: 'Perfekt. Deployment ist approved ✅ Danke euch beiden!', self: true },
+    { sender: 'IT-Support', initials: 'IT', color: '#ef4444', time: '11:04', text: 'Reminder: Wartungsfenster heute Nacht 22-02 Uhr für Server-Updates. Bitte laufende Jobs vorher abschließen.', self: false },
+    { sender: 'Niklas Fauteck', initials: 'NF', color: '#f97316', time: '11:06', text: 'Danke für den Hinweis! Ich stelle die Monitoring-Alerts entsprechend stumm 🔕', self: true },
+    { sender: 'Julia Kikillis', initials: 'JK', color: '#a855f7', time: '11:15', text: 'Kurzes Update: Das neue KI-Workflow-Template für Pressemitteilungen ist jetzt in n8n verfügbar. Testet gerne mal!', self: false },
+  ];
+
+  function chatListHtml() {
+    return chats.map((c, i) => `
+      <div class="teams-chat-item${i === 0 ? ' active' : ''}" data-idx="${i}">
+        <div class="teams-chat-avatar" style="background:${c.color}">${c.initials}</div>
+        <div class="teams-chat-info">
+          <div class="teams-chat-name-row">
+            <span class="teams-chat-name">${c.name}</span>
+            <span class="teams-chat-time">${c.time}</span>
+          </div>
+          <div class="teams-chat-preview">${c.preview}</div>
+        </div>
+        ${c.unread ? `<span class="teams-chat-badge">${c.unread}</span>` : ''}
       </div>
-      <div class="mob-teams-messages">
-        <div class="mob-teams-msg">
-          <strong>Max M.</strong> <span class="mob-teams-time">10:32</span><br>
-          Hat jemand schon das neue Media Hub Deployment getestet?
-        </div>
-        <div class="mob-teams-msg">
-          <strong>Sarah K.</strong> <span class="mob-teams-time">10:35</span><br>
-          Ja, lief durch. Portainer hat alles sauber deployt 👍
-        </div>
-        <div class="mob-teams-msg teams-self">
-          <strong>Niklas F.</strong> <span class="mob-teams-time">10:37</span><br>
-          Super! Ich check noch den Health-Endpoint und gebe grünes Licht.
-        </div>
-        <div class="mob-teams-msg">
-          <strong>IT-Support</strong> <span class="mob-teams-time">11:04</span><br>
-          Reminder: Wartungsfenster heute Nacht 22-02 Uhr für Server-Updates
-        </div>
-        <div class="mob-teams-msg teams-self">
-          <strong>Niklas F.</strong> <span class="mob-teams-time">11:06</span><br>
-          Danke! Ich stelle die Monitoring-Alerts entsprechend stumm 🔕
+    `).join('');
+  }
+
+  function messagesHtml() {
+    return messages.map(m => `
+      <div class="teams-msg ${m.self ? 'teams-msg-self' : ''}">
+        ${!m.self ? `<div class="teams-msg-avatar" style="background:${m.color}">${m.initials}</div>` : ''}
+        <div class="teams-msg-bubble">
+          ${!m.self ? `<div class="teams-msg-sender">${m.sender}</div>` : ''}
+          <div class="teams-msg-text">${m.text}</div>
+          <div class="teams-msg-time">${m.time}</div>
         </div>
       </div>
-    </div>
-  `;
+    `).join('');
+  }
+
+  if (isMobile) {
+    body.innerHTML = `
+      <div class="teams-mob-wrap">
+        <div class="teams-mob-header">
+          <span class="teams-mob-title">Chat</span>
+          <button class="teams-mob-compose">✏️</button>
+        </div>
+        <div class="teams-mob-search">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="#9ca3af" stroke-width="1.5"/><path d="M14 14l4 4" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Suchen</span>
+        </div>
+        <div class="teams-mob-chats">${chatListHtml()}</div>
+        <div class="teams-mob-tabs">
+          <div class="teams-mob-tab-item">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="#9ca3af" stroke-width="1.3"/><path d="M8 8h4M8 12h2" stroke="#9ca3af" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span>Aktivität</span>
+          </div>
+          <div class="teams-mob-tab-item active">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 5h12v8H9l-3 3v-3H4V5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <span>Chat</span>
+          </div>
+          <div class="teams-mob-tab-item">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="3" stroke="#9ca3af" stroke-width="1.3"/><path d="M4 17v-1a4 4 0 018 0v1" stroke="#9ca3af" stroke-width="1.3"/><circle cx="14" cy="6" r="2" stroke="#9ca3af" stroke-width="1.2"/><path d="M16 17v-1a3 3 0 00-2-2.8" stroke="#9ca3af" stroke-width="1.2"/></svg>
+            <span>Teams</span>
+          </div>
+          <div class="teams-mob-tab-item">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="1.5" stroke="#9ca3af" stroke-width="1.3"/><path d="M3 8h14M7 4V2M13 4V2" stroke="#9ca3af" stroke-width="1.3" stroke-linecap="round"/></svg>
+            <span>Kalender</span>
+          </div>
+          <div class="teams-mob-tab-item">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="1.5" fill="#9ca3af"/><circle cx="10" cy="5" r="1.5" fill="#9ca3af"/><circle cx="10" cy="15" r="1.5" fill="#9ca3af"/></svg>
+            <span>Mehr</span>
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    body.innerHTML = `
+      <div class="teams-desk-wrap">
+        <div class="teams-desk-sidebar">
+          <div class="teams-desk-sb-top">
+            <div class="teams-desk-sb-item active">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 5h12v8H9l-3 3v-3H4V5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+              <span>Chat</span>
+            </div>
+            <div class="teams-desk-sb-item">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M4 17v-1a4 4 0 018 0v1" stroke="currentColor" stroke-width="1.3"/><circle cx="14" cy="6" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
+              <span>Teams</span>
+            </div>
+            <div class="teams-desk-sb-item">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M3 8h14M7 4V2M13 4V2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <span>Kalender</span>
+            </div>
+            <div class="teams-desk-sb-item">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.3"/><path d="M8 8h4M8 12h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <span>Aktivität</span>
+            </div>
+          </div>
+          <div class="teams-desk-sb-bottom">
+            <div class="teams-desk-sb-avatar" style="background:#f97316">NF</div>
+          </div>
+        </div>
+        <div class="teams-desk-chatlist">
+          <div class="teams-desk-chatlist-header">
+            <span>Chat</span>
+            <button class="teams-desk-compose" title="Neuer Chat">✏️</button>
+          </div>
+          <div class="teams-desk-chats">${chatListHtml()}</div>
+        </div>
+        <div class="teams-desk-main">
+          <div class="teams-desk-main-header">
+            <div class="teams-chat-avatar" style="background:${chats[0].color};width:32px;height:32px;font-size:12px">${chats[0].initials}</div>
+            <span class="teams-desk-main-name">${chats[0].name}</span>
+          </div>
+          <div class="teams-desk-messages">${messagesHtml()}</div>
+          <div class="teams-desk-compose-bar">
+            <input type="text" class="teams-desk-input" placeholder="Nachricht eingeben...">
+            <button class="teams-desk-send">
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M2 9l14-6-6 14-2-5-6-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
 }
 
 function buildJira(body) {
@@ -2930,33 +3077,6 @@ function buildGitHub(body) {
   `;
 }
 
-function buildRSS(body) {
-  const feeds = [
-    { source: 'Heise Online', title: 'KI-Modelle 2026: Was jetzt wirklich produktiv einsetzbar ist', time: 'vor 1h', cat: '🤖' },
-    { source: 't3n', title: 'Docker-Alternativen im Test: Podman, Colima und Co.', time: 'vor 3h', cat: '🐳' },
-    { source: 'Meedia', title: 'RTL startet neues Streaming-Angebot für Nachrichten', time: 'vor 5h', cat: '📺' },
-    { source: 'Home Assistant Blog', title: '2026.3 Release: Matter-Support und neue Energie-Dashboards', time: 'gestern', cat: '🏠' },
-    { source: 'GitHub Blog', title: 'GitHub Copilot bekommt neuen Agent-Modus', time: 'gestern', cat: '💻' },
-    { source: 'Bambu Lab', title: 'Neues Filament: TPU 95A Transparent jetzt erhältlich', time: 'vor 2 Tagen', cat: '🖨️' },
-  ];
-  body.innerHTML = `
-    <div class="mob-rss-wrap">
-      <div class="mob-rss-header">Feedly · Meine Feeds</div>
-      <div class="mob-rss-list">
-        ${feeds.map(f => `
-          <div class="mob-rss-item">
-            <div class="mob-rss-meta">
-              <span class="mob-rss-cat">${f.cat}</span>
-              <span class="mob-rss-source">${f.source}</span>
-              <span class="mob-rss-time">${f.time}</span>
-            </div>
-            <div class="mob-rss-title">${f.title}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `;
-}
 
 function buildFilesApp(body) {
   if (window.innerWidth < 768) return buildFilesAppMobile(body);
@@ -3293,7 +3413,7 @@ function buildSnake(body) {
     reset();
     draw();
     running = true;
-    gameLoop = setInterval(update, 120);
+    gameLoop = setInterval(update, 200);
   }
 
   function setDir(x, y) {
@@ -3588,6 +3708,387 @@ function initContextMenu() {
 }
 
 // ─────────────────────────────────────────────────
+// PONG
+// ─────────────────────────────────────────────────
+function buildPong(body) {
+  body.style.padding = '0';
+  body.innerHTML = `
+    <div class="pong-wrap">
+      <div class="pong-scores"><span id="pong-ai-score">0</span> — <span id="pong-player-score">0</span></div>
+      <canvas id="pong-canvas" width="300" height="400"></canvas>
+      <div class="pong-overlay" id="pong-overlay">
+        <div class="pong-overlay-title">Pong</div>
+        <div class="pong-overlay-sub">Tap to start</div>
+      </div>
+    </div>
+  `;
+  const canvas = body.querySelector('#pong-canvas');
+  const ctx = canvas.getContext('2d');
+  const overlay = body.querySelector('#pong-overlay');
+  const W = canvas.width, H = canvas.height;
+  const PADDLE_W = 60, PADDLE_H = 8, BALL_R = 5, WIN_SCORE = 5;
+  let playerX, aiX, ballX, ballY, ballVX, ballVY, playerScore, aiScore, running, animId;
+
+  function reset() {
+    playerX = W / 2 - PADDLE_W / 2;
+    aiX = W / 2 - PADDLE_W / 2;
+    ballX = W / 2; ballY = H / 2;
+    const angle = (Math.random() * 0.8 + 0.2) * (Math.random() < 0.5 ? 1 : -1);
+    ballVX = 3 * angle; ballVY = 3 * (Math.random() < 0.5 ? 1 : -1);
+    playerScore = 0; aiScore = 0;
+    body.querySelector('#pong-player-score').textContent = '0';
+    body.querySelector('#pong-ai-score').textContent = '0';
+  }
+
+  function resetBall() {
+    ballX = W / 2; ballY = H / 2;
+    const angle = (Math.random() * 0.8 + 0.2) * (Math.random() < 0.5 ? 1 : -1);
+    ballVX = 3 * angle; ballVY = 3 * (Math.random() < 0.5 ? 1 : -1);
+  }
+
+  function draw() {
+    ctx.fillStyle = '#0f172a'; ctx.fillRect(0, 0, W, H);
+    ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#3b82f6'; ctx.fillRect(aiX, 12, PADDLE_W, PADDLE_H);
+    ctx.fillStyle = '#22c55e'; ctx.fillRect(playerX, H - 20, PADDLE_W, PADDLE_H);
+    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(ballX, ballY, BALL_R, 0, Math.PI * 2); ctx.fill();
+  }
+
+  function update() {
+    ballX += ballVX; ballY += ballVY;
+    if (ballX - BALL_R < 0 || ballX + BALL_R > W) ballVX = -ballVX;
+    // AI paddle
+    const aiCenter = aiX + PADDLE_W / 2;
+    if (aiCenter < ballX - 8) aiX += 2.5;
+    else if (aiCenter > ballX + 8) aiX -= 2.5;
+    aiX = Math.max(0, Math.min(W - PADDLE_W, aiX));
+    // Player paddle collision
+    if (ballY + BALL_R >= H - 20 && ballX >= playerX && ballX <= playerX + PADDLE_W && ballVY > 0) {
+      ballVY = -ballVY; ballVX += ((ballX - (playerX + PADDLE_W / 2)) / (PADDLE_W / 2)) * 2;
+    }
+    // AI paddle collision
+    if (ballY - BALL_R <= 20 && ballX >= aiX && ballX <= aiX + PADDLE_W && ballVY < 0) {
+      ballVY = -ballVY;
+    }
+    // Score
+    if (ballY > H + 10) { aiScore++; body.querySelector('#pong-ai-score').textContent = aiScore; resetBall(); }
+    if (ballY < -10) { playerScore++; body.querySelector('#pong-player-score').textContent = playerScore; resetBall(); }
+    if (playerScore >= WIN_SCORE || aiScore >= WIN_SCORE) {
+      running = false;
+      overlay.querySelector('.pong-overlay-title').textContent = playerScore >= WIN_SCORE ? 'Du gewinnst!' : 'KI gewinnt!';
+      overlay.querySelector('.pong-overlay-sub').textContent = `${playerScore} — ${aiScore} · Tap to retry`;
+      overlay.style.display = 'flex';
+      return;
+    }
+    draw();
+    if (running) animId = requestAnimationFrame(update);
+  }
+
+  function start() {
+    overlay.style.display = 'none'; reset(); running = true; animId = requestAnimationFrame(update);
+  }
+
+  // Controls
+  canvas.addEventListener('mousemove', e => { if (!running) return; const r = canvas.getBoundingClientRect(); playerX = ((e.clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); });
+  canvas.addEventListener('touchmove', e => { if (!running) return; e.preventDefault(); const r = canvas.getBoundingClientRect(); playerX = ((e.touches[0].clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); }, { passive: false });
+  document.addEventListener('keydown', e => { if (!running) return; if (e.key === 'ArrowLeft') playerX = Math.max(0, playerX - 20); if (e.key === 'ArrowRight') playerX = Math.min(W - PADDLE_W, playerX + 20); });
+  overlay.addEventListener('click', start);
+  reset(); draw();
+}
+
+// ─────────────────────────────────────────────────
+// TIC-TAC-TOE
+// ─────────────────────────────────────────────────
+function buildTicTacToe(body) {
+  body.style.padding = '0';
+  let board, gameOver, turn;
+
+  function checkWin(b) {
+    const lines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    for (const [a,c,d] of lines) { if (b[a] && b[a] === b[c] && b[a] === b[d]) return { winner: b[a], line: [a,c,d] }; }
+    return b.includes('') ? null : { winner: 'draw', line: [] };
+  }
+
+  function minimax(b, isMax) {
+    const result = checkWin(b);
+    if (result) { if (result.winner === 'O') return 10; if (result.winner === 'X') return -10; return 0; }
+    if (isMax) {
+      let best = -Infinity;
+      for (let i = 0; i < 9; i++) { if (b[i] === '') { b[i] = 'O'; best = Math.max(best, minimax(b, false)); b[i] = ''; } }
+      return best;
+    } else {
+      let best = Infinity;
+      for (let i = 0; i < 9; i++) { if (b[i] === '') { b[i] = 'X'; best = Math.min(best, minimax(b, true)); b[i] = ''; } }
+      return best;
+    }
+  }
+
+  function aiMove() {
+    let bestScore = -Infinity, bestIdx = -1;
+    for (let i = 0; i < 9; i++) {
+      if (board[i] === '') { board[i] = 'O'; const score = minimax(board, false); board[i] = ''; if (score > bestScore) { bestScore = score; bestIdx = i; } }
+    }
+    if (bestIdx >= 0) board[bestIdx] = 'O';
+  }
+
+  function render() {
+    const result = checkWin(board);
+    let statusText = turn === 'X' ? 'Dein Zug (X)' : 'KI denkt...';
+    if (result) {
+      gameOver = true;
+      if (result.winner === 'X') statusText = 'Du gewinnst! 🎉';
+      else if (result.winner === 'O') statusText = 'KI gewinnt!';
+      else statusText = 'Unentschieden!';
+    }
+    body.innerHTML = `
+      <div class="ttt-wrap">
+        <div class="ttt-status">${statusText}</div>
+        <div class="ttt-grid">
+          ${board.map((c, i) => {
+            const win = result && result.line.includes(i) ? ' ttt-win' : '';
+            const cls = c === 'X' ? ' ttt-x' : c === 'O' ? ' ttt-o' : '';
+            return `<button class="ttt-cell${cls}${win}" data-idx="${i}" ${c || gameOver ? 'disabled' : ''}>${c}</button>`;
+          }).join('')}
+        </div>
+        <button class="ttt-new-game">Neues Spiel</button>
+      </div>
+    `;
+    body.querySelector('.ttt-new-game').addEventListener('click', init);
+    body.querySelectorAll('.ttt-cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        const idx = +cell.dataset.idx;
+        if (board[idx] || gameOver) return;
+        board[idx] = 'X';
+        turn = 'O';
+        const r = checkWin(board);
+        if (!r) { aiMove(); turn = 'X'; }
+        render();
+      });
+    });
+  }
+
+  function init() { board = Array(9).fill(''); gameOver = false; turn = 'X'; render(); }
+  init();
+}
+
+// ─────────────────────────────────────────────────
+// FLAPPY BIRD
+// ─────────────────────────────────────────────────
+function buildFlappyBird(body) {
+  body.style.padding = '0';
+  body.innerHTML = `
+    <div class="fb-wrap">
+      <div class="fb-scores"><span>Score: <strong id="fb-score">0</strong></span><span>Best: <strong id="fb-best">0</strong></span></div>
+      <canvas id="fb-canvas" width="280" height="400"></canvas>
+      <div class="fb-overlay" id="fb-overlay">
+        <div class="fb-overlay-title">Flappy Bird</div>
+        <div class="fb-overlay-sub">Tap or Space to start</div>
+      </div>
+    </div>
+  `;
+  const canvas = body.querySelector('#fb-canvas');
+  const ctx = canvas.getContext('2d');
+  const overlay = body.querySelector('#fb-overlay');
+  const W = canvas.width, H = canvas.height;
+  const GRAVITY = 0.35, FLAP = -6, PIPE_W = 40, GAP = 120, PIPE_SPEED = 2, BIRD_SIZE = 14;
+  let birdY, birdV, pipes, score, best = 0, running, animId, frameCount;
+
+  function reset() {
+    birdY = H / 2; birdV = 0; pipes = []; score = 0; frameCount = 0;
+    body.querySelector('#fb-score').textContent = '0';
+  }
+
+  function addPipe() {
+    const topH = 50 + Math.random() * (H - GAP - 120);
+    pipes.push({ x: W + 10, topH, scored: false });
+  }
+
+  function draw() {
+    // Sky
+    ctx.fillStyle = '#1a1a2e'; ctx.fillRect(0, 0, W, H);
+    // Ground
+    ctx.fillStyle = '#2d4a22'; ctx.fillRect(0, H - 30, W, 30);
+    ctx.fillStyle = '#3d6b2e'; ctx.fillRect(0, H - 30, W, 4);
+    // Pipes
+    pipes.forEach(p => {
+      ctx.fillStyle = '#22c55e';
+      ctx.fillRect(p.x, 0, PIPE_W, p.topH);
+      ctx.fillRect(p.x, p.topH + GAP, PIPE_W, H - p.topH - GAP - 30);
+      ctx.fillStyle = '#16a34a';
+      ctx.fillRect(p.x - 3, p.topH - 16, PIPE_W + 6, 16);
+      ctx.fillRect(p.x - 3, p.topH + GAP, PIPE_W + 6, 16);
+    });
+    // Bird
+    ctx.fillStyle = '#facc15';
+    ctx.beginPath();
+    ctx.arc(60, birdY, BIRD_SIZE, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.arc(66, birdY - 3, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#1a1a2e';
+    ctx.beginPath(); ctx.arc(68, birdY - 3, 2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#f97316';
+    ctx.fillRect(72, birdY, 8, 4);
+  }
+
+  function update() {
+    frameCount++;
+    birdV += GRAVITY;
+    birdY += birdV;
+    if (frameCount % 90 === 0) addPipe();
+    pipes.forEach(p => { p.x -= PIPE_SPEED; });
+    pipes = pipes.filter(p => p.x + PIPE_W > -10);
+    // Score
+    pipes.forEach(p => {
+      if (!p.scored && p.x + PIPE_W < 60) { p.scored = true; score++; body.querySelector('#fb-score').textContent = score; }
+    });
+    // Collision
+    const hit = pipes.some(p => {
+      if (60 + BIRD_SIZE > p.x && 60 - BIRD_SIZE < p.x + PIPE_W) {
+        if (birdY - BIRD_SIZE < p.topH || birdY + BIRD_SIZE > p.topH + GAP) return true;
+      }
+      return false;
+    });
+    if (hit || birdY + BIRD_SIZE > H - 30 || birdY - BIRD_SIZE < 0) {
+      running = false;
+      if (score > best) { best = score; body.querySelector('#fb-best').textContent = best; }
+      overlay.querySelector('.fb-overlay-title').textContent = 'Game Over';
+      overlay.querySelector('.fb-overlay-sub').textContent = `Score: ${score} · Tap to retry`;
+      overlay.style.display = 'flex';
+      return;
+    }
+    draw();
+    if (running) animId = requestAnimationFrame(update);
+  }
+
+  function flap() { if (running) birdV = FLAP; }
+  function start() { overlay.style.display = 'none'; reset(); running = true; addPipe(); animId = requestAnimationFrame(update); }
+
+  canvas.addEventListener('click', () => { if (running) flap(); });
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); if (running) flap(); }, { passive: false });
+  document.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); if (running) flap(); } });
+  overlay.addEventListener('click', start);
+  reset(); draw();
+}
+
+// ─────────────────────────────────────────────────
+// SUDOKU
+// ─────────────────────────────────────────────────
+function buildSudoku(body) {
+  body.style.padding = '0';
+  let solution, puzzle, selected;
+
+  function generateBoard() {
+    const b = Array.from({ length: 9 }, () => Array(9).fill(0));
+    function isValid(b, r, c, n) {
+      for (let i = 0; i < 9; i++) { if (b[r][i] === n || b[i][c] === n) return false; }
+      const br = Math.floor(r / 3) * 3, bc = Math.floor(c / 3) * 3;
+      for (let i = br; i < br + 3; i++) for (let j = bc; j < bc + 3; j++) { if (b[i][j] === n) return false; }
+      return true;
+    }
+    function fill(b) {
+      for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
+        if (b[r][c] === 0) {
+          const nums = [1,2,3,4,5,6,7,8,9].sort(() => Math.random() - 0.5);
+          for (const n of nums) { if (isValid(b, r, c, n)) { b[r][c] = n; if (fill(b)) return true; b[r][c] = 0; } }
+          return false;
+        }
+      }
+      return true;
+    }
+    fill(b);
+    return b;
+  }
+
+  function makePuzzle(sol) {
+    const p = sol.map(r => [...r]);
+    let remove = 42 + Math.floor(Math.random() * 6);
+    while (remove > 0) {
+      const r = Math.floor(Math.random() * 9), c = Math.floor(Math.random() * 9);
+      if (p[r][c] !== 0) { p[r][c] = 0; remove--; }
+    }
+    return p;
+  }
+
+  function hasConflict(r, c) {
+    const val = puzzle[r][c];
+    if (!val) return false;
+    for (let i = 0; i < 9; i++) { if (i !== c && puzzle[r][i] === val) return true; if (i !== r && puzzle[i][c] === val) return true; }
+    const br = Math.floor(r / 3) * 3, bc = Math.floor(c / 3) * 3;
+    for (let i = br; i < br + 3; i++) for (let j = bc; j < bc + 3; j++) { if (!(i === r && j === c) && puzzle[i][j] === val) return true; }
+    return false;
+  }
+
+  function isComplete() {
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) { if (puzzle[r][c] === 0 || hasConflict(r, c)) return false; }
+    return true;
+  }
+
+  function render() {
+    const won = isComplete();
+    body.innerHTML = `
+      <div class="sdk-wrap">
+        <div class="sdk-header">
+          <span class="sdk-title">Sudoku</span>
+          ${won ? '<span class="sdk-won">🎉 Gelöst!</span>' : ''}
+        </div>
+        <div class="sdk-grid">
+          ${puzzle.map((row, r) => row.map((val, c) => {
+            const given = solution[r][c] === val && val !== 0 && makePuzzle._origPuzzle && makePuzzle._origPuzzle[r][c] !== 0;
+            const isGiven = render._given && render._given[r][c];
+            const conflict = val !== 0 && hasConflict(r, c) ? ' sdk-conflict' : '';
+            const sel = selected && selected[0] === r && selected[1] === c ? ' sdk-selected' : '';
+            const boxRight = c % 3 === 2 && c < 8 ? ' sdk-box-right' : '';
+            const boxBottom = r % 3 === 2 && r < 8 ? ' sdk-box-bottom' : '';
+            return `<div class="sdk-cell${isGiven ? ' sdk-given' : ''}${conflict}${sel}${boxRight}${boxBottom}" data-r="${r}" data-c="${c}">${val || ''}</div>`;
+          }).join('')).join('')}
+        </div>
+        <div class="sdk-numpad">
+          ${[1,2,3,4,5,6,7,8,9].map(n => `<button class="sdk-num-btn" data-num="${n}">${n}</button>`).join('')}
+          <button class="sdk-num-btn sdk-num-del" data-num="0">✕</button>
+        </div>
+        <div class="sdk-actions">
+          <button class="sdk-action-btn" id="sdk-new">Neues Spiel</button>
+          <button class="sdk-action-btn" id="sdk-solve">Lösen</button>
+        </div>
+      </div>
+    `;
+
+    body.querySelectorAll('.sdk-cell:not(.sdk-given)').forEach(cell => {
+      cell.addEventListener('click', () => {
+        selected = [+cell.dataset.r, +cell.dataset.c];
+        render();
+      });
+    });
+    body.querySelectorAll('.sdk-num-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!selected) return;
+        const [r, c] = selected;
+        if (render._given[r][c]) return;
+        puzzle[r][c] = +btn.dataset.num;
+        render();
+      });
+    });
+    body.querySelector('#sdk-new')?.addEventListener('click', init);
+    body.querySelector('#sdk-solve')?.addEventListener('click', () => {
+      puzzle = solution.map(r => [...r]);
+      selected = null;
+      render();
+    });
+  }
+
+  function init() {
+    solution = generateBoard();
+    puzzle = makePuzzle(solution);
+    render._given = puzzle.map(r => r.map(v => v !== 0));
+    selected = null;
+    render();
+  }
+  init();
+}
+
+// ─────────────────────────────────────────────────
 // GAMES FOLDER
 // ─────────────────────────────────────────────────
 function buildGames(body) {
@@ -3598,6 +4099,10 @@ function buildGames(body) {
     { id: 'memory',      label: 'Memory',       icon: '🧠', color: '#7c3aed' },
     { id: 'snake',       label: 'Snake',         icon: '🐍', color: '#22c55e' },
     { id: 'tetris',      label: 'Tetris',        icon: '🧱', color: '#0d9488' },
+    { id: 'pong',        label: 'Pong',          icon: '🏓', color: '#3b82f6' },
+    { id: 'tictactoe',   label: 'Tic-Tac-Toe',   icon: '❌', color: '#ec4899' },
+    { id: 'flappybird',  label: 'Flappy Bird',    icon: '🐦', color: '#eab308' },
+    { id: 'sudoku',      label: 'Sudoku',         icon: '🔢', color: '#f59e0b' },
   ];
 
   body.innerHTML = `
@@ -3809,8 +4314,10 @@ function buildSolitaire(body) {
       </div>`;
     }).join('');
 
+    const hintText = selected ? 'Klicke auf das Ziel, um die Karte zu legen' : 'Klicke eine Karte zum Auswählen';
     body.innerHTML = `
       <div class="sol-wrap">
+        <div class="sol-hint-bar">${hintText}</div>
         <div class="sol-top-row">
           <div class="sol-stock" id="sol-stock">${stockHtml}</div>
           <div class="sol-waste" id="sol-waste">${wasteHtml}</div>
@@ -4189,80 +4696,6 @@ function buildTetris(body) {
 // ─────────────────────────────────────────────────
 // NETWORK WINDOW
 // ─────────────────────────────────────────────────
-function buildNetwork(body) {
-  body.style.padding = '0';
-  body.style.overflow = 'hidden';
-
-  const nodes = [
-    { id: 'niklas',  label: 'Niklas',          x: 280, y: 220, r: 28, cat: 'center', desc: 'Head of Digital Transformation' },
-    { id: 'rtl',     label: 'RTL Deutschland',  x: 120, y: 100, r: 20, cat: 'work',   desc: 'Arbeitgeber seit 2020' },
-    { id: 'claude',  label: 'KI / Claude',      x: 420, y: 100, r: 20, cat: 'tech',   desc: 'AI-gestützte Workflows' },
-    { id: 'ha',      label: 'Home Assistant',    x: 480, y: 220, r: 18, cat: 'tech',   desc: 'Smart Home Automation' },
-    { id: 'bambu',   label: 'Bambu 3D-Druck',   x: 440, y: 340, r: 18, cat: 'tech',   desc: 'Bambu Lab P1S & X1C' },
-    { id: 'github',  label: 'GitHub',            x: 280, y: 380, r: 18, cat: 'tech',   desc: 'Open Source & Projekte' },
-    { id: 'linkedin',label: 'LinkedIn',          x: 120, y: 340, r: 18, cat: 'work',   desc: 'Professionelles Netzwerk' },
-    { id: 'media',   label: 'Media Hub',         x: 80,  y: 220, r: 18, cat: 'private',desc: 'Medien-Infrastruktur' },
-    { id: 'pictron', label: 'PICTRON',           x: 180, y: 160, r: 16, cat: 'work',   desc: 'Ehem. Arbeitgeber' },
-    { id: 'mdc',     label: 'MDC',               x: 380, y: 160, r: 16, cat: 'work',   desc: 'Medienmanagement' },
-  ];
-
-  const edges = [
-    ['niklas','rtl'],['niklas','claude'],['niklas','ha'],['niklas','bambu'],
-    ['niklas','github'],['niklas','linkedin'],['niklas','media'],
-    ['niklas','pictron'],['niklas','mdc'],
-    ['rtl','pictron'],['rtl','mdc'],['claude','github'],['ha','bambu'],
-  ];
-
-  const catColors = { center: '#4ade80', work: '#3b82f6', private: '#f59e0b', tech: '#8b5cf6' };
-
-  const edgesHtml = edges.map(([a,b], i) => {
-    const na = nodes.find(n=>n.id===a), nb = nodes.find(n=>n.id===b);
-    return `<line x1="${na.x}" y1="${na.y}" x2="${nb.x}" y2="${nb.y}" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" class="net-edge"/>
-      <circle r="3" fill="${catColors[na.cat]}" opacity="0.7">
-        <animateMotion dur="${2+i*0.3}s" repeatCount="indefinite" path="M${na.x},${na.y} L${nb.x},${nb.y}"/>
-      </circle>`;
-  }).join('');
-
-  const nodesHtml = nodes.map(n => {
-    const pulse = n.id === 'niklas' ? '<animate attributeName="r" values="28;32;28" dur="2s" repeatCount="indefinite"/>' : '';
-    return `<g class="net-node" data-id="${n.id}">
-      <circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${catColors[n.cat]}" opacity="0.2" stroke="${catColors[n.cat]}" stroke-width="1.5">${pulse}</circle>
-      <text x="${n.x}" y="${n.y + 4}" text-anchor="middle" fill="white" font-size="${n.id==='niklas'?'12':'10'}" font-family="var(--font-ui)" font-weight="${n.id==='niklas'?'600':'400'}">${n.label}</text>
-    </g>`;
-  }).join('');
-
-  body.innerHTML = `
-    <div class="net-wrap">
-      <svg viewBox="0 0 560 440" class="net-svg">
-        ${edgesHtml}
-        ${nodesHtml}
-      </svg>
-      <div class="net-tooltip" id="net-tooltip" style="display:none"></div>
-      <div class="net-legend">
-        <span class="net-legend-item"><span class="net-legend-dot" style="background:#3b82f6"></span>Arbeit</span>
-        <span class="net-legend-item"><span class="net-legend-dot" style="background:#f59e0b"></span>Privat</span>
-        <span class="net-legend-item"><span class="net-legend-dot" style="background:#8b5cf6"></span>Technik</span>
-      </div>
-    </div>
-  `;
-
-  const tooltip = body.querySelector('#net-tooltip');
-  body.querySelectorAll('.net-node').forEach(nodeEl => {
-    nodeEl.style.cursor = 'pointer';
-    nodeEl.addEventListener('mouseenter', e => {
-      const n = nodes.find(nd => nd.id === nodeEl.dataset.id);
-      if (!n) return;
-      tooltip.textContent = `${n.label}: ${n.desc}`;
-      tooltip.style.display = 'block';
-      const rect = body.getBoundingClientRect();
-      tooltip.style.left = (e.clientX - rect.left + 10) + 'px';
-      tooltip.style.top = (e.clientY - rect.top - 30) + 'px';
-    });
-    nodeEl.addEventListener('mouseleave', () => {
-      tooltip.style.display = 'none';
-    });
-  });
-}
 
 // ─────────────────────────────────────────────────
 // ACHIEVEMENT / EASTER EGG SYSTEM
@@ -4451,8 +4884,11 @@ function initTaskbarAppsBtn() {
   const appList = document.getElementById('sm-apps-list');
   if (!btn || !menu) return;
 
-  // Populate app list from WIN_CONFIGS
-  Object.entries(WIN_CONFIGS).forEach(([id, cfg]) => {
+  // Populate app list from WIN_CONFIGS (alphabetically sorted)
+  Object.entries(WIN_CONFIGS)
+    .filter(([id]) => id !== 'placeholder')
+    .sort(([,a],[,b]) => a.title.localeCompare(b.title, 'de'))
+    .forEach(([id, cfg]) => {
     const bg = COLOR_MAP[cfg.color] || 'linear-gradient(135deg,#52b788,#2d6a4f)';
     const item = document.createElement('div');
     item.className = 'sm-app-item';
@@ -5059,7 +5495,6 @@ function openMobileWindow(id) {
     teams:          buildTeams,
     jira:           buildJira,
     github:         buildGitHub,
-    rss:            buildRSS,
     filesapp:       buildFilesApp,
     snake:          buildSnake,
     minesweeper:    buildMinesweeper,
@@ -5068,7 +5503,10 @@ function openMobileWindow(id) {
     solitaire:      buildSolitaire,
     memory:         buildMemory,
     tetris:         buildTetris,
-    network:        buildNetwork,
+    pong:           buildPong,
+    tictactoe:      buildTicTacToe,
+    flappybird:     buildFlappyBird,
+    sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
     testimonials:   buildTestimonials,
@@ -5104,7 +5542,7 @@ Umbauten am Haus, ein größeres Auto, Therapien und Hilfsmittel \u2013 vieles m
 
 Dafür starten wir eine GoFundMe-Kampagne. Jeder Beitrag hilft uns, unserem Ziel näher zu kommen \u2013 sei es durch eine Spende oder das Teilen des Links in eurem Netzwerk.
 
-→ Hier geht\u2019s zur Kampagne: https://lnkd.in/eX8HATQ9
+→ Hier geht\u2019s zur Kampagne: https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE
 
 Vielen Dank für jede Form der Unterstützung!`,
   },
@@ -5307,8 +5745,9 @@ function buildBlog(body) {
   `).join('');
 
   function renderPost(post) {
+    const titleHtml = `<div class="blog-line blog-line-title">${escapeHtml(post.title)}</div><div class="blog-line blog-line-empty">&nbsp;</div>`;
     const lines = post.content.split('\n');
-    return lines.map(line => {
+    return titleHtml + lines.map(line => {
       const trimmed = line.trim();
       if (!trimmed) return '<div class="blog-line blog-line-empty">&nbsp;</div>';
       if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${linkifyText(escapeHtml(trimmed))}</div>`;
@@ -5525,7 +5964,7 @@ function buildTestimonials(body) {
       <div class="testi-quotes">${quotesHtml}</div>
       <div class="testi-section-title" style="margin-top:24px">Achievements</div>
       <div class="testi-achievements">${achievementsHtml}</div>
-      <div class="testi-note">Ausführliche Empfehlungen auf <a href="https://linkedin.com/in/niklas-fauteck" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="testi-note">Ausführliche Empfehlungen auf <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">LinkedIn</a></div>
     </div>
   `;
 }

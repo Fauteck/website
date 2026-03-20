@@ -14,7 +14,7 @@ Wir möchten unseren Anbau im Garten barrierefrei zum Wohnraum umbauen, damit Ay
 
 Dafür starten wir eine GoFundMe-Kampagne. Jeder Beitrag hilft uns, unserem Ziel näher zu kommen – sei es durch eine Spende oder das Teilen des Links in eurem Netzwerk.
 
-Hier geht's zur Kampagne: https://lnkd.in/eX8HATQ9
+Hier geht's zur Kampagne: https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE
 
 Vielen Dank für jede Form der Unterstützung!
 
