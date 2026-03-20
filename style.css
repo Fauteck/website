@@ -1079,84 +1079,235 @@ a:hover { text-decoration: underline; }
 }
 
 /* ───────────────────────────────────────────────────
-   SYSTEM MONITOR WINDOW
+   TASK-MANAGER (Windows 11 style)
 ─────────────────────────────────────────────────── */
-.sysmon {
-  padding: 16px 20px;
-  font-family: var(--font-mono);
-  user-select: text;
-  background: #f7f8f6;
+.tm-wrap {
+  display: flex; height: 100%; background: #1a1a1a;
+  font-family: var(--font-sans); color: #e4e4e4;
 }
-.sysmon-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(82,183,136,0.2);
-}
-.sysmon-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent-dark);
-  letter-spacing: 0.5px;
-}
-.sysmon-uptitle {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.sysmon-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 16px;
-}
-.sysmon-table th {
-  text-align: left;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 4px 0 8px;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-.sysmon-table td {
-  padding: 10px 0;
-  font-size: 12px;
-  vertical-align: middle;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-}
-.sysmon-proc { color: var(--term-green); font-size: 12px; padding-right: 12px; }
-.sysmon-bar-cell { width: 180px; padding-right: 12px; }
-.sysmon-bar-track {
-  height: 8px;
-  background: rgba(0,0,0,0.08);
-  border-radius: 4px;
+/* Sidebar */
+.tm-sidebar {
+  width: 48px; flex-shrink: 0;
+  background: #202020; display: flex; flex-direction: column;
+  border-right: 1px solid #333; transition: width 0.2s;
   overflow: hidden;
 }
-.sysmon-bar-fill {
-  height: 100%;
-  background: linear-gradient(to right, var(--accent-dark), var(--accent));
-  border-radius: 4px;
-  width: 0%;
-  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.tm-sidebar.expanded { width: 180px; }
+.tm-sidebar-toggle {
+  padding: 12px 14px; cursor: pointer;
+  color: #aaa; display: flex; align-items: center; gap: 10px;
+  font-size: 12px; border: none; background: none; width: 100%;
+  text-align: left;
 }
-.sysmon-val { color: var(--accent-dark); font-size: 11.5px; font-weight: 600; }
-.sysmon-status { color: var(--term-green); font-size: 11px; padding-left: 8px; }
-
-.sysmon-footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(82,183,136,0.2);
-  font-size: 11.5px;
+.tm-sidebar-toggle:hover { color: #fff; }
+.tm-sidebar-toggle svg { flex-shrink: 0; }
+.tm-sidebar-toggle span { white-space: nowrap; opacity: 0; transition: opacity 0.15s; }
+.tm-sidebar.expanded .tm-sidebar-toggle span { opacity: 1; }
+.tm-nav { display: flex; flex-direction: column; gap: 2px; padding: 4px 6px; }
+.tm-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 8px; border-radius: 4px; cursor: pointer;
+  color: #aaa; font-size: 12px; border: none; background: none;
+  width: 100%; text-align: left; white-space: nowrap;
 }
-.sysmon-kv { display: flex; flex-direction: column; gap: 2px; }
-.sysmon-kv .k { color: var(--text-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; }
-.sysmon-kv .v { color: var(--text-secondary); font-weight: 500; }
+.tm-nav-item:hover { background: #2a2a2a; color: #ddd; }
+.tm-nav-item.active { background: #333; color: #fff; }
+.tm-nav-item svg { flex-shrink: 0; width: 18px; height: 18px; }
+.tm-nav-item span { opacity: 0; transition: opacity 0.15s; }
+.tm-sidebar.expanded .tm-nav-item span { opacity: 1; }
+/* Content area */
+.tm-content {
+  flex: 1; overflow-y: auto; min-width: 0;
+  scrollbar-width: thin; scrollbar-color: rgba(82,183,136,0.3) #1a1a1a;
+}
+.tm-content::-webkit-scrollbar { width: 6px; }
+.tm-content::-webkit-scrollbar-track { background: #1a1a1a; }
+.tm-content::-webkit-scrollbar-thumb { background: rgba(82,183,136,0.3); border-radius: 3px; }
+/* ── Prozesse tab ── */
+.tm-proc { padding: 16px 20px; font-family: var(--font-mono); }
+.tm-proc-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; padding-bottom: 8px;
+  border-bottom: 1px solid #333;
+}
+.tm-proc-title { font-size: 13px; font-weight: 600; color: #52b788; letter-spacing: 0.5px; }
+.tm-proc-uptime { font-size: 11px; color: #888; }
+.tm-proc table { width: 100%; border-collapse: collapse; }
+.tm-proc th {
+  text-align: left; font-size: 10px; font-weight: 600;
+  color: #888; text-transform: uppercase; letter-spacing: 0.8px;
+  padding: 4px 0 8px; border-bottom: 1px solid #333;
+}
+.tm-proc td {
+  padding: 8px 0; font-size: 12px; vertical-align: middle;
+  border-bottom: 1px solid #262626;
+}
+.tm-proc-name { color: #52b788; padding-right: 12px; }
+.tm-proc-bar-cell { width: 180px; padding-right: 12px; }
+.tm-proc-bar-track { height: 6px; background: #333; border-radius: 3px; overflow: hidden; }
+.tm-proc-bar-fill {
+  height: 100%; border-radius: 3px; width: 0%;
+  background: linear-gradient(to right, #2d6a4f, #52b788);
+  transition: width 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.tm-proc-val { color: #52b788; font-size: 11px; font-weight: 600; }
+.tm-proc-status { color: #6fcf97; font-size: 11px; padding-left: 8px; }
+.tm-proc-footer {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid #333; font-size: 11px;
+}
+.tm-proc-kv { display: flex; flex-direction: column; gap: 2px; }
+.tm-proc-kv .k { color: #666; font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; }
+.tm-proc-kv .v { color: #bbb; font-weight: 500; }
+/* ── Leistung tab ── */
+.tm-perf { padding: 0; display: flex; flex-direction: column; height: 100%; }
+.tm-perf-resources {
+  display: flex; border-bottom: 1px solid #333; flex-shrink: 0;
+}
+.tm-perf-res-item {
+  padding: 10px 14px; cursor: pointer; border-right: 1px solid #333;
+  display: flex; flex-direction: column; gap: 4px; min-width: 110px;
+}
+.tm-perf-res-item:hover { background: #252525; }
+.tm-perf-res-item.active { background: #252525; border-bottom: 2px solid #52b788; }
+.tm-perf-res-label { font-size: 11px; color: #888; }
+.tm-perf-res-val { font-size: 16px; font-weight: 600; color: #52b788; }
+.tm-perf-res-sub { font-size: 10px; color: #666; }
+.tm-perf-res-spark {
+  width: 60px; height: 20px; margin-top: 2px;
+}
+.tm-perf-res-spark polyline {
+  fill: none; stroke: #52b788; stroke-width: 1.5;
+}
+.tm-perf-chart-area {
+  flex: 1; padding: 16px 20px; display: flex; flex-direction: column; min-height: 0;
+}
+.tm-perf-chart-title { font-size: 12px; color: #aaa; margin-bottom: 8px; flex-shrink: 0; }
+.tm-perf-chart-box {
+  flex: 1; min-height: 120px; position: relative;
+  background: #151515; border: 1px solid #333; border-radius: 6px;
+  overflow: hidden;
+}
+.tm-perf-chart-box svg { width: 100%; height: 100%; display: block; }
+.tm-perf-chart-grid line { stroke: #2a2a2a; stroke-width: 0.5; }
+.tm-perf-chart-line {
+  fill: none; stroke: #52b788; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.tm-perf-chart-fill {
+  fill: url(#tm-perf-gradient); opacity: 0.3;
+}
+.tm-perf-chart-label {
+  position: absolute; top: 6px; right: 10px;
+  font-size: 10px; color: #666; font-family: var(--font-mono);
+}
+.tm-perf-chart-pct {
+  position: absolute; top: 6px; left: 10px;
+  font-size: 22px; font-weight: 700; color: #52b788;
+  font-family: var(--font-mono);
+}
+.tm-perf-metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  margin-top: 12px; flex-shrink: 0;
+}
+.tm-perf-metric {
+  background: #202020; border-radius: 6px; padding: 10px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.tm-perf-metric .k { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+.tm-perf-metric .v { font-size: 12px; color: #ccc; font-weight: 500; }
+/* Terminal-style output at bottom of Leistung */
+.tm-perf-terminal {
+  margin-top: 10px; flex-shrink: 0;
+  background: #111; border: 1px solid #2a2a2a; border-radius: 6px;
+  padding: 10px 12px; font-family: var(--font-mono); font-size: 11px;
+  color: #52b788; max-height: 80px; overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: #333 #111;
+}
+.tm-perf-term-line { margin-bottom: 2px; }
+.tm-perf-term-line .dim { color: #555; }
+.tm-perf-term-line .val { color: #6fcf97; }
+/* ── Benutzer tab (skills) ── */
+.tm-users { padding: 20px; }
+.tm-users-header {
+  font-size: 13px; font-weight: 600; color: #52b788;
+  margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #333;
+  font-family: var(--font-mono);
+}
+.tm-skill-cat {
+  margin-bottom: 16px;
+}
+.tm-skill-cat-title {
+  font-size: 11px; font-weight: 600; color: #52b788;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+.tm-skill-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 6px;
+}
+.tm-skill-label {
+  width: 160px; font-size: 12px; color: #ccc; flex-shrink: 0;
+}
+.tm-skill-bar-track {
+  flex: 1; height: 8px; background: #333; border-radius: 4px;
+  overflow: hidden;
+}
+.tm-skill-bar-fill {
+  height: 100%; border-radius: 4px; width: 0%;
+  background: linear-gradient(to right, #2d6a4f, #52b788);
+  transition: width 1s ease;
+}
+.tm-skill-level {
+  width: 90px; font-size: 11px; color: #888; text-align: right; flex-shrink: 0;
+}
+/* ── App-Verlauf tab ── */
+.tm-apps { padding: 20px; }
+.tm-apps-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #333;
+}
+.tm-apps-title { font-size: 13px; font-weight: 600; color: #52b788; }
+.tm-apps-cmd { font-size: 11px; color: #555; font-family: var(--font-mono); }
+.tm-apps-cat { margin-bottom: 14px; }
+.tm-apps-cat-title {
+  font-size: 11px; font-weight: 600; color: #888;
+  text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px;
+}
+.tm-apps-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 0; border-bottom: 1px solid #262626; font-size: 12px;
+}
+.tm-apps-name { color: #ccc; flex: 1; }
+.tm-apps-ver { color: #666; font-family: var(--font-mono); font-size: 11px; }
+.tm-apps-check { color: #52b788; font-size: 11px; }
+/* ── Dienste tab ── */
+.tm-services { padding: 20px; }
+.tm-services-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #333;
+  font-size: 13px; color: #52b788; font-weight: 600;
+}
+.tm-svc-card {
+  background: #232323; border: 1px solid #333; border-radius: 8px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+.tm-svc-card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.tm-svc-name { font-size: 13px; font-weight: 600; color: #e4e4e4; }
+.tm-svc-period { font-size: 11px; color: #666; }
+.tm-svc-role { font-size: 12px; color: #888; margin-bottom: 6px; }
+.tm-svc-desc { font-size: 12px; color: #aaa; line-height: 1.5; margin-bottom: 8px; }
+.tm-svc-tech { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.tm-svc-tag {
+  font-size: 10px; padding: 2px 8px; border-radius: 10px;
+  background: #2d6a4f33; color: #52b788; border: 1px solid #2d6a4f55;
+}
+.tm-svc-impact {
+  font-size: 11px; color: #6fcf97; display: flex; align-items: center; gap: 6px;
+}
 
 /* ───────────────────────────────────────────────────
    BAMBU STUDIO WINDOW (redesigned)
@@ -4385,8 +4536,9 @@ kbd.search-esc {
 .ap-sidebar-item:hover { background: rgba(0,0,0,0.07); }
 .ap-sidebar-item.active { background: #cde; color: #003; }
 .ap-main {
-  flex: 1; overflow-y: auto;
+  flex: 1; overflow: hidden;
   padding: 12px 14px;
+  display: flex; flex-direction: column;
 }
 .ap-section-label {
   font-size: 11px; font-weight: 600;
@@ -4394,16 +4546,18 @@ kbd.search-esc {
   margin-bottom: 10px;
   padding-bottom: 4px;
   border-bottom: 1px solid #ccc;
+  flex-shrink: 0;
 }
+.ap-section-label + .ap-drives-grid { flex-shrink: 0; }
 .ap-drives-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 .ap-drive {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px;
   background: white; border: 1px solid #d0d0d0; border-radius: 6px;
   cursor: pointer;
   transition: box-shadow 0.12s, border-color 0.12s;
@@ -4418,7 +4572,7 @@ kbd.search-esc {
 .ap-detail-pane {
   background: white; border: 1px solid #ccc; border-radius: 8px;
   padding: 14px 16px; margin-top: 2px;
-  overflow-y: auto; max-height: 220px;
+  overflow-y: auto; flex: 1; min-height: 0;
 }
 .ap-detail-header {
   display: flex; gap: 12px; align-items: flex-start;
