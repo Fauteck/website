@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Niklas Fauteck</title>
+  <meta name="description" content="Blog von Niklas Fauteck — Gedanken und Erfahrungen zu Karriere, Familie und dem Leben.">
+  <meta name="author" content="Niklas Fauteck">
+  <meta property="og:title" content="Blog — Niklas Fauteck">
+  <meta property="og:description" content="Gedanken und Erfahrungen — persönlich, ehrlich, direkt.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fauteck.github.io/website/blog/">
+  <link rel="canonical" href="https://fauteck.github.io/website/blog/">
+  <link rel="alternate" type="application/rss+xml" title="Blog — Niklas Fauteck" href="../feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%232C3E50'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='700' font-size='18' fill='%234ECDC4'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/x-icon" href="../full/favicon.ico">
+  <link rel="apple-touch-icon" href="../full/favicon-192.png">
+  <style>
+    :root {
+      --primary: #2C3E50;
+      --accent: #4ECDC4;
+      --accent-dark: #3AB0A7;
+      --bg: #FFFFFF;
+      --bg-light: #F8F9FA;
+      --text: #2C3E50;
+      --text-secondary: #6C757D;
+      --border: #E5E7EB;
+      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-light);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Header */
+    .blog-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .blog-header .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .blog-header .back-link:hover { text-decoration: underline; }
+
+    .blog-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .blog-header p {
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    /* Post Listing */
+    .post-list { list-style: none; }
+
+    .post-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .post-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      border-color: var(--accent);
+    }
+
+    .post-item a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .post-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .post-date { font-family: var(--font-mono); font-size: 0.78rem; }
+
+    .post-tag {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
+
+    .post-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .post-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Single Post View */
+    .post-view { display: none; }
+    .post-view.active { display: block; }
+    .post-list-view.hidden { display: none; }
+
+    .post-content {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2.5rem;
+    }
+
+    .post-content h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .post-content .post-content-meta {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-content h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .post-content h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .post-content p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .post-content blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1.25rem;
+      margin: 1.25rem 0;
+      background: var(--bg-light);
+      border-radius: 0 6px 6px 0;
+      color: var(--text-secondary);
+    }
+
+    .post-content blockquote p { margin-bottom: 0; }
+
+    .post-content ul, .post-content ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .post-content li { margin-bottom: 0.35rem; }
+
+    .post-content a {
+      color: var(--accent-dark);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .post-content strong { font-weight: 600; }
+    .post-content em { font-style: italic; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    .footer a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 1rem; }
+      .blog-header h1 { font-size: 1.5rem; }
+      .post-content { padding: 1.5rem; }
+      .post-content h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="blog-header">
+      <a href="../" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Startseite
+      </a>
+      <h1>Blog</h1>
+      <p>Gedanken und Erfahrungen — persönlich, ehrlich, direkt.</p>
+    </header>
+
+    <!-- Post Listing -->
+    <div class="post-list-view" id="postList">
+      <ul class="post-list">
+        <li class="post-item" onclick="loadPost('gofundme')">
+          <a href="#gofundme">
+            <div class="post-meta">
+              <span class="post-date">01.10.2025</span>
+              <span class="post-tag">Persönlich</span>
+              <span class="post-tag">Familie</span>
+              <span class="post-tag">GoFundMe</span>
+            </div>
+            <h2 class="post-title">GoFundMe: Barrierefreier Umbau für unsere Familie</h2>
+            <p class="post-excerpt">Manchmal verändert ein einziger Tag das ganze Leben. Im November 2022 erlitt meine Frau Aylin nach einer Tumor-OP eine Teilquerschnittslähmung. Seitdem kämpfen wir uns Schritt für Schritt durch einen neuen Alltag.</p>
+          </a>
+        </li>
+        <li class="post-item" onclick="loadPost('depression')">
+          <a href="#depression">
+            <div class="post-meta">
+              <span class="post-date">10.10.2024</span>
+              <span class="post-tag">Persönlich</span>
+              <span class="post-tag">Mental Health</span>
+            </div>
+            <h2 class="post-title">Depression</h2>
+            <p class="post-excerpt">Ich bin in eine Depression gerutscht. Ich habe lange überlegt, ob ich das schreiben soll. Vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt.</p>
+          </a>
+        </li>
+        <li class="post-item" onclick="loadPost('neue-position')">
+          <a href="#neue-position">
+            <div class="post-meta">
+              <span class="post-date">01.08.2023</span>
+              <span class="post-tag">Karriere</span>
+              <span class="post-tag">RTL</span>
+              <span class="post-tag">Persönlich</span>
+            </div>
+            <h2 class="post-title">Neue Position</h2>
+            <p class="post-excerpt">Jetzt freue ich mich auf die Aufgaben in meiner neuen Position als Head of Digital Transformation in der Kommunikation.</p>
+          </a>
+        </li>
+        <li class="post-item" onclick="loadPost('abschied-science-slam')">
+          <a href="#abschied-science-slam">
+            <div class="post-meta">
+              <span class="post-date">06.03.2022</span>
+              <span class="post-tag">Science Slam</span>
+              <span class="post-tag">Moderation</span>
+            </div>
+            <h2 class="post-title">Abschied vom Science Slam</h2>
+            <p class="post-excerpt">9 Jahre, 38 Events, über 200 Vorträge — und phantastische Menschen kennengelernt. Danke!</p>
+          </a>
+        </li>
+        <li class="post-item" onclick="loadPost('jahresrueckblick-2021')">
+          <a href="#jahresrueckblick-2021">
+            <div class="post-meta">
+              <span class="post-date">01.01.2022</span>
+              <span class="post-tag">Jahresrückblick</span>
+              <span class="post-tag">Persönlich</span>
+            </div>
+            <h2 class="post-title">Jahresrückblick 2021</h2>
+            <p class="post-excerpt">Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert.</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Single Post View -->
+    <div class="post-view" id="postView">
+      <a href="#" class="back-link" onclick="showList(); return false;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Alle Beiträge
+      </a>
+      <div class="post-content" id="postContent"></div>
+    </div>
+
+    <footer class="footer">
+      <a href="../">Startseite</a>
+      &middot;
+      <a href="../feed.xml">RSS</a>
+      &middot;
+      <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">LinkedIn</a>
+    </footer>
+  </div>
+
+  <script>
+    function renderMarkdown(md) {
+      // Remove frontmatter
+      md = md.replace(/^---[\s\S]*?---\s*/, '');
+
+      var lines = md.split('\n');
+      var html = [];
+      var inList = false;
+      var inBlockquote = false;
+      var listType = '';
+
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+
+        // Headings
+        if (line.match(/^### /)) {
+          closeList(); closeBlockquote();
+          html.push('<h3>' + inline(line.slice(4)) + '</h3>');
+          continue;
+        }
+        if (line.match(/^## /)) {
+          closeList(); closeBlockquote();
+          html.push('<h2>' + inline(line.slice(3)) + '</h2>');
+          continue;
+        }
+        if (line.match(/^# /)) {
+          closeList(); closeBlockquote();
+          html.push('<h1>' + inline(line.slice(2)) + '</h1>');
+          continue;
+        }
+
+        // Blockquote
+        if (line.match(/^> /)) {
+          closeList();
+          if (!inBlockquote) { html.push('<blockquote>'); inBlockquote = true; }
+          html.push('<p>' + inline(line.slice(2)) + '</p>');
+          continue;
+        } else if (inBlockquote) {
+          closeBlockquote();
+        }
+
+        // Unordered list
+        if (line.match(/^[-*] /)) {
+          if (!inList || listType !== 'ul') { closeList(); html.push('<ul>'); inList = true; listType = 'ul'; }
+          html.push('<li>' + inline(line.slice(2)) + '</li>');
+          continue;
+        }
+
+        // Ordered list
+        var olMatch = line.match(/^\d+\. /);
+        if (olMatch) {
+          if (!inList || listType !== 'ol') { closeList(); html.push('<ol>'); inList = true; listType = 'ol'; }
+          html.push('<li>' + inline(line.replace(/^\d+\. /, '')) + '</li>');
+          continue;
+        }
+
+        // Empty line
+        if (line.trim() === '') {
+          closeList();
+          continue;
+        }
+
+        // Paragraph
+        closeList();
+        html.push('<p>' + inline(line) + '</p>');
+      }
+
+      closeList();
+      closeBlockquote();
+      return html.join('\n');
+
+      function closeList() {
+        if (inList) {
+          html.push(listType === 'ol' ? '</ol>' : '</ul>');
+          inList = false;
+          listType = '';
+        }
+      }
+
+      function closeBlockquote() {
+        if (inBlockquote) {
+          html.push('</blockquote>');
+          inBlockquote = false;
+        }
+      }
+
+      function inline(text) {
+        // Bold
+        text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        // Italic
+        text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+        // Links
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+        // Bare URLs
+        text = text.replace(/(^|[^"=])(https?:\/\/[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+        return text;
+      }
+    }
+
+    var postMeta = {
+      'gofundme': { title: 'GoFundMe: Barrierefreier Umbau für unsere Familie', date: '01.10.2025' },
+      'depression': { title: 'Depression', date: '10.10.2024' },
+      'neue-position': { title: 'Neue Position', date: '01.08.2023' },
+      'abschied-science-slam': { title: 'Abschied vom Science Slam', date: '06.03.2022' },
+      'jahresrueckblick-2021': { title: 'Jahresrückblick 2021', date: '01.01.2022' }
+    };
+
+    function loadPost(slug) {
+      window.location.hash = slug;
+      fetch(slug + '.md')
+        .then(function(r) { return r.text(); })
+        .then(function(md) {
+          var meta = postMeta[slug] || {};
+          var rendered = renderMarkdown(md);
+          document.getElementById('postContent').innerHTML =
+            '<div class="post-content-meta">' + (meta.date || '') + '</div>' +
+            rendered;
+          document.getElementById('postList').classList.add('hidden');
+          var view = document.getElementById('postView');
+          view.classList.add('active');
+          window.scrollTo(0, 0);
+        })
+        .catch(function() {
+          document.getElementById('postContent').innerHTML = '<p>Beitrag konnte nicht geladen werden.</p>';
+          document.getElementById('postList').classList.add('hidden');
+          document.getElementById('postView').classList.add('active');
+        });
+    }
+
+    function showList() {
+      window.location.hash = '';
+      document.getElementById('postList').classList.remove('hidden');
+      document.getElementById('postView').classList.remove('active');
+      window.scrollTo(0, 0);
+    }
+
+    // Handle initial hash
+    (function() {
+      var hash = window.location.hash.slice(1);
+      if (hash && postMeta[hash]) {
+        loadPost(hash);
+      }
+    })();
+
+    // Handle back/forward navigation
+    window.addEventListener('hashchange', function() {
+      var hash = window.location.hash.slice(1);
+      if (hash && postMeta[hash]) {
+        loadPost(hash);
+      } else {
+        showList();
+      }
+    });
+  </script>
+</body>
+</html>
