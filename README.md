@@ -10,12 +10,15 @@
 
 ## Benutzeroberfläche
 
-Die Website simuliert ein vollständiges Betriebssystem:
+Die Website besteht aus vier Bereichen, erreichbar über eine zentrale Startseite:
 
-- **Desktop** — Linux-Mint-/Cinnamon-inspirierte Oberfläche mit Boot-Screen, Login, Fenstermanager, Taskbar und Startmenü
+- **Startseite** — Hub mit Navigations-Cards zu allen Bereichen (Vibecoding Academy, CV, OS, Blog)
+- **NiklasOS** (`/os/`) — Linux-Mint-/Cinnamon-inspirierte Oberfläche mit Boot-Screen, Login, Fenstermanager, Taskbar und Startmenü
+- **CV** (`/full/`) — Klassische Portfolio-Ansicht mit Lebenslauf und Projekten
+- **Blog** (`/blog/`) — Persönliche Artikel mit RSS-Feed
 - **Mobil** — Android-ähnliches Interface mit Lockscreen, PIN-Eingabe, App-Grid, Statusleiste, Benachrichtigungen und Quick-Settings
 
-Beide Ansichten sind responsiv und passen sich automatisch an die Bildschirmgröße an.
+Alle Ansichten sind responsiv und passen sich automatisch an die Bildschirmgröße an.
 
 ---
 
@@ -23,14 +26,16 @@ Beide Ansichten sind responsiv und passen sich automatisch an die Bildschirmgrö
 
 | Feature | Beschreibung |
 |---|---|
+| Startseite / Hub | Zentrale Navigation mit Cards zu allen Bereichen |
 | Boot-Sequenz | Animierter Startbildschirm mit Ladebalken |
 | Login / Lockscreen | Desktop-Login und mobiler PIN-Screen |
 | Fenstermanager | Drag, Resize, Minimize, Maximize, Close, Z-Index-Management |
 | Terminal | Interaktiver Terminal-Emulator mit ~20 Befehlen |
-| Spiele | Snake, Minesweeper, Tetris, Memory, Solitaire |
+| Spiele | Snake, Minesweeper, Tetris, Memory, Solitaire, Pong, Tic-Tac-Toe, Flappy Bird, Sudoku |
 | System Monitor | Fähigkeiten-Dashboard als Prozessmonitor |
 | Bambu Studio | 3D-Druck-Interessen mit animiertem Drucker |
 | Home Assistant | Smart-Home-Automation-Details |
+| Blog | Persönliche Artikel mit RSS-Feed (`feed.xml`) |
 | Kontextmenü | Rechtsklick-Menü auf dem Desktop |
 | Suchfunktion | Globale App-Suche über die Taskbar |
 | Easter Eggs | Versteckte Achievements und Befehle |
@@ -44,15 +49,23 @@ Beide Ansichten sind responsiv und passen sich automatisch an die Bildschirmgrö
 ```
 Browser
   │
-  ├── index.html        Semantisches HTML5, Schema.org-Markup
-  │     │
-  │     ├── style.css    CSS3 mit Custom Properties, Animationen, Responsive
-  │     │
-  │     └── script.js    Vanilla JS — Fenstermanager, Terminal, Spiele, Mobile-UI
+  ├── index.html              Startseite / Hub mit Navigations-Cards
   │
-  └── /full/             Alternative klassische Portfolio-Ansicht
-        ├── index.html
-        └── style.css
+  ├── /os/
+  │     └── index.html        NiklasOS — Desktop-Simulation mit Fenstermanager,
+  │                            Terminal, Spielen, Mobile-UI (alles inline)
+  │
+  ├── /full/                   Klassische Portfolio-/CV-Ansicht
+  │     ├── index.html
+  │     └── style.css
+  │
+  ├── /blog/                   Blog mit persönlichen Artikeln
+  │     ├── index.html
+  │     └── *.md               Artikel als Markdown
+  │
+  ├── style.css                CSS3 mit Custom Properties, Animationen, Responsive
+  ├── script.js                Vanilla JS — Fenstermanager, Terminal, Spiele, Mobile-UI
+  └── feed.xml                 RSS-Feed für Blog-Artikel
 ```
 
 Statische Website ohne Build-Prozess, ohne Backend, ohne Datenbank. Alle Inhalte werden clientseitig gerendert.
@@ -94,9 +107,12 @@ Anpassungen erfolgen direkt in den Quelldateien:
 
 | Datei | Zweck |
 |---|---|
-| `index.html` | Struktur, Meta-Tags, Schema.org-Daten |
+| `index.html` | Startseite / Hub mit Navigations-Cards |
+| `os/index.html` | NiklasOS-Interface (Desktop-Simulation, inline CSS/JS) |
 | `style.css` | Design, Farben (CSS Custom Properties), Animationen |
 | `script.js` | Inhalte, Terminal-Befehle, Fenster-Konfiguration, Spiele |
+| `blog/index.html` | Blog-Übersicht und Artikelanzeige |
+| `feed.xml` | RSS-Feed für Blog-Artikel |
 | `robots.txt` | Suchmaschinen-Steuerung |
 
 ---
@@ -128,17 +144,26 @@ Anpassungen erfolgen direkt in den Quelldateien:
 
 ```
 website/
-├── index.html          # Hauptseite — NiklasOS Interface
-├── script.js           # Gesamte Interaktivität (~4.500 Zeilen)
-├── style.css           # Gesamtes Styling (~4.500 Zeilen)
-├── robots.txt          # Crawler-Steuerung
-├── README.md           # Diese Datei
-└── full/               # Klassische Portfolio-Variante
-    ├── index.html
-    ├── style.css
-    ├── favicon.ico
-    ├── favicon-192.png
-    └── *.jpg / *.png   # Profilbilder und Logos
+├── index.html              # Startseite / Hub mit Navigations-Cards
+├── script.js               # Gesamte Interaktivität (~6.500 Zeilen)
+├── style.css               # Gesamtes Styling (~5.900 Zeilen)
+├── feed.xml                # RSS-Feed für Blog-Artikel
+├── robots.txt              # Crawler-Steuerung
+├── .nojekyll               # GitHub Pages — Jekyll deaktivieren
+├── README.md               # Diese Datei
+├── os/
+│   └── index.html          # NiklasOS Interface (inline CSS/JS)
+├── full/                   # Klassische Portfolio-/CV-Variante
+│   ├── index.html
+│   ├── style.css
+│   ├── favicon.ico
+│   ├── favicon-192.png
+│   └── *.jpg / *.png       # Profilbilder und Logos
+├── blog/                   # Persönlicher Blog
+│   ├── index.html
+│   └── *.md                # Artikel als Markdown
+└── minigames-export/       # Standalone-Spezifikationen der Minispiele
+    └── *.md
 ```
 
 ---
