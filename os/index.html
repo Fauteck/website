@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <base href="../">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NiklasOS — Niklas Fauteck</title>
+  <meta name="description" content="Projektmanager Digitalisierung & Coach für Digitale Transformation und KI-gestütztes Vibecoding. Brückenbauer zwischen Kommunikation und Technologie. Ein persönliches Betriebssystem.">
+  <meta name="author" content="Niklas Fauteck">
+  <meta name="keywords" content="Niklas Fauteck, Digital Transformation, RTL Deutschland, Kommunikation, Technologie, Systemdenker">
+  <meta property="og:title" content="NiklasOS — Niklas Fauteck">
+  <meta property="og:description" content="Ein persönliches Betriebssystem für Kommunikation, Technologie und pragmatische Innovation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fauteck.github.io/website/os/">
+  <meta property="og:locale" content="de_DE">
+  <link rel="canonical" href="https://fauteck.github.io/website/os/">
+  <link rel="alternate" type="application/rss+xml" title="NiklasOS Blog — Niklas Fauteck" href="https://fauteck.github.io/website/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%231b4332'/%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%2352b788' stroke-width='1.5' opacity='0.6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='700' font-size='18' fill='white'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/x-icon" href="full/favicon.ico">
+  <link rel="apple-touch-icon" href="full/favicon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Niklas Fauteck",
+    "jobTitle": "Projektmanager Digitalisierung & Coach für Digitale Transformation und KI-gestütztes Vibecoding",
+    "worksFor": { "@type": "Organization", "name": "RTL Deutschland" },
+    "url": "https://fauteck.github.io/website/",
+    "description": "Projektmanager Digitalisierung & Coach für Digitale Transformation und KI-gestütztes Vibecoding. Brückenbauer zwischen Kommunikation und Technologie. Systemdenker. Pragmatiker.",
+    "sameAs": ["https://www.linkedin.com/in/fauteck/"]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Skip to content (Accessibility) -->
+  <a href="#desktop" class="sr-only sr-only-focusable" id="skip-to-content">Zum Inhalt springen</a>
+
+  <!-- ═══════════════════════════════════════════
+       BOOT SCREEN
+  ═══════════════════════════════════════════ -->
+  <div id="boot-screen" aria-hidden="true">
+    <div class="boot-content">
+      <div class="boot-logo">
+        <div class="boot-logo-ring"></div>
+        <div class="boot-logo-letter">N</div>
+      </div>
+      <div class="boot-name">NiklasOS</div>
+      <div class="boot-tagline">Ein persönliches Betriebssystem</div>
+      <div class="boot-version">v2026.04</div>
+      <div class="boot-track">
+        <div class="boot-bar" id="boot-bar"></div>
+      </div>
+      <div class="boot-status" id="boot-status">Initialisierung...</div>
+      <button id="boot-skip" class="boot-skip-btn">Überspringen</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       DESKTOP LOGIN SCREEN
+  ═══════════════════════════════════════════ -->
+  <div id="login-screen" aria-label="NiklasOS Login">
+    <div class="login-content">
+      <div class="login-avatar">
+        <div class="login-avatar-letter">N</div>
+      </div>
+      <div class="login-username">Niklas Fauteck</div>
+      <form id="login-form" autocomplete="off">
+        <div class="login-input-wrap">
+          <input type="password" id="login-password" class="login-input"
+                 placeholder="Passwort eingeben..." aria-label="Passwort" autofocus>
+          <button type="submit" class="login-submit" aria-label="Anmelden">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <div class="login-hint">Beliebiges Passwort zum Anmelden</div>
+      <a href="https://fauteck.github.io/website/full/" class="login-skip">Klassische Website &rarr;</a>
+    </div>
+    <div class="login-bottom">
+      <div class="login-time" id="login-time">--:--</div>
+      <div class="login-date" id="login-date">---</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MOBILE LOCK SCREEN
+  ═══════════════════════════════════════════ -->
+  <div id="lock-screen" aria-label="Entsperren">
+    <div class="lock-top">
+      <div class="lock-time" id="lock-time">--:--</div>
+      <div class="lock-date" id="lock-date">---</div>
+    </div>
+    <div class="lock-content">
+      <div class="lock-dots" id="lock-dots">
+        <span class="lock-dot"></span>
+        <span class="lock-dot"></span>
+        <span class="lock-dot"></span>
+        <span class="lock-dot"></span>
+      </div>
+      <div class="lock-hint">Beliebige PIN eingeben</div>
+      <div class="lock-pad" id="lock-pad">
+        <button class="lock-key" data-key="1">1</button>
+        <button class="lock-key" data-key="2">2</button>
+        <button class="lock-key" data-key="3">3</button>
+        <button class="lock-key" data-key="4">4</button>
+        <button class="lock-key" data-key="5">5</button>
+        <button class="lock-key" data-key="6">6</button>
+        <button class="lock-key" data-key="7">7</button>
+        <button class="lock-key" data-key="8">8</button>
+        <button class="lock-key" data-key="9">9</button>
+        <a href="https://fauteck.github.io/website/full/" class="lock-key lock-key-skip" aria-label="Klassische Website">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="lock-key" data-key="0">0</button>
+        <button class="lock-key lock-key-del" data-key="del" aria-label="Löschen">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M14 5l-8 8M6 5l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <a href="https://fauteck.github.io/website/full/" class="lock-skip">Klassische Website &rarr;</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       DESKTOP
+  ═══════════════════════════════════════════ -->
+  <div id="desktop" role="main" aria-label="NiklasOS Desktop">
+
+    <div id="desktop-icons" role="list" aria-label="Desktop">
+
+      <!-- Top-left: Arbeitsplatz, Eigene Dateien, Installierte Apps, Papierkorb, about.md -->
+      <div class="dig dig-topleft">
+        <div class="desktop-icon" data-window="career" role="listitem" tabindex="0"
+             aria-label="Arbeitsplatz — Karriere und Werdegang">
+          <div class="icon-wrap" data-color="amber">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="2" y="8" width="24" height="17" rx="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><path d="M9 8V6a2 2 0 012-2h6a2 2 0 012 2v2" stroke="white" stroke-width="1.5"/><line x1="2" y1="14" x2="26" y2="14" stroke="white" stroke-width="1.5"/></svg>
+          </div>
+          <span class="icon-label">Arbeitsplatz</span>
+        </div>
+
+        <div class="desktop-icon" data-window="eigenedateien" role="listitem" tabindex="0"
+             aria-label="Eigene Dateien — Persönliche Dokumente">
+          <div class="icon-wrap" data-color="yellow">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M3 7h8l2 3h12v15H3V7z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="icon-label">Eigene Dateien</span>
+        </div>
+
+        <div class="desktop-icon" data-window="packages" role="listitem" tabindex="0"
+             aria-label="Installierte Apps — Tech Stack">
+          <div class="icon-wrap" data-color="indigo">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="10" height="10" rx="2" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5"/><rect x="15" y="3" width="10" height="10" rx="2" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5"/><rect x="3" y="15" width="10" height="10" rx="2" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5"/><rect x="15" y="15" width="10" height="10" rx="2" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5"/></svg>
+          </div>
+          <span class="icon-label">Installierte Apps</span>
+        </div>
+
+        <div class="desktop-icon" data-window="trash" role="listitem" tabindex="0"
+             aria-label="Papierkorb — Anti-Patterns">
+          <div class="icon-wrap" data-color="red">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M5 8h18M10 8V6a2 2 0 012-2h4a2 2 0 012 2v2M9 8l1 16h8l1-16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="12" x2="16" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Papierkorb</span>
+        </div>
+
+        <div class="desktop-icon" data-window="about" role="listitem" tabindex="0"
+             aria-label="Brave Browser">
+          <div class="icon-wrap" data-color="orange">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M14 2L5 6.5v7c0 6 4 11 9 13 5-2 9-7 9-13v-7L14 2z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><circle cx="14" cy="13" r="3" fill="white" opacity="0.85"/></svg>
+          </div>
+          <span class="icon-label">Brave</span>
+        </div>
+      </div><!-- /.dig-topleft -->
+
+      <!-- Top-center: Bambu Studio, Home Assistant -->
+      <div class="dig dig-topcenter">
+        <div class="desktop-icon" data-window="bambu" role="listitem" tabindex="0"
+             aria-label="Bambu Studio — 3D-Druck">
+          <div class="icon-wrap" data-color="teal">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="4" y="14" width="20" height="10" rx="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><path d="M8 14V8l6-4 6 4v6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="14" y1="4" x2="14" y2="14" stroke="white" stroke-width="1.5"/><circle cx="14" cy="18" r="2" fill="white" opacity="0.7"/></svg>
+          </div>
+          <span class="icon-label">Bambu Studio</span>
+        </div>
+
+        <div class="desktop-icon" data-window="homeassistant" role="listitem" tabindex="0"
+             aria-label="Home Assistant — Smart Home">
+          <div class="icon-wrap" data-color="orange">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M3 13L14 4l11 9" stroke="white" stroke-width="1.5" stroke-linecap="round"/><rect x="7" y="13" width="14" height="11" rx="1" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><rect x="11" y="18" width="6" height="6" rx="1" fill="white" opacity="0.5"/></svg>
+          </div>
+          <span class="icon-label">Home Assistant</span>
+        </div>
+      </div><!-- /.dig-topcenter -->
+
+      <!-- Top-right: Changelog, Netzwerk, Blog, Projekte, Empfehlungen -->
+      <div class="dig dig-topright">
+        <div class="desktop-icon" data-window="changelog" role="listitem" tabindex="0"
+             aria-label="Changelog — Versionsverlauf">
+          <div class="icon-wrap" data-color="pink">
+            <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="white" stroke-width="1.5"/><path d="M14 8v6l4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="icon-label">Changelog</span>
+        </div>
+
+
+        <div class="desktop-icon" data-window="blog" role="listitem" tabindex="0"
+             aria-label="Texteditor — Blog">
+          <div class="icon-wrap" data-color="green">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="4" y="4" width="20" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5"/><path d="M8 9h12M8 13h8M8 17h10" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Blog</span>
+        </div>
+
+        <div class="desktop-icon" data-window="projects" role="listitem" tabindex="0"
+             aria-label="Projekte — Case Studies">
+          <div class="icon-wrap" data-color="blue">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M3 7h8l2 3h12v15H3V7z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 15h8M10 19h5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Projekte</span>
+        </div>
+
+        <div class="desktop-icon" data-window="testimonials" role="listitem" tabindex="0"
+             aria-label="Empfehlungen — Social Proof">
+          <div class="icon-wrap" data-color="cyan">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M4 6h20v12H13l-5 4v-4H4V6z" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10h12M8 14h8" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Empfehlungen</span>
+        </div>
+      </div><!-- /.dig-topright -->
+
+      <!-- Center: Games Folder -->
+      <div class="dig dig-center">
+        <div class="desktop-icon" data-window="games" role="listitem" tabindex="0"
+             aria-label="Games — Spiele-Ordner">
+          <div class="icon-wrap" data-color="red">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="4" y="6" width="20" height="16" rx="2" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/><path d="M10 6V4h8v2" stroke="white" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="15" r="2" fill="rgba(255,255,255,0.4)"/><circle cx="18" cy="15" r="2" fill="rgba(255,255,255,0.4)"/><line x1="10" y1="13" x2="10" y2="17" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="8" y1="15" x2="12" y2="15" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Games</span>
+        </div>
+      </div><!-- /.dig-center -->
+
+      <!-- Bottom-center: Terminal, System Monitor, Netzwerk -->
+      <div class="dig dig-bottomcenter">
+        <div class="desktop-icon" data-window="terminal" role="listitem" tabindex="0"
+             aria-label="Terminal — Denkweise und Skills">
+          <div class="icon-wrap" data-color="green">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="2" y="4" width="24" height="20" rx="3" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5"/><path d="M7 11l4 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="13" y1="19" x2="21" y2="19" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span class="icon-label">Terminal</span>
+        </div>
+
+        <div class="desktop-icon" data-window="sysmon" role="listitem" tabindex="0"
+             aria-label="Task-Manager — Arbeitsstil und Prinzipien">
+          <div class="icon-wrap" data-color="purple">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="2" y="4" width="24" height="20" rx="2" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.5"/><polyline points="4,20 8,13 12,17 16,9 20,15 24,8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="icon-label">Task-Manager</span>
+        </div>
+
+
+      </div><!-- /.dig-bottomcenter -->
+
+    </div><!-- /#desktop-icons -->
+
+    <!-- Context Menu -->
+    <div id="context-menu" role="menu" aria-label="Kontextmenü">
+      <div class="ctx-item" data-action="about" role="menuitem">Über NiklasOS</div>
+      <div class="ctx-sep" role="separator"></div>
+      <div class="ctx-item" data-action="terminal" role="menuitem">Terminal öffnen</div>
+      <div class="ctx-item" data-action="minimize-all" role="menuitem">Alle Fenster minimieren</div>
+      <div class="ctx-sep" role="separator"></div>
+      <div class="ctx-item" data-action="outlook" role="menuitem">Kontakt aufnehmen</div>
+    </div>
+
+  </div><!-- /#desktop -->
+
+  <!-- ═══════════════════════════════════════════
+       WINDOWS LAYER
+  ═══════════════════════════════════════════ -->
+  <div id="windows-layer" aria-live="polite"></div>
+
+  <!-- ═══════════════════════════════════════════
+       TASKBAR
+  ═══════════════════════════════════════════ -->
+  <!-- Start Menu -->
+  <div id="start-menu" class="start-menu" aria-hidden="true" role="menu">
+    <div class="sm-header">NiklasOS</div>
+    <div class="sm-apps" id="sm-apps-list"></div>
+    <div class="sm-sep"></div>
+    <button class="sm-shutdown-btn" id="sm-shutdown" role="menuitem">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="7" y1="3" x2="7" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Ausschalten
+    </button>
+  </div>
+
+  <!-- Shutdown Overlay -->
+  <div id="shutdown-overlay" aria-hidden="true">
+    <div class="shutdown-spinner"></div>
+    <div class="shutdown-text">Wird heruntergefahren...</div>
+  </div>
+
+  <nav id="taskbar" aria-label="Taskleiste">
+    <div class="tb-left">
+      <button class="tb-app-btn" id="tb-apps-btn" aria-label="Startmenü" title="Startmenü">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="1" width="5" height="5" rx="1" fill="currentColor"/>
+          <rect x="10" y="1" width="5" height="5" rx="1" fill="currentColor"/>
+          <rect x="1" y="10" width="5" height="5" rx="1" fill="currentColor"/>
+          <rect x="10" y="10" width="5" height="5" rx="1" fill="currentColor"/>
+        </svg>
+        <span>NiklasOS</span>
+      </button>
+      <button class="tb-search-btn" id="tb-search-btn" aria-label="Suche" title="Suche">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Suche</span>
+      </button>
+    </div>
+    <div class="tb-center" id="tb-windows" aria-label="Offene Fenster"></div>
+    <div class="tb-right">
+      <button class="tb-contact-btn" id="tb-contact-btn" aria-label="Kontakt aufnehmen" title="Kontakt aufnehmen">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M2 4h12v9H9l-3 2.5V13H2V4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M5 7.5h6M5 10h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span>Kontakt</span>
+      </button>
+      <div class="tb-indicator" title="Erreichbar">
+        <span class="tb-pulse"></span>
+        <span class="tb-indicator-label">online</span>
+      </div>
+      <div class="tb-clock">
+        <div class="tb-time" id="tb-time">--:--</div>
+        <div class="tb-date" id="tb-date">---</div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       MOBILE: HOME SCREEN (Android Homescreen)
+  ═══════════════════════════════════════════ -->
+  <div id="mobile-home" aria-label="Niklas Phone Startbildschirm">
+
+    <!-- Status Bar -->
+    <div id="mob-status-bar" role="banner" aria-label="Statusleiste">
+      <span class="mob-sb-device">niklas.phone</span>
+      <button id="mob-notif-indicator" class="mob-sb-notif-btn" aria-label="Benachrichtigungen anzeigen" title="2 neue Benachrichtigungen">
+        <svg class="mob-sb-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1.5C5.8 1.5 4 3.3 4 5.5V9l-1.2 1.2c-.3.3-.1.8.3.8h9.8c.4 0 .6-.5.3-.8L12 9V5.5C12 3.3 10.2 1.5 8 1.5z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <path d="M6.5 12a1.5 1.5 0 003 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="mob-notif-badge">2</span>
+      </button>
+      <div class="mob-sb-right">
+        <span id="mob-sb-time">--:--</span>
+        <svg class="mob-sb-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M1 10 Q4 5 8 5 Q12 5 15 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M3 12 Q5.5 8 8 8 Q10.5 8 13 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="8" cy="14" r="1.5" fill="currentColor"/>
+        </svg>
+        <svg class="mob-sb-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <rect x="1" y="4" width="11" height="8" rx="2" stroke="currentColor" stroke-width="1.3"/>
+          <rect x="2" y="5" width="8" height="6" rx="1" fill="currentColor"/>
+          <path d="M13 7v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Notification Panel (slides down from top) -->
+    <div id="mob-notif-panel" aria-hidden="true" role="region" aria-label="Benachrichtigungen">
+      <div class="mob-np-handle"></div>
+
+      <!-- Status Chips -->
+      <div class="mob-np-status">
+        <div class="mob-status-chips">
+          <span class="mob-chip"><span class="mob-chip-dot"></span>Focus: 92%</span>
+          <span class="mob-chip"><span class="mob-chip-dot"></span>Curiosity: High</span>
+          <span class="mob-chip"><span class="mob-chip-dot"></span>Pragmatism: Stable</span>
+          <span class="mob-chip mob-chip-dim"><span class="mob-chip-dot mob-chip-dot-dim"></span>Noise Filter: Active</span>
+        </div>
+      </div>
+
+      <!-- Notification Cards -->
+      <div class="mob-np-cards">
+        <div class="mob-widget mob-widget-notif" aria-label="Benachrichtigung">
+          <div class="mob-notif-icon" style="background: linear-gradient(135deg,#ea580c,#c2410c)">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 9L8 3l6 6" stroke="white" stroke-width="1.2" stroke-linecap="round"/><rect x="5" y="9" width="6" height="5" rx="0.5" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.2"/></svg>
+          </div>
+          <div class="mob-notif-body">
+            <span class="mob-notif-app">Home Assistant</span>
+            <span class="mob-notif-msg">New automation deployed</span>
+          </div>
+          <span class="mob-notif-time">2m ago</span>
+        </div>
+
+        <div class="mob-widget mob-widget-notif" aria-label="Benachrichtigung">
+          <div class="mob-notif-icon" style="background: linear-gradient(135deg,#0d9488,#0f766e)">
+            <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="8" width="10" height="5" rx="1" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.2"/><path d="M5 8V5l3-2 3 2v3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="mob-notif-body">
+            <span class="mob-notif-app">Bambu Studio</span>
+            <span class="mob-notif-msg">Print job completed (7h 23min)</span>
+          </div>
+          <span class="mob-notif-time">14m ago</span>
+        </div>
+      </div>
+
+      <!-- Quick Settings -->
+      <div class="mob-np-divider"></div>
+    </div>
+
+    <!-- Quick Settings Panel (slides down) -->
+    <div id="mob-quick-settings" aria-hidden="true" role="region" aria-label="Schnelleinstellungen">
+      <div class="mob-qs-handle"></div>
+      <div class="mob-qs-grid">
+        <div class="mob-qs-tile active" data-qs="focus">
+          <div class="mob-qs-icon">
+            <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>
+          </div>
+          <span class="mob-qs-label">Focus Mode</span>
+          <span class="mob-qs-state">On</span>
+        </div>
+        <div class="mob-qs-tile active" data-qs="automation">
+          <div class="mob-qs-icon">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h3l2-6 3 12 2-6h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="mob-qs-label">Automation</span>
+          <span class="mob-qs-state">Enabled</span>
+        </div>
+        <div class="mob-qs-tile active" data-qs="curiosity">
+          <div class="mob-qs-icon">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 3v2M10 15v2M3 10h2M15 10h2M5.05 5.05l1.41 1.41M13.54 13.54l1.41 1.41M5.05 14.95l1.41-1.41M13.54 6.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <span class="mob-qs-label">Curiosity</span>
+          <span class="mob-qs-state">Active</span>
+        </div>
+        <div class="mob-qs-tile active" data-qs="pragmatism">
+          <div class="mob-qs-icon">
+            <svg viewBox="0 0 20 20" fill="none"><polyline points="3,13 7,8 10,11 14,5 17,8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="mob-qs-label">Pragmatism</span>
+          <span class="mob-qs-state">Stable</span>
+        </div>
+        <div class="mob-qs-tile active" data-qs="filter">
+          <div class="mob-qs-icon">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M3 5h14M6 10h8M9 15h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span class="mob-qs-label">Buzzword Filter</span>
+          <span class="mob-qs-state">Strict</span>
+        </div>
+        <div class="mob-qs-tile" data-qs="debug">
+          <div class="mob-qs-icon">
+            <svg viewBox="0 0 20 20" fill="none"><rect x="6" y="4" width="8" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M9 8h2M9 11h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span class="mob-qs-label">Debug Mode</span>
+          <span class="mob-qs-state">Off</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Swipeable Homescreen Pages -->
+    <div id="mob-pages-wrap" role="main">
+
+      <!-- Page 1: Main Homescreen -->
+      <div class="mob-page" data-page="0">
+
+        <!-- Widgets -->
+        <div class="mob-widgets">
+
+          <!-- Clock Widget -->
+          <div class="mob-widget mob-widget-clock" aria-label="Uhr-Widget">
+            <div class="mob-clock-time" id="mob-clock-time">--:--</div>
+            <div class="mob-clock-meta">
+              <span id="mob-clock-date">---</span>
+            </div>
+          </div>
+
+        </div><!-- /.mob-widgets -->
+
+        <!-- App Grid Page 1 -->
+        <div class="mob-apps-grid" id="mob-app-grid-1" role="list" aria-label="Apps Seite 1"></div>
+
+      </div><!-- /.mob-page -->
+
+      <!-- Page 2: Secondary Apps -->
+      <div class="mob-page" data-page="1">
+        <div class="mob-apps-grid mob-apps-grid-centered" id="mob-app-grid-2" role="list" aria-label="Apps Seite 2"></div>
+      </div>
+
+    </div><!-- /#mob-pages-wrap -->
+
+    <!-- Page Indicator Dots -->
+    <div class="mob-page-dots" role="tablist" aria-label="Seiten">
+      <span class="mob-dot active" role="tab" aria-selected="true" aria-label="Seite 1"></span>
+      <span class="mob-dot" role="tab" aria-selected="false" aria-label="Seite 2"></span>
+    </div>
+
+    <!-- Bottom Dock -->
+    <div id="mob-dock" role="list" aria-label="Dock"></div>
+
+  </div><!-- /#mobile-home -->
+
+  <!-- ═══════════════════════════════════════════
+       MOBILE: APP WINDOW
+  ═══════════════════════════════════════════ -->
+  <div id="mobile-window" aria-hidden="true">
+    <div id="mob-win-body"></div>
+    <div class="mob-nav-bar" aria-label="Nach oben wischen zum Schließen">
+      <div class="mob-nav-pill"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       DESKTOP SEARCH OVERLAY
+  ═══════════════════════════════════════════ -->
+  <div id="search-overlay" aria-hidden="true" role="dialog" aria-label="Suche">
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="search-icon" aria-hidden="true">
+          <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="10" y1="10" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="search-input" class="search-input" placeholder="Apps durchsuchen…" aria-label="Suche" autocomplete="off" spellcheck="false">
+        <kbd class="search-esc">ESC</kbd>
+      </div>
+      <div class="search-results" id="search-results" role="listbox" aria-label="Suchergebnisse"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MOBILE FAKE CALL OVERLAY
+  ═══════════════════════════════════════════ -->
+  <div id="mob-fake-call" aria-hidden="true" role="dialog" aria-label="Eingehender Anruf">
+    <div class="mfc-blur"></div>
+    <div class="mfc-content">
+      <div class="mfc-incoming">Eingehender Anruf</div>
+      <div class="mfc-avatar">S</div>
+      <div class="mfc-name">Sarah K.</div>
+      <div class="mfc-sub">RTL Deutschland · Teams</div>
+      <div class="mfc-actions">
+        <button class="mfc-btn mfc-decline" id="mfc-decline" aria-label="Ablehnen">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M3 18c2-4 5-6 11-6s9 2 11 6l-4 2c-1-2-3-3-7-3s-6 1-7 3L3 18z" fill="currentColor" transform="rotate(135 14 14)"/></svg>
+        </button>
+        <button class="mfc-btn mfc-accept" id="mfc-accept" aria-label="Annehmen">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M3 18c2-4 5-6 11-6s9 2 11 6l-4 2c-1-2-3-3-7-3s-6 1-7 3L3 18z" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <div class="mfc-labels">
+        <span>Ablehnen</span>
+        <span>Annehmen</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MOBILE FAKE MESSAGE BANNER
+  ═══════════════════════════════════════════ -->
+  <div id="mob-fake-msg" aria-hidden="true" role="alert">
+    <div class="mfm-icon">T</div>
+    <div class="mfm-body">
+      <div class="mfm-app">Teams · Gerade eben</div>
+      <div class="mfm-text">Sarah K.: Hast du kurz Zeit? Wegen dem Media Hub…</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
