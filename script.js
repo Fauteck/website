@@ -566,13 +566,13 @@ function buildAbout(body) {
     <div class="brave-content">
       <div class="about-content">
         <h1>Niklas Fauteck</h1>
-        <div class="about-role">Coach für Digitale Transformation und KI-gestütztes Vibecoding</div>
+        <div class="about-role">Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding</div>
         <hr class="about-hr">
         <p>
           Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.
           Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete er die strategische
-          Weiterentwicklung digitaler Systeme. Heute gibt er sein Wissen als Coach und Vibecoding-Experte weiter –
-          und zeigt, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
+          Weiterentwicklung digitaler Systeme. Heute arbeitet er als Projektmanager und gibt sein Wissen als Coach
+          und Vibecoding-Experte weiter – und zeigt, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
         </p>
         <h2>Kernthesen</h2>
         <ul class="about-theses">
@@ -941,8 +941,8 @@ const TERM_COMMANDS = {
   whoami: () => [
     { t: 'out', v: 'niklas-fauteck' },
     { t: 'empty' },
-    { t: 'out', v: 'Brückenbauer zwischen Kommunikation und Technologie.' },
-    { t: 'out', v: 'Head of Digital Transformation @ RTL Deutschland.' },
+    { t: 'out', v: 'Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding.' },
+    { t: 'out', v: 'Verbindet Kommunikation, Technologie und digitale Transformation.' },
     { t: 'empty' },
     { t: 'dim', v: 'Systemdenker. Pragmatiker. Neugierig.' },
   ],
