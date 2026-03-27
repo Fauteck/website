@@ -566,13 +566,13 @@ function buildAbout(body) {
     <div class="brave-content">
       <div class="about-content">
         <h1>Niklas Fauteck</h1>
-        <div class="about-role">Head of Digital Transformation Kommunikation &middot; RTL Deutschland</div>
+        <div class="about-role">Coach für Digitale Transformation und KI-gestütztes Vibecoding</div>
         <hr class="about-hr">
         <p>
-          Bei RTL Deutschland baue ich die digitalen Systeme, die unsere Kommunikation
-          am Laufen halten – Media Hub, PICTRON, MDC. Ich verstehe sowohl, was Redakteure
-          brauchen, als auch was IT liefern kann. Das macht mich zur Schnittstelle, die
-          beide Seiten versteht – und übersetzt.
+          Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.
+          Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete er die strategische
+          Weiterentwicklung digitaler Systeme. Heute gibt er sein Wissen als Coach und Vibecoding-Experte weiter –
+          und zeigt, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
         </p>
         <h2>Kernthesen</h2>
         <ul class="about-theses">
@@ -1445,6 +1445,7 @@ const TM_SKILLS = [
     { name: 'AI Workflow Design',     pct: 100, level: 'expert' },
     { name: 'n8n / Make.com',         pct: 80,  level: 'advanced' },
     { name: 'Vibecoding',             pct: 85,  level: 'advanced' },
+    { name: 'Custom GPT Development',  pct: 90,  level: 'expert' },
   ]},
   { cat: 'Digital Transformation', skills: [
     { name: 'Strategy & Roadmapping', pct: 100, level: 'expert' },
@@ -1453,8 +1454,8 @@ const TM_SKILLS = [
     { name: 'Stakeholder Mgmt',       pct: 85,  level: 'advanced' },
   ]},
   { cat: 'Technical', skills: [
-    { name: 'Docker / Containerizing', pct: 60, level: 'intermediate' },
-    { name: 'GitHub / GitOps',         pct: 65, level: 'intermediate' },
+    { name: 'Docker / Containerizing', pct: 80, level: 'advanced' },
+    { name: 'GitHub / GitOps',         pct: 80, level: 'advanced' },
     { name: 'Home Assistant',          pct: 85, level: 'advanced' },
     { name: '3D Printing (FDM)',       pct: 80, level: 'advanced' },
   ]},
