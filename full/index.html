@@ -94,24 +94,25 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--primary);
+            background: var(--bg);
             z-index: 1000;
-            border-bottom: none;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
         }
-        
+
         nav .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 3rem;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         nav .logo {
             font-weight: 600;
             font-size: 1.5rem;
-            color: #FFFFFF;
+            color: var(--primary);
             text-decoration: none;
             letter-spacing: -0.02em;
             transition: color 0.2s ease;
@@ -120,41 +121,41 @@
             gap: 0.1rem;
             line-height: 1.2;
         }
-        
+
         nav .logo-name {
             font-size: 1.5rem;
             font-weight: 600;
         }
-        
+
         nav .logo-subtitle {
             font-size: 0.75rem;
             font-weight: 400;
-            opacity: 0.8;
+            color: var(--text-secondary);
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-        
+
         nav .logo:hover {
-            color: var(--accent);
+            color: var(--accent-dark);
         }
-        
+
         nav ul {
             display: flex;
             list-style: none;
             gap: 3rem;
         }
-        
+
         nav a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.2s ease;
         }
-        
+
         nav a:hover {
-            color: var(--accent);
+            color: var(--accent-dark);
         }
-        
+
         nav .nav-cta-btn {
             background: var(--accent);
             color: var(--primary);
@@ -163,7 +164,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
         }
-        
+
         nav .nav-cta-btn:hover {
             background: var(--accent-dark);
             color: #FFFFFF;
@@ -182,28 +183,18 @@
         .mobile-toggle span {
             width: 24px;
             height: 1px;
-            background: #FFFFFF;
+            background: var(--primary);
         }
         
         /* Hero Section */
         #hero {
             display: flex;
             align-items: center;
-            padding: 8rem 3rem 4rem;
-            background: var(--primary);
-            color: #FFFFFF;
+            padding: 7rem 3rem 4rem;
+            background: var(--bg-light);
+            color: var(--text);
             position: relative;
-        }
-        
-        #hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom, var(--primary) 0%, var(--bg-light) 100%);
-            pointer-events: none;
+            border-bottom: 1px solid var(--border);
         }
         
         .hero-content {
@@ -211,9 +202,9 @@
             margin: 0 auto;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 4rem;
-            align-items: start;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            align-items: center;
             position: relative;
             z-index: 2;
         }
@@ -223,16 +214,16 @@
         }
         
         .hero-photo {
-            width: 300px;
-            height: 300px;
-            border-radius: 8px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
             overflow: hidden;
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            border: 3px solid var(--border);
             transition: all 0.3s ease;
             position: relative;
             z-index: 2;
         }
-        
+
         .hero-photo:hover {
             border-color: var(--accent);
             transform: scale(1.02);
@@ -248,33 +239,33 @@
         .hero-label {
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: var(--accent);
+            color: var(--accent-dark);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 2rem;
         }
-        
+
         h1 {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            letter-spacing: -0.03em;
-            color: #FFFFFF;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            color: var(--primary);
         }
-        
+
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 3rem;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
             font-weight: 400;
         }
-        
+
         .hero-description {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 4rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
         }
         
         .cta-buttons {
@@ -315,20 +306,16 @@
             transform: translateX(4px);
         }
         
-        .btn-primary::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
-        
         .btn-secondary {
             background: transparent;
-            color: #FFFFFF;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--text);
+            border: 1px solid var(--border);
         }
-        
+
         .btn-secondary:hover {
-            border-color: #FFFFFF;
-            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            color: var(--accent-dark);
+            background: rgba(78, 205, 196, 0.05);
         }
         
         /* Was mich auszeichnet Section */
@@ -450,9 +437,9 @@
         
         .section-label {
             font-family: var(--font-mono);
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1E7A73;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-dark);
             text-transform: uppercase;
             letter-spacing: 0.15em;
             margin-bottom: 1.5rem;
@@ -969,13 +956,10 @@
         /* Footer */
         footer {
             background: var(--bg-light);
-            padding: 3rem 2rem;
+            padding: 1.5rem 2rem;
             text-align: center;
             border-top: 1px solid var(--border);
-            margin-top: 4rem;
-        }
-
-        footer p {
+            margin-top: 3rem;
             color: var(--text-secondary);
             font-size: 0.8rem;
         }
@@ -995,7 +979,7 @@
             top: 0;
             left: 0;
             height: 2px;
-            background: var(--accent);
+            background: var(--accent-dark);
             z-index: 9999;
             transition: width 0.1s ease;
         }
@@ -1025,13 +1009,9 @@
             }
             
             .hero-photo {
-                width: 200px;
-                height: 200px;
+                width: 160px;
+                height: 160px;
                 margin: 0 auto;
-            }
-            
-            .hero-photo::before {
-                font-size: 3rem;
             }
             
             .project-card {
@@ -1081,16 +1061,12 @@
         
         @media (max-width: 640px) {
             #hero {
-                padding: 10rem 2rem 4rem;
+                padding: 7rem 2rem 3rem;
             }
             
             .hero-photo {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .hero-photo::before {
-                font-size: 2.5rem;
+                width: 130px;
+                height: 130px;
             }
             
             .cta-buttons {
@@ -1192,6 +1168,11 @@
             color: var(--text-muted, #999);
             font-style: normal;
             letter-spacing: 0.3px;
+            background: transparent;
+            padding: 0;
+            border-top: none;
+            margin-top: 0;
+            text-align: left;
         }
     </style>
 </head>
@@ -1207,7 +1188,7 @@
                 <span class="logo-subtitle">Digital Transformation</span>
             </a>
             <ul>
-                <li><a href="../index.html">← Startseite</a></li>
+                <li><a href="../index.html" style="font-weight: 500; color: var(--primary);">← Startseite</a></li>
                 <li><a href="#about">Über mich</a></li>
                 <li><a href="#expertise">Expertise</a></li>
                 <li><a href="#projects">Projekte</a></li>
@@ -1225,6 +1206,10 @@
     <!-- Hero Section -->
     <section id="hero" aria-label="Einführung und Übersicht">
         <div class="hero-content">
+            <div class="hero-photo">
+                <img src="niklas-fauteck-profile.jpg" alt="Niklas Fauteck, Projektmanager Digitalisierung & Coach für Digitale Transformation und KI-gestütztes Vibecoding" loading="eager">
+            </div>
+
             <div class="hero-text">
                 <h1>Von der Strategie<br>bis zum Go-Live</h1>
                 <p class="hero-subtitle">"Wir brauchen ein Tool" bedeutet für mich: Strategie, Konzept und Umsetzung</p>
@@ -1235,10 +1220,6 @@
                     <a href="#contact" class="btn btn-primary">Projekt besprechen →</a>
                     <a href="#expertise" class="btn btn-secondary">Expertise entdecken</a>
                 </div>
-            </div>
-            
-            <div class="hero-photo">
-                <img src="niklas-fauteck-profile.jpg" alt="Niklas Fauteck, Projektmanager Digitalisierung & Coach für Digitale Transformation und KI-gestütztes Vibecoding" loading="eager">
             </div>
         </div>
     </section>
@@ -1865,20 +1846,13 @@
     
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Niklas Fauteck. Alle Rechte vorbehalten.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
-            Projektmanager Digitalisierung & Coach für Digitale Transformation und KI-gestütztes Vibecoding
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.85rem;">
-            <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener" style="color: inherit;">LinkedIn</a>
-            &middot;
-            <a href="https://bonn.social/@fauteck" target="_blank" rel="me noopener" style="color: inherit;">Mastodon</a>
-            &middot;
-            <a href="https://github.com/Fauteck" target="_blank" rel="noopener" style="color: inherit;">GitHub</a>
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.6;">
-            Website erstellt mit Unterstützung von <a href="https://claude.ai" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Claude Sonnet 4.6</a>
-        </p>
+        <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">LinkedIn</a>
+        &middot;
+        <a href="https://bonn.social/@fauteck" target="_blank" rel="me noopener">Mastodon</a>
+        &middot;
+        <a href="https://github.com/Fauteck" target="_blank" rel="noopener">GitHub</a>
+        &middot;
+        <a href="mailto:me@fauteck.eu">me@fauteck.eu</a>
     </footer>
     
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
