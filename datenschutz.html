@@ -38,31 +38,107 @@
       flex-direction: column;
     }
 
-    .page-header {
-      background: var(--primary);
-      color: white;
-      padding: 1.5rem 2rem;
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--bg);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
     }
 
-    .page-header a {
-      color: var(--accent);
+    nav .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      line-height: 1.2;
+    }
+
+    nav .logo-name { font-size: 1.5rem; font-weight: 600; }
+
+    nav .logo-subtitle {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    nav .logo:hover { color: var(--accent-dark); }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 3rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.9rem;
+      transition: color 0.2s ease;
     }
 
-    .page-header a:hover {
-      text-decoration: underline;
+    nav a:hover { color: var(--accent-dark); }
+
+    nav .nav-cta-btn {
+      background: var(--accent);
+      color: var(--primary);
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
     }
 
-    .page-header h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-top: 0.5rem;
+    nav .nav-cta-btn:hover {
+      background: var(--accent-dark);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+    }
+
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .mobile-toggle span {
+      width: 24px;
+      height: 1px;
+      background: var(--primary);
+    }
+
+    @media (max-width: 968px) {
+      nav ul { display: none; }
+      .mobile-toggle { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      nav .nav-inner { padding: 1rem 1.5rem; }
     }
 
     .container {
       max-width: 720px;
-      margin: 3rem auto;
+      margin: 5rem auto 3rem;
       padding: 0 1.5rem;
       flex: 1;
     }
@@ -145,10 +221,27 @@
 </head>
 <body>
 
-  <header class="page-header">
-    <a href="./">&larr; Zurück zur Startseite</a>
-    <h1>Datenschutzerklärung</h1>
-  </header>
+  <nav role="navigation" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <a href="./" class="logo">
+        <span class="logo-name">Niklas Fauteck</span>
+        <span class="logo-subtitle">Digital Transformation</span>
+      </a>
+      <ul>
+        <li><a href="./" style="font-weight: 500; color: var(--primary);">← Startseite</a></li>
+        <li><a href="full/#about">Über mich</a></li>
+        <li><a href="full/#expertise">Expertise</a></li>
+        <li><a href="full/#projects">Projekte</a></li>
+        <li><a href="full/#career">Werdegang</a></li>
+        <li><a href="full/#contact" class="nav-cta-btn">Kontakt</a></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Menu Toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
 
   <main class="container">
 
@@ -236,6 +329,13 @@
     </div>
 
   </main>
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      var navUl = document.querySelector('nav ul');
+      navUl.style.display = navUl.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
 
   <footer class="footer">
     <a href="./">Startseite</a>
