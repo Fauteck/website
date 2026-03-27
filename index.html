@@ -231,24 +231,25 @@
       flex-direction: column;
       align-items: flex-start;
       padding: 2rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #fff 60%, #f8fffe);
+      border: 1.5px solid var(--border);
       border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       text-decoration: none;
       color: var(--text);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
       border-color: var(--accent);
     }
 
     .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -257,8 +258,8 @@
     }
 
     .card-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
     }
 
     .card-icon.academy { background: #EEF9F6; color: #2D6A4F; }
