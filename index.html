@@ -58,6 +58,80 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      padding-top: 4.5rem;
+    }
+
+    /* Navigation */
+    nav[role="navigation"] {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--bg);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    nav[role="navigation"] .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav[role="navigation"] .logo {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      line-height: 1.2;
+    }
+
+    nav[role="navigation"] .logo-name { font-size: 1.5rem; font-weight: 600; }
+
+    nav[role="navigation"] .logo-subtitle {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    nav[role="navigation"] .logo:hover { color: var(--accent-dark); }
+
+    nav[role="navigation"] ul {
+      display: flex;
+      list-style: none;
+      gap: 3rem;
+    }
+
+    nav[role="navigation"] a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    nav[role="navigation"] a:hover { color: var(--accent-dark); }
+
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .mobile-toggle span {
+      width: 24px;
+      height: 1px;
+      background: var(--primary);
     }
 
     .container {
@@ -273,7 +347,27 @@
     }
 
     /* Responsive */
+    @media (max-width: 968px) {
+      nav[role="navigation"] ul { display: none; }
+      nav[role="navigation"] ul.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        gap: 1rem;
+        z-index: 999;
+      }
+      .mobile-toggle { display: flex; }
+    }
+
     @media (max-width: 600px) {
+      nav[role="navigation"] .nav-inner { padding: 1rem 1.5rem; }
+
       .card-grid {
         grid-template-columns: 1fr;
       }
@@ -298,6 +392,26 @@
   </style>
 </head>
 <body>
+  <nav role="navigation" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <a href="./" class="logo">
+        <span class="logo-name">Niklas Fauteck</span>
+        <span class="logo-subtitle">Digital Transformation</span>
+      </a>
+      <ul>
+        <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener">Vibecoding Academy</a></li>
+        <li><a href="full/">CV</a></li>
+        <li><a href="os/">OS</a></li>
+        <li><a href="blog/">Blog</a></li>
+      </ul>
+      <div class="mobile-toggle" aria-label="Menu Toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
     <header class="header">
       <img src="full/niklas-fauteck-profile.jpg" alt="Niklas Fauteck" class="header-photo">
@@ -397,5 +511,11 @@
       <a href="agb.html">AGB</a>
     </footer>
   </div>
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.querySelector('nav[role="navigation"] ul').classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
