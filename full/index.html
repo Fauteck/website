@@ -154,36 +154,6 @@
             color: var(--accent-dark);
         }
 
-        /* Sub-Navigation (2nd level) */
-        .nav-sub {
-            border-top: 1px solid var(--border);
-            background: var(--bg-light);
-        }
-
-        .nav-sub .container {
-            padding: 0.5rem 3rem;
-        }
-
-        .nav-sub ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .nav-sub a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s ease;
-            padding: 0.25rem 0;
-            display: inline-block;
-        }
-
-        .nav-sub a:hover {
-            color: var(--accent-dark);
-        }
-        
         /* Mobile Menu */
         .mobile-toggle {
             display: none;
@@ -984,6 +954,43 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Collapsible Sections */
+        .section-header.collapsible {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        .section-header.collapsible::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 1.5rem;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid var(--text-secondary);
+            border-bottom: 2px solid var(--text-secondary);
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .section-header.collapsible.collapsed::after {
+            transform: rotate(-45deg);
+        }
+
+        .section-body {
+            overflow: hidden;
+            max-height: 5000px;
+            opacity: 1;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+        }
+
+        .section-body.collapsed {
+            max-height: 0;
+            opacity: 0;
+        }
         
         /* Scroll Indicator */
         .scroll-indicator {
@@ -1016,16 +1023,6 @@
                 z-index: 999;
             }
 
-            .nav-sub ul {
-                flex-wrap: wrap;
-                gap: 1rem;
-                justify-content: center;
-            }
-
-            .nav-sub .container {
-                padding: 0.5rem 1.5rem;
-            }
-            
             .mobile-toggle {
                 display: flex;
             }
@@ -1235,17 +1232,6 @@
                 <span></span>
             </div>
         </div>
-        <div class="nav-sub">
-            <div class="container">
-                <ul>
-                    <li><a href="#about">Über mich</a></li>
-                    <li><a href="#expertise">Expertise</a></li>
-                    <li><a href="#projects">Projekte</a></li>
-                    <li><a href="#career">Werdegang</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
-                </ul>
-            </div>
-        </div>
     </nav>
     
     <!-- Hero Section -->
@@ -1360,11 +1346,12 @@
     
     <!-- About Section -->
     <section id="about" aria-labelledby="about-heading">
-        <div class="section-header">
+        <div class="section-header collapsible collapsed">
             <span class="section-label">Über mich</span>
             <h2 id="about-heading">Kommunikation trifft IT</h2>
         </div>
-        
+        <div class="section-body collapsed">
+
         <div class="about-content">
             <div class="about-text">
                 <p>
@@ -1381,14 +1368,16 @@
                 </p>
             </div>
         </div>
+        </div>
     </section>
-    
+
     <!-- Expertise Section -->
     <section id="expertise" aria-labelledby="expertise-heading">
-        <div class="section-header">
+        <div class="section-header collapsible collapsed">
             <span class="section-label">Expertise</span>
             <h2 id="expertise-heading">Kernkompetenzen</h2>
         </div>
+        <div class="section-body collapsed">
         
         <div class="expertise-grid">
             <div class="expertise-card">
@@ -1519,14 +1508,16 @@
                 </ul>
             </div>
         </div>
+        </div>
     </section>
-    
+
     <!-- Projects Section -->
     <section id="projects">
-        <div class="section-header">
+        <div class="section-header collapsible collapsed">
             <span class="section-label">Showcase</span>
             <h2>Projekte</h2>
         </div>
+        <div class="section-body collapsed">
         
         <div class="projects-grid">
             <div class="project-card">
@@ -1613,18 +1604,20 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
-    
+
     <!-- Career Section -->
     <section id="career">
-        <div class="section-header">
+        <div class="section-header collapsible collapsed">
             <span class="section-label">Werdegang</span>
             <h2>Berufliche Entwicklung</h2>
             <p class="section-description">
                 Von der Unternehmenskommunikation zur digitalen Transformation
             </p>
         </div>
-        
+        <div class="section-body collapsed">
+
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-logo">
@@ -1723,15 +1716,17 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
-    
+
     <!-- Skills Section -->
     <section id="skills">
-        <div class="section-header">
+        <div class="section-header collapsible collapsed">
             <span class="section-label">Toolbox</span>
             <h2>Technologien, Methoden & Tools</h2>
         </div>
-        
+        <div class="section-body collapsed">
+
         <div class="skills-container">
             <div class="skill-category">
                 <h3>Projektmanagement & Methoden</h3>
@@ -1806,14 +1801,16 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
-    
+
     <!-- References / Zwischenzeugnis-Zitate -->
     <section id="references" aria-labelledby="references-heading">
-        <div class="section-header">
+        <div class="section-header collapsible collapsed">
             <span class="section-label">Referenzen</span>
             <h2 id="references-heading">Stimmen aus der Praxis</h2>
         </div>
+        <div class="section-body collapsed">
         <div class="quotes-grid">
             <blockquote class="quote-card">
                 <p>„Verbindet strategisches und konzeptionelles Denken mit praxisgerechten operativen Lösungen."</p>
@@ -1831,6 +1828,7 @@
                 <p>„Zeigt permanent eine erstklassige Fach- und Führungsleistung."</p>
                 <footer>Zwischenzeugnis RTL Deutschland</footer>
             </blockquote>
+        </div>
         </div>
     </section>
 
@@ -1935,7 +1933,16 @@
                 nav.classList.toggle('open');
             }
         });
-        
+
+        // Collapsible sections
+        document.querySelectorAll('.section-header.collapsible').forEach(header => {
+            header.addEventListener('click', () => {
+                header.classList.toggle('collapsed');
+                const body = header.nextElementSibling;
+                if (body) body.classList.toggle('collapsed');
+            });
+        });
+
         // Smooth Reveal beim Scrollen für Expertise-Cards
         const observerOptions = {
             threshold: 0.1,
