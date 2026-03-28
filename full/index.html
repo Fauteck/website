@@ -137,7 +137,7 @@
             color: var(--accent-dark);
         }
 
-        nav ul {
+        nav .nav-main {
             display: flex;
             list-style: none;
             gap: 3rem;
@@ -154,20 +154,34 @@
             color: var(--accent-dark);
         }
 
-        nav .nav-cta-btn {
-            background: var(--accent);
-            color: var(--primary);
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        /* Sub-Navigation (2nd level) */
+        .nav-sub {
+            border-top: 1px solid var(--border);
+            background: var(--bg-light);
         }
 
-        nav .nav-cta-btn:hover {
-            background: var(--accent-dark);
-            color: #FFFFFF;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+        .nav-sub .container {
+            padding: 0.5rem 3rem;
+        }
+
+        .nav-sub ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .nav-sub a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+            padding: 0.25rem 0;
+            display: inline-block;
+        }
+
+        .nav-sub a:hover {
+            color: var(--accent-dark);
         }
         
         /* Mobile Menu */
@@ -188,7 +202,7 @@
         #hero {
             display: flex;
             align-items: center;
-            padding: 7rem 3rem 4rem;
+            padding: 9rem 3rem 4rem;
             background: var(--bg-light);
             color: var(--text);
             position: relative;
@@ -984,8 +998,32 @@
         
         /* Responsive */
         @media (max-width: 968px) {
-            nav ul {
+            nav .nav-main {
                 display: none;
+            }
+
+            nav .nav-main.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem 2rem;
+                gap: 1rem;
+                z-index: 999;
+            }
+
+            .nav-sub ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .nav-sub .container {
+                padding: 0.5rem 1.5rem;
             }
             
             .mobile-toggle {
@@ -1181,22 +1219,31 @@
     <!-- Navigation -->
     <nav role="navigation" aria-label="Hauptnavigation">
         <div class="container">
-            <a href="#hero" class="logo">
+            <a href="../" class="logo">
                 <span class="logo-name">Niklas Fauteck</span>
                 <span class="logo-subtitle">Digital Transformation</span>
             </a>
-            <ul>
-                <li><a href="../index.html" style="font-weight: 500; color: var(--primary);">← Startseite</a></li>
-                <li><a href="#about">Über mich</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#projects">Projekte</a></li>
-                <li><a href="#career">Werdegang</a></li>
-                <li><a href="#contact" class="nav-cta-btn">Kontakt</a></li>
+            <ul class="nav-main">
+                <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener">Vibecoding Academy</a></li>
+                <li><a href="./" style="font-weight: 500; color: var(--primary);">CV</a></li>
+                <li><a href="../os/">OS</a></li>
+                <li><a href="../blog/">Blog</a></li>
             </ul>
             <div class="mobile-toggle" aria-label="Menu Toggle">
                 <span></span>
                 <span></span>
                 <span></span>
+            </div>
+        </div>
+        <div class="nav-sub">
+            <div class="container">
+                <ul>
+                    <li><a href="#about">Über mich</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#projects">Projekte</a></li>
+                    <li><a href="#career">Werdegang</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -1883,9 +1930,9 @@
         
         // Mobile menu toggle
         document.querySelector('.mobile-toggle')?.addEventListener('click', () => {
-            const nav = document.querySelector('nav ul');
+            const nav = document.querySelector('nav .nav-main');
             if (nav) {
-                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+                nav.classList.toggle('open');
             }
         });
         
