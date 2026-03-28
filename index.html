@@ -247,6 +247,42 @@
       line-height: 1.7;
     }
 
+    .coffee-heading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .coffee-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .coffee-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .coffee-list li {
+      padding: 0.3rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .coffee-list li::before {
+      content: '\2615';
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
     /* Card Grid */
     .card-grid {
       display: grid;
@@ -344,6 +380,13 @@
 
     .footer a:hover {
       text-decoration: underline;
+    }
+
+    .footer-contact {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
     }
 
     /* Responsive */
@@ -491,19 +534,21 @@
     <section class="persoenlich">
       <h2>Persönlich</h2>
       <p>Abseits des Schreibtischs baut Niklas Smart-Home-Systeme, experimentiert mit 3D-Druckern und hat viele Jahre Science Slams moderiert. Die Überzeugung dahinter: Dinge einfach anfangen, scheitern, besser machen. Dieselbe Mentalität steckt in jedem Projekt, das er anfasst.</p>
+
+      <h3 class="coffee-heading">Kaffeepausen-Themen</h3>
+      <p class="coffee-subtitle">Worüber wir uns unterhalten könnten...</p>
+      <ul class="coffee-list">
+        <li>Science Slams & Live-Moderation</li>
+        <li>Smart-Home-Lösungen, die wirklich Sinn machen</li>
+        <li>Darts-Taktik und Fokus-Training</li>
+        <li>Sim Racing und realistische Fahrphysik</li>
+        <li>3D-Druck-Projekte und schnelles Prototyping</li>
+        <li>Medienlandschaft und gesellschaftliche Kommunikation</li>
+      </ul>
     </section>
 
     <footer class="footer">
-      <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">LinkedIn</a>
-      &middot;
-      <a href="https://bonn.social/@fauteck" target="_blank" rel="me noopener">Mastodon</a>
-      &middot;
-      <a href="https://github.com/Fauteck" target="_blank" rel="noopener">GitHub</a>
-      &middot;
-      <a href="feed.xml">RSS</a>
-      &middot;
-      <a href="mailto:me@fauteck.eu">me@fauteck.eu</a>
-      &middot;
+      <a href="kontakt.html" class="footer-contact">Kontakt</a>
       <a href="impressum.html">Impressum</a>
       &middot;
       <a href="datenschutz.html">Datenschutz</a>
