@@ -300,75 +300,6 @@
             background: rgba(78, 205, 196, 0.05);
         }
         
-        /* Was mich auszeichnet Section */
-        #features {
-            background: var(--bg-light);
-            padding: 4rem 3rem;
-            margin-top: 0;
-        }
-        
-        .distinctive-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .distinctive-features.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .feature-item {
-            background: #FFFFFF;
-            padding: 2rem;
-            border: 1.5px solid var(--border);
-            transition: all 0.2s ease;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        }
-
-        .feature-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            border-color: var(--accent);
-        }
-        
-        .feature-icon {
-            margin-bottom: 1rem;
-            display: block;
-            width: 2.5rem;
-            height: 2.5rem;
-        }
-        
-        .feature-icon svg {
-            width: 100%;
-            height: 100%;
-            stroke: var(--accent);
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-item:hover .feature-icon svg {
-            transform: scale(1.1);
-        }
-        
-        .feature-item h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.75rem;
-        }
-        
-        .feature-item p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-        }
-        
         /* Section Styles */
         section {
             padding: 5rem 3rem;
@@ -409,9 +340,6 @@
             background: var(--bg);
         }
 
-        #contact::before {
-            background: var(--bg);
-        }
         
         .section-header {
             margin-bottom: 3.5rem;
@@ -798,143 +726,6 @@
             color: var(--accent);
         }
         
-        /* Contact Section */
-        #contact {
-            text-align: left;
-            border-top: 1px solid var(--border);
-        }
-        
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 4rem;
-            align-items: start;
-        }
-        
-        .contact-content {
-            max-width: 100%;
-        }
-        
-        .contact-content h2 {
-            text-align: left;
-        }
-        
-        .contact-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            text-align: left;
-        }
-        
-        .contact-card {
-            background: var(--bg);
-            padding: 0;
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
-        }
-        
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-alt);
-            border-radius: 8px;
-            padding: 8px;
-        }
-        
-        .contact-icon svg {
-            width: 100%;
-            height: 100%;
-            stroke: var(--accent);
-        }
-        
-        .contact-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-            font-weight: 600;
-        }
-        
-        .contact-card a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-        }
-        
-        .contact-card a:hover {
-            color: var(--accent);
-        }
-        
-        .contact-cta {
-            margin-top: 3rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-        }
-        
-        .contact-cta .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-        
-        .contact-cta .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        
-        /* Kaffeepausen-Themen Box */
-        .coffee-topics {
-            background: var(--bg);
-            padding: 2rem;
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-            position: sticky;
-            top: 120px;
-        }
-        
-        .coffee-topics h3 {
-            font-size: 1.2rem;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .coffee-topics .subtitle {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-        
-        .coffee-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .coffee-list li {
-            padding: 0.4rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-        
-        .coffee-list li::before {
-            content: '☕';
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-        
         /* Footer */
         footer {
             background: var(--bg-light);
@@ -953,6 +744,13 @@
 
         footer a:hover {
             text-decoration: underline;
+        }
+
+        footer .footer-contact {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         /* Collapsible Sections */
@@ -991,6 +789,16 @@
             max-height: 0;
             opacity: 0;
         }
+
+        /* Reduzierter Abstand wenn Section eingeklappt */
+        section:has(.section-body.collapsed) {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .section-header.collapsed {
+            margin-bottom: 0;
+        }
         
         /* Scroll Indicator */
         .scroll-indicator {
@@ -1027,15 +835,6 @@
                 display: flex;
             }
             
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .coffee-topics {
-                position: static;
-            }
-            
             .hero-content {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -1052,9 +851,6 @@
                 gap: 3rem;
             }
             
-            .distinctive-features {
-                grid-template-columns: repeat(2, 1fr);
-            }
             
             .timeline {
                 padding-left: 2rem;
@@ -1112,10 +908,6 @@
                 justify-content: center;
             }
             
-            .distinctive-features {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
             
             .timeline-item {
                 grid-template-columns: 50px 1fr;
@@ -1248,124 +1040,216 @@
                     Das Problem bei vielen Digitalprojekten? Die Übersetzung fehlt. Fachbereiche wissen, was sie wollen. IT weiß, was geht. Aber niemand übersetzt zwischen beiden. Darum kümmere ich mich.
                 </p>
                 <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Projekt besprechen →</a>
+                    <a href="../kontakt.html" class="btn btn-primary">Projekt besprechen →</a>
                     <a href="#expertise" class="btn btn-secondary">Expertise entdecken</a>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Features Section -->
-    <section id="features">
-        <div class="distinctive-features">
-                <div class="feature-item">
-                    <span class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 19V5"/>
-                            <path d="M18 19V5"/>
-                            <path d="M2 19h20"/>
-                            <path d="M2 5h20"/>
-                            <path d="M6 9h12"/>
-                            <path d="M6 13h12"/>
-                        </svg>
-                    </span>
-                    <h3>Brückenbauer</h3>
-                    <p>Verbinde Kommunikations-Know-how und technisches Systemverständnis - spreche beide Sprachen fließend.</p>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1v6m0 6v6m5.196-14.196l-4.243 4.243m-1.906 1.906l-4.243 4.243M23 12h-6m-6 0H1m14.196 5.196l-4.243-4.243m-1.906-1.906l-4.243-4.243"/>
-                        </svg>
-                    </span>
-                    <h3>Systemdenker</h3>
-                    <p>Entwickle Systeme und nutze sie selbst. Kenne beide Perspektiven: Die der Entwickler und die der User.</p>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/>
-                            <circle cx="12" cy="12" r="6"/>
-                            <circle cx="12" cy="12" r="2"/>
-                        </svg>
-                    </span>
-                    <h3>Wirkungsorientiert</h3>
-                    <p>Denke in Workflows, nicht in Tools - Ziel ist immer Effizienz und echte Wirkung, nicht Feature-Listen.</p>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
-                            <path d="M9 18h6"/>
-                            <path d="M10 22h4"/>
-                        </svg>
-                    </span>
-                    <h3>Menschlich</h3>
-                    <p>Empathisch und humorvoll. Sorge für klare Prozesse und gute Zusammenarbeit auch in anspruchsvollen Phasen.</p>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3v18h18"/>
-                            <path d="M18 17V9"/>
-                            <path d="M13 17V5"/>
-                            <path d="M8 17v-3"/>
-                        </svg>
-                    </span>
-                    <h3>Analytisch</h3>
-                    <p>Treffe Entscheidungen datenbasiert. Nutze Analytics und KPIs - aber verliere dabei die Menschen nicht aus dem Blick.</p>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                            <path d="M5 3v4"/>
-                            <path d="M19 17v4"/>
-                            <path d="M3 5h4"/>
-                            <path d="M17 19h4"/>
-                        </svg>
-                    </span>
-                    <h3>Innovativ</h3>
-                    <p>Denke um die Ecke. Finde Lösungen, die andere übersehen - und setze sie um, statt nur Konzepte zu schreiben.</p>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                            <line x1="12" y1="19" x2="12" y2="23"/>
-                            <line x1="8" y1="23" x2="16" y2="23"/>
-                        </svg>
-                    </span>
-                    <h3>Bühnenerprobt</h3>
-                    <p>Langjährige Science-Slam-Moderation mit Kompetenz für Vermittlung komplexer Themen.</p>
-                </div>
-            </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" aria-labelledby="about-heading">
+    <!-- Career Section -->
+    <section id="career">
         <div class="section-header collapsible collapsed">
-            <span class="section-label">Über mich</span>
-            <h2 id="about-heading">Kommunikation trifft IT</h2>
+            <span class="section-label">Werdegang</span>
+            <h2>Berufliche Entwicklung</h2>
+            <p class="section-description">
+                Von der Unternehmenskommunikation zur digitalen Transformation
+            </p>
         </div>
         <div class="section-body collapsed">
 
-        <div class="about-content">
-            <div class="about-text">
-                <p>
-                    Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation. Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete er die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse – von der Konzeption zentraler Plattformen über KI-gestützte Automatisierungen bis hin zur fachlichen Steuerung von Entwicklerteams.
-                </p>
-                <p>
-                    Sein Weg führte ihn vom Technikjournalismus über die Presse- und Kommunikationsarbeit hin zur Schnittstelle zwischen Business und IT, wo er komplexe Anforderungen in tragfähige digitale Lösungen übersetzt. Dabei hat er Kommunikationssysteme nicht nur genutzt, sondern aktiv mitentwickelt – darunter den Media Hub von RTL Deutschland, KI-basierte Workflows und Custom-GPT-Lösungen für redaktionelle Prozesse.
-                </p>
-                <p>
-                    Aus dieser Praxis heraus entstand seine Leidenschaft fürs Vibecoding: die Fähigkeit, mit KI-Unterstützung eigene Tools und Automatisierungen zu bauen – auch ohne klassischen Entwickler-Background. Mit der Vibecoding Academy gibt Niklas dieses Wissen weiter und zeigt, wie Menschen an der Schnittstelle von Fachlichkeit und Technologie mit KI als Co-Pilot eigene digitale Lösungen umsetzen können – pragmatisch, praxisnah und mit dem Anspruch, echte Mehrwerte zu schaffen.
-                </p>
-                <p style="font-size: 0.9em; opacity: 0.75; margin-top: 1rem;">
-                    RTL Deutschland ist das führende Entertainment-Unternehmen in Deutschland über alle Mediengattungen – von 15 TV-Sendern und mehr als 10 Premium-Magazinen bis hin zu RTL+ (über 6 Mio. Abonnenten), Podcasts, Radio und einem breiten Portfolio an Digitalangeboten.
-                </p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-logo">
+                    <img src="rtl-logo.png" alt="RTL Deutschland Logo">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-period">Seit 08/2023</div>
+                    <h3>Head of Digital Transformation Kommunikation</h3>
+                    <div class="timeline-company">RTL Deutschland</div>
+                    <p class="timeline-description">
+                        Verantwortlich für die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation. Steuerung bereichsübergreifender Digital- und Transformationsprojekte an der Schnittstelle von Kommunikation, IT und Management.
+                    </p>
+                    <p class="timeline-description" style="font-size: 0.85em; opacity: 0.72; margin-top: 0.5rem;">
+                        RTL Deutschland ist das führende Entertainment-Unternehmen in Deutschland – mit 15 TV-Sendern, mehr als 10 Premium-Magazinen, dem Streamingdienst RTL+ (über 6 Mio. Abonnenten) sowie einem breiten Portfolio aus Radio, Podcast und Digitalangeboten.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows zur Effizienzsteigerung und Prozessvereinfachung</li>
+                        <li>Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse zur Reduktion manueller Aufwände</li>
+                        <li>Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung, Priorisierung und Go-Live-Verantwortung</li>
+                        <li>Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-logo">
+                    <img src="rtl-logo.png" alt="RTL Deutschland Logo">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-period">08/2020 - 08/2023</div>
+                    <h3>Leiter Newsdesk Kommunikation / Senior Manager Kommunikation & PR</h3>
+                    <div class="timeline-company">RTL Deutschland</div>
+                    <p class="timeline-description">
+                        Leitung des zentralen Newsdesk Kommunikation und Verantwortung für die inhaltliche und strukturelle Weiterentwicklung der Kommunikationsprozesse.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Weiterentwicklung des Media Hub als zentrale digitale Plattform für Presse- und Unternehmenskommunikation</li>
+                        <li>Steuerung komplexer Kommunikations- und Digitalprojekte in enger Zusammenarbeit mit IT, Produkt- und Fachbereichen</li>
+                        <li>Etablierung klarer Prozesse, Rollen und Schnittstellen zur Verbesserung von Effizienz, Transparenz und Zusammenarbeit</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-logo">
+                    <img src="rtl-plus-logo.jpg" alt="RTL+ Logo">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-period">03/2019 - 08/2020</div>
+                    <h3>Senior Manager Kommunikation & PR</h3>
+                    <div class="timeline-company">VOX / RTL+</div>
+                    <p class="timeline-description">
+                        Verantwortung für strategische und operative Kommunikationsarbeit im Umfeld nationaler TV- und Streamingformate.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Themenkoordination und strategische Planung der externen Kommunikation</li>
+                        <li>Krisenkommunikation sowie Entwicklung konsistenter Narrative über verschiedene Kanäle</li>
+                        <li>Digitale Formatkommunikation in enger Abstimmung mit Redaktion, Marketing und Produktion</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-logo">
+                    <img src="vox-logo.png" alt="VOX Logo">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-period">08/2015 - 03/2019</div>
+                    <h3>Presse- & Junior-Pressereferent</h3>
+                    <div class="timeline-company">VOX</div>
+                    <p class="timeline-description">
+                        Mitarbeit in der Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Planung und Umsetzung von Pressearbeit und Kommunikationskampagnen</li>
+                        <li>Koordination von Inhalten zwischen Redaktion, Produktion und externen Partnern</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-logo">
+                    <img src="hbrs-logo.png" alt="Hochschule Bonn-Rhein-Sieg Logo">
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-period">2009 - 2013</div>
+                    <h3>Bachelor of Science Technikjournalismus / PR</h3>
+                    <div class="timeline-company">Hochschule Bonn-Rhein-Sieg</div>
+                    <p class="timeline-description">
+                        Studium mit Schwerpunkt auf Technik-, Wissenschafts- und Unternehmenskommunikation
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Vermittlung komplexer technischer und wissenschaftlicher Inhalte für unterschiedliche Zielgruppen</li>
+                        <li>Bachelorarbeit: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header collapsible collapsed">
+            <span class="section-label">Showcase</span>
+            <h2>Projekte</h2>
+        </div>
+        <div class="section-body collapsed">
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-visual">
+                    <img src="media-hub-screenshot.png" alt="Screenshot des Media Hub - Zentrale Kommunikationsplattform für RTL Deutschland" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">PLATFORM DEVELOPMENT</div>
+                    <h3>Media Hub Entwicklung</h3>
+                    <p>
+                        Aufbau und kontinuierliche Weiterentwicklung des zentralen
+                        Kommunikationsportals für RTL Deutschland. Die Plattform für
+                        Content-Management, Pressematerialien und interne Kommunikation.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Zentrale digitale Plattform für 1.700+ Journalist:innen</li>
+                        <li>Roadmap-Planung und Feature-Priorisierung</li>
+                        <li>Fachliche Steuerung von Product Ownern und Dev-Teams</li>
+                        <li>Integration mit bestehenden Systemen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-visual">
+                    <img src="pictron-mdc-screenshot.png" alt="Screenshot der PICTRON Bilddatenbank mit KI-gestützten Features" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">AI & AUTOMATION</div>
+                    <h3>KI-gestützte Automatisierungslösungen</h3>
+                    <p>
+                        KI-Workflows in der Kommunikation - von automatisierten Textkürzungen
+                        bis zu Custom-GPTs für redaktionelle Prozesse. Spart Zeit,
+                        reduziert manuelle Arbeit.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Automatisierte Textanpassung für Drittkanäle</li>
+                        <li>KI-basierte Screenshot-Erstellung aus Videos</li>
+                        <li>Custom GPT-Entwicklung für Content-Teams</li>
+                        <li>Deutliche Reduktion manueller Workflows</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-visual">
+                    <img src="rtl-datenbanken-screenshot.png" alt="Screenshot PICTRON Bilddatenbank - Media Hub Integration" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">SYSTEM OPTIMIZATION</div>
+                    <h3>Weiterentwicklung von RTL-Datenbanken</h3>
+                    <p>
+                        Kontinuierliche Optimierung und Ausbau der zentralen Bilddatenbank
+                        PICTRON sowie des Programmwochenplanungs-Tools MDC für effizientere
+                        Content-Workflows.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Anforderungsmanagement und Konzeptentwicklung</li>
+                        <li>Feature-Rollouts und Testing</li>
+                        <li>User Experience Optimierung</li>
+                        <li>System-Integration und Prozessdesign</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-visual">
+                    <img src="rtl-group-screenshot.png" alt="Screenshot RTL Group Website - We are RTL, Europe's leading entertainment brand" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">ENTERPRISE COORDINATION</div>
+                    <h3>RTL Group Schnittstelle</h3>
+                    <p>
+                        Technische Koordination zwischen RTL Deutschland und RTL Group.
+                        Abstimmung und Weiterentwicklung gemeinsamer Systeme über
+                        Unternehmensgrenzen hinweg.
+                    </p>
+                    <ul class="project-highlights">
+                        <li>Cross-Company Stakeholder Management</li>
+                        <li>System-Harmonisierung</li>
+                        <li>Governance-Strukturen</li>
+                        <li>Change Management auf Enterprise-Ebene</li>
+                    </ul>
+                </div>
             </div>
         </div>
         </div>
@@ -1511,214 +1395,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="section-header collapsible collapsed">
-            <span class="section-label">Showcase</span>
-            <h2>Projekte</h2>
-        </div>
-        <div class="section-body collapsed">
-        
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="media-hub-screenshot.png" alt="Screenshot des Media Hub - Zentrale Kommunikationsplattform für RTL Deutschland" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <div class="project-tag">PLATFORM DEVELOPMENT</div>
-                    <h3>Media Hub Entwicklung</h3>
-                    <p>
-                        Aufbau und kontinuierliche Weiterentwicklung des zentralen 
-                        Kommunikationsportals für RTL Deutschland. Die Plattform für 
-                        Content-Management, Pressematerialien und interne Kommunikation.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Zentrale digitale Plattform für 1.700+ Journalist:innen</li>
-                        <li>Roadmap-Planung und Feature-Priorisierung</li>
-                        <li>Fachliche Steuerung von Product Ownern und Dev-Teams</li>
-                        <li>Integration mit bestehenden Systemen</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="pictron-mdc-screenshot.png" alt="Screenshot der PICTRON Bilddatenbank mit KI-gestützten Features" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <div class="project-tag">AI & AUTOMATION</div>
-                    <h3>KI-gestützte Automatisierungslösungen</h3>
-                    <p>
-                        KI-Workflows in der Kommunikation - von automatisierten Textkürzungen 
-                        bis zu Custom-GPTs für redaktionelle Prozesse. Spart Zeit, 
-                        reduziert manuelle Arbeit.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Automatisierte Textanpassung für Drittkanäle</li>
-                        <li>KI-basierte Screenshot-Erstellung aus Videos</li>
-                        <li>Custom GPT-Entwicklung für Content-Teams</li>
-                        <li>Deutliche Reduktion manueller Workflows</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="rtl-datenbanken-screenshot.png" alt="Screenshot PICTRON Bilddatenbank - Media Hub Integration" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <div class="project-tag">SYSTEM OPTIMIZATION</div>
-                    <h3>Weiterentwicklung von RTL-Datenbanken</h3>
-                    <p>
-                        Kontinuierliche Optimierung und Ausbau der zentralen Bilddatenbank 
-                        PICTRON sowie des Programmwochenplanungs-Tools MDC für effizientere 
-                        Content-Workflows.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Anforderungsmanagement und Konzeptentwicklung</li>
-                        <li>Feature-Rollouts und Testing</li>
-                        <li>User Experience Optimierung</li>
-                        <li>System-Integration und Prozessdesign</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="rtl-group-screenshot.png" alt="Screenshot RTL Group Website - We are RTL, Europe's leading entertainment brand" loading="lazy">
-                </div>
-                <div class="project-content">
-                    <div class="project-tag">ENTERPRISE COORDINATION</div>
-                    <h3>RTL Group Schnittstelle</h3>
-                    <p>
-                        Technische Koordination zwischen RTL Deutschland und RTL Group. 
-                        Abstimmung und Weiterentwicklung gemeinsamer Systeme über 
-                        Unternehmensgrenzen hinweg.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Cross-Company Stakeholder Management</li>
-                        <li>System-Harmonisierung</li>
-                        <li>Governance-Strukturen</li>
-                        <li>Change Management auf Enterprise-Ebene</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- Career Section -->
-    <section id="career">
-        <div class="section-header collapsible collapsed">
-            <span class="section-label">Werdegang</span>
-            <h2>Berufliche Entwicklung</h2>
-            <p class="section-description">
-                Von der Unternehmenskommunikation zur digitalen Transformation
-            </p>
-        </div>
-        <div class="section-body collapsed">
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-logo">
-                    <img src="rtl-logo.png" alt="RTL Deutschland Logo">
-                </div>
-                <div class="timeline-content">
-                    <div class="timeline-period">Seit 08/2023</div>
-                    <h3>Head of Digital Transformation Kommunikation</h3>
-                    <div class="timeline-company">RTL Deutschland</div>
-                    <p class="timeline-description">
-                        Verantwortlich für die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation. Steuerung bereichsübergreifender Digital- und Transformationsprojekte an der Schnittstelle von Kommunikation, IT und Management.
-                    </p>
-                    <p class="timeline-description" style="font-size: 0.85em; opacity: 0.72; margin-top: 0.5rem;">
-                        RTL Deutschland ist das führende Entertainment-Unternehmen in Deutschland – mit 15 TV-Sendern, mehr als 10 Premium-Magazinen, dem Streamingdienst RTL+ (über 6 Mio. Abonnenten) sowie einem breiten Portfolio aus Radio, Podcast und Digitalangeboten.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows zur Effizienzsteigerung und Prozessvereinfachung</li>
-                        <li>Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse zur Reduktion manueller Aufwände</li>
-                        <li>Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung, Priorisierung und Go-Live-Verantwortung</li>
-                        <li>Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-logo">
-                    <img src="rtl-logo.png" alt="RTL Deutschland Logo">
-                </div>
-                <div class="timeline-content">
-                    <div class="timeline-period">08/2020 - 08/2023</div>
-                    <h3>Leiter Newsdesk Kommunikation / Senior Manager Kommunikation & PR</h3>
-                    <div class="timeline-company">RTL Deutschland</div>
-                    <p class="timeline-description">
-                        Leitung des zentralen Newsdesk Kommunikation und Verantwortung für die inhaltliche und strukturelle Weiterentwicklung der Kommunikationsprozesse.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Weiterentwicklung des Media Hub als zentrale digitale Plattform für Presse- und Unternehmenskommunikation</li>
-                        <li>Steuerung komplexer Kommunikations- und Digitalprojekte in enger Zusammenarbeit mit IT, Produkt- und Fachbereichen</li>
-                        <li>Etablierung klarer Prozesse, Rollen und Schnittstellen zur Verbesserung von Effizienz, Transparenz und Zusammenarbeit</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-logo">
-                    <img src="rtl-plus-logo.jpg" alt="RTL+ Logo">
-                </div>
-                <div class="timeline-content">
-                    <div class="timeline-period">03/2019 - 08/2020</div>
-                    <h3>Senior Manager Kommunikation & PR</h3>
-                    <div class="timeline-company">VOX / RTL+</div>
-                    <p class="timeline-description">
-                        Verantwortung für strategische und operative Kommunikationsarbeit im Umfeld nationaler TV- und Streamingformate.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Themenkoordination und strategische Planung der externen Kommunikation</li>
-                        <li>Krisenkommunikation sowie Entwicklung konsistenter Narrative über verschiedene Kanäle</li>
-                        <li>Digitale Formatkommunikation in enger Abstimmung mit Redaktion, Marketing und Produktion</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-logo">
-                    <img src="vox-logo.png" alt="VOX Logo">
-                </div>
-                <div class="timeline-content">
-                    <div class="timeline-period">08/2015 - 03/2019</div>
-                    <h3>Presse- & Junior-Pressereferent</h3>
-                    <div class="timeline-company">VOX</div>
-                    <p class="timeline-description">
-                        Mitarbeit in der Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation.
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Planung und Umsetzung von Pressearbeit und Kommunikationskampagnen</li>
-                        <li>Koordination von Inhalten zwischen Redaktion, Produktion und externen Partnern</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-logo">
-                    <img src="hbrs-logo.png" alt="Hochschule Bonn-Rhein-Sieg Logo">
-                </div>
-                <div class="timeline-content">
-                    <div class="timeline-period">2009 - 2013</div>
-                    <h3>Bachelor of Science Technikjournalismus / PR</h3>
-                    <div class="timeline-company">Hochschule Bonn-Rhein-Sieg</div>
-                    <p class="timeline-description">
-                        Studium mit Schwerpunkt auf Technik-, Wissenschafts- und Unternehmenskommunikation
-                    </p>
-                    <ul class="project-highlights">
-                        <li>Vermittlung komplexer technischer und wissenschaftlicher Inhalte für unterschiedliche Zielgruppen</li>
-                        <li>Bachelorarbeit: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen"</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-
     <!-- Skills Section -->
     <section id="skills">
         <div class="section-header collapsible collapsed">
@@ -1804,6 +1480,33 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" aria-labelledby="about-heading">
+        <div class="section-header collapsible collapsed">
+            <span class="section-label">Über mich</span>
+            <h2 id="about-heading">Kommunikation trifft IT</h2>
+        </div>
+        <div class="section-body collapsed">
+
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation. Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete er die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse – von der Konzeption zentraler Plattformen über KI-gestützte Automatisierungen bis hin zur fachlichen Steuerung von Entwicklerteams.
+                </p>
+                <p>
+                    Sein Weg führte ihn vom Technikjournalismus über die Presse- und Kommunikationsarbeit hin zur Schnittstelle zwischen Business und IT, wo er komplexe Anforderungen in tragfähige digitale Lösungen übersetzt. Dabei hat er Kommunikationssysteme nicht nur genutzt, sondern aktiv mitentwickelt – darunter den Media Hub von RTL Deutschland, KI-basierte Workflows und Custom-GPT-Lösungen für redaktionelle Prozesse.
+                </p>
+                <p>
+                    Aus dieser Praxis heraus entstand seine Leidenschaft fürs Vibecoding: die Fähigkeit, mit KI-Unterstützung eigene Tools und Automatisierungen zu bauen – auch ohne klassischen Entwickler-Background. Mit der Vibecoding Academy gibt Niklas dieses Wissen weiter und zeigt, wie Menschen an der Schnittstelle von Fachlichkeit und Technologie mit KI als Co-Pilot eigene digitale Lösungen umsetzen können – pragmatisch, praxisnah und mit dem Anspruch, echte Mehrwerte zu schaffen.
+                </p>
+                <p style="font-size: 0.9em; opacity: 0.75; margin-top: 1rem;">
+                    RTL Deutschland ist das führende Entertainment-Unternehmen in Deutschland über alle Mediengattungen – von 15 TV-Sendern und mehr als 10 Premium-Magazinen bis hin zu RTL+ (über 6 Mio. Abonnenten), Podcasts, Radio und einem breiten Portfolio an Digitalangeboten.
+                </p>
+            </div>
+        </div>
+        </div>
+    </section>
+
     <!-- References / Zwischenzeugnis-Zitate -->
     <section id="references" aria-labelledby="references-heading">
         <div class="section-header collapsible collapsed">
@@ -1832,71 +1535,9 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" aria-labelledby="contact-heading">
-        <div class="contact-wrapper">
-            <div class="contact-content">
-            <span class="section-label">Kontakt</span>
-            <h2 id="contact-heading">Lassen Sie uns sprechen</h2>
-            <p class="section-description">
-                Sie suchen einen Projektmanager Digitalisierung & Coach für Digitale Transformation und KI-gestütztes Vibecoding für Ihr Projekt? Lassen Sie uns über Ihre Herausforderungen sprechen.
-            </p>
-            
-            <div class="contact-methods">
-                <div class="contact-card">
-                    <span class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                            <rect width="4" height="12" x="2" y="9"/>
-                            <circle cx="4" cy="4" r="2"/>
-                        </svg>
-                    </span>
-                    <h3>LinkedIn</h3>
-                    <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">linkedin.com/in/fauteck</a>
-                </div>
-                
-                <div class="contact-card">
-                    <span class="contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="20" height="16" x="2" y="4" rx="2"/>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                        </svg>
-                    </span>
-                    <h3>E-Mail</h3>
-                    <a href="mailto:karriere@fauteck.eu">karriere@fauteck.eu</a>
-                </div>
-            </div>
-            
-            <div class="contact-cta">
-                <a href="mailto:karriere@fauteck.eu" class="btn btn-primary">Nachricht senden →</a>
-            </div>
-        </div>
-            
-            <div class="coffee-topics">
-                <h3>Kaffeepausen-Themen</h3>
-                <p class="subtitle">Worüber wir uns unterhalten könnten...</p>
-                <ul class="coffee-list">
-                    <li>Science Slams & Live-Moderation</li>
-                    <li>Smart-Home-Lösungen, die wirklich Sinn machen</li>
-                    <li>Darts-Taktik und Fokus-Training</li>
-                    <li>Sim Racing und realistische Fahrphysik</li>
-                    <li>3D-Druck-Projekte und schnelles Prototyping</li>
-                    <li>Medienlandschaft und gesellschaftliche Kommunikation</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
     <!-- Footer -->
     <footer>
-        <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">LinkedIn</a>
-        &middot;
-        <a href="https://bonn.social/@fauteck" target="_blank" rel="me noopener">Mastodon</a>
-        &middot;
-        <a href="https://github.com/Fauteck" target="_blank" rel="noopener">GitHub</a>
-        &middot;
-        <a href="mailto:me@fauteck.eu">me@fauteck.eu</a>
-        &middot;
+        <a href="../kontakt.html" class="footer-contact">Kontakt</a>
         <a href="../impressum.html">Impressum</a>
         &middot;
         <a href="../datenschutz.html">Datenschutz</a>
@@ -1964,17 +1605,6 @@
             expertiseObserver.observe(card);
         });
         
-        // Progressive Disclosure für Feature-Cards
-        const featuresObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-        
-        // Observe distinctive features
-        document.querySelector('.distinctive-features')?.classList.add('visible');
         
     </script>
 </body>
