@@ -569,10 +569,10 @@ function buildAbout(body) {
         <div class="about-role">Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding</div>
         <hr class="about-hr">
         <p>
-          Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.
-          Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete er die strategische
-          Weiterentwicklung digitaler Systeme. Heute arbeitet er als Projektmanager und gibt sein Wissen als Coach
-          und Vibecoding-Experte weiter – und zeigt, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
+          Ich verbinde seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.
+          Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete ich die strategische
+          Weiterentwicklung digitaler Systeme. Heute arbeite ich als Projektmanager und gebe mein Wissen als Coach
+          und Vibecoding-Experte weiter – und zeige, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
         </p>
         <h2>Kernthesen</h2>
         <ul class="about-theses">
