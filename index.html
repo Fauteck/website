@@ -231,14 +231,19 @@
 
     /* Persoenlich */
     .persoenlich {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
+      background: linear-gradient(135deg, #fff 60%, #f8fffe);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     }
 
     .persoenlich h2 {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 1rem;
+      color: var(--accent-dark);
+      margin-bottom: 0.75rem;
     }
 
     .persoenlich p {
@@ -248,38 +253,50 @@
     }
 
     .coffee-heading {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--primary);
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.35rem;
     }
 
     .coffee-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       font-style: italic;
     }
 
     .coffee-list {
       list-style: none;
       padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem 1.5rem;
     }
 
     .coffee-list li {
-      padding: 0.3rem 0;
+      padding: 0.4rem 0.75rem;
       color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
+      font-size: 0.8rem;
+      line-height: 1.5;
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .coffee-list li:hover {
+      border-color: var(--accent);
+      color: var(--accent-dark);
     }
 
     .coffee-list li::before {
       content: '\2615';
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       flex-shrink: 0;
     }
 
@@ -538,6 +555,10 @@
       .contact-buttons {
         flex-direction: column;
         align-items: center;
+      }
+
+      .coffee-list {
+        grid-template-columns: 1fr;
       }
     }
   </style>
