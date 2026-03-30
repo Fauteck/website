@@ -171,6 +171,13 @@
       border: 3px solid var(--border);
     }
 
+    .header-cta {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+
     /* Contact Buttons */
     .contact-buttons {
       display: flex;
@@ -205,6 +212,7 @@
 
     .contact-linkedin { background: #0A66C2; }
     .contact-email { background: #6C757D; }
+    .contact-kontakt { background: var(--accent, #4ECDC4); color: var(--primary, #1a1a2e); }
     .contact-github { background: #24292E; }
 
     /* Bio Card */
@@ -571,10 +579,10 @@
         <span class="logo-subtitle">Digital Transformation</span>
       </a>
       <ul>
-        <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener" data-overlay="academy">Vibecoding Academy</a></li>
         <li><a href="full/">CV</a></li>
-        <li><a href="os/" data-overlay="os">OS</a></li>
+        <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener" data-overlay="academy">Vibecoding Academy</a></li>
         <li><a href="blog/">Blog</a></li>
+        <li><a href="os/" data-overlay="os">OS</a></li>
       </ul>
       <div class="mobile-toggle" aria-label="Menu Toggle">
         <span></span>
@@ -589,6 +597,7 @@
       <img src="full/niklas-fauteck-profile.jpg" alt="Niklas Fauteck" class="header-photo">
       <h1>Niklas Fauteck</h1>
       <p>Ich stehe da, wo Kommunikation auf Technologie trifft - mit Fokus auf Strategie, KI und konkretes Umsetzen.</p>
+      <p class="header-cta">Lassen Sie uns gemeinsam Ihr nächstes Digitalprojekt umsetzen.</p>
       <div class="contact-buttons">
         <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener" class="contact-btn contact-linkedin">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -597,6 +606,10 @@
         <a href="mailto:me@fauteck.eu" class="contact-btn contact-email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           E-Mail
+        </a>
+        <a href="kontakt.html" class="contact-btn contact-kontakt">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Kontakt
         </a>
       </div>
     </header>
