@@ -550,9 +550,9 @@
         <span class="logo-subtitle">Digital Transformation</span>
       </a>
       <ul>
-        <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener">Vibecoding Academy</a></li>
+        <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener" data-overlay="academy">Vibecoding Academy</a></li>
         <li><a href="full/">CV</a></li>
-        <li><a href="os/">OS</a></li>
+        <li><a href="os/" data-overlay="os">OS</a></li>
         <li><a href="blog/">Blog</a></li>
       </ul>
       <div class="mobile-toggle" aria-label="Menu Toggle">
@@ -710,7 +710,7 @@
       var academyUrl = 'https://fauteck.github.io/vibecoding-academy/';
 
       // Intercept OS links
-      document.querySelectorAll('a[href="os/index.html"], a[href="os/"]').forEach(function(link) {
+      document.querySelectorAll('a[href="os/index.html"], a[href="os/"], [data-overlay="os"]').forEach(function(link) {
         link.addEventListener('click', function(e) {
           e.preventDefault();
           osOverlay.classList.add('active');
@@ -718,7 +718,7 @@
       });
 
       // Intercept Academy links
-      document.querySelectorAll('a[href="' + academyUrl + '"]').forEach(function(link) {
+      document.querySelectorAll('a[href="' + academyUrl + '"], [data-overlay="academy"]').forEach(function(link) {
         link.addEventListener('click', function(e) {
           e.preventDefault();
           academyOverlay.classList.add('active');
