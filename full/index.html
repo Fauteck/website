@@ -440,25 +440,8 @@
             font-size: 0.85rem;
         }
         
-        .expertise-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 1rem;
-        }
-
-        .expertise-list li {
-            padding: 0.2rem 0;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            padding-left: 1.2rem;
-            position: relative;
-        }
-        
-        .expertise-list li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--text-secondary);
+        .expertise-card .skill-list {
+            margin-top: 0.75rem;
         }
         
         /* Projects Section */
@@ -1259,10 +1242,10 @@
     <section id="expertise" aria-labelledby="expertise-heading">
         <div class="section-header collapsible collapsed">
             <span class="section-label">Expertise</span>
-            <h2 id="expertise-heading">Kernkompetenzen</h2>
+            <h2 id="expertise-heading">Kompetenzen & Toolbox</h2>
         </div>
         <div class="section-body collapsed">
-        
+
         <div class="expertise-grid">
             <div class="expertise-card">
                 <span class="expertise-icon">
@@ -1273,19 +1256,22 @@
                         <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
                     </svg>
                 </span>
-                <h3>Digitale Transformation & Prozessoptimierung</h3>
+                <h3>Digitale Transformation & Technologie</h3>
                 <p>
-                    Entwicklung und Implementierung digitaler Systeme, die wachsen können.
+                    Entwicklung und Implementierung digitaler Systeme — von Plattform-Architektur
+                    über KI-Automatisierung bis hin zu datengetriebenen Prozessen.
                 </p>
-                <ul class="expertise-list">
-                    <li>Automatisierung und KI-Integration</li>
-                    <li>Datengetriebene Prozesse</li>
-                    <li>Technische Innovation</li>
-                    <li>Wachsende Architekturen</li>
-                    <li>Skalierbare Systeme</li>
-                </ul>
+                <div class="skill-list">
+                    <span class="skill-tag">Digital Platform Development</span>
+                    <span class="skill-tag">System Integration</span>
+                    <span class="skill-tag">API Integration</span>
+                    <span class="skill-tag">KI-Automatisierung</span>
+                    <span class="skill-tag">Workflow Automation</span>
+                    <span class="skill-tag">Data Analytics</span>
+                    <span class="skill-tag">Custom GPT Development</span>
+                </div>
             </div>
-            
+
             <div class="expertise-card">
                 <span class="expertise-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1295,19 +1281,22 @@
                         <path d="M8 17v-3"/>
                     </svg>
                 </span>
-                <h3>Strategisches Projektmanagement</h3>
+                <h3>Strategisches Projekt- & Produktmanagement</h3>
                 <p>
-                    Planung, Steuerung und Priorisierung komplexer Digitalprojekte mit
-                    interdisziplinären Teams (Kommunikation, IT, RTL Tech).
+                    End-to-End-Verantwortung für komplexe Digitalprojekte — von der Roadmap
+                    über Product Ownership bis Release Management.
                 </p>
-                <ul class="expertise-list">
-                    <li>End-to-End Projektverantwortung</li>
-                    <li>Stakeholder-Management</li>
-                    <li>Roadmap-Entwicklung</li>
-                    <li>Agile Methoden</li>
-                </ul>
+                <div class="skill-list">
+                    <span class="skill-tag">Agile / Scrum</span>
+                    <span class="skill-tag">Product Ownership</span>
+                    <span class="skill-tag">Roadmap Development</span>
+                    <span class="skill-tag">Requirements Engineering</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">OKR-Management</span>
+                    <span class="skill-tag">Quality Assurance</span>
+                </div>
             </div>
-            
+
             <div class="expertise-card">
                 <span class="expertise-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1317,38 +1306,18 @@
                 </span>
                 <h3>Schnittstellenkompetenz Kommunikation & Technologie</h3>
                 <p>
-                    Übersetzung kommunikativer Anforderungen in technische Lösungen -
-                    ich spreche beide Sprachen, die der Fachbereiche und die der Entwickler.
+                    Übersetzung kommunikativer Anforderungen in technische Lösungen —
+                    Brücke zwischen Fachbereichen und Entwicklung.
                 </p>
-                <ul class="expertise-list">
-                    <li>Fachliche Requirements in Tech</li>
-                    <li>Redaktion ↔ IT Vermittlung</li>
-                    <li>Business-IT-Alignment</li>
-                    <li>Change Communication</li>
-                </ul>
+                <div class="skill-list">
+                    <span class="skill-tag">Content Strategy</span>
+                    <span class="skill-tag">Strategische Kommunikation</span>
+                    <span class="skill-tag">Business-IT-Alignment</span>
+                    <span class="skill-tag">Change Management</span>
+                    <span class="skill-tag">Internal Communications</span>
+                </div>
             </div>
-            
-            <div class="expertise-card">
-                <span class="expertise-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                        <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                </span>
-                <h3>System- und Produktverantwortung</h3>
-                <p>
-                    Aufbau und Weiterentwicklung zentraler Plattformen einschließlich 
-                    Roadmap-Planung und Testing.
-                </p>
-                <ul class="expertise-list">
-                    <li>Platform Engineering</li>
-                    <li>Product Ownership</li>
-                    <li>Release Management</li>
-                    <li>Quality Assurance</li>
-                    <li>Media Hub, PICTRON, MDC</li>
-                </ul>
-            </div>
-            
+
             <div class="expertise-card">
                 <span class="expertise-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1360,120 +1329,60 @@
                 </span>
                 <h3>Führung & Stakeholdermanagement</h3>
                 <p>
-                    Leitung von Product Ownern, Koordination interner und externer Partner, 
+                    Leitung von Product Ownern, Koordination interner und externer Partner,
                     bereichsübergreifende Abstimmungen.
                 </p>
-                <ul class="expertise-list">
-                    <li>Team Leadership</li>
-                    <li>Executive Communication</li>
-                    <li>Conflict Resolution</li>
-                    <li>Product Owner fachlich steuern</li>
-                </ul>
-            </div>
-            
-            <div class="expertise-card">
-                <span class="expertise-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                        <polyline points="16 7 22 7 22 13"/>
-                    </svg>
-                </span>
-                <h3>Datengetriebene Kommunikationslösungen</h3>
-                <p>
-                    Nutzung von Kennzahlen, Dashboards und Automatisierungen zur 
-                    Prozessverbesserung und Erfolgsmessung.
-                </p>
-                <ul class="expertise-list">
-                    <li>KPI-Definition und Tracking</li>
-                    <li>Analytics & Reporting</li>
-                    <li>Datenintegration</li>
-                    <li>Performance Optimization</li>
-                    <li>Dashboards</li>
-                </ul>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="section-header collapsible collapsed">
-            <span class="section-label">Toolbox</span>
-            <h2>Technologien, Methoden & Tools</h2>
-        </div>
-        <div class="section-body collapsed">
-
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3>Projektmanagement & Methoden</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Agile / Scrum</span>
-                    <span class="skill-tag">Product Roadmap Development</span>
-                    <span class="skill-tag">Stakeholder Management</span>
-                    <span class="skill-tag">Requirements Engineering</span>
-                    <span class="skill-tag">Change Management</span>
-                    <span class="skill-tag">Product Ownership</span>
-                    <span class="skill-tag">OKR-Management</span>
-                    <span class="skill-tag">Budget Planning</span>
-                </div>
-            </div>
-            
-            <div class="skill-category">
-                <h3>Digitale Systeme & Technologie</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Digital Platform Development</span>
-                    <span class="skill-tag">System Integration</span>
-                    <span class="skill-tag">API Integration</span>
-                    <span class="skill-tag">Content Management Systeme</span>
-                    <span class="skill-tag">KI-Automatisierung</span>
-                    <span class="skill-tag">Workflow Automation</span>
-                    <span class="skill-tag">Data Analytics</span>
-                    <span class="skill-tag">n8n / Make.com</span>
-                    <span class="skill-tag">Custom GPT Development</span>
-                    <span class="skill-tag">Vibecoding</span>
-                </div>
-            </div>
-            
-            <div class="skill-category">
-                <h3>Kommunikation & Medien</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Strategische Kommunikation</span>
-                    <span class="skill-tag">Content Strategy</span>
-                    <span class="skill-tag">Media Relations</span>
-                    <span class="skill-tag">Crisis Communication</span>
-                    <span class="skill-tag">Internal Communications</span>
-                    <span class="skill-tag">Digital Publishing</span>
-                </div>
-            </div>
-            
-            <div class="skill-category">
-                <h3>Führung & Stakeholdermanagement</h3>
                 <div class="skill-list">
                     <span class="skill-tag">Team Leadership</span>
-                    <span class="skill-tag">Technical Leadership</span>
                     <span class="skill-tag">Fachliche Führung</span>
+                    <span class="skill-tag">Executive Communication</span>
                     <span class="skill-tag">Bereichsübergreifende Koordination</span>
-                    <span class="skill-tag">Moderation</span>
                 </div>
             </div>
-            
+        </div>
+
+        <div class="skills-container" style="margin-top: 2rem;">
             <div class="skill-category">
-                <h3>Tools & Plattformen</h3>
+                <h3>Projektmanagement</h3>
                 <div class="skill-list">
                     <span class="skill-tag">Jira</span>
                     <span class="skill-tag">Confluence</span>
-                    <span class="skill-tag">Microsoft Teams</span>
-                    <span class="skill-tag">Microsoft 365 (SharePoint, Planner, Power Automate)</span>
                     <span class="skill-tag">Miro</span>
-                    <span class="skill-tag">OpenCMS</span>
-                    <span class="skill-tag">WordPress</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Produktivität</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Microsoft 365 (SharePoint, Planner, Power Automate)</span>
+                    <span class="skill-tag">Microsoft Teams</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Analyse & Reporting</h3>
+                <div class="skill-list">
                     <span class="skill-tag">Google Analytics (GA4)</span>
                     <span class="skill-tag">Power BI</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>KI & Automatisierung</h3>
+                <div class="skill-list">
                     <span class="skill-tag">ChatGPT / Claude / Gemini</span>
-                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">n8n / Make.com</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Development & Design</h3>
+                <div class="skill-list">
                     <span class="skill-tag">GitHub / Docker</span>
-                    <span class="skill-tag">Bambu Studio / 3D-Druck-Software</span>
-                    <span class="skill-tag">Home Assistant</span>
+                    <span class="skill-tag">Figma</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Content Management</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">OpenCMS</span>
+                    <span class="skill-tag">WordPress</span>
                 </div>
             </div>
         </div>
