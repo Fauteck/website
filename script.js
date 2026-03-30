@@ -569,7 +569,7 @@ function buildAbout(body) {
         <div class="about-role">Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding</div>
         <hr class="about-hr">
         <p>
-          Ich verbinde seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.
+          Ich verbinde Kommunikation, Technologie und digitale Transformation.
           Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete ich die strategische
           Weiterentwicklung digitaler Systeme. Heute arbeite ich als Projektmanager und gebe mein Wissen als Coach
           und Vibecoding-Experte weiter – und zeige, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
@@ -605,7 +605,7 @@ const CAREER_DATA = [
     company: 'RTL Deutschland',
     period: 'seit 08/2023',
     responsibilities: [
-      'Verantwortlich für die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation',
+      'Ich verantworte die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation.',
       'Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows (Media Hub, PICTRON, MDC)',
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
       'Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung und Go-Live-Verantwortung',
@@ -626,7 +626,7 @@ const CAREER_DATA = [
     company: 'RTL Deutschland',
     period: '08/2020 – 08/2023',
     responsibilities: [
-      'Leitung des zentralen Newsdesk Kommunikation und Weiterentwicklung der Kommunikationsprozesse',
+      'Ich habe den zentralen Newsdesk Kommunikation geleitet und die Weiterentwicklung der Kommunikationsprozesse verantwortet.',
       'Weiterentwicklung des Media Hub als zentrale digitale Plattform für Presse- und Unternehmenskommunikation',
       'Steuerung komplexer Kommunikations- und Digitalprojekte in enger Zusammenarbeit mit IT und Fachbereichen',
       'Etablierung klarer Prozesse, Rollen und Schnittstellen zur Verbesserung von Effizienz und Transparenz',
@@ -645,7 +645,7 @@ const CAREER_DATA = [
     company: 'VOX / RTL+',
     period: '03/2019 – 08/2020',
     responsibilities: [
-      'Verantwortung für strategische und operative Kommunikationsarbeit im Umfeld nationaler TV- und Streamingformate',
+      'Ich habe die strategische und operative Kommunikationsarbeit im Umfeld nationaler TV- und Streamingformate verantwortet.',
       'Themenkoordination und strategische Planung der externen Kommunikation',
       'Krisenkommunikation sowie Entwicklung konsistenter Narrative über verschiedene Kanäle',
       'Digitale Formatkommunikation in enger Abstimmung mit Redaktion, Marketing und Produktion',
@@ -664,7 +664,7 @@ const CAREER_DATA = [
     company: 'VOX',
     period: '08/2015 – 03/2019',
     responsibilities: [
-      'Mitarbeit in der Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation',
+      'Ich habe in der Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation mitgearbeitet.',
       'Planung und Umsetzung von Pressearbeit und Kommunikationskampagnen',
       'Koordination von Inhalten zwischen Redaktion, Produktion und externen Partnern',
     ],
@@ -682,7 +682,7 @@ const CAREER_DATA = [
     company: 'Hochschule Bonn-Rhein-Sieg',
     period: '2009 – 2013',
     responsibilities: [
-      'Studium Technikjournalismus / PR an der Hochschule Bonn-Rhein-Sieg',
+      'Ich habe Technikjournalismus / PR an der Hochschule Bonn-Rhein-Sieg studiert.',
       'Schwerpunkt: Vermittlung komplexer technischer und wissenschaftlicher Inhalte für unterschiedliche Zielgruppen',
       'Bachelorarbeit: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen"',
     ],
@@ -932,11 +932,8 @@ const TERM_COMMANDS = {
     { t: 'success', v: 'Für Recruiter & Auftraggeber:' },
     { t: 'empty' },
     { t: 'accent',  v: '  download cv     → Lebenslauf herunterladen (PDF)' },
-    { t: 'accent',  v: '  references      → Empfehlungen' },
     { t: 'accent',  v: '  availability    → Verfügbarkeit' },
     { t: 'accent',  v: '  contact         → Kontaktdaten' },
-    { t: 'accent',  v: '  projects        → Ausgewählte Projekte' },
-    { t: 'accent',  v: '  interview       → Gespräch vereinbaren' },
   ],
   whoami: () => [
     { t: 'out', v: 'niklas-fauteck' },
@@ -963,13 +960,10 @@ const TERM_COMMANDS = {
   'cat about.txt': () => [
     { t: 'bold', v: '# Niklas Fauteck — Kurzprofil' },
     { t: 'empty' },
-    { t: 'out', v: 'Seit über 16 Jahren an der Schnittstelle zwischen Medien,' },
-    { t: 'out', v: 'Kommunikation und digitaler Transformation.' },
-    { t: 'empty' },
-    { t: 'out', v: 'Ich übersetze zwischen Kommunikation und Technologie –' },
+    { t: 'out', v: 'Ich verbinde Kommunikation, Technologie und digitale Transformation –' },
     { t: 'out', v: 'und baue Systeme, die Menschen wirklich nutzen.' },
     { t: 'empty' },
-    { t: 'dim', v: 'Standort: Köln, Deutschland' },
+    { t: 'dim', v: 'Standort: Troisdorf bei Köln, Deutschland' },
     { t: 'dim', v: 'Verfügbar: Gespräche, Projekte, Kaffee' },
   ],
   'cat readme.md': () => [
@@ -1172,7 +1166,7 @@ const TERM_COMMANDS = {
     { t: 'accent', v: '        ╭──────────────╮' },
     { t: 'accent', v: '        │   ███╗  ██╗  │    OS: NiklasOS 2026 LTS' },
     { t: 'accent', v: '        │   ████╗ ██║  │    Host: Niklas Fauteck' },
-    { t: 'accent', v: '        │   ██╔████║   │    Uptime: 6 Jahre (RTL)' },
+    { t: 'accent', v: '        │   ██╔████║   │    Uptime: 37 Jahre' },
     { t: 'accent', v: '        │   ██║╚████║  │    Shell: bash (Pragmatismus)' },
     { t: 'accent', v: '        │   ██║ ╚███║  │    CPU: bridge_business_tech @ 98%' },
     { t: 'accent', v: '        │   ╚═╝  ╚══╝  │    Memory: 12/16 GB (Ideen/Kapazität)' },
@@ -1234,24 +1228,9 @@ const TERM_COMMANDS = {
       { t: 'dim', v: 'Alternativ: Karrierefenster öffnen für interaktive Version.' },
     ];
   },
-  'references': () => [
-    { t: 'bold', v: '# Empfehlungen' },
-    { t: 'empty' },
-    { t: 'accent', v: '"Niklas hat die seltene Fähigkeit, technische Komplexität in' },
-    { t: 'accent', v: ' verständliche Lösungen zu übersetzen, die von Teams tatsächlich' },
-    { t: 'accent', v: ' angenommen werden."' },
-    { t: 'dim', v: '    — Kolleg:in bei RTL Deutschland' },
-    { t: 'empty' },
-    { t: 'accent', v: '"Pragmatisch, lösungsorientiert und immer mit dem Blick auf den' },
-    { t: 'accent', v: ' echten Nutzen für die Anwender."' },
-    { t: 'dim', v: '    — Stakeholder Digital Projects' },
-    { t: 'empty' },
-    { t: 'success', v: 'Ausführliche Empfehlungen: www.linkedin.com/in/fauteck/' },
-  ],
   'availability': () => [
     { t: 'bold', v: '# Verfügbarkeit' },
     { t: 'empty' },
-    { t: 'success', v: 'Status:   Aktuell in Festanstellung bei RTL Deutschland' },
     { t: 'accent', v: 'Offen für: Spannende Gespräche, Projekte und neue Perspektiven' },
     { t: 'empty' },
     { t: 'out', v: 'Reaktionszeit: In der Regel innerhalb von 24h' },
@@ -1269,25 +1248,6 @@ const TERM_COMMANDS = {
     { t: 'out', v: 'Bevorzugt:     E-Mail oder LinkedIn-Nachricht' },
     { t: 'empty' },
     { t: 'dim', v: 'Auch erreichbar via: sudo hire niklas' },
-  ],
-  'projects': () => {
-    const lines = [
-      { t: 'bold', v: '# Ausgewählte Projekte' },
-      { t: 'empty' },
-    ];
-    PROJECTS_DATA.forEach(p => {
-      lines.push({ t: 'success', v: `[${p.name}] ${p.period}` });
-      lines.push({ t: 'out', v: `  Rolle: ${p.role}` });
-      lines.push({ t: 'accent', v: `  Impact: ${p.impact}` });
-      lines.push({ t: 'empty' });
-    });
-    return lines;
-  },
-  'interview': () => [
-    { t: 'success', v: 'Am besten per E-Mail vereinbaren:' },
-    { t: 'out', v: '→ niklas@fauteck.eu' },
-    { t: 'empty' },
-    { t: 'dim', v: 'Ich freue mich auf das Gespräch.' },
   ],
 };
 
@@ -1562,7 +1522,7 @@ function renderTmProzesse(el) {
       <div class="tm-proc-footer">
         <div class="tm-proc-kv"><span class="k">Kernel</span><span class="v">Communication × Technology</span></div>
         <div class="tm-proc-kv"><span class="k">Shell</span><span class="v">Pragmatism 2026.03</span></div>
-        <div class="tm-proc-kv"><span class="k">Standort</span><span class="v">Köln, Deutschland</span></div>
+        <div class="tm-proc-kv"><span class="k">Standort</span><span class="v">Troisdorf bei Köln, Deutschland</span></div>
         <div class="tm-proc-kv"><span class="k">Erreichbar</span><span class="v">niklas@fauteck.eu</span></div>
       </div>
     </div>
@@ -1604,7 +1564,7 @@ function renderTmLeistung(el) {
     { dim: '[proc]', val: ' bridge_business_tech @ 98% — ✓ aktiv' },
     { dim: '[proc]', val: ' automation_daemon @ HIGH — ✓ läuft' },
     { dim: '[proc]', val: ' curiosity_process @ ALWAYS — ✓ läuft' },
-    { dim: '[sys] ', val: ' Standort: Köln · Shell: Pragmatism 2026.03' },
+    { dim: '[sys] ', val: ' Standort: Troisdorf bei Köln · Shell: Pragmatism 2026.03' },
     { dim: '[net] ', val: ' niklas@fauteck.eu — erreichbar' },
   ];
   const termHtml = termLines.map(l => `<div class="tm-perf-term-line"><span class="dim">${l.dim}</span><span class="val">${l.val}</span></div>`).join('');
@@ -1632,7 +1592,7 @@ function renderTmLeistung(el) {
         <div class="tm-perf-metrics">
           <div class="tm-perf-metric"><span class="k">Kernel</span><span class="v">Communication × Technology</span></div>
           <div class="tm-perf-metric"><span class="k">Shell</span><span class="v">Pragmatism 2026.03</span></div>
-          <div class="tm-perf-metric"><span class="k">Standort</span><span class="v">Köln, DE</span></div>
+          <div class="tm-perf-metric"><span class="k">Standort</span><span class="v">Troisdorf bei Köln, DE</span></div>
           <div class="tm-perf-metric"><span class="k">Erreichbar</span><span class="v">niklas@fauteck.eu</span></div>
         </div>
         <div class="tm-perf-terminal">${termHtml}</div>
@@ -3168,8 +3128,8 @@ function buildTeams(body) {
     { name: 'PR-Team RTL', initials: 'PR', color: '#6366f1', time: '10:42', preview: 'Sarah: Sprint Review Slides sind fertig 📊', unread: 2 },
     { name: 'Max Müller', initials: 'MM', color: '#3b82f6', time: '10:35', preview: 'Media Hub Deployment läuft sauber 👍', unread: 0 },
     { name: 'Digital Transformation', initials: 'DT', color: '#8b5cf6', time: '09:55', preview: 'Niklas: Guter Punkt, lass uns das…', unread: 0 },
-    { name: 'KI-Workflows', initials: 'KI', color: '#10b981', time: 'gestern', preview: 'Julia: Das n8n-Template ist live', unread: 0 },
-    { name: 'Eva Messerschmidt', initials: 'EM', color: '#f59e0b', time: 'gestern', preview: 'Klasse Arbeit beim Rollout! 🎉', unread: 0 },
+    { name: 'KI-Workflows', initials: 'KI', color: '#10b981', time: 'gestern', preview: 'Anna: Das n8n-Template ist live', unread: 0 },
+    { name: 'Laura Bergmann', initials: 'LB', color: '#f59e0b', time: 'gestern', preview: 'Klasse Arbeit beim Rollout! 🎉', unread: 0 },
     { name: 'IT-Support', initials: 'IT', color: '#ef4444', time: 'gestern', preview: 'Wartungsfenster heute Nacht 22-02 Uhr', unread: 0 },
     { name: 'Announcements', initials: '📢', color: '#64748b', time: 'Mo', preview: 'HR: Neuer Onboarding-Prozess ab April', unread: 0 },
   ];
@@ -3182,7 +3142,7 @@ function buildTeams(body) {
     { sender: 'Niklas Fauteck', initials: 'NF', color: '#f97316', time: '10:38', text: 'Perfekt. Deployment ist approved ✅ Danke euch beiden!', self: true },
     { sender: 'IT-Support', initials: 'IT', color: '#ef4444', time: '11:04', text: 'Reminder: Wartungsfenster heute Nacht 22-02 Uhr für Server-Updates. Bitte laufende Jobs vorher abschließen.', self: false },
     { sender: 'Niklas Fauteck', initials: 'NF', color: '#f97316', time: '11:06', text: 'Danke für den Hinweis! Ich stelle die Monitoring-Alerts entsprechend stumm 🔕', self: true },
-    { sender: 'Julia Kikillis', initials: 'JK', color: '#a855f7', time: '11:15', text: 'Kurzes Update: Das neue KI-Workflow-Template für Pressemitteilungen ist jetzt in n8n verfügbar. Testet gerne mal!', self: false },
+    { sender: 'Anna Weber', initials: 'AW', color: '#a855f7', time: '11:15', text: 'Kurzes Update: Das neue KI-Workflow-Template für Pressemitteilungen ist jetzt in n8n verfügbar. Testet gerne mal!', self: false },
   ];
 
   function chatListHtml() {
@@ -6212,19 +6172,24 @@ function buildProjects(body) {
 // ─────────────────────────────────────────────────
 const TESTIMONIALS_DATA = [
   {
-    quote: 'Niklas hat die seltene Fähigkeit, technische Komplexität in verständliche Lösungen zu übersetzen, die von Teams tatsächlich angenommen werden.',
-    name: 'Empfehlung via LinkedIn',
-    role: 'Kolleg:in bei RTL Deutschland',
+    quote: 'Verbindet strategisches und konzeptionelles Denken mit praxisgerechten operativen Lösungen.',
+    name: 'Zwischenzeugnis RTL Deutschland',
+    role: '',
   },
   {
-    quote: 'Pragmatisch, lösungsorientiert und immer mit dem Blick auf den echten Nutzen für die Anwender. Genau so sollte digitale Transformation funktionieren.',
-    name: 'Empfehlung via LinkedIn',
-    role: 'Stakeholder Digital Projects',
+    quote: 'Genießt jederzeit das uneingeschränkte Vertrauen der Geschäftsleitung.',
+    name: 'Zwischenzeugnis RTL Deutschland',
+    role: '',
   },
   {
-    quote: 'Was Niklas von anderen unterscheidet: Er implementiert nicht nur Tools, er sorgt dafür, dass Menschen sie auch wirklich nutzen.',
-    name: 'Empfehlung via LinkedIn',
-    role: 'Zusammenarbeit im Bereich Change Management',
+    quote: 'Sogar in Stresssituationen sowie unter außerordentlicher zeitlicher Belastung erzielt Herr Fauteck ausgezeichnete Ergebnisse.',
+    name: 'Zwischenzeugnis RTL Deutschland',
+    role: '',
+  },
+  {
+    quote: 'Zeigt permanent eine erstklassige Fach- und Führungsleistung.',
+    name: 'Zwischenzeugnis RTL Deutschland',
+    role: '',
   },
 ];
 
