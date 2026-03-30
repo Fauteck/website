@@ -227,6 +227,24 @@
         padding: 1.5rem;
       }
     }
+
+    /* Confirmation Overlays */
+    .confirm-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; padding: 1.5rem; backdrop-filter: blur(4px); }
+    .confirm-overlay.active { display: flex; }
+    .confirm-box { background: var(--bg); border-radius: 16px; padding: 2.5rem; max-width: 440px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.2); text-align: center; }
+    .confirm-box .confirm-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+    .confirm-box .confirm-icon.os-icon { background: #F0EBFA; color: #6C3FA0; }
+    .confirm-box .confirm-icon.academy-icon { background: #EEF9F6; color: #2D6A4F; }
+    .confirm-box .confirm-icon svg { width: 28px; height: 28px; }
+    .confirm-box h3 { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; }
+    .confirm-box p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.75rem; }
+    .confirm-buttons { display: flex; gap: 0.75rem; justify-content: center; }
+    .confirm-btn { padding: 0.6rem 1.5rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; cursor: pointer; border: none; font-family: var(--font-sans); transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .confirm-btn:hover { transform: translateY(-1px); }
+    .confirm-btn-cancel { background: var(--bg-light); color: var(--text-secondary); border: 1px solid var(--border); }
+    .confirm-btn-cancel:hover { background: #eee; }
+    .confirm-btn-ok { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(78,205,196,0.3); }
+    .confirm-btn-ok:hover { background: var(--accent-dark); box-shadow: 0 4px 12px rgba(78,205,196,0.4); }
   </style>
 </head>
 <body>
@@ -239,9 +257,9 @@
       </a>
       <ul>
         <li><a href="full/">CV</a></li>
-        <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener">Vibecoding Academy</a></li>
+        <li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener" data-overlay="academy">Vibecoding Academy</a></li>
         <li><a href="blog/">Blog</a></li>
-        <li><a href="os/">OS</a></li>
+        <li><a href="os/" data-overlay="os">OS</a></li>
       </ul>
       <div class="mobile-toggle" aria-label="Menu Toggle">
         <span></span>
@@ -308,6 +326,57 @@
     &middot;
     <a href="agb.html">AGB</a>
   </footer>
+
+  <!-- Confirmation Overlay: OS -->
+  <div class="confirm-overlay" id="overlay-os">
+    <div class="confirm-box">
+      <div class="confirm-icon os-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Mein Desktop wird gestartet&nbsp;...</h3>
+      <p>Du verlässt jetzt die klassische Website und betrittst ein interaktives Desktop-Erlebnis. Die Seite sieht bewusst völlig anders aus — wie ein persönlicher Computer, der gerade hochfährt.</p>
+      <div class="confirm-buttons">
+        <button class="confirm-btn confirm-btn-cancel" id="overlay-os-cancel">Abbrechen</button>
+        <button class="confirm-btn confirm-btn-ok" id="overlay-os-ok">Weiter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Overlay: Vibecoding Academy -->
+  <div class="confirm-overlay" id="overlay-academy">
+    <div class="confirm-box">
+      <div class="confirm-icon academy-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+      </div>
+      <h3>Weiterleitung zur Vibecoding Academy</h3>
+      <p>Du wirst jetzt zur Vibecoding Academy weitergeleitet — der Workshop-Website rund um KI-gestütztes Vibecoding. Die Seite hat ein eigenständiges Design und öffnet sich in einem neuen Tab.</p>
+      <div class="confirm-buttons">
+        <button class="confirm-btn confirm-btn-cancel" id="overlay-academy-cancel">Abbrechen</button>
+        <button class="confirm-btn confirm-btn-ok" id="overlay-academy-ok">Weiter</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    var osOverlay = document.getElementById('overlay-os');
+    var academyOverlay = document.getElementById('overlay-academy');
+    var osUrl = 'os/index.html';
+    var academyUrl = 'https://fauteck.github.io/vibecoding-academy/';
+    document.querySelectorAll('[data-overlay="os"]').forEach(function(link) {
+      link.addEventListener('click', function(e) { e.preventDefault(); osOverlay.classList.add('active'); });
+    });
+    document.querySelectorAll('[data-overlay="academy"]').forEach(function(link) {
+      link.addEventListener('click', function(e) { e.preventDefault(); academyOverlay.classList.add('active'); });
+    });
+    document.getElementById('overlay-os-cancel').addEventListener('click', function() { osOverlay.classList.remove('active'); });
+    document.getElementById('overlay-os-ok').addEventListener('click', function() { window.location.href = osUrl; });
+    document.getElementById('overlay-academy-cancel').addEventListener('click', function() { academyOverlay.classList.remove('active'); });
+    document.getElementById('overlay-academy-ok').addEventListener('click', function() { window.open(academyUrl, '_blank', 'noopener'); academyOverlay.classList.remove('active'); });
+    [osOverlay, academyOverlay].forEach(function(overlay) { overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('active'); }); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { osOverlay.classList.remove('active'); academyOverlay.classList.remove('active'); } });
+  })();
+  </script>
 
 </body>
 </html>
