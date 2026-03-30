@@ -5,8 +5,24 @@
     <link>https://fauteck.github.io/website/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 19 Mar 2026 00:00:00 +0100</lastBuildDate>
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Wenn niemand die Lösung hat, druckst du sie selbst</title>
+      <link>https://fauteck.github.io/website/blog/#3d-drucker</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#3d-drucker</guid>
+      <pubDate>Thu, 19 Mar 2026 00:00:00 +0100</pubDate>
+      <category>Persönlich</category>
+      <category>3D-Druck</category>
+      <category>Maker</category>
+      <description><![CDATA[
+<p>Mein 3D-Drucker löst heute Probleme, an die ich beim Kauf nie gedacht hätte.</p>
+<p>Als ich mir vor einem Jahr meinen ersten 3D-Drucker gekauft habe, dachte ich an Gadgets, Halterungen und vielleicht mal ein Ersatzteil. Dass ich irgendwann in Fusion 360 eigene Modelle konstruieren würde, hätte ich damals nicht erwartet.</p>
+<p>Durch persönliche Betroffenheit in der Familie habe ich sehr konkret erlebt, was es im Alltag bedeutet, wenn sich durch Selbstkathetisierung vieles verändert. Also habe ich angefangen, mich einzuarbeiten – nicht nur in das konkrete Problem, sondern auch eigenständig in Fusion 360.</p>
+<p>Am Ende sind zwei Designs entstanden: eine Halterung für einen bestimmten Einmalkatheter und ein flexibler Ersatzfuß für einen Handspiegel. Nicht nur nutzen, sondern teilen. Nicht auf Lösungen warten, sondern selbst welche bauen.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>GoFundMe: Barrierefreier Umbau für unsere Familie</title>
