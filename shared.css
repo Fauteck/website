@@ -1,0 +1,263 @@
+/* ===========================
+   Shared Styles
+   Gemeinsame CSS-Variablen, Reset, Navigation, Footer und Overlays.
+   Eingebunden von allen Seiten ausser os/index.html.
+   =========================== */
+
+/* Variables */
+:root {
+  --primary: #2C3E50;
+  --accent: #4ECDC4;
+  --accent-dark: #3AB0A7;
+  --bg: #FFFFFF;
+  --bg-light: #F8F9FA;
+  --bg-alt: #FAFBFC;
+  --text: #2C3E50;
+  --text-secondary: #6C757D;
+  --border: #E5E7EB;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base */
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-light);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--bg);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+nav .nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .logo {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition: color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  line-height: 1.2;
+}
+
+nav .logo-name { font-size: 1.5rem; font-weight: 600; }
+
+nav .logo-subtitle {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+nav .logo:hover { color: var(--accent-dark); }
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+}
+
+nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+nav a:hover { color: var(--accent-dark); }
+
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.mobile-toggle span {
+  width: 24px;
+  height: 1px;
+  background: var(--primary);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.footer a {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-contact {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Confirmation Overlays */
+.confirm-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.confirm-overlay.active {
+  display: flex;
+}
+
+.confirm-box {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.confirm-box .confirm-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.confirm-box .confirm-icon.os-icon {
+  background: #F0EBFA;
+  color: #6C3FA0;
+}
+
+.confirm-box .confirm-icon.academy-icon {
+  background: #EEF9F6;
+  color: #2D6A4F;
+}
+
+.confirm-box .confirm-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.confirm-box h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.confirm-box p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.confirm-btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-sans);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-1px);
+}
+
+.confirm-btn-cancel {
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.confirm-btn-cancel:hover { background: #eee; }
+
+.confirm-btn-ok {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+}
+
+.confirm-btn-ok:hover {
+  background: var(--accent-dark);
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+}
+
+/* Responsive Navigation */
+@media (max-width: 968px) {
+  nav ul { display: none; }
+  nav ul.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    gap: 1rem;
+    z-index: 999;
+  }
+  .mobile-toggle { display: flex; }
+}
+
+@media (max-width: 600px) {
+  nav .nav-inner { padding: 1rem 1.5rem; }
+}
