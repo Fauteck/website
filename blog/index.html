@@ -276,6 +276,17 @@
     .post-content strong { font-weight: 600; }
     .post-content em { font-style: italic; }
 
+    .post-content .post-figure {
+      margin: 1.75rem 0;
+    }
+    .post-content .post-figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid var(--border, rgba(0,0,0,0.08));
+    }
+
     .footer {
       margin-top: 2.5rem;
       padding-top: 1.5rem;
@@ -311,6 +322,19 @@
       <div class="blog-layout">
         <div class="blog-main">
           <ul class="post-list">
+            <li class="post-item" onclick="loadPost('todoteck')">
+              <a href="#todoteck">
+                <div class="post-meta">
+                  <span class="post-date">07.04.2026</span>
+                  <span class="post-tag">Vibecoding</span>
+                  <span class="post-tag">KI</span>
+                  <span class="post-tag">Selfhosted</span>
+                  <span class="post-tag">Familie</span>
+                </div>
+                <h2 class="post-title">Todoteck: Vibecoding für die Familie</h2>
+                <p class="post-excerpt">Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut. To-dos und Notizen in einem System, mit Kalender- und Einkaufslisten-Integration, eigener Programmierschnittstelle, selfhosted — gebaut mit KI-Unterstützung und ohne klassische Programmiererfahrung.</p>
+              </a>
+            </li>
             <li class="post-item" onclick="loadPost('3d-drucker')">
               <a href="#3d-drucker">
                 <div class="post-meta">
@@ -483,6 +507,14 @@
           continue;
         }
 
+        // Image (block-level): ![alt](url)
+        var imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)\s*$/);
+        if (imgMatch) {
+          closeList();
+          html.push('<figure class="post-figure"><img src="' + imgMatch[2] + '" alt="' + imgMatch[1] + '" loading="lazy"></figure>');
+          continue;
+        }
+
         // Paragraph
         closeList();
         html.push('<p>' + inline(line) + '</p>');
@@ -521,6 +553,7 @@
     }
 
     var postMeta = {
+      'todoteck': { title: 'Todoteck: Vibecoding für die Familie', date: '07.04.2026' },
       '3d-drucker': { title: 'Wenn niemand die Lösung hat, druckst du sie selbst', date: '19.03.2026' },
       'gofundme': { title: 'GoFundMe: Barrierefreier Umbau für unsere Familie', date: '01.10.2025' },
       'depression': { title: 'Depression', date: '10.10.2024' },

@@ -5618,6 +5618,17 @@ kbd.search-esc {
 .blog-line-list {
   color: #2563eb;
 }
+.blog-line-image {
+  padding: 10px 0;
+  min-height: auto;
+}
+.blog-line-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
 .blog-mob-nav {
   display: none;
 }
