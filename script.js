@@ -5792,6 +5792,27 @@ function closeMobileWindow() {
 // ─────────────────────────────────────────────────
 const BLOG_POSTS = [
   {
+    id: 'todoteck',
+    title: 'Todoteck: Vibecoding für die Familie',
+    date: '2026-04-07',
+    tags: ['Vibecoding', 'KI', 'Selfhosted', 'Familie'],
+    content: `Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut.
+
+Ich wollte To-dos und Notizen in einem System. Beides hängt für mich direkt zusammen. Aus einer Notiz wird oft eine Aufgabe. Und eine Aufgabe braucht meist den passenden Kontext. Die fertigen Tools, die ich ausprobiert habe, konnten immer nur das eine oder das andere wirklich gut.
+
+![Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben](../blog/images/todoteck/todoteck-mobile.png)
+
+Also habe ich es selbst gebaut. Mit KI-Unterstützung und ohne klassische Programmiererfahrung. Mit Integration unserer Google Kalender und zur Keep Einkaufsliste, mit eigener Programmierschnittstelle, selfhosted. Genau das macht Vibecoding heute möglich.
+
+![Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich](../blog/images/todoteck/todoteck-desktop.png)
+
+Am Ende ist ein schlichtes Tool entstanden, das genau so funktioniert, wie wir es als Familie brauchen. Crazy, denn vor zwei Jahren hätte ich das nicht gekonnt. Heute kann ich es.
+
+→ Letzte Woche habe ich der App noch etwas hinzugefügt, das ich mir selbst vorher so nicht hätte vorstellen können. Mehr dazu in ein paar Tagen.
+
+(Ja, ich weiß, ich muss auch noch den Keller aufräumen. Mache ich gleich nach dem LinkedIn-Post, wirklich!)`,
+  },
+  {
     id: '3d-drucker',
     title: 'Wenn niemand die Lösung hat, druckst du sie selbst',
     date: '2026-03-19',
@@ -6046,6 +6067,10 @@ function buildBlog(body) {
     return titleHtml + lines.map(line => {
       const trimmed = line.trim();
       if (!trimmed) return '<div class="blog-line blog-line-empty">&nbsp;</div>';
+      const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+      if (imgMatch) {
+        return `<div class="blog-line blog-line-image"><img src="${imgMatch[2]}" alt="${escapeHtml(imgMatch[1])}" loading="lazy"></div>`;
+      }
       if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${linkifyText(escapeHtml(trimmed))}</div>`;
       if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${linkifyText(escapeHtml(trimmed))}</div>`;
       if (trimmed.startsWith('•')) return `<div class="blog-line blog-line-list">${linkifyText(escapeHtml(trimmed))}</div>`;

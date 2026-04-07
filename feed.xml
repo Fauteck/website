@@ -5,8 +5,29 @@
     <link>https://fauteck.github.io/website/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Thu, 19 Mar 2026 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Todoteck: Vibecoding für die Familie</title>
+      <link>https://fauteck.github.io/website/blog/#todoteck</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#todoteck</guid>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Selfhosted</category>
+      <category>Familie</category>
+      <description><![CDATA[
+<p>Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut.</p>
+<p>Ich wollte To-dos und Notizen in einem System. Beides hängt für mich direkt zusammen. Aus einer Notiz wird oft eine Aufgabe. Und eine Aufgabe braucht meist den passenden Kontext. Die fertigen Tools, die ich ausprobiert habe, konnten immer nur das eine oder das andere wirklich gut.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-mobile.png" alt="Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben" /></p>
+<p>Also habe ich es selbst gebaut. Mit KI-Unterstützung und ohne klassische Programmiererfahrung. Mit Integration unserer Google Kalender und zur Keep Einkaufsliste, mit eigener Programmierschnittstelle, selfhosted. Genau das macht Vibecoding heute möglich.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-desktop.png" alt="Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich" /></p>
+<p>Am Ende ist ein schlichtes Tool entstanden, das genau so funktioniert, wie wir es als Familie brauchen. Crazy, denn vor zwei Jahren hätte ich das nicht gekonnt. Heute kann ich es.</p>
+<p>Letzte Woche habe ich der App noch etwas hinzugefügt, das ich mir selbst vorher so nicht hätte vorstellen können. Mehr dazu in ein paar Tagen.</p>
+<p>(Ja, ich weiß, ich muss auch noch den Keller aufräumen. Mache ich gleich nach dem LinkedIn-Post, wirklich!)</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Wenn niemand die Lösung hat, druckst du sie selbst</title>
