@@ -5,8 +5,36 @@
     <link>https://fauteck.github.io/website/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Todoteck: API, MCP und der Alltag</title>
+      <link>https://fauteck.github.io/website/blog/#todoteck-mcp</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#todoteck-mcp</guid>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Selfhosted</category>
+      <category>MCP</category>
+      <category>Familie</category>
+      <description><![CDATA[
+<p>Anfang der Woche habe ich geschrieben, dass ich mir eine eigene App gebaut habe. Einfach, weil ich keine gefunden habe, die Aufgaben und Notizen wirklich sinnvoll zusammenbringt.</p>
+<p>Seitdem ist noch etwas dazugekommen. Der Gedanke dahinter war wieder derselbe: bestehende Gewohnheiten nicht aufbrechen, sondern die App an unseren Alltag anpassen.</p>
+<p>Als Erstes habe ich der App eine eigene API gegeben.</p>
+<p>Meine Frau sagt zu unseren smarten Lautsprechern zum Beispiel: &quot;Hey Google, setze Milch auf meine Einkaufsliste.&quot; Bisher landet das nur in Google Keep. Todoteck holt diesen Eintrag jetzt automatisch ab und zeigt ihn direkt in der Einkaufsliste an. Auf jedem Gerät. Über eine weitere API auch auf dem E-Ink-Display im Flur. Und über eine native Android-App mit Widgets direkt auf dem Startbildschirm.</p>
+<p>Es gibt also keine neue Gewohnheit, die man erst lernen muss. Niemandem muss man etwas erklären. Es passiert einfach im Hintergrund.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-aufgabe.png" alt="Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste" /></p>
+<p>Danach bin ich noch einen Schritt weitergegangen: MCP, also Model Context Protocol. Die Idee ist eigentlich ganz einfach. Claude redet nicht mehr nur mit mir, sondern direkt mit meiner App.</p>
+<p>Sonntag nach dem Mittagessen frage ich einfach: &quot;Was steht nächste Woche an?&quot; Dann kommen die Antworten direkt zurück. Mittwoch Sim Racing mit meinen Kumpels. Freitag Zahnarzt. Samstag einkaufen.</p>
+<p>Dann sage ich: &quot;Füg beim Einkauf noch Waschmittel hinzu.&quot; Ist drin.</p>
+<p>Oder: &quot;Erinner mich am Freitag daran, was ich dem Zahnarzt sagen wollte.&quot; Auch drin.</p>
+<p>Und wenn ich dann am Freitag kurz vor dem Termin frage: &quot;Was wollte ich da nochmal sagen?&quot;, weiß Claude es. Weil ich genau diese Notiz ein paar Tage vorher hinterlegt habe.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-mcp.png" alt="Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel" /></p>
+<p>Kein Suchen. Kein App-Wechsel. Einfach fragen.</p>
+<p>Das Protokoll ist offen, und der Einstieg war deutlich einfacher, als ich gedacht hätte. Wer neugierig ist, sollte einfach mal anfangen. Oder fragt mich gerne!</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Todoteck: Vibecoding für die Familie</title>
