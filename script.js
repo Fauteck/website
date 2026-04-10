@@ -5792,6 +5792,39 @@ function closeMobileWindow() {
 // ─────────────────────────────────────────────────
 const BLOG_POSTS = [
   {
+    id: 'todoteck-mcp',
+    title: 'Todoteck: API, MCP und der Alltag',
+    date: '2026-04-10',
+    tags: ['Vibecoding', 'KI', 'Selfhosted', 'MCP', 'Familie'],
+    content: `Anfang der Woche habe ich geschrieben, dass ich mir eine eigene App gebaut habe. Einfach, weil ich keine gefunden habe, die Aufgaben und Notizen wirklich sinnvoll zusammenbringt.
+
+Seitdem ist noch etwas dazugekommen. Der Gedanke dahinter war wieder derselbe: bestehende Gewohnheiten nicht aufbrechen, sondern die App an unseren Alltag anpassen.
+
+Als Erstes habe ich der App eine eigene API gegeben.
+
+Meine Frau sagt zu unseren smarten Lautsprechern zum Beispiel: "Hey Google, setze Milch auf meine Einkaufsliste." Bisher landet das nur in Google Keep. Todoteck holt diesen Eintrag jetzt automatisch ab und zeigt ihn direkt in der Einkaufsliste an. Auf jedem Gerät. \u00dcber eine weitere API auch auf dem E-Ink-Display im Flur. Und \u00fcber eine native Android-App mit Widgets direkt auf dem Startbildschirm.
+
+Es gibt also keine neue Gewohnheit, die man erst lernen muss. Niemandem muss man etwas erkl\u00e4ren. Es passiert einfach im Hintergrund.
+
+![Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste](../blog/images/todoteck/todoteck-aufgabe.png)
+
+Danach bin ich noch einen Schritt weitergegangen: MCP, also Model Context Protocol. Die Idee ist eigentlich ganz einfach. Claude redet nicht mehr nur mit mir, sondern direkt mit meiner App.
+
+Sonntag nach dem Mittagessen frage ich einfach: "Was steht n\u00e4chste Woche an?" Dann kommen die Antworten direkt zur\u00fcck. Mittwoch Sim Racing mit meinen Kumpels. Freitag Zahnarzt. Samstag einkaufen.
+
+Dann sage ich: "F\u00fcg beim Einkauf noch Waschmittel hinzu." Ist drin.
+
+Oder: "Erinner mich am Freitag daran, was ich dem Zahnarzt sagen wollte." Auch drin.
+
+Und wenn ich dann am Freitag kurz vor dem Termin frage: "Was wollte ich da nochmal sagen?", wei\u00df Claude es. Weil ich genau diese Notiz ein paar Tage vorher hinterlegt habe.
+
+![Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel](../blog/images/todoteck/todoteck-mcp.png)
+
+Kein Suchen. Kein App-Wechsel. Einfach fragen.
+
+\u2192 Das Protokoll ist offen, und der Einstieg war deutlich einfacher, als ich gedacht h\u00e4tte. Wer neugierig ist, sollte einfach mal anfangen. Oder fragt mich gerne!`,
+  },
+  {
     id: 'todoteck',
     title: 'Todoteck: Vibecoding für die Familie',
     date: '2026-04-07',
