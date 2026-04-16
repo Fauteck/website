@@ -134,7 +134,7 @@ Anpassungen erfolgen direkt in den Quelldateien:
 | Markup | HTML5 (semantisch, ARIA-Labels) |
 | Styling | CSS3 (Custom Properties, Grid, Flexbox, Animationen) |
 | Logik | Vanilla JavaScript (ES6+, zero dependencies) |
-| Fonts | DM Sans, JetBrains Mono (Google Fonts) |
+| Fonts | DM Sans, JetBrains Mono (selbst-gehostet, WOFF2) |
 | SEO | Schema.org (Person), Open Graph, Canonical URL |
 | Hosting | Statisch (beliebiger Webserver) |
 
@@ -202,4 +202,16 @@ Verfügbare Typen: `bold`, `out`, `dim`, `accent`, `success`, `err`, `empty`, `p
 
 ## Lizenz
 
-Proprietär — alle Rechte vorbehalten. Niklas Fauteck.
+Proprietär — alle Rechte vorbehalten. Niklas Fauteck. Siehe [`LICENSE`](./LICENSE).
+
+## Schrift-Lizenzen (Third-Party Fonts)
+
+Die Website verwendet folgende selbst-gehostete Schriften unter der
+[SIL Open Font License 1.1](https://scripts.sil.org/OFL):
+
+| Schrift | Urheber | Lizenz |
+|---|---|---|
+| [DM Sans](https://fonts.google.com/specimen/DM+Sans) | The DM Sans Project Authors | OFL 1.1 |
+| [JetBrains Mono](https://www.jetbrains.com/lp/mono/) | The JetBrains Mono Project Authors | OFL 1.1 |
+
+Details und vollständiger Lizenztext: [`NOTICE`](./NOTICE) und [`fonts/OFL.txt`](./fonts/OFL.txt).
