@@ -1,0 +1,27 @@
+PROPRIETARY LICENSE
+
+Copyright (c) Niklas Fauteck. All rights reserved.
+
+This software, its source code, design, and all associated content are
+proprietary and confidential. No part of this repository may be copied,
+modified, distributed, published, or used — in whole or in part — without
+the express prior written permission of Niklas Fauteck.
+
+PERMITTED USES
+- Personal viewing via web browser at niklasfauteck.de or fauteck.eu
+- Forking or cloning the repository solely for private, non-commercial
+  study purposes, provided no copy is made publicly accessible
+
+PROHIBITED USES
+- Commercial use of any kind
+- Redistribution in original or modified form
+- Sublicensing or transferring rights to third parties
+- Use of the design, layout, or content as a template for other projects
+  without explicit written permission
+
+THIRD-PARTY COMPONENTS
+This repository includes font files licensed under the SIL Open Font
+License 1.1. See NOTICE and fonts/OFL.txt for details.
+
+CONTACT
+For licensing inquiries: me@fauteck.eu

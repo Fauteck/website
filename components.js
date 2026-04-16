@@ -45,6 +45,8 @@
         '<a href="' + base + 'datenschutz.html">Datenschutz</a>' +
         ' &middot; ' +
         '<a href="' + base + 'agb.html">AGB</a>' +
+        ' &middot; ' +
+        '<a href="' + base + 'NOTICE" target="_blank" rel="noopener">Open-Source-Lizenzen</a>' +
       '</footer>';
   }
 
