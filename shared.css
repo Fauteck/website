@@ -7,15 +7,15 @@
 /* Variables */
 :root {
   --primary: #2C3E50;
-  --accent: #4ECDC4;
-  --accent-dark: #3AB0A7;
+  --accent: #52b788;
+  --accent-dark: #3d9a68;
   --bg: #FFFFFF;
   --bg-light: #F8F9FA;
   --bg-alt: #FAFBFC;
   --text: #2C3E50;
   --text-secondary: #6C757D;
   --border: #E5E7EB;
-  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
 
@@ -231,12 +231,12 @@ nav a:hover { color: var(--accent-dark); }
 .confirm-btn-ok {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+  box-shadow: 0 2px 8px rgba(82, 183, 136, 0.25);
 }
 
 .confirm-btn-ok:hover {
   background: var(--accent-dark);
-  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+  box-shadow: 0 4px 12px rgba(82, 183, 136, 0.35);
 }
 
 /* Responsive Navigation */
