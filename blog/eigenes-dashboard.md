@@ -12,10 +12,16 @@ Deshalb habe ich mir ein eigenes Dashboard gevibecodet.
 
 Im Grunde ist es einfach eine Browser-Startseite, auf der alles zusammenkommt, was ich im Alltag brauche. Selfhosted, über eine einzige YAML-Datei konfigurierbar und so gebaut, dass nicht ich mich nach dem Tool richten muss, sondern das Tool nach mir.
 
+![Dashboard im Dark Mode: Widget-Einstellungen mit Todoteck-Integration](images/eigenes-dashboard/1776855823084.jpg)
+
 Inzwischen steckt da eine ganze Menge drin: Wetter, Kalender, RSS, Docker, Server-Stats, AdGuard, GitHub, Tailscale, Aufgaben, Notizen, AutoDarts, Untappd, eigene APIs, iFrames, Widget-Gruppen und Bookmarks mit Suche.
+
+![Dashboard in der Desktop-Ansicht: Kalender, Daily-Apps, KI-Chat und 3D-Bereich](images/eigenes-dashboard/1776855823535.jpg)
 
 Und wie das bei solchen Projekten eben ist, blieb es nicht bei der ursprünglichen Idee.
 Aus einer simplen Startseite wurden nach und nach Drag & Drop, Spotlight-Suche, YAML-Editor im Browser, Undo/Redo, Dark Mode, Akzentfarben, mobile Ansicht, serverseitige API-Keys, Rate Limiting, SSRF-Schutz und CI/CD.
+
+![Dashboard in der mobilen Ansicht: Daily-Apps und KI-Chat im Light Mode](images/eigenes-dashboard/1776855823524.jpg)
 
 Genau solche Projekte machen mir gerade besonders Spaß, weil sie kein abstraktes Problem lösen, sondern etwas, das im Alltag sofort auffällt. Man baut etwas, nutzt es direkt selbst und merkt ziemlich schnell, ob es wirklich taugt.
 
