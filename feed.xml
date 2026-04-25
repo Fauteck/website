@@ -5,8 +5,30 @@
     <link>https://fauteck.github.io/website/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Wed, 15 Apr 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Zu viele Tabs</title>
+      <link>https://fauteck.github.io/website/blog/#eigenes-dashboard</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#eigenes-dashboard</guid>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Selfhosted</category>
+      <category>Dashboard</category>
+      <description><![CDATA[
+<p>Am Ende waren es einfach zu viele Tabs.</p>
+<p>Irgendwo der Kalender, woanders das Wetter, dann Docker, Bookmarks, Feeds, Aufgaben und noch ein paar Dinge, die ich regelmäßig im Blick haben will. Nicht dramatisch, aber jeden Tag ein bisschen unnötig.</p>
+<p>Deshalb habe ich mir ein eigenes Dashboard gevibecodet.</p>
+<p>Im Grunde ist es einfach eine Browser-Startseite, auf der alles zusammenkommt, was ich im Alltag brauche. Selfhosted, über eine einzige YAML-Datei konfigurierbar und so gebaut, dass nicht ich mich nach dem Tool richten muss, sondern das Tool nach mir.</p>
+<p>Inzwischen steckt da eine ganze Menge drin: Wetter, Kalender, RSS, Docker, Server-Stats, AdGuard, GitHub, Tailscale, Aufgaben, Notizen, AutoDarts, Untappd, eigene APIs, iFrames, Widget-Gruppen und Bookmarks mit Suche.</p>
+<p>Und wie das bei solchen Projekten eben ist, blieb es nicht bei der ursprünglichen Idee.<br/>Aus einer simplen Startseite wurden nach und nach Drag &amp; Drop, Spotlight-Suche, YAML-Editor im Browser, Undo/Redo, Dark Mode, Akzentfarben, mobile Ansicht, serverseitige API-Keys, Rate Limiting, SSRF-Schutz und CI/CD.</p>
+<p>Genau solche Projekte machen mir gerade besonders Spaß, weil sie kein abstraktes Problem lösen, sondern etwas, das im Alltag sofort auffällt. Man baut etwas, nutzt es direkt selbst und merkt ziemlich schnell, ob es wirklich taugt.</p>
+<p>Früher hätte ich bei so einer Idee wahrscheinlich gedacht: nette Vorstellung, aber dafür fehlt mir das Know-how. Heute denke ich eher: Dann baue ich mir eben die erste Version und schaue, was daraus wird. Und meistens wird es dann doch etwas größer als geplant.</p>
+<p>Wenn es euch interessiert, zeige ich in den nächsten Tagen gerne mehr. Sinnvoll eingesetzt, kann man mit Vibecoding Ideen mindestens greifbarer machen.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Räuberhöhle</title>
