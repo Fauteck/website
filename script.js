@@ -4963,7 +4963,7 @@ function showAchievement(title, desc) {
   _achievements.add(title);
   const toast = document.createElement('div');
   toast.className = 'achievement-toast';
-  toast.innerHTML = `<div class="ach-icon">🏆</div><div class="ach-body"><div class="ach-title">${title}</div><div class="ach-desc">${desc}</div></div>`;
+  toast.innerHTML = `<div class="ach-icon">🏆</div><div class="ach-body"><div class="ach-title">${escapeHtml(title)}</div><div class="ach-desc">${escapeHtml(desc)}</div></div>`;
   document.body.appendChild(toast);
   requestAnimationFrame(() => toast.classList.add('show'));
   setTimeout(() => {
