@@ -1,47 +1,47 @@
-# KI-Arbeitsregeln — fauteck.eu
+# AI Working Rules — fauteck.eu
 
-Dieses Dokument beschreibt, wie KI-Assistenten (z. B. Claude Code) in diesem
-Repo arbeiten sollen.
+This document describes how AI assistants (e.g. Claude Code) should work in
+this repository.
 
 ---
 
-## Arbeitsweise bei langen Sessions (API-Stabilität)
+## Long-session behaviour (API stability)
 
-> Ziel: Stream-Timeouts (`Stream idle timeout — partial response received`)
-> vermeiden. Ursache sind einzelne lange Operationen ohne Zwischenoutput,
-> nicht die Anzahl paralleler Tool-Calls.
+> Goal: avoid stream timeouts (`Stream idle timeout — partial response received`).
+> The root cause is a single long operation without intermediate output,
+> not the number of parallel tool calls.
 
-### Output klein halten
-- Bash-Ausgaben filtern: `head -n 100`, `tail -n 100`, `grep -E '...'`,
-  `wc -l` statt vollständiger Logs/Dumps.
-- Große Dateien segmentweise lesen (`Read` mit `offset`/`limit`),
-  nicht komplett.
-- Keine `find . | ...`-Dumps ganzer Projektbäume — gezielte
-  `find`/`rg`-Queries mit Pfadfiltern.
+### Keep output small
+- Filter Bash output: `head -n 100`, `tail -n 100`, `grep -E '...'`,
+  `wc -l` instead of full logs/dumps.
+- Read large files in segments (`Read` with `offset`/`limit`),
+  not all at once.
+- No `find . | ...` dumps of entire project trees — use targeted
+  `find`/`rg` queries with path filters.
 
-### Lange Läufe nicht synchron blockieren
-- Builds, Tests, Installationen als Background-Task starten
-  (`run_in_background: true`), nicht im Vordergrund abwarten.
-- Für Bash-Calls realistische Timeouts setzen; hängende Prozesse sollen
-  schnell abbrechen statt still den Stream zu blockieren.
-- Keine `sleep`-Schleifen oder Poll-Busy-Waits im Hauptstrang.
+### Don't synchronously block long runs
+- Start builds, tests, and installations as background tasks
+  (`run_in_background: true`) — don't wait in the foreground.
+- Set realistic timeouts for Bash calls; hanging processes should abort
+  quickly rather than silently blocking the stream.
+- No `sleep` loops or poll-busy-waits in the main thread.
 
-### Kontext schützen
-- Für breite Codebase-Recherche (>3 Queries, unklarer Scope) den
-  `Explore`-Subagent nutzen — er kapselt große Suchergebnisse und liefert
-  nur eine Zusammenfassung zurück.
-- Für Design-Entscheidungen den `Plan`-Subagent nutzen, bevor umfangreich
-  editiert wird.
+### Protect context
+- For broad codebase research (>3 queries, unclear scope) use the
+  `Explore` subagent — it encapsulates large search results and returns
+  only a summary.
+- For design decisions use the `Plan` subagent before making extensive
+  edits.
 
-### Effizient statt vorsichtig
-- Unabhängige Tool-Calls in einer Nachricht parallel ausführen (z. B.
-  mehrere `Read`s oder `grep`s) — das reduziert die Gesamtzeit und damit
-  die Timeout-Wahrscheinlichkeit.
-- Sequentiell nur, wenn ein Call vom Ergebnis des vorherigen abhängt.
+### Efficient rather than cautious
+- Execute independent tool calls in one message in parallel (e.g. multiple
+  `Read`s or `grep`s) — this reduces total time and therefore timeout risk.
+- Use sequential calls only when one call depends on the result of the
+  previous one.
 
-### Große Aufgaben strukturieren
-- Aufgaben mit vielen Dateiänderungen (>10 Dateien oder >3 logisch
-  getrennte Teilschritte) in nachvollziehbare Teilschritte zerlegen,
-  jeden Schritt als abgeschlossene Einheit mit Zwischenergebnis.
-- `TodoWrite` verwenden, um Fortschritt sichtbar zu halten und nach
-  Unterbrechungen nahtlos weiterarbeiten zu können.
+### Structure large tasks
+- Break tasks with many file changes (>10 files or >3 logically separate
+  sub-steps) into traceable sub-steps, each a self-contained unit with an
+  intermediate result.
+- Use `TodoWrite` to keep progress visible and to resume seamlessly after
+  interruptions.
