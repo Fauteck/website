@@ -6,17 +6,17 @@ distributed to end users as WOFF2 files under their respective open-source
 licenses. All other content, code, and design is proprietary.
 
 ────────────────────────────────────────────────────────────────────────────────
-DM Sans
+IBM Plex Sans
 ────────────────────────────────────────────────────────────────────────────────
-Copyright 2014 The DM Sans Project Authors
-(https://github.com/googlefonts/dm-fonts)
+Copyright 2017 IBM Corp.
+(https://github.com/IBM/plex)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 Full license text: see fonts/OFL.txt or https://scripts.sil.org/OFL
 
 Files:
-  fonts/dm-sans-latin-opsz-normal.woff2
-  fonts/dm-sans-latin-opsz-italic.woff2
+  fonts/ibm-plex-sans-latin-wght-normal.woff2
+  fonts/ibm-plex-sans-latin-wght-italic.woff2
 
 ────────────────────────────────────────────────────────────────────────────────
 JetBrains Mono
