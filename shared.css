@@ -261,3 +261,62 @@ nav a:hover { color: var(--accent-dark); }
 @media (max-width: 600px) {
   nav .nav-inner { padding: 1rem 1.5rem; }
 }
+
+/* Print Stylesheet (CV-Druckansicht) */
+@media print {
+  nav[role="navigation"],
+  #shared-nav,
+  #shared-footer,
+  .footer,
+  .scroll-indicator,
+  .mobile-toggle,
+  .confirm-overlay,
+  .toast,
+  #toast {
+    display: none !important;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body {
+    padding-top: 0 !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Expand collapsed CV sections so the printout is complete */
+  .section-body.collapsed,
+  .section-header.collapsible.collapsed + .section-body,
+  section:has(.section-body.collapsed) {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+  }
+  .section-header.collapsible::after { display: none !important; }
+
+  .timeline-item,
+  .project-card,
+  .quote-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .skill-tag {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+}
