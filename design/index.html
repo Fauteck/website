@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design-System — Niklas Fauteck</title>
+  <meta name="description" content="Design-System-Showcase: statische Preview-Seiten der vier Surfaces (Blog-Long-Form, Form-States, OS-Kit, Mobile-Kit).">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    body {
+      padding-top: 5rem;
+      max-width: 820px;
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .lede {
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .design-card {
+      display: block;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .design-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
+      border-color: var(--accent);
+    }
+    .design-card h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .design-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .design-card .meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .ref {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .ref a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+    .ref a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Design-System</h1>
+  <p class="lede">Statische Preview-Seiten der vier Surfaces aus dem Design-Bundle. Jede Page demonstriert die im DESIGN.md spezifizierten Komponenten.</p>
+
+  <div class="design-grid">
+    <a href="blog-post.html" class="design-card">
+      <span class="meta">Content · Long-Form</span>
+      <h2>Blog-Post-Layout</h2>
+      <p>Pull-Quote, Inline-Code, Code-Block, Figure mit Caption, Heading-Hierarchie h1–h3.</p>
+    </a>
+    <a href="form-states.html" class="design-card">
+      <span class="meta">Content · Forms</span>
+      <h2>Form-States</h2>
+      <p>Input-Default, :focus-visible, :invalid, :disabled. Submit-CTA mit Hover-Lift.</p>
+    </a>
+    <a href="os-kit.html" class="design-card">
+      <span class="meta">OS · Chrome</span>
+      <h2>OS-Window-Kit</h2>
+      <p>Window idle/focused, Titlebar mit Traffic-Lights, Taskbar, Desktop-Icon, Context-Menu, Terminal-Snippet.</p>
+    </a>
+    <a href="mobile-kit.html" class="design-card">
+      <span class="meta">OS · Mobile</span>
+      <h2>Mobile-Kit</h2>
+      <p>Lockscreen mit Mono-Display-Clock, PIN-Pad, Status-Chips, Notification-Card im 375×812-Frame.</p>
+    </a>
+  </div>
+
+  <div class="ref">
+    Quellen: <a href="../DESIGN.md">DESIGN.md</a> · <a href="../shared.css">shared.css</a> · <a href="../README.md">README.md</a>
+  </div>
+</body>
+</html>

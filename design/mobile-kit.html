@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile-Kit · Design-System</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <style>
+    :root {
+      --os-accent: #52b788;
+      --os-accent-dim: rgba(82, 183, 136, 0.15);
+      --os-surface: #0c1218;
+      --os-text: #d4ede2;
+      --os-text-muted: #718096;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: #1a1f2c;
+      color: var(--os-text);
+      min-height: 100vh;
+      padding: 2rem 1.5rem 5rem;
+    }
+    .top-bar {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .top-bar h1 {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      letter-spacing: 2px;
+      font-size: 1.5rem;
+    }
+    .back-link { color: var(--os-accent); text-decoration: none; font-size: 0.85rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    .stage {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .panel-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--os-accent);
+      opacity: 0.85;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    /* iOS-Frame */
+    .frame {
+      width: 375px;
+      height: 812px;
+      background: var(--os-surface);
+      border-radius: 44px;
+      padding: 14px;
+      box-shadow:
+        0 0 0 8px #000,
+        0 24px 72px rgba(0,0,0,0.65);
+      position: relative;
+      margin: 0 auto;
+    }
+    .frame-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #0c1218 0%, #1a2532 100%);
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+    }
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 18px 18px;
+      z-index: 10;
+    }
+
+    /* Lockscreen */
+    .lock {
+      padding: 60px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .lock-clock {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      letter-spacing: 2px;
+      font-size: 56px;
+      color: var(--os-text);
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .lock-date {
+      font-size: 13px;
+      color: var(--os-text-muted);
+      text-align: center;
+      margin-top: 0.5rem;
+      font-family: var(--font-mono);
+    }
+    .lock-status-row {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .status-chip {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--os-accent-dim);
+      color: var(--os-accent);
+      letter-spacing: 0.5px;
+    }
+    .status-chip--neutral {
+      background: rgba(255,255,255,0.06);
+      color: var(--os-text-muted);
+    }
+    .status-chip--warm {
+      background: rgba(227, 179, 65, 0.15);
+      color: #e3b341;
+    }
+
+    .pin-pad {
+      margin-top: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 260px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 1.5rem;
+    }
+    .pin-key {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: var(--os-text);
+      font-size: 26px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.1s ease;
+    }
+    .pin-key:active,
+    .pin-key:hover { background: rgba(255,255,255,0.14); }
+    .pin-key--blank { background: transparent; cursor: default; }
+    .pin-key--action { font-size: 13px; background: transparent; color: var(--os-text-muted); }
+
+    .pin-dots {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 2rem;
+    }
+    .pin-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--os-text-muted);
+    }
+    .pin-dot.filled {
+      background: var(--os-accent);
+      border-color: var(--os-accent);
+    }
+
+    /* Notification panel */
+    .notif-screen {
+      padding: 50px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      height: 100%;
+    }
+    .notif-clock {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      letter-spacing: 2px;
+      font-size: 32px;
+      color: var(--os-text);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .notif-card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      border-radius: 14px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .notif-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--os-accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--os-accent);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .notif-body { flex: 1; min-width: 0; }
+    .notif-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--os-text);
+      margin-bottom: 2px;
+    }
+    .notif-text {
+      font-size: 12px;
+      color: var(--os-text-muted);
+      line-height: 1.4;
+    }
+    .notif-time {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--os-text-muted);
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* Component reference list */
+    .ref-list {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .ref-list dt {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--os-accent);
+      letter-spacing: 0.05em;
+      margin-top: 0.75rem;
+    }
+    .ref-list dt:first-child { margin-top: 0; }
+    .ref-list dd {
+      font-size: 12px;
+      color: var(--os-text-muted);
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>Mobile-Kit</h1>
+    <a href="index.html" class="back-link">← Zurück</a>
+  </div>
+
+  <div class="stage">
+
+    <div>
+      <span class="panel-label">Lockscreen — PIN-Pad</span>
+      <div class="frame">
+        <div class="frame-screen">
+          <div class="notch"></div>
+          <div class="lock">
+            <div class="lock-clock">14:32</div>
+            <div class="lock-date">Mittwoch · 06. Mai</div>
+
+            <div class="lock-status-row">
+              <span class="status-chip">Focus: 92%</span>
+              <span class="status-chip status-chip--warm">Curiosity: High</span>
+              <span class="status-chip status-chip--neutral">Pragmatism: Stable</span>
+            </div>
+
+            <div class="pin-dots">
+              <div class="pin-dot filled"></div>
+              <div class="pin-dot filled"></div>
+              <div class="pin-dot"></div>
+              <div class="pin-dot"></div>
+            </div>
+
+            <div class="pin-pad">
+              <div class="pin-key">1</div>
+              <div class="pin-key">2</div>
+              <div class="pin-key">3</div>
+              <div class="pin-key">4</div>
+              <div class="pin-key">5</div>
+              <div class="pin-key">6</div>
+              <div class="pin-key">7</div>
+              <div class="pin-key">8</div>
+              <div class="pin-key">9</div>
+              <div class="pin-key pin-key--blank"></div>
+              <div class="pin-key">0</div>
+              <div class="pin-key pin-key--action">⌫</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="panel-label">Notification-Panel</span>
+      <div class="frame">
+        <div class="frame-screen">
+          <div class="notch"></div>
+          <div class="notif-screen">
+            <div class="notif-clock">14:32</div>
+
+            <div class="notif-card">
+              <div class="notif-icon">N</div>
+              <div class="notif-body">
+                <div class="notif-title">Todoteck</div>
+                <div class="notif-text">Aufgabe „Designsystem dokumentieren“ heute fällig.</div>
+              </div>
+              <span class="notif-time">vor 2 Min.</span>
+            </div>
+
+            <div class="notif-card">
+              <div class="notif-icon" style="background: rgba(227,179,65,0.18); color: #e3b341;">☕</div>
+              <div class="notif-body">
+                <div class="notif-title">Kaffeepausen-Themen</div>
+                <div class="notif-text">3 neue Notizen aus dem Coaching-Slot.</div>
+              </div>
+              <span class="notif-time">14:21</span>
+            </div>
+
+            <div class="notif-card">
+              <div class="notif-icon" style="background: rgba(121,192,255,0.18); color: #79c0ff;">🛠</div>
+              <div class="notif-body">
+                <div class="notif-title">Smart-Home</div>
+                <div class="notif-text">Heizkörper Wohnzimmer kalibriert.</div>
+              </div>
+              <span class="notif-time">13:47</span>
+            </div>
+
+            <div class="notif-card">
+              <div class="notif-icon" style="background: rgba(82,183,136,0.18);">✓</div>
+              <div class="notif-body">
+                <div class="notif-title">CI</div>
+                <div class="notif-text">Branch <code>claude/implement-project-designs-1eHEm</code> grün.</div>
+              </div>
+              <span class="notif-time">12:18</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="panel-label">Komponenten-Referenz</span>
+      <dl class="ref-list">
+        <dt>Display-Clock</dt>
+        <dd>JetBrains Mono Light · 56 px · letter-spacing 2 px · zentriert.</dd>
+
+        <dt>Status-Chip</dt>
+        <dd>Pill · 9999 px Radius · Mono 10 px · Tonen: <code>accent</code> (#52b788), <code>warm</code> (#e3b341), <code>neutral</code> (white 6 %).</dd>
+
+        <dt>PIN-Key</dt>
+        <dd>70×70 px Kreis · semi-transparent · keine Skalierung beim Press, nur Background-Wechsel.</dd>
+
+        <dt>PIN-Dot</dt>
+        <dd>14 px · 1.5-px-Border · gefüllt mit <code>--os-accent</code> bei Eingabe.</dd>
+
+        <dt>Notification-Card</dt>
+        <dd>14 px Radius · 8 % weißer Surface mit <code>backdrop-filter: blur(20px)</code>. 32 px Icon-Tile als 8 px Square.</dd>
+
+        <dt>iOS-Frame</dt>
+        <dd>375×812 · 44 px Radius · 8 px schwarzer Außenring · Notch 140×24 px.</dd>
+      </dl>
+    </div>
+
+  </div>
+</body>
+</html>
