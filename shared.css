@@ -262,6 +262,13 @@ nav a:hover { color: var(--accent-dark); }
   nav .nav-inner { padding: 1rem 1.5rem; }
 }
 
+/* Focus-Visible — Tastatur-Fokus-Ring (Accessibility) */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.25);
+  border-radius: inherit;
+}
+
 /* Reduced Motion (Accessibility-Baseline) */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
