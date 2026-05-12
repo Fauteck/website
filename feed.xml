@@ -5,8 +5,31 @@
     <link>https://fauteck.github.io/website/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Mon, 28 Apr 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Vom Nerd-Hobby zur Barrierefreiheit</title>
+      <link>https://fauteck.github.io/website/blog/#home-assistant</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#home-assistant</guid>
+      <pubDate>Tue, 12 May 2026 00:00:00 +0200</pubDate>
+      <category>Persönlich</category>
+      <category>Familie</category>
+      <category>Smart Home</category>
+      <category>Home Assistant</category>
+      <category>Barrierefreiheit</category>
+      <description><![CDATA[
+<p>Mein Smart-Home-System "Home Assistant" hat bei mir angefangen, wie es vermutlich bei den meisten anfängt: als Spielerei.</p>
+<p>Ich wollte ehrlich gesagt nur einmal sehen, ob ich das hinbekomme. Eine Lampe per Sprache schalten. Dann zwei. Dann irgendwann die ganze Beleuchtung im Wohnzimmer abhängig davon, ob der Fernseher läuft und welche App gerade dort offen ist. Klassisches Nerd-Hobby. Braucht kein Mensch. Aber wenn man sich reinfuchst, ziemlich cool.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/home-assistant/home-assistant-uebersicht.jpg" alt="Mein Home-Assistant-Dashboard mit Räumen, Lampen, Rollos und Automationen im Überblick" /></p>
+<p>Was ich an Home Assistant gar nicht erwartet hatte: Es verändert, wie man auf Alltagsprozesse schaut.</p>
+<p>Plötzlich ertappt man sich dabei, abends im Schlafzimmer fünf Lampen nacheinander anzuschalten und denkt: Moment, das ist doch eigentlich ein Prozess. Mit Auslöser, Bedingungen, Ergebnis. Und wenn ich diesen Prozess sauber beschreiben kann, kann ich ihn auch automatisieren. Im Job mache ich nichts anderes. Nur dass im Job am Ende selten eine Lampe angeht.</p>
+<p>Spätestens seit der Teilquerschnittslähmung meiner Frau ist Home Assistant für uns aber keine Spielerei mehr.</p>
+<p>Wenn sie unseren Vierjährigen abends ins Bett bringt, muss sie nicht mehr extra zurück, um Lampen oder Rollos zu bedienen. Sie sagt es einfach. Die Wege, die sie sich sparen kann, sind oft genau die Wege, die für sie am anstrengendsten wären. Was für mich früher Komfort war, ist für uns inzwischen Barrierefreiheit.</p>
+<p>Das Schöne daran: Es ist dieselbe Technik. Dieselben Automationen. Dieselbe YAML-Datei, in der ich abends rumfrickle. Nur der Grund, warum sie da ist, hat sich verschoben.</p>
+<p>Manchmal fängt etwas als Hobby an und wird unterwegs wichtiger, als man gedacht hätte.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Update: Fenster und Türen sind drin</title>
