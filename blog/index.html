@@ -84,6 +84,30 @@
       display: block;
     }
 
+    /* Post mit Teaserbild: zweispaltiges Layout */
+    .post-item--with-image a {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .post-thumb {
+      display: block;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-light);
+    }
+
+    .post-thumb img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
     .post-meta {
       font-size: 0.8rem;
       color: var(--text-secondary);
@@ -356,6 +380,12 @@
       .blog-header h1 { font-size: 1.5rem; }
       .post-content { padding: 1.5rem; }
       .post-content h1 { font-size: 1.35rem; }
+
+      .post-item--with-image a {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .post-thumb img { aspect-ratio: 16 / 9; }
     }
 
   </style>
@@ -374,8 +404,10 @@
       <div class="blog-layout">
         <div class="blog-main">
           <ul class="post-list">
-            <li class="post-item" onclick="loadPost('finanzteck')">
+            <li class="post-item post-item--with-image" onclick="loadPost('finanzteck')">
               <a href="#finanzteck">
+                <div class="post-thumb"><img src="images/finanzteck/finanzteck-desktop.jpg" alt="Finanzteck Desktop-Ansicht" loading="lazy"></div>
+                <div class="post-body">
                 <div class="post-meta">
                   <span class="post-date">31.05.2026</span>
                   <span class="post-tag">Vibecoding</span>
@@ -384,10 +416,13 @@
                 </div>
                 <h2 class="post-title">Von Splitwise und Excel zur eigenen Finanz-App</h2>
                 <p class="post-excerpt">Geteilte Ausgaben in Splitwise, alles andere in Excel, dazwischen jeden Monat CSV-Export und Handarbeit. Irgendwann hab ich mir mit Claude eine eigene Finanz-App gebaut. Aus dem Kassenbuch wurde Finanzteck.</p>
+                </div>
               </a>
             </li>
-            <li class="post-item" onclick="loadPost('home-assistant')">
+            <li class="post-item post-item--with-image" onclick="loadPost('home-assistant')">
               <a href="#home-assistant">
+                <div class="post-thumb"><img src="images/home-assistant/home-assistant-uebersicht.jpg" alt="Home-Assistant-Dashboard mit Räumen, Lampen und Automationen" loading="lazy"></div>
+                <div class="post-body">
                 <div class="post-meta">
                   <span class="post-date">12.05.2026</span>
                   <span class="post-tag">Persönlich</span>
@@ -398,10 +433,13 @@
                 </div>
                 <h2 class="post-title">Vom Nerd-Hobby zur Barrierefreiheit</h2>
                 <p class="post-excerpt">Home Assistant hat bei mir als Spielerei angefangen — Lampe per Sprache schalten, dann zwei, dann das ganze Wohnzimmer. Spätestens seit der Teilquerschnittslähmung meiner Frau ist das aber kein Hobby mehr: Was für mich früher Komfort war, ist für uns inzwischen Barrierefreiheit.</p>
+                </div>
               </a>
             </li>
-            <li class="post-item" onclick="loadPost('fenster-tueren')">
+            <li class="post-item post-item--with-image" onclick="loadPost('fenster-tueren')">
               <a href="#fenster-tueren">
+                <div class="post-thumb"><img src="images/fenster-tueren/fenster-tueren-update.jpg" alt="Neue Fenster und Türen im Anbau" loading="lazy"></div>
+                <div class="post-body">
                 <div class="post-meta">
                   <span class="post-date">28.04.2026</span>
                   <span class="post-tag">Persönlich</span>
@@ -411,10 +449,13 @@
                 </div>
                 <h2 class="post-title">Update: Fenster und Türen sind drin</h2>
                 <p class="post-excerpt">Kuse Metallbau aus Königswinter hat die neuen Fenster und Türen im Anbau eingesetzt. Damit weicht der Rohbau-Charakter, und man kann sich erstmals richtig vorstellen, wie Aylins barrierefreier Raum am Ende aussehen wird.</p>
+                </div>
               </a>
             </li>
-            <li class="post-item" onclick="loadPost('eigenes-dashboard')">
+            <li class="post-item post-item--with-image" onclick="loadPost('eigenes-dashboard')">
               <a href="#eigenes-dashboard">
+                <div class="post-thumb"><img src="images/eigenes-dashboard/1776855823535.jpg" alt="Eigenes Dashboard in der Desktop-Ansicht" loading="lazy"></div>
+                <div class="post-body">
                 <div class="post-meta">
                   <span class="post-date">22.04.2026</span>
                   <span class="post-tag">Vibecoding</span>
@@ -424,10 +465,13 @@
                 </div>
                 <h2 class="post-title">Zu viele Tabs</h2>
                 <p class="post-excerpt">Am Ende waren es einfach zu viele Tabs. Irgendwo der Kalender, woanders das Wetter, dann Docker, Bookmarks, Feeds, Aufgaben. Deshalb habe ich mir ein eigenes Dashboard gevibecodet — selfhosted, über eine YAML-Datei konfigurierbar, und so gebaut, dass das Tool sich nach mir richtet, nicht umgekehrt.</p>
+                </div>
               </a>
             </li>
-            <li class="post-item" onclick="loadPost('raeuberhoehle')">
+            <li class="post-item post-item--with-image" onclick="loadPost('raeuberhoehle')">
               <a href="#raeuberhoehle">
+                <div class="post-thumb"><img src="images/raeuberhoehle/raeuberhoehle-aussen.jpg" alt="Räuberhöhle aus Decken über dem Sofa" loading="lazy"></div>
+                <div class="post-body">
                 <div class="post-meta">
                   <span class="post-date">15.04.2026</span>
                   <span class="post-tag">Persönlich</span>
@@ -436,10 +480,13 @@
                 </div>
                 <h2 class="post-title">Räuberhöhle</h2>
                 <p class="post-excerpt">Kein 3D-Druck. Kein Dashboard. Keine Automation. Sondern Höhlenbau mit meinem vierjährigen Sohn. Paracord gespannt, Decken drüber, Wäscheklammern dran — und am Ende war der Stakeholder zufrieden, das MVP stand, Entertainment lief.</p>
+                </div>
               </a>
             </li>
-            <li class="post-item" onclick="loadPost('todoteck-mcp')">
+            <li class="post-item post-item--with-image" onclick="loadPost('todoteck-mcp')">
               <a href="#todoteck-mcp">
+                <div class="post-thumb"><img src="images/todoteck/todoteck-mcp.png" alt="Claude erstellt per MCP eine Todoteck-Aufgabe" loading="lazy"></div>
+                <div class="post-body">
                 <div class="post-meta">
                   <span class="post-date">10.04.2026</span>
                   <span class="post-tag">Vibecoding</span>
@@ -450,10 +497,13 @@
                 </div>
                 <h2 class="post-title">Todoteck: API, MCP und der Alltag</h2>
                 <p class="post-excerpt">Bestehende Gewohnheiten nicht aufbrechen, sondern die App an unseren Alltag anpassen. Mit eigener API, Google-Home-Integration, E-Ink-Display, Android-Widgets und MCP — Claude redet jetzt direkt mit meiner App.</p>
+                </div>
               </a>
             </li>
-            <li class="post-item" onclick="loadPost('todoteck')">
+            <li class="post-item post-item--with-image" onclick="loadPost('todoteck')">
               <a href="#todoteck">
+                <div class="post-thumb"><img src="images/todoteck/todoteck-desktop.png" alt="Todoteck Desktop-Ansicht mit Sidebar und Heute-Übersicht" loading="lazy"></div>
+                <div class="post-body">
                 <div class="post-meta">
                   <span class="post-date">07.04.2026</span>
                   <span class="post-tag">Vibecoding</span>
@@ -463,6 +513,7 @@
                 </div>
                 <h2 class="post-title">Todoteck: Vibecoding für die Familie</h2>
                 <p class="post-excerpt">Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut. To-dos und Notizen in einem System, mit Kalender- und Einkaufslisten-Integration, eigener Programmierschnittstelle, selfhosted — gebaut mit KI-Unterstützung und ohne klassische Programmiererfahrung.</p>
+                </div>
               </a>
             </li>
             <li class="post-item" onclick="loadPost('3d-drucker')">
