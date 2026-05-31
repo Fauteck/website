@@ -8,6 +8,8 @@ tags: [Persönlich, Mental Health]
 
 > **Triggerwarnung: Dieser Text handelt von Depression und Panikattacken.**
 
+![Schwarzweiß-Foto eines Bierkastens mit aufgeklebtem Sticker „Alles wird wieder ok!" — daneben weitere Aufkleber wie „Bier macht schön"](images/depression/alles-wird-wieder-ok.jpg)
+
 Ich bin in eine Depression gerutscht.
 
 Ich habe lange überlegt, ob ich das schreiben soll. Zum einen bin ich sowieso nicht mehr wahnsinnig in Social Media aktiv. Zum anderen fühlt es sich bei aller eigenen Akzeptanz, dass ich diese Krankheit habe und es eine ist, an, als würde ich eine Schwäche preisgeben. Was natürlich Blödsinn ist. Denn eine Depression sucht sich niemand aus. Und ich bin in guten Momenten stolz auf mich, das schon erkannt zu haben und aktiv dagegen anzugehen. Und vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt.
