@@ -6,6 +6,8 @@ tags: [Persönlich, 3D-Druck, Maker]
 
 # Wenn niemand die Lösung hat, druckst du sie selbst
 
+![Illustration: ich vor dem Monitor mit Fusion 360 — auf dem Bildschirm die CAD-Konstruktion eines individuell entwickelten Bauteils mit Bemaßungen](images/3d-drucker/3d-drucker-fusion.jpg)
+
 Mein 3D-Drucker löst heute Probleme, an die ich beim Kauf nie gedacht hätte.
 
 Als ich mir vor einem Jahr meinen ersten 3D-Drucker gekauft habe, dachte ich an Gadgets, Halterungen und vielleicht mal ein Ersatzteil. Dass ich irgendwann in Fusion 360 eigene Modelle konstruieren würde, hätte ich damals nicht erwartet.

@@ -6,6 +6,8 @@ tags: [Science Slam, Moderation, Abschied]
 
 # Abschied vom Science Slam
 
+![Collage aus vier Science-Slam-Momenten: voller Saal im Bonner Pantheon mit Bühne und Publikum an Tischen; Slammer im Spotlight beim Auftritt (Foto: Daniel Koch); Selfie mit dem LUUPS-Team und Mitstreiter:innen; Slammer vor Tafel mit Formeln, davor das Publikum.](images/abschied-science-slam/science-slam-collage.jpg)
+
 **9 Jahre, 38 Events, über 200 Vorträge — und phantastische Menschen kennengelernt. Danke!**
 
 Der Bonner Science Slam im Januar 2020 wird voraussichtlich der letzte gewesen sein, den ich moderiert habe. Anfang Mai würde zwar der nächste stattfinden, bei dem ich auf der Bühne stehen könnte, aber ich *mache die Lena*. Bei weiter hohen Infektionszahlen und immer weniger Corona-Maßnahmen ist mein Gefühl: Die Zeit ist noch nicht reif.
