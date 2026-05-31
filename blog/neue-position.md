@@ -6,6 +6,8 @@ tags: [Karriere, RTL, Persönlich]
 
 # Neue Position
 
+![Illustration: vier Menschen springen jubelnd um einen großen Cupcake mit Kirsche, darunter der Schriftzug „Neue Position".](images/neue-position/neue-position.png)
+
 Dieses Jahr ist für mich privat herausfordernd, meine Frau ist nach einer Tumorbehandlung im November letzten Jahres ab der Halswirbelsäule teilquerschnittsgelähmt und kämpft sich zurück ins Leben. Ich war vier Monate lang alleinsorgend mit unserem Sohn zuhause, der zu dem Zeitpunkt gerade 1 Jahr alt geworden war. Da gehen einem tausend Fragen durch den Kopf, selten hatten wir Antworten.
 
 Danke an RTL Deutschland, dass ich mir zumindest zu meinem Job keine Fragen stellen musste und ich nach den ersten Monaten in Teilzeit zurückkommen konnte.
