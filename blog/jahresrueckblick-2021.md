@@ -6,6 +6,8 @@ tags: [Jahresrückblick, Persönlich]
 
 # Jahresrückblick 2021
 
+![Jahresrückblick 2021](images/jahresrueckblick-2021/jahresrueckblick-2021.jpg)
+
 Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert.
 
 ## Vater geworden
