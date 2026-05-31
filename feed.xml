@@ -5,8 +5,30 @@
     <link>https://fauteck.github.io/website/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Tue, 12 May 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 31 May 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Von Splitwise und Excel zur eigenen Finanz-App</title>
+      <link>https://fauteck.github.io/website/blog/#finanzteck</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#finanzteck</guid>
+      <pubDate>Sat, 31 May 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>Selfhosting</category>
+      <category>KI</category>
+      <description><![CDATA[
+<p>Erst war es Splitwise. Die geteilten Ausgaben liefen da. Aber alles andere lag in Excel.</p>
+<p>Also jeden Monat: CSV-Export aus Splitwise, Import in die Tabelle, von Hand nachb&#252;geln. Zwei Tools f&#252;r eine Frage.</p>
+<p>Irgendwann hatte ich keinen Bock mehr und hab mir mit Claude was eigenes gebaut. Erst nur ein Kassenbuch. Am Monatsende rechnet die App aus, wer wem wie viel &#252;berweisen muss.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/finanzteck/finanzteck-mobil.jpg" alt="Finanzteck auf dem Handy: die Quittungen-Ansicht mit den Ausgleichszahlungen." /></p>
+<p>Und weil es lief, kam St&#252;ck f&#252;r St&#252;ck dazu:</p>
+<p>Verbrauchskosten mit Z&#228;hlerst&#228;nden.<br/>Verm&#246;gen und Darlehen.<br/>Kategorievorschl&#228;ge beim Erfassen, komplett lokal gerechnet, ohne LLM.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/finanzteck/finanzteck-desktop.jpg" alt="Das Verbrauch-Modul am Desktop: Stromkosten als Verlaufschart mit Durchschnittslinie." /></p>
+<p>Aus dem Kassenbuch wurde Finanzteck. Drei SQLite-Datenbanken, selbst gehostet, die Daten bleiben bei mir.</p>
+<p>Und &#8222;Vibecoding macht dumm&#8220;? Bei mir war es umgekehrt. 2FA mit Authelia, Tailscale statt offener Portfreigaben, sauberes Arbeiten mit GitHub. Hab ich beim Bauen gelernt.</p>
+<p>Eigentlich wollte ich nur wissen, wer die Pizza bezahlt hat.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Vom Nerd-Hobby zur Barrierefreiheit</title>
