@@ -5,8 +5,28 @@
     <link>https://fauteck.github.io/website/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Sat, 31 May 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Die Seite, auf der du gerade bist</title>
+      <link>https://fauteck.github.io/website/blog/#diese-website</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#diese-website</guid>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>NiklasOS</category>
+      <category>Persönlich</category>
+      <description><![CDATA[
+<p>Sonst geht es hier um ein Tool, das ich gebaut habe. Diesmal ist das Tool die Seite selbst.</p>
+<p>Der Anlass ist ein leiser: Nach 16 Jahren endet Ende Juli meine Zeit bei RTL. Dafür wollte ich einen eigenen Ort im Netz, der mir geh&#246;rt und nicht an einen Arbeitgeber h&#228;ngt.</p>
+<p>Das h&#228;tte ein schlichter Einseiter werden k&#246;nnen. Geworden ist daraus ein ganzes Betriebssystem im Browser: NiklasOS.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/diese-website/niklasos-desktop.jpg" alt="Der Desktop von NiklasOS im Browser" /></p>
+<p>Boot-Screen, Fenstermanager, Terminal, Spiele, am Handy ein Lockscreen mit PIN. Im Maschinenraum nur HTML, CSS und Vanilla-JavaScript. Kein Framework, kein Build, kein Backend. Auch das ist also: gevibecodet.</p>
+<p>Wie das OS aufgebaut ist und warum es ausgerechnet ein OS wurde, erz&#228;hle ich in einem sp&#228;teren Beitrag.</p>
+<p>Und ich habe gro&#223;e Lust, anderen zu zeigen, was mit Vibecoding heute m&#246;glich ist, auch ohne klassische Programmiererfahrung. Da entsteht gerade eine Idee, wie ich das weitergeben kann. Mehr dazu bald. Wer nicht warten will: Schreibt mir.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Von Splitwise und Excel zur eigenen Finanz-App</title>
