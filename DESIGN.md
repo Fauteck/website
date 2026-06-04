@@ -58,10 +58,10 @@ colors:
 # ── Typography ───────────────────────────────────────────────────────────────
 typography:
   fonts:
-    ui:   "'DM Sans', system-ui, sans-serif"
+    ui:   "'IBM Plex Sans', system-ui, sans-serif"
     mono: "'JetBrains Mono', 'Courier New', monospace"
 
-  # DM Sans is the workhorse UI font.
+  # IBM Plex Sans is the workhorse UI font (loaded via fonts/fonts.css).
   # JetBrains Mono doubles as both terminal font and large display type
   # (headlines, clock, lock-screen counter) — the monospaced rhythm adds
   # a deliberate "tech terminal" aesthetic to oversized numbers.
@@ -264,7 +264,7 @@ the coaching / human-side of the brand.
 
 Two typefaces cover every use case:
 
-**DM Sans** — geometric sans-serif, used for all UI chrome, labels, body
+**IBM Plex Sans** — humanist sans-serif, used for all UI chrome, labels, body
 copy, and navigation. Friendly but precise; works at 10 px captions and 24 px
 headings without adjustment.
 

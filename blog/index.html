@@ -801,6 +801,11 @@
       'jahresrueckblick-2021': { title: 'Jahresrückblick 2021', date: '01.01.2022' }
     };
 
+    function setOgTitle(value) {
+      var el = document.querySelector('meta[property="og:title"]');
+      if (el) el.setAttribute('content', value);
+    }
+
     function loadPost(slug) {
       window.location.hash = slug;
       fetch(slug + '.md')
@@ -811,6 +816,10 @@
           document.getElementById('postContent').innerHTML =
             '<div class="post-content-meta">' + (meta.date || '') + '</div>' +
             rendered;
+          if (meta.title) {
+            document.title = meta.title + ' — Blog — Niklas Fauteck';
+            setOgTitle(meta.title + ' — Blog — Niklas Fauteck');
+          }
           document.getElementById('postList').classList.add('hidden');
           var view = document.getElementById('postView');
           view.classList.add('active');
@@ -825,6 +834,8 @@
 
     function showList() {
       window.location.hash = '';
+      document.title = 'Blog — Niklas Fauteck';
+      setOgTitle('Blog — Niklas Fauteck');
       document.getElementById('postList').classList.remove('hidden');
       document.getElementById('postView').classList.remove('active');
       window.scrollTo(0, 0);
