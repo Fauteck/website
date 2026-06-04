@@ -917,8 +917,6 @@ const TERM_COMMANDS = {
     { t: 'accent',  v: '  cat values.txt  → Werte und Prinzipien' },
     { t: 'accent',  v: '  cat about.txt   → Kurzprofil' },
     { t: 'accent',  v: '  cat README.md   → Projekt-Dokumentation' },
-    { t: 'accent',  v: '  skills          → Skill-Übersicht' },
-    { t: 'accent',  v: '  skills --verbose → Detaillierte Skills' },
     { t: 'accent',  v: '  now             → Aktueller Fokus' },
     { t: 'accent',  v: '  anti_patterns   → Was ich ablehne' },
     { t: 'accent',  v: '  history         → Interaktionshistorie' },
@@ -1008,29 +1006,7 @@ const TERM_COMMANDS = {
     { t: 'success', v: '→ Pragmatismus vor Perfektion' },
     { t: 'success', v: '→ Adoption ist wichtiger als Implementierung' },
   ],
-  skills: () => [
-    { t: 'bold', v: 'niklas@niklasos:~$ skills' },
-    { t: 'empty' },
-    { t: 'accent',  v: 'Languages:   DE (native), EN (professional)' },
-    { t: 'accent',  v: 'AI:          Claude, ChatGPT, Cursor, n8n, Make.com' },
-    { t: 'accent',  v: 'Project:     Confluence, Jira, Notion, Miro' },
-    { t: 'accent',  v: 'Infra:       Docker, GitHub Actions, Home Assistant' },
-    { t: 'accent',  v: 'Analytics:   Power BI, Google Analytics' },
-    { t: 'dim',     v: '' },
-    { t: 'dim',     v: 'Für Details: skills --verbose' },
-  ],
-  'skills --verbose': () => [
-    { t: 'bold',    v: '# Capability Report — niklas-fauteck v2026.03' },
-    { t: 'empty' },
-    { t: 'success', v: '[AI & Automation]' },
-    { t: 'out',     v: '  Prompt Engineering · AI Workflow Design · n8n / Make.com · Vibecoding' },
-    { t: 'empty' },
-    { t: 'success', v: '[Digital Transformation]' },
-    { t: 'out',     v: '  Strategy & Roadmapping · Change Management · Tool Adoption · Stakeholder Mgmt' },
-    { t: 'empty' },
-    { t: 'success', v: '[Technical]' },
-    { t: 'out',     v: '  Docker / Containerizing · GitHub / GitOps · Home Assistant · 3D Printing (FDM)' },
-  ],
+  // 'skills' und 'skills --verbose' entfernt (Skill-Befehl deaktiviert)
   now: () => [
     { t: 'bold', v: '# Aktueller Fokus — v2026.03' },
     { t: 'empty' },
@@ -4983,10 +4959,10 @@ function trackTermCmd(cmd) {
     _manNiklasCount++;
     if (_manNiklasCount >= 3) showAchievement('Manual-Leser', 'Das Manual ändert sich nicht. Aber du hast es 3× gelesen.');
   }
-  // Check whoami + ls + skills sequence
+  // Check whoami + ls + now sequence
   const last3 = _termCmdHistory.slice(-3);
-  if (last3.length === 3 && last3[0] === 'whoami' && last3[1] === 'ls' && last3[2] === 'skills') {
-    showAchievement('Detektiv', 'whoami → ls → skills. Systematisch.');
+  if (last3.length === 3 && last3[0] === 'whoami' && last3[1] === 'ls' && last3[2] === 'now') {
+    showAchievement('Detektiv', 'whoami → ls → now. Systematisch.');
   }
 }
 
