@@ -138,6 +138,7 @@
         .contact-linkedin { background: #0A66C2; }
         .contact-email { background: #6C757D; }
         .contact-kontakt { background: var(--accent, #52b788); color: var(--primary, #1a1a2e); }
+        .contact-github { background: #24292E; }
         
         /* Section Styles */
         section {
@@ -370,7 +371,68 @@
             left: 0;
             color: var(--text-secondary);
         }
-        
+
+        /* Ergebnis-Hervorhebung pro Projekt */
+        .project-result {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.45rem;
+            margin-top: 0.25rem;
+            padding: 0.4rem 0.75rem;
+            background: rgba(82, 183, 136, 0.12);
+            color: var(--accent-dark);
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            line-height: 1.45;
+            align-self: flex-start;
+        }
+
+        .project-result::before {
+            content: '▸';
+            font-size: 0.7rem;
+        }
+
+        /* Tech-Stack-Chips & Links für eigene Projekte */
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.9rem;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .project-links a {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-dark);
+            text-decoration: none;
+        }
+
+        .project-links a:hover { text-decoration: underline; }
+
+        /* Eigene Projekte: Karte ohne Bild-Spalte */
+        .project-card--compact {
+            grid-template-columns: 1fr;
+        }
+
+        /* Einleitungstext unter einer Sektion-Überschrift */
+        .section-intro {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            max-width: 660px;
+            margin: 0 0 1.75rem;
+        }
+
+        .section-intro strong { color: var(--text); }
+
         /* Timeline */
         .timeline {
             position: relative;
@@ -788,24 +850,28 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Kontakt
         </a>
+        <a href="https://github.com/fauteck" target="_blank" rel="noopener" class="contact-btn contact-github">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.598 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
       </div>
     </header>
     
     <!-- Career Section -->
     <section id="career">
-        <div class="section-header collapsible collapsed">
+        <div class="section-header collapsible">
             <span class="section-label">Werdegang</span>
             <h2>Berufliche Entwicklung</h2>
             <p class="section-description">
                 Von der Unternehmenskommunikation zur digitalen Transformation
             </p>
         </div>
-        <div class="section-body collapsed">
+        <div class="section-body">
 
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-logo">
-                    <img src="rtl-logo.png" alt="RTL Deutschland Logo">
+                    <img src="rtl-logo.png" alt="RTL Deutschland Logo" loading="lazy">
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-period">Seit 08/2023</div>
@@ -818,17 +884,17 @@
                         Ich habe digitale Systeme und Prozesse innerhalb der Unternehmenskommunikation weiterentwickelt - von der Strategie bis zur Umsetzung. Dabei habe ich bereichsübergreifende Projekte an der Schnittstelle zwischen Kommunikation, IT und Management gesteuert.
                     </p>
                     <ul class="project-highlights">
-                        <li>Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows zur Effizienzsteigerung und Prozessvereinfachung</li>
-                        <li>Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse zur Reduktion manueller Aufwände</li>
-                        <li>Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung, Priorisierung und Go-Live-Verantwortung</li>
-                        <li>Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams</li>
+                        <li>Digitale Plattformen und Workflows konzipiert und umgesetzt – von der Idee bis zum Go-Live</li>
+                        <li>Automatisierte und KI-gestützte Prozesse eingeführt, die manuelle Routinearbeit ersetzen</li>
+                        <li>Product Owner für zentrale Kommunikationssysteme: Roadmap, Priorisierung und Go-Live-Verantwortung</li>
+                        <li>Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Teams</li>
                     </ul>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-logo">
-                    <img src="rtl-logo.png" alt="RTL Deutschland Logo">
+                    <img src="rtl-logo.png" alt="RTL Deutschland Logo" loading="lazy">
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-period">08/2020 - 08/2023</div>
@@ -847,7 +913,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-logo">
-                    <img src="rtl-plus-logo.jpg" alt="RTL+ Logo">
+                    <img src="rtl-plus-logo.jpg" alt="RTL+ Logo" loading="lazy">
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-period">03/2019 - 08/2020</div>
@@ -866,7 +932,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-logo">
-                    <img src="vox-logo.png" alt="VOX Logo">
+                    <img src="vox-logo.png" alt="VOX Logo" loading="lazy">
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-period">08/2015 - 03/2019</div>
@@ -884,7 +950,7 @@
 
             <div class="timeline-item">
                 <div class="timeline-logo">
-                    <img src="hbrs-logo.png" alt="Hochschule Bonn-Rhein-Sieg Logo">
+                    <img src="hbrs-logo.png" alt="Hochschule Bonn-Rhein-Sieg Logo" loading="lazy">
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-period">2009 - 2013</div>
@@ -904,11 +970,11 @@
 
     <!-- Projects Section -->
     <section id="projects">
-        <div class="section-header collapsible collapsed">
+        <div class="section-header collapsible">
             <span class="section-label">Showcase</span>
-            <h2>Projekte</h2>
+            <h2>Projekte bei RTL Deutschland</h2>
         </div>
-        <div class="section-body collapsed">
+        <div class="section-body">
 
         <div class="projects-grid">
             <div class="project-card">
@@ -923,6 +989,7 @@
                         Kommunikationsportals für RTL Deutschland. Die Plattform für
                         Content-Management, Pressematerialien und interne Kommunikation.
                     </p>
+                    <span class="project-result">Genutzt von 1.700+ Journalist:innen</span>
                     <ul class="project-highlights">
                         <li>Zentrale digitale Plattform für 1.700+ Journalist:innen</li>
                         <li>Roadmap-Planung und Feature-Priorisierung</li>
@@ -944,6 +1011,8 @@
                         bis zu Custom-GPTs für redaktionelle Prozesse. Spart Zeit,
                         reduziert manuelle Arbeit.
                     </p>
+                    <!-- TODO Niklas: konkrete Zahl ergänzen für mehr Wirkung, z. B. "~X Std./Woche eingespart" oder "Y Texte/Monat automatisiert" -->
+                    <span class="project-result">Spürbar weniger manuelle Redaktions-Workflows</span>
                     <ul class="project-highlights">
                         <li>Automatisierte Textanpassung für Drittkanäle</li>
                         <li>KI-basierte Screenshot-Erstellung aus Videos</li>
@@ -965,6 +1034,8 @@
                         PICTRON sowie des Programmwochenplanungs-Tools MDC für effizientere
                         Content-Workflows.
                     </p>
+                    <!-- TODO Niklas: konkrete Zahl ergänzen, z. B. "X.000 Assets verwaltet" oder "Suchzeit von A auf B reduziert" -->
+                    <span class="project-result">Schnellere Content-Workflows über zentrale Datenbanken</span>
                     <ul class="project-highlights">
                         <li>Anforderungsmanagement und Konzeptentwicklung</li>
                         <li>Feature-Rollouts und Testing</li>
@@ -986,6 +1057,7 @@
                         Abstimmung und Weiterentwicklung gemeinsamer Systeme über
                         Unternehmensgrenzen hinweg.
                     </p>
+                    <span class="project-result">Harmonisierte Systeme über Unternehmensgrenzen hinweg</span>
                     <ul class="project-highlights">
                         <li>Cross-Company Stakeholder Management</li>
                         <li>System-Harmonisierung</li>
@@ -998,13 +1070,123 @@
         </div>
     </section>
 
+    <!-- Eigene Projekte / Vibecoding -->
+    <section id="own-projects" aria-labelledby="own-projects-heading">
+        <div class="section-header collapsible">
+            <span class="section-label">Gebaut, nicht nur geplant</span>
+            <h2 id="own-projects-heading">Eigene Projekte</h2>
+        </div>
+        <div class="section-body">
+        <p class="section-intro">
+            <strong>Vibecoding</strong> heißt für mich: Software mit KI als Werkzeug bauen –
+            von der Idee über den Prototyp bis zum lauffähigen Tool, ohne klassische
+            Entwickler-Laufbahn. Was ich bei RTL strategisch verantworte, setze ich privat
+            selbst um. Diese Projekte laufen real – selfhosted, im täglichen Einsatz.
+        </p>
+
+        <div class="projects-grid">
+            <div class="project-card project-card--compact">
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · Vibecoding</div>
+                    <h3>Todoteck — Aufgaben & Notizen für die Familie</h3>
+                    <p>
+                        Keine App brachte To-dos und Notizen sinnvoll zusammen. Also habe ich
+                        sie gebaut – mit eigener Programmierschnittstelle und angebunden an
+                        unseren Alltag: Google Kalender, Sprachassistent und ein E-Ink-Display
+                        im Flur greifen auf dieselben Daten zu.
+                    </p>
+                    <span class="project-result">Tägliche Familien-App – im echten Einsatz</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Selfhosted Web-App</span>
+                        <span class="skill-tag">REST-API</span>
+                        <span class="skill-tag">MCP-Server</span>
+                        <span class="skill-tag">Android-Widget</span>
+                        <span class="skill-tag">Google Kalender & Keep</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/index.html#todoteck">Die Idee →</a>
+                        <a href="../blog/index.html#todoteck-mcp">API, MCP & Alltag →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card project-card--compact">
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · Vibecoding</div>
+                    <h3>Finanzteck — Haushaltsfinanzen statt Excel-Gefrickel</h3>
+                    <p>
+                        Splitwise plus Excel war jeden Monat Handarbeit. Finanzteck verbucht
+                        geteilte Ausgaben, teilt sie flexibel mit Prozent-Anteilen auf und
+                        rechnet am Monatsende automatisch aus, wer wem was überweisen muss.
+                    </p>
+                    <span class="project-result">Zwei Tools ersetzt durch eine eigene App</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Selfhosted Web-App</span>
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">Automatische Ausgleichsrechnung</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/index.html#finanzteck">Zum Artikel →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card project-card--compact">
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · Vibecoding</div>
+                    <h3>Eigenes Dashboard — eine Startseite für alles</h3>
+                    <p>
+                        Zu viele Tabs. Also ein selfhosted Dashboard, das sich über eine
+                        einzige YAML-Datei konfigurieren lässt: Wetter, Kalender, RSS, Docker,
+                        Server-Stats, GitHub, Tailscale und eigene APIs an einem Ort.
+                    </p>
+                    <span class="project-result">Ersetzt ein Dutzend Browser-Tabs</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Selfhosted</span>
+                        <span class="skill-tag">YAML-Konfiguration</span>
+                        <span class="skill-tag">Widget-System</span>
+                        <span class="skill-tag">Eigene API-Integrationen</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/index.html#eigenes-dashboard">Zum Artikel →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card project-card--compact">
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · Smart Home</div>
+                    <h3>Home Assistant — vom Hobby zur Barrierefreiheit</h3>
+                    <p>
+                        Angefangen als Spielerei, heute Alltagshilfe: Seit der
+                        Teilquerschnittslähmung meiner Frau automatisiert unser Smart Home
+                        Wege, die sonst Hürden wären. Prozesse denken, sauber beschreiben,
+                        automatisieren – dasselbe Handwerk wie im Job, nur dass hier am Ende
+                        jemandem der Alltag leichter fällt.
+                    </p>
+                    <span class="project-result">Technik, die echte Teilhabe ermöglicht</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Home Assistant</span>
+                        <span class="skill-tag">Automationen</span>
+                        <span class="skill-tag">Sprachsteuerung</span>
+                        <span class="skill-tag">Barrierefreiheit</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/index.html#home-assistant">Zum Artikel →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
     <!-- Expertise Section -->
     <section id="expertise" aria-labelledby="expertise-heading">
-        <div class="section-header collapsible collapsed">
+        <div class="section-header collapsible">
             <span class="section-label">Expertise</span>
             <h2 id="expertise-heading">Kompetenzen & Toolbox</h2>
         </div>
-        <div class="section-body collapsed">
+        <div class="section-body">
 
         <div class="expertise-grid">
             <div class="expertise-card">
@@ -1150,13 +1332,18 @@
     </section>
 
 
-    <!-- References / Zwischenzeugnis-Zitate -->
+    <!--
+      References / "Stimmen aus der Praxis" — vorerst auskommentiert.
+      Zitate stammen aus dem RTL-Zwischenzeugnis und sind noch nicht final/freigegeben.
+      Zum Reaktivieren: diesen Kommentarblock (Anfang hier, Ende vor dem Footer) entfernen.
+    -->
+    <!--
     <section id="references" aria-labelledby="references-heading">
-        <div class="section-header collapsible collapsed">
+        <div class="section-header collapsible">
             <span class="section-label">Referenzen</span>
             <h2 id="references-heading">Stimmen aus der Praxis</h2>
         </div>
-        <div class="section-body collapsed">
+        <div class="section-body">
         <div class="quotes-grid">
             <blockquote class="quote-card">
                 <p>„Verbindet strategisches und konzeptionelles Denken mit praxisgerechten operativen Lösungen."</p>
@@ -1177,6 +1364,7 @@
         </div>
         </div>
     </section>
+    -->
 
     <!-- Footer -->
     <div id="shared-footer"></div>
