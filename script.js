@@ -573,22 +573,15 @@ function buildAbout(body) {
     <div class="brave-content">
       <div class="about-content">
         <h1>Niklas Fauteck</h1>
-        <div class="about-role">Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding</div>
+        <div class="about-role">Andere planen die Transformation. Ich starte sie. Mit Strategie, KI und einem Faible fürs Liefern.</div>
         <hr class="about-hr">
-        <p>
-          Ich verbinde Kommunikation, Technologie und digitale Transformation.
-          Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete ich die strategische
-          Weiterentwicklung digitaler Systeme. Heute arbeite ich als Projektmanager und gebe mein Wissen als Coach
-          und Vibecoding-Experte weiter – und zeige, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
-        </p>
-        <h2>Kernthesen</h2>
-        <ul class="about-theses">
-          <li>Digitalisierung ist kein Selbstzweck, sondern Mittel für Wirkung</li>
-          <li>Das beste Tool ist das, das Reibung reduziert</li>
-          <li>Technologie versteht man nur, wenn man sie selbst anfasst</li>
-          <li>Komplexität verstehen – Einfachheit liefern</li>
-          <li>Systeme, die laufen, sind besser als solche, die präsentiert werden</li>
-        </ul>
+        <h2>Digitale Ideen werden Realität — mit Strategie, KI und dem richtigen Sparringspartner.</h2>
+        <p>Digitale Transformation entscheidet sich für mich nicht in Strategie-Runden, sondern an dem Tag, an dem jemand den ersten Prototyp ins Laufen bringt.</p>
+        <p>Ich kenne die Stelle, an der die meisten Unternehmen ins Stocken geraten: zwischen Fachabteilung und IT. Als Head of Digital Transformation Kommunikation bei RTL Deutschland habe ich gebaut, automatisiert und erklärt – bis aus Ideen funktionierende Systeme wurden. Dieses Wissen bringe ich jetzt zu Organisationen und Menschen, die digitale Transformation nicht nur verwalten wollen.</p>
+        <p>Zuvor durfte ich viele Jahre in der PR für VOX und RTL+ dafür sorgen, dass Formate wie „Sing meinen Song", „Kitchen Impossible" oder „Goodbye Deutschland!" die Aufmerksamkeit bekommen, die sie verdienen – on air, online und überall dazwischen.</p>
+        <p>Mein Antrieb: Kommunikation, die wirkt. Prozesse, die laufen. Und Projekte, die nicht nur auf dem Papier gut aussehen, sondern echten Mehrwert schaffen.</p>
+        <p>Und ich bleibe nicht in der Strategie: Mit KI als Werkzeug baue ich Prototypen und kleine Tools selbst – „Vibecoding“ nenne ich das. So weiß ich aus erster Hand, was zwischen Idee und lauffähigem System wirklich passiert.</p>
+        <p>Andere planen. Ich starte.</p>
         <div class="about-cta">
           <button class="btn-primary" onclick="openWindow('career')">💼 Arbeitsplatz öffnen</button>
           <button class="btn-ghost"   onclick="openWindow('terminal')">$ Terminal starten</button>
@@ -5414,8 +5407,9 @@ const MOB_LABELS = {
 };
 
 // Page 1 apps (main homescreen), Page 2: placeholder for future use
-const MOB_PAGE1 = ['career', 'photos', 'claudeapp', 'teams', 'jira', 'github', 'games', 'filesapp', 'projects']; // 'testimonials' vorerst deaktiviert
-const MOB_PAGE2 = ['homeassistant', 'bambu']; // 'chatgpt', 'changelog' vorerst deaktiviert
+// Alle App-Icons auf einer Mobile-Seite (Seite 2 entfällt)
+const MOB_PAGE1 = ['career', 'photos', 'projects', 'homeassistant', 'bambu', 'claudeapp', 'teams', 'jira', 'github', 'filesapp', 'games']; // 'testimonials', 'chatgpt', 'changelog' vorerst deaktiviert
+const MOB_PAGE2 = [];
 const MOB_DOCK  = ['about', 'outlook', 'blog'];
 
 const COLOR_MAP = {
@@ -6134,15 +6128,17 @@ function buildBlog(body) {
   body.style.flexDirection = 'column';
   body.style.background = '#ffffff';
 
-  // Beiträge nach Jahr gruppieren (BLOG_POSTS ist bereits neueste-zuerst sortiert)
+  // Nach Veröffentlichungsdatum sortieren (neueste zuerst) – ausdrücklich nicht alphabetisch
+  const posts = [...BLOG_POSTS].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  // ... und nach Jahr gruppieren
   const byYear    = {};
   const yearOrder = [];
-  BLOG_POSTS.forEach(p => {
+  posts.forEach(p => {
     const y = (p.date || '').slice(0, 4) || '—';
     if (!byYear[y]) { byYear[y] = []; yearOrder.push(y); }
     byYear[y].push(p);
   });
-  const firstId = BLOG_POSTS[0].id;
+  const firstId = posts[0].id;
 
   // Sidebar (Desktop): nach Jahr gruppierte Liste mit Anzahl je Jahr
   const postListHtml = yearOrder.map(y => `
@@ -6157,8 +6153,12 @@ function buildBlog(body) {
     </div>
   `).join('');
 
-  // Mobile: kompaktes, nach Jahr gruppiertes Dropdown statt langer Button-Leiste
+  // Mobile: klar erkennbares Menü (Label + Dropdown), nach Jahr gruppiert
   const mobileNavHtml = `
+    <span class="blog-mob-navlabel">
+      <svg viewBox="0 0 16 16" width="13" height="13" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Beitrag auswählen
+    </span>
     <select class="blog-mob-select" id="blog-mob-select" aria-label="Blog-Beitrag auswählen">
       ${yearOrder.map(y => `
         <optgroup label="${y}">
@@ -6190,17 +6190,17 @@ function buildBlog(body) {
       <div class="blog-mob-nav">${mobileNavHtml}</div>
       <div class="blog-sidebar">
         <div class="blog-sidebar-header">
-          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 2h12v12H2z" stroke="currentColor" stroke-width="1.3"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-          Artikel
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Beiträge — Menü
         </div>
         <div class="blog-list">${postListHtml}</div>
       </div>
       <div class="blog-main">
         <div class="blog-editor-tabs">
-          <span class="blog-tab active" data-post="${BLOG_POSTS[0].id}">${escapeHtml(BLOG_POSTS[0].title.substring(0, 30))}…</span>
+          <span class="blog-tab active" data-post="${posts[0].id}">${escapeHtml(posts[0].title.substring(0, 30))}…</span>
         </div>
         <div class="blog-editor-bar">
-          <span class="blog-file-path">~/blog/${BLOG_POSTS[0].id}.md</span>
+          <span class="blog-file-path">~/blog/${posts[0].id}.md</span>
           <span class="blog-editor-bar-right">
             <a href="feed.xml" target="_blank" class="blog-rss-link" title="RSS Feed abonnieren">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
@@ -6211,7 +6211,7 @@ function buildBlog(body) {
         </div>
         <div class="blog-content" id="blog-content">
           <div class="blog-line-numbers" id="blog-line-nums"></div>
-          <div class="blog-text" id="blog-text">${renderPost(BLOG_POSTS[0])}</div>
+          <div class="blog-text" id="blog-text">${renderPost(posts[0])}</div>
         </div>
       </div>
     </div>
