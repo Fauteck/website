@@ -9,22 +9,24 @@
     <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
-      <title>Die Seite, auf der du gerade bist</title>
-      <link>https://fauteck.github.io/website/blog/#diese-website</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#diese-website</guid>
+      <title>Ein eigener Ort im Netz</title>
+      <link>https://fauteck.github.io/website/blog/#eigene-website</link>
+      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#eigene-website</guid>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
       <category>KI</category>
-      <category>NiklasOS</category>
       <category>Persönlich</category>
+      <category>Karriere</category>
       <description><![CDATA[
-<p>Sonst geht es hier um ein Tool, das ich gebaut habe. Diesmal ist das Tool die Seite selbst.</p>
-<p>Der Anlass ist ein leiser: Nach 16 Jahren endet Ende Juli meine Zeit bei RTL. Dafür wollte ich einen eigenen Ort im Netz, der mir geh&#246;rt und nicht an einen Arbeitgeber h&#228;ngt.</p>
-<p>Das h&#228;tte ein schlichter Einseiter werden k&#246;nnen. Geworden ist daraus ein ganzes Betriebssystem im Browser: NiklasOS.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/diese-website/niklasos-desktop.jpg" alt="Der Desktop von NiklasOS im Browser" /></p>
-<p>Boot-Screen, Fenstermanager, Terminal, Spiele, am Handy ein Lockscreen mit PIN. Im Maschinenraum nur HTML, CSS und Vanilla-JavaScript. Kein Framework, kein Build, kein Backend. Auch das ist also: gevibecodet.</p>
-<p>Wie das OS aufgebaut ist und warum es ausgerechnet ein OS wurde, erz&#228;hle ich in einem sp&#228;teren Beitrag.</p>
-<p>Und ich habe gro&#223;e Lust, anderen zu zeigen, was mit Vibecoding heute m&#246;glich ist, auch ohne klassische Programmiererfahrung. Da entsteht gerade eine Idee, wie ich das weitergeben kann. Mehr dazu bald. Wer nicht warten will: Schreibt mir.</p>
+<p>Ich habe mir eine eigene Website gebaut. Und daraus wurde mehr als geplant.</p>
+<p>Nach 16 Jahren endet Ende Juli meine Zeit bei RTL. Bevor es weitergeht: erstmal eine Auszeit. Und Zeit für meine Familie. Danach neugierig auf das, was kommt. Und offen für Angebote.</p>
+<p>Dafür wollte ich einen eigenen Ort im Netz. Einen, der mir gehört und nicht an einer Plattform hängt. Eine digitale Visitenkarte eben.</p>
+<p>Geworden ist daraus etwas mit mehreren Räumen. Eine Startseite, die alles zusammenhält. Eine nüchterne CV-Ansicht. Ein Blog für solche Gedanken.</p>
+<p>Und weil ich es nicht lassen konnte, gibt es noch eine verspielte Betriebssystem-Variante zum Durchklicken. Aber das ist eine eigene Geschichte.</p>
+<p><img src="https://fauteck.github.io/website/blog/images/eigene-website/os-login.png" alt="Login-Screen der Betriebssystem-Variante: dunkler Hintergrund, grüner Kreis mit einem N, darunter mein Name, ein Passwortfeld und der Hinweis, dass ein beliebiges Passwort zum Anmelden reicht." /></p>
+<p>Im Maschinenraum steckt erstaunlich wenig. HTML, CSS und Vanilla-JavaScript. Alles statisch im Browser, selbst gehostet auf GitHub. Also auch hier wieder: gevibecodet.</p>
+<p>Vibecoding hat mich richtig gepackt. Anderen zeigen, was damit heute geht, auch ohne klassische Programmiererfahrung. Auf der Seite feile ich gerade daran, genau das anzubieten. Ohne zu wissen, wo es genau hinführt. Schreibt gerne, wenn ihr darauf Lust hättet.</p>
+<p>Vor zwei Jahren hätte ich das alles nicht gekonnt. Heute schon. Und genau mit dieser Haltung gehe ich in das, was als Nächstes kommt.</p>
       ]]></description>
     </item>
 
