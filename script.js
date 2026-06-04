@@ -51,12 +51,14 @@ const WIN_CONFIGS = {
     defaultW: 560, defaultH: 520,
     svgPath: 'M3 3h10v10H3zM15 3h10v10H15zM3 15h10v10H3zM15 15h10v10H15z',
   },
+  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
   changelog: {
     title: 'Changelog',
     color: 'pink',
     defaultW: 520, defaultH: 480,
     svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM14 8v6l4 4',
   },
+  */
   trash: {
     title: 'Papierkorb',
     color: 'red',
@@ -70,12 +72,14 @@ const WIN_CONFIGS = {
     svgPath: 'M3 7h8l2 3h12v15H3V7z',
   },
   // Mobile-only apps
+  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
   chatgpt: {
     title: 'ChatGPT',
     color: 'green',
     defaultW: 460, defaultH: 500,
     svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM9 14l3-6 3 6M10.5 11.5h5',
   },
+  */
   claudeapp: {
     title: 'Claude',
     color: 'orange',
@@ -191,12 +195,14 @@ const WIN_CONFIGS = {
     defaultW: 800, defaultH: 580,
     svgPath: 'M3 7h8l2 3h12v15H3V7zM10 15h8M10 19h5',
   },
+  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
   testimonials: {
     title: 'Empfehlungen',
     color: 'cyan',
     defaultW: 640, defaultH: 520,
     svgPath: 'M4 6h20v12H13l-5 4v-4H4V6zM8 10h12M8 14h8',
   },
+  */
   placeholder: {
     title: 'Mehr',
     color: 'indigo',
@@ -212,6 +218,7 @@ let zCounter = 100;
 let activeWindowId = null;
 const openWindows = new Map(); // id → { el, state, savedPos, savedSize }
 let windowOpenCount = 0;
+let _blogTargetPost = null; // Blog-Beitrag, zu dem direkt gesprungen werden soll (z. B. aus Google Fotos)
 
 // ─────────────────────────────────────────────────
 // WINDOW MANAGER
@@ -491,10 +498,10 @@ function initWindowContent(id, el) {
     bambu:          buildBambu,
     homeassistant:  buildHA,
     packages:       buildPackages,
-    changelog:      buildChangelog,
+    // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
-    chatgpt:        buildChatGPT,
+    // chatgpt:        buildChatGPT, // vorerst deaktiviert
     claudeapp:      buildClaudeApp,
     outlook:        buildOutlook,
     teams:          buildTeams,
@@ -514,7 +521,7 @@ function initWindowContent(id, el) {
     sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
-    testimonials:   buildTestimonials,
+    // testimonials:   buildTestimonials, // vorerst deaktiviert
   };
   if (contentFns[id]) {
     if (id === 'sysmon' && typeof _tmInitialTab !== 'undefined' && _tmInitialTab) {
@@ -1126,7 +1133,7 @@ const TERM_COMMANDS = {
     { t: 'dim', v: '[sudo] Passwort für universe: ****' },
     { t: 'empty' },
     { t: 'success', v: 'Das klingt nach einem ausgezeichneten Plan.' },
-    { t: 'out', v: 'Schreib mir: niklas@fauteck.eu' },
+    { t: 'out', v: 'Schreib mir: me@fauteck.eu' },
     { t: 'out', v: 'Oder direkt: www.linkedin.com/in/fauteck/' },
   ],
   'rm bureaucracy': () => [
@@ -1236,12 +1243,12 @@ const TERM_COMMANDS = {
     { t: 'out', v: 'Reaktionszeit: In der Regel innerhalb von 24h' },
     { t: 'out', v: 'Timezone:      Europe/Berlin (CET/CEST)' },
     { t: 'empty' },
-    { t: 'dim', v: 'Kontakt: niklas@fauteck.eu · www.linkedin.com/in/fauteck/' },
+    { t: 'dim', v: 'Kontakt: me@fauteck.eu · www.linkedin.com/in/fauteck/' },
   ],
   'contact': () => [
     { t: 'bold', v: '# Kontakt' },
     { t: 'empty' },
-    { t: 'success', v: 'E-Mail:     niklas@fauteck.eu' },
+    { t: 'success', v: 'E-Mail:     me@fauteck.eu' },
     { t: 'success', v: 'LinkedIn:   www.linkedin.com/in/fauteck/' },
     { t: 'empty' },
     { t: 'out', v: 'Reaktionszeit: In der Regel innerhalb von 24h' },
@@ -1511,7 +1518,7 @@ function renderTmProzesse(el) {
     <div class="tm-proc">
       <div class="tm-proc-header">
         <div class="tm-proc-title">PROZESSE — Niklas Fauteck</div>
-        <div class="tm-proc-uptime">UPTIME: 16+ Jahre</div>
+        <div class="tm-proc-uptime">UPTIME: 15 Jahre</div>
       </div>
       <table>
         <thead><tr>
@@ -1523,7 +1530,7 @@ function renderTmProzesse(el) {
         <div class="tm-proc-kv"><span class="k">Kernel</span><span class="v">Communication × Technology</span></div>
         <div class="tm-proc-kv"><span class="k">Shell</span><span class="v">Pragmatism 2026.03</span></div>
         <div class="tm-proc-kv"><span class="k">Standort</span><span class="v">Troisdorf bei Köln, Deutschland</span></div>
-        <div class="tm-proc-kv"><span class="k">Erreichbar</span><span class="v">niklas@fauteck.eu</span></div>
+        <div class="tm-proc-kv"><span class="k">Erreichbar</span><span class="v">me@fauteck.eu</span></div>
       </div>
     </div>
   `;
@@ -1565,7 +1572,7 @@ function renderTmLeistung(el) {
     { dim: '[proc]', val: ' automation_daemon @ HIGH — ✓ läuft' },
     { dim: '[proc]', val: ' curiosity_process @ ALWAYS — ✓ läuft' },
     { dim: '[sys] ', val: ' Standort: Troisdorf bei Köln · Shell: Pragmatism 2026.03' },
-    { dim: '[net] ', val: ' niklas@fauteck.eu — erreichbar' },
+    { dim: '[net] ', val: ' me@fauteck.eu — erreichbar' },
   ];
   const termHtml = termLines.map(l => `<div class="tm-perf-term-line"><span class="dim">${l.dim}</span><span class="val">${l.val}</span></div>`).join('');
 
@@ -1593,7 +1600,7 @@ function renderTmLeistung(el) {
           <div class="tm-perf-metric"><span class="k">Kernel</span><span class="v">Communication × Technology</span></div>
           <div class="tm-perf-metric"><span class="k">Shell</span><span class="v">Pragmatism 2026.03</span></div>
           <div class="tm-perf-metric"><span class="k">Standort</span><span class="v">Troisdorf bei Köln, DE</span></div>
-          <div class="tm-perf-metric"><span class="k">Erreichbar</span><span class="v">niklas@fauteck.eu</span></div>
+          <div class="tm-perf-metric"><span class="k">Erreichbar</span><span class="v">me@fauteck.eu</span></div>
         </div>
         <div class="tm-perf-terminal">${termHtml}</div>
       </div>
@@ -2746,27 +2753,27 @@ function buildOutlook(body) {
   const mails = [
     { from: 'IT-Support RTL', subject: 'Wartungsfenster: Media Hub Update', time: '09:12', date: '19. Mrz 2026, 09:12', unread: true,
       preview: 'Geplantes Wartungsfenster morgen von 22:00-02:00 Uhr...',
-      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: 'Technik-Team',
+      to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: 'Technik-Team',
       body: '<p>Hallo zusammen,</p><p>wir planen ein Wartungsfenster <b>morgen von 22:00 bis 02:00 Uhr</b> für das Media Hub Update auf Version 4.2. Während dieser Zeit kann es zu kurzzeitigen Ausfällen kommen.</p><p>Bitte stellt sicher, dass keine kritischen Prozesse in diesem Zeitraum laufen. Bei Fragen wendet euch an den IT-Support.</p><p>Viele Grüße,<br>IT-Support RTL</p>' },
     { from: 'Produktteam', subject: 'Sprint Review – Einladung', time: '08:47', date: '19. Mrz 2026, 08:47', unread: true,
       preview: 'Hallo Niklas, hiermit lädt das Produktteam zum Sprint-Review ein...',
-      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
       body: '<p>Hallo Niklas,</p><p>hiermit laden wir dich herzlich zum <b>Sprint Review am Freitag, 21. März um 14:00 Uhr</b> ein. Wir werden die Ergebnisse des aktuellen Sprints vorstellen und die nächsten Schritte besprechen.</p><p>Agenda:<br>1. Demo der neuen Suchfunktion<br>2. Performance-Verbesserungen Media Hub<br>3. Ausblick Sprint 12</p><p>Beste Grüße,<br>Das Produktteam</p>' },
     { from: 'Jira Automation', subject: '[KOMM-4821] Status geändert: Done', time: 'Gestern', date: '18. Mrz 2026, 16:30', unread: false,
       preview: 'Das Ticket "Media Hub: Bild-Upload optimieren" wurde auf Done gesetzt.',
-      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
       body: '<p>Das Ticket <b>KOMM-4821</b> &quot;Media Hub: Bild-Upload optimieren&quot; wurde von Sarah K. auf <span style="color:#10b981;font-weight:600">Done</span> gesetzt.</p><p>Änderungen:<br>- Bildkomprimierung auf WebP umgestellt<br>- Upload-Limit auf 25 MB erhöht<br>- Fortschrittsanzeige implementiert</p>' },
     { from: 'Confluence', subject: 'Seite aktualisiert: Systemarchitektur', time: 'Gestern', date: '18. Mrz 2026, 14:15', unread: false,
       preview: 'Max Mustermann hat die Seite "Systemarchitektur 2026" bearbeitet.',
-      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
       body: '<p>Max Mustermann hat die Seite <b>&quot;Systemarchitektur 2026&quot;</b> im Bereich Technik-Dokumentation bearbeitet.</p><p>Änderungen: Neues Diagramm für Microservice-Kommunikation hinzugefügt, API-Gateway-Konfiguration aktualisiert.</p><p><a href="#" style="color:#0078d4">Seite anzeigen</a></p>' },
     { from: 'GitHub', subject: '[docker-configs] PR #47 merged', time: 'Di.', date: '17. Mrz 2026, 11:22', unread: false,
       preview: 'Pull Request #47 "Update Home Assistant to 2026.3" wurde gemergt.',
-      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
       body: '<p>Pull Request <b>#47</b> &quot;Update Home Assistant to 2026.3&quot; wurde erfolgreich in <code>main</code> gemergt.</p><p>Änderungen:<br>- Home Assistant Core auf 2026.3.1<br>- HACS auf v2.1.0<br>- Neue Zigbee2MQTT-Konfiguration</p><p>CI/CD Pipeline: <span style="color:#10b981">&#10003; Alle Checks bestanden</span></p>' },
     { from: 'Bambu Lab', subject: 'Druckauftrag abgeschlossen', time: 'Mo.', date: '16. Mrz 2026, 19:45', unread: false,
       preview: 'Ihr Druckauftrag "Katheterspiegelhalter_v3" wurde erfolgreich abgeschlossen (7h 23min).',
-      to: 'Niklas Fauteck &lt;niklas@fauteck.eu&gt;', cc: null,
+      to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
       body: '<p>Ihr Druckauftrag wurde erfolgreich abgeschlossen!</p><p><b>Datei:</b> Katheterspiegelhalter_v3.3mf<br><b>Drucker:</b> Bambu Lab X1C<br><b>Material:</b> PLA Basic (Weiß)<br><b>Dauer:</b> 7h 23min<br><b>Verbrauch:</b> 48g</p><p>Der Drucker ist bereit für den nächsten Auftrag.</p>' },
   ];
 
@@ -2827,7 +2834,7 @@ function buildOutlookDesktop(body, mails) {
             <div class="ol-desk-account-avatar">N</div>
             <div class="ol-desk-account-info">
               <div class="ol-desk-account-name">Niklas Fauteck</div>
-              <div class="ol-desk-account-mail">niklas@fauteck.eu</div>
+              <div class="ol-desk-account-mail">me@fauteck.eu</div>
             </div>
           </div>
           <div class="ol-desk-folders">
@@ -2844,7 +2851,7 @@ function buildOutlookDesktop(body, mails) {
             <a class="ol-desk-contact-link" href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener noreferrer">
               <span class="ol-desk-contact-icon" style="color:#0a66c2">in</span> LinkedIn
             </a>
-            <a class="ol-desk-contact-link" href="mailto:niklas@fauteck.eu">
+            <a class="ol-desk-contact-link" href="mailto:me@fauteck.eu">
               <span class="ol-desk-contact-icon" style="color:#52b788">✉</span> E-Mail
             </a>
           </div>
@@ -3016,7 +3023,7 @@ function buildOutlookMobile(body, mails) {
             <span class="outlook-contact-icon" style="background:rgba(10,102,194,0.12)">in</span>
             <span>LinkedIn</span>
           </a>
-          <a class="outlook-contact-link" href="mailto:niklas@fauteck.eu">
+          <a class="outlook-contact-link" href="mailto:me@fauteck.eu">
             <span class="outlook-contact-icon" style="background:rgba(82,183,136,0.12)">✉</span>
             <span>E-Mail</span>
           </a>
@@ -5021,28 +5028,45 @@ function trackTermCmd(cmd) {
 }
 
 // ─────────────────────────────────────────────────
-// GOOGLE PHOTOS
+// GOOGLE PHOTOS — echte Fotos aus dem Blog, Klick öffnet den Beitrag
 // ─────────────────────────────────────────────────
+function openBlogPost(postId) {
+  const isMob = window.innerWidth < 768;
+  // Desktop: Blog bereits offen → direkt zum Beitrag navigieren
+  if (!isMob && openWindows.has('blog')) {
+    const w = openWindows.get('blog');
+    if (w.state === 'minimized') restoreWindow('blog');
+    else focusWindow('blog');
+    const item = w.el.querySelector(`.blog-list-item[data-post="${postId}"]`);
+    if (item) item.click();
+    return;
+  }
+  _blogTargetPost = postId;
+  if (isMob) openMobileWindow('blog');
+  else openWindow('blog');
+}
+
 function buildPhotos(body) {
   const isMob = window.innerWidth < 768;
+  const cols  = isMob ? 3 : 4;
 
-  const albums = [
-    { name: '2025',         count: 48, grad: 'linear-gradient(135deg,#2563eb,#7c3aed)' },
-    { name: 'RTL Events',   count: 23, grad: 'linear-gradient(135deg,#dc2626,#d97706)' },
-    { name: '3D Druck',     count: 17, grad: 'linear-gradient(135deg,#059669,#0d9488)' },
-    { name: 'Zuhause',      count: 34, grad: 'linear-gradient(135deg,#ea580c,#d97706)' },
-    { name: 'Reisen',       count: 12, grad: 'linear-gradient(135deg,#0891b2,#2563eb)' },
-    { name: 'Smart Home',   count: 9,  grad: 'linear-gradient(135deg,#7c3aed,#db2777)' },
-  ];
-
-  // Fake photo tiles: 18 gradient placeholders with subtle pattern variations
-  const tilePalettes = [
-    '#1d4ed8', '#2563eb', '#7c3aed', '#6d28d9', '#dc2626', '#b91c1c',
-    '#059669', '#065f46', '#d97706', '#b45309', '#0891b2', '#0e7490',
-    '#db2777', '#9d174d', '#16a34a', '#ea580c', '#4f46e5', '#0f766e',
-  ];
-
-  const cols = isMob ? 3 : 4;
+  // Bilder aus den Blog-Beiträgen extrahieren (Markdown ![alt](src))
+  const imgRe       = /!\[([^\]]*)\]\(([^)]+)\)/g;
+  const photos      = []; // alle Bilder, neueste zuerst (BLOG_POSTS ist bereits sortiert)
+  const albumsByPost = []; // ein Album je Beitrag mit Bildern
+  BLOG_POSTS.forEach(post => {
+    const imgs = [];
+    let m;
+    imgRe.lastIndex = 0;
+    while ((m = imgRe.exec(post.content)) !== null) {
+      const photo = { alt: m[1], src: m[2], postId: post.id, postTitle: post.title, date: post.date };
+      imgs.push(photo);
+      photos.push(photo);
+    }
+    if (imgs.length) {
+      albumsByPost.push({ postId: post.id, title: post.title, count: imgs.length, cover: imgs[0].src });
+    }
+  });
 
   body.style.padding = '0';
   body.style.overflow = 'hidden';
@@ -5064,71 +5088,39 @@ function buildPhotos(body) {
 
       <div class="photos-scroll" id="photos-scroll">
 
-        <!-- Albums -->
-        <div class="photos-section-label">Alben</div>
+        <!-- Alben = Blog-Beiträge -->
+        <div class="photos-section-label">Alben · aus dem Blog</div>
         <div class="photos-albums">
-          ${albums.map(a => `
-            <div class="photos-album" data-album="${a.name}">
-              <div class="photos-album-cover" style="background:${a.grad}">
-                <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
-                  <rect x="4" y="8" width="20" height="14" rx="2" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/>
-                  <circle cx="9" cy="13" r="2" fill="white" opacity="0.7"/>
-                  <path d="M4 19l5-4 4 3 4-5 5 6" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
-              </div>
-              <div class="photos-album-name">${a.name}</div>
-              <div class="photos-album-count">${a.count} Fotos</div>
+          ${albumsByPost.map(a => `
+            <div class="photos-album" data-post="${a.postId}" role="button" tabindex="0" title="${escapeHtml(a.title)}">
+              <div class="photos-album-cover" style="background-image:url('${a.cover}');background-size:cover;background-position:center"></div>
+              <div class="photos-album-name">${escapeHtml(a.title)}</div>
+              <div class="photos-album-count">${a.count} Foto${a.count === 1 ? '' : 's'}</div>
             </div>
           `).join('')}
         </div>
 
-        <!-- Photo grid -->
-        <div class="photos-section-label" style="margin-top:16px">Zuletzt · März 2026</div>
+        <!-- Alle Fotos -->
+        <div class="photos-section-label" style="margin-top:16px">Alle Fotos · ${photos.length}</div>
         <div class="photos-grid" style="grid-template-columns:repeat(${cols},1fr)">
-          ${tilePalettes.map((c, i) => `
-            <div class="photos-tile" style="background:${c};opacity:${0.7 + (i % 4) * 0.075}" data-tile="${i}">
-              ${i === 3 ? '<div class="photos-tile-icon">🏠</div>' : ''}
-              ${i === 7 ? '<div class="photos-tile-icon">🖨️</div>' : ''}
-              ${i === 11 ? '<div class="photos-tile-icon">🎬</div>' : ''}
-              ${i === 15 ? '<div class="photos-tile-icon">✈️</div>' : ''}
+          ${photos.map(p => `
+            <div class="photos-tile" data-post="${p.postId}" role="button" tabindex="0" title="${escapeHtml(p.postTitle)}">
+              <img src="${p.src}" alt="${escapeHtml(p.alt)}" loading="lazy">
+              <span class="photos-tile-cap">${escapeHtml(p.postTitle)}</span>
             </div>
           `).join('')}
         </div>
-      </div>
-
-      <!-- Lightbox -->
-      <div class="photos-lightbox" id="photos-lightbox" style="display:none">
-        <button class="photos-lb-close" id="photos-lb-close">✕</button>
-        <div class="photos-lb-img" id="photos-lb-img"></div>
-        <div class="photos-lb-caption" id="photos-lb-caption">März 2026</div>
       </div>
     </div>
   `;
 
-  // Album click → filter label
-  body.querySelectorAll('.photos-album').forEach(el => {
-    el.addEventListener('click', () => {
-      body.querySelector('.photos-section-label:last-of-type').textContent =
-        el.dataset.album + ' · ' + albums.find(a => a.name === el.dataset.album)?.count + ' Fotos';
-      body.querySelectorAll('.photos-album').forEach(a => a.classList.remove('active'));
-      el.classList.add('active');
+  // Klick (oder Enter/Space) auf Album bzw. Foto → zugehörigen Blog-Beitrag öffnen
+  body.querySelectorAll('.photos-album, .photos-tile').forEach(el => {
+    const go = () => openBlogPost(el.dataset.post);
+    el.addEventListener('click', go);
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
     });
-  });
-
-  // Tile click → lightbox
-  body.querySelectorAll('.photos-tile').forEach((tile, i) => {
-    tile.addEventListener('click', () => {
-      const lb     = body.querySelector('#photos-lightbox');
-      const lbImg  = body.querySelector('#photos-lb-img');
-      const lbCap  = body.querySelector('#photos-lb-caption');
-      lb.style.display = 'flex';
-      lbImg.style.background = tilePalettes[i];
-      lbCap.textContent = `Foto ${i + 1} von 18 · März 2026`;
-    });
-  });
-
-  body.querySelector('#photos-lb-close')?.addEventListener('click', () => {
-    body.querySelector('#photos-lightbox').style.display = 'none';
   });
 }
 
@@ -5422,8 +5414,8 @@ const MOB_LABELS = {
 };
 
 // Page 1 apps (main homescreen), Page 2: placeholder for future use
-const MOB_PAGE1 = ['career', 'photos', 'claudeapp', 'teams', 'jira', 'github', 'games', 'filesapp', 'projects', 'testimonials'];
-const MOB_PAGE2 = ['homeassistant', 'chatgpt', 'changelog', 'bambu'];
+const MOB_PAGE1 = ['career', 'photos', 'claudeapp', 'teams', 'jira', 'github', 'games', 'filesapp', 'projects']; // 'testimonials' vorerst deaktiviert
+const MOB_PAGE2 = ['homeassistant', 'bambu']; // 'chatgpt', 'changelog' vorerst deaktiviert
 const MOB_DOCK  = ['about', 'outlook', 'blog'];
 
 const COLOR_MAP = {
@@ -5743,10 +5735,10 @@ function openMobileWindow(id) {
     bambu:          buildBambu,
     homeassistant:  buildHA,
     packages:       buildPackages,
-    changelog:      buildChangelog,
+    // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
-    chatgpt:        buildChatGPT,
+    // chatgpt:        buildChatGPT, // vorerst deaktiviert
     claudeapp:      buildClaudeApp,
     outlook:        buildOutlook,
     teams:          buildTeams,
@@ -5766,7 +5758,7 @@ function openMobileWindow(id) {
     sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
-    testimonials:   buildTestimonials,
+    // testimonials:   buildTestimonials, // vorerst deaktiviert
   };
   // Redirect packages/projects to Task-Manager with tab on mobile too
   if (TM_TAB_REDIRECT[id]) {
@@ -6142,18 +6134,39 @@ function buildBlog(body) {
   body.style.flexDirection = 'column';
   body.style.background = '#ffffff';
 
-  const postListHtml = BLOG_POSTS.map((p, i) => `
-    <div class="blog-list-item${i === 0 ? ' active' : ''}" data-post="${p.id}">
-      <div class="blog-list-title">${escapeHtml(p.title)}</div>
-      <div class="blog-list-meta">${p.date} · ${p.tags.join(', ')}</div>
+  // Beiträge nach Jahr gruppieren (BLOG_POSTS ist bereits neueste-zuerst sortiert)
+  const byYear    = {};
+  const yearOrder = [];
+  BLOG_POSTS.forEach(p => {
+    const y = (p.date || '').slice(0, 4) || '—';
+    if (!byYear[y]) { byYear[y] = []; yearOrder.push(y); }
+    byYear[y].push(p);
+  });
+  const firstId = BLOG_POSTS[0].id;
+
+  // Sidebar (Desktop): nach Jahr gruppierte Liste mit Anzahl je Jahr
+  const postListHtml = yearOrder.map(y => `
+    <div class="blog-year-group">
+      <div class="blog-year-label">${y}<span class="blog-year-count">${byYear[y].length}</span></div>
+      ${byYear[y].map(p => `
+        <div class="blog-list-item${p.id === firstId ? ' active' : ''}" data-post="${p.id}">
+          <div class="blog-list-title">${escapeHtml(p.title)}</div>
+          <div class="blog-list-meta">${p.date} · ${p.tags.join(', ')}</div>
+        </div>
+      `).join('')}
     </div>
   `).join('');
 
-  const mobileNavHtml = BLOG_POSTS.map((p, i) => `
-    <button class="blog-mob-nav-btn${i === 0 ? ' active' : ''}" data-post="${p.id}">
-      ${escapeHtml(p.title)}
-    </button>
-  `).join('');
+  // Mobile: kompaktes, nach Jahr gruppiertes Dropdown statt langer Button-Leiste
+  const mobileNavHtml = `
+    <select class="blog-mob-select" id="blog-mob-select" aria-label="Blog-Beitrag auswählen">
+      ${yearOrder.map(y => `
+        <optgroup label="${y}">
+          ${byYear[y].map(p => `<option value="${p.id}"${p.id === firstId ? ' selected' : ''}>${escapeHtml(p.title)}</option>`).join('')}
+        </optgroup>
+      `).join('')}
+    </select>
+  `;
 
   function renderPost(post) {
     const titleHtml = `<div class="blog-line blog-line-title">${escapeHtml(post.title)}</div><div class="blog-line blog-line-empty">&nbsp;</div>`;
@@ -6213,41 +6226,38 @@ function buildBlog(body) {
   }
   updateLineNums();
 
-  // Sidebar clicks
+  // Beitrag anzeigen — zentral, von Sidebar, Dropdown und Direktsprung genutzt
+  function showPost(postId) {
+    const post = BLOG_POSTS.find(p => p.id === postId);
+    if (!post) return;
+    body.querySelectorAll('.blog-list-item').forEach(i =>
+      i.classList.toggle('active', i.dataset.post === postId));
+    const sel = body.querySelector('#blog-mob-select');
+    if (sel && sel.value !== postId) sel.value = postId;
+    body.querySelector('#blog-text').innerHTML = renderPost(post);
+    body.querySelector('.blog-file-path').textContent = `~/blog/${post.id}.md`;
+    const tab = body.querySelector('.blog-tab');
+    if (tab) { tab.textContent = post.title.substring(0, 30) + '…'; tab.dataset.post = post.id; }
+    updateLineNums();
+    const active = body.querySelector('.blog-list-item.active');
+    if (active) active.scrollIntoView({ block: 'nearest' });
+  }
+
+  // Sidebar-Klicks (Desktop)
   body.querySelectorAll('.blog-list-item').forEach(item => {
-    item.addEventListener('click', () => {
-      body.querySelectorAll('.blog-list-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      body.querySelectorAll('.blog-mob-nav-btn').forEach(b => b.classList.remove('active'));
-      const mobBtn = body.querySelector(`.blog-mob-nav-btn[data-post="${item.dataset.post}"]`);
-      if (mobBtn) mobBtn.classList.add('active');
-      const post = BLOG_POSTS.find(p => p.id === item.dataset.post);
-      if (!post) return;
-      body.querySelector('#blog-text').innerHTML = renderPost(post);
-      body.querySelector('.blog-file-path').textContent = `~/blog/${post.id}.md`;
-      body.querySelector('.blog-tab').textContent = post.title.substring(0, 30) + '…';
-      body.querySelector('.blog-tab').dataset.post = post.id;
-      updateLineNums();
-    });
+    item.addEventListener('click', () => showPost(item.dataset.post));
   });
 
-  // Mobile nav clicks
-  body.querySelectorAll('.blog-mob-nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      body.querySelectorAll('.blog-mob-nav-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      body.querySelectorAll('.blog-list-item').forEach(i => i.classList.remove('active'));
-      const sidebarItem = body.querySelector(`.blog-list-item[data-post="${btn.dataset.post}"]`);
-      if (sidebarItem) sidebarItem.classList.add('active');
-      const post = BLOG_POSTS.find(p => p.id === btn.dataset.post);
-      if (!post) return;
-      body.querySelector('#blog-text').innerHTML = renderPost(post);
-      body.querySelector('.blog-file-path').textContent = `~/blog/${post.id}.md`;
-      body.querySelector('.blog-tab').textContent = post.title.substring(0, 30) + '…';
-      body.querySelector('.blog-tab').dataset.post = post.id;
-      updateLineNums();
-    });
-  });
+  // Dropdown-Wechsel (Mobile)
+  const mobSelect = body.querySelector('#blog-mob-select');
+  if (mobSelect) mobSelect.addEventListener('change', () => showPost(mobSelect.value));
+
+  // Direktsprung zu einem bestimmten Beitrag (z. B. aus Google Fotos)
+  if (_blogTargetPost) {
+    const target = _blogTargetPost;
+    _blogTargetPost = null;
+    showPost(target);
+  }
 }
 
 // ─────────────────────────────────────────────────
@@ -6268,7 +6278,7 @@ const PROJECTS_DATA = [
     role: 'Strategische Leitung & Umsetzung',
     desc: 'Systematische Integration von KI-Tools in redaktionelle und kommunikative Workflows. Fokus auf echte Prozessverbesserung statt Tool-Showcase.',
     tech: ['Claude', 'ChatGPT', 'n8n', 'Make.com', 'Custom APIs'],
-    impact: 'Automatisierte Content-Prozesse · Reduzierung manueller Routineaufgaben um ca. 40%',
+    impact: 'Automatisierte Content-Prozesse · Spürbar weniger manuelle Redaktions-Workflows',
   },
   {
     name: 'Prozessautomation Kommunikation',
@@ -6348,7 +6358,7 @@ const TESTIMONIALS_DATA = [
 
 const ACHIEVEMENTS_DATA = [
   { icon: '📊', label: 'Media Hub', value: '1.700+ Nutzer:innen' },
-  { icon: '🤖', label: 'KI-Workflows', value: '~40% weniger Routineaufgaben' },
+  { icon: '🤖', label: 'KI-Workflows', value: 'Spürbar weniger manuelle Workflows' },
   { icon: '⚡', label: 'Automatisierung', value: 'Durchgängig automatisierte Pipelines' },
   { icon: '🎯', label: 'Tool-Adoption', value: 'Hohe Akzeptanz bei allen Rollouts' },
 ];
