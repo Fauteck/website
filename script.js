@@ -45,12 +45,14 @@ const WIN_CONFIGS = {
     defaultW: 920, defaultH: 580,
     svgPath: 'M3 13L14 4l11 9M7 13h14v11H7zM11 18h6v6h-6z',
   },
+  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
   packages: {
     title: 'Installierte Apps',
     color: 'indigo',
     defaultW: 560, defaultH: 520,
     svgPath: 'M3 3h10v10H3zM15 3h10v10H15zM3 15h10v10H3zM15 15h10v10H15z',
   },
+  */
   /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
   changelog: {
     title: 'Changelog',
@@ -224,7 +226,7 @@ let _blogTargetPost = null; // Blog-Beitrag, zu dem direkt gesprungen werden sol
 // WINDOW MANAGER
 // ─────────────────────────────────────────────────
 // Map packages/projects to Task-Manager tabs
-const TM_TAB_REDIRECT = { packages: 'appverlauf', projects: 'dienste' };
+const TM_TAB_REDIRECT = { projects: 'dienste' }; // 'packages' → 'appverlauf' entfällt (Tab deaktiviert)
 let _tmInitialTab = null;
 
 function openWindow(id) {
@@ -497,7 +499,7 @@ function initWindowContent(id, el) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    packages:       buildPackages,
+    // packages:       buildPackages, // vorerst deaktiviert
     // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
@@ -573,22 +575,15 @@ function buildAbout(body) {
     <div class="brave-content">
       <div class="about-content">
         <h1>Niklas Fauteck</h1>
-        <div class="about-role">Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding</div>
+        <div class="about-role">Andere planen die Transformation. Ich starte sie. Mit Strategie, KI und einem Faible fürs Liefern.</div>
         <hr class="about-hr">
-        <p>
-          Ich verbinde Kommunikation, Technologie und digitale Transformation.
-          Als Head of Digital Transformation Kommunikation bei RTL Deutschland verantwortete ich die strategische
-          Weiterentwicklung digitaler Systeme. Heute arbeite ich als Projektmanager und gebe mein Wissen als Coach
-          und Vibecoding-Experte weiter – und zeige, wie man mit KI als Co-Pilot eigene digitale Lösungen baut.
-        </p>
-        <h2>Kernthesen</h2>
-        <ul class="about-theses">
-          <li>Digitalisierung ist kein Selbstzweck, sondern Mittel für Wirkung</li>
-          <li>Das beste Tool ist das, das Reibung reduziert</li>
-          <li>Technologie versteht man nur, wenn man sie selbst anfasst</li>
-          <li>Komplexität verstehen – Einfachheit liefern</li>
-          <li>Systeme, die laufen, sind besser als solche, die präsentiert werden</li>
-        </ul>
+        <h2>Digitale Ideen werden Realität — mit Strategie, KI und dem richtigen Sparringspartner.</h2>
+        <p>Digitale Transformation entscheidet sich für mich nicht in Strategie-Runden, sondern an dem Tag, an dem jemand den ersten Prototyp ins Laufen bringt.</p>
+        <p>Ich kenne die Stelle, an der die meisten Unternehmen ins Stocken geraten: zwischen Fachabteilung und IT. Als Head of Digital Transformation Kommunikation bei RTL Deutschland habe ich gebaut, automatisiert und erklärt – bis aus Ideen funktionierende Systeme wurden. Dieses Wissen bringe ich jetzt zu Organisationen und Menschen, die digitale Transformation nicht nur verwalten wollen.</p>
+        <p>Zuvor durfte ich viele Jahre in der PR für VOX und RTL+ dafür sorgen, dass Formate wie „Sing meinen Song", „Kitchen Impossible" oder „Goodbye Deutschland!" die Aufmerksamkeit bekommen, die sie verdienen – on air, online und überall dazwischen.</p>
+        <p>Mein Antrieb: Kommunikation, die wirkt. Prozesse, die laufen. Und Projekte, die nicht nur auf dem Papier gut aussehen, sondern echten Mehrwert schaffen.</p>
+        <p>Und ich bleibe nicht in der Strategie: Mit KI als Werkzeug baue ich Prototypen und kleine Tools selbst – „Vibecoding“ nenne ich das. So weiß ich aus erster Hand, was zwischen Idee und lauffähigem System wirklich passiert.</p>
+        <p>Andere planen. Ich starte.</p>
         <div class="about-cta">
           <button class="btn-primary" onclick="openWindow('career')">💼 Arbeitsplatz öffnen</button>
           <button class="btn-ghost"   onclick="openWindow('terminal')">$ Terminal starten</button>
@@ -922,8 +917,6 @@ const TERM_COMMANDS = {
     { t: 'accent',  v: '  cat values.txt  → Werte und Prinzipien' },
     { t: 'accent',  v: '  cat about.txt   → Kurzprofil' },
     { t: 'accent',  v: '  cat README.md   → Projekt-Dokumentation' },
-    { t: 'accent',  v: '  skills          → Skill-Übersicht' },
-    { t: 'accent',  v: '  skills --verbose → Detaillierte Skills' },
     { t: 'accent',  v: '  now             → Aktueller Fokus' },
     { t: 'accent',  v: '  anti_patterns   → Was ich ablehne' },
     { t: 'accent',  v: '  history         → Interaktionshistorie' },
@@ -931,7 +924,6 @@ const TERM_COMMANDS = {
     { t: 'accent',  v: '  man niklas      → Manual Page' },
     { t: 'accent',  v: '  neofetch        → System-Info' },
     { t: 'accent',  v: '  cowsay <text>   → ASCII-Kuh' },
-    { t: 'accent',  v: '  apt list        → Paket-Verwaltung' },
     { t: 'accent',  v: '  matrix          → 🐇' },
     { t: 'accent',  v: '  coffee          → ☕' },
     { t: 'accent',  v: '  clear           → Terminal leeren' },
@@ -1014,38 +1006,7 @@ const TERM_COMMANDS = {
     { t: 'success', v: '→ Pragmatismus vor Perfektion' },
     { t: 'success', v: '→ Adoption ist wichtiger als Implementierung' },
   ],
-  skills: () => [
-    { t: 'bold', v: 'niklas@niklasos:~$ skills' },
-    { t: 'empty' },
-    { t: 'accent',  v: 'Languages:   DE (native), EN (professional)' },
-    { t: 'accent',  v: 'AI:          Claude, ChatGPT, Cursor, n8n, Make.com' },
-    { t: 'accent',  v: 'Project:     Confluence, Jira, Notion, Miro' },
-    { t: 'accent',  v: 'Infra:       Docker, GitHub Actions, Home Assistant' },
-    { t: 'accent',  v: 'Analytics:   Power BI, Google Analytics' },
-    { t: 'dim',     v: '' },
-    { t: 'dim',     v: 'Für Details: skills --verbose' },
-  ],
-  'skills --verbose': () => [
-    { t: 'bold',    v: '# Capability Report — niklas-fauteck v2026.03' },
-    { t: 'empty' },
-    { t: 'success', v: '[AI & Automation]' },
-    { t: 'out',     v: '  Prompt Engineering      ████████████████████ expert' },
-    { t: 'out',     v: '  AI Workflow Design      ████████████████████ expert' },
-    { t: 'out',     v: '  n8n / Make.com          ████████████████░░░░ advanced' },
-    { t: 'out',     v: '  Vibecoding              █████████████████░░░ advanced' },
-    { t: 'empty' },
-    { t: 'success', v: '[Digital Transformation]' },
-    { t: 'out',     v: '  Strategy & Roadmapping  ████████████████████ expert' },
-    { t: 'out',     v: '  Change Management       ████████████████████ expert' },
-    { t: 'out',     v: '  Tool Adoption           ████████████████████ expert' },
-    { t: 'out',     v: '  Stakeholder Mgmt        █████████████████░░░ advanced' },
-    { t: 'empty' },
-    { t: 'success', v: '[Technical]' },
-    { t: 'out',     v: '  Docker / Containerizing ████████████░░░░░░░░ intermediate' },
-    { t: 'out',     v: '  GitHub / GitOps         █████████████░░░░░░░ intermediate' },
-    { t: 'out',     v: '  Home Assistant          █████████████████░░░ advanced' },
-    { t: 'out',     v: '  3D Printing (FDM)       ████████████████░░░░ advanced' },
-  ],
+  // 'skills' und 'skills --verbose' entfernt (Skill-Befehl deaktiviert)
   now: () => [
     { t: 'bold', v: '# Aktueller Fokus — v2026.03' },
     { t: 'empty' },
@@ -1147,28 +1108,7 @@ const TERM_COMMANDS = {
     { t: 'out', v: '64 bytes from niklas-fauteck: time=11ms' },
     { t: 'success', v: 'Status: reachable · Response: fast · Connection: open' },
   ],
-  'apt list --installed': () => {
-    const lines = [{ t: 'bold', v: 'Installierte Pakete:' }, { t: 'empty' }];
-    PACKAGES.forEach(cat => {
-      lines.push({ t: 'success', v: `[${cat.cat}]` });
-      cat.items.forEach(p => {
-        lines.push({ t: 'out', v: `  ${p.name}/${p.ver} [installiert]` });
-      });
-      lines.push({ t: 'empty' });
-    });
-    return lines;
-  },
-  'apt list': () => [
-    { t: 'dim', v: 'Hinweis: Nutze --installed für alle installierten Pakete.' },
-  ],
-  'sudo apt update': () => [
-    { t: 'success', v: 'Hit:1 https://niklasos.dev stable InRelease' },
-    { t: 'success', v: 'Hit:2 https://niklasos.dev/ai stable InRelease' },
-    { t: 'success', v: 'Hit:3 https://niklasos.dev/tools stable InRelease' },
-    { t: 'out', v: 'Paketlisten werden gelesen... Fertig' },
-    { t: 'out', v: 'Abhängigkeitsbaum wird aufgebaut... Fertig' },
-    { t: 'success', v: 'Alle Pakete sind aktuell.' },
-  ],
+  // 'apt list --installed' / 'apt list' / 'sudo apt update' entfernt — Installierte-Apps-Liste deaktiviert
   'neofetch': () => [
     { t: 'accent', v: '        ╭──────────────╮' },
     { t: 'accent', v: '        │   ███╗  ██╗  │    OS: NiklasOS 2026 LTS' },
@@ -1441,8 +1381,7 @@ function buildSysmon(body, _id, initialTab) {
   const tabs = [
     { id: 'prozesse',    label: 'Prozesse',     icon: '<svg viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
     { id: 'leistung',    label: 'Leistung',     icon: '<svg viewBox="0 0 18 18" fill="none"><polyline points="2,14 5,8 8,11 11,5 14,9 17,3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
-    { id: 'benutzer',    label: 'Benutzer',     icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 16c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
-    { id: 'appverlauf',  label: 'App-Verlauf',  icon: '<svg viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>' },
+    // 'benutzer' (Capability Report/Skills) und 'appverlauf' (Installierte Apps) vorerst deaktiviert
     { id: 'dienste',     label: 'Dienste',      icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M9 1v3M9 14v3M1 9h3M14 9h3M3.3 3.3l2.1 2.1M12.6 12.6l2.1 2.1M3.3 14.7l2.1-2.1M12.6 5.4l2.1-2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>' },
   ];
 
@@ -1494,8 +1433,8 @@ function renderTmTab(container, tabId) {
   switch (tabId) {
     case 'prozesse':  return renderTmProzesse(container);
     case 'leistung':  return renderTmLeistung(container);
-    case 'benutzer':  return renderTmBenutzer(container);
-    case 'appverlauf': return renderTmApps(container);
+    // case 'benutzer':  return renderTmBenutzer(container); // vorerst deaktiviert
+    // case 'appverlauf': return renderTmApps(container);    // vorerst deaktiviert
     case 'dienste':   return renderTmDienste(container);
   }
 }
@@ -1941,7 +1880,7 @@ function buildBambu(body) {
           <div class="bam-sidebar-item">
             <div>
               <div class="bam-sidebar-label">0.08mm High Quality</div>
-              <div class="bam-sidebar-sub">@BBL X1C</div>
+              <div class="bam-sidebar-sub">@BBL P1S</div>
             </div>
           </div>
 
@@ -2774,7 +2713,7 @@ function buildOutlook(body) {
     { from: 'Bambu Lab', subject: 'Druckauftrag abgeschlossen', time: 'Mo.', date: '16. Mrz 2026, 19:45', unread: false,
       preview: 'Ihr Druckauftrag "Katheterspiegelhalter_v3" wurde erfolgreich abgeschlossen (7h 23min).',
       to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
-      body: '<p>Ihr Druckauftrag wurde erfolgreich abgeschlossen!</p><p><b>Datei:</b> Katheterspiegelhalter_v3.3mf<br><b>Drucker:</b> Bambu Lab X1C<br><b>Material:</b> PLA Basic (Weiß)<br><b>Dauer:</b> 7h 23min<br><b>Verbrauch:</b> 48g</p><p>Der Drucker ist bereit für den nächsten Auftrag.</p>' },
+      body: '<p>Ihr Druckauftrag wurde erfolgreich abgeschlossen!</p><p><b>Datei:</b> Katheterspiegelhalter_v3.3mf<br><b>Drucker:</b> Bambu Lab P1S<br><b>Material:</b> PLA Basic (Weiß)<br><b>Dauer:</b> 7h 23min<br><b>Verbrauch:</b> 48g</p><p>Der Drucker ist bereit für den nächsten Auftrag.</p>' },
   ];
 
   const isDesktop = !!body.closest('.window');
@@ -3316,7 +3255,7 @@ function buildGitHub(body) {
   body.innerHTML = `
     <div class="mob-gh-wrap">
       <div class="mob-gh-header">
-        <span style="font-weight:600">niklasfauteck</span>
+        <span style="font-weight:600">fauteck</span>
         <span style="font-size:11px;color:rgba(255,255,255,0.4)">4 Repositories</span>
       </div>
       <div class="mob-gh-contrib">
@@ -5020,10 +4959,10 @@ function trackTermCmd(cmd) {
     _manNiklasCount++;
     if (_manNiklasCount >= 3) showAchievement('Manual-Leser', 'Das Manual ändert sich nicht. Aber du hast es 3× gelesen.');
   }
-  // Check whoami + ls + skills sequence
+  // Check whoami + ls + now sequence
   const last3 = _termCmdHistory.slice(-3);
-  if (last3.length === 3 && last3[0] === 'whoami' && last3[1] === 'ls' && last3[2] === 'skills') {
-    showAchievement('Detektiv', 'whoami → ls → skills. Systematisch.');
+  if (last3.length === 3 && last3[0] === 'whoami' && last3[1] === 'ls' && last3[2] === 'now') {
+    showAchievement('Detektiv', 'whoami → ls → now. Systematisch.');
   }
 }
 
@@ -5414,8 +5353,9 @@ const MOB_LABELS = {
 };
 
 // Page 1 apps (main homescreen), Page 2: placeholder for future use
-const MOB_PAGE1 = ['career', 'photos', 'claudeapp', 'teams', 'jira', 'github', 'games', 'filesapp', 'projects']; // 'testimonials' vorerst deaktiviert
-const MOB_PAGE2 = ['homeassistant', 'bambu']; // 'chatgpt', 'changelog' vorerst deaktiviert
+// Alle App-Icons auf einer Mobile-Seite (Seite 2 entfällt)
+const MOB_PAGE1 = ['career', 'photos', 'projects', 'homeassistant', 'bambu', 'claudeapp', 'teams', 'jira', 'github', 'filesapp', 'games']; // 'testimonials', 'chatgpt', 'changelog' vorerst deaktiviert
+const MOB_PAGE2 = [];
 const MOB_DOCK  = ['about', 'outlook', 'blog'];
 
 const COLOR_MAP = {
@@ -5734,7 +5674,7 @@ function openMobileWindow(id) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    packages:       buildPackages,
+    // packages:       buildPackages, // vorerst deaktiviert
     // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
@@ -6134,15 +6074,17 @@ function buildBlog(body) {
   body.style.flexDirection = 'column';
   body.style.background = '#ffffff';
 
-  // Beiträge nach Jahr gruppieren (BLOG_POSTS ist bereits neueste-zuerst sortiert)
+  // Nach Veröffentlichungsdatum sortieren (neueste zuerst) – ausdrücklich nicht alphabetisch
+  const posts = [...BLOG_POSTS].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  // ... und nach Jahr gruppieren
   const byYear    = {};
   const yearOrder = [];
-  BLOG_POSTS.forEach(p => {
+  posts.forEach(p => {
     const y = (p.date || '').slice(0, 4) || '—';
     if (!byYear[y]) { byYear[y] = []; yearOrder.push(y); }
     byYear[y].push(p);
   });
-  const firstId = BLOG_POSTS[0].id;
+  const firstId = posts[0].id;
 
   // Sidebar (Desktop): nach Jahr gruppierte Liste mit Anzahl je Jahr
   const postListHtml = yearOrder.map(y => `
@@ -6157,8 +6099,12 @@ function buildBlog(body) {
     </div>
   `).join('');
 
-  // Mobile: kompaktes, nach Jahr gruppiertes Dropdown statt langer Button-Leiste
+  // Mobile: klar erkennbares Menü (Label + Dropdown), nach Jahr gruppiert
   const mobileNavHtml = `
+    <span class="blog-mob-navlabel">
+      <svg viewBox="0 0 16 16" width="13" height="13" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Beitrag auswählen
+    </span>
     <select class="blog-mob-select" id="blog-mob-select" aria-label="Blog-Beitrag auswählen">
       ${yearOrder.map(y => `
         <optgroup label="${y}">
@@ -6190,17 +6136,17 @@ function buildBlog(body) {
       <div class="blog-mob-nav">${mobileNavHtml}</div>
       <div class="blog-sidebar">
         <div class="blog-sidebar-header">
-          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 2h12v12H2z" stroke="currentColor" stroke-width="1.3"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-          Artikel
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Beiträge — Menü
         </div>
         <div class="blog-list">${postListHtml}</div>
       </div>
       <div class="blog-main">
         <div class="blog-editor-tabs">
-          <span class="blog-tab active" data-post="${BLOG_POSTS[0].id}">${escapeHtml(BLOG_POSTS[0].title.substring(0, 30))}…</span>
+          <span class="blog-tab active" data-post="${posts[0].id}">${escapeHtml(posts[0].title.substring(0, 30))}…</span>
         </div>
         <div class="blog-editor-bar">
-          <span class="blog-file-path">~/blog/${BLOG_POSTS[0].id}.md</span>
+          <span class="blog-file-path">~/blog/${posts[0].id}.md</span>
           <span class="blog-editor-bar-right">
             <a href="feed.xml" target="_blank" class="blog-rss-link" title="RSS Feed abonnieren">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
@@ -6211,7 +6157,7 @@ function buildBlog(body) {
         </div>
         <div class="blog-content" id="blog-content">
           <div class="blog-line-numbers" id="blog-line-nums"></div>
-          <div class="blog-text" id="blog-text">${renderPost(BLOG_POSTS[0])}</div>
+          <div class="blog-text" id="blog-text">${renderPost(posts[0])}</div>
         </div>
       </div>
     </div>
@@ -6607,10 +6553,11 @@ function boot() {
     initTaskbarAppsBtn();
     initSearchOverlay();
     initMobile();
-    if (isMobile) {
-      setTimeout(showFakeCall,    3 * 60 * 1000);
-      setTimeout(showFakeMessage, 4 * 60 * 1000);
-    }
+    // Fake-Anruf und Fake-Teams-Nachricht entfernt (vorerst deaktiviert)
+    // if (isMobile) {
+    //   setTimeout(showFakeCall,    3 * 60 * 1000);
+    //   setTimeout(showFakeMessage, 4 * 60 * 1000);
+    // }
     // Handle deep-linking via hash (supports #blog/post-id)
     const hash = window.location.hash.replace('#', '');
     if (hash && hash.startsWith('blog/')) {
