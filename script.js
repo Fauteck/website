@@ -926,7 +926,6 @@ const TERM_COMMANDS = {
     { t: 'accent',  v: '  man niklas      → Manual Page' },
     { t: 'accent',  v: '  neofetch        → System-Info' },
     { t: 'accent',  v: '  cowsay <text>   → ASCII-Kuh' },
-    { t: 'accent',  v: '  apt list        → Paket-Verwaltung' },
     { t: 'accent',  v: '  matrix          → 🐇' },
     { t: 'accent',  v: '  coffee          → ☕' },
     { t: 'accent',  v: '  clear           → Terminal leeren' },
@@ -1024,22 +1023,13 @@ const TERM_COMMANDS = {
     { t: 'bold',    v: '# Capability Report — niklas-fauteck v2026.03' },
     { t: 'empty' },
     { t: 'success', v: '[AI & Automation]' },
-    { t: 'out',     v: '  Prompt Engineering      ████████████████████ expert' },
-    { t: 'out',     v: '  AI Workflow Design      ████████████████████ expert' },
-    { t: 'out',     v: '  n8n / Make.com          ████████████████░░░░ advanced' },
-    { t: 'out',     v: '  Vibecoding              █████████████████░░░ advanced' },
+    { t: 'out',     v: '  Prompt Engineering · AI Workflow Design · n8n / Make.com · Vibecoding' },
     { t: 'empty' },
     { t: 'success', v: '[Digital Transformation]' },
-    { t: 'out',     v: '  Strategy & Roadmapping  ████████████████████ expert' },
-    { t: 'out',     v: '  Change Management       ████████████████████ expert' },
-    { t: 'out',     v: '  Tool Adoption           ████████████████████ expert' },
-    { t: 'out',     v: '  Stakeholder Mgmt        █████████████████░░░ advanced' },
+    { t: 'out',     v: '  Strategy & Roadmapping · Change Management · Tool Adoption · Stakeholder Mgmt' },
     { t: 'empty' },
     { t: 'success', v: '[Technical]' },
-    { t: 'out',     v: '  Docker / Containerizing ████████████░░░░░░░░ intermediate' },
-    { t: 'out',     v: '  GitHub / GitOps         █████████████░░░░░░░ intermediate' },
-    { t: 'out',     v: '  Home Assistant          █████████████████░░░ advanced' },
-    { t: 'out',     v: '  3D Printing (FDM)       ████████████████░░░░ advanced' },
+    { t: 'out',     v: '  Docker / Containerizing · GitHub / GitOps · Home Assistant · 3D Printing (FDM)' },
   ],
   now: () => [
     { t: 'bold', v: '# Aktueller Fokus — v2026.03' },
@@ -1142,28 +1132,7 @@ const TERM_COMMANDS = {
     { t: 'out', v: '64 bytes from niklas-fauteck: time=11ms' },
     { t: 'success', v: 'Status: reachable · Response: fast · Connection: open' },
   ],
-  'apt list --installed': () => {
-    const lines = [{ t: 'bold', v: 'Installierte Pakete:' }, { t: 'empty' }];
-    PACKAGES.forEach(cat => {
-      lines.push({ t: 'success', v: `[${cat.cat}]` });
-      cat.items.forEach(p => {
-        lines.push({ t: 'out', v: `  ${p.name}/${p.ver} [installiert]` });
-      });
-      lines.push({ t: 'empty' });
-    });
-    return lines;
-  },
-  'apt list': () => [
-    { t: 'dim', v: 'Hinweis: Nutze --installed für alle installierten Pakete.' },
-  ],
-  'sudo apt update': () => [
-    { t: 'success', v: 'Hit:1 https://niklasos.dev stable InRelease' },
-    { t: 'success', v: 'Hit:2 https://niklasos.dev/ai stable InRelease' },
-    { t: 'success', v: 'Hit:3 https://niklasos.dev/tools stable InRelease' },
-    { t: 'out', v: 'Paketlisten werden gelesen... Fertig' },
-    { t: 'out', v: 'Abhängigkeitsbaum wird aufgebaut... Fertig' },
-    { t: 'success', v: 'Alle Pakete sind aktuell.' },
-  ],
+  // 'apt list --installed' / 'apt list' / 'sudo apt update' entfernt — Installierte-Apps-Liste deaktiviert
   'neofetch': () => [
     { t: 'accent', v: '        ╭──────────────╮' },
     { t: 'accent', v: '        │   ███╗  ██╗  │    OS: NiklasOS 2026 LTS' },
@@ -1935,7 +1904,7 @@ function buildBambu(body) {
           <div class="bam-sidebar-item">
             <div>
               <div class="bam-sidebar-label">0.08mm High Quality</div>
-              <div class="bam-sidebar-sub">@BBL X1C</div>
+              <div class="bam-sidebar-sub">@BBL P1S</div>
             </div>
           </div>
 
@@ -2768,7 +2737,7 @@ function buildOutlook(body) {
     { from: 'Bambu Lab', subject: 'Druckauftrag abgeschlossen', time: 'Mo.', date: '16. Mrz 2026, 19:45', unread: false,
       preview: 'Ihr Druckauftrag "Katheterspiegelhalter_v3" wurde erfolgreich abgeschlossen (7h 23min).',
       to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
-      body: '<p>Ihr Druckauftrag wurde erfolgreich abgeschlossen!</p><p><b>Datei:</b> Katheterspiegelhalter_v3.3mf<br><b>Drucker:</b> Bambu Lab X1C<br><b>Material:</b> PLA Basic (Weiß)<br><b>Dauer:</b> 7h 23min<br><b>Verbrauch:</b> 48g</p><p>Der Drucker ist bereit für den nächsten Auftrag.</p>' },
+      body: '<p>Ihr Druckauftrag wurde erfolgreich abgeschlossen!</p><p><b>Datei:</b> Katheterspiegelhalter_v3.3mf<br><b>Drucker:</b> Bambu Lab P1S<br><b>Material:</b> PLA Basic (Weiß)<br><b>Dauer:</b> 7h 23min<br><b>Verbrauch:</b> 48g</p><p>Der Drucker ist bereit für den nächsten Auftrag.</p>' },
   ];
 
   const isDesktop = !!body.closest('.window');
@@ -3310,7 +3279,7 @@ function buildGitHub(body) {
   body.innerHTML = `
     <div class="mob-gh-wrap">
       <div class="mob-gh-header">
-        <span style="font-weight:600">niklasfauteck</span>
+        <span style="font-weight:600">fauteck</span>
         <span style="font-size:11px;color:rgba(255,255,255,0.4)">4 Repositories</span>
       </div>
       <div class="mob-gh-contrib">
@@ -6608,10 +6577,11 @@ function boot() {
     initTaskbarAppsBtn();
     initSearchOverlay();
     initMobile();
-    if (isMobile) {
-      setTimeout(showFakeCall,    3 * 60 * 1000);
-      setTimeout(showFakeMessage, 4 * 60 * 1000);
-    }
+    // Fake-Anruf und Fake-Teams-Nachricht entfernt (vorerst deaktiviert)
+    // if (isMobile) {
+    //   setTimeout(showFakeCall,    3 * 60 * 1000);
+    //   setTimeout(showFakeMessage, 4 * 60 * 1000);
+    // }
     // Handle deep-linking via hash (supports #blog/post-id)
     const hash = window.location.hash.replace('#', '');
     if (hash && hash.startsWith('blog/')) {
