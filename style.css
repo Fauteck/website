@@ -3309,6 +3309,29 @@ kbd.search-esc {
   overflow: hidden;
 }
 .photos-tile:hover { transform: scale(1.04); z-index: 1; }
+.photos-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photos-tile-cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 12px 6px 4px;
+  font-size: 10px;
+  line-height: 1.25;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0,0,0,0.72));
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.photos-tile:hover .photos-tile-cap,
+.photos-tile:focus-visible .photos-tile-cap { opacity: 1; }
 .photos-tile-icon {
   font-size: 22px;
   opacity: 0.7;
@@ -5467,6 +5490,31 @@ kbd.search-esc {
   letter-spacing: 0.5px;
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
+.blog-year-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 16px 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: #e9eaed;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.blog-year-count {
+  font-weight: 600;
+  font-size: 10px;
+  color: #6b7280;
+  background: rgba(0,0,0,0.07);
+  border-radius: 8px;
+  padding: 1px 7px;
+}
 .blog-list-item {
   padding: 12px 16px;
   cursor: pointer;
@@ -5613,19 +5661,23 @@ kbd.search-esc {
   .blog-editor-tabs { display: none; }
   .blog-wrap { flex-direction: column; }
   .blog-mob-nav {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    display: block;
     background: #e8e9ec;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 0;
-    gap: 0;
+    padding: 8px 10px;
     flex-shrink: 0;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
-  .blog-mob-nav::-webkit-scrollbar {
-    display: none;
+  .blog-mob-select {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 13px;
+    font-family: var(--font-ui);
+    color: #1e293b;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 8px;
+    appearance: none;
+    -webkit-appearance: none;
   }
   .blog-mob-nav-btn {
     flex-shrink: 0;
