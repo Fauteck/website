@@ -45,12 +45,14 @@ const WIN_CONFIGS = {
     defaultW: 920, defaultH: 580,
     svgPath: 'M3 13L14 4l11 9M7 13h14v11H7zM11 18h6v6h-6z',
   },
+  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
   packages: {
     title: 'Installierte Apps',
     color: 'indigo',
     defaultW: 560, defaultH: 520,
     svgPath: 'M3 3h10v10H3zM15 3h10v10H15zM3 15h10v10H3zM15 15h10v10H15z',
   },
+  */
   /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
   changelog: {
     title: 'Changelog',
@@ -224,7 +226,7 @@ let _blogTargetPost = null; // Blog-Beitrag, zu dem direkt gesprungen werden sol
 // WINDOW MANAGER
 // ─────────────────────────────────────────────────
 // Map packages/projects to Task-Manager tabs
-const TM_TAB_REDIRECT = { packages: 'appverlauf', projects: 'dienste' };
+const TM_TAB_REDIRECT = { projects: 'dienste' }; // 'packages' → 'appverlauf' entfällt (Tab deaktiviert)
 let _tmInitialTab = null;
 
 function openWindow(id) {
@@ -497,7 +499,7 @@ function initWindowContent(id, el) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    packages:       buildPackages,
+    // packages:       buildPackages, // vorerst deaktiviert
     // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
@@ -1434,8 +1436,7 @@ function buildSysmon(body, _id, initialTab) {
   const tabs = [
     { id: 'prozesse',    label: 'Prozesse',     icon: '<svg viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
     { id: 'leistung',    label: 'Leistung',     icon: '<svg viewBox="0 0 18 18" fill="none"><polyline points="2,14 5,8 8,11 11,5 14,9 17,3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
-    { id: 'benutzer',    label: 'Benutzer',     icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 16c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
-    { id: 'appverlauf',  label: 'App-Verlauf',  icon: '<svg viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>' },
+    // 'benutzer' (Capability Report/Skills) und 'appverlauf' (Installierte Apps) vorerst deaktiviert
     { id: 'dienste',     label: 'Dienste',      icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M9 1v3M9 14v3M1 9h3M14 9h3M3.3 3.3l2.1 2.1M12.6 12.6l2.1 2.1M3.3 14.7l2.1-2.1M12.6 5.4l2.1-2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>' },
   ];
 
@@ -1487,8 +1488,8 @@ function renderTmTab(container, tabId) {
   switch (tabId) {
     case 'prozesse':  return renderTmProzesse(container);
     case 'leistung':  return renderTmLeistung(container);
-    case 'benutzer':  return renderTmBenutzer(container);
-    case 'appverlauf': return renderTmApps(container);
+    // case 'benutzer':  return renderTmBenutzer(container); // vorerst deaktiviert
+    // case 'appverlauf': return renderTmApps(container);    // vorerst deaktiviert
     case 'dienste':   return renderTmDienste(container);
   }
 }
@@ -5728,7 +5729,7 @@ function openMobileWindow(id) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    packages:       buildPackages,
+    // packages:       buildPackages, // vorerst deaktiviert
     // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
