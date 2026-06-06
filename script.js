@@ -218,9 +218,34 @@ const WIN_CONFIGS = {
 // ─────────────────────────────────────────────────
 let zCounter = 100;
 let activeWindowId = null;
-const openWindows = new Map(); // id → { el, state, savedPos, savedSize }
+const openWindows = new Map(); // id → { el, state, savedPos, savedSize, cleanup }
 let windowOpenCount = 0;
 let _blogTargetPost = null; // Blog-Beitrag, zu dem direkt gesprungen werden soll (z. B. aus Google Fotos)
+
+// ─────────────────────────────────────────────────
+// WINDOW CLEANUP REGISTRY
+// ─────────────────────────────────────────────────
+// Builder registrieren ihren Teardown (Timer, requestAnimationFrame, document-
+// Listener), damit beim Schließen nichts auf bereits entferntem DOM weiterläuft.
+// Desktop: Cleanup hängt am Fenster-State (openWindows). Mobile: Einzelfenster,
+// daher eine modulweite Liste.
+let _mobileCleanups = [];
+function registerCleanup(id, fn) {
+  const w = openWindows.get(id);
+  if (w) (w.cleanup || (w.cleanup = [])).push(fn);
+  else _mobileCleanups.push(fn);
+}
+function runCleanups(list) {
+  if (!list || !list.length) return;
+  list.splice(0).forEach(fn => { try { fn(); } catch (_) {} });
+}
+// document-Listener (z. B. keydown der Spiele) per AbortController bündeln –
+// .abort() entfernt alle auf einmal, auch anonyme Handler.
+function windowSignal(id) {
+  const ac = new AbortController();
+  registerCleanup(id, () => ac.abort());
+  return ac.signal;
+}
 
 // ─────────────────────────────────────────────────
 // WINDOW MANAGER
@@ -291,6 +316,7 @@ function openWindow(id) {
 function closeWindow(id) {
   const w = openWindows.get(id);
   if (!w) return;
+  runCleanups(w.cleanup);
   w.el.classList.add('closing');
   w.el.addEventListener('animationend', () => {
     w.el.remove();
@@ -415,28 +441,19 @@ function createWindowEl(id, cfg) {
 // ─────────────────────────────────────────────────
 // DRAG
 // ─────────────────────────────────────────────────
-function setupDrag(windowEl, titlebarEl, id) {
-  let dragging = false;
-  let startX, startY, origX, origY;
-
-  titlebarEl.addEventListener('mousedown', e => {
-    if (e.target.classList.contains('win-btn')) return;
-    const w = openWindows.get(id);
-    if (w && w.maximized) return;
-    dragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    origX = parseInt(windowEl.style.left) || 0;
-    origY = parseInt(windowEl.style.top)  || 0;
-    e.preventDefault();
-  });
+// Ein einziger globaler Drag-Controller statt zwei document-Listener PRO Fenster
+// (die nie entfernt wurden und sich mit jedem geöffneten Fenster aufstauten).
+let _dragState = null;
+let _globalDragInit = false;
+function initGlobalDrag() {
+  if (_globalDragInit) return;
+  _globalDragInit = true;
 
   document.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    const newX = origX + dx;
-    const newY = origY + dy;
+    if (!_dragState) return;
+    const { windowEl, startX, startY, origX, origY } = _dragState;
+    const newX = origX + (e.clientX - startX);
+    const newY = origY + (e.clientY - startY);
     const taskbarH = 44;
     const maxX = window.innerWidth  - windowEl.offsetWidth;
     const maxY = window.innerHeight - taskbarH - 34; // keep titlebar visible
@@ -445,14 +462,29 @@ function setupDrag(windowEl, titlebarEl, id) {
   });
 
   document.addEventListener('mouseup', () => {
-    if (dragging) {
-      dragging = false;
-      const w = openWindows.get(id);
-      if (w && !w.maximized) {
-        w.savedPos  = { x: parseInt(windowEl.style.left), y: parseInt(windowEl.style.top) };
-        w.savedSize = { w: windowEl.offsetWidth, h: windowEl.offsetHeight };
-      }
+    if (!_dragState) return;
+    const { windowEl, id } = _dragState;
+    _dragState = null;
+    const w = openWindows.get(id);
+    if (w && !w.maximized) {
+      w.savedPos  = { x: parseInt(windowEl.style.left), y: parseInt(windowEl.style.top) };
+      w.savedSize = { w: windowEl.offsetWidth, h: windowEl.offsetHeight };
     }
+  });
+}
+
+function setupDrag(windowEl, titlebarEl, id) {
+  titlebarEl.addEventListener('mousedown', e => {
+    if (e.target.classList.contains('win-btn')) return;
+    const w = openWindows.get(id);
+    if (w && w.maximized) return;
+    _dragState = {
+      windowEl, id,
+      startX: e.clientX, startY: e.clientY,
+      origX: parseInt(windowEl.style.left) || 0,
+      origY: parseInt(windowEl.style.top)  || 0,
+    };
+    e.preventDefault();
   });
 }
 
@@ -1429,6 +1461,7 @@ function buildSysmon(body, _id, initialTab) {
 function renderTmTab(container, tabId) {
   // Clean up any running intervals
   if (tmPerfInterval) { clearInterval(tmPerfInterval); tmPerfInterval = null; }
+  registerCleanup('sysmon', () => { if (tmPerfInterval) { clearInterval(tmPerfInterval); tmPerfInterval = null; } });
 
   switch (tabId) {
     case 'prozesse':  return renderTmProzesse(container);
@@ -1970,6 +2003,7 @@ function buildBambu(body) {
   let printing = false;
   let progress = 0;
   let interval = null;
+  registerCleanup('bambu', () => clearInterval(interval));
 
   const btn    = body.querySelector('#bambu-btn');
   const fill   = body.querySelector('#bambu-fill');
@@ -3530,6 +3564,7 @@ function buildSnake(body) {
   const GRID = 15;
   const CELL = canvas.width / GRID;
   let snake, dir, nextDir, food, score, best = 0, gameLoop, running = false;
+  registerCleanup('snake', () => { running = false; clearInterval(gameLoop); });
 
   function reset() {
     snake = [{ x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }];
@@ -3645,7 +3680,7 @@ function buildSnake(body) {
     if (e.key === 'ArrowLeft' || e.key === 'a') { e.preventDefault(); setDir(-1, 0); }
     if (e.key === 'ArrowRight' || e.key === 'd') { e.preventDefault(); setDir(1, 0); }
   }
-  document.addEventListener('keydown', keyHandler);
+  document.addEventListener('keydown', keyHandler, { signal: windowSignal('snake') });
 
   // Swipe controls
   let touchStartX = 0, touchStartY = 0;
@@ -3680,6 +3715,7 @@ function buildMinesweeper(body) {
 
   const ROWS = 9, COLS = 9, MINES = 10;
   let board, revealed, flagged, gameOver, firstClick, minesLeft, timerVal, timerInt;
+  registerCleanup('minesweeper', () => clearInterval(timerInt));
 
   function init() {
     board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
@@ -3931,6 +3967,7 @@ function buildPong(body) {
   const W = canvas.width, H = canvas.height;
   const PADDLE_W = 60, PADDLE_H = 8, BALL_R = 5, WIN_SCORE = 5;
   let playerX, aiX, ballX, ballY, ballVX, ballVY, playerScore, aiScore, running, animId;
+  registerCleanup('pong', () => { running = false; cancelAnimationFrame(animId); });
 
   function reset() {
     playerX = W / 2 - PADDLE_W / 2;
@@ -3995,7 +4032,7 @@ function buildPong(body) {
   // Controls
   canvas.addEventListener('mousemove', e => { if (!running) return; const r = canvas.getBoundingClientRect(); playerX = ((e.clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); });
   canvas.addEventListener('touchmove', e => { if (!running) return; e.preventDefault(); const r = canvas.getBoundingClientRect(); playerX = ((e.touches[0].clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); }, { passive: false });
-  document.addEventListener('keydown', e => { if (!running) return; if (e.key === 'ArrowLeft') playerX = Math.max(0, playerX - 20); if (e.key === 'ArrowRight') playerX = Math.min(W - PADDLE_W, playerX + 20); });
+  document.addEventListener('keydown', e => { if (!running) return; if (e.key === 'ArrowLeft') playerX = Math.max(0, playerX - 20); if (e.key === 'ArrowRight') playerX = Math.min(W - PADDLE_W, playerX + 20); }, { signal: windowSignal('pong') });
   overlay.addEventListener('click', start);
   reset(); draw();
 }
@@ -4096,6 +4133,7 @@ function buildFlappyBird(body) {
   const W = canvas.width, H = canvas.height;
   const GRAVITY = 0.35, FLAP = -6, PIPE_W = 40, GAP = 120, PIPE_SPEED = 2, BIRD_SIZE = 14;
   let birdY, birdV, pipes, score, best = 0, running, animId, frameCount;
+  registerCleanup('flappybird', () => { running = false; cancelAnimationFrame(animId); });
 
   function reset() {
     birdY = H / 2; birdV = 0; pipes = []; score = 0; frameCount = 0;
@@ -4170,7 +4208,7 @@ function buildFlappyBird(body) {
 
   canvas.addEventListener('click', () => { if (running) flap(); });
   canvas.addEventListener('touchstart', e => { e.preventDefault(); if (running) flap(); }, { passive: false });
-  document.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); if (running) flap(); } });
+  document.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); if (running) flap(); } }, { signal: windowSignal('flappybird') });
   overlay.addEventListener('click', start);
   reset(); draw();
 }
@@ -4569,6 +4607,7 @@ function buildMemory(body) {
 
   const EMOJIS = ['🚀','🎯','⚡','🔥','🌟','💡','🎨','🔧'];
   let cards, flipped, matched, moves, startTime, timerInt, lockBoard;
+  registerCleanup('memory', () => clearInterval(timerInt));
 
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
@@ -4691,6 +4730,7 @@ function buildTetris(body) {
   ];
 
   let board, piece, piecePos, nextPiece, score, level, lines, gameOver, dropInterval, gameLoop;
+  registerCleanup('tetris', () => clearInterval(gameLoop));
 
   function init() {
     board = Array.from({length: ROWS}, () => Array(COLS).fill(0));
@@ -4887,7 +4927,7 @@ function buildTetris(body) {
     if (e.key === 'ArrowDown')  { e.preventDefault(); tick(); }
     if (e.key === ' ')          { e.preventDefault(); hardDrop(); }
   }
-  document.addEventListener('keydown', keyHandler);
+  document.addEventListener('keydown', keyHandler, { signal: windowSignal('tetris') });
 
   body.querySelector('#tet-restart').addEventListener('click', () => {
     init();
@@ -5662,6 +5702,8 @@ function openMobileWindow(id) {
   const np = document.getElementById('mob-notif-panel');
   if (np) { np.classList.remove('open'); np.setAttribute('aria-hidden', 'true'); }
 
+  // Teardown der vorher im Einzelfenster gebauten App (Timer/Loops/Listener)
+  runCleanups(_mobileCleanups);
   body.innerHTML = '';
   mw.setAttribute('aria-hidden', 'false');
   mw.classList.add('show');
@@ -5709,6 +5751,7 @@ function openMobileWindow(id) {
 }
 
 function closeMobileWindow() {
+  runCleanups(_mobileCleanups);
   const mw = document.getElementById('mobile-window');
   mw.classList.remove('show');
   mw.setAttribute('aria-hidden', 'true');
@@ -6546,6 +6589,7 @@ function boot() {
   let bootAborted = false;
 
   function initDesktop() {
+    initGlobalDrag();
     updateClock();
     setInterval(updateClock, 10000);
     initDesktopIcons();

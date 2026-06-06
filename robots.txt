@@ -1,7 +1,5 @@
 User-agent: *
-Disallow: /admin
-Disallow: /api/
-Disallow: /internal/
+Disallow:
 
 User-agent: GPTBot
 Disallow: /
@@ -17,3 +15,5 @@ Disallow: /
 
 User-agent: Google-Extended
 Disallow: /
+
+Sitemap: https://niklasfauteck.de/sitemap.xml
