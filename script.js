@@ -45,22 +45,6 @@ const WIN_CONFIGS = {
     defaultW: 920, defaultH: 580,
     svgPath: 'M3 13L14 4l11 9M7 13h14v11H7zM11 18h6v6h-6z',
   },
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  packages: {
-    title: 'Installierte Apps',
-    color: 'indigo',
-    defaultW: 560, defaultH: 520,
-    svgPath: 'M3 3h10v10H3zM15 3h10v10H15zM3 15h10v10H3zM15 15h10v10H15z',
-  },
-  */
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  changelog: {
-    title: 'Changelog',
-    color: 'pink',
-    defaultW: 520, defaultH: 480,
-    svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM14 8v6l4 4',
-  },
-  */
   trash: {
     title: 'Papierkorb',
     color: 'red',
@@ -74,14 +58,6 @@ const WIN_CONFIGS = {
     svgPath: 'M3 7h8l2 3h12v15H3V7z',
   },
   // Mobile-only apps
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  chatgpt: {
-    title: 'ChatGPT',
-    color: 'green',
-    defaultW: 460, defaultH: 500,
-    svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM9 14l3-6 3 6M10.5 11.5h5',
-  },
-  */
   claudeapp: {
     title: 'Claude',
     color: 'orange',
@@ -197,14 +173,6 @@ const WIN_CONFIGS = {
     defaultW: 800, defaultH: 580,
     svgPath: 'M3 7h8l2 3h12v15H3V7zM10 15h8M10 19h5',
   },
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  testimonials: {
-    title: 'Empfehlungen',
-    color: 'cyan',
-    defaultW: 640, defaultH: 520,
-    svgPath: 'M4 6h20v12H13l-5 4v-4H4V6zM8 10h12M8 14h8',
-  },
-  */
   placeholder: {
     title: 'Mehr',
     color: 'indigo',
@@ -531,11 +499,8 @@ function initWindowContent(id, el) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    // packages:       buildPackages, // vorerst deaktiviert
-    // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
-    // chatgpt:        buildChatGPT, // vorerst deaktiviert
     claudeapp:      buildClaudeApp,
     outlook:        buildOutlook,
     teams:          buildTeams,
@@ -555,7 +520,6 @@ function initWindowContent(id, el) {
     sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
-    // testimonials:   buildTestimonials, // vorerst deaktiviert
   };
   if (contentFns[id]) {
     if (id === 'sysmon' && typeof _tmInitialTab !== 'undefined' && _tmInitialTab) {
@@ -1378,28 +1342,6 @@ const SYSMON_PROCESSES = [
 ];
 
 // ── Task-Manager Skills Data ──
-const TM_SKILLS = [
-  { cat: 'AI & Automation', skills: [
-    { name: 'Prompt Engineering',     pct: 100, level: 'expert' },
-    { name: 'AI Workflow Design',     pct: 100, level: 'expert' },
-    { name: 'n8n / Make.com',         pct: 80,  level: 'advanced' },
-    { name: 'Vibecoding',             pct: 85,  level: 'advanced' },
-    { name: 'Custom GPT Development',  pct: 90,  level: 'expert' },
-  ]},
-  { cat: 'Digital Transformation', skills: [
-    { name: 'Strategy & Roadmapping', pct: 100, level: 'expert' },
-    { name: 'Change Management',      pct: 100, level: 'expert' },
-    { name: 'Tool Adoption',          pct: 100, level: 'expert' },
-    { name: 'Stakeholder Mgmt',       pct: 85,  level: 'advanced' },
-  ]},
-  { cat: 'Technical', skills: [
-    { name: 'Docker / Containerizing', pct: 80, level: 'advanced' },
-    { name: 'GitHub / GitOps',         pct: 80, level: 'advanced' },
-    { name: 'Home Assistant',          pct: 85, level: 'advanced' },
-    { name: '3D Printing (FDM)',       pct: 80, level: 'advanced' },
-  ]},
-];
-
 // ── Leistung chart state ──
 let tmPerfInterval = null;
 
@@ -1413,7 +1355,6 @@ function buildSysmon(body, _id, initialTab) {
   const tabs = [
     { id: 'prozesse',    label: 'Prozesse',     icon: '<svg viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
     { id: 'leistung',    label: 'Leistung',     icon: '<svg viewBox="0 0 18 18" fill="none"><polyline points="2,14 5,8 8,11 11,5 14,9 17,3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
-    // 'benutzer' (Capability Report/Skills) und 'appverlauf' (Installierte Apps) vorerst deaktiviert
     { id: 'dienste',     label: 'Dienste',      icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M9 1v3M9 14v3M1 9h3M14 9h3M3.3 3.3l2.1 2.1M12.6 12.6l2.1 2.1M3.3 14.7l2.1-2.1M12.6 5.4l2.1-2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>' },
   ];
 
@@ -1466,8 +1407,6 @@ function renderTmTab(container, tabId) {
   switch (tabId) {
     case 'prozesse':  return renderTmProzesse(container);
     case 'leistung':  return renderTmLeistung(container);
-    // case 'benutzer':  return renderTmBenutzer(container); // vorerst deaktiviert
-    // case 'appverlauf': return renderTmApps(container);    // vorerst deaktiviert
     case 'dienste':   return renderTmDienste(container);
   }
 }
@@ -1612,59 +1551,6 @@ function renderTmLeistung(el) {
       item.classList.add('active');
     });
   });
-}
-
-function renderTmBenutzer(el) {
-  const catsHtml = TM_SKILLS.map(cat => `
-    <div class="tm-skill-cat">
-      <div class="tm-skill-cat-title">${cat.cat}</div>
-      ${cat.skills.map(s => `
-        <div class="tm-skill-row">
-          <div class="tm-skill-label">${s.name}</div>
-          <div class="tm-skill-bar-track">
-            <div class="tm-skill-bar-fill" data-pct="${s.pct}"></div>
-          </div>
-          <div class="tm-skill-level">${s.level}</div>
-        </div>
-      `).join('')}
-    </div>
-  `).join('');
-
-  el.innerHTML = `
-    <div class="tm-users">
-      <div class="tm-users-header"># Capability Report — niklas-fauteck v2026.03</div>
-      ${catsHtml}
-    </div>
-  `;
-
-  setTimeout(() => {
-    el.querySelectorAll('.tm-skill-bar-fill').forEach(b => { b.style.width = b.dataset.pct + '%'; });
-  }, 150);
-}
-
-function renderTmApps(el) {
-  const catsHtml = PACKAGES.map(cat => `
-    <div class="tm-apps-cat">
-      <div class="tm-apps-cat-title">${cat.cat}</div>
-      ${cat.items.map(p => `
-        <div class="tm-apps-item">
-          <span class="tm-apps-name">${p.name}</span>
-          <span class="tm-apps-ver">${p.ver}</span>
-          <span class="tm-apps-check">✓ installiert</span>
-        </div>
-      `).join('')}
-    </div>
-  `).join('');
-
-  el.innerHTML = `
-    <div class="tm-apps">
-      <div class="tm-apps-header">
-        <div class="tm-apps-title">App-Verlauf</div>
-        <div class="tm-apps-cmd">apt list --installed</div>
-      </div>
-      ${catsHtml}
-    </div>
-  `;
 }
 
 function renderTmDienste(el) {
@@ -2449,177 +2335,6 @@ function buildHA(body) {
 }
 
 // ─────────────────────────────────────────────────
-// PACKAGES / INSTALLED APPS
-// ─────────────────────────────────────────────────
-const PACKAGES = [
-  { cat: 'KI & Automation', items: [
-    { name: 'claude',         ver: '4.0+',  },
-    { name: 'chatgpt',        ver: '4o',    },
-    { name: 'cursor',         ver: '1.x',   },
-    { name: 'n8n',            ver: '1.x',   },
-    { name: 'make.com',       ver: 'latest',},
-  ]},
-  { cat: 'Kollaboration', items: [
-    { name: 'confluence',     ver: 'cloud', },
-    { name: 'jira',           ver: 'cloud', },
-    { name: 'notion',         ver: 'cloud', },
-    { name: 'miro',           ver: 'cloud', },
-  ]},
-  { cat: 'Infrastruktur', items: [
-    { name: 'docker',         ver: '26',    },
-    { name: 'github-actions', ver: 'cloud', },
-    { name: 'portainer',      ver: 'latest',},
-    { name: 'home-assistant', ver: '2025',  },
-  ]},
-  { cat: 'Analytics', items: [
-    { name: 'power-bi',       ver: 'cloud', },
-    { name: 'google-analytics', ver: '4',  },
-  ]},
-];
-
-function buildPackages(body) {
-  const cats = PACKAGES.map(cat => `
-    <div class="pkg-category">
-      <div class="pkg-cat-title">${cat.cat}</div>
-      <div class="pkg-list">
-        ${cat.items.map(p => `
-          <div class="pkg-item">
-            <span class="pkg-name">${p.name}</span>
-            <span class="pkg-version">${p.ver}</span>
-            <span class="pkg-check">✓ installiert</span>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
-
-  body.innerHTML = `
-    <div class="pkg-wrap">
-      <div class="pkg-header">
-        <h3>Installierte Apps</h3>
-        <span class="pkg-header-cmd">apt list --installed</span>
-      </div>
-      ${cats}
-    </div>
-  `;
-}
-
-// ─────────────────────────────────────────────────
-// CHANGELOG
-// ─────────────────────────────────────────────────
-const CHANGELOG_DATA = [
-  {
-    ver: 'v2026.03',
-    date: 'März 2026',
-    current: true,
-    items: [
-      'Weitere KI-gestützte Workflows produktiv gesetzt',
-      'Automation-Denken in breiteren Teamkontext skaliert',
-      'Personal Lab ausgebaut: 3D-Druck + Smart Home Optimierungen',
-      'NiklasOS — neue persönliche Website veröffentlicht',
-    ],
-  },
-  {
-    ver: 'v2025.06',
-    date: 'Juni 2025',
-    items: [
-      'Smart Home Flows mit Home Assistant weiter optimiert',
-      'n8n Automation-Wissen systematisch ausgebaut',
-      'Vibecoding als produktiven Workflow etabliert',
-    ],
-  },
-  {
-    ver: 'v2024.01',
-    date: 'Januar 2024',
-    items: [
-      'KI-Tooling Adoption in Teams vorangetrieben',
-      'Interne Wissenssysteme und Prozesse strukturiert',
-      'Power BI Dashboards für datengetriebene Entscheidungen aufgebaut',
-    ],
-  },
-  {
-    ver: 'v2023.01',
-    date: 'Januar 2023',
-    items: [
-      'Einstieg bei RTL Deutschland: Head of Digital Transformation',
-      'Fokus: Brücke zwischen Redaktion und Technologie-Teams',
-      'Erste Bestandsaufnahme digitaler Reifegrad der Organisation',
-    ],
-  },
-  {
-    ver: 'v2020.00',
-    date: '2020',
-    items: [
-      'Newsdesk Kommunikation: erster dedizierter Digital-PM-Fokus',
-      'Systematischer Ansatz für Tool-Adoption entwickelt',
-      'Foundation: Verstehen, wie Menschen Tools wirklich nutzen',
-    ],
-  },
-];
-
-function buildChangelog(body) {
-  body.style.padding = '0';
-  body.style.overflow = 'hidden';
-  body.style.display = 'flex';
-  body.style.flexDirection = 'column';
-
-  const changelogHtml = CHANGELOG_DATA.map(v => `
-    <div class="cl-version${v.current ? ' cl-ver-current' : ''}">
-      <div class="cl-ver-header">
-        <span class="cl-ver-tag">${v.ver}</span>
-        <span class="cl-ver-date">${v.date}</span>
-        ${v.current ? '<span class="cl-current-badge">current</span>' : ''}
-      </div>
-      <ul class="cl-items">
-        ${v.items.map(i => `<li>${i}</li>`).join('')}
-      </ul>
-    </div>
-  `).join('');
-
-  const karriereHtml = CAREER_DATA.map(e => `
-    <div class="cl-career-item">
-      <div class="cl-career-dot-wrap">
-        <div class="cl-career-dot"></div>
-        <div class="cl-career-line"></div>
-      </div>
-      <div class="cl-career-card">
-        <div class="cl-career-period">${e.period}</div>
-        <div class="cl-career-title">${e.title}</div>
-        <div class="cl-career-company">${e.icon} ${e.company}</div>
-        <ul class="cl-career-list">
-          ${e.impact.slice(0,2).map(i => `<li>${i}</li>`).join('')}
-        </ul>
-      </div>
-    </div>
-  `).join('');
-
-  body.innerHTML = `
-    <div class="cl-tabs-bar">
-      <button class="cl-tab active" data-tab="changelog">Changelog</button>
-      <button class="cl-tab" data-tab="karriere">Karriere</button>
-    </div>
-    <div class="cl-tab-content" id="cl-content-changelog" style="flex:1;overflow-y:auto">
-      <div class="changelog">${changelogHtml}</div>
-    </div>
-    <div class="cl-tab-content" id="cl-content-karriere" style="flex:1;overflow-y:auto;display:none;padding:16px">
-      <div class="cl-career-timeline">${karriereHtml}</div>
-    </div>
-  `;
-
-  body.querySelectorAll('.cl-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      body.querySelectorAll('.cl-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const target = tab.dataset.tab;
-      body.querySelectorAll('.cl-tab-content').forEach(c => {
-        c.style.display = c.id === `cl-content-${target}` ? 'block' : 'none';
-      });
-    });
-  });
-}
-
-
-// ─────────────────────────────────────────────────
 // TRASH / PAPIERKORB
 // ─────────────────────────────────────────────────
 const TRASH_ITEMS = [
@@ -2660,36 +2375,6 @@ function buildTrash(body) {
 // ─────────────────────────────────────────────────
 // MOBILE APP CONTENT BUILDERS
 // ─────────────────────────────────────────────────
-
-function buildChatGPT(body) {
-  body.innerHTML = `
-    <div class="mob-chat-wrap">
-      <div class="mob-chat-header">
-        <div class="mob-chat-title">ChatGPT</div>
-        <div class="mob-chat-model">GPT-4o</div>
-      </div>
-      <div class="mob-chat-messages">
-        <div class="mob-msg mob-msg-user">Erstelle mir eine Rückgabe-Meldung für mein 3D-Druck-Filament. Das TPU ist nach dem Drucken sehr klebrig geworden.</div>
-        <div class="mob-msg mob-msg-ai">
-          <div class="mob-msg-icon">🤖</div>
-          <div>Hier ist eine höfliche Rückgabe-Meldung:<br><br>
-          <em>"Sehr geehrte Damen und Herren, leider muss ich das erworbene TPU 95A zurückgeben. Nach dem Druckvorgang wies das Filament eine ungewöhnlich hohe Klebrigkeit auf, die auf einen Qualitätsmangel hindeutet. Ich bitte um Rückerstattung oder Umtausch..."</em><br><br>
-          Soll ich noch einen freundlicheren Ton wählen? 😄</div>
-        </div>
-        <div class="mob-msg mob-msg-user">Nein danke, aber schreib mir lieber einen Docker-Compose-Stack für Home Assistant</div>
-        <div class="mob-msg mob-msg-ai">
-          <div class="mob-msg-icon">🤖</div>
-          <div>Gerne! Hier ist ein minimaler Stack:<br><br>
-          <code style="font-size:11px;background:rgba(0,0,0,0.1);padding:2px 4px;border-radius:3px">services:\n  homeassistant:\n    image: ghcr.io/home-assistant/home-assistant:stable\n    restart: unless-stopped\n    network_mode: host\n    volumes:\n      - ./config:/config</code>
-          </div>
-        </div>
-      </div>
-      <div class="mob-chat-input">
-        <div class="mob-chat-field">Nachricht senden…</div>
-      </div>
-    </div>
-  `;
-}
 
 function buildClaudeApp(body) {
   body.innerHTML = `
@@ -5171,55 +4856,6 @@ function initTaskbarAppsBtn() {
 }
 
 // ─────────────────────────────────────────────────
-// MOBILE FAKE CALL & MESSAGE
-// ─────────────────────────────────────────────────
-function showFakeCall() {
-  const overlay = document.getElementById('mob-fake-call');
-  if (!overlay) return;
-  overlay.setAttribute('aria-hidden', 'false');
-  overlay.classList.add('visible');
-
-  function dismiss() {
-    overlay.classList.remove('visible');
-    overlay.setAttribute('aria-hidden', 'true');
-  }
-
-  document.getElementById('mfc-decline')?.addEventListener('click', dismiss, { once: true });
-  document.getElementById('mfc-accept')?.addEventListener('click', () => {
-    // Show "connected" state briefly
-    const content = overlay.querySelector('.mfc-content');
-    if (content) {
-      const actions = content.querySelector('.mfc-actions');
-      const labels  = content.querySelector('.mfc-labels');
-      const sub     = content.querySelector('.mfc-sub');
-      if (actions) actions.style.display = 'none';
-      if (labels)  labels.style.display  = 'none';
-      if (sub)     sub.textContent = 'Verbunden…';
-    }
-    setTimeout(dismiss, 3000);
-  }, { once: true });
-}
-
-function showFakeMessage() {
-  const banner = document.getElementById('mob-fake-msg');
-  if (!banner) return;
-  banner.setAttribute('aria-hidden', 'false');
-  banner.classList.add('visible');
-
-  function hideBanner() {
-    banner.classList.remove('visible');
-    banner.setAttribute('aria-hidden', 'true');
-  }
-
-  banner.addEventListener('click', () => {
-    hideBanner();
-    openMobileWindow('teams');
-  }, { once: true });
-
-  setTimeout(hideBanner, 6000);
-}
-
-// ─────────────────────────────────────────────────
 // SEARCH OVERLAY
 // ─────────────────────────────────────────────────
 function initSearchOverlay() {
@@ -5392,9 +5028,8 @@ const MOB_LABELS = {
   placeholder:   'Mehr',
 };
 
-// Page 1 apps (main homescreen), Page 2: placeholder for future use
 // Alle App-Icons auf einer Mobile-Seite (Seite 2 entfällt)
-const MOB_PAGE1 = ['career', 'photos', 'projects', 'homeassistant', 'bambu', 'claudeapp', 'teams', 'jira', 'github', 'filesapp', 'games']; // 'testimonials', 'chatgpt', 'changelog' vorerst deaktiviert
+const MOB_PAGE1 = ['career', 'photos', 'projects', 'homeassistant', 'bambu', 'claudeapp', 'teams', 'jira', 'github', 'filesapp', 'games'];
 const MOB_PAGE2 = [];
 const MOB_DOCK  = ['about', 'outlook', 'blog'];
 
@@ -5716,11 +5351,8 @@ function openMobileWindow(id) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    // packages:       buildPackages, // vorerst deaktiviert
-    // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
-    // chatgpt:        buildChatGPT, // vorerst deaktiviert
     claudeapp:      buildClaudeApp,
     outlook:        buildOutlook,
     teams:          buildTeams,
@@ -5740,7 +5372,6 @@ function openMobileWindow(id) {
     sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
-    // testimonials:   buildTestimonials, // vorerst deaktiviert
   };
   // Redirect packages/projects to Task-Manager with tab on mobile too
   if (TM_TAB_REDIRECT[id]) {
@@ -6320,75 +5951,6 @@ function buildProjects(body) {
 }
 
 // ─────────────────────────────────────────────────
-// TESTIMONIALS / SOCIAL PROOF
-// ─────────────────────────────────────────────────
-const TESTIMONIALS_DATA = [
-  {
-    quote: 'Verbindet strategisches und konzeptionelles Denken mit praxisgerechten operativen Lösungen.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-  {
-    quote: 'Genießt jederzeit das uneingeschränkte Vertrauen der Geschäftsleitung.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-  {
-    quote: 'Sogar in Stresssituationen sowie unter außerordentlicher zeitlicher Belastung erzielt Herr Fauteck ausgezeichnete Ergebnisse.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-  {
-    quote: 'Zeigt permanent eine erstklassige Fach- und Führungsleistung.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-];
-
-const ACHIEVEMENTS_DATA = [
-  { icon: '📊', label: 'Media Hub', value: '1.700+ Nutzer:innen' },
-  { icon: '🤖', label: 'KI-Workflows', value: 'Spürbar weniger manuelle Workflows' },
-  { icon: '⚡', label: 'Automatisierung', value: 'Durchgängig automatisierte Pipelines' },
-  { icon: '🎯', label: 'Tool-Adoption', value: 'Hohe Akzeptanz bei allen Rollouts' },
-];
-
-function buildTestimonials(body) {
-  body.style.padding = '0';
-  body.style.overflow = 'auto';
-  body.style.background = '#f7f8f6';
-
-  const quotesHtml = TESTIMONIALS_DATA.map(t => `
-    <div class="testi-card">
-      <div class="testi-quote">"${escapeHtml(t.quote)}"</div>
-      <div class="testi-author">
-        <div class="testi-name">${escapeHtml(t.name)}</div>
-        <div class="testi-role">${escapeHtml(t.role)}</div>
-      </div>
-    </div>
-  `).join('');
-
-  const achievementsHtml = ACHIEVEMENTS_DATA.map(a => `
-    <div class="testi-achievement">
-      <div class="testi-ach-icon">${a.icon}</div>
-      <div class="testi-ach-info">
-        <div class="testi-ach-label">${escapeHtml(a.label)}</div>
-        <div class="testi-ach-value">${escapeHtml(a.value)}</div>
-      </div>
-    </div>
-  `).join('');
-
-  body.innerHTML = `
-    <div class="testi-wrap">
-      <div class="testi-section-title">Empfehlungen</div>
-      <div class="testi-quotes">${quotesHtml}</div>
-      <div class="testi-section-title" style="margin-top:24px">Achievements</div>
-      <div class="testi-achievements">${achievementsHtml}</div>
-      <div class="testi-note">Ausführliche Empfehlungen auf <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">LinkedIn</a></div>
-    </div>
-  `;
-}
-
-// ─────────────────────────────────────────────────
 // ONBOARDING TOUR
 // ─────────────────────────────────────────────────
 function startOnboardingTour() {
@@ -6597,11 +6159,6 @@ function boot() {
     initTaskbarAppsBtn();
     initSearchOverlay();
     initMobile();
-    // Fake-Anruf und Fake-Teams-Nachricht entfernt (vorerst deaktiviert)
-    // if (isMobile) {
-    //   setTimeout(showFakeCall,    3 * 60 * 1000);
-    //   setTimeout(showFakeMessage, 4 * 60 * 1000);
-    // }
     // Handle deep-linking via hash (supports #blog/post-id)
     const hash = window.location.hash.replace('#', '');
     if (hash && hash.startsWith('blog/')) {
