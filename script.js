@@ -5503,6 +5503,43 @@ function renderBlog(body, allPosts) {
     </select>
   `;
 
+  // Kurzer einzeiliger Anriss: erste echte Textzeile (ohne Bild/Überschrift/Liste)
+  function blogExcerpt(content) {
+    const line = content.split('\n')
+      .map(l => l.trim())
+      .find(l => l
+        && !/^!\[[^\]]*\]\([^)]+\)$/.test(l)   // kein Bild
+        && !/^#{1,6}\s+/.test(l)               // keine Überschrift
+        && !/^(•|- |→)/.test(l));              // keine Liste/Akzentzeile
+    if (!line) return '';
+    // Inline-Markdown auf reinen Text reduzieren (Links, Fett/Kursiv, Code)
+    const plain = line
+      .replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1')   // [Text](url) → Text
+      .replace(/(\*\*|__|\*|_|`)/g, '')            // Betonungs-/Code-Marker
+      .trim();
+    return plain.length > 100 ? plain.slice(0, 100).trimEnd() + '…' : plain;
+  }
+
+  // Übersicht (Startansicht): kompakte, nach Jahr gruppierte Liste — ohne Tags
+  const overviewHtml = `
+    <div class="blog-overview" id="blog-overview">
+      <div class="blog-ov-header">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Blog — Übersicht
+      </div>
+      ${yearOrder.map(y => `
+        <div class="blog-ov-year">${y}</div>
+        ${byYear[y].map(p => `
+          <div class="blog-ov-item" data-post="${p.id}" role="button" tabindex="0">
+            <div class="blog-ov-title">${escapeHtml(p.title)}</div>
+            <div class="blog-ov-date">${p.date}</div>
+            <div class="blog-ov-excerpt">${escapeHtml(blogExcerpt(p.content))}</div>
+          </div>
+        `).join('')}
+      `).join('')}
+    </div>
+  `;
+
   function renderPost(post) {
     const titleHtml = `<div class="blog-line blog-line-title">${escapeHtml(post.title)}</div><div class="blog-line blog-line-empty">&nbsp;</div>`;
     const lines = post.content.split('\n');
@@ -5523,8 +5560,16 @@ function renderBlog(body, allPosts) {
   }
 
   body.innerHTML = `
-    <div class="blog-wrap">
-      <div class="blog-mob-nav">${mobileNavHtml}</div>
+    ${overviewHtml}
+    <div class="blog-reader" id="blog-reader" style="display:none">
+      <div class="blog-topbar">
+        <button type="button" class="blog-back" id="blog-back">
+          <svg viewBox="0 0 16 16" width="15" height="15" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Übersicht
+        </button>
+      </div>
+      <div class="blog-wrap">
+        <div class="blog-mob-nav">${mobileNavHtml}</div>
       <div class="blog-sidebar">
         <div class="blog-sidebar-header">
           <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -5551,6 +5596,7 @@ function renderBlog(body, allPosts) {
           <div class="blog-text" id="blog-text">${renderPost(posts[0])}</div>
         </div>
       </div>
+      </div>
     </div>
   `;
 
@@ -5563,10 +5609,21 @@ function renderBlog(body, allPosts) {
   }
   updateLineNums();
 
-  // Beitrag anzeigen — zentral, von Sidebar, Dropdown und Direktsprung genutzt
+  const overviewEl = body.querySelector('#blog-overview');
+  const readerEl   = body.querySelector('#blog-reader');
+
+  // Zwischen Übersicht und Leseansicht umschalten
+  function showOverview() {
+    readerEl.style.display = 'none';
+    overviewEl.style.display = '';
+  }
+
+  // Beitrag anzeigen — zentral, von Übersicht, Sidebar, Dropdown und Direktsprung genutzt
   function showPost(postId) {
     const post = allPosts.find(p => p.id === postId);
     if (!post) return;
+    overviewEl.style.display = 'none';
+    readerEl.style.display = '';
     body.querySelectorAll('.blog-list-item').forEach(i =>
       i.classList.toggle('active', i.dataset.post === postId));
     const sel = body.querySelector('#blog-mob-select');
@@ -5576,9 +5633,24 @@ function renderBlog(body, allPosts) {
     const tab = body.querySelector('.blog-tab');
     if (tab) { tab.textContent = post.title.substring(0, 30) + '…'; tab.dataset.post = post.id; }
     updateLineNums();
+    const content = body.querySelector('#blog-content');
+    if (content) content.scrollTop = 0;
     const active = body.querySelector('.blog-list-item.active');
     if (active) active.scrollIntoView({ block: 'nearest' });
   }
+
+  // Übersicht-Klicks (Start): Beitrag öffnen (auch per Enter/Space)
+  body.querySelectorAll('.blog-ov-item').forEach(item => {
+    const go = () => showPost(item.dataset.post);
+    item.addEventListener('click', go);
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+    });
+  });
+
+  // Zurück zur Übersicht
+  const backBtn = body.querySelector('#blog-back');
+  if (backBtn) backBtn.addEventListener('click', showOverview);
 
   // Sidebar-Klicks (Desktop)
   body.querySelectorAll('.blog-list-item').forEach(item => {
@@ -5589,11 +5661,14 @@ function renderBlog(body, allPosts) {
   const mobSelect = body.querySelector('#blog-mob-select');
   if (mobSelect) mobSelect.addEventListener('change', () => showPost(mobSelect.value));
 
-  // Direktsprung zu einem bestimmten Beitrag (z. B. aus Google Fotos)
+  // Direktsprung zu einem bestimmten Beitrag (z. B. aus Google Fotos) →
+  // direkt in die Leseansicht; sonst startet das Fenster in der Übersicht.
   if (_blogTargetPost) {
     const target = _blogTargetPost;
     _blogTargetPost = null;
     showPost(target);
+  } else {
+    showOverview();
   }
 }
 
