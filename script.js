@@ -4714,76 +4714,79 @@ function buildPhotos(body) {
   const isMob = window.innerWidth < 768;
   const cols  = isMob ? 3 : 4;
 
-  // Bilder aus den Blog-Beiträgen extrahieren (Markdown ![alt](src))
-  const imgRe       = /!\[([^\]]*)\]\(([^)]+)\)/g;
-  const photos      = []; // alle Bilder, neueste zuerst (BLOG_POSTS ist bereits sortiert)
-  const albumsByPost = []; // ein Album je Beitrag mit Bildern
-  BLOG_POSTS.forEach(post => {
-    const imgs = [];
-    let m;
-    imgRe.lastIndex = 0;
-    while ((m = imgRe.exec(post.content)) !== null) {
-      const photo = { alt: m[1], src: m[2], postId: post.id, postTitle: post.title, date: post.date };
-      imgs.push(photo);
-      photos.push(photo);
-    }
-    if (imgs.length) {
-      albumsByPost.push({ postId: post.id, title: post.title, count: imgs.length, cover: imgs[0].src });
-    }
-  });
-
   body.style.padding = '0';
   body.style.overflow = 'hidden';
   body.style.display = 'flex';
   body.style.flexDirection = 'column';
+  body.innerHTML = '<div class="photos-loading" style="padding:40px;text-align:center;color:#888">Lade Fotos…</div>';
 
-  body.innerHTML = `
-    <div class="photos-wrap">
-      <div class="photos-header">
-        <span class="photos-logo">
-          <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
-          &nbsp;Fotos
-        </span>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="photos-search-icon">
-          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="12" y1="12" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
+  loadBlogPosts().then(allPosts => {
+    // Bilder aus den Blog-Beiträgen extrahieren (Markdown ![alt](src))
+    const imgRe        = /!\[([^\]]*)\]\(([^)]+)\)/g;
+    const photos       = []; // alle Bilder, neueste zuerst (allPosts ist datums-sortiert)
+    const albumsByPost = []; // ein Album je Beitrag mit Bildern
+    allPosts.forEach(post => {
+      const imgs = [];
+      let m;
+      imgRe.lastIndex = 0;
+      while ((m = imgRe.exec(post.content)) !== null) {
+        const photo = { alt: m[1], src: m[2], postId: post.id, postTitle: post.title, date: post.date };
+        imgs.push(photo);
+        photos.push(photo);
+      }
+      if (imgs.length) {
+        albumsByPost.push({ postId: post.id, title: post.title, count: imgs.length, cover: imgs[0].src });
+      }
+    });
 
-      <div class="photos-scroll" id="photos-scroll">
-
-        <!-- Alben = Blog-Beiträge -->
-        <div class="photos-section-label">Alben · aus dem Blog</div>
-        <div class="photos-albums">
-          ${albumsByPost.map(a => `
-            <div class="photos-album" data-post="${a.postId}" role="button" tabindex="0" title="${escapeHtml(a.title)}">
-              <div class="photos-album-cover" style="background-image:url('${a.cover}');background-size:cover;background-position:center"></div>
-              <div class="photos-album-name">${escapeHtml(a.title)}</div>
-              <div class="photos-album-count">${a.count} Foto${a.count === 1 ? '' : 's'}</div>
-            </div>
-          `).join('')}
+    body.innerHTML = `
+      <div class="photos-wrap">
+        <div class="photos-header">
+          <span class="photos-logo">
+            <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+            &nbsp;Fotos
+          </span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="photos-search-icon">
+            <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="12" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
         </div>
 
-        <!-- Alle Fotos -->
-        <div class="photos-section-label" style="margin-top:16px">Alle Fotos · ${photos.length}</div>
-        <div class="photos-grid" style="grid-template-columns:repeat(${cols},1fr)">
-          ${photos.map(p => `
-            <div class="photos-tile" data-post="${p.postId}" role="button" tabindex="0" title="${escapeHtml(p.postTitle)}">
-              <img src="${p.src}" alt="${escapeHtml(p.alt)}" loading="lazy">
-              <span class="photos-tile-cap">${escapeHtml(p.postTitle)}</span>
-            </div>
-          `).join('')}
+        <div class="photos-scroll" id="photos-scroll">
+
+          <!-- Alben = Blog-Beiträge -->
+          <div class="photos-section-label">Alben · aus dem Blog</div>
+          <div class="photos-albums">
+            ${albumsByPost.map(a => `
+              <div class="photos-album" data-post="${a.postId}" role="button" tabindex="0" title="${escapeHtml(a.title)}">
+                <div class="photos-album-cover" style="background-image:url('${a.cover}');background-size:cover;background-position:center"></div>
+                <div class="photos-album-name">${escapeHtml(a.title)}</div>
+                <div class="photos-album-count">${a.count} Foto${a.count === 1 ? '' : 's'}</div>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Alle Fotos -->
+          <div class="photos-section-label" style="margin-top:16px">Alle Fotos · ${photos.length}</div>
+          <div class="photos-grid" style="grid-template-columns:repeat(${cols},1fr)">
+            ${photos.map(p => `
+              <div class="photos-tile" data-post="${p.postId}" role="button" tabindex="0" title="${escapeHtml(p.postTitle)}">
+                <img src="${p.src}" alt="${escapeHtml(p.alt)}" loading="lazy">
+                <span class="photos-tile-cap">${escapeHtml(p.postTitle)}</span>
+              </div>
+            `).join('')}
+          </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
 
-  // Klick (oder Enter/Space) auf Album bzw. Foto → zugehörigen Blog-Beitrag öffnen
-  body.querySelectorAll('.photos-album, .photos-tile').forEach(el => {
-    const go = () => openBlogPost(el.dataset.post);
-    el.addEventListener('click', go);
-    el.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+    // Klick (oder Enter/Space) auf Album bzw. Foto → zugehörigen Blog-Beitrag öffnen
+    body.querySelectorAll('.photos-album, .photos-tile').forEach(el => {
+      const go = () => openBlogPost(el.dataset.post);
+      el.addEventListener('click', go);
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+      });
     });
   });
 }
@@ -5396,350 +5399,55 @@ function closeMobileWindow() {
 // ─────────────────────────────────────────────────
 // BLOG (Texteditor-Fenster)
 // ─────────────────────────────────────────────────
-const BLOG_POSTS = [
-  {
-    id: 'eigenes-dashboard',
-    title: 'Zu viele Tabs',
-    date: '2026-04-22',
-    tags: ['Vibecoding', 'KI', 'Selfhosted', 'Dashboard'],
-    content: `Am Ende waren es einfach zu viele Tabs.
-
-Irgendwo der Kalender, woanders das Wetter, dann Docker, Bookmarks, Feeds, Aufgaben und noch ein paar Dinge, die ich regelmäßig im Blick haben will. Nicht dramatisch, aber jeden Tag ein bisschen unnötig.
-
-Deshalb habe ich mir ein eigenes Dashboard gevibecodet.
-
-Im Grunde ist es einfach eine Browser-Startseite, auf der alles zusammenkommt, was ich im Alltag brauche. Selfhosted, über eine einzige YAML-Datei konfigurierbar und so gebaut, dass nicht ich mich nach dem Tool richten muss, sondern das Tool nach mir.
-
-![Dashboard im Dark Mode: Widget-Einstellungen mit Todoteck-Integration](../blog/images/eigenes-dashboard/1776855823084.jpg)
-
-Inzwischen steckt da eine ganze Menge drin: Wetter, Kalender, RSS, Docker, Server-Stats, AdGuard, GitHub, Tailscale, Aufgaben, Notizen, AutoDarts, Untappd, eigene APIs, iFrames, Widget-Gruppen und Bookmarks mit Suche.
-
-![Dashboard in der Desktop-Ansicht: Kalender, Daily-Apps, KI-Chat und 3D-Bereich](../blog/images/eigenes-dashboard/1776855823535.jpg)
-
-Und wie das bei solchen Projekten eben ist, blieb es nicht bei der ursprünglichen Idee.
-Aus einer simplen Startseite wurden nach und nach Drag & Drop, Spotlight-Suche, YAML-Editor im Browser, Undo/Redo, Dark Mode, Akzentfarben, mobile Ansicht, serverseitige API-Keys, Rate Limiting, SSRF-Schutz und CI/CD.
-
-![Dashboard in der mobilen Ansicht: Daily-Apps und KI-Chat im Light Mode](../blog/images/eigenes-dashboard/1776855823524.jpg)
-
-Genau solche Projekte machen mir gerade besonders Spaß, weil sie kein abstraktes Problem lösen, sondern etwas, das im Alltag sofort auffällt. Man baut etwas, nutzt es direkt selbst und merkt ziemlich schnell, ob es wirklich taugt.
-
-Früher hätte ich bei so einer Idee wahrscheinlich gedacht: nette Vorstellung, aber dafür fehlt mir das Know-how. Heute denke ich eher: Dann baue ich mir eben die erste Version und schaue, was daraus wird. Und meistens wird es dann doch etwas größer als geplant.
-
-Wenn es euch interessiert, zeige ich in den nächsten Tagen gerne mehr. Sinnvoll eingesetzt, kann man mit Vibecoding Ideen mindestens greifbarer machen.`,
-  },
-  {
-    id: 'raeuberhoehle',
-    title: 'Räuberhöhle',
-    date: '2026-04-15',
-    tags: ['Persönlich', 'Familie', 'Maker-Mindset'],
-    content: `Bevor ich im nächsten Post wieder über Vibecoding schreibe und zeige, wie ich mein Browser-Tab-Chaos und meine Finanz-Excel-Listen in den Griff bekommen habe, heute mal ein anderes Projekt.
-
-Kein 3D-Druck.
-Kein Dashboard.
-Keine Automation.
-
-Sondern Höhlenbau mit meinem vierjährigen Sohn.
-
-Wobei Höhle nicht ganz stimmt. Es war eher ein Zelt. Paracord gespannt, leichte Decken drüber, mit Wäscheklammern befestigt. Improvisiert, aber stabil genug für den Einsatzzweck.
-
-![Räuberhöhle von außen: graue Decken, mit Paracord gespannt und mit Wäscheklammern befestigt, über dem Sofa](../blog/images/raeuberhoehle/raeuberhoehle-aussen.jpg)
-
-Die Kita-Notbetreuung wurde also sinnvoll genutzt. In unserer Räuberhöhle gab's Snacks und wir haben zusammen Biene Maja geschaut. Und ich musste kurz daran denken, dass das gar nicht so weit weg ist von den Dingen, über die ich hier sonst schreibe.
-
-![Blick aus der Räuberhöhle: mein Sohn im blauen Kapuzenpulli schaut in Richtung Regal, darüber die mit Wäscheklammern fixierten Decken](../blog/images/raeuberhoehle/raeuberhoehle-innen.jpg)
-
-Du nimmst, was da ist.
-Du baust mit einfachen Mitteln.
-Du machst es ein kleines bisschen aufwendiger als nötig.
-Und am Ende ist nicht entscheidend, ob es perfekt ist. Sondern ob es funktioniert und jemand Freude daran hat.
-
-Manchmal ist einfach mal machen eben kein Sideproject, sondern ein Paracord-Seil zwischen zwei Möbelstücken.
-Maker-Mindset. Nur mit mehr Wäscheklammern und dem besseren Publikum.
-
-\u2192 Was ich aus der Räuberhöhle mitnehme: Stakeholder zufrieden, MVP stand, Entertainment lief.`,
-  },
-  {
-    id: 'todoteck-mcp',
-    title: 'Todoteck: API, MCP und der Alltag',
-    date: '2026-04-10',
-    tags: ['Vibecoding', 'KI', 'Selfhosted', 'MCP', 'Familie'],
-    content: `Anfang der Woche habe ich geschrieben, dass ich mir eine eigene App gebaut habe. Einfach, weil ich keine gefunden habe, die Aufgaben und Notizen wirklich sinnvoll zusammenbringt.
-
-Seitdem ist noch etwas dazugekommen. Der Gedanke dahinter war wieder derselbe: bestehende Gewohnheiten nicht aufbrechen, sondern die App an unseren Alltag anpassen.
-
-Als Erstes habe ich der App eine eigene API gegeben.
-
-Meine Frau sagt zu unseren smarten Lautsprechern zum Beispiel: "Hey Google, setze Milch auf meine Einkaufsliste." Bisher landet das nur in Google Keep. Todoteck holt diesen Eintrag jetzt automatisch ab und zeigt ihn direkt in der Einkaufsliste an. Auf jedem Gerät. \u00dcber eine weitere API auch auf dem E-Ink-Display im Flur. Und \u00fcber eine native Android-App mit Widgets direkt auf dem Startbildschirm.
-
-Es gibt also keine neue Gewohnheit, die man erst lernen muss. Niemandem muss man etwas erkl\u00e4ren. Es passiert einfach im Hintergrund.
-
-![Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste](../blog/images/todoteck/todoteck-aufgabe.png)
-
-Danach bin ich noch einen Schritt weitergegangen: MCP, also Model Context Protocol. Die Idee ist eigentlich ganz einfach. Claude redet nicht mehr nur mit mir, sondern direkt mit meiner App.
-
-Sonntag nach dem Mittagessen frage ich einfach: "Was steht n\u00e4chste Woche an?" Dann kommen die Antworten direkt zur\u00fcck. Mittwoch Sim Racing mit meinen Kumpels. Freitag Zahnarzt. Samstag einkaufen.
-
-Dann sage ich: "F\u00fcg beim Einkauf noch Waschmittel hinzu." Ist drin.
-
-Oder: "Erinner mich am Freitag daran, was ich dem Zahnarzt sagen wollte." Auch drin.
-
-Und wenn ich dann am Freitag kurz vor dem Termin frage: "Was wollte ich da nochmal sagen?", wei\u00df Claude es. Weil ich genau diese Notiz ein paar Tage vorher hinterlegt habe.
-
-![Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel](../blog/images/todoteck/todoteck-mcp.png)
-
-Kein Suchen. Kein App-Wechsel. Einfach fragen.
-
-\u2192 Das Protokoll ist offen, und der Einstieg war deutlich einfacher, als ich gedacht h\u00e4tte. Wer neugierig ist, sollte einfach mal anfangen. Oder fragt mich gerne!`,
-  },
-  {
-    id: 'todoteck',
-    title: 'Todoteck: Vibecoding für die Familie',
-    date: '2026-04-07',
-    tags: ['Vibecoding', 'KI', 'Selfhosted', 'Familie'],
-    content: `Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut.
-
-Ich wollte To-dos und Notizen in einem System. Beides hängt für mich direkt zusammen. Aus einer Notiz wird oft eine Aufgabe. Und eine Aufgabe braucht meist den passenden Kontext. Die fertigen Tools, die ich ausprobiert habe, konnten immer nur das eine oder das andere wirklich gut.
-
-![Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben](../blog/images/todoteck/todoteck-mobile.png)
-
-Also habe ich es selbst gebaut. Mit KI-Unterstützung und ohne klassische Programmiererfahrung. Mit Integration unserer Google Kalender und zur Keep Einkaufsliste, mit eigener Programmierschnittstelle, selfhosted. Genau das macht Vibecoding heute möglich.
-
-![Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich](../blog/images/todoteck/todoteck-desktop.png)
-
-Am Ende ist ein schlichtes Tool entstanden, das genau so funktioniert, wie wir es als Familie brauchen. Crazy, denn vor zwei Jahren hätte ich das nicht gekonnt. Heute kann ich es.
-
-→ Letzte Woche habe ich der App noch etwas hinzugefügt, das ich mir selbst vorher so nicht hätte vorstellen können. Mehr dazu in ein paar Tagen.
-
-(Ja, ich weiß, ich muss auch noch den Keller aufräumen. Mache ich gleich nach dem LinkedIn-Post, wirklich!)`,
-  },
-  {
-    id: '3d-drucker',
-    title: 'Wenn niemand die Lösung hat, druckst du sie selbst',
-    date: '2026-03-19',
-    tags: ['Persönlich', '3D-Druck', 'Maker'],
-    content: `Mein 3D-Drucker löst heute Probleme, an die ich beim Kauf nie gedacht hätte.
-
-Als ich mir vor einem Jahr meinen ersten 3D-Drucker gekauft habe, dachte ich an Gadgets, Halterungen und vielleicht mal ein Ersatzteil. Dass ich irgendwann in Fusion 360 eigene Modelle konstruieren würde, hätte ich damals nicht erwartet.
-
-Denn meistens ist es ja so: Man hat eine Idee, sucht auf MakerWorld \u2013 und irgendjemand hat genau das schon gebaut. Genau das macht diese Community so stark.
-
-Aber manchmal eben nicht.
-
-Durch persönliche Betroffenheit in der Familie habe ich sehr konkret erlebt, was es im Alltag bedeutet, wenn sich durch Selbstkathetisierung vieles verändert: Abläufe müssen neu gedacht werden, Flexibilität geht verloren, und plötzlich werden kleine Hilfsmittel wichtig, die man so nirgends kaufen kann.
-
-Also habe ich angefangen, mich einzuarbeiten. Nicht nur in das konkrete Problem, sondern auch eigenständig in Fusion 360. Stunde für Stunde, Tutorial für Tutorial, viel Learning by Doing.
-
-1. Die Ergebnisse
-
-Am Ende sind zwei Designs entstanden:
-
-• eine Halterung für einen bestimmten Einmalkatheter, die das Vorbereiten und Abstellen unterwegs deutlich erleichtert
-• ein flexibler Ersatzfuß für einen Handspiegel, der sich stabil unter der Toilettenbrille fixieren lässt
-
-Sind das die komplexesten CAD-Modelle der Welt? Sicher nicht. Gemessen in Stunden war das sicher kein effizientes Projekt. Gemessen im Alltag der betroffenen Person schon.
-
-2. Der Prozess
-
-Denn es geht darum, ein echtes Problem zu erkennen, eine Lösung zu entwickeln, Prototypen zu drucken, zu verwerfen, anzupassen \u2013 und nach vielen Iterationen etwas in der Hand zu halten, das wirklich funktioniert.
-
-Ob die Designs jemals viele Downloads bekommen? Keine Ahnung. Die Nische ist sehr klein. Wenn es am Ende nur zwei sehr spezielle Designs sind, die vielleicht genau einer weiteren Person helfen, dann ist das mehr als genug.
-
-→ Genau das macht die Maker-Community für mich aus: Nicht nur nutzen, sondern teilen. Nicht auf Lösungen warten, sondern selbst welche bauen.`,
-  },
-  {
-    id: 'gofundme',
-    title: 'GoFundMe: Barrierefreier Umbau für unsere Familie',
-    date: '2025-10-01',
-    tags: ['Persönlich', 'Familie', 'GoFundMe'],
-    content: `Manchmal verändert ein einziger Tag das ganze Leben. Im November 2022 erlitt meine Frau Aylin nach einer Tumor-OP eine Teilquerschnittslähmung. Unser Sohn war damals gerade ein Jahr alt. Seitdem kämpfen wir uns Schritt für Schritt durch einen neuen Alltag \u2013 voller zusätzlicher Herausforderungen und Kosten, die weit über das hinausgehen, was ein Pflegegrad abdeckt.
-
-Umbauten am Haus, ein größeres Auto, Therapien und Hilfsmittel \u2013 vieles mussten wir bereits stemmen. Doch eine zentrale Maßnahme steht noch bevor:
-
-→ Wir möchten unseren Anbau im Garten barrierefrei zum Wohnraum umbauen, damit Aylin alles Notwendige im Erdgeschoss hat.
-
-Dafür starten wir eine GoFundMe-Kampagne. Jeder Beitrag hilft uns, unserem Ziel näher zu kommen \u2013 sei es durch eine Spende oder das Teilen des Links in eurem Netzwerk.
-
-→ Hier geht\u2019s zur Kampagne: https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE
-
-Vielen Dank für jede Form der Unterstützung!`,
-  },
-  {
-    id: 'depression',
-    title: 'Depression',
-    date: '2024-10-10',
-    tags: ['Persönlich', 'Mental Health'],
-    content: `→ Triggerwarnung: Dieser Text handelt von Depression und Panikattacken.
-
-Ich bin in eine Depression gerutscht.
-
-Ich habe lange überlegt, ob ich das schreiben soll. Zum einen bin ich sowieso nicht mehr wahnsinnig in Social Media aktiv. Zum anderen fühlt es sich bei aller eigenen Akzeptanz, dass ich diese Krankheit habe und es eine ist, an, als würde ich eine Schwäche preisgeben. Was natürlich Blödsinn ist. Denn eine Depression sucht sich niemand aus. Und ich bin in guten Momenten stolz auf mich, das schon erkannt zu haben und aktiv dagegen anzugehen. Und vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt.
-
-1. Der Hintergrund
-
-Vor zwei Jahren ist unser Leben als Familie ziemlich durchgeschüttelt worden. In Folge einer Tumorbehandlung am Rücken war meine Frau und Mutter unseres damals gerade einjährigen Sohnes teilquerschnittsgelähmt und musste sich zurück ins Leben kämpfen. Während ich vier Monate lang alleinsorgend war.
-
-Seitdem ist viel passiert. Das akute Gefühl direkt nach dem Schicksalsschlag, dass alles immer kurz davor ist, gegen die Wand zu fahren, und ich mehr Verantwortung für uns alle trage, um durch die weitere Zeit zu kommen, konnte ich bei allen Fortschritten meiner Frau offenbar nie ganz ablegen. Vermutlich fing da schon die Depression an, an meinen Kräften zu nagen.
-
-2. Die Energiebilanz bei Null
-
-Denn egal was wir gemeinsam Schönes unternahmen \u2013 es war immer eine riesige Anstrengung für mich. Die Energiebilanz aus Einsatz und Ertrag war für mich meist bei maximal 0. Ich hatte durchgehend eine Grundanspannung in mir, die mir teilweise bis zur Gurgel hochging, auch wenn ich einfach nur nach der Arbeit auf dem Spieleteppich mit meinem Sohn und seinen Autos spielte.
-
-Ich dachte, naja, okay, so ist das halt mit Kind mit der durchgehenden Anspannung, stell dich nicht an, bist du halt schwach, dass das so anstrengend ist, aber das ist für alle so. Musst du eben aushalten, andere schaffen das ja auch.
-
-→ Ich weiß mittlerweile, dass das Quatsch ist.
-
-3. Der Abstieg
-
-Ich habe Ende August an einem Mittwochmorgen gemerkt, das ich so antriebslos und unkonzentriert bin, dass ich nicht arbeiten kann \u2013 und bin zum Hausarzt gegangen. Ach, reicht, wenn sie mich erstmal diese Woche krank schreiben. Nächste Woche geht es sicher wieder. Ging\u2019s nicht. Und es wurde schlechter.
-
-Ich verstehe, wieso man davon spricht, dass man in eine Depression "rutscht". Obwohl ich durch zwei Jahre Gesprächstherapie wusste, dass es gerade in die falsche Richtung läuft \u2013 einmal losgeruscht, war es schwer sie aufzuhalten.
-
-Ich bekam täglich Panikattacken. Ich konnte keine strukturierten, lösungsorientierten Gedanken mehr fassen. In meinem Kopf waren nur Probleme, es war laut, unorganisiert und schnell. Wie ein Feuerwerk, bei dem jeder grell leuchtende Funke ein Gedanke ist. Kurz da, peng, weg. Tausende gleichzeitig. Und dann direkt die nächste Rakete.
-
-Ich war bei der kleinsten Anforderung an mich komplett überfordert. "Kannst du gleich noch die Spülmaschine ausräumen?" \u2013 zack, gelähmt. Ich konnte nicht. Als hätte ich eine Bleiweste an, die mich daran hindert aufzustehen.
-
-Ich konnte abends nicht vor 2 Uhr einschlafen, war früh wach, war wahnsinnig platt und erschöpft, aber der Kopf war so laut und ich so unter Spannung, dass ein Mittagsschlaf nahezu ein Ding der Unmöglichkeit war. Ich kam nicht zur Ruhe. Und wenn ich doch kurz eingenickt war, war ich danach niedergeschlagener als vorher. Diese körperliche Anspannung sorgte zudem für ein andauerndes Körpergefühl wie bei einem heftigen Kater nach durchzechter Nacht.
-
-4. Dagegen ankämpfen
-
-Ich konnte nicht mehr aufs Smartphone schauen, alles überforderte mich. Ich fing an mit Yoga, spazierte stundenlang durch die Felder, versuchte es mit Meditation, Achtsamkeitsübungen, progressiver Muskelentspannung. Ich fuhr Rad. Das powert aus, dachte ich mir, da bist du danach so richtig positiv platt. Denkste. Zehn Minuten nach der Radtour ging\u2019s mit gleichlautem Alarm im Oberstübchen wieder weiter. Trotzdem: Beschäftigt bleiben, damit ich kurz die Gedanken zur Ruhe bringen kann \u2013 wie fürchterlich anstrengend.
-
-Ich konnte in den depressivsten Wochen auch nicht mehr meine Lieblingsmusik hören. Punk und Ska haben mich überreizt. Ich fing dann wieder langsam an, bewusst Low Fi oder Klassik zu hören.
-
-5. Medikamente und Schuldgefühl
-
-Mir war klar: Ich brauche auch medikamentöse Unterstützung, um da rauszukommen, weil die vielen Werkzeuge, die ich kannte, um meine Tage trotzdem aktiv zu gestalten, nicht ausreichten. Und dann machte mir aber die Unbekannte "Antidepressivum" Tage vor der ersten Einnahme noch zusätzlich Bauchschmerzen. Unnötig, weiß ich jetzt.
-
-Ich konnte den meisten Aufgaben im Haushalt und mit Kind nicht mehr nachkommen und meine Frau musste mich hier extrem entlasten. Und dann sagt dir die Depression: Fühl dich doch jetzt mal schuldig dafür, dass du deine Familie gerade im Stich lässt! Was ein Kokolores, weiß ich selbst. Wusste ich im Zweifel auch zwei Stunden vorher und am nächsten Morgen, aber dann sitzt man da abends heulend auf der Couch.
-
-6. Unterstützung
-
-Ich bin so dankbar für mein privates Umfeld, in dem ich immer offen über meine Gefühle sprechen kann. Ich habe einen empathischen Hausarzt, eine kompetente Psychiaterin und eine Psychotherapeutin, die seit zwei Jahren meine Umstände und die Themen kennt. Ich fühle mich gut unterstützt.
-
-7. Es wird besser
-
-Das Antidepressivum beginnt zu wirken. Es ist eben keine Schmerztablette, sondern dauert ein paar Wochen. Faszinierend, dass ich schon innere Ruhe, die ich wirklich gar nicht mehr kannte, in einzelnen Momenten spüre \u2013 auch wenn mein Sohn mal zetert, dann bin ich vielleicht genervt, aber mir hängt die Spannung nicht mehr bis zum Hals. Ein krasses Gefühl.
-
-Wenn meine Frau eine Idee für einen Ausflug hat, ist in guten Momenten nicht mehr spontan der verkrampfte Gedanke an die damit verbundene Anstrengung da, sondern: Ja, können wir machen. Plötzlich ist vorstellbar, dass einem schöne Erlebnisse mehr Energie geben als sie kosten, geil. Dafür lohnt es sich doch, sich da weiter rauszuwühlen.
-
-Aus drei Tage mal krank geschrieben sind mittlerweile sieben Wochen geworden. Und ein paar kommen sicher noch dazu, bis auch wieder an Arbeit zu denken ist. Bis dahin hole ich mir zuhause Stück für Stück meinen Alltag zurück. Zeit, in der ich mich und diese Krankheit besser kennenlerne.
-
-8. Neu lernen, achtsam zu sein
-
-Ich muss neu lernen, achtsam zu mir selbst zu sein und nicht nur zweckmäßig Aufgaben zu erfüllen. Das habe ich in den letzten Jahren verlernt. Ich war die Tage morgens in einem Cafe frühstücken. Alleine irgendwo sitzen und essen, hätte ich früher nie gemacht, wie cringe. Ist es aber gar nicht, verrückt. Tut sogar mal ganz gut. Sich eine Badewanne einlassen und dabei Kerzen und Musik anmachen. Den Kaffee nicht to go trinken, sondern bewusst am Morgen in den Garten setzen und Eichhörnchen beobachten. Mit dem Kleinen in Ruhe Duplo bauen.
-
-→ Alles wird wieder ok.`,
-  },
-  {
-    id: 'neue-position',
-    title: 'Neue Position',
-    date: '2023-08-01',
-    tags: ['Karriere', 'RTL', 'Persönlich'],
-    content: `Dieses Jahr ist für mich privat herausfordernd, meine Frau ist nach einer Tumorbehandlung im November letzten Jahres ab der Halswirbelsäule teilquerschnittsgelähmt und kämpft sich zurück ins Leben. Ich war vier Monate lang alleinsorgend mit unserem Sohn zuhause, der zu dem Zeitpunkt gerade 1 Jahr alt geworden war.
-
-Da gehen einem tausend Fragen durch den Kopf, selten hatten wir Antworten.
-
-→ Danke an RTL Deutschland, dass ich mir zumindest zu meinem Job keine Fragen stellen musste und ich nach den ersten Monaten in Teilzeit zurückkommen konnte.
-
-Jetzt freue ich mich auf die Aufgaben in meiner neuen Position als Head of Digital Transformation in der Kommunikation, um mit den Teams noch mehr aus unseren Workflows und Tools herauszuholen und die technischen Produkte in der PR auszubauen.
-
-Danke an Eva Messerschmidt für das Vertrauen und vielen Dank an meine bisherige Teamleiterin Julia Kikillis für die Möglichkeiten, mich in den letzten Jahren immer weiterentwickeln zu können.
-
-→ Der größte Dank gilt aber meiner Frau, die immer weitermacht, egal wie schwer es ist.`,
-  },
-  {
-    id: 'abschied-science-slam',
-    title: 'Abschied vom Science Slam',
-    date: '2022-03-06',
-    tags: ['Science Slam', 'Moderation', 'Abschied'],
-    content: `→ 9 Jahre, 38 Events, über 200 Vorträge \u2013 und phantastische Menschen kennengelernt. Danke!
-
-Der Bonner Science Slam im Januar 2020 wird voraussichtlich der letzte gewesen sein, den ich moderiert habe. Anfang Mai würde zwar der nächste stattfinden, bei dem ich auf der Bühne stehen könnte, aber ich mache die Lena. Bei weiter hohen Infektionszahlen und immer weniger Corona-Maßnahmen ist mein Gefühl: Die Zeit ist noch nicht reif.
-
-Seit Juli 2013 habe ich insgesamt 38 Science Slams moderiert, 200 Mal Slammer:innen auf die Bühne geholt, die in nur zehn Minuten ihr Forschungsthema möglichst leicht verständlich und unterhaltsam präsentieren mussten. Und der Applaus des Publikums entschied am Ende des Abends, wer die \u201EGoldenen Boxhandschuhe der Wissenschaft\u201C gewann, wem Ruhm und Ehre zuteilwurde.
-
-1. Wertvolle Erfahrung, schöne Erinnerungen
-
-Wenn mir der Veranstalter LUUPS die nächsten Termine zugerufen hat, war ich am Start. Na klaro. Aber jetzt kommt es wiederholt vor, dass ich doch ein paar Wochen vorher abgesagt habe, weil mich mein persönliches Empfinden, ob so viel Publikum und die aktuelle Corona-Lage zusammenpassen, zweifeln ließ. Doch ich will nicht unzuverlässig erscheinen. Daher wird sich ein:e andere:r freuen, die Termine zu blocken und der Wissenschaft eine Bühne zu geben.
-
-Ich habe das Moderieren immer nur zum Spaß gemacht. Das kann nicht jede:r in der Kulturbranche sagen, daher habe ich volles Verständnis, dass Künstler:innen & Co. versuchen, Veranstaltungen auch unter diesen Bedingungen sicher zu planen und durchzuführen.
-
-Für mich war es eine unglaublich wertvolle Erfahrung, die einen vernünftigen Abschluss verdient hätte. Doch auf Standby zu sein, um doch irgendwann zumindest ein letztes Mal einen Slam zu moderieren \u2013 das erscheint mir nach so langer Pause nicht richtig zu sein. In über zwei Jahren Corona hat sich bei mir so viel verändert, dass ich froh bin über diese schönen Erinnerungen, anstatt Gefahr zu laufen, eingerostet einen für mein Gefühl miesen letzten Slam hinzulegen.
-
-2. Phantastische Menschen auf und hinter der Bühne
-
-Ich habe unglaublich interessante, schlaue, sympathische Menschen kennengelernt: Juli Tkotz, Rufina Fingerhut, Mai Thi Nguyen-Kim, Franca Parianen, Jutta Teuwsen, Elisabeth Mettke, Janina Otto, Carrie Ankerstein, Constantin Wurthmann, Johannes von Borstel, Sebastian Lotzkat, Dong-Seon Chang, Darius Rupalla, Johannes Schildgen, Peter Westerhoff, Reinhard Remfort, Kai Jäger, Johannes Kretzschmar, Aniruddha Dutta und viele viele mehr.
-
-Alles renommierte Wissenschaftler:innen, erfolgreiche Podcaster:innen, Deutsche Science-Slam-Meister:innen, die Bücher geschrieben haben, TV-Sendungen moderieren, zu denen es Wikipedia-Einträge gibt. Und ich Dödel dazwischen. Es war mir eine Ehre, mit ihnen die Bühne geteilt zu haben.
-
-→ Danke auch an das LUUPS-Team hinter der Bühne: Sveda, Julia, Karsten, Sebastian, Nils, Leo, Ronja, Rebecca und alle anderen. Das war locker eine 12 von 10 auf der Applaus-Skala.
-
-3. Die Locations
-
-Hätte ich vorher auch nicht gedacht, dass ich beispielsweise mal auf der Kleinkunstbühne des Bonner Pantheon stehen werde \u2013 und die Location mit insgesamt 18 Abenden sowas wie mein Science-Slam-Wohnzimmer wurde.
-
-Geslamt wurde auch in coolen Läden wie dem Club Bahnhof Ehrenfeld in Köln oder dem Franz in Aachen, in Hörsälen in Bonn und Bochum, es gab Auftritte beim \u201EBochum Total\u201C-Festival, in Museen wie der DASA in Dortmund oder der Bonner Bundeskunsthalle, bei der ExtraSchicht in der Jahrhunderthalle Bochum oder vor fünf Leuten im KulturCafe des AStA Bochum.
-
-4. Highlight: TV-Aufzeichnung für VOX
-
-Eine besondere Erinnerung wird eine Pilotaufzeichnung für VOX bleiben, die ich 2015 moderieren durfte. Eine Mischung aus \u201ELet\u2019s Dance\u201C und Science Slam, mit Jury und prominenten Slammer:innen. Eine Idee, die entstand, als ich im Volontariat Station in der VOX-Redaktion gemacht habe und die Kolleg:innen dort Feuer und Flamme für den Science Slam waren.
-
-Lampenfieber war bei jedem Slam dabei, aber besonders ging mir die Pumpe als sich der damalige VOX-Chefredakteur zum nächsten Slam als Gast ankündigte. Und vor Kameras mit Regie im Ohr war\u2019s dann auch noch mal etwas anderes als bloß vor Publikum im Saal. Aus der Showidee wurde zwar nichts, es lag aber angeblich nicht an mir. Ich will das mal glauben, zumindest ließ VOX mich danach sogar durch Pressekonferenzen moderieren.
-
-5. Der Anfang von allem
-
-Alles nur, weil ich 2013 meine Bachelor-Arbeit zum Thema geschrieben habe: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen". Sperriger Titel mit einem Kolloquium im Science-Slam-Style.
-
-→ Mach\u2019s gut, Science Slam! Bis bald \u2013 dann als Gast vor der Bühne.`,
-  },
-  {
-    id: 'jahresrueckblick-2021',
-    title: 'Jahresrückblick 2021',
-    date: '2022-01-01',
-    tags: ['Jahresrückblick', 'Persönlich'],
-    content: `Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert.
-
-1. Vater geworden
-
-Ich bin Vater geworden. Das ist vor allem eine Leistung meiner Frau, wow. Nicht in Worte zu fassen. Mit einer nicht einfachen Schwangerschaft und turbulenten ersten Wochen nach der Geburt, bei denen ich hoffentlich so gut es geht unterstützt habe.
-
-Danach kommt erst Mal lange nichts. Noch nie so viel Glück und Verantwortung gespürt wie jetzt. Und so viele Windeln gewechselt. Aber freue mich auf jede weitere. Und alles was kommt. Riesig.
-
-2. Pandemie \u2013 Jahr zwei
-
-Pandemie Schmandemie. Scheiße wie für alle. Kaum physische Kontakte, um schwangere Frau und Kind zu schützen. Noch vorsichtiger als sowieso schon. Setzt ganz schön zu.
-
-→ Aber hey: Geboostert. Lasst euch impfen. Wir schaffen das!
-
-3. Freunde & Familie
-
-Ohne wäre das Jahr ganz schön trist geworden. Egal ob nahezu tägliche Sprachnotizen, feste Sim-Racing-Termine jede Woche, gemeinsame Podcasts, regelmäßige Kaffee-Calls in Teams, schreiben dass man aneinander denkt, auch wenn man sich nicht sieht. Mentale und ganz konkrete Unterstützung im Wochenbett.
-
-→ Unschätzbarer Wert. Dankbar.
-
-4. Sommer
-
-Der war sogar richtig gut. Und trägt einen mit Hoffnung auf einen vergleichbar tollen im eigenen Garten in 2022 durch Herbst und Winter.
-
-5. Newsdesk bei RTL
-
-Zusammen ein geiles Newsdesk-Team in der RTL Kommunikation geformt. Bin als Leiter stolz, was wir 2021 geschafft haben. Und froh, so viel Unterstützung und Rückhalt nicht nur von meinen Vorgesetzten zu spüren, sondern auch aus dem Team.
-
-→ Gutes Gefühl: Die Herausforderungen 2022 werden wir gemeinsam wuppen.
-
-6. Bierbrauen
-
-Ziemlich trivial, aber: Ich habe mein erstes eigenes Bier gebraut. Und mein zweites mit besserem Brau-Equipment. Well, das eskalierte schnell. Und hat am Ende sogar geschmeckt. Fast so gut wie die vielen Craftbiere, die ich so bei untappd einscanne.
-
-7. Lego
-
-Alte Klemmbausteine vom Speicher meiner Eltern gerettet. Ab in die Waschmaschine und versucht, sie wieder in den originalen Sets zu sortieren. Dann kam die Schwangerschaft dazwischen. Aber Plan steht, dass der Kleine dann irgendwann Papas alte Ritterburg aufbauen kann.
-
-Man kann sagen: Das war ein gutes Jahr. Ich lass\u2019 mir das von "Big C" nicht kaputtdeuten. Aber ohne wäre schon schöner gewesen.
-
-→ Jetzt aber auf in ein Jahr 2022, das uns am Ende hoffentlich alle irgendwie positiv überrascht und in dem wir unseren persönlichen Zielen alle näherkommen. Haut rein!`,
-  },
-];
+// Einzige Quelle der Wahrheit sind die Markdown-Dateien unter /blog.
+// blog/posts.json legt nur die Reihenfolge der Slugs fest; Titel, Datum, Tags
+// und Inhalt stammen aus dem Frontmatter bzw. Body der jeweiligen .md-Datei.
+// Inhalte werden beim ersten Öffnen geladen und danach zwischengespeichert.
+let _blogCache = null; // Promise<[{ id, title, date, tags, content }]>
+
+function parseBlogMarkdown(md) {
+  let title = '', date = '', tags = [];
+  let body = md;
+  const fm = md.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n?/);
+  if (fm) {
+    body = md.slice(fm[0].length);
+    fm[1].split('\n').forEach(line => {
+      const kv = line.match(/^(\w+):\s*(.*)$/);
+      if (!kv) return;
+      const key = kv[1];
+      const val = kv[2].trim().replace(/^["']|["']$/g, '');
+      if (key === 'title') title = val;
+      else if (key === 'date') date = val;
+      else if (key === 'tags') {
+        tags = val.replace(/^\[|\]$/g, '')
+          .split(',').map(t => t.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+      }
+    });
+  }
+  // Führende H1 (== Titel) entfernen — das OS zeigt den Titel separat an
+  body = body.replace(/^\s*#\s+.*(\r?\n)+/, '');
+  // Bildpfade von Blog-Sicht (images/…) auf OS-Sicht (../blog/images/…) umbiegen
+  body = body.replace(/(!\[[^\]]*\]\()images\//g, '$1../blog/images/');
+  return { title, date, tags, content: body.trim() };
+}
+
+function loadBlogPosts() {
+  if (_blogCache) return _blogCache;
+  _blogCache = fetch('../blog/posts.json')
+    .then(r => r.json())
+    .then(slugs => Promise.all(slugs.map(id =>
+      fetch(`../blog/${id}.md`)
+        .then(r => r.ok ? r.text() : '')
+        .then(md => {
+          const p = parseBlogMarkdown(md);
+          return { id, title: p.title || id, date: p.date, tags: p.tags, content: p.content };
+        })
+        .catch(() => ({ id, title: id, date: '', tags: [], content: '' }))
+    )))
+    .then(posts => posts.sort((a, b) => (b.date || '').localeCompare(a.date || '')))
+    .catch(() => []);
+  return _blogCache;
+}
 
 function buildBlog(body) {
   body.style.padding = '0';
@@ -5747,9 +5455,20 @@ function buildBlog(body) {
   body.style.display = 'flex';
   body.style.flexDirection = 'column';
   body.style.background = '#ffffff';
+  body.innerHTML = '<div class="blog-loading" style="padding:40px;color:#888">Lade Beiträge…</div>';
 
+  loadBlogPosts().then(allPosts => {
+    if (!allPosts.length) {
+      body.innerHTML = '<div style="padding:40px;color:#888">Beiträge konnten nicht geladen werden.</div>';
+      return;
+    }
+    renderBlog(body, allPosts);
+  });
+}
+
+function renderBlog(body, allPosts) {
   // Nach Veröffentlichungsdatum sortieren (neueste zuerst) – ausdrücklich nicht alphabetisch
-  const posts = [...BLOG_POSTS].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const posts = [...allPosts].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   // ... und nach Jahr gruppieren
   const byYear    = {};
   const yearOrder = [];
@@ -5798,10 +5517,12 @@ function buildBlog(body) {
       if (imgMatch) {
         return `<div class="blog-line blog-line-image"><img src="${imgMatch[2]}" alt="${escapeHtml(imgMatch[1])}" loading="lazy"></div>`;
       }
-      if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${linkifyText(escapeHtml(trimmed))}</div>`;
-      if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${linkifyText(escapeHtml(trimmed))}</div>`;
-      if (trimmed.startsWith('•')) return `<div class="blog-line blog-line-list">${linkifyText(escapeHtml(trimmed))}</div>`;
-      return `<div class="blog-line">${linkifyText(escapeHtml(trimmed))}</div>`;
+      const hMatch = trimmed.match(/^#{1,6}\s+(.*)$/);
+      if (hMatch) return `<div class="blog-line blog-line-heading">${blogInline(escapeHtml(hMatch[1]))}</div>`;
+      if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${blogInline(escapeHtml(trimmed))}</div>`;
+      if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${blogInline(escapeHtml(trimmed))}</div>`;
+      if (trimmed.startsWith('•') || trimmed.startsWith('- ')) return `<div class="blog-line blog-line-list">${blogInline(escapeHtml(trimmed.replace(/^- /, '• ')))}</div>`;
+      return `<div class="blog-line">${blogInline(escapeHtml(trimmed))}</div>`;
     }).join('');
   }
 
@@ -5848,7 +5569,7 @@ function buildBlog(body) {
 
   // Beitrag anzeigen — zentral, von Sidebar, Dropdown und Direktsprung genutzt
   function showPost(postId) {
-    const post = BLOG_POSTS.find(p => p.id === postId);
+    const post = allPosts.find(p => p.id === postId);
     if (!post) return;
     body.querySelectorAll('.blog-list-item').forEach(i =>
       i.classList.toggle('active', i.dataset.post === postId));
@@ -6047,6 +5768,21 @@ function linkifyText(escapedHtml) {
   );
 }
 
+// Inline-Markdown für den Blog: Markdown-Links, nackte URLs und **fett**.
+// Eingabe ist bereits HTML-escaped. Markdown-Links werden zwischengespeichert,
+// damit die Erkennung nackter URLs ihre Ziel-URL nicht doppelt verlinkt.
+function blogInline(s) {
+  s = s.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<>&"]+)/g,
+    (m, text, mdUrl, bareUrl) => {
+      const url = mdUrl || bareUrl;
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text || url}</a>`;
+    }
+  );
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  return s;
+}
+
 // ─────────────────────────────────────────────────
 // LOGIN / LOCK SCREEN
 // ─────────────────────────────────────────────────
@@ -6163,13 +5899,7 @@ function boot() {
     const hash = window.location.hash.replace('#', '');
     if (hash && hash.startsWith('blog/')) {
       const postId = hash.substring(5);
-      setTimeout(() => {
-        openWindow('blog');
-        setTimeout(() => {
-          const item = document.querySelector(`.blog-list-item[data-post="${postId}"]`);
-          if (item) item.click();
-        }, 100);
-      }, 350);
+      setTimeout(() => openBlogPost(postId), 350);
     } else if (hash && WIN_CONFIGS[hash]) {
       setTimeout(() => openWindow(hash), 350);
     } else {
@@ -6245,12 +5975,7 @@ function boot() {
 window.addEventListener('hashchange', () => {
   const hash = window.location.hash.replace('#', '');
   if (hash && hash.startsWith('blog/')) {
-    const postId = hash.substring(5);
-    openWindow('blog');
-    setTimeout(() => {
-      const item = document.querySelector(`.blog-list-item[data-post="${postId}"]`);
-      if (item) item.click();
-    }, 100);
+    openBlogPost(hash.substring(5));
   } else if (hash && WIN_CONFIGS[hash]) {
     openWindow(hash);
   }
