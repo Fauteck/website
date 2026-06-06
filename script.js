@@ -5033,7 +5033,6 @@ const MOB_LABELS = {
 
 // Alle App-Icons auf einer Mobile-Seite (Seite 2 entfällt)
 const MOB_PAGE1 = ['career', 'photos', 'projects', 'homeassistant', 'bambu', 'claudeapp', 'teams', 'jira', 'github', 'filesapp', 'games'];
-const MOB_PAGE2 = [];
 const MOB_DOCK  = ['about', 'outlook', 'blog'];
 
 const COLOR_MAP = {
@@ -5082,13 +5081,6 @@ function initMobile() {
   MOB_PAGE1.forEach(id => {
     const el = makeMobAppIcon(id, 'mob-app-wrap', 'mob-app-label');
     if (el) grid1.appendChild(el);
-  });
-
-  // Build Page 2 app grid
-  const grid2 = document.getElementById('mob-app-grid-2');
-  MOB_PAGE2.forEach(id => {
-    const el = makeMobAppIcon(id, 'mob-app-wrap', 'mob-app-label');
-    if (el) grid2.appendChild(el);
   });
 
   // Build Dock
@@ -5426,17 +5418,21 @@ function parseBlogMarkdown(md) {
   }
   // Führende H1 (== Titel) entfernen — das OS zeigt den Titel separat an
   body = body.replace(/^\s*#\s+.*(\r?\n)+/, '');
-  // Bildpfade von Blog-Sicht (images/…) auf OS-Sicht (../blog/images/…) umbiegen
-  body = body.replace(/(!\[[^\]]*\]\()images\//g, '$1../blog/images/');
+  // Bildpfade von Blog-Sicht (images/…) auf OS-Sicht (blog/images/…) umbiegen.
+  // base-relativ (kein ../): <base href="../"> rechnet das os/-Verzeichnis
+  // bereits heraus, sodass der Pfad an jedem Deploy-Pfad korrekt auflöst.
+  body = body.replace(/(!\[[^\]]*\]\()images\//g, '$1blog/images/');
   return { title, date, tags, content: body.trim() };
 }
 
 function loadBlogPosts() {
   if (_blogCache) return _blogCache;
-  _blogCache = fetch('../blog/posts.json')
+  // base-relativ (kein ../): <base href="../"> löst os/ bereits auf, daher
+  // funktioniert 'blog/…' am Domain-Root, am Projekt-Subpfad und lokal.
+  _blogCache = fetch('blog/posts.json')
     .then(r => r.json())
     .then(slugs => Promise.all(slugs.map(id =>
-      fetch(`../blog/${id}.md`)
+      fetch(`blog/${id}.md`)
         .then(r => r.ok ? r.text() : '')
         .then(md => {
           const p = parseBlogMarkdown(md);
