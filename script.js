@@ -45,22 +45,6 @@ const WIN_CONFIGS = {
     defaultW: 920, defaultH: 580,
     svgPath: 'M3 13L14 4l11 9M7 13h14v11H7zM11 18h6v6h-6z',
   },
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  packages: {
-    title: 'Installierte Apps',
-    color: 'indigo',
-    defaultW: 560, defaultH: 520,
-    svgPath: 'M3 3h10v10H3zM15 3h10v10H15zM3 15h10v10H3zM15 15h10v10H15z',
-  },
-  */
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  changelog: {
-    title: 'Changelog',
-    color: 'pink',
-    defaultW: 520, defaultH: 480,
-    svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM14 8v6l4 4',
-  },
-  */
   trash: {
     title: 'Papierkorb',
     color: 'red',
@@ -74,14 +58,6 @@ const WIN_CONFIGS = {
     svgPath: 'M3 7h8l2 3h12v15H3V7z',
   },
   // Mobile-only apps
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  chatgpt: {
-    title: 'ChatGPT',
-    color: 'green',
-    defaultW: 460, defaultH: 500,
-    svgPath: 'M14 3a11 11 0 100 22A11 11 0 0014 3zM9 14l3-6 3 6M10.5 11.5h5',
-  },
-  */
   claudeapp: {
     title: 'Claude',
     color: 'orange',
@@ -197,14 +173,6 @@ const WIN_CONFIGS = {
     defaultW: 800, defaultH: 580,
     svgPath: 'M3 7h8l2 3h12v15H3V7zM10 15h8M10 19h5',
   },
-  /* Vorerst deaktiviert — zum Reaktivieren Block-Kommentar entfernen.
-  testimonials: {
-    title: 'Empfehlungen',
-    color: 'cyan',
-    defaultW: 640, defaultH: 520,
-    svgPath: 'M4 6h20v12H13l-5 4v-4H4V6zM8 10h12M8 14h8',
-  },
-  */
   placeholder: {
     title: 'Mehr',
     color: 'indigo',
@@ -218,9 +186,34 @@ const WIN_CONFIGS = {
 // ─────────────────────────────────────────────────
 let zCounter = 100;
 let activeWindowId = null;
-const openWindows = new Map(); // id → { el, state, savedPos, savedSize }
+const openWindows = new Map(); // id → { el, state, savedPos, savedSize, cleanup }
 let windowOpenCount = 0;
 let _blogTargetPost = null; // Blog-Beitrag, zu dem direkt gesprungen werden soll (z. B. aus Google Fotos)
+
+// ─────────────────────────────────────────────────
+// WINDOW CLEANUP REGISTRY
+// ─────────────────────────────────────────────────
+// Builder registrieren ihren Teardown (Timer, requestAnimationFrame, document-
+// Listener), damit beim Schließen nichts auf bereits entferntem DOM weiterläuft.
+// Desktop: Cleanup hängt am Fenster-State (openWindows). Mobile: Einzelfenster,
+// daher eine modulweite Liste.
+let _mobileCleanups = [];
+function registerCleanup(id, fn) {
+  const w = openWindows.get(id);
+  if (w) (w.cleanup || (w.cleanup = [])).push(fn);
+  else _mobileCleanups.push(fn);
+}
+function runCleanups(list) {
+  if (!list || !list.length) return;
+  list.splice(0).forEach(fn => { try { fn(); } catch (_) {} });
+}
+// document-Listener (z. B. keydown der Spiele) per AbortController bündeln –
+// .abort() entfernt alle auf einmal, auch anonyme Handler.
+function windowSignal(id) {
+  const ac = new AbortController();
+  registerCleanup(id, () => ac.abort());
+  return ac.signal;
+}
 
 // ─────────────────────────────────────────────────
 // WINDOW MANAGER
@@ -291,6 +284,7 @@ function openWindow(id) {
 function closeWindow(id) {
   const w = openWindows.get(id);
   if (!w) return;
+  runCleanups(w.cleanup);
   w.el.classList.add('closing');
   w.el.addEventListener('animationend', () => {
     w.el.remove();
@@ -415,28 +409,19 @@ function createWindowEl(id, cfg) {
 // ─────────────────────────────────────────────────
 // DRAG
 // ─────────────────────────────────────────────────
-function setupDrag(windowEl, titlebarEl, id) {
-  let dragging = false;
-  let startX, startY, origX, origY;
-
-  titlebarEl.addEventListener('mousedown', e => {
-    if (e.target.classList.contains('win-btn')) return;
-    const w = openWindows.get(id);
-    if (w && w.maximized) return;
-    dragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    origX = parseInt(windowEl.style.left) || 0;
-    origY = parseInt(windowEl.style.top)  || 0;
-    e.preventDefault();
-  });
+// Ein einziger globaler Drag-Controller statt zwei document-Listener PRO Fenster
+// (die nie entfernt wurden und sich mit jedem geöffneten Fenster aufstauten).
+let _dragState = null;
+let _globalDragInit = false;
+function initGlobalDrag() {
+  if (_globalDragInit) return;
+  _globalDragInit = true;
 
   document.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    const newX = origX + dx;
-    const newY = origY + dy;
+    if (!_dragState) return;
+    const { windowEl, startX, startY, origX, origY } = _dragState;
+    const newX = origX + (e.clientX - startX);
+    const newY = origY + (e.clientY - startY);
     const taskbarH = 44;
     const maxX = window.innerWidth  - windowEl.offsetWidth;
     const maxY = window.innerHeight - taskbarH - 34; // keep titlebar visible
@@ -445,14 +430,29 @@ function setupDrag(windowEl, titlebarEl, id) {
   });
 
   document.addEventListener('mouseup', () => {
-    if (dragging) {
-      dragging = false;
-      const w = openWindows.get(id);
-      if (w && !w.maximized) {
-        w.savedPos  = { x: parseInt(windowEl.style.left), y: parseInt(windowEl.style.top) };
-        w.savedSize = { w: windowEl.offsetWidth, h: windowEl.offsetHeight };
-      }
+    if (!_dragState) return;
+    const { windowEl, id } = _dragState;
+    _dragState = null;
+    const w = openWindows.get(id);
+    if (w && !w.maximized) {
+      w.savedPos  = { x: parseInt(windowEl.style.left), y: parseInt(windowEl.style.top) };
+      w.savedSize = { w: windowEl.offsetWidth, h: windowEl.offsetHeight };
     }
+  });
+}
+
+function setupDrag(windowEl, titlebarEl, id) {
+  titlebarEl.addEventListener('mousedown', e => {
+    if (e.target.classList.contains('win-btn')) return;
+    const w = openWindows.get(id);
+    if (w && w.maximized) return;
+    _dragState = {
+      windowEl, id,
+      startX: e.clientX, startY: e.clientY,
+      origX: parseInt(windowEl.style.left) || 0,
+      origY: parseInt(windowEl.style.top)  || 0,
+    };
+    e.preventDefault();
   });
 }
 
@@ -499,11 +499,8 @@ function initWindowContent(id, el) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    // packages:       buildPackages, // vorerst deaktiviert
-    // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
-    // chatgpt:        buildChatGPT, // vorerst deaktiviert
     claudeapp:      buildClaudeApp,
     outlook:        buildOutlook,
     teams:          buildTeams,
@@ -523,7 +520,6 @@ function initWindowContent(id, el) {
     sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
-    // testimonials:   buildTestimonials, // vorerst deaktiviert
   };
   if (contentFns[id]) {
     if (id === 'sysmon' && typeof _tmInitialTab !== 'undefined' && _tmInitialTab) {
@@ -1346,28 +1342,6 @@ const SYSMON_PROCESSES = [
 ];
 
 // ── Task-Manager Skills Data ──
-const TM_SKILLS = [
-  { cat: 'AI & Automation', skills: [
-    { name: 'Prompt Engineering',     pct: 100, level: 'expert' },
-    { name: 'AI Workflow Design',     pct: 100, level: 'expert' },
-    { name: 'n8n / Make.com',         pct: 80,  level: 'advanced' },
-    { name: 'Vibecoding',             pct: 85,  level: 'advanced' },
-    { name: 'Custom GPT Development',  pct: 90,  level: 'expert' },
-  ]},
-  { cat: 'Digital Transformation', skills: [
-    { name: 'Strategy & Roadmapping', pct: 100, level: 'expert' },
-    { name: 'Change Management',      pct: 100, level: 'expert' },
-    { name: 'Tool Adoption',          pct: 100, level: 'expert' },
-    { name: 'Stakeholder Mgmt',       pct: 85,  level: 'advanced' },
-  ]},
-  { cat: 'Technical', skills: [
-    { name: 'Docker / Containerizing', pct: 80, level: 'advanced' },
-    { name: 'GitHub / GitOps',         pct: 80, level: 'advanced' },
-    { name: 'Home Assistant',          pct: 85, level: 'advanced' },
-    { name: '3D Printing (FDM)',       pct: 80, level: 'advanced' },
-  ]},
-];
-
 // ── Leistung chart state ──
 let tmPerfInterval = null;
 
@@ -1381,7 +1355,6 @@ function buildSysmon(body, _id, initialTab) {
   const tabs = [
     { id: 'prozesse',    label: 'Prozesse',     icon: '<svg viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' },
     { id: 'leistung',    label: 'Leistung',     icon: '<svg viewBox="0 0 18 18" fill="none"><polyline points="2,14 5,8 8,11 11,5 14,9 17,3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
-    // 'benutzer' (Capability Report/Skills) und 'appverlauf' (Installierte Apps) vorerst deaktiviert
     { id: 'dienste',     label: 'Dienste',      icon: '<svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M9 1v3M9 14v3M1 9h3M14 9h3M3.3 3.3l2.1 2.1M12.6 12.6l2.1 2.1M3.3 14.7l2.1-2.1M12.6 5.4l2.1-2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>' },
   ];
 
@@ -1429,12 +1402,11 @@ function buildSysmon(body, _id, initialTab) {
 function renderTmTab(container, tabId) {
   // Clean up any running intervals
   if (tmPerfInterval) { clearInterval(tmPerfInterval); tmPerfInterval = null; }
+  registerCleanup('sysmon', () => { if (tmPerfInterval) { clearInterval(tmPerfInterval); tmPerfInterval = null; } });
 
   switch (tabId) {
     case 'prozesse':  return renderTmProzesse(container);
     case 'leistung':  return renderTmLeistung(container);
-    // case 'benutzer':  return renderTmBenutzer(container); // vorerst deaktiviert
-    // case 'appverlauf': return renderTmApps(container);    // vorerst deaktiviert
     case 'dienste':   return renderTmDienste(container);
   }
 }
@@ -1579,59 +1551,6 @@ function renderTmLeistung(el) {
       item.classList.add('active');
     });
   });
-}
-
-function renderTmBenutzer(el) {
-  const catsHtml = TM_SKILLS.map(cat => `
-    <div class="tm-skill-cat">
-      <div class="tm-skill-cat-title">${cat.cat}</div>
-      ${cat.skills.map(s => `
-        <div class="tm-skill-row">
-          <div class="tm-skill-label">${s.name}</div>
-          <div class="tm-skill-bar-track">
-            <div class="tm-skill-bar-fill" data-pct="${s.pct}"></div>
-          </div>
-          <div class="tm-skill-level">${s.level}</div>
-        </div>
-      `).join('')}
-    </div>
-  `).join('');
-
-  el.innerHTML = `
-    <div class="tm-users">
-      <div class="tm-users-header"># Capability Report — niklas-fauteck v2026.03</div>
-      ${catsHtml}
-    </div>
-  `;
-
-  setTimeout(() => {
-    el.querySelectorAll('.tm-skill-bar-fill').forEach(b => { b.style.width = b.dataset.pct + '%'; });
-  }, 150);
-}
-
-function renderTmApps(el) {
-  const catsHtml = PACKAGES.map(cat => `
-    <div class="tm-apps-cat">
-      <div class="tm-apps-cat-title">${cat.cat}</div>
-      ${cat.items.map(p => `
-        <div class="tm-apps-item">
-          <span class="tm-apps-name">${p.name}</span>
-          <span class="tm-apps-ver">${p.ver}</span>
-          <span class="tm-apps-check">✓ installiert</span>
-        </div>
-      `).join('')}
-    </div>
-  `).join('');
-
-  el.innerHTML = `
-    <div class="tm-apps">
-      <div class="tm-apps-header">
-        <div class="tm-apps-title">App-Verlauf</div>
-        <div class="tm-apps-cmd">apt list --installed</div>
-      </div>
-      ${catsHtml}
-    </div>
-  `;
 }
 
 function renderTmDienste(el) {
@@ -1970,6 +1889,7 @@ function buildBambu(body) {
   let printing = false;
   let progress = 0;
   let interval = null;
+  registerCleanup('bambu', () => clearInterval(interval));
 
   const btn    = body.querySelector('#bambu-btn');
   const fill   = body.querySelector('#bambu-fill');
@@ -2415,177 +2335,6 @@ function buildHA(body) {
 }
 
 // ─────────────────────────────────────────────────
-// PACKAGES / INSTALLED APPS
-// ─────────────────────────────────────────────────
-const PACKAGES = [
-  { cat: 'KI & Automation', items: [
-    { name: 'claude',         ver: '4.0+',  },
-    { name: 'chatgpt',        ver: '4o',    },
-    { name: 'cursor',         ver: '1.x',   },
-    { name: 'n8n',            ver: '1.x',   },
-    { name: 'make.com',       ver: 'latest',},
-  ]},
-  { cat: 'Kollaboration', items: [
-    { name: 'confluence',     ver: 'cloud', },
-    { name: 'jira',           ver: 'cloud', },
-    { name: 'notion',         ver: 'cloud', },
-    { name: 'miro',           ver: 'cloud', },
-  ]},
-  { cat: 'Infrastruktur', items: [
-    { name: 'docker',         ver: '26',    },
-    { name: 'github-actions', ver: 'cloud', },
-    { name: 'portainer',      ver: 'latest',},
-    { name: 'home-assistant', ver: '2025',  },
-  ]},
-  { cat: 'Analytics', items: [
-    { name: 'power-bi',       ver: 'cloud', },
-    { name: 'google-analytics', ver: '4',  },
-  ]},
-];
-
-function buildPackages(body) {
-  const cats = PACKAGES.map(cat => `
-    <div class="pkg-category">
-      <div class="pkg-cat-title">${cat.cat}</div>
-      <div class="pkg-list">
-        ${cat.items.map(p => `
-          <div class="pkg-item">
-            <span class="pkg-name">${p.name}</span>
-            <span class="pkg-version">${p.ver}</span>
-            <span class="pkg-check">✓ installiert</span>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
-
-  body.innerHTML = `
-    <div class="pkg-wrap">
-      <div class="pkg-header">
-        <h3>Installierte Apps</h3>
-        <span class="pkg-header-cmd">apt list --installed</span>
-      </div>
-      ${cats}
-    </div>
-  `;
-}
-
-// ─────────────────────────────────────────────────
-// CHANGELOG
-// ─────────────────────────────────────────────────
-const CHANGELOG_DATA = [
-  {
-    ver: 'v2026.03',
-    date: 'März 2026',
-    current: true,
-    items: [
-      'Weitere KI-gestützte Workflows produktiv gesetzt',
-      'Automation-Denken in breiteren Teamkontext skaliert',
-      'Personal Lab ausgebaut: 3D-Druck + Smart Home Optimierungen',
-      'NiklasOS — neue persönliche Website veröffentlicht',
-    ],
-  },
-  {
-    ver: 'v2025.06',
-    date: 'Juni 2025',
-    items: [
-      'Smart Home Flows mit Home Assistant weiter optimiert',
-      'n8n Automation-Wissen systematisch ausgebaut',
-      'Vibecoding als produktiven Workflow etabliert',
-    ],
-  },
-  {
-    ver: 'v2024.01',
-    date: 'Januar 2024',
-    items: [
-      'KI-Tooling Adoption in Teams vorangetrieben',
-      'Interne Wissenssysteme und Prozesse strukturiert',
-      'Power BI Dashboards für datengetriebene Entscheidungen aufgebaut',
-    ],
-  },
-  {
-    ver: 'v2023.01',
-    date: 'Januar 2023',
-    items: [
-      'Einstieg bei RTL Deutschland: Head of Digital Transformation',
-      'Fokus: Brücke zwischen Redaktion und Technologie-Teams',
-      'Erste Bestandsaufnahme digitaler Reifegrad der Organisation',
-    ],
-  },
-  {
-    ver: 'v2020.00',
-    date: '2020',
-    items: [
-      'Newsdesk Kommunikation: erster dedizierter Digital-PM-Fokus',
-      'Systematischer Ansatz für Tool-Adoption entwickelt',
-      'Foundation: Verstehen, wie Menschen Tools wirklich nutzen',
-    ],
-  },
-];
-
-function buildChangelog(body) {
-  body.style.padding = '0';
-  body.style.overflow = 'hidden';
-  body.style.display = 'flex';
-  body.style.flexDirection = 'column';
-
-  const changelogHtml = CHANGELOG_DATA.map(v => `
-    <div class="cl-version${v.current ? ' cl-ver-current' : ''}">
-      <div class="cl-ver-header">
-        <span class="cl-ver-tag">${v.ver}</span>
-        <span class="cl-ver-date">${v.date}</span>
-        ${v.current ? '<span class="cl-current-badge">current</span>' : ''}
-      </div>
-      <ul class="cl-items">
-        ${v.items.map(i => `<li>${i}</li>`).join('')}
-      </ul>
-    </div>
-  `).join('');
-
-  const karriereHtml = CAREER_DATA.map(e => `
-    <div class="cl-career-item">
-      <div class="cl-career-dot-wrap">
-        <div class="cl-career-dot"></div>
-        <div class="cl-career-line"></div>
-      </div>
-      <div class="cl-career-card">
-        <div class="cl-career-period">${e.period}</div>
-        <div class="cl-career-title">${e.title}</div>
-        <div class="cl-career-company">${e.icon} ${e.company}</div>
-        <ul class="cl-career-list">
-          ${e.impact.slice(0,2).map(i => `<li>${i}</li>`).join('')}
-        </ul>
-      </div>
-    </div>
-  `).join('');
-
-  body.innerHTML = `
-    <div class="cl-tabs-bar">
-      <button class="cl-tab active" data-tab="changelog">Changelog</button>
-      <button class="cl-tab" data-tab="karriere">Karriere</button>
-    </div>
-    <div class="cl-tab-content" id="cl-content-changelog" style="flex:1;overflow-y:auto">
-      <div class="changelog">${changelogHtml}</div>
-    </div>
-    <div class="cl-tab-content" id="cl-content-karriere" style="flex:1;overflow-y:auto;display:none;padding:16px">
-      <div class="cl-career-timeline">${karriereHtml}</div>
-    </div>
-  `;
-
-  body.querySelectorAll('.cl-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      body.querySelectorAll('.cl-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const target = tab.dataset.tab;
-      body.querySelectorAll('.cl-tab-content').forEach(c => {
-        c.style.display = c.id === `cl-content-${target}` ? 'block' : 'none';
-      });
-    });
-  });
-}
-
-
-// ─────────────────────────────────────────────────
 // TRASH / PAPIERKORB
 // ─────────────────────────────────────────────────
 const TRASH_ITEMS = [
@@ -2626,36 +2375,6 @@ function buildTrash(body) {
 // ─────────────────────────────────────────────────
 // MOBILE APP CONTENT BUILDERS
 // ─────────────────────────────────────────────────
-
-function buildChatGPT(body) {
-  body.innerHTML = `
-    <div class="mob-chat-wrap">
-      <div class="mob-chat-header">
-        <div class="mob-chat-title">ChatGPT</div>
-        <div class="mob-chat-model">GPT-4o</div>
-      </div>
-      <div class="mob-chat-messages">
-        <div class="mob-msg mob-msg-user">Erstelle mir eine Rückgabe-Meldung für mein 3D-Druck-Filament. Das TPU ist nach dem Drucken sehr klebrig geworden.</div>
-        <div class="mob-msg mob-msg-ai">
-          <div class="mob-msg-icon">🤖</div>
-          <div>Hier ist eine höfliche Rückgabe-Meldung:<br><br>
-          <em>"Sehr geehrte Damen und Herren, leider muss ich das erworbene TPU 95A zurückgeben. Nach dem Druckvorgang wies das Filament eine ungewöhnlich hohe Klebrigkeit auf, die auf einen Qualitätsmangel hindeutet. Ich bitte um Rückerstattung oder Umtausch..."</em><br><br>
-          Soll ich noch einen freundlicheren Ton wählen? 😄</div>
-        </div>
-        <div class="mob-msg mob-msg-user">Nein danke, aber schreib mir lieber einen Docker-Compose-Stack für Home Assistant</div>
-        <div class="mob-msg mob-msg-ai">
-          <div class="mob-msg-icon">🤖</div>
-          <div>Gerne! Hier ist ein minimaler Stack:<br><br>
-          <code style="font-size:11px;background:rgba(0,0,0,0.1);padding:2px 4px;border-radius:3px">services:\n  homeassistant:\n    image: ghcr.io/home-assistant/home-assistant:stable\n    restart: unless-stopped\n    network_mode: host\n    volumes:\n      - ./config:/config</code>
-          </div>
-        </div>
-      </div>
-      <div class="mob-chat-input">
-        <div class="mob-chat-field">Nachricht senden…</div>
-      </div>
-    </div>
-  `;
-}
 
 function buildClaudeApp(body) {
   body.innerHTML = `
@@ -3530,6 +3249,7 @@ function buildSnake(body) {
   const GRID = 15;
   const CELL = canvas.width / GRID;
   let snake, dir, nextDir, food, score, best = 0, gameLoop, running = false;
+  registerCleanup('snake', () => { running = false; clearInterval(gameLoop); });
 
   function reset() {
     snake = [{ x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }];
@@ -3645,7 +3365,7 @@ function buildSnake(body) {
     if (e.key === 'ArrowLeft' || e.key === 'a') { e.preventDefault(); setDir(-1, 0); }
     if (e.key === 'ArrowRight' || e.key === 'd') { e.preventDefault(); setDir(1, 0); }
   }
-  document.addEventListener('keydown', keyHandler);
+  document.addEventListener('keydown', keyHandler, { signal: windowSignal('snake') });
 
   // Swipe controls
   let touchStartX = 0, touchStartY = 0;
@@ -3680,6 +3400,7 @@ function buildMinesweeper(body) {
 
   const ROWS = 9, COLS = 9, MINES = 10;
   let board, revealed, flagged, gameOver, firstClick, minesLeft, timerVal, timerInt;
+  registerCleanup('minesweeper', () => clearInterval(timerInt));
 
   function init() {
     board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
@@ -3931,6 +3652,7 @@ function buildPong(body) {
   const W = canvas.width, H = canvas.height;
   const PADDLE_W = 60, PADDLE_H = 8, BALL_R = 5, WIN_SCORE = 5;
   let playerX, aiX, ballX, ballY, ballVX, ballVY, playerScore, aiScore, running, animId;
+  registerCleanup('pong', () => { running = false; cancelAnimationFrame(animId); });
 
   function reset() {
     playerX = W / 2 - PADDLE_W / 2;
@@ -3995,7 +3717,7 @@ function buildPong(body) {
   // Controls
   canvas.addEventListener('mousemove', e => { if (!running) return; const r = canvas.getBoundingClientRect(); playerX = ((e.clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); });
   canvas.addEventListener('touchmove', e => { if (!running) return; e.preventDefault(); const r = canvas.getBoundingClientRect(); playerX = ((e.touches[0].clientX - r.left) / r.width) * W - PADDLE_W / 2; playerX = Math.max(0, Math.min(W - PADDLE_W, playerX)); }, { passive: false });
-  document.addEventListener('keydown', e => { if (!running) return; if (e.key === 'ArrowLeft') playerX = Math.max(0, playerX - 20); if (e.key === 'ArrowRight') playerX = Math.min(W - PADDLE_W, playerX + 20); });
+  document.addEventListener('keydown', e => { if (!running) return; if (e.key === 'ArrowLeft') playerX = Math.max(0, playerX - 20); if (e.key === 'ArrowRight') playerX = Math.min(W - PADDLE_W, playerX + 20); }, { signal: windowSignal('pong') });
   overlay.addEventListener('click', start);
   reset(); draw();
 }
@@ -4096,6 +3818,7 @@ function buildFlappyBird(body) {
   const W = canvas.width, H = canvas.height;
   const GRAVITY = 0.35, FLAP = -6, PIPE_W = 40, GAP = 120, PIPE_SPEED = 2, BIRD_SIZE = 14;
   let birdY, birdV, pipes, score, best = 0, running, animId, frameCount;
+  registerCleanup('flappybird', () => { running = false; cancelAnimationFrame(animId); });
 
   function reset() {
     birdY = H / 2; birdV = 0; pipes = []; score = 0; frameCount = 0;
@@ -4170,7 +3893,7 @@ function buildFlappyBird(body) {
 
   canvas.addEventListener('click', () => { if (running) flap(); });
   canvas.addEventListener('touchstart', e => { e.preventDefault(); if (running) flap(); }, { passive: false });
-  document.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); if (running) flap(); } });
+  document.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); if (running) flap(); } }, { signal: windowSignal('flappybird') });
   overlay.addEventListener('click', start);
   reset(); draw();
 }
@@ -4569,6 +4292,7 @@ function buildMemory(body) {
 
   const EMOJIS = ['🚀','🎯','⚡','🔥','🌟','💡','🎨','🔧'];
   let cards, flipped, matched, moves, startTime, timerInt, lockBoard;
+  registerCleanup('memory', () => clearInterval(timerInt));
 
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
@@ -4691,6 +4415,7 @@ function buildTetris(body) {
   ];
 
   let board, piece, piecePos, nextPiece, score, level, lines, gameOver, dropInterval, gameLoop;
+  registerCleanup('tetris', () => clearInterval(gameLoop));
 
   function init() {
     board = Array.from({length: ROWS}, () => Array(COLS).fill(0));
@@ -4887,7 +4612,7 @@ function buildTetris(body) {
     if (e.key === 'ArrowDown')  { e.preventDefault(); tick(); }
     if (e.key === ' ')          { e.preventDefault(); hardDrop(); }
   }
-  document.addEventListener('keydown', keyHandler);
+  document.addEventListener('keydown', keyHandler, { signal: windowSignal('tetris') });
 
   body.querySelector('#tet-restart').addEventListener('click', () => {
     init();
@@ -4989,76 +4714,79 @@ function buildPhotos(body) {
   const isMob = window.innerWidth < 768;
   const cols  = isMob ? 3 : 4;
 
-  // Bilder aus den Blog-Beiträgen extrahieren (Markdown ![alt](src))
-  const imgRe       = /!\[([^\]]*)\]\(([^)]+)\)/g;
-  const photos      = []; // alle Bilder, neueste zuerst (BLOG_POSTS ist bereits sortiert)
-  const albumsByPost = []; // ein Album je Beitrag mit Bildern
-  BLOG_POSTS.forEach(post => {
-    const imgs = [];
-    let m;
-    imgRe.lastIndex = 0;
-    while ((m = imgRe.exec(post.content)) !== null) {
-      const photo = { alt: m[1], src: m[2], postId: post.id, postTitle: post.title, date: post.date };
-      imgs.push(photo);
-      photos.push(photo);
-    }
-    if (imgs.length) {
-      albumsByPost.push({ postId: post.id, title: post.title, count: imgs.length, cover: imgs[0].src });
-    }
-  });
-
   body.style.padding = '0';
   body.style.overflow = 'hidden';
   body.style.display = 'flex';
   body.style.flexDirection = 'column';
+  body.innerHTML = '<div class="photos-loading" style="padding:40px;text-align:center;color:#888">Lade Fotos…</div>';
 
-  body.innerHTML = `
-    <div class="photos-wrap">
-      <div class="photos-header">
-        <span class="photos-logo">
-          <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
-          &nbsp;Fotos
-        </span>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="photos-search-icon">
-          <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="12" y1="12" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
+  loadBlogPosts().then(allPosts => {
+    // Bilder aus den Blog-Beiträgen extrahieren (Markdown ![alt](src))
+    const imgRe        = /!\[([^\]]*)\]\(([^)]+)\)/g;
+    const photos       = []; // alle Bilder, neueste zuerst (allPosts ist datums-sortiert)
+    const albumsByPost = []; // ein Album je Beitrag mit Bildern
+    allPosts.forEach(post => {
+      const imgs = [];
+      let m;
+      imgRe.lastIndex = 0;
+      while ((m = imgRe.exec(post.content)) !== null) {
+        const photo = { alt: m[1], src: m[2], postId: post.id, postTitle: post.title, date: post.date };
+        imgs.push(photo);
+        photos.push(photo);
+      }
+      if (imgs.length) {
+        albumsByPost.push({ postId: post.id, title: post.title, count: imgs.length, cover: imgs[0].src });
+      }
+    });
 
-      <div class="photos-scroll" id="photos-scroll">
-
-        <!-- Alben = Blog-Beiträge -->
-        <div class="photos-section-label">Alben · aus dem Blog</div>
-        <div class="photos-albums">
-          ${albumsByPost.map(a => `
-            <div class="photos-album" data-post="${a.postId}" role="button" tabindex="0" title="${escapeHtml(a.title)}">
-              <div class="photos-album-cover" style="background-image:url('${a.cover}');background-size:cover;background-position:center"></div>
-              <div class="photos-album-name">${escapeHtml(a.title)}</div>
-              <div class="photos-album-count">${a.count} Foto${a.count === 1 ? '' : 's'}</div>
-            </div>
-          `).join('')}
+    body.innerHTML = `
+      <div class="photos-wrap">
+        <div class="photos-header">
+          <span class="photos-logo">
+            <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+            &nbsp;Fotos
+          </span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="photos-search-icon">
+            <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="12" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
         </div>
 
-        <!-- Alle Fotos -->
-        <div class="photos-section-label" style="margin-top:16px">Alle Fotos · ${photos.length}</div>
-        <div class="photos-grid" style="grid-template-columns:repeat(${cols},1fr)">
-          ${photos.map(p => `
-            <div class="photos-tile" data-post="${p.postId}" role="button" tabindex="0" title="${escapeHtml(p.postTitle)}">
-              <img src="${p.src}" alt="${escapeHtml(p.alt)}" loading="lazy">
-              <span class="photos-tile-cap">${escapeHtml(p.postTitle)}</span>
-            </div>
-          `).join('')}
+        <div class="photos-scroll" id="photos-scroll">
+
+          <!-- Alben = Blog-Beiträge -->
+          <div class="photos-section-label">Alben · aus dem Blog</div>
+          <div class="photos-albums">
+            ${albumsByPost.map(a => `
+              <div class="photos-album" data-post="${a.postId}" role="button" tabindex="0" title="${escapeHtml(a.title)}">
+                <div class="photos-album-cover" style="background-image:url('${a.cover}');background-size:cover;background-position:center"></div>
+                <div class="photos-album-name">${escapeHtml(a.title)}</div>
+                <div class="photos-album-count">${a.count} Foto${a.count === 1 ? '' : 's'}</div>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Alle Fotos -->
+          <div class="photos-section-label" style="margin-top:16px">Alle Fotos · ${photos.length}</div>
+          <div class="photos-grid" style="grid-template-columns:repeat(${cols},1fr)">
+            ${photos.map(p => `
+              <div class="photos-tile" data-post="${p.postId}" role="button" tabindex="0" title="${escapeHtml(p.postTitle)}">
+                <img src="${p.src}" alt="${escapeHtml(p.alt)}" loading="lazy">
+                <span class="photos-tile-cap">${escapeHtml(p.postTitle)}</span>
+              </div>
+            `).join('')}
+          </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
 
-  // Klick (oder Enter/Space) auf Album bzw. Foto → zugehörigen Blog-Beitrag öffnen
-  body.querySelectorAll('.photos-album, .photos-tile').forEach(el => {
-    const go = () => openBlogPost(el.dataset.post);
-    el.addEventListener('click', go);
-    el.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+    // Klick (oder Enter/Space) auf Album bzw. Foto → zugehörigen Blog-Beitrag öffnen
+    body.querySelectorAll('.photos-album, .photos-tile').forEach(el => {
+      const go = () => openBlogPost(el.dataset.post);
+      el.addEventListener('click', go);
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+      });
     });
   });
 }
@@ -5128,55 +4856,6 @@ function initTaskbarAppsBtn() {
       }, 2200);
     });
   }
-}
-
-// ─────────────────────────────────────────────────
-// MOBILE FAKE CALL & MESSAGE
-// ─────────────────────────────────────────────────
-function showFakeCall() {
-  const overlay = document.getElementById('mob-fake-call');
-  if (!overlay) return;
-  overlay.setAttribute('aria-hidden', 'false');
-  overlay.classList.add('visible');
-
-  function dismiss() {
-    overlay.classList.remove('visible');
-    overlay.setAttribute('aria-hidden', 'true');
-  }
-
-  document.getElementById('mfc-decline')?.addEventListener('click', dismiss, { once: true });
-  document.getElementById('mfc-accept')?.addEventListener('click', () => {
-    // Show "connected" state briefly
-    const content = overlay.querySelector('.mfc-content');
-    if (content) {
-      const actions = content.querySelector('.mfc-actions');
-      const labels  = content.querySelector('.mfc-labels');
-      const sub     = content.querySelector('.mfc-sub');
-      if (actions) actions.style.display = 'none';
-      if (labels)  labels.style.display  = 'none';
-      if (sub)     sub.textContent = 'Verbunden…';
-    }
-    setTimeout(dismiss, 3000);
-  }, { once: true });
-}
-
-function showFakeMessage() {
-  const banner = document.getElementById('mob-fake-msg');
-  if (!banner) return;
-  banner.setAttribute('aria-hidden', 'false');
-  banner.classList.add('visible');
-
-  function hideBanner() {
-    banner.classList.remove('visible');
-    banner.setAttribute('aria-hidden', 'true');
-  }
-
-  banner.addEventListener('click', () => {
-    hideBanner();
-    openMobileWindow('teams');
-  }, { once: true });
-
-  setTimeout(hideBanner, 6000);
 }
 
 // ─────────────────────────────────────────────────
@@ -5352,9 +5031,8 @@ const MOB_LABELS = {
   placeholder:   'Mehr',
 };
 
-// Page 1 apps (main homescreen), Page 2: placeholder for future use
 // Alle App-Icons auf einer Mobile-Seite (Seite 2 entfällt)
-const MOB_PAGE1 = ['career', 'photos', 'projects', 'homeassistant', 'bambu', 'claudeapp', 'teams', 'jira', 'github', 'filesapp', 'games']; // 'testimonials', 'chatgpt', 'changelog' vorerst deaktiviert
+const MOB_PAGE1 = ['career', 'photos', 'projects', 'homeassistant', 'bambu', 'claudeapp', 'teams', 'jira', 'github', 'filesapp', 'games'];
 const MOB_PAGE2 = [];
 const MOB_DOCK  = ['about', 'outlook', 'blog'];
 
@@ -5662,6 +5340,8 @@ function openMobileWindow(id) {
   const np = document.getElementById('mob-notif-panel');
   if (np) { np.classList.remove('open'); np.setAttribute('aria-hidden', 'true'); }
 
+  // Teardown der vorher im Einzelfenster gebauten App (Timer/Loops/Listener)
+  runCleanups(_mobileCleanups);
   body.innerHTML = '';
   mw.setAttribute('aria-hidden', 'false');
   mw.classList.add('show');
@@ -5674,11 +5354,8 @@ function openMobileWindow(id) {
     sysmon:         buildSysmon,
     bambu:          buildBambu,
     homeassistant:  buildHA,
-    // packages:       buildPackages, // vorerst deaktiviert
-    // changelog:      buildChangelog, // vorerst deaktiviert
     trash:          buildTrash,
     eigenedateien:  buildEigeneDateien,
-    // chatgpt:        buildChatGPT, // vorerst deaktiviert
     claudeapp:      buildClaudeApp,
     outlook:        buildOutlook,
     teams:          buildTeams,
@@ -5698,7 +5375,6 @@ function openMobileWindow(id) {
     sudoku:         buildSudoku,
     blog:           buildBlog,
     projects:       buildProjects,
-    // testimonials:   buildTestimonials, // vorerst deaktiviert
   };
   // Redirect packages/projects to Task-Manager with tab on mobile too
   if (TM_TAB_REDIRECT[id]) {
@@ -5709,6 +5385,7 @@ function openMobileWindow(id) {
 }
 
 function closeMobileWindow() {
+  runCleanups(_mobileCleanups);
   const mw = document.getElementById('mobile-window');
   mw.classList.remove('show');
   mw.setAttribute('aria-hidden', 'true');
@@ -5722,350 +5399,55 @@ function closeMobileWindow() {
 // ─────────────────────────────────────────────────
 // BLOG (Texteditor-Fenster)
 // ─────────────────────────────────────────────────
-const BLOG_POSTS = [
-  {
-    id: 'eigenes-dashboard',
-    title: 'Zu viele Tabs',
-    date: '2026-04-22',
-    tags: ['Vibecoding', 'KI', 'Selfhosted', 'Dashboard'],
-    content: `Am Ende waren es einfach zu viele Tabs.
-
-Irgendwo der Kalender, woanders das Wetter, dann Docker, Bookmarks, Feeds, Aufgaben und noch ein paar Dinge, die ich regelmäßig im Blick haben will. Nicht dramatisch, aber jeden Tag ein bisschen unnötig.
-
-Deshalb habe ich mir ein eigenes Dashboard gevibecodet.
-
-Im Grunde ist es einfach eine Browser-Startseite, auf der alles zusammenkommt, was ich im Alltag brauche. Selfhosted, über eine einzige YAML-Datei konfigurierbar und so gebaut, dass nicht ich mich nach dem Tool richten muss, sondern das Tool nach mir.
-
-![Dashboard im Dark Mode: Widget-Einstellungen mit Todoteck-Integration](../blog/images/eigenes-dashboard/1776855823084.jpg)
-
-Inzwischen steckt da eine ganze Menge drin: Wetter, Kalender, RSS, Docker, Server-Stats, AdGuard, GitHub, Tailscale, Aufgaben, Notizen, AutoDarts, Untappd, eigene APIs, iFrames, Widget-Gruppen und Bookmarks mit Suche.
-
-![Dashboard in der Desktop-Ansicht: Kalender, Daily-Apps, KI-Chat und 3D-Bereich](../blog/images/eigenes-dashboard/1776855823535.jpg)
-
-Und wie das bei solchen Projekten eben ist, blieb es nicht bei der ursprünglichen Idee.
-Aus einer simplen Startseite wurden nach und nach Drag & Drop, Spotlight-Suche, YAML-Editor im Browser, Undo/Redo, Dark Mode, Akzentfarben, mobile Ansicht, serverseitige API-Keys, Rate Limiting, SSRF-Schutz und CI/CD.
-
-![Dashboard in der mobilen Ansicht: Daily-Apps und KI-Chat im Light Mode](../blog/images/eigenes-dashboard/1776855823524.jpg)
-
-Genau solche Projekte machen mir gerade besonders Spaß, weil sie kein abstraktes Problem lösen, sondern etwas, das im Alltag sofort auffällt. Man baut etwas, nutzt es direkt selbst und merkt ziemlich schnell, ob es wirklich taugt.
-
-Früher hätte ich bei so einer Idee wahrscheinlich gedacht: nette Vorstellung, aber dafür fehlt mir das Know-how. Heute denke ich eher: Dann baue ich mir eben die erste Version und schaue, was daraus wird. Und meistens wird es dann doch etwas größer als geplant.
-
-Wenn es euch interessiert, zeige ich in den nächsten Tagen gerne mehr. Sinnvoll eingesetzt, kann man mit Vibecoding Ideen mindestens greifbarer machen.`,
-  },
-  {
-    id: 'raeuberhoehle',
-    title: 'Räuberhöhle',
-    date: '2026-04-15',
-    tags: ['Persönlich', 'Familie', 'Maker-Mindset'],
-    content: `Bevor ich im nächsten Post wieder über Vibecoding schreibe und zeige, wie ich mein Browser-Tab-Chaos und meine Finanz-Excel-Listen in den Griff bekommen habe, heute mal ein anderes Projekt.
-
-Kein 3D-Druck.
-Kein Dashboard.
-Keine Automation.
-
-Sondern Höhlenbau mit meinem vierjährigen Sohn.
-
-Wobei Höhle nicht ganz stimmt. Es war eher ein Zelt. Paracord gespannt, leichte Decken drüber, mit Wäscheklammern befestigt. Improvisiert, aber stabil genug für den Einsatzzweck.
-
-![Räuberhöhle von außen: graue Decken, mit Paracord gespannt und mit Wäscheklammern befestigt, über dem Sofa](../blog/images/raeuberhoehle/raeuberhoehle-aussen.jpg)
-
-Die Kita-Notbetreuung wurde also sinnvoll genutzt. In unserer Räuberhöhle gab's Snacks und wir haben zusammen Biene Maja geschaut. Und ich musste kurz daran denken, dass das gar nicht so weit weg ist von den Dingen, über die ich hier sonst schreibe.
-
-![Blick aus der Räuberhöhle: mein Sohn im blauen Kapuzenpulli schaut in Richtung Regal, darüber die mit Wäscheklammern fixierten Decken](../blog/images/raeuberhoehle/raeuberhoehle-innen.jpg)
-
-Du nimmst, was da ist.
-Du baust mit einfachen Mitteln.
-Du machst es ein kleines bisschen aufwendiger als nötig.
-Und am Ende ist nicht entscheidend, ob es perfekt ist. Sondern ob es funktioniert und jemand Freude daran hat.
-
-Manchmal ist einfach mal machen eben kein Sideproject, sondern ein Paracord-Seil zwischen zwei Möbelstücken.
-Maker-Mindset. Nur mit mehr Wäscheklammern und dem besseren Publikum.
-
-\u2192 Was ich aus der Räuberhöhle mitnehme: Stakeholder zufrieden, MVP stand, Entertainment lief.`,
-  },
-  {
-    id: 'todoteck-mcp',
-    title: 'Todoteck: API, MCP und der Alltag',
-    date: '2026-04-10',
-    tags: ['Vibecoding', 'KI', 'Selfhosted', 'MCP', 'Familie'],
-    content: `Anfang der Woche habe ich geschrieben, dass ich mir eine eigene App gebaut habe. Einfach, weil ich keine gefunden habe, die Aufgaben und Notizen wirklich sinnvoll zusammenbringt.
-
-Seitdem ist noch etwas dazugekommen. Der Gedanke dahinter war wieder derselbe: bestehende Gewohnheiten nicht aufbrechen, sondern die App an unseren Alltag anpassen.
-
-Als Erstes habe ich der App eine eigene API gegeben.
-
-Meine Frau sagt zu unseren smarten Lautsprechern zum Beispiel: "Hey Google, setze Milch auf meine Einkaufsliste." Bisher landet das nur in Google Keep. Todoteck holt diesen Eintrag jetzt automatisch ab und zeigt ihn direkt in der Einkaufsliste an. Auf jedem Gerät. \u00dcber eine weitere API auch auf dem E-Ink-Display im Flur. Und \u00fcber eine native Android-App mit Widgets direkt auf dem Startbildschirm.
-
-Es gibt also keine neue Gewohnheit, die man erst lernen muss. Niemandem muss man etwas erkl\u00e4ren. Es passiert einfach im Hintergrund.
-
-![Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste](../blog/images/todoteck/todoteck-aufgabe.png)
-
-Danach bin ich noch einen Schritt weitergegangen: MCP, also Model Context Protocol. Die Idee ist eigentlich ganz einfach. Claude redet nicht mehr nur mit mir, sondern direkt mit meiner App.
-
-Sonntag nach dem Mittagessen frage ich einfach: "Was steht n\u00e4chste Woche an?" Dann kommen die Antworten direkt zur\u00fcck. Mittwoch Sim Racing mit meinen Kumpels. Freitag Zahnarzt. Samstag einkaufen.
-
-Dann sage ich: "F\u00fcg beim Einkauf noch Waschmittel hinzu." Ist drin.
-
-Oder: "Erinner mich am Freitag daran, was ich dem Zahnarzt sagen wollte." Auch drin.
-
-Und wenn ich dann am Freitag kurz vor dem Termin frage: "Was wollte ich da nochmal sagen?", wei\u00df Claude es. Weil ich genau diese Notiz ein paar Tage vorher hinterlegt habe.
-
-![Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel](../blog/images/todoteck/todoteck-mcp.png)
-
-Kein Suchen. Kein App-Wechsel. Einfach fragen.
-
-\u2192 Das Protokoll ist offen, und der Einstieg war deutlich einfacher, als ich gedacht h\u00e4tte. Wer neugierig ist, sollte einfach mal anfangen. Oder fragt mich gerne!`,
-  },
-  {
-    id: 'todoteck',
-    title: 'Todoteck: Vibecoding für die Familie',
-    date: '2026-04-07',
-    tags: ['Vibecoding', 'KI', 'Selfhosted', 'Familie'],
-    content: `Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut.
-
-Ich wollte To-dos und Notizen in einem System. Beides hängt für mich direkt zusammen. Aus einer Notiz wird oft eine Aufgabe. Und eine Aufgabe braucht meist den passenden Kontext. Die fertigen Tools, die ich ausprobiert habe, konnten immer nur das eine oder das andere wirklich gut.
-
-![Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben](../blog/images/todoteck/todoteck-mobile.png)
-
-Also habe ich es selbst gebaut. Mit KI-Unterstützung und ohne klassische Programmiererfahrung. Mit Integration unserer Google Kalender und zur Keep Einkaufsliste, mit eigener Programmierschnittstelle, selfhosted. Genau das macht Vibecoding heute möglich.
-
-![Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich](../blog/images/todoteck/todoteck-desktop.png)
-
-Am Ende ist ein schlichtes Tool entstanden, das genau so funktioniert, wie wir es als Familie brauchen. Crazy, denn vor zwei Jahren hätte ich das nicht gekonnt. Heute kann ich es.
-
-→ Letzte Woche habe ich der App noch etwas hinzugefügt, das ich mir selbst vorher so nicht hätte vorstellen können. Mehr dazu in ein paar Tagen.
-
-(Ja, ich weiß, ich muss auch noch den Keller aufräumen. Mache ich gleich nach dem LinkedIn-Post, wirklich!)`,
-  },
-  {
-    id: '3d-drucker',
-    title: 'Wenn niemand die Lösung hat, druckst du sie selbst',
-    date: '2026-03-19',
-    tags: ['Persönlich', '3D-Druck', 'Maker'],
-    content: `Mein 3D-Drucker löst heute Probleme, an die ich beim Kauf nie gedacht hätte.
-
-Als ich mir vor einem Jahr meinen ersten 3D-Drucker gekauft habe, dachte ich an Gadgets, Halterungen und vielleicht mal ein Ersatzteil. Dass ich irgendwann in Fusion 360 eigene Modelle konstruieren würde, hätte ich damals nicht erwartet.
-
-Denn meistens ist es ja so: Man hat eine Idee, sucht auf MakerWorld \u2013 und irgendjemand hat genau das schon gebaut. Genau das macht diese Community so stark.
-
-Aber manchmal eben nicht.
-
-Durch persönliche Betroffenheit in der Familie habe ich sehr konkret erlebt, was es im Alltag bedeutet, wenn sich durch Selbstkathetisierung vieles verändert: Abläufe müssen neu gedacht werden, Flexibilität geht verloren, und plötzlich werden kleine Hilfsmittel wichtig, die man so nirgends kaufen kann.
-
-Also habe ich angefangen, mich einzuarbeiten. Nicht nur in das konkrete Problem, sondern auch eigenständig in Fusion 360. Stunde für Stunde, Tutorial für Tutorial, viel Learning by Doing.
-
-1. Die Ergebnisse
-
-Am Ende sind zwei Designs entstanden:
-
-• eine Halterung für einen bestimmten Einmalkatheter, die das Vorbereiten und Abstellen unterwegs deutlich erleichtert
-• ein flexibler Ersatzfuß für einen Handspiegel, der sich stabil unter der Toilettenbrille fixieren lässt
-
-Sind das die komplexesten CAD-Modelle der Welt? Sicher nicht. Gemessen in Stunden war das sicher kein effizientes Projekt. Gemessen im Alltag der betroffenen Person schon.
-
-2. Der Prozess
-
-Denn es geht darum, ein echtes Problem zu erkennen, eine Lösung zu entwickeln, Prototypen zu drucken, zu verwerfen, anzupassen \u2013 und nach vielen Iterationen etwas in der Hand zu halten, das wirklich funktioniert.
-
-Ob die Designs jemals viele Downloads bekommen? Keine Ahnung. Die Nische ist sehr klein. Wenn es am Ende nur zwei sehr spezielle Designs sind, die vielleicht genau einer weiteren Person helfen, dann ist das mehr als genug.
-
-→ Genau das macht die Maker-Community für mich aus: Nicht nur nutzen, sondern teilen. Nicht auf Lösungen warten, sondern selbst welche bauen.`,
-  },
-  {
-    id: 'gofundme',
-    title: 'GoFundMe: Barrierefreier Umbau für unsere Familie',
-    date: '2025-10-01',
-    tags: ['Persönlich', 'Familie', 'GoFundMe'],
-    content: `Manchmal verändert ein einziger Tag das ganze Leben. Im November 2022 erlitt meine Frau Aylin nach einer Tumor-OP eine Teilquerschnittslähmung. Unser Sohn war damals gerade ein Jahr alt. Seitdem kämpfen wir uns Schritt für Schritt durch einen neuen Alltag \u2013 voller zusätzlicher Herausforderungen und Kosten, die weit über das hinausgehen, was ein Pflegegrad abdeckt.
-
-Umbauten am Haus, ein größeres Auto, Therapien und Hilfsmittel \u2013 vieles mussten wir bereits stemmen. Doch eine zentrale Maßnahme steht noch bevor:
-
-→ Wir möchten unseren Anbau im Garten barrierefrei zum Wohnraum umbauen, damit Aylin alles Notwendige im Erdgeschoss hat.
-
-Dafür starten wir eine GoFundMe-Kampagne. Jeder Beitrag hilft uns, unserem Ziel näher zu kommen \u2013 sei es durch eine Spende oder das Teilen des Links in eurem Netzwerk.
-
-→ Hier geht\u2019s zur Kampagne: https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE
-
-Vielen Dank für jede Form der Unterstützung!`,
-  },
-  {
-    id: 'depression',
-    title: 'Depression',
-    date: '2024-10-10',
-    tags: ['Persönlich', 'Mental Health'],
-    content: `→ Triggerwarnung: Dieser Text handelt von Depression und Panikattacken.
-
-Ich bin in eine Depression gerutscht.
-
-Ich habe lange überlegt, ob ich das schreiben soll. Zum einen bin ich sowieso nicht mehr wahnsinnig in Social Media aktiv. Zum anderen fühlt es sich bei aller eigenen Akzeptanz, dass ich diese Krankheit habe und es eine ist, an, als würde ich eine Schwäche preisgeben. Was natürlich Blödsinn ist. Denn eine Depression sucht sich niemand aus. Und ich bin in guten Momenten stolz auf mich, das schon erkannt zu haben und aktiv dagegen anzugehen. Und vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt.
-
-1. Der Hintergrund
-
-Vor zwei Jahren ist unser Leben als Familie ziemlich durchgeschüttelt worden. In Folge einer Tumorbehandlung am Rücken war meine Frau und Mutter unseres damals gerade einjährigen Sohnes teilquerschnittsgelähmt und musste sich zurück ins Leben kämpfen. Während ich vier Monate lang alleinsorgend war.
-
-Seitdem ist viel passiert. Das akute Gefühl direkt nach dem Schicksalsschlag, dass alles immer kurz davor ist, gegen die Wand zu fahren, und ich mehr Verantwortung für uns alle trage, um durch die weitere Zeit zu kommen, konnte ich bei allen Fortschritten meiner Frau offenbar nie ganz ablegen. Vermutlich fing da schon die Depression an, an meinen Kräften zu nagen.
-
-2. Die Energiebilanz bei Null
-
-Denn egal was wir gemeinsam Schönes unternahmen \u2013 es war immer eine riesige Anstrengung für mich. Die Energiebilanz aus Einsatz und Ertrag war für mich meist bei maximal 0. Ich hatte durchgehend eine Grundanspannung in mir, die mir teilweise bis zur Gurgel hochging, auch wenn ich einfach nur nach der Arbeit auf dem Spieleteppich mit meinem Sohn und seinen Autos spielte.
-
-Ich dachte, naja, okay, so ist das halt mit Kind mit der durchgehenden Anspannung, stell dich nicht an, bist du halt schwach, dass das so anstrengend ist, aber das ist für alle so. Musst du eben aushalten, andere schaffen das ja auch.
-
-→ Ich weiß mittlerweile, dass das Quatsch ist.
-
-3. Der Abstieg
-
-Ich habe Ende August an einem Mittwochmorgen gemerkt, das ich so antriebslos und unkonzentriert bin, dass ich nicht arbeiten kann \u2013 und bin zum Hausarzt gegangen. Ach, reicht, wenn sie mich erstmal diese Woche krank schreiben. Nächste Woche geht es sicher wieder. Ging\u2019s nicht. Und es wurde schlechter.
-
-Ich verstehe, wieso man davon spricht, dass man in eine Depression "rutscht". Obwohl ich durch zwei Jahre Gesprächstherapie wusste, dass es gerade in die falsche Richtung läuft \u2013 einmal losgeruscht, war es schwer sie aufzuhalten.
-
-Ich bekam täglich Panikattacken. Ich konnte keine strukturierten, lösungsorientierten Gedanken mehr fassen. In meinem Kopf waren nur Probleme, es war laut, unorganisiert und schnell. Wie ein Feuerwerk, bei dem jeder grell leuchtende Funke ein Gedanke ist. Kurz da, peng, weg. Tausende gleichzeitig. Und dann direkt die nächste Rakete.
-
-Ich war bei der kleinsten Anforderung an mich komplett überfordert. "Kannst du gleich noch die Spülmaschine ausräumen?" \u2013 zack, gelähmt. Ich konnte nicht. Als hätte ich eine Bleiweste an, die mich daran hindert aufzustehen.
-
-Ich konnte abends nicht vor 2 Uhr einschlafen, war früh wach, war wahnsinnig platt und erschöpft, aber der Kopf war so laut und ich so unter Spannung, dass ein Mittagsschlaf nahezu ein Ding der Unmöglichkeit war. Ich kam nicht zur Ruhe. Und wenn ich doch kurz eingenickt war, war ich danach niedergeschlagener als vorher. Diese körperliche Anspannung sorgte zudem für ein andauerndes Körpergefühl wie bei einem heftigen Kater nach durchzechter Nacht.
-
-4. Dagegen ankämpfen
-
-Ich konnte nicht mehr aufs Smartphone schauen, alles überforderte mich. Ich fing an mit Yoga, spazierte stundenlang durch die Felder, versuchte es mit Meditation, Achtsamkeitsübungen, progressiver Muskelentspannung. Ich fuhr Rad. Das powert aus, dachte ich mir, da bist du danach so richtig positiv platt. Denkste. Zehn Minuten nach der Radtour ging\u2019s mit gleichlautem Alarm im Oberstübchen wieder weiter. Trotzdem: Beschäftigt bleiben, damit ich kurz die Gedanken zur Ruhe bringen kann \u2013 wie fürchterlich anstrengend.
-
-Ich konnte in den depressivsten Wochen auch nicht mehr meine Lieblingsmusik hören. Punk und Ska haben mich überreizt. Ich fing dann wieder langsam an, bewusst Low Fi oder Klassik zu hören.
-
-5. Medikamente und Schuldgefühl
-
-Mir war klar: Ich brauche auch medikamentöse Unterstützung, um da rauszukommen, weil die vielen Werkzeuge, die ich kannte, um meine Tage trotzdem aktiv zu gestalten, nicht ausreichten. Und dann machte mir aber die Unbekannte "Antidepressivum" Tage vor der ersten Einnahme noch zusätzlich Bauchschmerzen. Unnötig, weiß ich jetzt.
-
-Ich konnte den meisten Aufgaben im Haushalt und mit Kind nicht mehr nachkommen und meine Frau musste mich hier extrem entlasten. Und dann sagt dir die Depression: Fühl dich doch jetzt mal schuldig dafür, dass du deine Familie gerade im Stich lässt! Was ein Kokolores, weiß ich selbst. Wusste ich im Zweifel auch zwei Stunden vorher und am nächsten Morgen, aber dann sitzt man da abends heulend auf der Couch.
-
-6. Unterstützung
-
-Ich bin so dankbar für mein privates Umfeld, in dem ich immer offen über meine Gefühle sprechen kann. Ich habe einen empathischen Hausarzt, eine kompetente Psychiaterin und eine Psychotherapeutin, die seit zwei Jahren meine Umstände und die Themen kennt. Ich fühle mich gut unterstützt.
-
-7. Es wird besser
-
-Das Antidepressivum beginnt zu wirken. Es ist eben keine Schmerztablette, sondern dauert ein paar Wochen. Faszinierend, dass ich schon innere Ruhe, die ich wirklich gar nicht mehr kannte, in einzelnen Momenten spüre \u2013 auch wenn mein Sohn mal zetert, dann bin ich vielleicht genervt, aber mir hängt die Spannung nicht mehr bis zum Hals. Ein krasses Gefühl.
-
-Wenn meine Frau eine Idee für einen Ausflug hat, ist in guten Momenten nicht mehr spontan der verkrampfte Gedanke an die damit verbundene Anstrengung da, sondern: Ja, können wir machen. Plötzlich ist vorstellbar, dass einem schöne Erlebnisse mehr Energie geben als sie kosten, geil. Dafür lohnt es sich doch, sich da weiter rauszuwühlen.
-
-Aus drei Tage mal krank geschrieben sind mittlerweile sieben Wochen geworden. Und ein paar kommen sicher noch dazu, bis auch wieder an Arbeit zu denken ist. Bis dahin hole ich mir zuhause Stück für Stück meinen Alltag zurück. Zeit, in der ich mich und diese Krankheit besser kennenlerne.
-
-8. Neu lernen, achtsam zu sein
-
-Ich muss neu lernen, achtsam zu mir selbst zu sein und nicht nur zweckmäßig Aufgaben zu erfüllen. Das habe ich in den letzten Jahren verlernt. Ich war die Tage morgens in einem Cafe frühstücken. Alleine irgendwo sitzen und essen, hätte ich früher nie gemacht, wie cringe. Ist es aber gar nicht, verrückt. Tut sogar mal ganz gut. Sich eine Badewanne einlassen und dabei Kerzen und Musik anmachen. Den Kaffee nicht to go trinken, sondern bewusst am Morgen in den Garten setzen und Eichhörnchen beobachten. Mit dem Kleinen in Ruhe Duplo bauen.
-
-→ Alles wird wieder ok.`,
-  },
-  {
-    id: 'neue-position',
-    title: 'Neue Position',
-    date: '2023-08-01',
-    tags: ['Karriere', 'RTL', 'Persönlich'],
-    content: `Dieses Jahr ist für mich privat herausfordernd, meine Frau ist nach einer Tumorbehandlung im November letzten Jahres ab der Halswirbelsäule teilquerschnittsgelähmt und kämpft sich zurück ins Leben. Ich war vier Monate lang alleinsorgend mit unserem Sohn zuhause, der zu dem Zeitpunkt gerade 1 Jahr alt geworden war.
-
-Da gehen einem tausend Fragen durch den Kopf, selten hatten wir Antworten.
-
-→ Danke an RTL Deutschland, dass ich mir zumindest zu meinem Job keine Fragen stellen musste und ich nach den ersten Monaten in Teilzeit zurückkommen konnte.
-
-Jetzt freue ich mich auf die Aufgaben in meiner neuen Position als Head of Digital Transformation in der Kommunikation, um mit den Teams noch mehr aus unseren Workflows und Tools herauszuholen und die technischen Produkte in der PR auszubauen.
-
-Danke an Eva Messerschmidt für das Vertrauen und vielen Dank an meine bisherige Teamleiterin Julia Kikillis für die Möglichkeiten, mich in den letzten Jahren immer weiterentwickeln zu können.
-
-→ Der größte Dank gilt aber meiner Frau, die immer weitermacht, egal wie schwer es ist.`,
-  },
-  {
-    id: 'abschied-science-slam',
-    title: 'Abschied vom Science Slam',
-    date: '2022-03-06',
-    tags: ['Science Slam', 'Moderation', 'Abschied'],
-    content: `→ 9 Jahre, 38 Events, über 200 Vorträge \u2013 und phantastische Menschen kennengelernt. Danke!
-
-Der Bonner Science Slam im Januar 2020 wird voraussichtlich der letzte gewesen sein, den ich moderiert habe. Anfang Mai würde zwar der nächste stattfinden, bei dem ich auf der Bühne stehen könnte, aber ich mache die Lena. Bei weiter hohen Infektionszahlen und immer weniger Corona-Maßnahmen ist mein Gefühl: Die Zeit ist noch nicht reif.
-
-Seit Juli 2013 habe ich insgesamt 38 Science Slams moderiert, 200 Mal Slammer:innen auf die Bühne geholt, die in nur zehn Minuten ihr Forschungsthema möglichst leicht verständlich und unterhaltsam präsentieren mussten. Und der Applaus des Publikums entschied am Ende des Abends, wer die \u201EGoldenen Boxhandschuhe der Wissenschaft\u201C gewann, wem Ruhm und Ehre zuteilwurde.
-
-1. Wertvolle Erfahrung, schöne Erinnerungen
-
-Wenn mir der Veranstalter LUUPS die nächsten Termine zugerufen hat, war ich am Start. Na klaro. Aber jetzt kommt es wiederholt vor, dass ich doch ein paar Wochen vorher abgesagt habe, weil mich mein persönliches Empfinden, ob so viel Publikum und die aktuelle Corona-Lage zusammenpassen, zweifeln ließ. Doch ich will nicht unzuverlässig erscheinen. Daher wird sich ein:e andere:r freuen, die Termine zu blocken und der Wissenschaft eine Bühne zu geben.
-
-Ich habe das Moderieren immer nur zum Spaß gemacht. Das kann nicht jede:r in der Kulturbranche sagen, daher habe ich volles Verständnis, dass Künstler:innen & Co. versuchen, Veranstaltungen auch unter diesen Bedingungen sicher zu planen und durchzuführen.
-
-Für mich war es eine unglaublich wertvolle Erfahrung, die einen vernünftigen Abschluss verdient hätte. Doch auf Standby zu sein, um doch irgendwann zumindest ein letztes Mal einen Slam zu moderieren \u2013 das erscheint mir nach so langer Pause nicht richtig zu sein. In über zwei Jahren Corona hat sich bei mir so viel verändert, dass ich froh bin über diese schönen Erinnerungen, anstatt Gefahr zu laufen, eingerostet einen für mein Gefühl miesen letzten Slam hinzulegen.
-
-2. Phantastische Menschen auf und hinter der Bühne
-
-Ich habe unglaublich interessante, schlaue, sympathische Menschen kennengelernt: Juli Tkotz, Rufina Fingerhut, Mai Thi Nguyen-Kim, Franca Parianen, Jutta Teuwsen, Elisabeth Mettke, Janina Otto, Carrie Ankerstein, Constantin Wurthmann, Johannes von Borstel, Sebastian Lotzkat, Dong-Seon Chang, Darius Rupalla, Johannes Schildgen, Peter Westerhoff, Reinhard Remfort, Kai Jäger, Johannes Kretzschmar, Aniruddha Dutta und viele viele mehr.
-
-Alles renommierte Wissenschaftler:innen, erfolgreiche Podcaster:innen, Deutsche Science-Slam-Meister:innen, die Bücher geschrieben haben, TV-Sendungen moderieren, zu denen es Wikipedia-Einträge gibt. Und ich Dödel dazwischen. Es war mir eine Ehre, mit ihnen die Bühne geteilt zu haben.
-
-→ Danke auch an das LUUPS-Team hinter der Bühne: Sveda, Julia, Karsten, Sebastian, Nils, Leo, Ronja, Rebecca und alle anderen. Das war locker eine 12 von 10 auf der Applaus-Skala.
-
-3. Die Locations
-
-Hätte ich vorher auch nicht gedacht, dass ich beispielsweise mal auf der Kleinkunstbühne des Bonner Pantheon stehen werde \u2013 und die Location mit insgesamt 18 Abenden sowas wie mein Science-Slam-Wohnzimmer wurde.
-
-Geslamt wurde auch in coolen Läden wie dem Club Bahnhof Ehrenfeld in Köln oder dem Franz in Aachen, in Hörsälen in Bonn und Bochum, es gab Auftritte beim \u201EBochum Total\u201C-Festival, in Museen wie der DASA in Dortmund oder der Bonner Bundeskunsthalle, bei der ExtraSchicht in der Jahrhunderthalle Bochum oder vor fünf Leuten im KulturCafe des AStA Bochum.
-
-4. Highlight: TV-Aufzeichnung für VOX
-
-Eine besondere Erinnerung wird eine Pilotaufzeichnung für VOX bleiben, die ich 2015 moderieren durfte. Eine Mischung aus \u201ELet\u2019s Dance\u201C und Science Slam, mit Jury und prominenten Slammer:innen. Eine Idee, die entstand, als ich im Volontariat Station in der VOX-Redaktion gemacht habe und die Kolleg:innen dort Feuer und Flamme für den Science Slam waren.
-
-Lampenfieber war bei jedem Slam dabei, aber besonders ging mir die Pumpe als sich der damalige VOX-Chefredakteur zum nächsten Slam als Gast ankündigte. Und vor Kameras mit Regie im Ohr war\u2019s dann auch noch mal etwas anderes als bloß vor Publikum im Saal. Aus der Showidee wurde zwar nichts, es lag aber angeblich nicht an mir. Ich will das mal glauben, zumindest ließ VOX mich danach sogar durch Pressekonferenzen moderieren.
-
-5. Der Anfang von allem
-
-Alles nur, weil ich 2013 meine Bachelor-Arbeit zum Thema geschrieben habe: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen". Sperriger Titel mit einem Kolloquium im Science-Slam-Style.
-
-→ Mach\u2019s gut, Science Slam! Bis bald \u2013 dann als Gast vor der Bühne.`,
-  },
-  {
-    id: 'jahresrueckblick-2021',
-    title: 'Jahresrückblick 2021',
-    date: '2022-01-01',
-    tags: ['Jahresrückblick', 'Persönlich'],
-    content: `Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert.
-
-1. Vater geworden
-
-Ich bin Vater geworden. Das ist vor allem eine Leistung meiner Frau, wow. Nicht in Worte zu fassen. Mit einer nicht einfachen Schwangerschaft und turbulenten ersten Wochen nach der Geburt, bei denen ich hoffentlich so gut es geht unterstützt habe.
-
-Danach kommt erst Mal lange nichts. Noch nie so viel Glück und Verantwortung gespürt wie jetzt. Und so viele Windeln gewechselt. Aber freue mich auf jede weitere. Und alles was kommt. Riesig.
-
-2. Pandemie \u2013 Jahr zwei
-
-Pandemie Schmandemie. Scheiße wie für alle. Kaum physische Kontakte, um schwangere Frau und Kind zu schützen. Noch vorsichtiger als sowieso schon. Setzt ganz schön zu.
-
-→ Aber hey: Geboostert. Lasst euch impfen. Wir schaffen das!
-
-3. Freunde & Familie
-
-Ohne wäre das Jahr ganz schön trist geworden. Egal ob nahezu tägliche Sprachnotizen, feste Sim-Racing-Termine jede Woche, gemeinsame Podcasts, regelmäßige Kaffee-Calls in Teams, schreiben dass man aneinander denkt, auch wenn man sich nicht sieht. Mentale und ganz konkrete Unterstützung im Wochenbett.
-
-→ Unschätzbarer Wert. Dankbar.
-
-4. Sommer
-
-Der war sogar richtig gut. Und trägt einen mit Hoffnung auf einen vergleichbar tollen im eigenen Garten in 2022 durch Herbst und Winter.
-
-5. Newsdesk bei RTL
-
-Zusammen ein geiles Newsdesk-Team in der RTL Kommunikation geformt. Bin als Leiter stolz, was wir 2021 geschafft haben. Und froh, so viel Unterstützung und Rückhalt nicht nur von meinen Vorgesetzten zu spüren, sondern auch aus dem Team.
-
-→ Gutes Gefühl: Die Herausforderungen 2022 werden wir gemeinsam wuppen.
-
-6. Bierbrauen
-
-Ziemlich trivial, aber: Ich habe mein erstes eigenes Bier gebraut. Und mein zweites mit besserem Brau-Equipment. Well, das eskalierte schnell. Und hat am Ende sogar geschmeckt. Fast so gut wie die vielen Craftbiere, die ich so bei untappd einscanne.
-
-7. Lego
-
-Alte Klemmbausteine vom Speicher meiner Eltern gerettet. Ab in die Waschmaschine und versucht, sie wieder in den originalen Sets zu sortieren. Dann kam die Schwangerschaft dazwischen. Aber Plan steht, dass der Kleine dann irgendwann Papas alte Ritterburg aufbauen kann.
-
-Man kann sagen: Das war ein gutes Jahr. Ich lass\u2019 mir das von "Big C" nicht kaputtdeuten. Aber ohne wäre schon schöner gewesen.
-
-→ Jetzt aber auf in ein Jahr 2022, das uns am Ende hoffentlich alle irgendwie positiv überrascht und in dem wir unseren persönlichen Zielen alle näherkommen. Haut rein!`,
-  },
-];
+// Einzige Quelle der Wahrheit sind die Markdown-Dateien unter /blog.
+// blog/posts.json legt nur die Reihenfolge der Slugs fest; Titel, Datum, Tags
+// und Inhalt stammen aus dem Frontmatter bzw. Body der jeweiligen .md-Datei.
+// Inhalte werden beim ersten Öffnen geladen und danach zwischengespeichert.
+let _blogCache = null; // Promise<[{ id, title, date, tags, content }]>
+
+function parseBlogMarkdown(md) {
+  let title = '', date = '', tags = [];
+  let body = md;
+  const fm = md.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n?/);
+  if (fm) {
+    body = md.slice(fm[0].length);
+    fm[1].split('\n').forEach(line => {
+      const kv = line.match(/^(\w+):\s*(.*)$/);
+      if (!kv) return;
+      const key = kv[1];
+      const val = kv[2].trim().replace(/^["']|["']$/g, '');
+      if (key === 'title') title = val;
+      else if (key === 'date') date = val;
+      else if (key === 'tags') {
+        tags = val.replace(/^\[|\]$/g, '')
+          .split(',').map(t => t.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+      }
+    });
+  }
+  // Führende H1 (== Titel) entfernen — das OS zeigt den Titel separat an
+  body = body.replace(/^\s*#\s+.*(\r?\n)+/, '');
+  // Bildpfade von Blog-Sicht (images/…) auf OS-Sicht (../blog/images/…) umbiegen
+  body = body.replace(/(!\[[^\]]*\]\()images\//g, '$1../blog/images/');
+  return { title, date, tags, content: body.trim() };
+}
+
+function loadBlogPosts() {
+  if (_blogCache) return _blogCache;
+  _blogCache = fetch('../blog/posts.json')
+    .then(r => r.json())
+    .then(slugs => Promise.all(slugs.map(id =>
+      fetch(`../blog/${id}.md`)
+        .then(r => r.ok ? r.text() : '')
+        .then(md => {
+          const p = parseBlogMarkdown(md);
+          return { id, title: p.title || id, date: p.date, tags: p.tags, content: p.content };
+        })
+        .catch(() => ({ id, title: id, date: '', tags: [], content: '' }))
+    )))
+    .then(posts => posts.sort((a, b) => (b.date || '').localeCompare(a.date || '')))
+    .catch(() => []);
+  return _blogCache;
+}
 
 function buildBlog(body) {
   body.style.padding = '0';
@@ -6073,9 +5455,20 @@ function buildBlog(body) {
   body.style.display = 'flex';
   body.style.flexDirection = 'column';
   body.style.background = '#ffffff';
+  body.innerHTML = '<div class="blog-loading" style="padding:40px;color:#888">Lade Beiträge…</div>';
 
+  loadBlogPosts().then(allPosts => {
+    if (!allPosts.length) {
+      body.innerHTML = '<div style="padding:40px;color:#888">Beiträge konnten nicht geladen werden.</div>';
+      return;
+    }
+    renderBlog(body, allPosts);
+  });
+}
+
+function renderBlog(body, allPosts) {
   // Nach Veröffentlichungsdatum sortieren (neueste zuerst) – ausdrücklich nicht alphabetisch
-  const posts = [...BLOG_POSTS].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const posts = [...allPosts].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   // ... und nach Jahr gruppieren
   const byYear    = {};
   const yearOrder = [];
@@ -6124,10 +5517,12 @@ function buildBlog(body) {
       if (imgMatch) {
         return `<div class="blog-line blog-line-image"><img src="${imgMatch[2]}" alt="${escapeHtml(imgMatch[1])}" loading="lazy"></div>`;
       }
-      if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${linkifyText(escapeHtml(trimmed))}</div>`;
-      if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${linkifyText(escapeHtml(trimmed))}</div>`;
-      if (trimmed.startsWith('•')) return `<div class="blog-line blog-line-list">${linkifyText(escapeHtml(trimmed))}</div>`;
-      return `<div class="blog-line">${linkifyText(escapeHtml(trimmed))}</div>`;
+      const hMatch = trimmed.match(/^#{1,6}\s+(.*)$/);
+      if (hMatch) return `<div class="blog-line blog-line-heading">${blogInline(escapeHtml(hMatch[1]))}</div>`;
+      if (/^\d+\./.test(trimmed)) return `<div class="blog-line blog-line-heading">${blogInline(escapeHtml(trimmed))}</div>`;
+      if (trimmed.startsWith('→')) return `<div class="blog-line blog-line-accent">${blogInline(escapeHtml(trimmed))}</div>`;
+      if (trimmed.startsWith('•') || trimmed.startsWith('- ')) return `<div class="blog-line blog-line-list">${blogInline(escapeHtml(trimmed.replace(/^- /, '• ')))}</div>`;
+      return `<div class="blog-line">${blogInline(escapeHtml(trimmed))}</div>`;
     }).join('');
   }
 
@@ -6174,7 +5569,7 @@ function buildBlog(body) {
 
   // Beitrag anzeigen — zentral, von Sidebar, Dropdown und Direktsprung genutzt
   function showPost(postId) {
-    const post = BLOG_POSTS.find(p => p.id === postId);
+    const post = allPosts.find(p => p.id === postId);
     if (!post) return;
     body.querySelectorAll('.blog-list-item').forEach(i =>
       i.classList.toggle('active', i.dataset.post === postId));
@@ -6277,75 +5672,6 @@ function buildProjects(body) {
 }
 
 // ─────────────────────────────────────────────────
-// TESTIMONIALS / SOCIAL PROOF
-// ─────────────────────────────────────────────────
-const TESTIMONIALS_DATA = [
-  {
-    quote: 'Verbindet strategisches und konzeptionelles Denken mit praxisgerechten operativen Lösungen.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-  {
-    quote: 'Genießt jederzeit das uneingeschränkte Vertrauen der Geschäftsleitung.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-  {
-    quote: 'Sogar in Stresssituationen sowie unter außerordentlicher zeitlicher Belastung erzielt Herr Fauteck ausgezeichnete Ergebnisse.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-  {
-    quote: 'Zeigt permanent eine erstklassige Fach- und Führungsleistung.',
-    name: 'Zwischenzeugnis RTL Deutschland',
-    role: '',
-  },
-];
-
-const ACHIEVEMENTS_DATA = [
-  { icon: '📊', label: 'Media Hub', value: '1.700+ Nutzer:innen' },
-  { icon: '🤖', label: 'KI-Workflows', value: 'Spürbar weniger manuelle Workflows' },
-  { icon: '⚡', label: 'Automatisierung', value: 'Durchgängig automatisierte Pipelines' },
-  { icon: '🎯', label: 'Tool-Adoption', value: 'Hohe Akzeptanz bei allen Rollouts' },
-];
-
-function buildTestimonials(body) {
-  body.style.padding = '0';
-  body.style.overflow = 'auto';
-  body.style.background = '#f7f8f6';
-
-  const quotesHtml = TESTIMONIALS_DATA.map(t => `
-    <div class="testi-card">
-      <div class="testi-quote">"${escapeHtml(t.quote)}"</div>
-      <div class="testi-author">
-        <div class="testi-name">${escapeHtml(t.name)}</div>
-        <div class="testi-role">${escapeHtml(t.role)}</div>
-      </div>
-    </div>
-  `).join('');
-
-  const achievementsHtml = ACHIEVEMENTS_DATA.map(a => `
-    <div class="testi-achievement">
-      <div class="testi-ach-icon">${a.icon}</div>
-      <div class="testi-ach-info">
-        <div class="testi-ach-label">${escapeHtml(a.label)}</div>
-        <div class="testi-ach-value">${escapeHtml(a.value)}</div>
-      </div>
-    </div>
-  `).join('');
-
-  body.innerHTML = `
-    <div class="testi-wrap">
-      <div class="testi-section-title">Empfehlungen</div>
-      <div class="testi-quotes">${quotesHtml}</div>
-      <div class="testi-section-title" style="margin-top:24px">Achievements</div>
-      <div class="testi-achievements">${achievementsHtml}</div>
-      <div class="testi-note">Ausführliche Empfehlungen auf <a href="https://www.linkedin.com/in/fauteck/" target="_blank" rel="noopener">LinkedIn</a></div>
-    </div>
-  `;
-}
-
-// ─────────────────────────────────────────────────
 // ONBOARDING TOUR
 // ─────────────────────────────────────────────────
 function startOnboardingTour() {
@@ -6440,6 +5766,21 @@ function linkifyText(escapedHtml) {
     /(https?:\/\/[^\s<>&"]+)/g,
     '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
   );
+}
+
+// Inline-Markdown für den Blog: Markdown-Links, nackte URLs und **fett**.
+// Eingabe ist bereits HTML-escaped. Markdown-Links werden zwischengespeichert,
+// damit die Erkennung nackter URLs ihre Ziel-URL nicht doppelt verlinkt.
+function blogInline(s) {
+  s = s.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<>&"]+)/g,
+    (m, text, mdUrl, bareUrl) => {
+      const url = mdUrl || bareUrl;
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text || url}</a>`;
+    }
+  );
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  return s;
 }
 
 // ─────────────────────────────────────────────────
@@ -6546,6 +5887,7 @@ function boot() {
   let bootAborted = false;
 
   function initDesktop() {
+    initGlobalDrag();
     updateClock();
     setInterval(updateClock, 10000);
     initDesktopIcons();
@@ -6553,22 +5895,11 @@ function boot() {
     initTaskbarAppsBtn();
     initSearchOverlay();
     initMobile();
-    // Fake-Anruf und Fake-Teams-Nachricht entfernt (vorerst deaktiviert)
-    // if (isMobile) {
-    //   setTimeout(showFakeCall,    3 * 60 * 1000);
-    //   setTimeout(showFakeMessage, 4 * 60 * 1000);
-    // }
     // Handle deep-linking via hash (supports #blog/post-id)
     const hash = window.location.hash.replace('#', '');
     if (hash && hash.startsWith('blog/')) {
       const postId = hash.substring(5);
-      setTimeout(() => {
-        openWindow('blog');
-        setTimeout(() => {
-          const item = document.querySelector(`.blog-list-item[data-post="${postId}"]`);
-          if (item) item.click();
-        }, 100);
-      }, 350);
+      setTimeout(() => openBlogPost(postId), 350);
     } else if (hash && WIN_CONFIGS[hash]) {
       setTimeout(() => openWindow(hash), 350);
     } else {
@@ -6644,12 +5975,7 @@ function boot() {
 window.addEventListener('hashchange', () => {
   const hash = window.location.hash.replace('#', '');
   if (hash && hash.startsWith('blog/')) {
-    const postId = hash.substring(5);
-    openWindow('blog');
-    setTimeout(() => {
-      const item = document.querySelector(`.blog-list-item[data-post="${postId}"]`);
-      if (item) item.click();
-    }, 100);
+    openBlogPost(hash.substring(5));
   } else if (hash && WIN_CONFIGS[hash]) {
     openWindow(hash);
   }
