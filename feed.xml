@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NiklasOS Blog — Niklas Fauteck</title>
-    <link>https://fauteck.github.io/website/</link>
+    <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
     <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0200</lastBuildDate>
-    <atom:link href="https://fauteck.github.io/website/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
       <title>Ein eigener Ort im Netz</title>
-      <link>https://fauteck.github.io/website/blog/#eigene-website</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#eigene-website</guid>
+      <link>https://niklasfauteck.de/blog/#eigene-website</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#eigene-website</guid>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
       <category>KI</category>
@@ -23,7 +23,7 @@
 <p>Dafür wollte ich einen eigenen Ort im Netz. Einen, der mir gehört und nicht an einer Plattform hängt. Eine digitale Visitenkarte eben.</p>
 <p>Geworden ist daraus etwas mit mehreren Räumen. Eine Startseite, die alles zusammenhält. Eine nüchterne CV-Ansicht. Ein Blog für solche Gedanken.</p>
 <p>Und weil ich es nicht lassen konnte, gibt es noch eine verspielte Betriebssystem-Variante zum Durchklicken. Aber das ist eine eigene Geschichte.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/eigene-website/os-login.png" alt="Login-Screen der Betriebssystem-Variante: dunkler Hintergrund, grüner Kreis mit einem N, darunter mein Name, ein Passwortfeld und der Hinweis, dass ein beliebiges Passwort zum Anmelden reicht." /></p>
+<p><img src="https://niklasfauteck.de/blog/images/eigene-website/os-login.png" alt="Login-Screen der Betriebssystem-Variante: dunkler Hintergrund, grüner Kreis mit einem N, darunter mein Name, ein Passwortfeld und der Hinweis, dass ein beliebiges Passwort zum Anmelden reicht." /></p>
 <p>Im Maschinenraum steckt erstaunlich wenig. HTML, CSS und Vanilla-JavaScript. Alles statisch im Browser, selbst gehostet auf GitHub. Also auch hier wieder: gevibecodet.</p>
 <p>Vibecoding hat mich richtig gepackt. Anderen zeigen, was damit heute geht, auch ohne klassische Programmiererfahrung. Auf der Seite feile ich gerade daran, genau das anzubieten. Ohne zu wissen, wo es genau hinführt. Schreibt gerne, wenn ihr darauf Lust hättet.</p>
 <p>Vor zwei Jahren hätte ich das alles nicht gekonnt. Heute schon. Und genau mit dieser Haltung gehe ich in das, was als Nächstes kommt.</p>
@@ -32,8 +32,8 @@
 
     <item>
       <title>Von Splitwise und Excel zur eigenen Finanz-App</title>
-      <link>https://fauteck.github.io/website/blog/#finanzteck</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#finanzteck</guid>
+      <link>https://niklasfauteck.de/blog/#finanzteck</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#finanzteck</guid>
       <pubDate>Sat, 31 May 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
       <category>Selfhosting</category>
@@ -42,10 +42,10 @@
 <p>Erst war es Splitwise. Die geteilten Ausgaben liefen da. Aber alles andere lag in Excel.</p>
 <p>Also jeden Monat: CSV-Export aus Splitwise, Import in die Tabelle, von Hand nachb&#252;geln. Zwei Tools f&#252;r eine Frage.</p>
 <p>Irgendwann hatte ich keinen Bock mehr und hab mir mit Claude was eigenes gebaut. Erst nur ein Kassenbuch. Am Monatsende rechnet die App aus, wer wem wie viel &#252;berweisen muss.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/finanzteck/finanzteck-mobil.jpg" alt="Finanzteck auf dem Handy: die Quittungen-Ansicht mit den Ausgleichszahlungen." /></p>
+<p><img src="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-mobil.jpg" alt="Finanzteck auf dem Handy: die Quittungen-Ansicht mit den Ausgleichszahlungen." /></p>
 <p>Und weil es lief, kam St&#252;ck f&#252;r St&#252;ck dazu:</p>
 <p>Verbrauchskosten mit Z&#228;hlerst&#228;nden.<br/>Verm&#246;gen und Darlehen.<br/>Kategorievorschl&#228;ge beim Erfassen, komplett lokal gerechnet, ohne LLM.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/finanzteck/finanzteck-desktop.jpg" alt="Das Verbrauch-Modul am Desktop: Stromkosten als Verlaufschart mit Durchschnittslinie." /></p>
+<p><img src="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-desktop.jpg" alt="Das Verbrauch-Modul am Desktop: Stromkosten als Verlaufschart mit Durchschnittslinie." /></p>
 <p>Aus dem Kassenbuch wurde Finanzteck. Drei SQLite-Datenbanken, selbst gehostet, die Daten bleiben bei mir.</p>
 <p>Und &#8222;Vibecoding macht dumm&#8220;? Bei mir war es umgekehrt. 2FA mit Authelia, Tailscale statt offener Portfreigaben, sauberes Arbeiten mit GitHub. Hab ich beim Bauen gelernt.</p>
 <p>Eigentlich wollte ich nur wissen, wer die Pizza bezahlt hat.</p>
@@ -54,8 +54,8 @@
 
     <item>
       <title>Vom Nerd-Hobby zur Barrierefreiheit</title>
-      <link>https://fauteck.github.io/website/blog/#home-assistant</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#home-assistant</guid>
+      <link>https://niklasfauteck.de/blog/#home-assistant</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#home-assistant</guid>
       <pubDate>Tue, 12 May 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
@@ -65,7 +65,7 @@
       <description><![CDATA[
 <p>Mein Smart-Home-System "Home Assistant" hat bei mir angefangen, wie es vermutlich bei den meisten anfängt: als Spielerei.</p>
 <p>Ich wollte ehrlich gesagt nur einmal sehen, ob ich das hinbekomme. Eine Lampe per Sprache schalten. Dann zwei. Dann irgendwann die ganze Beleuchtung im Wohnzimmer abhängig davon, ob der Fernseher läuft und welche App gerade dort offen ist. Klassisches Nerd-Hobby. Braucht kein Mensch. Aber wenn man sich reinfuchst, ziemlich cool.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/home-assistant/home-assistant-uebersicht.jpg" alt="Mein Home-Assistant-Dashboard mit Räumen, Lampen, Rollos und Automationen im Überblick" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/home-assistant/home-assistant-uebersicht.jpg" alt="Mein Home-Assistant-Dashboard mit Räumen, Lampen, Rollos und Automationen im Überblick" /></p>
 <p>Was ich an Home Assistant gar nicht erwartet hatte: Es verändert, wie man auf Alltagsprozesse schaut.</p>
 <p>Plötzlich ertappt man sich dabei, abends im Schlafzimmer fünf Lampen nacheinander anzuschalten und denkt: Moment, das ist doch eigentlich ein Prozess. Mit Auslöser, Bedingungen, Ergebnis. Und wenn ich diesen Prozess sauber beschreiben kann, kann ich ihn auch automatisieren. Im Job mache ich nichts anderes. Nur dass im Job am Ende selten eine Lampe angeht.</p>
 <p>Spätestens seit der Teilquerschnittslähmung meiner Frau ist Home Assistant für uns aber keine Spielerei mehr.</p>
@@ -77,17 +77,17 @@
 
     <item>
       <title>Update: Fenster und Türen sind drin</title>
-      <link>https://fauteck.github.io/website/blog/#fenster-tueren</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#fenster-tueren</guid>
+      <link>https://niklasfauteck.de/blog/#fenster-tueren</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#fenster-tueren</guid>
       <pubDate>Mon, 28 Apr 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
       <category>GoFundMe</category>
       <category>Umbau</category>
       <description><![CDATA[
-<p>Im Oktober haben wir unsere <a href="https://fauteck.github.io/website/blog/#gofundme">GoFundMe-Kampagne</a> für den barrierefreien Umbau unseres Anbaus gestartet. Seitdem ist viel passiert – Schuppen gebaut, Anbau leergeräumt, Fliesen rausgerissen, Dachboden entrümpelt. Und gestern wieder ein großer Meilenstein.</p>
+<p>Im Oktober haben wir unsere <a href="https://niklasfauteck.de/blog/#gofundme">GoFundMe-Kampagne</a> für den barrierefreien Umbau unseres Anbaus gestartet. Seitdem ist viel passiert – Schuppen gebaut, Anbau leergeräumt, Fliesen rausgerissen, Dachboden entrümpelt. Und gestern wieder ein großer Meilenstein.</p>
 <p>Die Firma Kuse Metallbau aus Königswinter hat die neuen Fenster und Türen im Anbau eingesetzt. Damit weicht der Rohbau-Charakter, und man kann sich erstmals richtig vorstellen, wie Aylins barrierefreier Raum am Ende aussehen wird.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/fenster-tueren/fenster-tueren-update.jpg" alt="Neues Treppengeländer an der Haustür und neue Fenster und Terrassentür im Anbau" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/fenster-tueren/fenster-tueren-update.jpg" alt="Neues Treppengeländer an der Haustür und neue Fenster und Terrassentür im Anbau" /></p>
 <p>Die Zusammenarbeit mit Kuse war von Anfang bis Ende erstklassig: ehrliche, mitdenkende Beratung und eine saubere, professionelle Umsetzung. Und ein Treppengeländer für die Haustür gab es auch noch dazu. 💛</p>
 <p>Falls jemand in eurem Umfeld einen verlässlichen Fensterbauer sucht – wir können Kuse Metallbau aus ganzem Herzen weiterempfehlen: <a href="https://kuse.eufu.net/">kuse.eufu.net</a></p>
 <p>Voraussichtlich in zwei Wochen wird verputzt. Da hilft auch kein Vibecoding.</p>
@@ -98,8 +98,8 @@
 
     <item>
       <title>Zu viele Tabs</title>
-      <link>https://fauteck.github.io/website/blog/#eigenes-dashboard</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#eigenes-dashboard</guid>
+      <link>https://niklasfauteck.de/blog/#eigenes-dashboard</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#eigenes-dashboard</guid>
       <pubDate>Wed, 22 Apr 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
       <category>KI</category>
@@ -110,11 +110,11 @@
 <p>Irgendwo der Kalender, woanders das Wetter, dann Docker, Bookmarks, Feeds, Aufgaben und noch ein paar Dinge, die ich regelmäßig im Blick haben will. Nicht dramatisch, aber jeden Tag ein bisschen unnötig.</p>
 <p>Deshalb habe ich mir ein eigenes Dashboard gevibecodet.</p>
 <p>Im Grunde ist es einfach eine Browser-Startseite, auf der alles zusammenkommt, was ich im Alltag brauche. Selfhosted, über eine einzige YAML-Datei konfigurierbar und so gebaut, dass nicht ich mich nach dem Tool richten muss, sondern das Tool nach mir.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/eigenes-dashboard/1776855823084.jpg" alt="Dashboard im Dark Mode: Widget-Einstellungen mit Todoteck-Integration" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823084.jpg" alt="Dashboard im Dark Mode: Widget-Einstellungen mit Todoteck-Integration" /></p>
 <p>Inzwischen steckt da eine ganze Menge drin: Wetter, Kalender, RSS, Docker, Server-Stats, AdGuard, GitHub, Tailscale, Aufgaben, Notizen, AutoDarts, Untappd, eigene APIs, iFrames, Widget-Gruppen und Bookmarks mit Suche.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/eigenes-dashboard/1776855823535.jpg" alt="Dashboard in der Desktop-Ansicht: Kalender, Daily-Apps, KI-Chat und 3D-Bereich" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823535.jpg" alt="Dashboard in der Desktop-Ansicht: Kalender, Daily-Apps, KI-Chat und 3D-Bereich" /></p>
 <p>Und wie das bei solchen Projekten eben ist, blieb es nicht bei der ursprünglichen Idee.<br/>Aus einer simplen Startseite wurden nach und nach Drag &amp; Drop, Spotlight-Suche, YAML-Editor im Browser, Undo/Redo, Dark Mode, Akzentfarben, mobile Ansicht, serverseitige API-Keys, Rate Limiting, SSRF-Schutz und CI/CD.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/eigenes-dashboard/1776855823524.jpg" alt="Dashboard in der mobilen Ansicht: Daily-Apps und KI-Chat im Light Mode" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823524.jpg" alt="Dashboard in der mobilen Ansicht: Daily-Apps und KI-Chat im Light Mode" /></p>
 <p>Genau solche Projekte machen mir gerade besonders Spaß, weil sie kein abstraktes Problem lösen, sondern etwas, das im Alltag sofort auffällt. Man baut etwas, nutzt es direkt selbst und merkt ziemlich schnell, ob es wirklich taugt.</p>
 <p>Früher hätte ich bei so einer Idee wahrscheinlich gedacht: nette Vorstellung, aber dafür fehlt mir das Know-how. Heute denke ich eher: Dann baue ich mir eben die erste Version und schaue, was daraus wird. Und meistens wird es dann doch etwas größer als geplant.</p>
 <p>Wenn es euch interessiert, zeige ich in den nächsten Tagen gerne mehr. Sinnvoll eingesetzt, kann man mit Vibecoding Ideen mindestens greifbarer machen.</p>
@@ -123,8 +123,8 @@
 
     <item>
       <title>Räuberhöhle</title>
-      <link>https://fauteck.github.io/website/blog/#raeuberhoehle</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#raeuberhoehle</guid>
+      <link>https://niklasfauteck.de/blog/#raeuberhoehle</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#raeuberhoehle</guid>
       <pubDate>Wed, 15 Apr 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
@@ -134,9 +134,9 @@
 <p>Kein 3D-Druck.<br/>Kein Dashboard.<br/>Keine Automation.</p>
 <p>Sondern Höhlenbau mit meinem vierjährigen Sohn.</p>
 <p>Wobei Höhle nicht ganz stimmt. Es war eher ein Zelt. Paracord gespannt, leichte Decken drüber, mit Wäscheklammern befestigt. Improvisiert, aber stabil genug für den Einsatzzweck.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/raeuberhoehle/raeuberhoehle-aussen.jpg" alt="Räuberhöhle von außen: graue Decken, mit Paracord gespannt und mit Wäscheklammern befestigt, über dem Sofa" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-aussen.jpg" alt="Räuberhöhle von außen: graue Decken, mit Paracord gespannt und mit Wäscheklammern befestigt, über dem Sofa" /></p>
 <p>Die Kita-Notbetreuung wurde also sinnvoll genutzt. In unserer Räuberhöhle gab's Snacks und wir haben zusammen Biene Maja geschaut. Und ich musste kurz daran denken, dass das gar nicht so weit weg ist von den Dingen, über die ich hier sonst schreibe.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/raeuberhoehle/raeuberhoehle-innen.jpg" alt="Blick aus der Räuberhöhle: mein Sohn im blauen Kapuzenpulli schaut in Richtung Regal, darüber die mit Wäscheklammern fixierten Decken" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-innen.jpg" alt="Blick aus der Räuberhöhle: mein Sohn im blauen Kapuzenpulli schaut in Richtung Regal, darüber die mit Wäscheklammern fixierten Decken" /></p>
 <p>Du nimmst, was da ist.<br/>Du baust mit einfachen Mitteln.<br/>Du machst es ein kleines bisschen aufwendiger als nötig.<br/>Und am Ende ist nicht entscheidend, ob es perfekt ist. Sondern ob es funktioniert und jemand Freude daran hat.</p>
 <p>Manchmal ist einfach mal machen eben kein Sideproject, sondern ein Paracord-Seil zwischen zwei Möbelstücken.<br/>Maker-Mindset. Nur mit mehr Wäscheklammern und dem besseren Publikum.</p>
 <p>Was ich aus der Räuberhöhle mitnehme:<br/>Stakeholder zufrieden, MVP stand, Entertainment lief.</p>
@@ -145,8 +145,8 @@
 
     <item>
       <title>Todoteck: API, MCP und der Alltag</title>
-      <link>https://fauteck.github.io/website/blog/#todoteck-mcp</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#todoteck-mcp</guid>
+      <link>https://niklasfauteck.de/blog/#todoteck-mcp</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#todoteck-mcp</guid>
       <pubDate>Fri, 10 Apr 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
       <category>KI</category>
@@ -159,13 +159,13 @@
 <p>Als Erstes habe ich der App eine eigene API gegeben.</p>
 <p>Meine Frau sagt zu unseren smarten Lautsprechern zum Beispiel: &quot;Hey Google, setze Milch auf meine Einkaufsliste.&quot; Bisher landet das nur in Google Keep. Todoteck holt diesen Eintrag jetzt automatisch ab und zeigt ihn direkt in der Einkaufsliste an. Auf jedem Gerät. Über eine weitere API auch auf dem E-Ink-Display im Flur. Und über eine native Android-App mit Widgets direkt auf dem Startbildschirm.</p>
 <p>Es gibt also keine neue Gewohnheit, die man erst lernen muss. Niemandem muss man etwas erklären. Es passiert einfach im Hintergrund.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-aufgabe.png" alt="Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-aufgabe.png" alt="Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste" /></p>
 <p>Danach bin ich noch einen Schritt weitergegangen: MCP, also Model Context Protocol. Die Idee ist eigentlich ganz einfach. Claude redet nicht mehr nur mit mir, sondern direkt mit meiner App.</p>
 <p>Sonntag nach dem Mittagessen frage ich einfach: &quot;Was steht nächste Woche an?&quot; Dann kommen die Antworten direkt zurück. Mittwoch Sim Racing mit meinen Kumpels. Freitag Zahnarzt. Samstag einkaufen.</p>
 <p>Dann sage ich: &quot;Füg beim Einkauf noch Waschmittel hinzu.&quot; Ist drin.</p>
 <p>Oder: &quot;Erinner mich am Freitag daran, was ich dem Zahnarzt sagen wollte.&quot; Auch drin.</p>
 <p>Und wenn ich dann am Freitag kurz vor dem Termin frage: &quot;Was wollte ich da nochmal sagen?&quot;, weiß Claude es. Weil ich genau diese Notiz ein paar Tage vorher hinterlegt habe.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-mcp.png" alt="Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-mcp.png" alt="Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel" /></p>
 <p>Kein Suchen. Kein App-Wechsel. Einfach fragen.</p>
 <p>Das Protokoll ist offen, und der Einstieg war deutlich einfacher, als ich gedacht hätte. Wer neugierig ist, sollte einfach mal anfangen. Oder fragt mich gerne!</p>
       ]]></description>
@@ -173,8 +173,8 @@
 
     <item>
       <title>Todoteck: Vibecoding für die Familie</title>
-      <link>https://fauteck.github.io/website/blog/#todoteck</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#todoteck</guid>
+      <link>https://niklasfauteck.de/blog/#todoteck</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#todoteck</guid>
       <pubDate>Tue, 07 Apr 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
       <category>KI</category>
@@ -183,9 +183,9 @@
       <description><![CDATA[
 <p>Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut.</p>
 <p>Ich wollte To-dos und Notizen in einem System. Beides hängt für mich direkt zusammen. Aus einer Notiz wird oft eine Aufgabe. Und eine Aufgabe braucht meist den passenden Kontext. Die fertigen Tools, die ich ausprobiert habe, konnten immer nur das eine oder das andere wirklich gut.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-mobile.png" alt="Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-mobile.png" alt="Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben" /></p>
 <p>Also habe ich es selbst gebaut. Mit KI-Unterstützung und ohne klassische Programmiererfahrung. Mit Integration unserer Google Kalender und zur Keep Einkaufsliste, mit eigener Programmierschnittstelle, selfhosted. Genau das macht Vibecoding heute möglich.</p>
-<p><img src="https://fauteck.github.io/website/blog/images/todoteck/todoteck-desktop.png" alt="Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-desktop.png" alt="Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich" /></p>
 <p>Am Ende ist ein schlichtes Tool entstanden, das genau so funktioniert, wie wir es als Familie brauchen. Crazy, denn vor zwei Jahren hätte ich das nicht gekonnt. Heute kann ich es.</p>
 <p>Letzte Woche habe ich der App noch etwas hinzugefügt, das ich mir selbst vorher so nicht hätte vorstellen können. Mehr dazu in ein paar Tagen.</p>
 <p>(Ja, ich weiß, ich muss auch noch den Keller aufräumen. Mache ich gleich nach dem LinkedIn-Post, wirklich!)</p>
@@ -194,8 +194,8 @@
 
     <item>
       <title>Wenn niemand die Lösung hat, druckst du sie selbst</title>
-      <link>https://fauteck.github.io/website/blog/#3d-drucker</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#3d-drucker</guid>
+      <link>https://niklasfauteck.de/blog/#3d-drucker</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#3d-drucker</guid>
       <pubDate>Thu, 19 Mar 2026 00:00:00 +0100</pubDate>
       <category>Persönlich</category>
       <category>3D-Druck</category>
@@ -210,8 +210,8 @@
 
     <item>
       <title>Danke — euer Support bewegt etwas</title>
-      <link>https://fauteck.github.io/website/blog/#danke-2025</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#danke-2025</guid>
+      <link>https://niklasfauteck.de/blog/#danke-2025</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#danke-2025</guid>
       <pubDate>Wed, 31 Dec 2025 00:00:00 +0100</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
@@ -219,7 +219,7 @@
       <category>Umbau</category>
       <description><![CDATA[
 <p><strong>Eure Unterstützung hat in wenigen Wochen mehr bewegt, als wir es uns je ausmalen konnten.</strong></p>
-<p><img src="https://fauteck.github.io/website/blog/images/danke-2025/danke-2025-collage.jpg" alt="Collage zum Jahresende 2025: Umbau-Fortschritte, Aylins Gehtraining und ein DANKE!" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/danke-2025/danke-2025-collage.jpg" alt="Collage zum Jahresende 2025: Umbau-Fortschritte, Aylins Gehtraining und ein DANKE!" /></p>
 <p>In nur wenigen Wochen habt ihr es möglich gemacht, dass aus Hoffnung konkrete Fortschritte werden. Und dafür möchten wir von Herzen Danke sagen.</p>
 <p>Dank eurer Spenden, Shares und ermutigenden Nachrichten zu unserer GoFundMe-Kampagne konnten wir mit dem barrierefreien Umbau unseres Anbaus beginnen und Aylins Intensiv-Block-Therapie im NIB Köln ermöglichen — inklusive sofortiger Übernahme der Eigenbeteiligung. Das Training war extrem fordernd, tat Aylin aber spürbar gut und stärkt ihre Stabilität und Muskulatur.</p>
 <p>Auch beim Umbau geht es Schritt für Schritt voran: Anbau geleert, neuer Geräteschuppen aufgebaut, alte Fliesen und Fliesenkleber entfernt, Türrahmen vorbereitet, Dachboden geräumt und Bauschutt entsorgt. Ein großes Dankeschön an <strong>Kuse Metallbau aus Königswinter</strong> für die Beratung bei den neuen Türen und Fenstern — vermittelt durch eine GoFundMe-Spenderin.</p>
@@ -231,15 +231,15 @@
 
     <item>
       <title>Der Umbau startet</title>
-      <link>https://fauteck.github.io/website/blog/#umbau-startet</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#umbau-startet</guid>
+      <link>https://niklasfauteck.de/blog/#umbau-startet</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#umbau-startet</guid>
       <pubDate>Tue, 14 Oct 2025 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
       <category>GoFundMe</category>
       <category>Umbau</category>
       <description><![CDATA[
-<p><img src="https://fauteck.github.io/website/blog/images/umbau-startet/umbau-startet-collage.jpg" alt="Collage: GoFundMe-Kampagnenbild mit Spendenstand, Aylin mit Sohn am Rollator, Aylin vor herausgerissenen Fliesen, General-Anzeiger-Artikel" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/umbau-startet/umbau-startet-collage.jpg" alt="Collage: GoFundMe-Kampagnenbild mit Spendenstand, Aylin mit Sohn am Rollator, Aylin vor herausgerissenen Fliesen, General-Anzeiger-Artikel" /></p>
 <p>Vor nicht mal zwei Wochen haben wir unsere GoFundMe-Kampagne gestartet, um meiner Frau Aylin nach ihrem Rückenmarkinfarkt den Alltag barrierefreier zu machen.</p>
 <p>Dank eurer unglaublichen Unterstützung können wir jetzt mit dem Umbau beginnen: Der Anbau wird entrümpelt, alte Fliesen kommen raus — der erste Schritt zu Aylins neuem Raum startet.</p>
 <p>Wir sind dankbar, bewegt und voller Motivation. Jede Hilfe — ob durch Tipps, Kontakte oder Teilen — bringt uns weiter.</p>
@@ -249,14 +249,14 @@
 
     <item>
       <title>GoFundMe: Barrierefreier Umbau für unsere Familie</title>
-      <link>https://fauteck.github.io/website/blog/#gofundme</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#gofundme</guid>
+      <link>https://niklasfauteck.de/blog/#gofundme</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#gofundme</guid>
       <pubDate>Wed, 01 Oct 2025 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
       <category>GoFundMe</category>
       <description><![CDATA[
-<p><img src="https://fauteck.github.io/website/blog/images/gofundme/gofundme-feldweg.jpg" alt="Aylin im Rollstuhl auf einem Feldweg, daneben unser Sohn mit grünem Helm" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/gofundme/gofundme-feldweg.jpg" alt="Aylin im Rollstuhl auf einem Feldweg, daneben unser Sohn mit grünem Helm" /></p>
 <p>Manchmal verändert ein einziger Tag das ganze Leben. Im November 2022 erlitt meine Frau Aylin nach einer Tumor-OP eine Teilquerschnittslähmung. Unser Sohn war damals gerade ein Jahr alt. Seitdem kämpfen wir uns Schritt für Schritt durch einen neuen Alltag – voller zusätzlicher Herausforderungen und Kosten, die weit über das hinausgehen, was ein Pflegegrad abdeckt.</p>
 <p>Umbauten am Haus, ein größeres Auto, Therapien und Hilfsmittel – vieles mussten wir bereits stemmen. Doch eine zentrale Maßnahme steht noch bevor:</p>
 <p>Wir möchten unseren Anbau im Garten barrierefrei zum Wohnraum umbauen, damit Aylin alles Notwendige im Erdgeschoss hat.</p>
@@ -269,14 +269,14 @@
 
     <item>
       <title>Depression</title>
-      <link>https://fauteck.github.io/website/blog/#depression</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#depression</guid>
+      <link>https://niklasfauteck.de/blog/#depression</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#depression</guid>
       <pubDate>Thu, 10 Oct 2024 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Mental Health</category>
       <description><![CDATA[
 <p><strong>Triggerwarnung: Dieser Text handelt von Depression und Panikattacken.</strong></p>
-<p><img src="https://fauteck.github.io/website/blog/images/depression/alles-wird-wieder-ok.jpg" alt="Schwarzweiß-Foto: Sticker &#8222;Alles wird wieder ok!&#8220; auf einem Bierkasten" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/depression/alles-wird-wieder-ok.jpg" alt="Schwarzweiß-Foto: Sticker &#8222;Alles wird wieder ok!&#8220; auf einem Bierkasten" /></p>
 <p>Ich bin in eine Depression gerutscht.</p>
 <p>Ich habe lange überlegt, ob ich das schreiben soll. Zum einen bin ich sowieso nicht mehr wahnsinnig in Social Media aktiv. Zum anderen fühlt es sich bei aller eigenen Akzeptanz, dass ich diese Krankheit habe und es eine ist, an, als würde ich eine Schwäche preisgeben. Was natürlich Blödsinn ist. Denn eine Depression sucht sich niemand aus. Und ich bin in guten Momenten stolz auf mich, das schon erkannt zu haben und aktiv dagegen anzugehen. Und vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt.</p>
 <h2>Der Hintergrund</h2>
@@ -292,14 +292,14 @@
 
     <item>
       <title>Neue Position</title>
-      <link>https://fauteck.github.io/website/blog/#neue-position</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#neue-position</guid>
+      <link>https://niklasfauteck.de/blog/#neue-position</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#neue-position</guid>
       <pubDate>Tue, 01 Aug 2023 00:00:00 +0200</pubDate>
       <category>Karriere</category>
       <category>RTL</category>
       <category>Persönlich</category>
       <description><![CDATA[
-<p><img src="https://fauteck.github.io/website/blog/images/neue-position/neue-position.png" alt="Illustration: jubelnde Menschen um einen Cupcake, dazu der Schriftzug Neue Position" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/neue-position/neue-position.png" alt="Illustration: jubelnde Menschen um einen Cupcake, dazu der Schriftzug Neue Position" /></p>
 <p>Dieses Jahr ist für mich privat herausfordernd, meine Frau ist nach einer Tumorbehandlung im November letzten Jahres ab der Halswirbelsäule teilquerschnittsgelähmt und kämpft sich zurück ins Leben. Ich war vier Monate lang alleinsorgend mit unserem Sohn zuhause, der zu dem Zeitpunkt gerade 1 Jahr alt geworden war. Da gehen einem tausend Fragen durch den Kopf, selten hatten wir Antworten.</p>
 <p>Danke an RTL Deutschland, dass ich mir zumindest zu meinem Job keine Fragen stellen musste und ich nach den ersten Monaten in Teilzeit zurückkommen konnte.</p>
 <p>Jetzt freue ich mich auf die Aufgaben in meiner neuen Position als Head of Digital Transformation in der Kommunikation, um mit den Teams noch mehr aus unseren Workflows und Tools herauszuholen und die technischen Produkte in der PR auszubauen.</p>
@@ -310,15 +310,15 @@
 
     <item>
       <title>Abschied vom Science Slam</title>
-      <link>https://fauteck.github.io/website/blog/#abschied-science-slam</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#abschied-science-slam</guid>
+      <link>https://niklasfauteck.de/blog/#abschied-science-slam</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#abschied-science-slam</guid>
       <pubDate>Sun, 06 Mar 2022 00:00:00 +0100</pubDate>
       <category>Science Slam</category>
       <category>Moderation</category>
       <category>Abschied</category>
       <description><![CDATA[
 <p><strong>9 Jahre, 38 Events, über 200 Vorträge — und phantastische Menschen kennengelernt. Danke!</strong></p>
-<p><img src="https://fauteck.github.io/website/blog/images/abschied-science-slam/science-slam-collage.jpg" alt="Collage aus vier Science-Slam-Momenten: Pantheon-Saal, Spotlight-Auftritt, LUUPS-Team-Selfie, Tafel-Vortrag" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/abschied-science-slam/science-slam-collage.jpg" alt="Collage aus vier Science-Slam-Momenten: Pantheon-Saal, Spotlight-Auftritt, LUUPS-Team-Selfie, Tafel-Vortrag" /></p>
 <p>Der Bonner Science Slam im Januar 2020 wird voraussichtlich der letzte gewesen sein, den ich moderiert habe. Seit Juli 2013 habe ich insgesamt 38 Science Slams moderiert, 200 Mal Slammer:innen auf die Bühne geholt, die in nur zehn Minuten ihr Forschungsthema möglichst leicht verständlich und unterhaltsam präsentieren mussten.</p>
 <h2>Wertvolle Erfahrung, schöne Erinnerungen</h2>
 <p>Ich habe das Moderieren immer nur zum Spaß gemacht. Für mich war es eine unglaublich wertvolle Erfahrung, die einen vernünftigen Abschluss verdient hätte.</p>
@@ -333,13 +333,13 @@
 
     <item>
       <title>Jahresrückblick 2021</title>
-      <link>https://fauteck.github.io/website/blog/#jahresrueckblick-2021</link>
-      <guid isPermaLink="false">https://fauteck.github.io/website/blog/#jahresrueckblick-2021</guid>
+      <link>https://niklasfauteck.de/blog/#jahresrueckblick-2021</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#jahresrueckblick-2021</guid>
       <pubDate>Sat, 01 Jan 2022 00:00:00 +0100</pubDate>
       <category>Jahresrückblick</category>
       <category>Persönlich</category>
       <description><![CDATA[
-<p><img src="https://fauteck.github.io/website/blog/images/jahresrueckblick-2021/jahresrueckblick-2021.jpg" alt="Jahresrückblick 2021" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/jahresrueckblick-2021/jahresrueckblick-2021.jpg" alt="Jahresrückblick 2021" /></p>
 <p>Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert.</p>
 <h2>Vater geworden</h2>
 <p>Ich bin Vater geworden. Das ist vor allem eine Leistung meiner Frau, wow. Nicht in Worte zu fassen. Noch nie so viel Glück und Verantwortung gespürt wie jetzt.</p>
