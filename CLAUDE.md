@@ -5,6 +5,23 @@ this repository.
 
 ---
 
+## Wissensquelle: llm-wiki
+
+Zentrale, gepflegte Wissensschicht für projektübergreifendes Wissen: **https://github.com/Fauteck/llm-wiki**
+
+Pflicht vor inhaltlichen Antworten:
+1. [`index.md`](https://github.com/Fauteck/llm-wiki/blob/main/index.md) des Wikis lesen.
+2. Mindestens die Repo-Übersicht öffnen: [`wiki/overview/website.md`](https://github.com/Fauteck/llm-wiki/blob/main/wiki/overview/website.md).
+3. Für Blog-/Schreib-Themen die [Claude-Blog-Voice](https://github.com/Fauteck/llm-wiki/blob/main/wiki/concepts/claude-blog-voice.md).
+
+Nach faktischen Änderungen mit Wissens-Charakter: betroffene Wiki-Seite + `log.md` pflegen (Spielregeln in [`llm-wiki/CLAUDE.md`](https://github.com/Fauteck/llm-wiki/blob/main/CLAUDE.md)).
+
+Zugriffswege auf dasselbe Repo:
+- **Claude Code (Web/lokal):** `llm-wiki/` ist parallel verfügbar.
+- **Claude-Chat / mobil:** GitHub-Connector → direkt aufs Repo.
+
+---
+
 ## Long-session behaviour (API stability)
 
 > Goal: avoid stream timeouts (`Stream idle timeout — partial response received`).
