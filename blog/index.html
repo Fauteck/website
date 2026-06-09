@@ -404,6 +404,22 @@
       <div class="blog-layout">
         <div class="blog-main">
           <ul class="post-list">
+            <li class="post-item post-item--with-image" onclick="loadPost('wiki-fuer-die-ki')">
+              <a href="#wiki-fuer-die-ki">
+                <div class="post-thumb"><img src="images/wiki-fuer-die-ki/todoteck-llm-wiki.jpg" alt="Mein Handy mit der Todoteck-App, geöffnet im Projekt llm-wiki. In der Notizen-Liste stehen _schema, _index, _log und Karpathy - LLM Wiki (Gist)." loading="lazy"></div>
+                <div class="post-body">
+                <div class="post-meta">
+                  <span class="post-date">09.06.2026</span>
+                  <span class="post-tag">Vibecoding</span>
+                  <span class="post-tag">KI</span>
+                  <span class="post-tag">Selfhosting</span>
+                  <span class="post-tag">MCP</span>
+                </div>
+                <h2 class="post-title">Ein Wiki nur für die KI</h2>
+                <p class="post-excerpt">Zu jedem Projekt hinterlege ich der KI eine Markdown-Datei mit dem Basiswissen. Das eigentliche Wissen liegt jetzt zentral als Notizen in Todoteck, abrufbar über MCP. In den Anweisungen steht nur noch ein Verweis darauf.</p>
+                </div>
+              </a>
+            </li>
             <li class="post-item post-item--with-image" onclick="loadPost('eigene-website')">
               <a href="#eigene-website">
                 <div class="post-thumb"><img src="images/eigene-website/os-login.png" alt="Login-Screen der Betriebssystem-Variante mit grünem N-Avatar und Passwortfeld" loading="lazy"></div>
@@ -800,6 +816,7 @@
     }
 
     var postMeta = {
+      'wiki-fuer-die-ki': { title: 'Ein Wiki nur für die KI', date: '09.06.2026' },
       'eigene-website': { title: 'Ein eigener Ort im Netz', date: '04.06.2026' },
       'finanzteck': { title: 'Von Splitwise und Excel zur eigenen Finanz-App', date: '31.05.2026' },
       'home-assistant': { title: 'Vom Nerd-Hobby zur Barrierefreiheit', date: '12.05.2026' },
