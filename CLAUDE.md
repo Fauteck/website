@@ -5,20 +5,27 @@ this repository.
 
 ---
 
-## Wissensquelle: llm-wiki
+## Wissensquelle: llm-wiki (in Todoteck)
 
-Zentrale, gepflegte Wissensschicht für projektübergreifendes Wissen: **https://github.com/Fauteck/llm-wiki**
+Zentrale, projektübergreifende Wissensschicht ist das **Todoteck-Projekt
+`llm-wiki`**, erreichbar über den **Todoteck-MCP** (`search`, `get_note`,
+`list_notes`, …). Es hat das frühere GitHub-Repo `Fauteck/llm-wiki`
+**abgelöst** — Todoteck ist die einzige Heimat des Wikis.
 
 Pflicht vor inhaltlichen Antworten:
-1. [`index.md`](https://github.com/Fauteck/llm-wiki/blob/main/index.md) des Wikis lesen.
-2. Mindestens die Repo-Übersicht öffnen: [`wiki/overview/website.md`](https://github.com/Fauteck/llm-wiki/blob/main/wiki/overview/website.md).
-3. Für Blog-/Schreib-Themen die [Claude-Blog-Voice](https://github.com/Fauteck/llm-wiki/blob/main/wiki/concepts/claude-blog-voice.md).
+1. Notiz `_index` im Projekt `llm-wiki` lesen (Katalog aller Seiten).
+2. Diese Repo-Übersicht öffnen: Notiz **„website (niklasfauteck.de)"**.
+3. Bei einschlägigen Themen die passende Notiz lesen: Notiz **„Claude-Anweisung: Blog & LinkedIn"**.
 
-Nach faktischen Änderungen mit Wissens-Charakter: betroffene Wiki-Seite + `log.md` pflegen (Spielregeln in [`llm-wiki/CLAUDE.md`](https://github.com/Fauteck/llm-wiki/blob/main/CLAUDE.md)).
+Grundsatz „eine Heimat pro Fakt": code-gebundene Doku bleibt im Repo
+(README, docs/*, ADRs); das Wiki verlinkt darauf, kopiert sie nicht.
+Übergreifendes/abgeleitetes Wissen lebt als Notiz im `llm-wiki`-Projekt.
+Nach faktischen Änderungen mit Wissens-Charakter: betroffene Wiki-Notiz
++ Notiz `_log` pflegen.
 
-Zugriffswege auf dasselbe Repo:
-- **Claude Code (Web/lokal):** `llm-wiki/` ist parallel verfügbar.
-- **Claude-Chat / mobil:** GitHub-Connector → direkt aufs Repo.
+Zugriffswege auf dasselbe Wiki:
+- **Claude Code (Web/lokal):** Todoteck-MCP.
+- **Claude-Chat / mobil:** Todoteck-MCP-Connector.
 
 ---
 
