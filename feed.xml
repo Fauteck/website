@@ -5,8 +5,29 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Ein Wiki nur für die KI</title>
+      <link>https://niklasfauteck.de/blog/#wiki-fuer-die-ki</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#wiki-fuer-die-ki</guid>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Selfhosting</category>
+      <category>MCP</category>
+      <description><![CDATA[
+<p>Zu jedem Projekt hinterlege ich der KI eine Markdown-Datei. CLAUDE.md. Da steht das Basiswissen drin und die Regeln, an die sich Claude halten soll. Damit ich nicht in jeder Session von vorne anfange.</p>
+<p>Das war von Anfang an klug. Aber das eigentliche Grundwissen lag verstreut: in Dateien, in Repos, halb in meinem Kopf. Ich wollte es an einem Ort. Zentral, selbst gehostet, immer aktuell.</p>
+<p>Die Idee ist nicht von mir. Andrej Karpathy hat sie als "LLM Wiki" beschrieben: Die KI pflegt das Wiki selbst, statt deine Notizen bei jeder Frage neu zu durchsuchen. Aufmerksam wurde ich darauf durch die <a href="https://ainauten.com">AInauten</a>, Karpathys Original liegt als <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Gist auf GitHub</a>.</p>
+<p>Karpathy macht das mit Markdown in Obsidian. Ich hatte eh schon Todoteck, meine selbstgebaute Notizen-App. Also liegt das Wiki jetzt da drin. Erreichbar über MCP, den Server musste ich nur erweitern. Claude liest die Notizen, ohne dass ich was kopiere.</p>
+<p><img src="https://niklasfauteck.de/blog/images/wiki-fuer-die-ki/todoteck-llm-wiki.jpg" alt="Mein Handy mit der Todoteck-App, geöffnet im Projekt llm-wiki. In der Notizen-Liste stehen _schema, _index, _log und Karpathy - LLM Wiki (Gist)." /></p>
+<p>In meinen Projektanweisungen und CLAUDE.md-Dateien steht jetzt nur noch ein Zeiger: "Deine vollständige Anweisung lebt im Todoteck-Projekt »llm-wiki«, erreichbar über den MCP-Connector."</p>
+<p>Jetzt liegt mein Wissen bei mir. Auf meinem Server, in meiner App. Und ich verweise immer drauf, statt alles bei jeder Session neu zu erklären.</p>
+<p>Der KI-Markt bleibt mega agil. Modelle und Anbieter werde ich wechseln. Das Wissen wandert einfach mit. Plug and play.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Ein eigener Ort im Netz</title>
