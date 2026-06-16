@@ -6,8 +6,6 @@ tags: [Persönlich, Familie, GoFundMe, Umbau]
 
 # Alles verputzt
 
-Alles verputzt.
-
 Und wieder sind wir einen Schritt weiter beim barrierefreien Umbau, für den wir im Oktober eine GoFundMe-Kampagne gestartet hatten. Mit glatten Wänden und sauber verputzten Fenstern und Türen sieht der Anbau auf einmal zum ersten Mal echt nach einem Zimmer aus. Jetzt stehen wir drin und sehen schon Aylins Raum fertig eingerichtet vor unserem geistigen Auge.
 
 ![Der frisch verputzte Anbau. Glatte Wände rundum, sauber verputzte Fenster und Türen. Zum ersten Mal wirkt der Rohbau wie ein echtes Zimmer.](images/verputzt/verputzt-update.jpg)
