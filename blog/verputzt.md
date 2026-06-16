@@ -1,10 +1,10 @@
 ---
-title: "Update: Zum ersten Mal ein Zimmer"
+title: "Alles verputzt"
 date: 2026-06-16
 tags: [Persönlich, Familie, GoFundMe, Umbau]
 ---
 
-# Update: Zum ersten Mal ein Zimmer
+# Alles verputzt
 
 Alles verputzt.
 
