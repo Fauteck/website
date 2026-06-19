@@ -5,8 +5,33 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jun 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Mein eigener Tower</title>
+      <link>https://niklasfauteck.de/blog/#eigener-tower</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#eigener-tower</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 +0200</pubDate>
+      <category>Persönlich</category>
+      <category>Familie</category>
+      <category>ADS-B</category>
+      <category>Raspberry Pi</category>
+      <description><![CDATA[
+<p>Letztens waren wir mit der Familie auf dem Flugplatz Hangelar. Kleine Maschinen, die starten und landen. Und mit einem Vierjährigen zusammen staunt es sich einfach besser.</p>
+<p>Ein eigener Flugschein ist illusorisch. Aber sehen, was da oben so los ist, das geht. Also habe ich mir eine Antenne aufs Dach gesetzt. Seitdem fühlt sich mein Arbeitszimmer ein bisschen wie ein eigener Tower an.</p>
+<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/antenne-dach.jpg" alt="Die ADS-B-Antenne auf dem Dach, montiert am Kaminschacht, vor blauem Himmel." /></p>
+<p>Flugzeuge funken ständig, wo sie sind. Position, Höhe, Kennung, Geschwindigkeit. Das läuft auf 1090 MHz und heißt ADS-B. Die Daten liegen einfach in der Luft. Wer die richtige Antenne hat, empfängt sie.</p>
+<p>Flightradar24 kennt jeder. Schicke App, fertige Karte, alles aufbereitet. Dahinter steckt ein kommerzielles Projekt. Und auch deren Karte lebt zum großen Teil von Freiwilligen mit Antenne auf dem Dach. Mitmachen könntest du da sogar genauso. Du fütterst Flightradar mit deinen Daten. Die landen dann bei einer Firma. Mir war eine offene Community lieber. Da gehören die Daten allen.</p>
+<p>Also geht es los mit der Recherche. Welche Antenne, welcher USB-Stick, welches Kabel. Dann rauf auf den Dachboden, Antenne montieren. Einen Raspberry Pi aufgesetzt und eingerichtet. Den RTL-SDR-Stick angeschlossen, der aus dem Funksignal Daten macht. Und dann lief es. Auf einmal sah ich, was da die ganze Zeit über mir kreist.</p>
+<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/pi-installation.png" alt="Terminal-Ausgabe der automatischen Einrichtung auf dem Raspberry Pi: readsb, graphs1090, WireGuard-Tunnel und MLAT-Client werden installiert und konfiguriert." /></p>
+<p>Klar, braucht kein Mensch. Aber es hat einfach Spaß gemacht. Genau dieses Tüfteln, bis alles läuft. Dazu der Community-Gedanke. Ich speise meine Empfangsdaten in ein Netz ein. Jeder deckt seinen Fleck ab. Zusammen wird daraus eine ziemlich große Karte.</p>
+<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/tar1090-karte.jpg" alt="Live-Karte des eigenen Empfängers: bunte Flugzeug-Symbole markieren, was gerade über mir und der Umgebung kreist." /></p>
+<p>Das Dashboard habe ich mir natürlich gleich in Todoteck gehängt. Die App, die bei mir eh für alles herhält.</p>
+<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/adsb-dashboard.jpg" alt="Das ADS-B-Dashboard mit Empfangsstatistiken und Reichweiten-Karte, eingebunden als Widget in Todoteck." /></p>
+<p>Der Flugschein bleibt erstmal ein Traum. Aber meinen kleinen Tower habe ich jetzt. (Der echte in Hangelar guckt bestimmt neidisch.)</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Alles verputzt</title>

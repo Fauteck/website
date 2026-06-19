@@ -404,6 +404,22 @@
       <div class="blog-layout">
         <div class="blog-main">
           <ul class="post-list">
+            <li class="post-item post-item--with-image" onclick="loadPost('eigener-tower')">
+              <a href="#eigener-tower">
+                <div class="post-thumb"><img src="images/eigener-tower/antenne-dach.jpg" alt="Die ADS-B-Antenne auf dem Dach, montiert am Kaminschacht, vor blauem Himmel." loading="lazy"></div>
+                <div class="post-body">
+                <div class="post-meta">
+                  <span class="post-date">19.06.2026</span>
+                  <span class="post-tag">Persönlich</span>
+                  <span class="post-tag">Familie</span>
+                  <span class="post-tag">ADS-B</span>
+                  <span class="post-tag">Raspberry Pi</span>
+                </div>
+                <h2 class="post-title">Mein eigener Tower</h2>
+                <p class="post-excerpt">Eine Antenne aufs Dach, ein Raspberry Pi im Arbeitszimmer, und auf einmal sehe ich, was über mir kreist. ADS-B, ein RTL-SDR-Stick und eine offene Community, die ihre Empfangsdaten teilt, statt sie an eine Firma zu geben.</p>
+                </div>
+              </a>
+            </li>
             <li class="post-item post-item--with-image" onclick="loadPost('verputzt')">
               <a href="#verputzt">
                 <div class="post-thumb"><img src="images/verputzt/verputzt-update.jpg" alt="Der frisch verputzte Anbau. Glatte Wände rundum, sauber verputzte Fenster und Türen. Zum ersten Mal wirkt der Rohbau wie ein echtes Zimmer." loading="lazy"></div>
@@ -832,6 +848,7 @@
     }
 
     var postMeta = {
+      'eigener-tower': { title: 'Mein eigener Tower', date: '19.06.2026' },
       'verputzt': { title: 'Alles verputzt', date: '16.06.2026' },
       'wiki-fuer-die-ki': { title: 'Ein Wiki nur für die KI', date: '09.06.2026' },
       'eigene-website': { title: 'Ein eigener Ort im Netz', date: '04.06.2026' },
