@@ -404,6 +404,21 @@
       <div class="blog-layout">
         <div class="blog-main">
           <ul class="post-list">
+            <li class="post-item post-item--with-image" onclick="loadPost('42-kilometer')">
+              <a href="#42-kilometer">
+                <div class="post-thumb"><img src="images/42-kilometer/route-tourteck.png" alt="Tracking-App Tourteck zeigt die beendete Tour als grüne Route entlang des Rheins zwischen Köln, Wesseling, Niederkassel und Troisdorf." loading="lazy"></div>
+                <div class="post-body">
+                <div class="post-meta">
+                  <span class="post-date">24.06.2026</span>
+                  <span class="post-tag">Persönlich</span>
+                  <span class="post-tag">Mental Health</span>
+                  <span class="post-tag">Wandern</span>
+                </div>
+                <h2 class="post-title">42 Kilometer? Ein Spaziergang!</h2>
+                <p class="post-excerpt">Ohne Training 42 Kilometer am Rhein entlang gewandert — nach einem Abbruch bei 36 Kilometern im Jahr davor. Was mir dabei half, sind dieselben Werkzeuge, die ich mir während meiner Depression angewöhnt habe: Spazieren und Meditation.</p>
+                </div>
+              </a>
+            </li>
             <li class="post-item post-item--with-image" onclick="loadPost('eigener-tower')">
               <a href="#eigener-tower">
                 <div class="post-thumb"><img src="images/eigener-tower/antenne-dach.jpg" alt="Die ADS-B-Antenne auf dem Dach, montiert am Kaminschacht, vor blauem Himmel." loading="lazy"></div>
@@ -848,6 +863,7 @@
     }
 
     var postMeta = {
+      '42-kilometer': { title: '42 Kilometer? Ein Spaziergang!', date: '24.06.2026' },
       'eigener-tower': { title: 'Mein eigener Tower', date: '19.06.2026' },
       'verputzt': { title: 'Alles verputzt', date: '16.06.2026' },
       'wiki-fuer-die-ki': { title: 'Ein Wiki nur für die KI', date: '09.06.2026' },
