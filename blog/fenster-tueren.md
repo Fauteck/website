@@ -2,6 +2,9 @@
 title: "Update: Fenster und Türen sind drin"
 date: 2026-04-28
 tags: [Persönlich, Familie, GoFundMe, Umbau]
+excerpt: "Kuse Metallbau aus Königswinter hat die neuen Fenster und Türen im Anbau eingesetzt. Damit weicht der Rohbau-Charakter, und man kann sich erstmals richtig vorstellen, wie Aylins barrierefreier Raum am Ende aussehen wird."
+thumb: images/fenster-tueren/fenster-tueren-update.jpg
+thumbAlt: "Neue Fenster und Türen im Anbau"
 ---
 
 # Update: Fenster und Türen sind drin

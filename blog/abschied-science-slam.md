@@ -2,6 +2,9 @@
 title: "Abschied vom Science Slam"
 date: 2022-03-06
 tags: [Science Slam, Moderation, Abschied]
+excerpt: "9 Jahre, 38 Events, über 200 Vorträge — und phantastische Menschen kennengelernt. Danke!"
+thumb: images/abschied-science-slam/science-slam-collage.jpg
+thumbAlt: "Collage aus vier Science-Slam-Momenten: Pantheon-Saal, Spotlight-Auftritt, LUUPS-Team-Selfie, Tafel-Vortrag"
 ---
 
 # Abschied vom Science Slam

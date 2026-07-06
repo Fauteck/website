@@ -2,6 +2,9 @@
 title: "Danke — euer Support bewegt etwas"
 date: 2025-12-31
 tags: [Persönlich, Familie, GoFundMe, Umbau]
+excerpt: "Eure Unterstützung hat in wenigen Wochen mehr bewegt, als wir es uns je ausmalen konnten. Dank eurer Spenden zur GoFundMe-Kampagne konnten wir mit dem barrierefreien Umbau beginnen und Aylins Intensiv-Block-Therapie im NIB Köln ermöglichen."
+thumb: images/danke-2025/danke-2025-collage.jpg
+thumbAlt: "Collage zum Jahresende 2025: Umbau-Fortschritte, Aylins Gehtraining und ein DANKE!"
 ---
 
 # Danke — euer Support bewegt etwas

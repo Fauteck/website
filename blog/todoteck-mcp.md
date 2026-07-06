@@ -2,6 +2,9 @@
 title: "Todoteck: API, MCP und der Alltag"
 date: 2026-04-10
 tags: [Vibecoding, KI, Selfhosted, MCP, Familie]
+excerpt: "Bestehende Gewohnheiten nicht aufbrechen, sondern die App an unseren Alltag anpassen. Mit eigener API, Google-Home-Integration, E-Ink-Display, Android-Widgets und MCP — Claude redet jetzt direkt mit meiner App."
+thumb: images/todoteck/todoteck-mcp.png
+thumbAlt: "Claude erstellt per MCP eine Todoteck-Aufgabe"
 ---
 
 # Todoteck: API, MCP und der Alltag

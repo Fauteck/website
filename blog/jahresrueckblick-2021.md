@@ -2,6 +2,9 @@
 title: "Jahresrückblick 2021"
 date: 2022-01-01
 tags: [Jahresrückblick, Persönlich]
+excerpt: "Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert."
+thumb: images/jahresrueckblick-2021/jahresrueckblick-2021.jpg
+thumbAlt: "Jahresrückblick 2021"
 ---
 
 # Jahresrückblick 2021

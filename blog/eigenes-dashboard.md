@@ -2,6 +2,9 @@
 title: "Zu viele Tabs"
 date: 2026-04-22
 tags: [Vibecoding, KI, Selfhosted, Dashboard]
+excerpt: "Am Ende waren es einfach zu viele Tabs. Irgendwo der Kalender, woanders das Wetter, dann Docker, Bookmarks, Feeds, Aufgaben. Deshalb habe ich mir ein eigenes Dashboard gevibecodet — selfhosted, über eine YAML-Datei konfigurierbar, und so gebaut, dass das Tool sich nach mir richtet, nicht umgekehrt."
+thumb: images/eigenes-dashboard/1776855823535.jpg
+thumbAlt: "Eigenes Dashboard in der Desktop-Ansicht"
 ---
 
 Am Ende waren es einfach zu viele Tabs.

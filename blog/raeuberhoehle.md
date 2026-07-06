@@ -2,6 +2,9 @@
 title: "Räuberhöhle"
 date: 2026-04-15
 tags: [Persönlich, Familie, Maker-Mindset]
+excerpt: "Kein 3D-Druck. Kein Dashboard. Keine Automation. Sondern Höhlenbau mit meinem vierjährigen Sohn. Paracord gespannt, Decken drüber, Wäscheklammern dran — und am Ende war der Stakeholder zufrieden, das MVP stand, Entertainment lief."
+thumb: images/raeuberhoehle/raeuberhoehle-aussen.jpg
+thumbAlt: "Räuberhöhle aus Decken über dem Sofa"
 ---
 
 # Räuberhöhle

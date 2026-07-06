@@ -2,6 +2,9 @@
 title: "Alles verputzt"
 date: 2026-06-16
 tags: [Persönlich, Familie, GoFundMe, Umbau]
+excerpt: "Alles verputzt. Mit glatten Wänden und sauber verputzten Fenstern und Türen sieht der Anbau zum ersten Mal echt nach einem Zimmer aus. Vorher habe ich selbst noch geschlitzt, für zusätzliche Steckdosen und Lichtschalter direkt an der Eingangstür, wo Aylin sie gut erreicht."
+thumb: images/verputzt/verputzt-update.jpg
+thumbAlt: "Der frisch verputzte Anbau. Glatte Wände rundum, sauber verputzte Fenster und Türen. Zum ersten Mal wirkt der Rohbau wie ein echtes Zimmer."
 ---
 
 # Alles verputzt

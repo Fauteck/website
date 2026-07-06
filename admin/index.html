@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://api.github.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Blog-Admin — Niklas Fauteck</title>
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%232C3E50'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='700' font-size='18' fill='%2352b788'%3EN%3C/text%3E%3C/svg%3E">
+  <style>
+    body { background: var(--bg-light); }
+    .admin-wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .admin-head h1 { font-size: 1.6rem; font-weight: 700; color: var(--primary); }
+    .admin-head p { color: var(--text-secondary); margin-top: .25rem; font-size: .95rem; }
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; margin-top: 1.5rem; }
+    @media (max-width: 860px) { .admin-grid { grid-template-columns: 1fr; } }
+    .card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+    .card h2 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: .9rem; }
+    .field { margin-bottom: .9rem; }
+    .field label { display: block; font-size: .8rem; font-weight: 600; color: var(--text); margin-bottom: .3rem; }
+    .field .hint { font-weight: 400; color: var(--text-secondary); }
+    input[type=text], input[type=password], input[type=date], textarea {
+      width: 100%; box-sizing: border-box; font-family: var(--font-sans); font-size: .92rem;
+      padding: .55rem .7rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);
+    }
+    textarea { resize: vertical; }
+    textarea#body { min-height: 340px; font-family: var(--font-mono); font-size: .85rem; line-height: 1.5; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(82,183,136,.15); }
+    .row { display: flex; gap: .6rem; }
+    .row > * { flex: 1; }
+    .btn { font-family: var(--font-sans); font-weight: 600; font-size: .88rem; border: none; border-radius: 8px;
+      padding: .6rem 1rem; cursor: pointer; background: var(--primary); color: #fff; }
+    .btn:hover { background: #22303d; }
+    .btn.secondary { background: var(--bg-light); color: var(--text); border: 1px solid var(--border); }
+    .btn.secondary:hover { background: #eef0f2; }
+    .btn.accent { background: var(--accent); }
+    .btn.accent:hover { background: var(--accent-dark); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin-top: .4rem; }
+    .imglist { list-style: none; margin: .5rem 0 0; padding: 0; font-size: .82rem; }
+    .imglist li { display: flex; align-items: center; gap: .5rem; padding: .35rem 0; border-top: 1px solid var(--border); }
+    .imglist code { font-family: var(--font-mono); font-size: .78rem; color: var(--text-secondary); word-break: break-all; }
+    .imglist .thumb-badge { background: var(--accent); color: #fff; font-size: .68rem; padding: .1rem .4rem; border-radius: 4px; font-weight: 600; }
+    .imglist button { margin-left: auto; background: none; border: 1px solid var(--border); border-radius: 6px; padding: .2rem .5rem; cursor: pointer; font-size: .78rem; }
+    .preview { border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; background: var(--bg); min-height: 340px; overflow-wrap: anywhere; }
+    .preview img { max-width: 100%; height: auto; border-radius: 8px; }
+    .preview h1 { font-size: 1.5rem; margin: .3rem 0 .6rem; color: var(--primary); }
+    .preview h2 { font-size: 1.15rem; margin: 1rem 0 .4rem; color: var(--primary); }
+    .preview h3 { font-size: 1rem; margin: .8rem 0 .3rem; }
+    .preview p { margin: .5rem 0; line-height: 1.6; }
+    .preview figure { margin: 1rem 0; }
+    .status { font-size: .82rem; margin-top: .5rem; }
+    .status.ok { color: var(--accent-dark); }
+    .status.err { color: #c0392b; }
+    .log { font-family: var(--font-mono); font-size: .78rem; background: var(--bg-light); border: 1px solid var(--border);
+      border-radius: 8px; padding: .8rem; margin-top: 1rem; white-space: pre-wrap; max-height: 260px; overflow: auto; display: none; }
+    .log.show { display: block; }
+    .note { font-size: .78rem; color: var(--text-secondary); background: var(--bg-light); border-left: 3px solid var(--accent);
+      padding: .6rem .8rem; border-radius: 6px; margin-top: .6rem; }
+    a { color: var(--accent-dark); }
+    .backlink { display: inline-block; margin-bottom: 1rem; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <a href="../blog/" class="backlink">← Zum Blog</a>
+    <div class="admin-head">
+      <h1>Blog-Admin</h1>
+      <p>Neuen Beitrag anlegen und als Pull Request auf GitHub veröffentlichen. Läuft komplett im Browser — kein Server.</p>
+    </div>
+
+    <div class="card">
+      <h2>GitHub-Verbindung</h2>
+      <div class="field">
+        <label for="token">Personal Access Token <span class="hint">(fein-granular, Repo <code>Fauteck/website</code>, Rechte: Contents + Pull requests, je „Read and write")</span></label>
+        <input type="password" id="token" placeholder="github_pat_… oder ghp_…" autocomplete="off">
+      </div>
+      <div class="btn-row">
+        <button class="btn secondary" id="saveToken" type="button">Token merken</button>
+        <button class="btn secondary" id="clearToken" type="button">Token löschen</button>
+        <span class="status" id="tokenStatus"></span>
+      </div>
+      <div class="note">Der Token wird nur lokal in deinem Browser (<code>localStorage</code>) gespeichert und ausschließlich an <code>api.github.com</code> gesendet. Diese Seite ist nicht in der Navigation verlinkt und für Suchmaschinen gesperrt. Verwende einen fein-granularen Token, der nur auf dieses Repository beschränkt ist.</div>
+    </div>
+
+    <div class="admin-grid">
+      <div>
+        <div class="card">
+          <h2>Beitrag</h2>
+          <div class="field">
+            <label for="title">Titel</label>
+            <input type="text" id="title" placeholder="Titel des Beitrags">
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="slug">Slug <span class="hint">(Dateiname)</span></label>
+              <input type="text" id="slug" placeholder="mein-beitrag">
+            </div>
+            <div class="field">
+              <label for="date">Datum</label>
+              <input type="date" id="date">
+            </div>
+          </div>
+          <div class="field">
+            <label for="tags">Tags <span class="hint">(kommagetrennt)</span></label>
+            <input type="text" id="tags" placeholder="Persönlich, Familie, Umbau">
+          </div>
+          <div class="field">
+            <label for="excerpt">Anrisstext / Excerpt <span class="hint">(Kartenliste & RSS)</span></label>
+            <textarea id="excerpt" rows="3" placeholder="Kurze Zusammenfassung für die Übersicht."></textarea>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Bilder</h2>
+          <div class="field">
+            <label for="thumbFile">Titelbild / Thumbnail</label>
+            <input type="file" id="thumbFile" accept="image/*">
+          </div>
+          <div class="field">
+            <label for="thumbAlt">Alt-Text des Titelbilds</label>
+            <input type="text" id="thumbAlt" placeholder="Bildbeschreibung">
+          </div>
+          <div class="field">
+            <label for="inlineFiles">Weitere Bilder <span class="hint">(in den Text einfügbar)</span></label>
+            <input type="file" id="inlineFiles" accept="image/*" multiple>
+          </div>
+          <ul class="imglist" id="imglist"></ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h2>Inhalt (Markdown)</h2>
+          <div class="note" style="margin-top:0;margin-bottom:.7rem">Die Überschrift (Titel als <code>#</code>) wird automatisch vorangestellt — hier nur den Fließtext schreiben. Unterstützt: <code>##</code>/<code>###</code>, <code>**fett**</code>, <code>*kursiv*</code>, Links, Listen, Zitate und Bilder <code>![alt](images/…)</code>.</div>
+          <textarea id="body" placeholder="Dein Text …"></textarea>
+        </div>
+        <div class="card">
+          <h2>Vorschau</h2>
+          <div class="preview" id="preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="btn-row">
+        <button class="btn accent" id="publish" type="button">Als Pull Request veröffentlichen</button>
+        <span class="status" id="publishStatus"></span>
+      </div>
+      <pre class="log" id="log"></pre>
+    </div>
+  </div>
+
+  <script src="../blog/render.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -2,6 +2,9 @@
 title: "Ein Wiki nur für die KI"
 date: 2026-06-09
 tags: [Vibecoding, KI, Selfhosting, MCP]
+excerpt: "Zu jedem Projekt hinterlege ich der KI eine Markdown-Datei mit dem Basiswissen. Das eigentliche Wissen liegt jetzt zentral als Notizen in Todoteck, abrufbar über MCP. In den Anweisungen steht nur noch ein Verweis darauf."
+thumb: images/wiki-fuer-die-ki/todoteck-llm-wiki.jpg
+thumbAlt: "Mein Handy mit der Todoteck-App, geöffnet im Projekt llm-wiki. In der Notizen-Liste stehen _schema, _index, _log und Karpathy - LLM Wiki (Gist)."
 ---
 
 # Ein Wiki nur für die KI
