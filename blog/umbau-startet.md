@@ -2,6 +2,9 @@
 title: "Der Umbau startet"
 date: 2025-10-14
 tags: [Persönlich, Familie, GoFundMe, Umbau]
+excerpt: "Vor nicht mal zwei Wochen haben wir unsere GoFundMe-Kampagne gestartet. Dank eurer unglaublichen Unterstützung können wir jetzt mit dem Umbau beginnen: Der Anbau wird entrümpelt, alte Fliesen kommen raus — der erste Schritt zu Aylins neuem Raum."
+thumb: images/umbau-startet/umbau-startet-collage.jpg
+thumbAlt: "Collage: GoFundMe-Kampagnenbild mit Spendenstand, Aylin mit Sohn am Rollator in der Küche, Aylin vor herausgerissenen Fliesen, General-Anzeiger-Artikel"
 ---
 
 # Der Umbau startet

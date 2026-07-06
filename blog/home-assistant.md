@@ -2,6 +2,9 @@
 title: "Vom Nerd-Hobby zur Barrierefreiheit"
 date: 2026-05-12
 tags: [Persönlich, Familie, Smart Home, Home Assistant, Barrierefreiheit]
+excerpt: "Home Assistant hat bei mir als Spielerei angefangen — Lampe per Sprache schalten, dann zwei, dann das ganze Wohnzimmer. Spätestens seit der Teilquerschnittslähmung meiner Frau ist das aber kein Hobby mehr: Was für mich früher Komfort war, ist für uns inzwischen Barrierefreiheit."
+thumb: images/home-assistant/home-assistant-uebersicht.jpg
+thumbAlt: "Home-Assistant-Dashboard mit Räumen, Lampen und Automationen"
 ---
 
 # Vom Nerd-Hobby zur Barrierefreiheit

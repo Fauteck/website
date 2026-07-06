@@ -2,6 +2,9 @@
 title: "GoFundMe: Barrierefreier Umbau für unsere Familie"
 date: 2025-10-01
 tags: [Persönlich, Familie, GoFundMe]
+excerpt: "Manchmal verändert ein einziger Tag das ganze Leben. Im November 2022 erlitt meine Frau Aylin nach einer Tumor-OP eine Teilquerschnittslähmung. Seitdem kämpfen wir uns Schritt für Schritt durch einen neuen Alltag."
+thumb: images/gofundme/gofundme-feldweg.jpg
+thumbAlt: "Aylin im Rollstuhl auf einem Feldweg, daneben unser Sohn mit grünem Helm"
 ---
 
 # GoFundMe: Barrierefreier Umbau für unsere Familie

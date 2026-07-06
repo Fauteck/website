@@ -2,6 +2,9 @@
 title: "42 Kilometer? Ein Spaziergang!"
 date: 2026-06-24
 tags: [Persönlich, Mental Health, Wandern]
+excerpt: "Ohne Training 42 Kilometer am Rhein entlang gewandert — nach einem Abbruch bei 36 Kilometern im Jahr davor. Was mir dabei half, sind dieselben Werkzeuge, die ich mir während meiner Depression angewöhnt habe: Spazieren und Meditation."
+thumb: images/42-kilometer/route-tourteck.png
+thumbAlt: "Tracking-App Tourteck zeigt die beendete Tour als grüne Route entlang des Rheins zwischen Köln, Wesseling, Niederkassel und Troisdorf."
 ---
 
 # 42 Kilometer? Ein Spaziergang!

@@ -2,6 +2,9 @@
 title: "Depression"
 date: 2024-10-10
 tags: [Persönlich, Mental Health]
+excerpt: "Ich bin in eine Depression gerutscht. Ich habe lange überlegt, ob ich das schreiben soll. Vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt."
+thumb: images/depression/alles-wird-wieder-ok.jpg
+thumbAlt: "Schwarzweiß-Foto: Sticker „Alles wird wieder ok!" auf einem Bierkasten"
 ---
 
 # Depression

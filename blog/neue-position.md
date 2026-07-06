@@ -2,6 +2,9 @@
 title: "Neue Position"
 date: 2023-08-01
 tags: [Karriere, RTL, Persönlich]
+excerpt: "Jetzt freue ich mich auf die Aufgaben in meiner neuen Position als Head of Digital Transformation in der Kommunikation."
+thumb: images/neue-position/neue-position.png
+thumbAlt: "Illustration: jubelnde Menschen um einen Cupcake, dazu der Schriftzug Neue Position"
 ---
 
 # Neue Position

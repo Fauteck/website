@@ -2,6 +2,9 @@
 title: "Wenn niemand die Lösung hat, druckst du sie selbst"
 date: 2026-03-19
 tags: [Persönlich, 3D-Druck, Maker]
+excerpt: "Mein 3D-Drucker löst heute Probleme, an die ich beim Kauf nie gedacht hätte. Durch persönliche Betroffenheit in der Familie habe ich angefangen, eigene Hilfsmittel in Fusion 360 zu konstruieren."
+thumb: images/3d-drucker/3d-drucker-fusion.jpg
+thumbAlt: "Illustration: vor dem Monitor mit Fusion 360 und CAD-Konstruktion"
 ---
 
 # Wenn niemand die Lösung hat, druckst du sie selbst

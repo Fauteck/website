@@ -2,6 +2,9 @@
 title: "Von Splitwise und Excel zur eigenen Finanz-App"
 date: 2026-05-31
 tags: [Vibecoding, Selfhosting, KI]
+excerpt: "Geteilte Ausgaben in Splitwise, alles andere in Excel, dazwischen jeden Monat CSV-Export und Handarbeit. Irgendwann hab ich mir mit Claude eine eigene Finanz-App gebaut. Aus dem Kassenbuch wurde Finanzteck."
+thumb: images/finanzteck/finanzteck-desktop.jpg
+thumbAlt: "Finanzteck Desktop-Ansicht"
 ---
 
 # Von Splitwise und Excel zur eigenen Finanz-App

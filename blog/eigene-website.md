@@ -2,6 +2,9 @@
 title: "Ein eigener Ort im Netz"
 date: 2026-06-04
 tags: [Vibecoding, KI, Persönlich, Karriere]
+excerpt: "Ich habe mir eine eigene Website gebaut. Startseite, nüchterne CV-Ansicht, Blog und eine verspielte Betriebssystem-Variante zum Durchklicken. HTML, CSS und Vanilla-JavaScript, statisch, selbst gehostet auf GitHub und gevibecodet."
+thumb: images/eigene-website/os-login.png
+thumbAlt: "Login-Screen der Betriebssystem-Variante mit grünem N-Avatar und Passwortfeld"
 ---
 
 # Ein eigener Ort im Netz

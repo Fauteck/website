@@ -2,6 +2,9 @@
 title: "Mein eigener Tower"
 date: 2026-06-19
 tags: [Persönlich, Familie, ADS-B, Raspberry Pi]
+excerpt: "Eine Antenne aufs Dach, ein Raspberry Pi im Arbeitszimmer, und auf einmal sehe ich, was über mir kreist. ADS-B, ein RTL-SDR-Stick und eine offene Community, die ihre Empfangsdaten teilt, statt sie an eine Firma zu geben."
+thumb: images/eigener-tower/antenne-dach.jpg
+thumbAlt: "Die ADS-B-Antenne auf dem Dach, montiert am Kaminschacht, vor blauem Himmel."
 ---
 
 # Mein eigener Tower

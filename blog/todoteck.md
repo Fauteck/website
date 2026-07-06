@@ -2,6 +2,9 @@
 title: "Todoteck: Vibecoding für die Familie"
 date: 2026-04-07
 tags: [Vibecoding, KI, Selfhosted, Familie]
+excerpt: "Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut. To-dos und Notizen in einem System, mit Kalender- und Einkaufslisten-Integration, eigener Programmierschnittstelle, selfhosted — gebaut mit KI-Unterstützung und ohne klassische Programmiererfahrung."
+thumb: images/todoteck/todoteck-desktop.png
+thumbAlt: "Todoteck Desktop-Ansicht mit Sidebar und Heute-Übersicht"
 ---
 
 # Todoteck: Vibecoding für die Familie
