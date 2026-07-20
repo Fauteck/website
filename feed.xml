@@ -5,8 +5,35 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Ein Nachmittag statt drei Konzeptionsrunden</title>
+      <link>https://niklasfauteck.de/blog/#nachmittag-reicht</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#nachmittag-reicht</guid>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Karriere</category>
+      <description><![CDATA[
+<p>Vor zwei Jahren, noch im alten Job. Wir wollten eine KI-Textkürzung in ein Bestandstool integrieren. API anbinden, Rechte klären, Konzeptionsrunden. Mehrere Meetings, bis überhaupt jemand einen Prototyp gebaut hat.</p>
+<p>Heute liegen die Möglichkeiten auf der Straße. Und ich brauche für die Integration in meine eigene, perfekt auf mich zugeschnittene App keinen Nachmittag.</p>
+<p>Die App ist <a href="https://niklasfauteck.de/blog/#finanzteck">Finanzteck</a>. Aus Splitwise und Excel geworden, selbst gehostet, meine Daten. Aber einmal im Monat saß ich trotzdem noch da und hab getippt.</p>
+<p>Also kam KI dazu. Über eine API, egal ob lokal oder extern, je nachdem was gerade passt.</p>
+<p><img src="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-einstellungen.jpg" alt="Finanzteck-Einstellungen für den KI-Assistenten: Anbieter, Base-URL, Text- und Vision-Modell" /></p>
+<p>Jetzt reicht ein Foto vom Zähler. Ein Screenshot der Kontoübersicht. Die KI liest die Werte raus, trägt sie ein, fragt nach, wenn was fehlt oder unklar ist. Ich bestätige, fertig.</p>
+<p>Kein Abtippen von Kontoständen mehr. Kein Ablesen und Eintippen der Zählerstände mehr. Nur noch prüfen und bestätigen.</p>
+<p>Und weil das Modell sowieso lief, hab ich gleich noch mehr eingebaut. Kategorie-Vorschläge bei neuen Ausgabe-Einträgen. Beschreibungen normalisieren. Eine Verbrauchsanalyse für Strom, Gas, Wasser. Ein Budget-Coach mit Sparhinweisen. Eine Frage-Box, in die ich einfach reinschreiben kann, was ich wissen will.</p>
+<p><img src="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-frage.jpg" alt="Die Frage-Box in Finanzteck mit Beispielfragen wie &quot;Wie viel für Lebensmittel im Q2?&quot; und &quot;Wie hoch ist mein Vermögen?&quot;" /></p>
+<p>&quot;Wie hoch ist mein Vermögen?&quot; Antwort kommt direkt aus den eigenen Daten.</p>
+<p>Wer statt lokal lieber extern rechnen lässt, über OpenRouter oder OpenAI zum Beispiel, kriegt die Kosten trotzdem im Blick. Läufe, Tokens, Kosten, aufgeschlüsselt nach Woche, Monat, Jahr, gesamt. Bei mir zum Test: zehn Läufe, gut fünftausend Tokens, 0,0042 US-Dollar.</p>
+<p>Und zum Monatsersten muss ich nicht mal mehr selbst dran denken. Finanzteck legt mir dann automatisch eine Aufgabe in <a href="https://niklasfauteck.de/blog/#todoteck">Todoteck</a> an, mit einem KI-Monatsbericht als Fließtext plus Aktionsliste direkt dabei. Zeit für die Runde.</p>
+<p>Vor zwei Jahren hätte dafür ein ganzes Team jede Menge Expertise gebraucht. Architektur, API-Anbindung, Grundlagen, die man sich erst erarbeiten musste. Heute reicht rudimentäres Verständnis und ein bisschen Motivation. In der kurzen Zeit haben sich so viele Ideen und Muster etabliert, dass ich sie einfach übernehmen kann statt sie selbst erfinden zu müssen.</p>
+<p>Für ein Homelab-Projekt wie meins reicht das. Für einen echten Business Case natürlich nicht. Da kommen Skalierung, Verfügbarkeit, Compliance, mehrere Nutzer dazu, ein ganzer Rattenschwanz. Vibecoding allein trägt das nicht.</p>
+<p>Aber genau die Absicherung lässt sich mit KI auch prüfen. Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Beim nächsten Mal zeige ich, mit welchen Skills ich versuche, das zumindest in privaten Projekten so gut es geht zu kompensieren.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Leichter Rucksack</title>
