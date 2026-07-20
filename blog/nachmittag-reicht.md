@@ -2,14 +2,14 @@
 title: "Ein Nachmittag statt drei Konzeptionsrunden"
 date: 2026-07-20
 tags: [Vibecoding, KI, Karriere]
-excerpt: "Vor zwei Jahren hätte eine KI-Integration in ein Bestandstool ein ganzes Team mit jeder Menge Expertise gebraucht. Heute reicht mir dafür ein Nachmittag in meiner eigenen App Finanzteck. Ein Blick darauf, wie schnell sich das verschoben hat, und wo Vibecoding allein nicht ausreicht."
+excerpt: "Vor zwei Jahren hätte eine KI-Integration in ein Bestandstool ein ganzes Team mit viel Expertise gebraucht. Heute reicht mir dafür ein Nachmittag in meiner eigenen App Finanzteck. Ein Blick darauf, wie schnell sich das verschoben hat, und wo Vibecoding allein nicht ausreicht."
 thumb: images/nachmittag-reicht/finanzteck-ki-einstellungen.jpg
 thumbAlt: "Finanzteck-Einstellungen für den KI-Assistenten: Anbieter, Base-URL, Text- und Vision-Modell"
 ---
 
 # Ein Nachmittag statt drei Konzeptionsrunden
 
-Vor zwei Jahren, noch im alten Job. Wir wollten eine KI-Textkürzung in ein Bestandstool integrieren. API anbinden, Rechte klären, Konzeptionsrunden. Mehrere Meetings, bis überhaupt jemand einen Prototyp gebaut hat.
+Vor zwei Jahren, noch im alten Job. Wir wollten eine KI-Funktion in ein Bestandstool integrieren. API anbinden, Rechte klären, Konzeptionsrunden. Mehrere Meetings, bis überhaupt jemand einen Prototyp gebaut hat.
 
 Heute liegen die Möglichkeiten auf der Straße. Und ich brauche für die Integration in meine eigene, perfekt auf mich zugeschnittene App keinen Nachmittag.
 
@@ -33,8 +33,8 @@ Wer statt lokal lieber extern rechnen lässt, über OpenRouter oder OpenAI zum B
 
 Und zum Monatsersten muss ich nicht mal mehr selbst dran denken. Finanzteck legt mir dann automatisch eine Aufgabe in [Todoteck](https://niklasfauteck.de/blog/#todoteck) an, mit einem KI-Monatsbericht als Fließtext plus Aktionsliste direkt dabei. Zeit für die Runde.
 
-Vor zwei Jahren hätte dafür ein ganzes Team jede Menge Expertise gebraucht. Architektur, API-Anbindung, Grundlagen, die man sich erst erarbeiten musste. Heute reicht rudimentäres Verständnis und ein bisschen Motivation. In der kurzen Zeit haben sich so viele Ideen und Muster etabliert, dass ich sie einfach übernehmen kann statt sie selbst erfinden zu müssen.
+Vor zwei Jahren hätte dafür ein ganzes Team viel Expertise gebraucht. Architektur, API-Anbindung, Grundlagen, die man sich erst erarbeiten musste. Heute reicht mir dafür rudimentäres Verständnis und ein bisschen Motivation, zumindest für ein Homelab-Projekt wie meins. In der kurzen Zeit haben sich so viele Ideen und Muster etabliert, dass ich sie einfach übernehmen kann statt sie selbst erfinden zu müssen.
 
-Für ein Homelab-Projekt wie meins reicht das. Für einen echten Business Case natürlich nicht. Da kommen Skalierung, Verfügbarkeit, Compliance, mehrere Nutzer dazu, ein ganzer Rattenschwanz. Vibecoding allein trägt das nicht.
+Für einen Business Case reicht das natürlich noch nicht. Skalierung, Verfügbarkeit, Compliance, mehrere Nutzer, ein ganzer Rattenschwanz. Vibecoding allein trägt das nicht. Aber es öffnet die Tür zu genau diesen Themen.
 
-Aber genau die Absicherung lässt sich mit KI auch prüfen. Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Beim nächsten Mal zeige ich, mit welchen Skills ich versuche, das zumindest in privaten Projekten so gut es geht zu kompensieren.
+Denn genau dort hilft KI auch. Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz lassen sich damit prüfen. Beim nächsten Mal zeige ich, mit welchen Skills ich versuche, diese Lücke zumindest in privaten Projekten so gut es geht zu schließen.
