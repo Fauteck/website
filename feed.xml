@@ -9,7 +9,7 @@
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
-      <title>Mein Claude-Code-Setup für bessere Code-Qualität</title>
+      <title>Man fährt ja auch nicht ohne Helm</title>
       <link>https://niklasfauteck.de/blog/#claude-code-setup-codequalitaet</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#claude-code-setup-codequalitaet</guid>
       <pubDate>Fri, 24 Jul 2026 00:00:00 +0200</pubDate>
@@ -17,7 +17,8 @@
       <category>Sicherheit</category>
       <category>Skills</category>
       <description><![CDATA[
-<p>Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Das hab ich beim letzten Mal versprochen aufzudröseln.</p>
+<p>Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Ich habe beim letzten Mal versprochen, mein Claude-Code-Setup für bessere Code-Qualität aufzudröseln.</p>
+<p><img src="https://niklasfauteck.de/blog/images/claude-code-setup-codequalitaet/kind-mit-helm-radweg.jpg" alt="Ein Kind mit blauem Fahrradhelm, von hinten gesehen, fährt auf einem baumgesäumten Radweg zwischen Feldern." /></p>
 <p>Ein Nachmittag reicht für einen Prototyp. Aber ist er auch sicher? Schnelles Bauen mit KI heißt erstmal nur: es funktioniert. Ob es auch was aushält, lasse ich von der KI im Anschluss checken. Immer und immer wieder.</p>
 <p>Ich hab die KI gefragt, wie ich das sicherer hinkriege. Antwort: mit Audits. Also hat sie meinen Code analysiert.</p>
 <p>Daraus ist über die Zeit ein ganzes Setup geworden. Jedes Projekt hat eigene Regeln, die immer gelten, egal welche KI gerade dran arbeitet. Dazu kommen Gewohnheiten, die projektübergreifend mitlaufen. Und ein Gedächtnis, das sich über Sessions und Projekte hinweg merkt, was schon geprüft, entschieden oder gebaut wurde. Ohne das würde jede neue Session wieder bei null anfangen.</p>

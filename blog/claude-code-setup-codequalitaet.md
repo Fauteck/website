@@ -1,13 +1,17 @@
 ---
-title: "Mein Claude-Code-Setup für bessere Code-Qualität"
+title: "Man fährt ja auch nicht ohne Helm"
 date: 2026-07-24
 tags: [Vibecoding, Sicherheit, Skills]
 excerpt: "Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Das hab ich beim letzten Mal versprochen aufzudröseln. Ein Blick auf mein Setup aus Regeln, Wiki und Skills, mit dem ich die KI meinen eigenen Code prüfen lasse."
+thumb: images/claude-code-setup-codequalitaet/kind-mit-helm-radweg.jpg
+thumbAlt: "Ein Kind mit blauem Fahrradhelm, von hinten gesehen, fährt auf einem baumgesäumten Radweg zwischen Feldern."
 ---
 
-# Mein Claude-Code-Setup für bessere Code-Qualität
+# Man fährt ja auch nicht ohne Helm
 
-Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Das hab ich beim letzten Mal versprochen aufzudröseln.
+Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Ich habe beim letzten Mal versprochen, mein Claude-Code-Setup für bessere Code-Qualität aufzudröseln.
+
+![Ein Kind mit blauem Fahrradhelm, von hinten gesehen, fährt auf einem baumgesäumten Radweg zwischen Feldern.](images/claude-code-setup-codequalitaet/kind-mit-helm-radweg.jpg)
 
 Ein Nachmittag reicht für einen Prototyp. Aber ist er auch sicher? Schnelles Bauen mit KI heißt erstmal nur: es funktioniert. Ob es auch was aushält, lasse ich von der KI im Anschluss checken. Immer und immer wieder.
 
