@@ -5,8 +5,53 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Mon, 20 Jul 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Mein Claude-Code-Setup für bessere Code-Qualität</title>
+      <link>https://niklasfauteck.de/blog/#claude-code-setup-codequalitaet</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#claude-code-setup-codequalitaet</guid>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>Sicherheit</category>
+      <category>Skills</category>
+      <description><![CDATA[
+<p>Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Das hab ich beim letzten Mal versprochen aufzudröseln.</p>
+<p>Ein Nachmittag reicht für einen Prototyp. Aber ist er auch sicher? Schnelles Bauen mit KI heißt erstmal nur: es funktioniert. Ob es auch was aushält, lasse ich von der KI im Anschluss checken. Immer und immer wieder.</p>
+<p>Ich hab die KI gefragt, wie ich das sicherer hinkriege. Antwort: mit Audits. Also hat sie meinen Code analysiert.</p>
+<p>Daraus ist über die Zeit ein ganzes Setup geworden. Jedes Projekt hat eigene Regeln, die immer gelten, egal welche KI gerade dran arbeitet. Dazu kommen Gewohnheiten, die projektübergreifend mitlaufen. Und ein Gedächtnis, das sich über Sessions und Projekte hinweg merkt, was schon geprüft, entschieden oder gebaut wurde. Ohne das würde jede neue Session wieder bei null anfangen.</p>
+<p>Der KI fallen erstaunlich viele Schwächen auf, wenn man sie nur explizit danach fragt. Darüber hinaus gibt es aber auch kleine Anleitungen, die der KI genau zeigen, welche Gefahrenstellen sie im Code abklopfen soll: Skills.</p>
+<p>Ein festes Setup macht aus Vibecoding kein Enterprise-Projekt. Aber es macht aus einem Nachmittag Bauzeit einen ehrlicheren Nachmittag.</p>
+<h2>Was bei mir mitläuft</h2>
+<p><strong>Repo-eigene Regeln.</strong> Jedes Projekt hat seine eigene CLAUDE.md. Die gilt bindend nur dort. Quality Gates, Security-Checkliste, Umgang mit Secrets, Definition of Done. Bleibt bewusst im Repo, wird nirgends kopiert.</p>
+<p><strong>Globale Gewohnheiten.</strong> Eine zweite CLAUDE.md, die repo-übergreifend gilt. Keine Projekt-Spezifika, nur Dinge, die ich in jeder Session will. Zum Beispiel: vor größeren Aufgaben kurz ins Wiki schauen, ob's dazu schon was gibt.</p>
+<p><strong>Das Wiki.</strong> Ein Projekt in Todoteck, das sich die KI selbst pflegt. Läuft als Alternative zu klassischem RAG. Mehr dazu in <a href="https://niklasfauteck.de/blog/#wiki-fuer-die-ki">meinem Post über das Wiki</a>. Eine Notiz darin führt Buch über alle externen Skill-Sammlungen, die ich mir angeschaut hab, inklusive der Regel: erst prüfen, ob ein Skill die Aufgabe schon abdeckt, bevor ich bei null anfange.</p>
+<p><strong>Skills, die direkt für Codequalität greifen:</strong></p>
+<ul>
+<li>clean-code — Uncle-Bob-Prinzipien. Sprechende Namen, kleine Funktionen, Kommentare vermeiden statt schlechten Code kommentieren. Stammt aus <a href="https://github.com/jackjin1997/ClawForge">ClawForge</a>.</li>
+<li>security-first-2025 — Security beim Bash-Scripting. Input-Validierung, keine Command-Injection, sichere Temp-Dateien, Secrets niemals hardcoden. Eigener Skill, <a href="https://niklasfauteck.de/blog/downloads/claude-code-setup-codequalitaet/security-first-2025.skill">zum Download</a>.</li>
+<li>simplify — Review auf unnötige Komplexität. Keine Bugsuche, reine Aufräumarbeit.</li>
+<li>security-review — komplettes Security-Review der offenen Änderungen im Branch.</li>
+<li>review — Review eines GitHub Pull Requests.</li>
+<li><a href="https://github.com/anthropics/skills/tree/main/frontend-design">frontend-design</a> — produktionsreife Interfaces, ohne dass man der KI-Optik ansieht.</li>
+<li>home-assistant-best-practices — verhindert Anti-Pattern in Automations, etwa device_id statt entity_id. Eigener Skill, <a href="https://niklasfauteck.de/blog/downloads/claude-code-setup-codequalitaet/home-assistant-best-practices.skill">zum Download</a>.</li>
+<li><a href="https://github.com/anthropics/skills/tree/main/mcp-builder">mcp-builder</a> — Leitfaden für eigene MCP-Server.</li>
+<li><a href="https://github.com/anthropics/skills/tree/main/skill-creator">skill-creator</a> — zum Bauen eigener Skills.</li>
+<li><a href="https://github.com/obra/superpowers/blob/main/skills/writing-skills/SKILL.md">writing-skills</a> — testet Skills mit Subagenten, bevor sie scharf geschaltet werden, aus dem <a href="https://github.com/obra/superpowers">obra/superpowers</a>-Framework.</li>
+<li>changelog-generator — verwandelt Git-Commits in verständliche Release-Notes. Eigener Skill.</li>
+</ul>
+<p><strong>Installierte Plugin-Sammlungen (Marketplace):</strong></p>
+<ul>
+<li><a href="https://github.com/addyosmani/agent-skills">addyosmani/agent-skills</a> (Addy Osmani, 32 Skills) — Engineering-Lifecycle, unter anderem Security- und A11y-Checklisten.</li>
+<li><a href="https://github.com/mukul975/Anthropic-Cybersecurity-Skills">mukul975/Anthropic-Cybersecurity-Skills</a> (Community, 817 Skills) — über 800 Security-Skills, gemappt auf MITRE ATT&amp;CK.</li>
+<li><a href="https://github.com/alirezarezvani/claude-skills">alirezarezvani/claude-skills</a> (Alireza Rezvani, 345 Skills) — breite Multi-Domain-Sammlung, davon nutze ich nur wenige gezielt.</li>
+<li><a href="https://github.com/anthropics/claude-cookbooks">anthropics/claude-cookbooks</a> (Anthropic) — offizielle Notebooks, eher Referenz als Skill.</li>
+</ul>
+<p><strong>Ohne Installation.</strong> <a href="https://www.ui-skills.com/agents/claude-code">ui-skills.com</a> läuft nicht als Plugin, sondern als CLI. Ruf ich live auf, wenn ich an UI-Sachen arbeite. Lädt maximal drei Skills gleichzeitig, kein globaler Installationsschritt nötig.</p>
+<p><strong>Trend-Check.</strong> Lohnt sich, regelmäßig einen Blick auf <a href="https://trendshift.io/github-trending-repositories?trending-range=1">Trendshift</a> zu werfen. Zeigt aktuell angesagte GitHub-Repos, darunter öfter mal was, das für genau dieses Setup relevant wird.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Ein Nachmittag statt drei Konzeptionsrunden</title>
