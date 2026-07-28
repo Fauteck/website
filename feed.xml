@@ -5,8 +5,33 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Fri, 24 Jul 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Das Fundament, das keiner sieht</title>
+      <link>https://niklasfauteck.de/blog/#das-fundament-das-keiner-sieht</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#das-fundament-das-keiner-sieht</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0200</pubDate>
+      <category>Persönlich</category>
+      <category>Homelab</category>
+      <category>Netzwerk</category>
+      <category>Karriere</category>
+      <description><![CDATA[
+<p>Der Serverschrank ist keine Übergangslösung mehr.</p>
+<p>Seit letzter Woche steht im Keller ein richtiger Schrank: Abschließbar, belüftet, fest an der Wand.</p>
+<p>Kein Ikea-Regal mehr. Kein Kabelsalat auf dem Boden, der nach gescheitertem Bastelprojekt aussieht.</p>
+<p><img src="https://niklasfauteck.de/blog/images/das-fundament-das-keiner-sieht/serverschrank-keller.jpg" alt="Der neue Serverschrank an der Kellerwand, Tür geöffnet: Switch, Patchfeld und NAS-Gehäuse sauber verkabelt, daneben eine Steckdosenleiste mit Überspannungsschutz." /></p>
+<p>Drin läuft jetzt alles zentral: Router, Switch, Patchfeld, Server und mein NAS. Plus das NAS eines Kumpels. Er hostet sein Backup bei mir, ich meins bei ihm. 3-2-1-Backup-Strategie im Reallife: Wenn bei einem von uns die Hütte brennt, sind die Daten beim anderen sicher.</p>
+<p>Dazu gab es gleich noch Cat7-Kabel durch den alten Kaminschacht. Gefühlt eine kleine archäologische Grabung im eigenen Haus, aber die Access Points hängen jetzt fest am Netz statt nur als Repeater zu funken.</p>
+<p>Was mich an der Aktion am meisten freut, ist gar nicht das schnellere Netzwerk.</p>
+<p>Es ist das Gefühl von Kontrolle und Resilienz. Ein Schrank, den man aufschließt, statt Geräte hinter Möbeln zu suchen. Dokumentierte Kabel statt Raten. Und die Gewissheit, dass das Fundament steht. Auch für den Ernstfall.</p>
+<p>Das kommt mir aus dem Arbeitsalltag verdammt bekannt vor:</p>
+<p>Entscheider interessieren sich meistens für das, was man sofort sieht: das neue Feature, das glänzende Dashboard, die schnelle Oberfläche.</p>
+<p>Die saubere Architektur dahinter (Ausfallsicherheit, Wartbarkeit, Backup-Strategien) interessiert oft erst dann, wenn es knallt. Dabei ist genau dieses unsichtbare Fundament das, was ein System überhaupt erst krisenfest macht.</p>
+<p>Mein Serverschrank ist der Grund, warum hier alles stabil läuft. Und warum Daten auch im Worst Case sicher sind.</p>
+]]></description>
+    </item>
 
     <item>
       <title>Man fährt ja auch nicht ohne Helm</title>
