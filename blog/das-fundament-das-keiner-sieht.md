@@ -9,9 +9,7 @@ thumbAlt: "Der neue Serverschrank an der Kellerwand, Tür geöffnet: Switch, Pat
 
 # Das Fundament, das keiner sieht
 
-Der Serverschrank ist keine Übergangslösung mehr.
-
-Seit letzter Woche steht im Keller ein richtiger Schrank: Abschließbar, belüftet, fest an der Wand.
+Seit letzter Woche steht im Keller ein richtiger Serverschrank: Abschließbar, belüftet, fest an der Wand.
 
 Kein Ikea-Regal mehr. Kein Kabelsalat auf dem Boden, der nach gescheitertem Bastelprojekt aussieht.
 
