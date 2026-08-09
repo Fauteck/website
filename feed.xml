@@ -5,8 +5,37 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Einfach reinquatschen</title>
+      <link>https://niklasfauteck.de/blog/#einfach-reinquatschen</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#einfach-reinquatschen</guid>
+      <pubDate>Sun, 09 Aug 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Familie</category>
+      <description><![CDATA[
+<p>Aylin kommt vom Einkaufen, Quittung in der Hand. Und jetzt?</p>
+<p>Wir führen unsere Ausgaben in Finanzteck, unserem selbstgebauten Kassenbuch. Splitwise-Prinzip: wer hat bezahlt, wie wird geteilt. Funktioniert super. Wenn man es einträgt.</p>
+<p>Genau da hakte es. Wegen ihrer Teilquerschnittslähmung ist Tippen auf dem Handy für Aylin mühsam. Betrag eingeben, Kategorie suchen, Aufteilung wählen. Nichts davon schwer. Aber alles zusammen genug, dass die Quittung erstmal liegen bleibt.</p>
+<p>Ihr Wunsch war simpel: das einfach irgendwo reinquatschen. Fertig.</p>
+<p>Also habe ich den niedrigschwelligsten Weg gesucht, den ich finden konnte: einen Chat. Telegram kann Sprachnachrichten und einen Bot kann man da einfach reinsetzen.</p>
+<p>Heute geht das so: Sprachnachricht an den Bot. "Rewe, dreiundvierzig achtzig." Der Bot transkribiert, versteht, dass das eine Quittung ist, und fragt nach der Aufteilung. Knöpfe drücken, bestätigen, steht im Kassenbuch.</p>
+<p>Oder noch fauler: Foto vom Kassenbon schicken. Ein Vision-Modell liest Betrag, Händler, Datum und Kategorie raus. Der Rest ist derselbe Bestätigungs-Dialog.</p>
+<p>Bei Geld gibt es übrigens immer eine Bestätigung. Immer. Transkription verwechselt "vierzehn neunzig" und "vierzig neunzig" zu leicht. Der Bot bucht nie, ohne dass jemand draufgetippt hat.</p>
+<p>Und dann ist passiert, was bei solchen Projekten immer passiert. Der Kanal war da, also wanderte mehr rein.</p>
+<p>Aufgaben in unserer Familien-App Todoteck anlegen: "Erinnere mich morgen an den Sperrmüll." Notizen diktieren. Beides legt der Bot direkt an, mit Rückgängig-Knopf, falls es Quatsch war.</p>
+<p><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-aufgabe.png" alt="Telegram-Chat mit dem Todoteck-Bot: Sprachnachricht geschickt, der Bot hat die Aufgabe Frühstücken mit Fälligkeit angelegt, darunter Knöpfe für Rückgängig und Dringend" /></p>
+<p>Die Einkaufsliste. "Setz Milch und Butter auf die Liste." Und im Laden zeigt der Bot die offenen Einträge als Knöpfe, einer pro Artikel. Abhaken direkt im Chat, die Nachricht aktualisiert sich selbst, statt die Liste nach oben zu schieben.</p>
+<p>Fragen geht auch. Was steht heute an? Was waren die letzten Ausgaben? Wer schuldet wem wie viel diesen Monat? Der Bot holt die Antwort aus den echten Daten.</p>
+<p>Und in die Gegenrichtung ist der Chat ein Benachrichtigungskanal. Aufgabe fällig? Nachricht mit Erledigt-Knopf. Sync kaputt? Nachricht mit Nochmal-versuchen-Knopf.</p>
+<p>Das Schöne daran: der Bot ist keine neue App. Er ist nur ein weiterer Eingang in das, was eh schon da ist. Darunter liegt exakt dasselbe wie unter der Web-App. Services, Rechte, Datenbank. Vorne dran ein LLM, das aus gesprochenen Sätzen strukturierte Absichten macht.</p>
+<p>Gebaut für ein Problem: Quittung liegt rum, Eintragen nervt.</p>
+<p>Und jetzt läuft die halbe Alltagsorganisation easy durch einen Chat.</p>
+]]></description>
+    </item>
 
     <item>
       <title>Das Fundament, das keiner sieht</title>
