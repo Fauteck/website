@@ -27,6 +27,10 @@ Oder noch fauler: Foto vom Kassenbon schicken. Ein Vision-Modell liest Betrag, H
 
 Bei Geld gibt es übrigens immer eine Bestätigung. Immer. Transkription verwechselt "vierzehn neunzig" und "vierzig neunzig" zu leicht. Der Bot bucht nie, ohne dass jemand draufgetippt hat.
 
+![Telegram-Chat mit dem Todoteck-Bot: Zusammenfassung Quittung prüfen mit Betrag, Zweck, Datum, Bezahler und Aufteilung, darunter die Knöpfe Buchen und Verwerfen](images/einfach-reinquatschen/telegram-bot-quittung-pruefen.png)
+
+![Android-Benachrichtigung von Telegram: Todoteck meldet Quittung gebucht, 2 Euro bei dm, 100 Prozent Gemeinschaft](images/einfach-reinquatschen/telegram-bot-quittung-gebucht.png)
+
 Und dann ist passiert, was bei solchen Projekten immer passiert. Der Kanal war da, also wanderte mehr rein.
 
 Aufgaben in unserer Familien-App Todoteck anlegen: "Erinnere mich morgen an den Sperrmüll." Notizen diktieren. Beides legt der Bot direkt an, mit Rückgängig-Knopf, falls es Quatsch war.
