@@ -23,6 +23,7 @@
 <p>Ihr Wunsch war simpel: das einfach irgendwo reinquatschen. Fertig.</p>
 <p>Also habe ich den niedrigschwelligsten Weg gesucht, den ich finden konnte: einen Chat. Telegram kann Sprachnachrichten und einen Bot kann man da einfach reinsetzen.</p>
 <p>Heute geht das so: Sprachnachricht an den Bot. "Rewe, dreiundvierzig achtzig." Der Bot transkribiert, versteht, dass das eine Quittung ist, und fragt nach der Aufteilung. Knöpfe drücken, bestätigen, steht im Kassenbuch.</p>
+<p><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung.png" alt="Telegram-Chat mit dem Todoteck-Bot: Nachricht Quittung dm 2 Euro, der Bot zeigt Betrag und Datum und fragt nach der Aufteilung, darunter Knöpfe für Standard-Split, 50/50, 100 Prozent Gemeinschaft, Kein Split und Verwerfen" /></p>
 <p>Oder noch fauler: Foto vom Kassenbon schicken. Ein Vision-Modell liest Betrag, Händler, Datum und Kategorie raus. Der Rest ist derselbe Bestätigungs-Dialog.</p>
 <p>Bei Geld gibt es übrigens immer eine Bestätigung. Immer. Transkription verwechselt "vierzehn neunzig" und "vierzig neunzig" zu leicht. Der Bot bucht nie, ohne dass jemand draufgetippt hat.</p>
 <p>Und dann ist passiert, was bei solchen Projekten immer passiert. Der Kanal war da, also wanderte mehr rein.</p>

@@ -21,6 +21,8 @@ Also habe ich den niedrigschwelligsten Weg gesucht, den ich finden konnte: einen
 
 Heute geht das so: Sprachnachricht an den Bot. "Rewe, dreiundvierzig achtzig." Der Bot transkribiert, versteht, dass das eine Quittung ist, und fragt nach der Aufteilung. Knöpfe drücken, bestätigen, steht im Kassenbuch.
 
+![Telegram-Chat mit dem Todoteck-Bot: Nachricht Quittung dm 2 Euro, der Bot zeigt Betrag und Datum und fragt nach der Aufteilung, darunter Knöpfe für Standard-Split, 50/50, 100 Prozent Gemeinschaft, Kein Split und Verwerfen](images/einfach-reinquatschen/telegram-bot-quittung.png)
+
 Oder noch fauler: Foto vom Kassenbon schicken. Ein Vision-Modell liest Betrag, Händler, Datum und Kategorie raus. Der Rest ist derselbe Bestätigungs-Dialog.
 
 Bei Geld gibt es übrigens immer eine Bestätigung. Immer. Transkription verwechselt "vierzehn neunzig" und "vierzig neunzig" zu leicht. Der Bot bucht nie, ohne dass jemand draufgetippt hat.
