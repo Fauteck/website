@@ -5,20 +5,24 @@ this repository.
 
 ---
 
-## Wissensquelle: llm-wiki
+## Wissensquelle: llm-wiki (Todoteck)
 
-Zentrale, gepflegte Wissensschicht für projektübergreifendes Wissen: **https://github.com/Fauteck/llm-wiki**
+Zentrale, gepflegte Wissensschicht für projektübergreifendes Wissen ist das **Projekt `llm-wiki` in Todoteck** — erreichbar über den Todoteck-MCP-Server (`mcp__Todoteck__*`) oder die Todoteck-Weboberfläche.
+
+> Es gibt **kein** Wiki-Repository auf GitHub. Ein früheres Spiegel-Repo ist archiviert und irrelevant — nicht lesen, nicht verlinken, nicht pflegen.
 
 Pflicht vor inhaltlichen Antworten:
-1. [`index.md`](https://github.com/Fauteck/llm-wiki/blob/main/index.md) des Wikis lesen.
-2. Mindestens die Repo-Übersicht öffnen: [`wiki/overview/website.md`](https://github.com/Fauteck/llm-wiki/blob/main/wiki/overview/website.md).
-3. Für Blog-/Schreib-Themen die [Claude-Blog-Voice](https://github.com/Fauteck/llm-wiki/blob/main/wiki/concepts/claude-blog-voice.md).
+1. Notiz **`_index`** lesen — Katalog aller Wiki-Seiten.
+2. Mindestens die Repo-Übersicht öffnen: Notiz **`website (niklasfauteck.de)`**.
+3. Für Blog-/Schreib-Themen die Notiz **`Claude-Anweisung: Blog & LinkedIn`**.
 
-Nach faktischen Änderungen mit Wissens-Charakter: betroffene Wiki-Seite + `log.md` pflegen (Spielregeln in [`llm-wiki/CLAUDE.md`](https://github.com/Fauteck/llm-wiki/blob/main/CLAUDE.md)).
+Nach faktischen Änderungen mit Wissens-Charakter: betroffene Wiki-Notiz pflegen. Spielregeln stehen in der Notiz **`_schema`** — insbesondere „eine Heimat pro Fakt", das Lifecycle-Vokabular und die Log-Rotation.
 
-Zugriffswege auf dasselbe Repo:
-- **Claude Code (Web/lokal):** `llm-wiki/` ist parallel verfügbar.
-- **Claude-Chat / mobil:** GitHub-Connector → direkt aufs Repo.
+Ein `_log`-Eintrag nur bei **Entscheidungen und Korrekturen** — nicht bei reinen Inhalts-Aktualisierungen, die zeigt die Versionshistorie der Notiz ohnehin. Im Zweifel weglassen. (Experiment bis 2026-09-21, bewusst noch nicht im `_schema`.)
+
+Werkzeuge: `search` / `get_note` zum Lesen, `append_note` für reine Ergänzungen (kein Markdown-Round-Trip), `update_note` nur für echte Korrekturen im Bestand, danach `sync_wikilinks` und `lint_wiki`.
+
+**Arbeitsteilung:** Tonalität, Frontmatter-Format und Render-Konventionen stehen im Wiki (Notiz `Claude-Anweisung: Blog & LinkedIn`); Build, Deployment und Seitenstruktur stehen **in diesem Repo**. Nicht duplizieren — verlinken.
 
 ---
 
