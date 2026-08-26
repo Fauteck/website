@@ -1,7 +1,22 @@
 # AI Working Rules — fauteck.eu
 
 This document describes how AI assistants (e.g. Claude Code) should work in
-this repository.
+this repository. What the repo itself answers — structure, build, deployment,
+content workflows — is not retold here but linked below.
+
+## Documentation Index
+
+| Document | Contents |
+|---|---|
+| [README.md](README.md) | Feature overview, live site, getting started |
+| [docs/INDEX.md](docs/INDEX.md) | Documentation hub |
+| [docs/architecture.md](docs/architecture.md) | Codebase structure, tech stack, rendering model |
+| [docs/workflows.md](docs/workflows.md) | Development, deployment (GitHub Pages), content workflows |
+| [DESIGN.md](DESIGN.md) | Design system: tokens, components, brand philosophy |
+
+Tone of voice, front-matter format and render conventions for blog and LinkedIn
+posts are **not** in this repo — they live in the wiki note
+„Claude-Anweisung: Blog & LinkedIn" (see below).
 
 ---
 
