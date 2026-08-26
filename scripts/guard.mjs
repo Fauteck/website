@@ -96,6 +96,19 @@ for (const m of sharedOhneRoot.matchAll(/#[0-9a-fA-F]{3,8}\b/g)) {
   }
 }
 
+// Schatten im Content-Layer sind ins Gruen getoent (DESIGN.md elevation.content-*).
+// Reines Schwarz gehoert dem OS-Layer, wo der Grund fast schwarz ist. Geprueft
+// werden auch die <style>-Bloecke der Content-Seiten — dort standen sie zuletzt.
+const CONTENT_DATEIEN = [
+  'shared.css', 'blog/blog.css', 'index.html', 'full/index.html',
+  'kontakt.html', '404.html', 'agb.html', 'impressum.html', 'datenschutz.html',
+];
+for (const file of CONTENT_DATEIEN) {
+  for (const m of read(file).matchAll(/box-shadow: *[^;]*rgba\(0, *0, *0[^;]*/g)) {
+    fail('schatten', `${file}: ungetoenter Schatten — ${m[0].slice(0, 60)}`);
+  }
+}
+
 /* ── 3. Bildmasse in statischem HTML ─────────────────────────────────────── */
 
 const htmlFiles = walk('.', (p) => p.endsWith('.html'));
@@ -107,6 +120,28 @@ for (const file of htmlFiles) {
     if (/^<img[^>]*\bsrc="(https?:|data:)/.test(tag)) continue;
     if (!/\bwidth="\d+"/.test(tag) || !/\bheight="\d+"/.test(tag)) {
       fail('bildmasse', `${file}: <img> ohne width/height — ${tag.slice(0, 80)}…`);
+    }
+  }
+}
+
+// Ein Verzeichnisbaum in Prosa ist eine handgepflegte Aufzaehlung und damit
+// die Sorte Doku, die still veraltet. Also nachrechnen statt glauben.
+const baum = read('docs/architecture.md').match(/```\n\/\n([\s\S]*?)```/);
+if (!baum) {
+  fail('baum', 'docs/architecture.md: Verzeichnisbaum nicht gefunden');
+} else {
+  const genannt = new Set([...baum[1].matchAll(/^[├└]── ([^\s#]+)/gm)].map((m) => m[1].replace(/\/$/, '')));
+  const IGNORIEREN = new Set(['.git', '.claude']); // Werkzeug-Verzeichnisse, nicht Teil der Seite
+  for (const e of readdirSync(ROOT, { withFileTypes: true })) {
+    if (IGNORIEREN.has(e.name)) continue;
+    if (!genannt.has(e.name)) {
+      fail('baum', `docs/architecture.md: ${e.name}${e.isDirectory() ? '/' : ''} fehlt im Verzeichnisbaum`);
+    }
+  }
+  for (const name of genannt) {
+    if (name.includes('<') || name.includes('*')) continue; // Platzhalter
+    if (!existsSync(join(ROOT, name))) {
+      fail('baum', `docs/architecture.md: ${name} steht im Baum, existiert aber nicht`);
     }
   }
 }

@@ -60,13 +60,19 @@ Browser
   │     └── style.css
   │
   ├── /blog/                   Blog mit persönlichen Artikeln
-  │     ├── index.html
-  │     └── *.md               Artikel als Markdown
+  │     ├── index.html         Beitragsliste
+  │     ├── <slug>.html        Je Beitrag eine Seite (erzeugt)
+  │     └── *.md               Artikel als Markdown — die einzige Quelle
   │
   ├── style.css                CSS3 mit Custom Properties, Animationen, Responsive
   ├── script.js                Vanilla JS — Fenstermanager, Terminal, Spiele, Mobile-UI
+  ├── /scripts/                node scripts/build.mjs · node scripts/guard.mjs
   └── feed.xml                 RSS-Feed für Blog-Artikel
 ```
+
+Der vollständige, gegen das Repo geprüfte Verzeichnisbaum steht in
+[docs/architecture.md](docs/architecture.md) — hier bewusst nur die Übersicht,
+damit nicht zwei Bäume nebeneinander veralten.
 
 Statische Website ohne Backend und ohne Datenbank; ausgeliefert wird reines
 HTML, CSS und JavaScript. Die Beitragsseiten, der Feed, die Sitemap und die
