@@ -5,8 +5,66 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Sun, 09 Aug 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Ein Knopf am Handgelenk</title>
+      <link>https://niklasfauteck.de/blog/#knopf-am-handgelenk</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#knopf-am-handgelenk</guid>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Familie</category>
+      <category>Barrierefreiheit</category>
+      <description><![CDATA[
+<p>H&#228;nde im Teig. Und mir f&#228;llt ein, dass die M&#246;hren fehlen.</p>
+<p>Seit ein paar Monaten l&#228;uft unsere halbe Alltagsorganisation &#252;ber einen Telegram-Bot. Sprachnachricht rein, Aufgabe raus. Quittung, Notiz, Einkaufsliste. Funktioniert.</p>
+<p>Nur f&#252;hrt der Weg dahin jedes Mal &#252;ber dasselbe: Handy rausholen, entsperren, Telegram &#246;ffnen, den richtigen Chat finden, das Mikrofonsymbol treffen und halten. Sechs Schritte, f&#252;nf davon auf Glas.</p>
+<p>Mit Teig an den Fingern sind das sechs Schritte zu viel.</p>
+<p>Also ein Knopf. Ein M5StickS3, 135 mal 240 Pixel Display, ein Armband dran. Dr&#252;cken, sprechen, loslassen.</p>
+<p><img src="https://niklasfauteck.de/blog/images/knopf-am-handgelenk/stick-am-handgelenk.jpg" alt="Ein kleines graues Ger&#228;t an einem orangen Armband auf meinem Handgelenk. Auf dem Display der gr&#252;ne Todoteck-Haken mit zwei Augen, darunter Bereit und Halten zum Sprechen" /></p>
+<p><strong>Das Teure war schon gebaut</strong></p>
+<p>Ich hatte mit Wochen gerechnet. Es wurden vier Bausteine.</p>
+<p>Weil das Ger&#228;t kein neues System ist. Es ist ein weiterer Eingang in das, was seit dem Bot eh schon steht: Audio kommt rein, wird transkribiert, ein Modell macht daraus eine Absicht, ein Service f&#252;hrt sie aus. Genau diese Kette. Ohne eine ge&#228;nderte Zeile.</p>
+<p>Neu waren: ein eigener Eingang f&#252;r das Ger&#228;t, ein Token, das nicht nach f&#252;nfzehn Minuten abl&#228;uft, ein Intent f&#252;r allgemeine Wissensfragen, und ein Baustein f&#252;r Sprachausgabe.</p>
+<p>Der Rest war Wiederverwendung. Das ist die unspektakul&#228;rste und beste Erkenntnis aus dem Ding.</p>
+<p><strong>Bluetooth statt WLAN</strong></p>
+<p>Im Konzept stand urspr&#252;nglich WLAN. Gedreht hat es die Einsicht, dass das Handy sowieso in der Hosentasche liegt.</p>
+<p>&#220;ber Bluetooth kostet die Firmware fast nichts. Der Stick meldet nur rohe Tastenereignisse, die Logik liegt beim Handy. Der Verbindungsaufbau f&#228;llt nebenbei von rund einer Sekunde auf zwei Zehntel.</p>
+<p>Der Preis daf&#252;r ist die Stimme. Eine fertige WAV-Antwort ist &#252;ber Bluetooth zu langsam, 320 KB wollen erst mal r&#252;ber. Die Sprachausgabe l&#228;uft serverseitig, am Ger&#228;t h&#228;ngt sie nicht dran.</p>
+<p>F&#252;r einen Kanal, der mit &quot;ohne hinsehen&quot; wirbt, ist das die gr&#246;&#223;te offene L&#252;cke. Steht so auch im Konzept.</p>
+<p><strong>Was es kann und was nicht</strong></p>
+<p>Wissensfrage: 2,2 Sekunden. &quot;Wie hoch ist der Mount Everest.&quot; Die schnellste Funktion ist ausgerechnet die allt&#228;glichste.</p>
+<p>Aufgabe anlegen oder was auf die Einkaufsliste setzen: knapp acht Sekunden. Warum das f&#252;nf Sekunden l&#228;nger dauert, obwohl beide Wege durch dieselbe Transkription und dieselbe Absichtserkennung laufen, wei&#223; ich nicht. Erst messen, dann optimieren.</p>
+<p>Kein Wake-Word. Kein Dauerlauschen. Kein Dialog &#252;ber mehrere S&#228;tze.</p>
+<p>Und keine Quittungen. Die brauchen eine Best&#228;tigung mit Bezahler und Aufteilung, und das ist ein Gespr&#228;ch. Ein Knopfdruck ist keins.</p>
+<p>30 Sekunden am St&#252;ck, dann ist die Aufnahme zu Ende. Der Bot am Handy darf 300.</p>
+<p><img src="https://niklasfauteck.de/blog/images/knopf-am-handgelenk/stick-antwort-einkaufsliste.jpg" alt="Nahaufnahme des Ger&#228;ts am Handgelenk. Auf dem Display steht in gro&#223;er Schrift: Auf Einkaufsliste gesetzt, M&#246;hren, jetzt 12 offene Eintr&#228;ge. Der Haken ist verschwunden, der Text hat den ganzen Bildschirm" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/knopf-am-handgelenk/einkaufsliste-todoteck.png" alt="Die Einkaufsliste in der Todoteck-App auf dem Handy als Kachelraster mit Emojis, M&#246;hren steht zwischen Zahnpasta und Waschmittel" /></p>
+<p><strong>Tecki</strong></p>
+<p>Die Werksfirmware zeigte Katzen. S&#252;&#223;, aber &#252;ber Todoteck sagen sie nichts.</p>
+<p>Also unser Maskottchen drauf. Tecki ist keine zweite Zeichnung. Er ist unser Logo mit Augen, und die Augen werden aus der Geometrie des Hakens berechnet. &#196;ndere ich die Strichst&#228;rke, wandern sie mit.</p>
+<p>Damit das &#252;berhaupt ging, musste der Haken selbst ran. Er war als Zeichen tadellos und als K&#246;rper unbrauchbar. Zu spitz, zu steil, zu d&#252;nn. Ein Augenpaar nach der &#252;blichen Regel stand &#252;ber den Strich hinaus.</p>
+<p>Heute ist der Knick stumpfer, der Anstieg flacher, der Strich dicker. Das Maskottchen hat das Logo ver&#228;ndert. Nicht umgekehrt.</p>
+<p><img src="https://niklasfauteck.de/blog/images/knopf-am-handgelenk/tecki-zustaende.png" alt="Sechs Zust&#228;nde von Tecki nebeneinander: Ruht auf dunklem Grund mit zZ und geschlossenen Augen, Bereit mit offenen Augen, H&#246;rt zu leicht aufgerichtet mit Schallwellen, Denkt nach mit Blick nach oben und drei Punkten, Antwortet mit Mund und Pegelbalken, Fehler rot gekippt mit Kreuzen als Augen" /></p>
+<p>Sechs Zust&#228;nde. Alle aus derselben Linie mit zwei Knicken. Es &#228;ndern sich nur die Farbe, ein Drehwinkel und das Gesicht.</p>
+<p>Auf 135 mal 240 Pixeln kriegt man &quot;verbunden, wach, h&#246;rt zu, denkt nach, Fehler&quot; nicht als Satz unter. Als Figur schon.</p>
+<p>In der Firmware ist er au&#223;erdem billiger als ein Bild. Er ersetzt sechs eingebettete Grafiken und spart 294 KB Flash, weil er aus Grundformen gezeichnet wird statt aus Pixeln zu bestehen.</p>
+<p>Drei Dinge fehlen mit Absicht. Einen Mund hat er nur beim Antworten, damit Logo und Maskottchen nicht auseinanderlaufen. Blinzeln kann er nicht, das Ding h&#228;ngt an 440 mAh. Und im Fehlerfall gibt es kein Warndreieck, der K&#246;rper wird rot und die Statuszeile sagt es sowieso.</p>
+<p>Wenn eine Antwort lang wird, tritt er zur Seite und &#252;berl&#228;sst dem Text den ganzen Bildschirm. Das ist die zweite Aufnahme oben. Zw&#246;lf offene Eintr&#228;ge, und Tecki ist weg.</p>
+<p><strong>Der zweite Nutzen ist der gr&#246;&#223;ere</strong></p>
+<p>Gebaut habe ich das f&#252;r nasse H&#228;nde am Pool und Teig an den Fingern.</p>
+<p>Was dabei rausgekommen ist, ist ein Kanal ohne Touchscreen. Ein Druckpunkt, den man ertasten kann, statt einer Fl&#228;che, die man treffen muss. Kein Entsperren. Kein Zielen.</p>
+<p>Und T&#246;ne. Einer beim Start der Aufnahme, zwei aufsteigende f&#252;r eine Antwort, zwei absteigende f&#252;r einen Fehler. Im Fork-README steht der Grund in einem Satz: am Handgelenk siehst du das Display nicht, w&#228;hrend du sprichst.</p>
+<p>F&#252;r Aylin ist das ein anderer Gewinn als f&#252;r mich. Tippen auf dem Handy ist wegen ihrer Teilquerschnittsl&#228;hmung m&#252;hsam, das war schon der Grund f&#252;r den Bot. Ein Knopf, den man nicht treffen muss, nimmt davon nochmal einen Schritt weg.</p>
+<p>Ehrlich bleiben muss ich trotzdem an zwei Stellen.</p>
+<p>Halten hei&#223;t halten. Der Standardmodus ist gedr&#252;ckt halten, solange man spricht. Genau das kann die falsche Anforderung sein. Die Firmware kennt einen zweiten Modus, antippen zum Starten, antippen zum Beenden. Er steht im Protokoll, er steht im Code, und keine der beiden Br&#252;cken w&#228;hlt ihn bisher aus. Ein Wort in einer Zeile, zweimal. Das ist die n&#228;chste Aufgabe.</p>
+<p>Und die Antwort wird gelesen, nicht geh&#246;rt. Siehe oben.</p>
+<p>Das Ger&#228;t liegt seit gestern auf dem Tisch und l&#228;uft. Ihres l&#228;uft noch auf der Werksfirmware.</p>
+<p>Das ist die eigentliche Arbeit f&#252;r diese Woche.</p>
+]]></description>
+    </item>
 
     <item>
       <title>Einfach reinquatschen</title>
