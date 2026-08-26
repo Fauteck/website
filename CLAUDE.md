@@ -63,6 +63,34 @@ Kurzfassung für dieses Repo:
 
 ---
 
+## Design-Skills im Repo (`.claude/skills/`)
+
+Zwei externe Skills aus [taste-skill](https://github.com/Leonxlnx/taste-skill)
+liegen als echte Ordner im Repo:
+
+| Skill | Wofür |
+|---|---|
+| `redesign-existing-projects` | Audit-Raster für **bestehende** Seiten: Typografie, Farbe, Layout, Zustände, Code-Qualität, typische Auslassungen (404, Skip-Link, Fokus-Ring). |
+| `design-taste-frontend` | Entwurfsregeln für **neue** Seiten und Abschnitte, inkl. Liste der KI-typischen Muster, die man vermeidet. |
+
+Aktualisieren: `npx skills add https://github.com/Leonxlnx/taste-skill --skill "<name>"`.
+Der Befehl schreibt nach `.agents/skills/` und verlinkt von `.claude/skills/`
+per Symlink — hier liegen beide bewusst als kopierte Ordner, weil ein
+Windows-Checkout Symlinks nicht auflöst. Nach einem Update also den Inhalt
+nach `.claude/skills/` kopieren und `.agents/` wieder entfernen.
+
+**Rangfolge:** Die Skills sind ein Prüfraster, keine Autorität. Wo sie
+[DESIGN.md](DESIGN.md) widersprechen — Schriftwahl, Palette, Radien, Motion —
+gilt DESIGN.md. Ein Skill-Befund ist eine Frage („warum weicht das ab?"), kein
+Auftrag.
+
+Die übrigen elf Skills des Repos (Bildgenerierung, Brandkit, Stil-Presets) sind
+bewusst **nicht** installiert — Begründung in der Wiki-Notiz „Externe
+Skill-Repos (Bewertung 2026-07)": Bundles nicht blind installieren,
+Kollisionsrisiko bei mehrdeutigen Prompts.
+
+---
+
 ## Long-session behaviour (API stability)
 
 > Goal: avoid stream timeouts (`Stream idle timeout — partial response received`).
