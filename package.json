@@ -1,0 +1,13 @@
+{
+  "name": "niklasfauteck-de",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Persoenliche Website — statisch ausgeliefert, ohne Laufzeit-Abhaengigkeiten. Die Skripte leiten die abgeleiteten Dateien ab und rechnen sie nach.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/guard.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

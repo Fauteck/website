@@ -18,377 +18,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%232C3E50'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='700' font-size='18' fill='%2352b788'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="icon" type="image/x-icon" href="../full/favicon.ico">
   <link rel="apple-touch-icon" href="../full/favicon-192.png">
-  <style>
-    body {
-      padding-top: 4.5rem;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem;
-    }
-
-    /* Blog Layout (Content + Sidebar) */
-    .blog-layout {
-      display: grid;
-      grid-template-columns: 1fr 220px;
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .blog-sidebar {
-      position: sticky;
-      top: 5.5rem;
-    }
-
-    /* Header */
-    .blog-header {
-      margin-bottom: 2.5rem;
-    }
-
-    .blog-header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-    }
-
-    .blog-header p {
-      color: var(--text-secondary);
-      margin-top: 0.25rem;
-    }
-
-    /* Post Listing */
-    .post-list { list-style: none; }
-
-    .post-item {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem 1.75rem;
-      margin-bottom: 1rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      cursor: pointer;
-    }
-
-    .post-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-      border-color: var(--accent);
-    }
-
-    .post-item a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    /* Post mit Teaserbild: zweispaltiges Layout */
-    .post-item--with-image a {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 1.25rem;
-      align-items: start;
-    }
-
-    .post-thumb {
-      display: block;
-      overflow: hidden;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--bg-light);
-    }
-
-    .post-thumb img {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-
-    .post-meta {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .post-date { font-family: var(--font-mono); font-size: 0.78rem; }
-
-    .post-tag {
-      background: var(--bg-light);
-      border: 1px solid var(--border);
-      padding: 0.1rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.72rem;
-      font-weight: 500;
-    }
-
-    .post-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.35rem;
-    }
-
-    .post-excerpt {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* RSS CTA */
-    .rss-cta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.75rem;
-      margin-top: 1.5rem;
-    }
-
-    .rss-cta svg {
-      flex-shrink: 0;
-      color: var(--accent);
-    }
-
-    .rss-cta div { flex: 1; }
-
-    .rss-cta strong {
-      font-size: 0.95rem;
-      color: var(--primary);
-    }
-
-    .rss-cta p {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      margin-top: 0.15rem;
-      line-height: 1.4;
-    }
-
-    .rss-cta-btn {
-      flex-shrink: 0;
-      background: var(--accent);
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.5rem 1.1rem;
-      border-radius: 6px;
-      transition: background 0.2s ease;
-    }
-
-    .rss-cta-btn:hover {
-      background: var(--accent-dark);
-    }
-
-    .rss-cta-sidebar {
-      flex-direction: column;
-      text-align: center;
-      gap: 0.75rem;
-      margin-top: 0;
-      padding: 1.25rem 1rem;
-    }
-
-    .rss-cta-sidebar .rss-cta-btn {
-      width: 100%;
-      text-align: center;
-    }
-
-    /* Back Link */
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 1.25rem;
-      transition: color 0.2s ease;
-    }
-
-    .back-link:hover {
-      color: var(--accent-dark);
-    }
-
-    .back-link svg {
-      transition: transform 0.2s ease;
-    }
-
-    .back-link:hover svg {
-      transform: translateX(-3px);
-    }
-
-    /* Single Post View */
-    .post-view { display: none; }
-    .post-view.active { display: block; }
-    .post-list-view.hidden { display: none; }
-
-    .post-content {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 2.5rem;
-    }
-
-    /* Long-Form Lesebreite — 680px maximiert Lesbarkeit von Fliesstext */
-    .post-content > * {
-      max-width: 680px;
-    }
-    .post-content > .post-figure,
-    .post-content > pre {
-      max-width: none;
-    }
-
-    .post-content h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-    }
-
-    .post-content .post-content-meta {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .post-content h2 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin: 2rem 0 0.75rem;
-    }
-
-    .post-content h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin: 1.5rem 0 0.5rem;
-    }
-
-    .post-content p {
-      margin-bottom: 1rem;
-      line-height: 1.8;
-    }
-
-    /* Pull-Quote: links eingerückt, ohne farbigen Border-Trick */
-    .post-content blockquote {
-      margin: 1.5rem 0 1.5rem 1.25rem;
-      padding: 0.25rem 0 0.25rem 1.25rem;
-      border-left: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-style: italic;
-    }
-
-    .post-content blockquote p { margin-bottom: 0.5rem; }
-    .post-content blockquote p:last-child { margin-bottom: 0; }
-
-    .post-content ul, .post-content ol {
-      padding-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .post-content li { margin-bottom: 0.35rem; }
-
-    /* Inline-Links: kein Default-Underline, erst bei Hover/Focus */
-    .post-content a {
-      color: var(--accent-dark);
-      text-decoration: none;
-      text-underline-offset: 2px;
-      transition: color 0.2s ease;
-    }
-    .post-content a:hover,
-    .post-content a:focus-visible {
-      text-decoration: underline;
-    }
-
-    .post-content strong { font-weight: 600; }
-    .post-content em { font-style: italic; }
-
-    /* Code & Pre — JetBrains Mono, dunkler Hintergrund (auch im Content-Layer) */
-    .post-content code {
-      font-family: var(--font-mono);
-      font-size: 0.85em;
-      background: #0d1117;
-      color: #e6edf3;
-      padding: 0.1rem 0.35rem;
-      border-radius: 4px;
-    }
-    .post-content pre {
-      background: #0d1117;
-      color: #e6edf3;
-      padding: 1rem 1.25rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin: 1.5rem 0;
-      line-height: 1.5;
-    }
-    .post-content pre code {
-      background: transparent;
-      padding: 0;
-      font-size: 0.82rem;
-      border-radius: 0;
-    }
-
-    /* Figure-Caption — Mono 11px, gedaempft */
-    .post-content figcaption,
-    .post-content .post-figure figcaption {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-secondary);
-      margin-top: 0.5rem;
-      line-height: 1.5;
-    }
-
-    .post-content .post-figure {
-      margin: 1.75rem 0;
-    }
-    .post-content .post-figure img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 10px;
-      border: 1px solid var(--border, rgba(0,0,0,0.08));
-    }
-
-    .footer {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .blog-layout { grid-template-columns: 1fr; }
-      .blog-sidebar { position: static; }
-      .container { max-width: 740px; }
-    }
-
-    @media (max-width: 600px) {
-      .container { padding: 1.5rem 1rem; }
-      .blog-header h1 { font-size: 1.5rem; }
-      .post-content { padding: 1.5rem; }
-      .post-content h1 { font-size: 1.35rem; }
-
-      .post-item--with-image a {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      .post-thumb img { aspect-ratio: 16 / 9; }
-    }
-
-  </style>
+  <link rel="stylesheet" href="blog.css">
 </head>
 <body>
   <!-- Skip to content (Accessibility) -->
@@ -407,32 +37,11 @@
     <div class="post-list-view" id="postList">
       <div class="blog-layout">
         <div class="blog-main">
-          <ul class="post-list" id="postListUl">
-            <li class="blog-loading" style="color:var(--text-secondary);padding:1rem 0">Lade Beiträge…</li>
+          <ul class="post-list" id="postListUl" aria-busy="true">
+            <li class="post-skeleton" aria-hidden="true"><span class="skeleton-bar skeleton-bar--meta"></span><span class="skeleton-bar skeleton-bar--title"></span><span class="skeleton-bar skeleton-bar--text"></span><span class="skeleton-bar skeleton-bar--text-short"></span></li>
+            <li class="post-skeleton" aria-hidden="true"><span class="skeleton-bar skeleton-bar--meta"></span><span class="skeleton-bar skeleton-bar--title"></span><span class="skeleton-bar skeleton-bar--text"></span><span class="skeleton-bar skeleton-bar--text-short"></span></li>
+            <li class="post-skeleton" aria-hidden="true"><span class="skeleton-bar skeleton-bar--meta"></span><span class="skeleton-bar skeleton-bar--title"></span><span class="skeleton-bar skeleton-bar--text"></span><span class="skeleton-bar skeleton-bar--text-short"></span></li>
           </ul>
-        </div>
-        <aside class="blog-sidebar">
-          <div class="rss-cta rss-cta-sidebar">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
-            <div>
-              <strong>Keine neuen Beiträge verpassen</strong>
-              <p>Abonniere den Blog per RSS Feed und erhalte neue Posts direkt in deinem Feedreader.</p>
-            </div>
-            <a href="../feed.xml" class="rss-cta-btn" target="_blank" rel="noopener">RSS Feed abonnieren</a>
-          </div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- Single Post View -->
-    <div class="post-view" id="postView">
-      <a href="./" class="back-link" onclick="showList(); return false;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Alle Beiträge
-      </a>
-      <div class="blog-layout">
-        <div class="blog-main">
-          <div class="post-content" id="postContent"></div>
         </div>
         <aside class="blog-sidebar">
           <div class="rss-cta rss-cta-sidebar">
@@ -469,8 +78,6 @@
     // Blog-Liste + Einzelansicht werden datengetrieben aus posts.json und dem
     // Frontmatter der .md-Dateien erzeugt (siehe render.js). Kein Framework.
     var B = window.BlogRender;
-    var postsBySlug = {};
-    var loaded = false;
 
     function escapeHtml(s) {
       return String(s == null ? '' : s)
@@ -479,15 +86,19 @@
     }
 
     function cardHtml(p) {
+      var size = B.imageAttrs(p.thumb);
+      var webp = p.thumb.replace(/\.(jpe?g|png)$/i, '.webp');
       var thumb = p.thumb
-        ? '<div class="post-thumb"><img src="' + escapeHtml(p.thumb) + '" alt="' + escapeHtml(p.thumbAlt) + '" loading="lazy"></div>'
+        ? '<div class="post-thumb"><picture><source srcset="' + escapeHtml(webp) + '" type="image/webp">' +
+          '<img src="' + escapeHtml(p.thumb) + '" alt="' + escapeHtml(p.thumbAlt) + '"' + size + ' loading="lazy">' +
+          '</picture></div>'
         : '';
       var tags = p.tags.map(function (t) {
         return '<span class="post-tag">' + escapeHtml(t) + '</span>';
       }).join('');
       var cls = 'post-item' + (p.thumb ? ' post-item--with-image' : '');
-      return '<li class="' + cls + '" onclick="loadPost(\'' + p.slug + '\')">' +
-        '<a href="#' + p.slug + '">' + thumb +
+      return '<li class="' + cls + '">' +
+        '<a href="' + encodeURIComponent(p.slug) + '.html">' + thumb +
         '<div class="post-body">' +
         '<div class="post-meta"><span class="post-date">' + escapeHtml(p.dateDE) + '</span>' + tags + '</div>' +
         '<h2 class="post-title">' + escapeHtml(p.title) + '</h2>' +
@@ -496,13 +107,22 @@
     }
 
     function loadPosts() {
-      return fetch('posts.json')
+      // Bildmasse zuerst: ohne sie rendern die Kacheln ohne width/height und
+      // die Liste springt beim Nachladen der Vorschaubilder.
+      return fetch('images/sizes.json')
+        .then(function (r) { return r.ok ? r.json() : {}; })
+        .catch(function () { return {}; })
+        .then(function (sizes) {
+          B.setImageSizes(sizes);
+          return fetch('posts.json');
+        })
         .then(function (r) { return r.json(); })
         .then(function (slugs) {
           return Promise.all(slugs.map(function (slug) {
             return fetch(slug + '.md')
               .then(function (r) { return r.ok ? r.text() : ''; })
               .then(function (md) {
+                if (!md) return null;
                 var d = B.parseFrontmatter(md).data;
                 return {
                   slug: slug,
@@ -516,81 +136,62 @@
                 };
               })
               .catch(function () {
-                return { slug: slug, title: slug, date: '', dateDE: '', tags: [], excerpt: '', thumb: '', thumbAlt: '' };
+                // Aussortieren, nicht leer rendern: ein Eintrag mit dem Slug als
+                // Titel und ohne Inhalt ist von "gibt es nicht" nicht zu
+                // unterscheiden und sieht aus wie ein kaputter Beitrag.
+                return null;
               });
           }));
         })
         .then(function (posts) {
+          var ok = posts.filter(Boolean);
+          if (ok.length < posts.length) {
+            // Sichtbar im Log, unsichtbar auf der Seite: ein fehlender Beitrag
+            // ist ein Pflegefehler, kein Zustand, den der Leser klaeren kann.
+            console.warn('Blog: ' + (posts.length - ok.length) + ' Beitrag/Beitraege nicht ladbar');
+          }
           // Nach Datum absteigend (neueste zuerst) — ausdrücklich nicht alphabetisch
-          posts.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
-          return posts;
+          ok.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+          return ok;
         });
     }
 
     function renderList(posts) {
       var ul = document.getElementById('postListUl');
+      ul.removeAttribute('aria-busy');
       if (!posts.length) {
-        ul.innerHTML = '<li class="blog-loading" style="color:var(--text-secondary);padding:1rem 0">Beiträge konnten nicht geladen werden.</li>';
+        ul.innerHTML = '<li class="blog-message"><strong>Die Beiträge konnten nicht geladen werden.</strong>' +
+          'Das liegt an dieser Seite, nicht an dir. Lade die Seite neu — oder lies die Beiträge ' +
+          'so lange im <a href="../feed.xml">RSS-Feed</a>.</li>';
         return;
       }
       ul.innerHTML = posts.map(cardHtml).join('');
     }
 
-    function setOgTitle(value) {
-      var el = document.querySelector('meta[property="og:title"]');
-      if (el) el.setAttribute('content', value);
+    // Beitraege haben eigene Seiten (blog/<slug>.html, erzeugt von
+    // scripts/build.mjs). Alte Links der Form blog/#slug — aus LinkedIn, aus
+    // Lesezeichen, aus den Feed-Guids — werden dorthin umgeleitet.
+    function routeHash() {
+      var hash = decodeURIComponent(window.location.hash.slice(1));
+      if (hash && /^[a-z0-9-]+$/.test(hash)) {
+        window.location.replace(hash + '.html');
+        return true;
+      }
+      return false;
     }
 
-    function loadPost(slug) {
-      window.location.hash = slug;
-      var meta = postsBySlug[slug] || {};
-      fetch(slug + '.md')
-        .then(function (r) { return r.text(); })
-        .then(function (md) {
-          var rendered = B.renderMarkdown(md);
-          document.getElementById('postContent').innerHTML =
-            '<div class="post-content-meta">' + (meta.dateDE || '') + '</div>' +
-            rendered;
-          if (meta.title) {
-            document.title = meta.title + ' — Blog — Niklas Fauteck';
-            setOgTitle(meta.title + ' — Blog — Niklas Fauteck');
-          }
-          document.getElementById('postList').classList.add('hidden');
-          document.getElementById('postView').classList.add('active');
-          window.scrollTo(0, 0);
-        })
-        .catch(function () {
-          document.getElementById('postContent').innerHTML = '<p>Beitrag konnte nicht geladen werden.</p>';
-          document.getElementById('postList').classList.add('hidden');
-          document.getElementById('postView').classList.add('active');
+    if (!routeHash()) {
+      loadPosts()
+        .then(renderList)
+        .catch(function (err) {
+          // Ohne diesen Zweig bleibt bei einem Ausfall von posts.json das
+          // Skelett stehen — eine Seite, die fuer immer laedt.
+          console.error('Blog: Beitragsliste nicht ladbar', err);
+          renderList([]);
         });
     }
 
-    function showList() {
-      window.location.hash = '';
-      document.title = 'Blog — Niklas Fauteck';
-      setOgTitle('Blog — Niklas Fauteck');
-      document.getElementById('postList').classList.remove('hidden');
-      document.getElementById('postView').classList.remove('active');
-      window.scrollTo(0, 0);
-    }
-
-    // Posts laden, Liste rendern, danach ggf. direkt auf einen Beitrag routen
-    loadPosts().then(function (posts) {
-      posts.forEach(function (p) { postsBySlug[p.slug] = p; });
-      renderList(posts);
-      loaded = true;
-      var hash = window.location.hash.slice(1);
-      if (hash && postsBySlug[hash]) loadPost(hash);
-    });
-
-    // Vor/Zurück-Navigation
-    window.addEventListener('hashchange', function () {
-      if (!loaded) return;
-      var hash = window.location.hash.slice(1);
-      if (hash && postsBySlug[hash]) loadPost(hash);
-      else showList();
-    });
+    window.addEventListener('hashchange', routeHash);
   </script>
 
   <div id="shared-overlays"></div>

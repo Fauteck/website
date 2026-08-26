@@ -18,28 +18,63 @@ Zero build tooling — all code runs directly in the browser.
 
 ## Directory structure
 
+Every top-level entry below is checked against the working tree by
+`scripts/guard.mjs` — a tree that drifts fails the build instead of quietly
+describing a repository that no longer exists.
+
 ```
 /
 ├── index.html          # Landing hub — navigation cards to all areas
-├── script.js           # All NiklasOS client-side logic (~6 700 lines)
-├── style.css           # NiklasOS styles (~5 900 lines)
+├── 404.html            # Not-found page (GitHub Pages serves it automatically)
+├── kontakt.html        # Contact page
+├── impressum.html      # Legal notice (noindex)
+├── datenschutz.html    # Privacy policy (noindex)
+├── agb.html            # Terms (noindex)
+├── script.js           # All NiklasOS client-side logic
+├── style.css           # NiklasOS styles
 ├── shared.css          # Shared variables, reset, nav, footer (content layer)
+├── components.js       # Injects nav, footer and overlays; sets aria-current
+├── shared.js           # Shared behaviour for the content layer
 ├── os/
 │   └── index.html      # NiklasOS desktop simulator entry point
 ├── full/
 │   └── index.html      # Traditional portfolio / CV view
 ├── blog/
-│   ├── index.html      # Blog article viewer
-│   └── *.md            # Article source files (rendered client-side)
+│   ├── index.html      # Post list (links to the generated post pages)
+│   ├── <slug>.html     # One generated page per post — GENERATED
+│   ├── blog.css        # Blog layout, shared by list and post pages
+│   ├── render.js       # The single Markdown renderer — browser and build
+│   ├── posts.json      # Slug list — GENERATED
+│   ├── images/         # Post images as JPG/PNG plus WebP siblings
+│   │   └── sizes.json  # Intrinsic image dimensions — GENERATED
+│   └── *.md            # Article source files — the only hand-written source
+├── design/             # Design-system reference sheets (noindex)
+├── admin/              # Local post editor (noindex)
+├── scripts/
+│   ├── build.mjs       # Derives posts.json, feed, sitemap, post pages
+│   ├── guard.mjs       # Checks derived files, design scales, images
+│   └── lib/            # Dependency-free helpers (image header reader)
+├── .github/
+│   └── workflows/      # guard.yml — runs scripts/guard.mjs on every push
 ├── fonts/
 │   └── fonts.css       # @font-face declarations
 ├── docs/               # Technical documentation (this directory)
+├── minigames-export/   # Standalone export of the NiklasOS mini-games
+├── package.json        # npm run build / npm run check — no dependencies
 ├── DESIGN.md           # Design system specification
 ├── CLAUDE.md           # AI assistant working rules
+├── README.md
+├── LICENSE
+├── NOTICE              # Third-party licences (fonts)
+├── CNAME               # Custom domain for GitHub Pages
+├── .nojekyll           # Serve files starting with an underscore
 ├── robots.txt          # Crawler rules (blocks AI scrapers)
-├── sitemap.xml
-└── feed.xml            # RSS feed
+├── sitemap.xml         # GENERATED
+└── feed.xml            # RSS feed — GENERATED
 ```
+
+Files marked GENERATED are written by `scripts/build.mjs` from `blog/*.md`.
+Do not edit them by hand; see [workflows.md](workflows.md) → *Generated files*.
 
 ## Two rendering layers
 

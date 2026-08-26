@@ -11,21 +11,33 @@
     base = '../';
   }
 
+  // Aktuelle Seite fuer aria-current. Hier zentral bestimmt statt auf jeder
+  // Seite von Hand ausgezeichnet — die Navigation entsteht ohnehin nur an
+  // dieser einen Stelle.
+  var current = 'home';
+  if (/\/full\//.test(path)) current = 'cv';
+  else if (/\/blog\//.test(path)) current = 'blog';
+  else if (/\/os\//.test(path)) current = 'os';
+
+  function mark(key) {
+    return current === key ? ' aria-current="page"' : '';
+  }
+
   // --- Navigation ---
   var navEl = document.getElementById('shared-nav');
   if (navEl) {
     navEl.outerHTML =
       '<nav role="navigation" aria-label="Hauptnavigation">' +
         '<div class="nav-inner">' +
-          '<a href="' + base + './" class="logo">' +
+          '<a href="' + base + './" class="logo"' + mark('home') + '>' +
             '<span class="logo-name">Niklas Fauteck</span>' +
             '<span class="logo-subtitle">Digital Transformation</span>' +
           '</a>' +
           '<ul>' +
-            '<li><a href="' + base + 'full/">CV</a></li>' +
+            '<li><a href="' + base + 'full/"' + mark('cv') + '>CV</a></li>' +
             '<li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener" data-overlay="academy">Vibecoding Academy</a></li>' +
-            '<li><a href="' + base + 'blog/">Blog</a></li>' +
-            '<li><a href="' + base + 'os/" data-overlay="os">OS</a></li>' +
+            '<li><a href="' + base + 'blog/"' + mark('blog') + '>Blog</a></li>' +
+            '<li><a href="' + base + 'os/" data-overlay="os"' + mark('os') + '>OS</a></li>' +
           '</ul>' +
           '<div class="mobile-toggle" aria-label="Menu Toggle">' +
             '<span></span><span></span><span></span>' +

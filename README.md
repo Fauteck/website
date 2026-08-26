@@ -60,15 +60,24 @@ Browser
   │     └── style.css
   │
   ├── /blog/                   Blog mit persönlichen Artikeln
-  │     ├── index.html
-  │     └── *.md               Artikel als Markdown
+  │     ├── index.html         Beitragsliste
+  │     ├── <slug>.html        Je Beitrag eine Seite (erzeugt)
+  │     └── *.md               Artikel als Markdown — die einzige Quelle
   │
   ├── style.css                CSS3 mit Custom Properties, Animationen, Responsive
   ├── script.js                Vanilla JS — Fenstermanager, Terminal, Spiele, Mobile-UI
+  ├── /scripts/                node scripts/build.mjs · node scripts/guard.mjs
   └── feed.xml                 RSS-Feed für Blog-Artikel
 ```
 
-Statische Website ohne Build-Prozess, ohne Backend, ohne Datenbank. Alle Inhalte werden clientseitig gerendert.
+Der vollständige, gegen das Repo geprüfte Verzeichnisbaum steht in
+[docs/architecture.md](docs/architecture.md) — hier bewusst nur die Übersicht,
+damit nicht zwei Bäume nebeneinander veralten.
+
+Statische Website ohne Backend und ohne Datenbank; ausgeliefert wird reines
+HTML, CSS und JavaScript. Die Beitragsseiten, der Feed, die Sitemap und die
+Slug-Liste werden aus `blog/*.md` abgeleitet (`node scripts/build.mjs`) und
+eingecheckt — der Webserver bekommt davon nichts mit.
 
 ---
 
@@ -77,7 +86,7 @@ Statische Website ohne Build-Prozess, ohne Backend, ohne Datenbank. Alle Inhalte
 | Anforderung | Details |
 |---|---|
 | Webserver | Beliebiger HTTP-Server (nginx, Apache, GitHub Pages, etc.) |
-| Node.js / npm | **Nicht erforderlich** — kein Build-Prozess |
+| Node.js | Nur zum Veröffentlichen eines Beitrags (`scripts/build.mjs`) und für den Guard — nicht zum Ausliefern. Ab Version 18, ohne Abhängigkeiten |
 | Browser | Moderner Browser mit ES6-Support (Chrome, Firefox, Safari, Edge) |
 
 ---
@@ -177,7 +186,12 @@ website/
 python3 -m http.server 8080
 ```
 
-Änderungen an HTML, CSS oder JS sind nach Browser-Reload sofort sichtbar — kein Build-Schritt erforderlich.
+Änderungen an HTML, CSS oder JS sind nach Browser-Reload sofort sichtbar.
+
+Nach einer Änderung an `blog/*.md` oder an den Bildern einmal
+`node scripts/build.mjs` laufen lassen — das erzeugt die Beitragsseiten, den
+Feed, die Sitemap und die Bildmaße neu. `node scripts/guard.mjs` prüft, ob
+alles zusammenpasst; derselbe Aufruf läuft in GitHub Actions bei jedem Push.
 
 ### Branching
 

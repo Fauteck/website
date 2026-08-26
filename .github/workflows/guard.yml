@@ -1,0 +1,27 @@
+# Rechnet bei jedem Push nach, was sonst niemand nachrechnet: ob die
+# abgeleiteten Dateien zum Bestand in blog/*.md passen, ob die CSS die Skalen
+# aus DESIGN.md einhaelt, ob jedes Bild Masse und eine WebP-Variante hat.
+#
+# Die ausgelieferte Seite bleibt build-frei — dieser Job baut nichts, er prueft
+# nur eingecheckte Dateien. Deshalb braucht er ausser Node auch nichts.
+name: guard
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Abgeleitete Dateien und Design-Skalen pruefen
+        run: node scripts/guard.mjs
