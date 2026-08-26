@@ -39,6 +39,7 @@
     body {
       line-height: 1.7;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -353,6 +354,9 @@
   </style>
 </head>
 <body>
+  <!-- Skip to content (Accessibility) -->
+  <a href="#inhalt" class="sr-only sr-only-focusable">Zum Inhalt springen</a>
+
   <div id="shared-nav"></div>
 
   <div class="container">
@@ -380,6 +384,7 @@
         </a>
       </div>
     </header>
+    <main id="inhalt">
 
     <section class="bio-card">
       <h2>Digitale Ideen werden Realität — mit Strategie, KI und dem richtigen Sparringspartner.</h2>
@@ -453,7 +458,21 @@
       </ul>
     </section>
 
-    <div id="shared-footer"></div>
+    </main>
+    <div id="shared-footer">
+      <!-- Statische Fassung: components.js ersetzt diesen Block per outerHTML.
+           Steht hier, damit die Pflichtangaben nicht am JavaScript haengen. -->
+      <footer class="footer">
+        <a href="kontakt.html" class="footer-contact">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        &middot;
+        <a href="datenschutz.html">Datenschutz</a>
+        &middot;
+        <a href="agb.html">AGB</a>
+        &middot;
+        <a href="NOTICE" target="_blank" rel="noopener">Open-Source-Lizenzen</a>
+      </footer>
+    </div>
   </div>
 
   <div id="shared-overlays"></div>

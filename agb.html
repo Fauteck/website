@@ -14,6 +14,7 @@
   <style>
     body {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
     }
@@ -88,10 +89,14 @@
   </style>
 </head>
 <body>
+  <!-- Skip to content (Accessibility) -->
+  <a href="#inhalt" class="sr-only sr-only-focusable">Zum Inhalt springen</a>
+
 
   <div id="shared-nav"></div>
 
-  <main class="container">
+  <main class="container" id="inhalt">
+    <h1>Allgemeine Geschäftsbedingungen</h1>
 
     <div class="card">
       <h2>§ 1 Geltungsbereich</h2>
@@ -182,7 +187,20 @@
 
   </main>
 
-  <div id="shared-footer"></div>
+  <div id="shared-footer">
+    <!-- Statische Fassung: components.js ersetzt diesen Block per outerHTML.
+         Steht hier, damit die Pflichtangaben nicht am JavaScript haengen. -->
+    <footer class="footer">
+      <a href="kontakt.html" class="footer-contact">Kontakt</a>
+      <a href="impressum.html">Impressum</a>
+      &middot;
+      <a href="datenschutz.html">Datenschutz</a>
+      &middot;
+      <a href="agb.html">AGB</a>
+      &middot;
+      <a href="NOTICE" target="_blank" rel="noopener">Open-Source-Lizenzen</a>
+    </footer>
+  </div>
   <div id="shared-overlays"></div>
   <script src="components.js"></script>
   <script src="shared.js"></script>

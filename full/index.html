@@ -825,6 +825,9 @@
     </style>
 </head>
 <body>
+  <!-- Skip to content (Accessibility) -->
+  <a href="#inhalt" class="sr-only sr-only-focusable">Zum Inhalt springen</a>
+
     <!-- Scroll Progress Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
     
@@ -856,6 +859,7 @@
         </a>
       </div>
     </header>
+    <main id="inhalt">
     
     <!-- Career Section -->
     <section id="career">
@@ -1365,7 +1369,21 @@
     -->
 
     <!-- Footer -->
-    <div id="shared-footer"></div>
+    </main>
+    <div id="shared-footer">
+      <!-- Statische Fassung: components.js ersetzt diesen Block per outerHTML.
+           Steht hier, damit die Pflichtangaben nicht am JavaScript haengen. -->
+      <footer class="footer">
+        <a href="../kontakt.html" class="footer-contact">Kontakt</a>
+        <a href="../impressum.html">Impressum</a>
+        &middot;
+        <a href="../datenschutz.html">Datenschutz</a>
+        &middot;
+        <a href="../agb.html">AGB</a>
+        &middot;
+        <a href="../NOTICE" target="_blank" rel="noopener">Open-Source-Lizenzen</a>
+      </footer>
+    </div>
     
     <script>
         // Scroll Progress Indicator
