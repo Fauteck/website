@@ -51,6 +51,8 @@ Dank grobem Verständnis, was damit ginge und was nicht, und mithilfe von Vibeco
 
 Es hängt per Bluetooth am Handy, das sowieso in der Hosentasche liegt. Zuhause, im Garten, unterwegs.
 
+![Die Sprachgerät-App auf dem Handy, dunkles Design. Oben Bereit mit MTU 247, darunter die Liste Zuletzt verstanden: Möhren auf die Einkaufsliste, eine angelegte Aufgabe, 8.848,86 Meter als Antwort auf die Mount-Everest-Frage, ein unkenntlich gemachter Eintrag und 7 mal 7 ist 49](images/sprachgeraet-am-handgelenk/bruecken-app-zuletzt-verstanden.png)
+
 ## Was das für ein Ding ist
 
 Ein M5Stick S3. Daumengroß, Display vorne, Mikrofon drin, Akku drin, eine Taste an der Seite. Armband-Kit und Revers-Clip gibt es dazu.
@@ -67,7 +69,7 @@ Wenn mir etwas nicht passt, ändere ich es selbst. Und wenn ich was kaputt mache
 
 ## Unser Maskottchen Tecki wohnt jetzt auf dem Display
 
-Die Firmware stammt aus einem Open-Source-Projekt, das ich geforkt habe. Ab Werk führt eine Katze einen auf dem Stick durch die Zustände: schläft, bereit, hört zu, denkt nach, spricht, Fehler. Süß. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.
+Die Firmware stammt aus einem [Open-Source-Projekt](https://github.com/78/voicestick), das ich geforkt habe. Ab Werk führt eine Katze einen auf dem Stick durch die Zustände: schläft, bereit, hört zu, denkt nach, spricht, Fehler. Süß. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.
 
 Also brauchte es noch Tecki, sozusagen Karl Klammer meiner Familien-App. Ein Häkchen mit Augen.
 

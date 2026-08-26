@@ -37,6 +37,7 @@
 <p>Kein Entsperren. Kein Chat suchen. Kein Zielen.</p>
 <p>Dank grobem Verst&#228;ndnis, was damit ginge und was nicht, und mithilfe von Vibecoding war das Ding an einem Tag auf Todoteck und die eigenen Bed&#252;rfnisse angepasst.</p>
 <p>Es h&#228;ngt per Bluetooth am Handy, das sowieso in der Hosentasche liegt. Zuhause, im Garten, unterwegs.</p>
+<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/bruecken-app-zuletzt-verstanden.png" alt="Die Sprachger&#228;t-App auf dem Handy, dunkles Design. Oben Bereit mit MTU 247, darunter die Liste Zuletzt verstanden: M&#246;hren auf die Einkaufsliste, eine angelegte Aufgabe, 8.848,86 Meter als Antwort auf die Mount-Everest-Frage, ein unkenntlich gemachter Eintrag und 7 mal 7 ist 49" /></p>
 <p><strong>Was das f&#252;r ein Ding ist</strong></p>
 <p>Ein M5Stick S3. Daumengro&#223;, Display vorne, Mikrofon drin, Akku drin, eine Taste an der Seite. Armband-Kit und Revers-Clip gibt es dazu.</p>
 <p>Das Entscheidende daran: das ist kein Produkt, das ist ein Development Kit. Es kommt mit einer Firmware ab Werk, und die darfst du wegwerfen.</p>
@@ -45,7 +46,7 @@
 <p>Bei einem Echo Dot oder einem Google-Lautsprecher bekomme ich genau die Funktionen, die vorgesehen sind. Und die Sprache geht an einen Server, der mir nicht geh&#246;rt. Hier l&#228;uft alles gegen unsere eigene Instanz.</p>
 <p>Wenn mir etwas nicht passt, &#228;ndere ich es selbst. Und wenn ich was kaputt mache, flashe ich neu.</p>
 <p><strong>Unser Maskottchen Tecki wohnt jetzt auf dem Display</strong></p>
-<p>Die Firmware stammt aus einem Open-Source-Projekt, das ich geforkt habe. Ab Werk f&#252;hrt eine Katze einen auf dem Stick durch die Zust&#228;nde: schl&#228;ft, bereit, h&#246;rt zu, denkt nach, spricht, Fehler. S&#252;&#223;. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.</p>
+<p>Die Firmware stammt aus einem <a href="https://github.com/78/voicestick">Open-Source-Projekt</a>, das ich geforkt habe. Ab Werk f&#252;hrt eine Katze einen auf dem Stick durch die Zust&#228;nde: schl&#228;ft, bereit, h&#246;rt zu, denkt nach, spricht, Fehler. S&#252;&#223;. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.</p>
 <p>Also brauchte es noch Tecki, sozusagen Karl Klammer meiner Familien-App. Ein H&#228;kchen mit Augen.</p>
 <p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-zustaende.png" alt="Teckis sechs Zust&#228;nde nebeneinander: Ruht auf dunklem Grund mit zZ und geschlossenen Augen, Bereit mit offenen Augen, H&#246;rt zu leicht aufgerichtet mit Schallwellen, Denkt nach mit Blick nach oben und drei Punkten, Antwortet mit Mund und Pegelbalken, Fehler rot gekippt mit Kreuzen als Augen" /></p>
 <p>Nur dass er nie fragt, ob man einen Brief schreiben m&#246;chte.</p>
