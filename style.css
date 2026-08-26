@@ -2652,16 +2652,6 @@ kbd.search-esc {
 /* ───────────────────────────────────────────────────
    UTILITY
 ─────────────────────────────────────────────────── */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
 /* ───────────────────────────────────────────────────
    MOBILE APP CONTENT STYLES
 ─────────────────────────────────────────────────── */
@@ -5353,6 +5343,81 @@ kbd.search-esc {
 }
 .tb-contact-btn svg {
   flex-shrink: 0;
+}
+
+/* ───────────────────────────────────────────────────
+   PFLICHTANGABEN (§5 DDG)
+   Taskleiste traegt sie am Desktop, der Footer unter
+   768px — dort ist #taskbar ausgeblendet.
+─────────────────────────────────────────────────── */
+.tb-legal {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.tb-legal a {
+  color: rgba(212, 237, 226, 0.72);
+  text-decoration: none;
+  padding: 2px 3px;
+  border-radius: 3px;
+  transition: color 0.15s;
+}
+.tb-legal a:hover {
+  color: var(--accent-light);
+}
+.tb-legal span {
+  color: rgba(212, 237, 226, 0.35);
+}
+
+.login-legal,
+.lock-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 11px;
+}
+.login-legal a,
+.lock-legal a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  padding: 3px 2px;
+  transition: color 0.15s;
+}
+.login-legal a:hover,
+.lock-legal a:hover {
+  color: var(--accent-light);
+}
+.login-legal span,
+.lock-legal span {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+#os-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 8px 12px max(10px, env(safe-area-inset-bottom, 10px));
+  background: rgba(8, 12, 18, 0.82);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font-ui);
+  font-size: 11px;
+}
+#os-legal a {
+  color: rgba(255, 255, 255, 0.68);
+  text-decoration: none;
+  padding: 3px 2px;
+}
+#os-legal a:hover {
+  color: var(--accent-light);
+}
+#os-legal span {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 /* ───────────────────────────────────────────────────

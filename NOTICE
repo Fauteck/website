@@ -3,7 +3,9 @@ THIRD-PARTY NOTICES
 
 This website (niklasfauteck.de) includes third-party font assets that are
 distributed to end users as WOFF2 files under their respective open-source
-licenses. All other content, code, and design is proprietary.
+licenses, and third-party agent skills that ship in the repository as
+development tooling (not served to visitors). All other content, code, and
+design is proprietary.
 
 ────────────────────────────────────────────────────────────────────────────────
 IBM Plex Sans
@@ -31,6 +33,22 @@ Files:
   fonts/jetbrains-mono-latin-400-normal.woff2
   fonts/jetbrains-mono-latin-500-normal.woff2
   fonts/jetbrains-mono-latin-600-normal.woff2
+
+────────────────────────────────────────────────────────────────────────────────
+taste-skill (agent skills, development tooling only)
+────────────────────────────────────────────────────────────────────────────────
+Copyright (c) 2026 Leonxlnx
+(https://github.com/Leonxlnx/taste-skill)
+
+Licensed under the MIT License.
+Full license text: see .claude/skills/LICENSE-taste-skill
+
+Files:
+  .claude/skills/design-taste-frontend/SKILL.md
+  .claude/skills/redesign-existing-projects/SKILL.md
+
+These files are read by AI coding assistants during development. They are not
+part of the deployed site and are never served to visitors.
 
 ────────────────────────────────────────────────────────────────────────────────
 All other content
