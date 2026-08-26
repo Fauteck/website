@@ -25,12 +25,15 @@
 <p>Ich scrolle abends durch LinkedIn. Ein Beitrag von Tristan Behrens, der so einen kleinen Handheld in die Kamera h&#228;lt. Sprechtaste dr&#252;cken, Frage stellen, seine KI antwortet.</p>
 <p>Mein erster Gedanke: ey, das kann ich doch auch gut an meine eigene Familien-App anbinden.</p>
 <p>Ein paar Abende sp&#228;ter liegt das Ding hier. Mit Armband.</p>
+<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-armband.jpg" alt="Der kleine Stick an einem orangen Armband auf meinem Handgelenk. Auf dem Display der gr&#252;ne Todoteck-Haken mit zwei Augen, darunter steht Bereit und Halten zum Sprechen" /></p>
 <p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-armband.jpg" alt="Der kleine Stick am Armband, auf dem Display schaut Tecki nach oben, darunter steht die Antwort" /></p>
 <p><strong>Wie sich das anf&#252;hlt</strong></p>
 <p>Taste dr&#252;cken.<br />Reinsprechen.<br />Loslassen.<br />Lesen.</p>
 <p>&#8222;Zahnpasta.&#8220; Steht auf der Einkaufsliste.</p>
 <p>&#8222;Erinner mich dran, Montag beim Kinderarzt anzurufen.&#8220; Steht als Aufgabe drin.</p>
 <p>&#8222;Wie hoch ist der Mount Everest?&#8220; Steht als Antwort auf dem Display, nach gut zwei Sekunden.</p>
+<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/stick-antwort-einkaufsliste.jpg" alt="Nahaufnahme des Sticks am Handgelenk. Auf dem Display steht in gro&#223;er Schrift: Auf Einkaufsliste gesetzt, M&#246;hren, jetzt 12 offene Eintr&#228;ge" /></p>
+<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/einkaufsliste-todoteck.png" alt="Die Einkaufsliste in der Todoteck-App auf dem Handy, ein Kachelraster mit Emojis, M&#246;hren steht zwischen Zahnpasta und Waschmittel" /></p>
 <p>Kein Entsperren. Kein Chat suchen. Kein Zielen.</p>
 <p>Dank grobem Verst&#228;ndnis, was damit ginge und was nicht, und mithilfe von Vibecoding war das Ding an einem Tag auf Todoteck und die eigenen Bed&#252;rfnisse angepasst.</p>
 <p>Es h&#228;ngt per Bluetooth am Handy, das sowieso in der Hosentasche liegt. Zuhause, im Garten, unterwegs.</p>
@@ -44,6 +47,7 @@
 <p><strong>Unser Maskottchen Tecki wohnt jetzt auf dem Display</strong></p>
 <p>Die Firmware stammt aus einem Open-Source-Projekt, das ich geforkt habe. Ab Werk f&#252;hrt eine Katze einen auf dem Stick durch die Zust&#228;nde: schl&#228;ft, bereit, h&#246;rt zu, denkt nach, spricht, Fehler. S&#252;&#223;. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.</p>
 <p>Also brauchte es noch Tecki, sozusagen Karl Klammer meiner Familien-App. Ein H&#228;kchen mit Augen.</p>
+<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-zustaende.png" alt="Teckis sechs Zust&#228;nde nebeneinander: Ruht auf dunklem Grund mit zZ und geschlossenen Augen, Bereit mit offenen Augen, H&#246;rt zu leicht aufgerichtet mit Schallwellen, Denkt nach mit Blick nach oben und drei Punkten, Antwortet mit Mund und Pegelbalken, Fehler rot gekippt mit Kreuzen als Augen" /></p>
 <p>Nur dass er nie fragt, ob man einen Brief schreiben m&#246;chte.</p>
 <p><strong>Weiterlesen</strong></p>
 <ul>

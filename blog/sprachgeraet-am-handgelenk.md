@@ -23,6 +23,8 @@ Mein erster Gedanke: ey, das kann ich doch auch gut an meine eigene Familien-App
 
 Ein paar Abende später liegt das Ding hier. Mit Armband.
 
+![Der kleine Stick an einem orangen Armband auf meinem Handgelenk. Auf dem Display der grüne Todoteck-Haken mit zwei Augen, darunter steht Bereit und Halten zum Sprechen](images/sprachgeraet-am-handgelenk/tecki-armband.jpg)
+
 ## Wie sich das anfühlt
 
 Taste drücken.
@@ -38,6 +40,10 @@ Lesen.
 „Erinner mich dran, Montag beim Kinderarzt anzurufen." Steht als Aufgabe drin.
 
 „Wie hoch ist der Mount Everest?" Steht als Antwort auf dem Display, nach gut zwei Sekunden.
+
+![Nahaufnahme des Sticks am Handgelenk. Auf dem Display steht in großer Schrift: Auf Einkaufsliste gesetzt, Möhren, jetzt 12 offene Einträge](images/sprachgeraet-am-handgelenk/stick-antwort-einkaufsliste.jpg)
+
+![Die Einkaufsliste in der Todoteck-App auf dem Handy, ein Kachelraster mit Emojis, Möhren steht zwischen Zahnpasta und Waschmittel](images/sprachgeraet-am-handgelenk/einkaufsliste-todoteck.png)
 
 Kein Entsperren. Kein Chat suchen. Kein Zielen.
 
@@ -64,6 +70,8 @@ Wenn mir etwas nicht passt, ändere ich es selbst. Und wenn ich was kaputt mache
 Die Firmware stammt aus einem Open-Source-Projekt, das ich geforkt habe. Ab Werk führt eine Katze einen auf dem Stick durch die Zustände: schläft, bereit, hört zu, denkt nach, spricht, Fehler. Süß. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.
 
 Also brauchte es noch Tecki, sozusagen Karl Klammer meiner Familien-App. Ein Häkchen mit Augen.
+
+![Teckis sechs Zustände nebeneinander: Ruht auf dunklem Grund mit zZ und geschlossenen Augen, Bereit mit offenen Augen, Hört zu leicht aufgerichtet mit Schallwellen, Denkt nach mit Blick nach oben und drei Punkten, Antwortet mit Mund und Pegelbalken, Fehler rot gekippt mit Kreuzen als Augen](images/sprachgeraet-am-handgelenk/tecki-zustaende.png)
 
 Nur dass er nie fragt, ob man einen Brief schreiben möchte.
 
