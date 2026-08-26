@@ -78,7 +78,7 @@
       var imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)\s*$/);
       if (imgMatch) {
         closeList();
-        html.push('<figure class="post-figure"><img src="' + imgMatch[2] + '" alt="' + imgMatch[1] + '" loading="lazy"></figure>');
+        html.push('<figure class="post-figure">' + imageTag(imgMatch[2], imgMatch[1]) + '</figure>');
         continue;
       }
 
@@ -161,6 +161,35 @@
   }
 
   // ISO-Datum (YYYY-MM-DD) → DD.MM.YYYY. Andere Formate unverändert zurück.
+  // Bildmasse. Ohne width/height schiebt jedes nachladende Bild das Layout
+  // (CLS). Der Browser kann die Masse nicht kennen, bevor das Bild da ist —
+  // deshalb liefert scripts/build.mjs sie als blog/images/sizes.json mit.
+  var imageSizes = {};
+
+  function setImageSizes(map) {
+    imageSizes = map || {};
+  }
+
+  // Pfad auf die Form normalisieren, in der sizes.json die Schluessel fuehrt:
+  // relativ zu blog/. Der OS-Layer laedt dieselben Bilder als "blog/images/…".
+  function sizeKey(src) {
+    return String(src || '').replace(/^\.\.\/blog\//, '').replace(/^blog\//, '');
+  }
+
+  function imageAttrs(src) {
+    var d = imageSizes[sizeKey(src)];
+    return d ? ' width="' + d[0] + '" height="' + d[1] + '"' : '';
+  }
+
+  // <picture> mit WebP-Quelle. Fehlt die .webp-Datei, faellt der Browser still
+  // auf das <img> zurueck — scripts/guard.mjs sorgt dafuer, dass sie nicht fehlt.
+  function imageTag(src, alt) {
+    var img = '<img src="' + src + '" alt="' + alt + '"' + imageAttrs(src) + ' loading="lazy">';
+    if (!/\.(jpe?g|png)$/i.test(src)) return img;
+    return '<picture><source srcset="' + src.replace(/\.(jpe?g|png)$/i, '.webp') +
+      '" type="image/webp">' + img + '</picture>';
+  }
+
   function formatDateDE(iso) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((iso || '').trim());
     if (!m) return iso || '';
@@ -183,6 +212,9 @@
     renderMarkdown: renderMarkdown,
     parseFrontmatter: parseFrontmatter,
     formatDateDE: formatDateDE,
-    slugify: slugify
+    slugify: slugify,
+    setImageSizes: setImageSizes,
+    imageAttrs: imageAttrs,
+    imageTag: imageTag
   };
 })(typeof window !== 'undefined' ? window : this);

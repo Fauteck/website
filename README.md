@@ -68,7 +68,10 @@ Browser
   └── feed.xml                 RSS-Feed für Blog-Artikel
 ```
 
-Statische Website ohne Build-Prozess, ohne Backend, ohne Datenbank. Alle Inhalte werden clientseitig gerendert.
+Statische Website ohne Backend und ohne Datenbank; ausgeliefert wird reines
+HTML, CSS und JavaScript. Die Beitragsseiten, der Feed, die Sitemap und die
+Slug-Liste werden aus `blog/*.md` abgeleitet (`node scripts/build.mjs`) und
+eingecheckt — der Webserver bekommt davon nichts mit.
 
 ---
 
@@ -77,7 +80,7 @@ Statische Website ohne Build-Prozess, ohne Backend, ohne Datenbank. Alle Inhalte
 | Anforderung | Details |
 |---|---|
 | Webserver | Beliebiger HTTP-Server (nginx, Apache, GitHub Pages, etc.) |
-| Node.js / npm | **Nicht erforderlich** — kein Build-Prozess |
+| Node.js | Nur zum Veröffentlichen eines Beitrags (`scripts/build.mjs`) und für den Guard — nicht zum Ausliefern. Ab Version 18, ohne Abhängigkeiten |
 | Browser | Moderner Browser mit ES6-Support (Chrome, Firefox, Safari, Edge) |
 
 ---
@@ -177,7 +180,12 @@ website/
 python3 -m http.server 8080
 ```
 
-Änderungen an HTML, CSS oder JS sind nach Browser-Reload sofort sichtbar — kein Build-Schritt erforderlich.
+Änderungen an HTML, CSS oder JS sind nach Browser-Reload sofort sichtbar.
+
+Nach einer Änderung an `blog/*.md` oder an den Bildern einmal
+`node scripts/build.mjs` laufen lassen — das erzeugt die Beitragsseiten, den
+Feed, die Sitemap und die Bildmaße neu. `node scripts/guard.mjs` prüft, ob
+alles zusammenpasst; derselbe Aufruf läuft in GitHub Actions bei jedem Push.
 
 ### Branching
 

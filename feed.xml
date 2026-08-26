@@ -10,7 +10,7 @@
 
     <item>
       <title>Der Knopf am Handgelenk</title>
-      <link>https://niklasfauteck.de/blog/#sprachgeraet-am-handgelenk</link>
+      <link>https://niklasfauteck.de/blog/sprachgeraet-am-handgelenk.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#sprachgeraet-am-handgelenk</guid>
       <pubDate>Wed, 26 Aug 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -19,52 +19,52 @@
       <category>Maker</category>
       <description><![CDATA[
 <p>Todoteck ist unsere Familien-App. Aufgaben, Notizen, Einkaufsliste, alles selbst gehostet.</p>
-<p>Dazu gibt es seit einer Weile einen Telegram-Bot. Sprachnachricht rein, Eintrag raus. F&#252;r Aylin mit ihrer Teilquerschnittsl&#228;hmung schon eine Erleichterung, nicht alles in die App tippen zu m&#252;ssen, denn ihre H&#228;nde machen nicht immer das, was sie sollen.</p>
-<p>Aber geht es nicht sogar noch leichter statt erst das Handy rauszuholen, es zu entsperren und im Telegram-Chat die Sprachnachricht zu starten? Ein echter Knopf w&#228;re was.</p>
-<p><strong>Der Ansto&#223; kam aus der Timeline</strong></p>
-<p>Ich scrolle abends durch LinkedIn. Ein Beitrag von Tristan Behrens, der so einen kleinen Handheld in die Kamera h&#228;lt. Sprechtaste dr&#252;cken, Frage stellen, seine KI antwortet.</p>
+<p>Dazu gibt es seit einer Weile einen Telegram-Bot. Sprachnachricht rein, Eintrag raus. Für Aylin mit ihrer Teilquerschnittslähmung schon eine Erleichterung, nicht alles in die App tippen zu müssen, denn ihre Hände machen nicht immer das, was sie sollen.</p>
+<p>Aber geht es nicht sogar noch leichter statt erst das Handy rauszuholen, es zu entsperren und im Telegram-Chat die Sprachnachricht zu starten? Ein echter Knopf wäre was.</p>
+<h2>Der Anstoß kam aus der Timeline</h2>
+<p>Ich scrolle abends durch LinkedIn. Ein Beitrag von Tristan Behrens, der so einen kleinen Handheld in die Kamera hält. Sprechtaste drücken, Frage stellen, seine KI antwortet.</p>
 <p>Mein erster Gedanke: ey, das kann ich doch auch gut an meine eigene Familien-App anbinden.</p>
-<p>Ein paar Abende sp&#228;ter liegt das Ding hier. Mit Armband.</p>
-<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-armband.jpg" alt="Der kleine Stick an einem orangen Armband auf meinem Handgelenk. Auf dem Display der gr&#252;ne Todoteck-Haken mit zwei Augen, darunter steht Bereit und Halten zum Sprechen" /></p>
-<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-armband.jpg" alt="Der kleine Stick am Armband, auf dem Display schaut Tecki nach oben, darunter steht die Antwort" /></p>
-<p><strong>Wie sich das anf&#252;hlt</strong></p>
-<p>Taste dr&#252;cken.<br />Reinsprechen.<br />Loslassen.<br />Lesen.</p>
-<p>&#8222;Zahnpasta.&#8220; Steht auf der Einkaufsliste.</p>
-<p>&#8222;Erinner mich dran, Montag beim Kinderarzt anzurufen.&#8220; Steht als Aufgabe drin.</p>
-<p>&#8222;Wie hoch ist der Mount Everest?&#8220; Steht als Antwort auf dem Display, nach gut zwei Sekunden.</p>
-<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/stick-antwort-einkaufsliste.jpg" alt="Nahaufnahme des Sticks am Handgelenk. Auf dem Display steht in gro&#223;er Schrift: Auf Einkaufsliste gesetzt, M&#246;hren, jetzt 12 offene Eintr&#228;ge" /></p>
-<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/einkaufsliste-todoteck.png" alt="Die Einkaufsliste in der Todoteck-App auf dem Handy, ein Kachelraster mit Emojis, M&#246;hren steht zwischen Zahnpasta und Waschmittel" /></p>
+<p>Ein paar Abende später liegt das Ding hier. Mit Armband.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-armband.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-armband.jpg" alt="Der kleine Stick an einem orangen Armband auf meinem Handgelenk. Auf dem Display der grüne Todoteck-Haken mit zwei Augen, darunter steht Bereit und Halten zum Sprechen" width="1400" height="1867" loading="lazy"></picture></figure>
+<h2>Wie sich das anfühlt</h2>
+<p>Taste drücken.</p>
+<p>Reinsprechen.</p>
+<p>Loslassen.</p>
+<p>Lesen.</p>
+<p>„Zahnpasta." Steht auf der Einkaufsliste.</p>
+<p>„Erinner mich dran, Montag beim Kinderarzt anzurufen." Steht als Aufgabe drin.</p>
+<p>„Wie hoch ist der Mount Everest?" Steht als Antwort auf dem Display, nach gut zwei Sekunden.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/stick-antwort-einkaufsliste.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/stick-antwort-einkaufsliste.jpg" alt="Nahaufnahme des Sticks am Handgelenk. Auf dem Display steht in großer Schrift: Auf Einkaufsliste gesetzt, Möhren, jetzt 12 offene Einträge" width="1400" height="1867" loading="lazy"></picture></figure>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/einkaufsliste-todoteck.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/einkaufsliste-todoteck.png" alt="Die Einkaufsliste in der Todoteck-App auf dem Handy, ein Kachelraster mit Emojis, Möhren steht zwischen Zahnpasta und Waschmittel" width="760" height="1706" loading="lazy"></picture></figure>
 <p>Kein Entsperren. Kein Chat suchen. Kein Zielen.</p>
-<p>Dank grobem Verst&#228;ndnis, was damit ginge und was nicht, und mithilfe von Vibecoding war das Ding an einem Tag auf Todoteck und die eigenen Bed&#252;rfnisse angepasst.</p>
-<p>Es h&#228;ngt per Bluetooth am Handy, das sowieso in der Hosentasche liegt. Zuhause, im Garten, unterwegs.</p>
-<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/bruecken-app-zuletzt-verstanden.png" alt="Die Sprachger&#228;t-App auf dem Handy, dunkles Design. Oben Bereit mit MTU 247, darunter die Liste Zuletzt verstanden: M&#246;hren auf die Einkaufsliste, eine angelegte Aufgabe, 8.848,86 Meter als Antwort auf die Mount-Everest-Frage, ein unkenntlich gemachter Eintrag und 7 mal 7 ist 49" /></p>
-<p><strong>Was das f&#252;r ein Ding ist</strong></p>
-<p>Ein M5Stick S3. Daumengro&#223;, Display vorne, Mikrofon drin, Akku drin, eine Taste an der Seite. Armband-Kit und Revers-Clip gibt es dazu.</p>
+<p>Dank grobem Verständnis, was damit ginge und was nicht, und mithilfe von Vibecoding war das Ding an einem Tag auf Todoteck und die eigenen Bedürfnisse angepasst.</p>
+<p>Es hängt per Bluetooth am Handy, das sowieso in der Hosentasche liegt. Zuhause, im Garten, unterwegs.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/bruecken-app-zuletzt-verstanden.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/bruecken-app-zuletzt-verstanden.png" alt="Die Sprachgerät-App auf dem Handy, dunkles Design. Oben Bereit mit MTU 247, darunter die Liste Zuletzt verstanden: Möhren auf die Einkaufsliste, eine angelegte Aufgabe, 8.848,86 Meter als Antwort auf die Mount-Everest-Frage, ein unkenntlich gemachter Eintrag und 7 mal 7 ist 49" width="760" height="1706" loading="lazy"></picture></figure>
+<h2>Was das für ein Ding ist</h2>
+<p>Ein M5Stick S3. Daumengroß, Display vorne, Mikrofon drin, Akku drin, eine Taste an der Seite. Armband-Kit und Revers-Clip gibt es dazu.</p>
 <p>Das Entscheidende daran: das ist kein Produkt, das ist ein Development Kit. Es kommt mit einer Firmware ab Werk, und die darfst du wegwerfen.</p>
 <p>USB dran, eigene Firmware drauf, fertig.</p>
-<p>Kein Konto. Keine Cloud. Und keine App, die mir sagt, was mein Ger&#228;t darf.</p>
-<p>Bei einem Echo Dot oder einem Google-Lautsprecher bekomme ich genau die Funktionen, die vorgesehen sind. Und die Sprache geht an einen Server, der mir nicht geh&#246;rt. Hier l&#228;uft alles gegen unsere eigene Instanz.</p>
-<p>Wenn mir etwas nicht passt, &#228;ndere ich es selbst. Und wenn ich was kaputt mache, flashe ich neu.</p>
-<p><strong>Unser Maskottchen Tecki wohnt jetzt auf dem Display</strong></p>
-<p>Die Firmware stammt aus einem <a href="https://github.com/78/voicestick">Open-Source-Projekt</a>, das ich geforkt habe. Ab Werk f&#252;hrt eine Katze einen auf dem Stick durch die Zust&#228;nde: schl&#228;ft, bereit, h&#246;rt zu, denkt nach, spricht, Fehler. S&#252;&#223;. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.</p>
-<p>Also brauchte es noch Tecki, sozusagen Karl Klammer meiner Familien-App. Ein H&#228;kchen mit Augen.</p>
-<p><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-zustaende.png" alt="Teckis sechs Zust&#228;nde nebeneinander: Ruht auf dunklem Grund mit zZ und geschlossenen Augen, Bereit mit offenen Augen, H&#246;rt zu leicht aufgerichtet mit Schallwellen, Denkt nach mit Blick nach oben und drei Punkten, Antwortet mit Mund und Pegelbalken, Fehler rot gekippt mit Kreuzen als Augen" /></p>
-<p>Nur dass er nie fragt, ob man einen Brief schreiben m&#246;chte.</p>
-<p><strong>Weiterlesen</strong></p>
+<p>Kein Konto. Keine Cloud. Und keine App, die mir sagt, was mein Gerät darf.</p>
+<p>Bei einem Echo Dot oder einem Google-Lautsprecher bekomme ich genau die Funktionen, die vorgesehen sind. Und die Sprache geht an einen Server, der mir nicht gehört. Hier läuft alles gegen unsere eigene Instanz.</p>
+<p>Wenn mir etwas nicht passt, ändere ich es selbst. Und wenn ich was kaputt mache, flashe ich neu.</p>
+<h2>Unser Maskottchen Tecki wohnt jetzt auf dem Display</h2>
+<p>Die Firmware stammt aus einem <a href="https://github.com/78/voicestick" target="_blank" rel="noopener">Open-Source-Projekt</a>, das ich geforkt habe. Ab Werk führt eine Katze einen auf dem Stick durch die Zustände: schläft, bereit, hört zu, denkt nach, spricht, Fehler. Süß. Aber Todoteck hat ja nur einen Erledigt-Haken als Logo und nirgends eine Katze.</p>
+<p>Also brauchte es noch Tecki, sozusagen Karl Klammer meiner Familien-App. Ein Häkchen mit Augen.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-zustaende.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/sprachgeraet-am-handgelenk/tecki-zustaende.png" alt="Teckis sechs Zustände nebeneinander: Ruht auf dunklem Grund mit zZ und geschlossenen Augen, Bereit mit offenen Augen, Hört zu leicht aufgerichtet mit Schallwellen, Denkt nach mit Blick nach oben und drei Punkten, Antwortet mit Mund und Pegelbalken, Fehler rot gekippt mit Kreuzen als Augen" width="1400" height="709" loading="lazy"></picture></figure>
+<p>Nur dass er nie fragt, ob man einen Brief schreiben möchte.</p>
+<h2>Weiterlesen</h2>
 <ul>
-<li><a href="https://niklasfauteck.de/blog/#einfach-reinquatschen">Einfach reinquatschen</a> &#8212; der Telegram-Bot, aus dem der Stick hervorgegangen ist</li>
-<li><a href="https://niklasfauteck.de/blog/#todoteck">Todoteck: Vibecoding f&#252;r die Familie</a> &#8212; wie die App &#252;berhaupt entstanden ist</li>
-<li><a href="https://niklasfauteck.de/blog/#todoteck-mcp">Todoteck: API, MCP und der Alltag</a> &#8212; Schnittstellen, E-Ink-Display und die anderen Wege in die App</li>
-<li><a href="https://www.linkedin.com/posts/dr-tristan-behrens-734967a2_wer-einmal-mit-esp32-angefangen-hat-h%C3%B6rt-activity-7492655105989582848-cUk-">Der Beitrag von Tristan Behrens auf LinkedIn</a>, der den Ansto&#223; gegeben hat</li>
+<li><a href="https://niklasfauteck.de/blog/#einfach-reinquatschen" target="_blank" rel="noopener">Einfach reinquatschen</a> — der Telegram-Bot, aus dem der Stick hervorgegangen ist</li>
+<li><a href="https://niklasfauteck.de/blog/#todoteck" target="_blank" rel="noopener">Todoteck: Vibecoding für die Familie</a> — wie die App überhaupt entstanden ist</li>
+<li><a href="https://niklasfauteck.de/blog/#todoteck-mcp" target="_blank" rel="noopener">Todoteck: API, MCP und der Alltag</a> — Schnittstellen, E-Ink-Display und die anderen Wege in die App</li>
+<li><a href="https://www.linkedin.com/posts/dr-tristan-behrens-734967a2_wer-einmal-mit-esp32-angefangen-hat-h%C3%B6rt-activity-7492655105989582848-cUk-" target="_blank" rel="noopener">Der Beitrag von Tristan Behrens auf LinkedIn</a>, der den Anstoß gegeben hat</li>
 </ul>
-]]></description>
+      ]]></description>
     </item>
-
-
 
     <item>
       <title>Einfach reinquatschen</title>
-      <link>https://niklasfauteck.de/blog/#einfach-reinquatschen</link>
+      <link>https://niklasfauteck.de/blog/einfach-reinquatschen.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#einfach-reinquatschen</guid>
       <pubDate>Sun, 09 Aug 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -77,26 +77,26 @@
 <p>Ihr Wunsch war simpel: das einfach irgendwo reinquatschen. Fertig.</p>
 <p>Also habe ich den niedrigschwelligsten Weg gesucht, den ich finden konnte: einen Chat. Telegram kann Sprachnachrichten und einen Bot kann man da einfach reinsetzen.</p>
 <p>Heute geht das so: Sprachnachricht an den Bot. "Rewe, dreiundvierzig achtzig." Der Bot transkribiert, versteht, dass das eine Quittung ist, und fragt nach der Aufteilung. Knöpfe drücken, bestätigen, steht im Kassenbuch.</p>
-<p><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung.png" alt="Telegram-Chat mit dem Todoteck-Bot: Nachricht Quittung dm 2 Euro, der Bot zeigt Betrag und Datum und fragt nach der Aufteilung, darunter Knöpfe für Standard-Split, 50/50, 100 Prozent Gemeinschaft, Kein Split und Verwerfen" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung.png" alt="Telegram-Chat mit dem Todoteck-Bot: Nachricht Quittung dm 2 Euro, der Bot zeigt Betrag und Datum und fragt nach der Aufteilung, darunter Knöpfe für Standard-Split, 50/50, 100 Prozent Gemeinschaft, Kein Split und Verwerfen" width="1037" height="835" loading="lazy"></picture></figure>
 <p>Oder noch fauler: Foto vom Kassenbon schicken. Ein Vision-Modell liest Betrag, Händler, Datum und Kategorie raus. Der Rest ist derselbe Bestätigungs-Dialog.</p>
 <p>Bei Geld gibt es übrigens immer eine Bestätigung. Immer. Transkription verwechselt "vierzehn neunzig" und "vierzig neunzig" zu leicht. Der Bot bucht nie, ohne dass jemand draufgetippt hat.</p>
-<p><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung-pruefen.png" alt="Telegram-Chat mit dem Todoteck-Bot: Zusammenfassung Quittung prüfen mit Betrag, Zweck, Datum, Bezahler und Aufteilung, darunter die Knöpfe Buchen und Verwerfen" /></p>
-<p><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung-gebucht.png" alt="Android-Benachrichtigung von Telegram: Todoteck meldet Quittung gebucht, 2 Euro bei dm, 100 Prozent Gemeinschaft" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung-pruefen.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung-pruefen.png" alt="Telegram-Chat mit dem Todoteck-Bot: Zusammenfassung Quittung prüfen mit Betrag, Zweck, Datum, Bezahler und Aufteilung, darunter die Knöpfe Buchen und Verwerfen" width="1080" height="1192" loading="lazy"></picture></figure>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung-gebucht.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-quittung-gebucht.png" alt="Android-Benachrichtigung von Telegram: Todoteck meldet Quittung gebucht, 2 Euro bei dm, 100 Prozent Gemeinschaft" width="1080" height="541" loading="lazy"></picture></figure>
 <p>Und dann ist passiert, was bei solchen Projekten immer passiert. Der Kanal war da, also wanderte mehr rein.</p>
 <p>Aufgaben in unserer Familien-App Todoteck anlegen: "Erinnere mich morgen an den Sperrmüll." Notizen diktieren. Beides legt der Bot direkt an, mit Rückgängig-Knopf, falls es Quatsch war.</p>
-<p><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-aufgabe.png" alt="Telegram-Chat mit dem Todoteck-Bot: Sprachnachricht geschickt, der Bot hat die Aufgabe Frühstücken mit Fälligkeit angelegt, darunter Knöpfe für Rückgängig und Dringend" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-aufgabe.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/einfach-reinquatschen/telegram-bot-aufgabe.png" alt="Telegram-Chat mit dem Todoteck-Bot: Sprachnachricht geschickt, der Bot hat die Aufgabe Frühstücken mit Fälligkeit angelegt, darunter Knöpfe für Rückgängig und Dringend" width="1079" height="828" loading="lazy"></picture></figure>
 <p>Die Einkaufsliste. "Setz Milch und Butter auf die Liste." Und im Laden zeigt der Bot die offenen Einträge als Knöpfe, einer pro Artikel. Abhaken direkt im Chat, die Nachricht aktualisiert sich selbst, statt die Liste nach oben zu schieben.</p>
 <p>Fragen geht auch. Was steht heute an? Was waren die letzten Ausgaben? Wer schuldet wem wie viel diesen Monat? Der Bot holt die Antwort aus den echten Daten.</p>
 <p>Und in die Gegenrichtung ist der Chat ein Benachrichtigungskanal. Aufgabe fällig? Nachricht mit Erledigt-Knopf. Sync kaputt? Nachricht mit Nochmal-versuchen-Knopf.</p>
 <p>Das Schöne daran: der Bot ist keine neue App. Er ist nur ein weiterer Eingang in das, was eh schon da ist. Darunter liegt exakt dasselbe wie unter der Web-App. Services, Rechte, Datenbank. Vorne dran ein LLM, das aus gesprochenen Sätzen strukturierte Absichten macht.</p>
 <p>Gebaut für ein Problem: Quittung liegt rum, Eintragen nervt.</p>
 <p>Und jetzt läuft die halbe Alltagsorganisation easy durch einen Chat.</p>
-]]></description>
+      ]]></description>
     </item>
 
     <item>
       <title>Das Fundament, das keiner sieht</title>
-      <link>https://niklasfauteck.de/blog/#das-fundament-das-keiner-sieht</link>
+      <link>https://niklasfauteck.de/blog/das-fundament-das-keiner-sieht.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#das-fundament-das-keiner-sieht</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
@@ -106,7 +106,7 @@
       <description><![CDATA[
 <p>Seit letzter Woche steht im Keller ein richtiger Serverschrank: Abschließbar, belüftet, fest an der Wand.</p>
 <p>Kein Ikea-Regal mehr. Kein Kabelsalat auf dem Boden, der nach gescheitertem Bastelprojekt aussieht.</p>
-<p><img src="https://niklasfauteck.de/blog/images/das-fundament-das-keiner-sieht/serverschrank-keller.jpg" alt="Der neue Serverschrank an der Kellerwand, Tür geöffnet: Switch, Patchfeld und NAS-Gehäuse sauber verkabelt, daneben eine Steckdosenleiste mit Überspannungsschutz." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/das-fundament-das-keiner-sieht/serverschrank-keller.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/das-fundament-das-keiner-sieht/serverschrank-keller.jpg" alt="Der neue Serverschrank an der Kellerwand, Tür geöffnet: Switch, Patchfeld und NAS-Gehäuse sauber verkabelt, daneben eine Steckdosenleiste mit Überspannungsschutz." width="1600" height="1200" loading="lazy"></picture></figure>
 <p>Drin läuft jetzt alles zentral: Router, Switch, Patchfeld, Server und mein NAS. Plus das NAS eines Kumpels. Er hostet sein Backup bei mir, ich meins bei ihm. 3-2-1-Backup-Strategie im Reallife: Wenn bei einem von uns die Hütte brennt, sind die Daten beim anderen sicher.</p>
 <p>Dazu gab es gleich noch Cat7-Kabel durch den alten Kaminschacht. Gefühlt eine kleine archäologische Grabung im eigenen Haus, aber die Access Points hängen jetzt fest am Netz statt nur als Repeater zu funken.</p>
 <p>Was mich an der Aktion am meisten freut, ist gar nicht das schnellere Netzwerk.</p>
@@ -115,12 +115,12 @@
 <p>Entscheider interessieren sich meistens für das, was man sofort sieht: das neue Feature, das glänzende Dashboard, die schnelle Oberfläche.</p>
 <p>Die saubere Architektur dahinter (Ausfallsicherheit, Wartbarkeit, Backup-Strategien) interessiert oft erst dann, wenn es knallt. Dabei ist genau dieses unsichtbare Fundament das, was ein System überhaupt erst krisenfest macht.</p>
 <p>Mein Serverschrank ist der Grund, warum hier alles stabil läuft. Und warum Daten auch im Worst Case sicher sind.</p>
-]]></description>
+      ]]></description>
     </item>
 
     <item>
       <title>Man fährt ja auch nicht ohne Helm</title>
-      <link>https://niklasfauteck.de/blog/#claude-code-setup-codequalitaet</link>
+      <link>https://niklasfauteck.de/blog/claude-code-setup-codequalitaet.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#claude-code-setup-codequalitaet</guid>
       <pubDate>Fri, 24 Jul 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -128,7 +128,7 @@
       <category>Skills</category>
       <description><![CDATA[
 <p>Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz. Ich habe beim letzten Mal versprochen, mein Claude-Code-Setup für bessere Code-Qualität aufzudröseln.</p>
-<p><img src="https://niklasfauteck.de/blog/images/claude-code-setup-codequalitaet/kind-mit-helm-radweg.jpg" alt="Ein Kind mit blauem Fahrradhelm, von hinten gesehen, fährt auf einem baumgesäumten Radweg zwischen Feldern." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/claude-code-setup-codequalitaet/kind-mit-helm-radweg.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/claude-code-setup-codequalitaet/kind-mit-helm-radweg.jpg" alt="Ein Kind mit blauem Fahrradhelm, von hinten gesehen, fährt auf einem baumgesäumten Radweg zwischen Feldern." width="800" height="538" loading="lazy"></picture></figure>
 <p>Ein Nachmittag reicht für einen Prototyp. Aber ist er auch sicher? Schnelles Bauen mit KI heißt erstmal nur: es funktioniert. Ob es auch was aushält, lasse ich von der KI im Anschluss checken. Immer und immer wieder.</p>
 <p>Ich hab die KI gefragt, wie ich das sicherer hinkriege. Antwort: mit Audits. Also hat sie meinen Code analysiert.</p>
 <p>Daraus ist über die Zeit ein ganzes Setup geworden. Jedes Projekt hat eigene Regeln, die immer gelten, egal welche KI gerade dran arbeitet. Dazu kommen Gewohnheiten, die projektübergreifend mitlaufen. Und ein Gedächtnis, das sich über Sessions und Projekte hinweg merkt, was schon geprüft, entschieden oder gebaut wurde. Ohne das würde jede neue Session wieder bei null anfangen.</p>
@@ -137,36 +137,36 @@
 <h2>Was bei mir mitläuft</h2>
 <p><strong>Repo-eigene Regeln.</strong> Jedes Projekt hat seine eigene CLAUDE.md. Die gilt bindend nur dort. Quality Gates, Security-Checkliste, Umgang mit Secrets, Definition of Done. Bleibt bewusst im Repo, wird nirgends kopiert.</p>
 <p><strong>Globale Gewohnheiten.</strong> Eine zweite CLAUDE.md, die repo-übergreifend gilt. Keine Projekt-Spezifika, nur Dinge, die ich in jeder Session will. Zum Beispiel: vor größeren Aufgaben kurz ins Wiki schauen, ob's dazu schon was gibt.</p>
-<p><strong>Das Wiki.</strong> Ein Projekt in Todoteck, das sich die KI selbst pflegt. Läuft als Alternative zu klassischem RAG. Mehr dazu in <a href="https://niklasfauteck.de/blog/#wiki-fuer-die-ki">meinem Post über das Wiki</a>. Eine Notiz darin führt Buch über alle externen Skill-Sammlungen, die ich mir angeschaut hab, inklusive der Regel: erst prüfen, ob ein Skill die Aufgabe schon abdeckt, bevor ich bei null anfange.</p>
+<p><strong>Das Wiki.</strong> Ein Projekt in Todoteck, das sich die KI selbst pflegt. Läuft als Alternative zu klassischem RAG. Mehr dazu in <a href="https://niklasfauteck.de/blog/#wiki-fuer-die-ki" target="_blank" rel="noopener">meinem Post über das Wiki</a>. Eine Notiz darin führt Buch über alle externen Skill-Sammlungen, die ich mir angeschaut hab, inklusive der Regel: erst prüfen, ob ein Skill die Aufgabe schon abdeckt, bevor ich bei null anfange.</p>
 <p><strong>Skills, die direkt für Codequalität greifen:</strong></p>
 <ul>
-<li>clean-code — Uncle-Bob-Prinzipien. Sprechende Namen, kleine Funktionen, Kommentare vermeiden statt schlechten Code kommentieren. Stammt aus <a href="https://github.com/jackjin1997/ClawForge">ClawForge</a>.</li>
-<li>security-first-2025 — Security beim Bash-Scripting. Input-Validierung, keine Command-Injection, sichere Temp-Dateien, Secrets niemals hardcoden. Eigener Skill, <a href="https://niklasfauteck.de/blog/downloads/claude-code-setup-codequalitaet/security-first-2025.skill">zum Download</a>.</li>
+<li>clean-code — Uncle-Bob-Prinzipien. Sprechende Namen, kleine Funktionen, Kommentare vermeiden statt schlechten Code kommentieren. Stammt aus <a href="https://github.com/jackjin1997/ClawForge" target="_blank" rel="noopener">ClawForge</a>.</li>
+<li>security-first-2025 — Security beim Bash-Scripting. Input-Validierung, keine Command-Injection, sichere Temp-Dateien, Secrets niemals hardcoden. Eigener Skill, <a href="downloads/claude-code-setup-codequalitaet/security-first-2025.skill" target="_blank" rel="noopener">zum Download</a>.</li>
 <li>simplify — Review auf unnötige Komplexität. Keine Bugsuche, reine Aufräumarbeit.</li>
 <li>security-review — komplettes Security-Review der offenen Änderungen im Branch.</li>
 <li>review — Review eines GitHub Pull Requests.</li>
-<li><a href="https://github.com/anthropics/skills/tree/main/frontend-design">frontend-design</a> — produktionsreife Interfaces, ohne dass man der KI-Optik ansieht.</li>
-<li>home-assistant-best-practices — verhindert Anti-Pattern in Automations, etwa device_id statt entity_id. Eigener Skill, <a href="https://niklasfauteck.de/blog/downloads/claude-code-setup-codequalitaet/home-assistant-best-practices.skill">zum Download</a>.</li>
-<li><a href="https://github.com/anthropics/skills/tree/main/mcp-builder">mcp-builder</a> — Leitfaden für eigene MCP-Server.</li>
-<li><a href="https://github.com/anthropics/skills/tree/main/skill-creator">skill-creator</a> — zum Bauen eigener Skills.</li>
-<li><a href="https://github.com/obra/superpowers/blob/main/skills/writing-skills/SKILL.md">writing-skills</a> — testet Skills mit Subagenten, bevor sie scharf geschaltet werden, aus dem <a href="https://github.com/obra/superpowers">obra/superpowers</a>-Framework.</li>
+<li><a href="https://github.com/anthropics/skills/tree/main/frontend-design" target="_blank" rel="noopener">frontend-design</a> — produktionsreife Interfaces, ohne dass man der KI-Optik ansieht.</li>
+<li>home-assistant-best-practices — verhindert Anti-Pattern in Automations, etwa device_id statt entity_id. Eigener Skill, <a href="downloads/claude-code-setup-codequalitaet/home-assistant-best-practices.skill" target="_blank" rel="noopener">zum Download</a>.</li>
+<li><a href="https://github.com/anthropics/skills/tree/main/mcp-builder" target="_blank" rel="noopener">mcp-builder</a> — Leitfaden für eigene MCP-Server.</li>
+<li><a href="https://github.com/anthropics/skills/tree/main/skill-creator" target="_blank" rel="noopener">skill-creator</a> — zum Bauen eigener Skills.</li>
+<li><a href="https://github.com/obra/superpowers/blob/main/skills/writing-skills/SKILL.md" target="_blank" rel="noopener">writing-skills</a> — testet Skills mit Subagenten, bevor sie scharf geschaltet werden, aus dem <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">obra/superpowers</a>-Framework.</li>
 <li>changelog-generator — verwandelt Git-Commits in verständliche Release-Notes. Eigener Skill.</li>
 </ul>
 <p><strong>Installierte Plugin-Sammlungen (Marketplace):</strong></p>
 <ul>
-<li><a href="https://github.com/addyosmani/agent-skills">addyosmani/agent-skills</a> (Addy Osmani, 32 Skills) — Engineering-Lifecycle, unter anderem Security- und A11y-Checklisten.</li>
-<li><a href="https://github.com/mukul975/Anthropic-Cybersecurity-Skills">mukul975/Anthropic-Cybersecurity-Skills</a> (Community, 817 Skills) — über 800 Security-Skills, gemappt auf MITRE ATT&amp;CK.</li>
-<li><a href="https://github.com/alirezarezvani/claude-skills">alirezarezvani/claude-skills</a> (Alireza Rezvani, 345 Skills) — breite Multi-Domain-Sammlung, davon nutze ich nur wenige gezielt.</li>
-<li><a href="https://github.com/anthropics/claude-cookbooks">anthropics/claude-cookbooks</a> (Anthropic) — offizielle Notebooks, eher Referenz als Skill.</li>
+<li><a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">addyosmani/agent-skills</a> (Addy Osmani, 32 Skills) — Engineering-Lifecycle, unter anderem Security- und A11y-Checklisten.</li>
+<li><a href="https://github.com/mukul975/Anthropic-Cybersecurity-Skills" target="_blank" rel="noopener">mukul975/Anthropic-Cybersecurity-Skills</a> (Community, 817 Skills) — über 800 Security-Skills, gemappt auf MITRE ATT&CK.</li>
+<li><a href="https://github.com/alirezarezvani/claude-skills" target="_blank" rel="noopener">alirezarezvani/claude-skills</a> (Alireza Rezvani, 345 Skills) — breite Multi-Domain-Sammlung, davon nutze ich nur wenige gezielt.</li>
+<li><a href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noopener">anthropics/claude-cookbooks</a> (Anthropic) — offizielle Notebooks, eher Referenz als Skill.</li>
 </ul>
-<p><strong>Ohne Installation.</strong> <a href="https://www.ui-skills.com/agents/claude-code">ui-skills.com</a> läuft nicht als Plugin, sondern als CLI. Ruf ich live auf, wenn ich an UI-Sachen arbeite. Lädt maximal drei Skills gleichzeitig, kein globaler Installationsschritt nötig.</p>
-<p><strong>Trend-Check.</strong> Lohnt sich, regelmäßig einen Blick auf <a href="https://trendshift.io/github-trending-repositories?trending-range=1">Trendshift</a> zu werfen. Zeigt aktuell angesagte GitHub-Repos, darunter öfter mal was, das für genau dieses Setup relevant wird.</p>
+<p><strong>Ohne Installation.</strong> <a href="https://www.ui-skills.com/agents/claude-code" target="_blank" rel="noopener">ui-skills.com</a> läuft nicht als Plugin, sondern als CLI. Ruf ich live auf, wenn ich an UI-Sachen arbeite. Lädt maximal drei Skills gleichzeitig, kein globaler Installationsschritt nötig.</p>
+<p><strong>Trend-Check.</strong> Lohnt sich, regelmäßig einen Blick auf <a href="https://trendshift.io/github-trending-repositories?trending-range=1" target="_blank" rel="noopener">Trendshift</a> zu werfen. Zeigt aktuell angesagte GitHub-Repos, darunter öfter mal was, das für genau dieses Setup relevant wird.</p>
       ]]></description>
     </item>
 
     <item>
       <title>Ein Nachmittag statt drei Konzeptionsrunden</title>
-      <link>https://niklasfauteck.de/blog/#nachmittag-reicht</link>
+      <link>https://niklasfauteck.de/blog/nachmittag-reicht.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#nachmittag-reicht</guid>
       <pubDate>Mon, 20 Jul 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -175,16 +175,16 @@
       <description><![CDATA[
 <p>Vor zwei Jahren, noch im alten Job. Wir wollten eine KI-Funktion in ein Bestandstool integrieren. API anbinden, Rechte klären, Konzeptionsrunden. Mehrere Meetings, bis überhaupt jemand einen Prototyp gebaut hat.</p>
 <p>Heute liegen die Möglichkeiten auf der Straße. Und ich brauche für die Integration in meine eigene, perfekt auf mich zugeschnittene App keinen Nachmittag.</p>
-<p>Die App ist <a href="https://niklasfauteck.de/blog/#finanzteck">Finanzteck</a>. Aus Splitwise und Excel geworden, selbst gehostet, meine Daten. Aber einmal im Monat saß ich trotzdem noch da und hab getippt.</p>
+<p>Die App ist <a href="https://niklasfauteck.de/blog/#finanzteck" target="_blank" rel="noopener">Finanzteck</a>. Aus Splitwise und Excel geworden, selbst gehostet, meine Daten. Aber einmal im Monat saß ich trotzdem noch da und hab getippt.</p>
 <p>Also kam KI dazu. Über eine API, egal ob lokal oder extern, je nachdem was gerade passt.</p>
-<p><img src="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-einstellungen.jpg" alt="Finanzteck-Einstellungen für den KI-Assistenten: Anbieter, Base-URL, Text- und Vision-Modell" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-einstellungen.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-einstellungen.jpg" alt="Finanzteck-Einstellungen für den KI-Assistenten: Anbieter, Base-URL, Text- und Vision-Modell" width="1080" height="2160" loading="lazy"></picture></figure>
 <p>Jetzt reicht ein Foto vom Zähler. Ein Screenshot der Kontoübersicht. Die KI liest die Werte raus, trägt sie ein, fragt nach, wenn was fehlt oder unklar ist. Ich bestätige, fertig.</p>
 <p>Kein Abtippen von Kontoständen mehr. Kein Ablesen und Eintippen der Zählerstände mehr. Nur noch prüfen und bestätigen.</p>
 <p>Und weil das Modell sowieso lief, hab ich gleich noch mehr eingebaut. Kategorie-Vorschläge bei neuen Ausgabe-Einträgen. Beschreibungen normalisieren. Eine Verbrauchsanalyse für Strom, Gas, Wasser. Ein Budget-Coach mit Sparhinweisen. Eine Frage-Box, in die ich einfach reinschreiben kann, was ich wissen will.</p>
-<p><img src="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-frage.jpg" alt="Die Frage-Box in Finanzteck mit Beispielfragen wie &quot;Wie viel für Lebensmittel im Q2?&quot; und &quot;Wie hoch ist mein Vermögen?&quot;" /></p>
-<p>&quot;Wie hoch ist mein Vermögen?&quot; Antwort kommt direkt aus den eigenen Daten.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-frage.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/nachmittag-reicht/finanzteck-ki-frage.jpg" alt="Die Frage-Box in Finanzteck mit Beispielfragen wie "Wie viel für Lebensmittel im Q2?" und "Wie hoch ist mein Vermögen?"" width="1080" height="1041" loading="lazy"></picture></figure>
+<p>"Wie hoch ist mein Vermögen?" Antwort kommt direkt aus den eigenen Daten.</p>
 <p>Wer statt lokal lieber extern rechnen lässt, über OpenRouter oder OpenAI zum Beispiel, kriegt die Kosten trotzdem im Blick. Läufe, Tokens, Kosten, aufgeschlüsselt nach Woche, Monat, Jahr, gesamt. Bei mir zum Test: zehn Läufe, gut fünftausend Tokens, 0,0042 US-Dollar.</p>
-<p>Und zum Monatsersten muss ich nicht mal mehr selbst dran denken. Finanzteck legt mir dann automatisch eine Aufgabe in <a href="https://niklasfauteck.de/blog/#todoteck">Todoteck</a> an, mit einem KI-Monatsbericht als Fließtext plus Aktionsliste direkt dabei. Zeit für die Runde.</p>
+<p>Und zum Monatsersten muss ich nicht mal mehr selbst dran denken. Finanzteck legt mir dann automatisch eine Aufgabe in <a href="https://niklasfauteck.de/blog/#todoteck" target="_blank" rel="noopener">Todoteck</a> an, mit einem KI-Monatsbericht als Fließtext plus Aktionsliste direkt dabei. Zeit für die Runde.</p>
 <p>Vor zwei Jahren hätte dafür ein ganzes Team viel Expertise gebraucht. Architektur, API-Anbindung, Grundlagen, die man sich erst erarbeiten musste. Heute reicht mir dafür rudimentäres Verständnis und ein bisschen Motivation, zumindest für ein Homelab-Projekt wie meins. In der kurzen Zeit haben sich so viele Ideen und Muster etabliert, dass ich sie einfach übernehmen kann statt sie selbst erfinden zu müssen.</p>
 <p>Für einen Business Case reicht das natürlich noch nicht. Skalierung, Verfügbarkeit, Compliance, mehrere Nutzer, ein ganzer Rattenschwanz. Vibecoding allein trägt das nicht. Aber es öffnet die Tür zu genau diesen Themen.</p>
 <p>Denn genau dort hilft KI auch. Sicherheitshärtung, Performance, Datensicherheit, Code-Effizienz lassen sich damit prüfen. Beim nächsten Mal zeige ich, mit welchen Skills ich versuche, diese Lücke zumindest in privaten Projekten so gut es geht zu schließen.</p>
@@ -193,7 +193,7 @@
 
     <item>
       <title>Leichter Rucksack</title>
-      <link>https://niklasfauteck.de/blog/#leichter-rucksack</link>
+      <link>https://niklasfauteck.de/blog/leichter-rucksack.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#leichter-rucksack</guid>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
@@ -203,7 +203,7 @@
 <p>Mein Rucksack ist heute auffällig leicht.</p>
 <p>Notebook weg. Handy weg. Zutrittskarte weg.</p>
 <p>Nach 16 Jahren bei RTL heute der letzte offizielle Akt: alles zurückgegeben, was mir das Unternehmen mal in die Hand gedrückt hat.</p>
-<p><img src="https://niklasfauteck.de/blog/images/leichter-rucksack/rtl-turm-rhein.jpg" alt="Blick über die Rheinpromenade in Köln-Deutz an einem bewölkten Tag: links der Rhein mit einem Frachtschiff und der Kölner Uferzeile, rechts ein modernes Bürogebäude, im Hintergrund der alte Messeturm mit dem RTL-Schriftzug." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/leichter-rucksack/rtl-turm-rhein.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/leichter-rucksack/rtl-turm-rhein.jpg" alt="Blick über die Rheinpromenade in Köln-Deutz an einem bewölkten Tag: links der Rhein mit einem Frachtschiff und der Kölner Uferzeile, rechts ein modernes Bürogebäude, im Hintergrund der alte Messeturm mit dem RTL-Schriftzug." width="1600" height="1200" loading="lazy"></picture></figure>
 <p>Dieses Jahr gehört erstmal meiner Familie. Beruflich lasse ich mir Zeit. Kein Sofort-Neustart, kein Lebenslauf-Panik-Modus. Ich warte auf den richtigen nächsten Schritt. Oder auf eine Gelegenheit, auf die ich wirklich Bock habe.</p>
 <p>Jemand hat mir neulich auf LinkedIn geschrieben, dass ich zwischen dem ganzen Business-Gerede dort eine persönliche Note reinbringe. Das hat mich sehr gefreut.</p>
 <p>Und deshalb gibt es dort in der Zwischenzeit auch weiterhin Vibecoding, Maker-Kram oder den ein oder anderen Gedanken zwischendurch.</p>
@@ -213,20 +213,22 @@
 
     <item>
       <title>42 Kilometer? Ein Spaziergang!</title>
-      <link>https://niklasfauteck.de/blog/#42-kilometer</link>
+      <link>https://niklasfauteck.de/blog/42-kilometer.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#42-kilometer</guid>
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Mental Health</category>
       <category>Wandern</category>
       <description><![CDATA[
+<blockquote>
 <p><strong>Triggerwarnung:</strong> Dieser Text erwähnt Depression und wie sie meinen Alltag verändert hat. Nichts Dramatisches, aber falls das gerade kein gutes Thema für dich ist, spar ihn dir für einen anderen Moment.</p>
+</blockquote>
 <p>Ich bin am letzten Wochenende am Rhein entlang und wieder zurück nach Hause spaziert. 42 Kilometer.</p>
 <p>Das klingt nach einer Sache, die man trainiert.</p>
 <p>Ich hatte nicht trainiert.</p>
-<p><img src="https://niklasfauteck.de/blog/images/42-kilometer/route-tourteck.png" alt="Tracking-App Tourteck zeigt die beendete Tour als grüne Route entlang des Rheins zwischen Köln, Wesseling, Niederkassel und Troisdorf." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/42-kilometer/route-tourteck.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/42-kilometer/route-tourteck.png" alt="Tracking-App Tourteck zeigt die beendete Tour als grüne Route entlang des Rheins zwischen Köln, Wesseling, Niederkassel und Troisdorf." width="493" height="720" loading="lazy"></picture></figure>
 <h2>Wie das überhaupt passiert ist</h2>
-<p>Im Herbst 2024 habe ich <a href="https://niklasfauteck.de/blog/#depression">über meine Depression geschrieben</a>. Was ich da nicht ausführlich beschrieben habe: Spazieren war eines der ersten Dinge, die mir in dieser Zeit wirklich geholfen haben. Nicht als Sport. Als Werkzeug. Kopf raus aus den Grübel-Schleifen, Gedanken geordnet kriegen, einfach mal aufhören, stillzusitzen und innerlich zu rotieren.</p>
+<p>Im Herbst 2024 habe ich <a href="#depression" target="_blank" rel="noopener">über meine Depression geschrieben</a>. Was ich da nicht ausführlich beschrieben habe: Spazieren war eines der ersten Dinge, die mir in dieser Zeit wirklich geholfen haben. Nicht als Sport. Als Werkzeug. Kopf raus aus den Grübel-Schleifen, Gedanken geordnet kriegen, einfach mal aufhören, stillzusitzen und innerlich zu rotieren.</p>
 <p>Ich bin viel gelaufen damals. Kurze Strecken, langsame Strecken, Strecken ohne Ziel.</p>
 <p>Ein guter Freund von mir wandert regelmäßig und neigt dazu, bei Touren manchmal ein bisschen zu übertreiben.</p>
 <p>Ich habe ihn irgendwann unverbindlich gefragt, ob wir das nicht auch mal zusammen machen wollen. Wandern. Ein bisschen. Für Einsteiger.</p>
@@ -234,16 +236,16 @@
 <h2>Letztes Jahr: 36 Kilometer und dann Schluss</h2>
 <p>Niemand hat wirklich erwartet, dass ich lange dabei bleibe. Mein Freund vielleicht ausgenommen. Ich selbst auch nicht komplett. Aber ich wollte es mir selbst beweisen, dass ich das kann.</p>
 <p>Nach 36 Kilometern war es vorbei.</p>
-<p>Mein Freund hatte mir vorher trotzdem schon eine kleine Medaille gebastelt, auf der &quot;42 km&quot; stand. Die habe ich dann nach dem Abbruch in den Händen gehalten und gewusst: das kann ich nicht so stehen lassen.</p>
+<p>Mein Freund hatte mir vorher trotzdem schon eine kleine Medaille gebastelt, auf der "42 km" stand. Die habe ich dann nach dem Abbruch in den Händen gehalten und gewusst: das kann ich nicht so stehen lassen.</p>
 <p>Also musste ein zweiter Versuch her.</p>
 <h2>Dieses Mal: ein paar Dinge besser machen</h2>
 <p>Ein Jahr ist viel Zeit, um darüber nachzudenken, was beim ersten Versuch nicht funktioniert hat. Proviant, Schuhwerk, Klamotten, was man zu Hause lässt. Wir haben alles ein bisschen durchgeplant.</p>
-<p><img src="https://niklasfauteck.de/blog/images/42-kilometer/pause-proviant.jpg" alt="Selfie unterwegs: Rucksack mit Trinksystem, eine Hand hält eine kleine Tüte mit Proviant, im Hintergrund Felder unter bewölktem Himmel." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/42-kilometer/pause-proviant.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/42-kilometer/pause-proviant.jpg" alt="Selfie unterwegs: Rucksack mit Trinksystem, eine Hand hält eine kleine Tüte mit Proviant, im Hintergrund Felder unter bewölktem Himmel." width="900" height="1600" loading="lazy"></picture></figure>
 <p>Was ich nicht erwartet hatte: wie viel mir Meditation dabei helfen würde.</p>
 <p>Das ist auch etwas, das ich der Depression verdanke. Ich habe lernen müssen, meine Gedanken zur Ruhe zu bringen, weil mein Kopf sonst nicht aufgehört hätte zu rasen. Meditation hatte anfangs gar nicht funktioniert und irgendwie komisch gefühlt. Seit es klappt, ist es ein Werkzeug.</p>
-<p><img src="https://niklasfauteck.de/blog/images/42-kilometer/nachtwanderung.jpg" alt="Zwei Wanderer von hinten auf einem Feldweg in der Dunkelheit, nur schwach von Stirnlampen beleuchtet." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/42-kilometer/nachtwanderung.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/42-kilometer/nachtwanderung.jpg" alt="Zwei Wanderer von hinten auf einem Feldweg in der Dunkelheit, nur schwach von Stirnlampen beleuchtet." width="1200" height="1600" loading="lazy"></picture></figure>
 <p>Und beim Wandern habe ich gemerkt, dass die Schmerzen in den Beinen irgendwann nicht nur ein körperliches Problem sind, sondern eher ein mentales. Und ich das bewältigen kann. Durch Trott, Rhythmus, Atmen, leeren Kopf.</p>
-<p><img src="https://niklasfauteck.de/blog/images/42-kilometer/morgendaemmerung-rhein.jpg" alt="Industrieanlage am Rhein in der Morgendämmerung, ein Schornstein mit brennender Fackel vor blauem Himmel." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/42-kilometer/morgendaemmerung-rhein.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/42-kilometer/morgendaemmerung-rhein.jpg" alt="Industrieanlage am Rhein in der Morgendämmerung, ein Schornstein mit brennender Fackel vor blauem Himmel." width="1600" height="1200" loading="lazy"></picture></figure>
 <h2>Was ich mitnehme</h2>
 <p>Die Medaille gehört jetzt mir, und zwar verdient.</p>
 <p>Aber das ist eigentlich nicht die Sache, die ich mitnehme.</p>
@@ -256,7 +258,7 @@
 
     <item>
       <title>Mein eigener Tower</title>
-      <link>https://niklasfauteck.de/blog/#eigener-tower</link>
+      <link>https://niklasfauteck.de/blog/eigener-tower.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#eigener-tower</guid>
       <pubDate>Fri, 19 Jun 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
@@ -266,22 +268,22 @@
       <description><![CDATA[
 <p>Letztens waren wir mit der Familie auf dem Flugplatz Hangelar. Kleine Maschinen, die starten und landen. Und mit einem Vierjährigen zusammen staunt es sich einfach besser.</p>
 <p>Ein eigener Flugschein ist illusorisch. Aber sehen, was da oben so los ist, das geht. Also habe ich mir eine Antenne aufs Dach gesetzt. Seitdem fühlt sich mein Arbeitszimmer ein bisschen wie ein eigener Tower an.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/antenne-dach.jpg" alt="Die ADS-B-Antenne auf dem Dach, montiert am Kaminschacht, vor blauem Himmel." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigener-tower/antenne-dach.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigener-tower/antenne-dach.jpg" alt="Die ADS-B-Antenne auf dem Dach, montiert am Kaminschacht, vor blauem Himmel." width="1200" height="900" loading="lazy"></picture></figure>
 <p>Flugzeuge funken ständig, wo sie sind. Position, Höhe, Kennung, Geschwindigkeit. Das läuft auf 1090 MHz und heißt ADS-B. Die Daten liegen einfach in der Luft. Wer die richtige Antenne hat, empfängt sie.</p>
 <p>Flightradar24 kennt jeder. Schicke App, fertige Karte, alles aufbereitet. Dahinter steckt ein kommerzielles Projekt. Und auch deren Karte lebt zum großen Teil von Freiwilligen mit Antenne auf dem Dach. Mitmachen könntest du da sogar genauso. Du fütterst Flightradar mit deinen Daten. Die landen dann bei einer Firma. Mir war eine offene Community lieber. Da gehören die Daten allen.</p>
 <p>Also geht es los mit der Recherche. Welche Antenne, welcher USB-Stick, welches Kabel. Dann rauf auf den Dachboden, Antenne montieren. Einen Raspberry Pi aufgesetzt und eingerichtet. Den RTL-SDR-Stick angeschlossen, der aus dem Funksignal Daten macht. Und dann lief es. Auf einmal sah ich, was da die ganze Zeit über mir kreist.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/pi-installation.png" alt="Terminal-Ausgabe der automatischen Einrichtung auf dem Raspberry Pi: readsb, graphs1090, WireGuard-Tunnel und MLAT-Client werden installiert und konfiguriert." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigener-tower/pi-installation.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigener-tower/pi-installation.png" alt="Terminal-Ausgabe der automatischen Einrichtung auf dem Raspberry Pi: readsb, graphs1090, WireGuard-Tunnel und MLAT-Client werden installiert und konfiguriert." width="900" height="1134" loading="lazy"></picture></figure>
 <p>Klar, braucht kein Mensch. Aber es hat einfach Spaß gemacht. Genau dieses Tüfteln, bis alles läuft. Dazu der Community-Gedanke. Ich speise meine Empfangsdaten in ein Netz ein. Jeder deckt seinen Fleck ab. Zusammen wird daraus eine ziemlich große Karte.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/tar1090-karte.jpg" alt="Live-Karte des eigenen Empfängers: bunte Flugzeug-Symbole markieren, was gerade über mir und der Umgebung kreist." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigener-tower/tar1090-karte.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigener-tower/tar1090-karte.jpg" alt="Live-Karte des eigenen Empfängers: bunte Flugzeug-Symbole markieren, was gerade über mir und der Umgebung kreist." width="1190" height="892" loading="lazy"></picture></figure>
 <p>Das Dashboard habe ich mir natürlich gleich in Todoteck gehängt. Die App, die bei mir eh für alles herhält.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigener-tower/adsb-dashboard.jpg" alt="Das ADS-B-Dashboard mit Empfangsstatistiken und Reichweiten-Karte, eingebunden als Widget in Todoteck." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigener-tower/adsb-dashboard.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigener-tower/adsb-dashboard.jpg" alt="Das ADS-B-Dashboard mit Empfangsstatistiken und Reichweiten-Karte, eingebunden als Widget in Todoteck." width="1000" height="979" loading="lazy"></picture></figure>
 <p>Der Flugschein bleibt erstmal ein Traum. Aber meinen kleinen Tower habe ich jetzt. (Der echte in Hangelar guckt bestimmt neidisch.)</p>
       ]]></description>
     </item>
 
     <item>
       <title>Alles verputzt</title>
-      <link>https://niklasfauteck.de/blog/#verputzt</link>
+      <link>https://niklasfauteck.de/blog/verputzt.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#verputzt</guid>
       <pubDate>Tue, 16 Jun 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
@@ -290,21 +292,23 @@
       <category>Umbau</category>
       <description><![CDATA[
 <p>Und wieder sind wir einen Schritt weiter beim barrierefreien Umbau, für den wir im Oktober eine GoFundMe-Kampagne gestartet hatten. Mit glatten Wänden und sauber verputzten Fenstern und Türen sieht der Anbau auf einmal zum ersten Mal echt nach einem Zimmer aus. Jetzt stehen wir drin und sehen schon Aylins Raum fertig eingerichtet vor unserem geistigen Auge.</p>
-<p><img src="https://niklasfauteck.de/blog/images/verputzt/verputzt-update.jpg" alt="Der frisch verputzte Anbau. Glatte Wände rundum, sauber verputzte Fenster und Türen. Zum ersten Mal wirkt der Rohbau wie ein echtes Zimmer." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/verputzt/verputzt-update.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/verputzt/verputzt-update.jpg" alt="Der frisch verputzte Anbau. Glatte Wände rundum, sauber verputzte Fenster und Türen. Zum ersten Mal wirkt der Rohbau wie ein echtes Zimmer." width="1195" height="896" loading="lazy"></picture></figure>
 <p>Bevor verputzt wurde, habe ich selbst noch die Wände geschlitzt. Für ein paar zusätzliche Steckdosen, und vor allem für Lichtschalter direkt an der Eingangstür, wo sie meine Frau gut erreicht. Klingt nach Kleinigkeit, ist aber genau das, was später darüber entscheidet, ob der Raum wirklich barrierefrei ist. Und einmal verputzt ist verputzt.</p>
 <p>Dass wir überhaupt so weit sind, liegt an euch. An jeder Spende, jedem Kontakt, jedem Teilen. Ich schreibe das in jedem Update, aber es stimmt halt jedes Mal aufs Neue: Danke.</p>
 <p>Als Nächstes kommt die Ausgleichsmasse auf den Boden und es wird gestrichen. Weiter geht's.</p>
-<p><strong>Bisherige Updates</strong><br />
-<a href="https://niklasfauteck.de/blog/#gofundme">GoFundMe: Barrierefreier Umbau für unsere Familie</a><br />
-<a href="https://niklasfauteck.de/blog/#umbau-startet">Der Umbau startet</a><br />
-<a href="https://niklasfauteck.de/blog/#danke-2025">Danke, euer Support bewegt etwas</a><br />
-<a href="https://niklasfauteck.de/blog/#fenster-tueren">Update: Fenster und Türen sind drin</a></p>
+<h2>Bisherige Updates</h2>
+<ul>
+<li><a href="#gofundme" target="_blank" rel="noopener">GoFundMe: Barrierefreier Umbau für unsere Familie</a></li>
+<li><a href="#umbau-startet" target="_blank" rel="noopener">Der Umbau startet</a></li>
+<li><a href="#danke-2025" target="_blank" rel="noopener">Danke, euer Support bewegt etwas</a></li>
+<li><a href="#fenster-tueren" target="_blank" rel="noopener">Update: Fenster und Türen sind drin</a></li>
+</ul>
       ]]></description>
     </item>
 
     <item>
       <title>Ein Wiki nur für die KI</title>
-      <link>https://niklasfauteck.de/blog/#wiki-fuer-die-ki</link>
+      <link>https://niklasfauteck.de/blog/wiki-fuer-die-ki.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#wiki-fuer-die-ki</guid>
       <pubDate>Tue, 09 Jun 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -313,19 +317,29 @@
       <category>MCP</category>
       <description><![CDATA[
 <p>Zu jedem Projekt hinterlege ich der KI eine Markdown-Datei. CLAUDE.md. Da steht das Basiswissen drin und die Regeln, an die sich Claude halten soll. Damit ich nicht in jeder Session von vorne anfange.</p>
-<p>Das war von Anfang an klug. Aber das eigentliche Grundwissen lag verstreut: in Dateien, in Repos, halb in meinem Kopf. Ich wollte es an einem Ort. Zentral, selbst gehostet, immer aktuell.</p>
-<p>Die Idee ist nicht von mir. Andrej Karpathy hat sie als "LLM Wiki" beschrieben: Die KI pflegt das Wiki selbst, statt deine Notizen bei jeder Frage neu zu durchsuchen. Aufmerksam wurde ich darauf durch die <a href="https://ainauten.com">AInauten</a>, Karpathys Original liegt als <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Gist auf GitHub</a>.</p>
-<p>Karpathy macht das mit Markdown in Obsidian. Ich hatte eh schon Todoteck, meine selbstgebaute Notizen-App. Also liegt das Wiki jetzt da drin. Erreichbar über MCP, den Server musste ich nur erweitern. Claude liest die Notizen, ohne dass ich was kopiere.</p>
-<p><img src="https://niklasfauteck.de/blog/images/wiki-fuer-die-ki/todoteck-llm-wiki.jpg" alt="Mein Handy mit der Todoteck-App, geöffnet im Projekt llm-wiki. In der Notizen-Liste stehen _schema, _index, _log und Karpathy - LLM Wiki (Gist)." /></p>
+<p>Das war von Anfang an klug. Einmal aufschreiben, dann liest die KI es selbst.</p>
+<p>Nur lag das eigentliche Grundwissen verstreut. In einzelnen Dateien, in Repos, halb in meinem Kopf. Ich wollte es an einem Ort. Zentral, selbst gehostet, immer aktuell.</p>
+<h2>Woher die Idee kommt</h2>
+<p>Die Idee ist nicht von mir. Andrej Karpathy hat sie als "LLM Wiki" beschrieben. Der Dreh dabei: Die KI pflegt das Wiki selbst, statt deine Notizen bei jeder Frage neu zu durchsuchen. Sie schreibt die Zusammenfassungen, setzt die Querverweise, hält den Index aktuell. Aufmerksam wurde ich darauf durch die <a href="https://ainauten.com" target="_blank" rel="noopener">AInauten</a>. Karpathys Original liegt als <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener">Gist auf GitHub</a>.</p>
+<p>Karpathy macht das mit Markdown-Dateien in Obsidian. Wollte ich so nicht. Ich hatte eh schon Todoteck. Meine selbstgebaute Aufgaben- und Notizen-App. Da liegt mein Kram sowieso.</p>
+<p>Zwei Gründe sprachen dafür.</p>
+<p>Die Daten gehören mir. Kein extra Anbieter, kein zweiter Ort, den ich nebenbei aktuell halten muss.</p>
+<p>Und ich hatte schon einen MCP-Server am Laufen. Den musste ich nur erweitern, statt einen neuen aufzusetzen.</p>
+<p>Also liegt das Wiki jetzt als Notizen in Todoteck.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/wiki-fuer-die-ki/todoteck-llm-wiki.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/wiki-fuer-die-ki/todoteck-llm-wiki.jpg" alt="Mein Handy mit der Todoteck-App, geöffnet im Projekt llm-wiki. In der Notizen-Liste stehen _schema, _index, _log und Karpathy - LLM Wiki (Gist)." width="1097" height="824" loading="lazy"></picture></figure>
+<h2>Nur noch ein Verweis</h2>
+<p>Die Notizen sind direkt aus Todoteck erreichbar. Über MCP. Claude liest sie, ohne dass ich was kopiere.</p>
 <p>In meinen Projektanweisungen und CLAUDE.md-Dateien steht jetzt nur noch ein Zeiger: "Deine vollständige Anweisung lebt im Todoteck-Projekt »llm-wiki«, erreichbar über den MCP-Connector."</p>
-<p>Jetzt liegt mein Wissen bei mir. Auf meinem Server, in meiner App. Und ich verweise immer drauf, statt alles bei jeder Session neu zu erklären.</p>
+<h2>Warum mir das gefällt</h2>
+<p>Jetzt liegt mein Wissen bei mir. Auf meinem Server, in meiner App.</p>
+<p>Und ich verweise immer auf dieselbe Quelle, statt jeder neuen Session alles von vorne zu erklären. Einmal aufschreiben. Immer wieder drauf zeigen.</p>
 <p>Der KI-Markt bleibt mega agil. Modelle und Anbieter werde ich wechseln. Das Wissen wandert einfach mit. Plug and play.</p>
       ]]></description>
     </item>
 
     <item>
       <title>Ein eigener Ort im Netz</title>
-      <link>https://niklasfauteck.de/blog/#eigene-website</link>
+      <link>https://niklasfauteck.de/blog/eigene-website.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#eigene-website</guid>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -338,7 +352,7 @@
 <p>Dafür wollte ich einen eigenen Ort im Netz. Einen, der mir gehört und nicht an einer Plattform hängt. Eine digitale Visitenkarte eben.</p>
 <p>Geworden ist daraus etwas mit mehreren Räumen. Eine Startseite, die alles zusammenhält. Eine nüchterne CV-Ansicht. Ein Blog für solche Gedanken.</p>
 <p>Und weil ich es nicht lassen konnte, gibt es noch eine verspielte Betriebssystem-Variante zum Durchklicken. Aber das ist eine eigene Geschichte.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigene-website/os-login.png" alt="Login-Screen der Betriebssystem-Variante: dunkler Hintergrund, grüner Kreis mit einem N, darunter mein Name, ein Passwortfeld und der Hinweis, dass ein beliebiges Passwort zum Anmelden reicht." /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigene-website/os-login.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigene-website/os-login.png" alt="Login-Screen der Betriebssystem-Variante: dunkler Hintergrund, grüner Kreis mit einem N, darunter mein Name, ein Passwortfeld und der Hinweis, dass ein beliebiges Passwort zum Anmelden reicht." width="1080" height="773" loading="lazy"></picture></figure>
 <p>Im Maschinenraum steckt erstaunlich wenig. HTML, CSS und Vanilla-JavaScript. Alles statisch im Browser, selbst gehostet auf GitHub. Also auch hier wieder: gevibecodet.</p>
 <p>Vibecoding hat mich richtig gepackt. Anderen zeigen, was damit heute geht, auch ohne klassische Programmiererfahrung. Auf der Seite feile ich gerade daran, genau das anzubieten. Ohne zu wissen, wo es genau hinführt. Schreibt gerne, wenn ihr darauf Lust hättet.</p>
 <p>Vor zwei Jahren hätte ich das alles nicht gekonnt. Heute schon. Und genau mit dieser Haltung gehe ich in das, was als Nächstes kommt.</p>
@@ -347,29 +361,31 @@
 
     <item>
       <title>Von Splitwise und Excel zur eigenen Finanz-App</title>
-      <link>https://niklasfauteck.de/blog/#finanzteck</link>
+      <link>https://niklasfauteck.de/blog/finanzteck.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#finanzteck</guid>
-      <pubDate>Sat, 31 May 2026 00:00:00 +0200</pubDate>
+      <pubDate>Sun, 31 May 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
       <category>Selfhosting</category>
       <category>KI</category>
       <description><![CDATA[
-<p>Erst war es Splitwise. Die geteilten Ausgaben liefen da. Aber alles andere lag in Excel.</p>
-<p>Also jeden Monat: CSV-Export aus Splitwise, Import in die Tabelle, von Hand nachb&#252;geln. Zwei Tools f&#252;r eine Frage.</p>
-<p>Irgendwann hatte ich keinen Bock mehr und hab mir mit Claude was eigenes gebaut. Erst nur ein Kassenbuch. Am Monatsende rechnet die App aus, wer wem wie viel &#252;berweisen muss.</p>
-<p><img src="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-mobil.jpg" alt="Finanzteck auf dem Handy: die Quittungen-Ansicht mit den Ausgleichszahlungen." /></p>
-<p>Und weil es lief, kam St&#252;ck f&#252;r St&#252;ck dazu:</p>
-<p>Verbrauchskosten mit Z&#228;hlerst&#228;nden.<br/>Verm&#246;gen und Darlehen.<br/>Kategorievorschl&#228;ge beim Erfassen, komplett lokal gerechnet, ohne LLM.</p>
-<p><img src="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-desktop.jpg" alt="Das Verbrauch-Modul am Desktop: Stromkosten als Verlaufschart mit Durchschnittslinie." /></p>
-<p>Aus dem Kassenbuch wurde Finanzteck. Drei SQLite-Datenbanken, selbst gehostet, die Daten bleiben bei mir.</p>
-<p>Und &#8222;Vibecoding macht dumm&#8220;? Bei mir war es umgekehrt. 2FA mit Authelia, Tailscale statt offener Portfreigaben, sauberes Arbeiten mit GitHub. Hab ich beim Bauen gelernt.</p>
-<p>Eigentlich wollte ich nur wissen, wer die Pizza bezahlt hat.</p>
+<p>Erst war es Splitwise. Die geteilten Ausgaben liefen da. Wer hat die Pizza bezahlt, wer den Wocheneinkauf, wer den Tank vollgemacht. Splitwise hat das brav verbucht und am Ende ausgerechnet, wer wem was schuldet. Funktionierte.</p>
+<p>Aber alles andere lag in Excel. Fixkosten, Vermögen, Verbrauch, der ganze Rest. Und damit die Ausgaben auch in der Tabelle landeten, ging das jeden Monat so: CSV-Export aus Splitwise. Import in Excel. Von Hand nachbügeln. Spalten verschieben, Kategorien korrigieren, Formeln nicht kaputt machen.</p>
+<p>Klassisches Gefrickel. Zwei Tools für eine Frage. Wie steht's denn so um die Finanzen?</p>
+<p>Irgendwann hatte ich keinen Bock mehr. Nirgends fand ich da draußen eine Software, die genau gepasst hätte. Also hab ich angefangen, mir was eigenes zu bauen. Mit Claude, Stück für Stück reingefuchst. Erst nur ein simples Kassenbuch. Eine Ausgabe rein, einer Person zuordnen, fertig.</p>
+<p>Das Herzstück war schnell da. Jede Ausgabe bekommt einen Zahler. Niklas, Aylin oder Gemeinschaft. Jede Ausgabe lässt sich flexibel aufteilen, mit Prozent-Anteilen, die sich automatisch auf 100 balancieren. Und am Monatsende rechnet die App die Ausgleichszahlung aus. Wer wem wie viel überweisen muss. Abhaken, sobald erledigt.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-mobil.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-mobil.jpg" alt="Finanzteck auf dem Handy: die Quittungen-Ansicht für Mai 2026 mit den Ausgleichszahlungen. Gemeinschaft zahlt an Niklas, Gemeinschaft zahlt an Aylin. Darunter die Ausgabenliste." width="415" height="923" loading="lazy"></picture></figure>
+<p>Genau das, was Splitwise konnte. Nur bei mir. Mit meinen Daten. Auf unsere Bedürfnisse direkt angepasst. An einem Ort mit allem anderen.</p>
+<p>Und weil es lief, kam Stück für Stück dazu, was vorher woanders oder gar nicht erfasst war. Verbrauchskosten mit Zählerständen für Strom, Gas und Wasser, inklusive Tarifberechnung und Kostenverlauf. Vermögen und Darlehen, mit Tilgungshistorie und Restschuld. Jedes Modul, weil es einen konkreten Zweck hatte. Nicht weil ein Feature schick aussah.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-desktop.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/finanzteck/finanzteck-desktop.jpg" alt="Das Verbrauch-Modul am Desktop: Stromkosten der letzten zwölf Monate als Verlaufschart, mit gestrichelter Durchschnittslinie. Oben die Karten für Strom, Gas und Wasser." width="1435" height="1183" loading="lazy"></picture></figure>
+<p>Aus dem Kassenbuch wurde Finanzteck. Im Maschinenraum drei getrennte SQLite-Datenbanken, ein Flask-Backend, Docker, selbst gehostet, die Daten bleiben bei mir.</p>
+<p>Und „Vibecoding macht dumm"? Bei mir war es eher umgekehrt. Ich musste ja wissen, was ich will. 2FA mit Authelia, Tailscale statt offener Portfreigaben, Session-Lifetime, Audit-Log, Secrets über Environment-Variablen, was ein sauberer Commit ist und wie GitHub eigentlich tickt. Das hab ich beim Bauen gelernt. Denn die KI baut halt nur, was ich ihr erklären kann. Wer nicht sagen kann, was er erwartet, kann es auch nicht machen lassen.</p>
+<p>Und eigentlich wollte ich ja eh nur wissen, wer die Pizza bezahlt hat.</p>
       ]]></description>
     </item>
 
     <item>
       <title>Vom Nerd-Hobby zur Barrierefreiheit</title>
-      <link>https://niklasfauteck.de/blog/#home-assistant</link>
+      <link>https://niklasfauteck.de/blog/home-assistant.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#home-assistant</guid>
       <pubDate>Tue, 12 May 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
@@ -380,7 +396,7 @@
       <description><![CDATA[
 <p>Mein Smart-Home-System "Home Assistant" hat bei mir angefangen, wie es vermutlich bei den meisten anfängt: als Spielerei.</p>
 <p>Ich wollte ehrlich gesagt nur einmal sehen, ob ich das hinbekomme. Eine Lampe per Sprache schalten. Dann zwei. Dann irgendwann die ganze Beleuchtung im Wohnzimmer abhängig davon, ob der Fernseher läuft und welche App gerade dort offen ist. Klassisches Nerd-Hobby. Braucht kein Mensch. Aber wenn man sich reinfuchst, ziemlich cool.</p>
-<p><img src="https://niklasfauteck.de/blog/images/home-assistant/home-assistant-uebersicht.jpg" alt="Mein Home-Assistant-Dashboard mit Räumen, Lampen, Rollos und Automationen im Überblick" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/home-assistant/home-assistant-uebersicht.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/home-assistant/home-assistant-uebersicht.jpg" alt="Mein Home-Assistant-Dashboard mit Räumen, Lampen, Rollos und Automationen im Überblick" width="1024" height="584" loading="lazy"></picture></figure>
 <p>Was ich an Home Assistant gar nicht erwartet hatte: Es verändert, wie man auf Alltagsprozesse schaut.</p>
 <p>Plötzlich ertappt man sich dabei, abends im Schlafzimmer fünf Lampen nacheinander anzuschalten und denkt: Moment, das ist doch eigentlich ein Prozess. Mit Auslöser, Bedingungen, Ergebnis. Und wenn ich diesen Prozess sauber beschreiben kann, kann ich ihn auch automatisieren. Im Job mache ich nichts anderes. Nur dass im Job am Ende selten eine Lampe angeht.</p>
 <p>Spätestens seit der Teilquerschnittslähmung meiner Frau ist Home Assistant für uns aber keine Spielerei mehr.</p>
@@ -392,19 +408,19 @@
 
     <item>
       <title>Update: Fenster und Türen sind drin</title>
-      <link>https://niklasfauteck.de/blog/#fenster-tueren</link>
+      <link>https://niklasfauteck.de/blog/fenster-tueren.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#fenster-tueren</guid>
-      <pubDate>Mon, 28 Apr 2026 00:00:00 +0200</pubDate>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
       <category>GoFundMe</category>
       <category>Umbau</category>
       <description><![CDATA[
-<p>Im Oktober haben wir unsere <a href="https://niklasfauteck.de/blog/#gofundme">GoFundMe-Kampagne</a> für den barrierefreien Umbau unseres Anbaus gestartet. Seitdem ist viel passiert – Schuppen gebaut, Anbau leergeräumt, Fliesen rausgerissen, Dachboden entrümpelt. Und gestern wieder ein großer Meilenstein.</p>
+<p>Im Oktober haben wir unsere <a href="#gofundme" target="_blank" rel="noopener">GoFundMe-Kampagne</a> für den barrierefreien Umbau unseres Anbaus gestartet. Seitdem ist viel passiert – Schuppen gebaut, Anbau leergeräumt, Fliesen rausgerissen, Dachboden entrümpelt. Und gestern wieder ein großer Meilenstein.</p>
 <p>Die Firma Kuse Metallbau aus Königswinter hat die neuen Fenster und Türen im Anbau eingesetzt. Damit weicht der Rohbau-Charakter, und man kann sich erstmals richtig vorstellen, wie Aylins barrierefreier Raum am Ende aussehen wird.</p>
-<p><img src="https://niklasfauteck.de/blog/images/fenster-tueren/fenster-tueren-update.jpg" alt="Neues Treppengeländer an der Haustür und neue Fenster und Terrassentür im Anbau" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/fenster-tueren/fenster-tueren-update.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/fenster-tueren/fenster-tueren-update.jpg" alt="Neues Treppengeländer an der Haustür und neue Fenster und Terrassentür im Anbau" width="1086" height="837" loading="lazy"></picture></figure>
 <p>Die Zusammenarbeit mit Kuse war von Anfang bis Ende erstklassig: ehrliche, mitdenkende Beratung und eine saubere, professionelle Umsetzung. Und ein Treppengeländer für die Haustür gab es auch noch dazu. 💛</p>
-<p>Falls jemand in eurem Umfeld einen verlässlichen Fensterbauer sucht – wir können Kuse Metallbau aus ganzem Herzen weiterempfehlen: <a href="https://kuse.eufu.net/">kuse.eufu.net</a></p>
+<p>Falls jemand in eurem Umfeld einen verlässlichen Fensterbauer sucht – wir können Kuse Metallbau aus ganzem Herzen weiterempfehlen: <a href="https://kuse.eufu.net/" target="_blank" rel="noopener">kuse.eufu.net</a></p>
 <p>Voraussichtlich in zwei Wochen wird verputzt. Da hilft auch kein Vibecoding.</p>
 <p>Dann fühlt sich auch optisch alles noch mehr nach Zuhause an.</p>
 <p>Dankbar!</p>
@@ -413,7 +429,7 @@
 
     <item>
       <title>Zu viele Tabs</title>
-      <link>https://niklasfauteck.de/blog/#eigenes-dashboard</link>
+      <link>https://niklasfauteck.de/blog/eigenes-dashboard.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#eigenes-dashboard</guid>
       <pubDate>Wed, 22 Apr 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -425,11 +441,12 @@
 <p>Irgendwo der Kalender, woanders das Wetter, dann Docker, Bookmarks, Feeds, Aufgaben und noch ein paar Dinge, die ich regelmäßig im Blick haben will. Nicht dramatisch, aber jeden Tag ein bisschen unnötig.</p>
 <p>Deshalb habe ich mir ein eigenes Dashboard gevibecodet.</p>
 <p>Im Grunde ist es einfach eine Browser-Startseite, auf der alles zusammenkommt, was ich im Alltag brauche. Selfhosted, über eine einzige YAML-Datei konfigurierbar und so gebaut, dass nicht ich mich nach dem Tool richten muss, sondern das Tool nach mir.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823084.jpg" alt="Dashboard im Dark Mode: Widget-Einstellungen mit Todoteck-Integration" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823084.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823084.jpg" alt="Dashboard im Dark Mode: Widget-Einstellungen mit Todoteck-Integration" width="1280" height="1025" loading="lazy"></picture></figure>
 <p>Inzwischen steckt da eine ganze Menge drin: Wetter, Kalender, RSS, Docker, Server-Stats, AdGuard, GitHub, Tailscale, Aufgaben, Notizen, AutoDarts, Untappd, eigene APIs, iFrames, Widget-Gruppen und Bookmarks mit Suche.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823535.jpg" alt="Dashboard in der Desktop-Ansicht: Kalender, Daily-Apps, KI-Chat und 3D-Bereich" /></p>
-<p>Und wie das bei solchen Projekten eben ist, blieb es nicht bei der ursprünglichen Idee.<br/>Aus einer simplen Startseite wurden nach und nach Drag &amp; Drop, Spotlight-Suche, YAML-Editor im Browser, Undo/Redo, Dark Mode, Akzentfarben, mobile Ansicht, serverseitige API-Keys, Rate Limiting, SSRF-Schutz und CI/CD.</p>
-<p><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823524.jpg" alt="Dashboard in der mobilen Ansicht: Daily-Apps und KI-Chat im Light Mode" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823535.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823535.jpg" alt="Dashboard in der Desktop-Ansicht: Kalender, Daily-Apps, KI-Chat und 3D-Bereich" width="1280" height="660" loading="lazy"></picture></figure>
+<p>Und wie das bei solchen Projekten eben ist, blieb es nicht bei der ursprünglichen Idee.</p>
+<p>Aus einer simplen Startseite wurden nach und nach Drag & Drop, Spotlight-Suche, YAML-Editor im Browser, Undo/Redo, Dark Mode, Akzentfarben, mobile Ansicht, serverseitige API-Keys, Rate Limiting, SSRF-Schutz und CI/CD.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823524.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigenes-dashboard/1776855823524.jpg" alt="Dashboard in der mobilen Ansicht: Daily-Apps und KI-Chat im Light Mode" width="407" height="912" loading="lazy"></picture></figure>
 <p>Genau solche Projekte machen mir gerade besonders Spaß, weil sie kein abstraktes Problem lösen, sondern etwas, das im Alltag sofort auffällt. Man baut etwas, nutzt es direkt selbst und merkt ziemlich schnell, ob es wirklich taugt.</p>
 <p>Früher hätte ich bei so einer Idee wahrscheinlich gedacht: nette Vorstellung, aber dafür fehlt mir das Know-how. Heute denke ich eher: Dann baue ich mir eben die erste Version und schaue, was daraus wird. Und meistens wird es dann doch etwas größer als geplant.</p>
 <p>Wenn es euch interessiert, zeige ich in den nächsten Tagen gerne mehr. Sinnvoll eingesetzt, kann man mit Vibecoding Ideen mindestens greifbarer machen.</p>
@@ -438,7 +455,7 @@
 
     <item>
       <title>Räuberhöhle</title>
-      <link>https://niklasfauteck.de/blog/#raeuberhoehle</link>
+      <link>https://niklasfauteck.de/blog/raeuberhoehle.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#raeuberhoehle</guid>
       <pubDate>Wed, 15 Apr 2026 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
@@ -446,21 +463,28 @@
       <category>Maker-Mindset</category>
       <description><![CDATA[
 <p>Bevor ich im nächsten Post wieder über Vibecoding schreibe und zeige, wie ich mein Browser-Tab-Chaos und meine Finanz-Excel-Listen in den Griff bekommen habe, heute mal ein anderes Projekt.</p>
-<p>Kein 3D-Druck.<br/>Kein Dashboard.<br/>Keine Automation.</p>
+<p>Kein 3D-Druck.</p>
+<p>Kein Dashboard.</p>
+<p>Keine Automation.</p>
 <p>Sondern Höhlenbau mit meinem vierjährigen Sohn.</p>
 <p>Wobei Höhle nicht ganz stimmt. Es war eher ein Zelt. Paracord gespannt, leichte Decken drüber, mit Wäscheklammern befestigt. Improvisiert, aber stabil genug für den Einsatzzweck.</p>
-<p><img src="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-aussen.jpg" alt="Räuberhöhle von außen: graue Decken, mit Paracord gespannt und mit Wäscheklammern befestigt, über dem Sofa" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-aussen.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-aussen.jpg" alt="Räuberhöhle von außen: graue Decken, mit Paracord gespannt und mit Wäscheklammern befestigt, über dem Sofa" width="1152" height="1152" loading="lazy"></picture></figure>
 <p>Die Kita-Notbetreuung wurde also sinnvoll genutzt. In unserer Räuberhöhle gab's Snacks und wir haben zusammen Biene Maja geschaut. Und ich musste kurz daran denken, dass das gar nicht so weit weg ist von den Dingen, über die ich hier sonst schreibe.</p>
-<p><img src="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-innen.jpg" alt="Blick aus der Räuberhöhle: mein Sohn im blauen Kapuzenpulli schaut in Richtung Regal, darüber die mit Wäscheklammern fixierten Decken" /></p>
-<p>Du nimmst, was da ist.<br/>Du baust mit einfachen Mitteln.<br/>Du machst es ein kleines bisschen aufwendiger als nötig.<br/>Und am Ende ist nicht entscheidend, ob es perfekt ist. Sondern ob es funktioniert und jemand Freude daran hat.</p>
-<p>Manchmal ist einfach mal machen eben kein Sideproject, sondern ein Paracord-Seil zwischen zwei Möbelstücken.<br/>Maker-Mindset. Nur mit mehr Wäscheklammern und dem besseren Publikum.</p>
-<p>Was ich aus der Räuberhöhle mitnehme:<br/>Stakeholder zufrieden, MVP stand, Entertainment lief.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-innen.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/raeuberhoehle/raeuberhoehle-innen.jpg" alt="Blick aus der Räuberhöhle: mein Sohn im blauen Kapuzenpulli schaut in Richtung Regal, darüber die mit Wäscheklammern fixierten Decken" width="1186" height="1186" loading="lazy"></picture></figure>
+<p>Du nimmst, was da ist.</p>
+<p>Du baust mit einfachen Mitteln.</p>
+<p>Du machst es ein kleines bisschen aufwendiger als nötig.</p>
+<p>Und am Ende ist nicht entscheidend, ob es perfekt ist. Sondern ob es funktioniert und jemand Freude daran hat.</p>
+<p>Manchmal ist einfach mal machen eben kein Sideproject, sondern ein Paracord-Seil zwischen zwei Möbelstücken.</p>
+<p>Maker-Mindset. Nur mit mehr Wäscheklammern und dem besseren Publikum.</p>
+<p>Was ich aus der Räuberhöhle mitnehme:</p>
+<p>Stakeholder zufrieden, MVP stand, Entertainment lief.</p>
       ]]></description>
     </item>
 
     <item>
       <title>Todoteck: API, MCP und der Alltag</title>
-      <link>https://niklasfauteck.de/blog/#todoteck-mcp</link>
+      <link>https://niklasfauteck.de/blog/todoteck-mcp.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#todoteck-mcp</guid>
       <pubDate>Fri, 10 Apr 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -472,15 +496,15 @@
 <p>Anfang der Woche habe ich geschrieben, dass ich mir eine eigene App gebaut habe. Einfach, weil ich keine gefunden habe, die Aufgaben und Notizen wirklich sinnvoll zusammenbringt.</p>
 <p>Seitdem ist noch etwas dazugekommen. Der Gedanke dahinter war wieder derselbe: bestehende Gewohnheiten nicht aufbrechen, sondern die App an unseren Alltag anpassen.</p>
 <p>Als Erstes habe ich der App eine eigene API gegeben.</p>
-<p>Meine Frau sagt zu unseren smarten Lautsprechern zum Beispiel: &quot;Hey Google, setze Milch auf meine Einkaufsliste.&quot; Bisher landet das nur in Google Keep. Todoteck holt diesen Eintrag jetzt automatisch ab und zeigt ihn direkt in der Einkaufsliste an. Auf jedem Gerät. Über eine weitere API auch auf dem E-Ink-Display im Flur. Und über eine native Android-App mit Widgets direkt auf dem Startbildschirm.</p>
+<p>Meine Frau sagt zu unseren smarten Lautsprechern zum Beispiel: "Hey Google, setze Milch auf meine Einkaufsliste." Bisher landet das nur in Google Keep. Todoteck holt diesen Eintrag jetzt automatisch ab und zeigt ihn direkt in der Einkaufsliste an. Auf jedem Gerät. Über eine weitere API auch auf dem E-Ink-Display im Flur. Und über eine native Android-App mit Widgets direkt auf dem Startbildschirm.</p>
 <p>Es gibt also keine neue Gewohnheit, die man erst lernen muss. Niemandem muss man etwas erklären. Es passiert einfach im Hintergrund.</p>
-<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-aufgabe.png" alt="Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/todoteck/todoteck-aufgabe.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-aufgabe.png" alt="Todoteck-Aufgabe: Scheibenwischer wechseln am KIA Ceed SW mit Anleitung und Material-Liste" width="2048" height="897" loading="lazy"></picture></figure>
 <p>Danach bin ich noch einen Schritt weitergegangen: MCP, also Model Context Protocol. Die Idee ist eigentlich ganz einfach. Claude redet nicht mehr nur mit mir, sondern direkt mit meiner App.</p>
-<p>Sonntag nach dem Mittagessen frage ich einfach: &quot;Was steht nächste Woche an?&quot; Dann kommen die Antworten direkt zurück. Mittwoch Sim Racing mit meinen Kumpels. Freitag Zahnarzt. Samstag einkaufen.</p>
-<p>Dann sage ich: &quot;Füg beim Einkauf noch Waschmittel hinzu.&quot; Ist drin.</p>
-<p>Oder: &quot;Erinner mich am Freitag daran, was ich dem Zahnarzt sagen wollte.&quot; Auch drin.</p>
-<p>Und wenn ich dann am Freitag kurz vor dem Termin frage: &quot;Was wollte ich da nochmal sagen?&quot;, weiß Claude es. Weil ich genau diese Notiz ein paar Tage vorher hinterlegt habe.</p>
-<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-mcp.png" alt="Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel" /></p>
+<p>Sonntag nach dem Mittagessen frage ich einfach: "Was steht nächste Woche an?" Dann kommen die Antworten direkt zurück. Mittwoch Sim Racing mit meinen Kumpels. Freitag Zahnarzt. Samstag einkaufen.</p>
+<p>Dann sage ich: "Füg beim Einkauf noch Waschmittel hinzu." Ist drin.</p>
+<p>Oder: "Erinner mich am Freitag daran, was ich dem Zahnarzt sagen wollte." Auch drin.</p>
+<p>Und wenn ich dann am Freitag kurz vor dem Termin frage: "Was wollte ich da nochmal sagen?", weiß Claude es. Weil ich genau diese Notiz ein paar Tage vorher hinterlegt habe.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/todoteck/todoteck-mcp.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-mcp.png" alt="Claude erstellt per MCP eine Todoteck-Aufgabe mit Anleitung zum Scheibenwischerwechsel" width="946" height="557" loading="lazy"></picture></figure>
 <p>Kein Suchen. Kein App-Wechsel. Einfach fragen.</p>
 <p>Das Protokoll ist offen, und der Einstieg war deutlich einfacher, als ich gedacht hätte. Wer neugierig ist, sollte einfach mal anfangen. Oder fragt mich gerne!</p>
       ]]></description>
@@ -488,7 +512,7 @@
 
     <item>
       <title>Todoteck: Vibecoding für die Familie</title>
-      <link>https://niklasfauteck.de/blog/#todoteck</link>
+      <link>https://niklasfauteck.de/blog/todoteck.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#todoteck</guid>
       <pubDate>Tue, 07 Apr 2026 00:00:00 +0200</pubDate>
       <category>Vibecoding</category>
@@ -498,9 +522,9 @@
       <description><![CDATA[
 <p>Ich habe keine passende App gefunden. Also habe ich sie für uns gebaut.</p>
 <p>Ich wollte To-dos und Notizen in einem System. Beides hängt für mich direkt zusammen. Aus einer Notiz wird oft eine Aufgabe. Und eine Aufgabe braucht meist den passenden Kontext. Die fertigen Tools, die ich ausprobiert habe, konnten immer nur das eine oder das andere wirklich gut.</p>
-<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-mobile.png" alt="Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/todoteck/todoteck-mobile.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-mobile.png" alt="Todoteck Mobile-Ansicht: Heute-Liste mit Reminder, Mittagessen und zwei Aufgaben" width="407" height="915" loading="lazy"></picture></figure>
 <p>Also habe ich es selbst gebaut. Mit KI-Unterstützung und ohne klassische Programmiererfahrung. Mit Integration unserer Google Kalender und zur Keep Einkaufsliste, mit eigener Programmierschnittstelle, selfhosted. Genau das macht Vibecoding heute möglich.</p>
-<p><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-desktop.png" alt="Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/todoteck/todoteck-desktop.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/todoteck/todoteck-desktop.png" alt="Todoteck Desktop-Ansicht: Sidebar mit Projekten und Heute-Übersicht im Hauptbereich" width="1189" height="763" loading="lazy"></picture></figure>
 <p>Am Ende ist ein schlichtes Tool entstanden, das genau so funktioniert, wie wir es als Familie brauchen. Crazy, denn vor zwei Jahren hätte ich das nicht gekonnt. Heute kann ich es.</p>
 <p>Letzte Woche habe ich der App noch etwas hinzugefügt, das ich mir selbst vorher so nicht hätte vorstellen können. Mehr dazu in ein paar Tagen.</p>
 <p>(Ja, ich weiß, ich muss auch noch den Keller aufräumen. Mache ich gleich nach dem LinkedIn-Post, wirklich!)</p>
@@ -509,23 +533,36 @@
 
     <item>
       <title>Wenn niemand die Lösung hat, druckst du sie selbst</title>
-      <link>https://niklasfauteck.de/blog/#3d-drucker</link>
+      <link>https://niklasfauteck.de/blog/3d-drucker.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#3d-drucker</guid>
       <pubDate>Thu, 19 Mar 2026 00:00:00 +0100</pubDate>
       <category>Persönlich</category>
       <category>3D-Druck</category>
       <category>Maker</category>
       <description><![CDATA[
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/3d-drucker/3d-drucker-fusion.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/3d-drucker/3d-drucker-fusion.jpg" alt="Illustration: ich vor dem Monitor mit Fusion 360 — auf dem Bildschirm die CAD-Konstruktion eines individuell entwickelten Bauteils mit Bemaßungen" width="980" height="735" loading="lazy"></picture></figure>
 <p>Mein 3D-Drucker löst heute Probleme, an die ich beim Kauf nie gedacht hätte.</p>
 <p>Als ich mir vor einem Jahr meinen ersten 3D-Drucker gekauft habe, dachte ich an Gadgets, Halterungen und vielleicht mal ein Ersatzteil. Dass ich irgendwann in Fusion 360 eigene Modelle konstruieren würde, hätte ich damals nicht erwartet.</p>
-<p>Durch persönliche Betroffenheit in der Familie habe ich sehr konkret erlebt, was es im Alltag bedeutet, wenn sich durch Selbstkathetisierung vieles verändert. Also habe ich angefangen, mich einzuarbeiten – nicht nur in das konkrete Problem, sondern auch eigenständig in Fusion 360.</p>
-<p>Am Ende sind zwei Designs entstanden: eine Halterung für einen bestimmten Einmalkatheter und ein flexibler Ersatzfuß für einen Handspiegel. Nicht nur nutzen, sondern teilen. Nicht auf Lösungen warten, sondern selbst welche bauen.</p>
+<p>Denn meistens ist es ja so: Man hat eine Idee, sucht auf MakerWorld – und irgendjemand hat genau das schon gebaut. Genau das macht diese Community so stark.</p>
+<p>Aber manchmal eben nicht.</p>
+<p>Durch persönliche Betroffenheit in der Familie habe ich sehr konkret erlebt, was es im Alltag bedeutet, wenn sich durch Selbstkathetisierung vieles verändert: Abläufe müssen neu gedacht werden, Flexibilität geht verloren, und plötzlich werden kleine Hilfsmittel wichtig, die man so nirgends kaufen kann.</p>
+<p>Also habe ich angefangen, mich einzuarbeiten. Nicht nur in das konkrete Problem, sondern auch eigenständig in Fusion 360. Stunde für Stunde, Tutorial für Tutorial, viel Learning by Doing.</p>
+<p>Am Ende sind zwei Designs entstanden:</p>
+<ul>
+<li>eine Halterung für einen bestimmten Einmalkatheter, die das Vorbereiten und Abstellen unterwegs deutlich erleichtert</li>
+<li>ein flexibler Ersatzfuß für einen Handspiegel, der sich stabil unter der Toilettenbrille fixieren lässt</li>
+</ul>
+<p>Sind das die komplexesten CAD-Modelle der Welt? Sicher nicht. Gemessen in Stunden war das sicher kein effizientes Projekt. Gemessen im Alltag der betroffenen Person schon.</p>
+<p>Denn es geht darum, ein echtes Problem zu erkennen, eine Lösung zu entwickeln, Prototypen zu drucken, zu verwerfen, anzupassen – und nach vielen Iterationen etwas in der Hand zu halten, das wirklich funktioniert.</p>
+<p>Ob die Designs jemals viele Downloads bekommen? Keine Ahnung. Die Nische ist sehr klein. Wenn es am Ende nur zwei sehr spezielle Designs sind, die vielleicht genau einer weiteren Person helfen, dann ist das mehr als genug.</p>
+<p>Genau das macht die Maker-Community für mich aus:</p>
+<p>Nicht nur nutzen, sondern teilen. Nicht auf Lösungen warten, sondern selbst welche bauen.</p>
       ]]></description>
     </item>
 
     <item>
       <title>Danke — euer Support bewegt etwas</title>
-      <link>https://niklasfauteck.de/blog/#danke-2025</link>
+      <link>https://niklasfauteck.de/blog/danke-2025.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#danke-2025</guid>
       <pubDate>Wed, 31 Dec 2025 00:00:00 +0100</pubDate>
       <category>Persönlich</category>
@@ -534,19 +571,35 @@
       <category>Umbau</category>
       <description><![CDATA[
 <p><strong>Eure Unterstützung hat in wenigen Wochen mehr bewegt, als wir es uns je ausmalen konnten.</strong></p>
-<p><img src="https://niklasfauteck.de/blog/images/danke-2025/danke-2025-collage.jpg" alt="Collage zum Jahresende 2025: Umbau-Fortschritte, Aylins Gehtraining und ein DANKE!" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/danke-2025/danke-2025-collage.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/danke-2025/danke-2025-collage.jpg" alt="Collage aus Fotos vom barrierefreien Umbau: gestapelte Holzbalken vor dem Haus, Türrahmen-Arbeiten, leergeräumter Anbau, neuer Geräteschuppen, Aylin beim Gehtraining im NIB Köln, herausgerissene Bodenfliesen, dazu in der Mitte das GoFundMe-Kampagnenbild und eine DANKE!-Karte mit Weihnachtsgrüßen." width="1200" height="1200" loading="lazy"></picture></figure>
 <p>In nur wenigen Wochen habt ihr es möglich gemacht, dass aus Hoffnung konkrete Fortschritte werden. Und dafür möchten wir von Herzen Danke sagen.</p>
-<p>Dank eurer Spenden, Shares und ermutigenden Nachrichten zu unserer GoFundMe-Kampagne konnten wir mit dem barrierefreien Umbau unseres Anbaus beginnen und Aylins Intensiv-Block-Therapie im NIB Köln ermöglichen — inklusive sofortiger Übernahme der Eigenbeteiligung. Das Training war extrem fordernd, tat Aylin aber spürbar gut und stärkt ihre Stabilität und Muskulatur.</p>
-<p>Auch beim Umbau geht es Schritt für Schritt voran: Anbau geleert, neuer Geräteschuppen aufgebaut, alte Fliesen und Fliesenkleber entfernt, Türrahmen vorbereitet, Dachboden geräumt und Bauschutt entsorgt. Ein großes Dankeschön an <strong>Kuse Metallbau aus Königswinter</strong> für die Beratung bei den neuen Türen und Fenstern — vermittelt durch eine GoFundMe-Spenderin.</p>
+<p>Dank eurer Spenden, Shares und ermutigenden Nachrichten zu unserer <a href="https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE" target="_blank" rel="noopener">GoFundMe-Kampagne</a> konnten wir:</p>
+<ul>
+<li>mit dem barrierefreien Umbau unseres Anbaus beginnen</li>
+<li>Aylins Intensiv-Block-Therapie im NIB Köln ermöglichen — inklusive sofortiger Übernahme der Eigenbeteiligung</li>
+</ul>
+<p>Das Training war extrem fordernd, tat Aylin aber spürbar gut und stärkt ihre Stabilität und Muskulatur.</p>
+<h2>Fortschritte beim Umbau</h2>
+<p>Auch beim Umbau geht es Schritt für Schritt voran:</p>
+<ul>
+<li>Anbau vollständig geleert</li>
+<li>Neuer Geräteschuppen aufgebaut</li>
+<li>Alte Fliesen und Fliesenkleber entfernt</li>
+<li>Türrahmen vorbereitet</li>
+<li>Dachboden geräumt und Bauschutt entsorgt</li>
+</ul>
+<p>Ein großes Dankeschön an <strong>Kuse Metallbau aus Königswinter</strong> für die kompetente Beratung bei den neuen Türen und Fenstern — vermittelt durch eine GoFundMe-Spenderin.</p>
+<h2>Wie es weitergeht</h2>
 <p>Mitte Januar wird das Produktionsaufmaß genommen — danach folgen Ausgleichsmasse, Vinylboden und viele weitere Schritte, die Aylins neuen Raum Stück für Stück Wirklichkeit werden lassen.</p>
+<p>Wir freuen uns weiterhin über Tipps, Empfehlungen oder Kontakte unter <a href="mailto:gofundme@fauteck.eu" target="_blank" rel="noopener">gofundme@fauteck.eu</a>.</p>
 <p>Danke für jede einzelne Unterstützung. Ihr macht wirklich einen Unterschied.</p>
-<p><em>Aylin &amp; Niklas</em></p>
+<p><em>Aylin & Niklas</em></p>
       ]]></description>
     </item>
 
     <item>
       <title>Der Umbau startet</title>
-      <link>https://niklasfauteck.de/blog/#umbau-startet</link>
+      <link>https://niklasfauteck.de/blog/umbau-startet.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#umbau-startet</guid>
       <pubDate>Tue, 14 Oct 2025 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
@@ -554,29 +607,29 @@
       <category>GoFundMe</category>
       <category>Umbau</category>
       <description><![CDATA[
-<p><img src="https://niklasfauteck.de/blog/images/umbau-startet/umbau-startet-collage.jpg" alt="Collage: GoFundMe-Kampagnenbild mit Spendenstand, Aylin mit Sohn am Rollator, Aylin vor herausgerissenen Fliesen, General-Anzeiger-Artikel" /></p>
-<p>Vor nicht mal zwei Wochen haben wir unsere GoFundMe-Kampagne gestartet, um meiner Frau Aylin nach ihrem Rückenmarkinfarkt den Alltag barrierefreier zu machen.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/umbau-startet/umbau-startet-collage.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/umbau-startet/umbau-startet-collage.jpg" alt="Collage: das GoFundMe-Kampagnenbild mit Aylin im Rollstuhl auf einem Feldweg und Spendenstand €12.151, daneben Aylin lachend in der Küche mit unserem Sohn auf dem Rollator, darunter Aylin mit Rollator vor herausgerissenen Fliesen im Anbau, dazu der Vorschaubild des General-Anzeiger-Artikels „Ich habe mit meinem Sohn noch mal laufen gelernt"." width="1200" height="1200" loading="lazy"></picture></figure>
+<p>Vor nicht mal zwei Wochen haben wir unsere <a href="https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE" target="_blank" rel="noopener">GoFundMe-Kampagne</a> gestartet, um meiner Frau Aylin nach ihrem Rückenmarkinfarkt den Alltag barrierefreier zu machen. 💛</p>
 <p>Dank eurer unglaublichen Unterstützung können wir jetzt mit dem Umbau beginnen: Der Anbau wird entrümpelt, alte Fliesen kommen raus — der erste Schritt zu Aylins neuem Raum startet.</p>
 <p>Wir sind dankbar, bewegt und voller Motivation. Jede Hilfe — ob durch Tipps, Kontakte oder Teilen — bringt uns weiter.</p>
-<p><em>Aylin &amp; Niklas</em></p>
+<p><em>Aylin & Niklas</em></p>
       ]]></description>
     </item>
 
     <item>
       <title>GoFundMe: Barrierefreier Umbau für unsere Familie</title>
-      <link>https://niklasfauteck.de/blog/#gofundme</link>
+      <link>https://niklasfauteck.de/blog/gofundme.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#gofundme</guid>
       <pubDate>Wed, 01 Oct 2025 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Familie</category>
       <category>GoFundMe</category>
       <description><![CDATA[
-<p><img src="https://niklasfauteck.de/blog/images/gofundme/gofundme-feldweg.jpg" alt="Aylin im Rollstuhl auf einem Feldweg, daneben unser Sohn mit grünem Helm" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/gofundme/gofundme-feldweg.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/gofundme/gofundme-feldweg.jpg" alt="Aylin im Rollstuhl auf einem Feldweg zwischen Feldern, daneben unser Sohn mit grünem Helm — Frühlingsspaziergang ins Grüne." width="2048" height="1152" loading="lazy"></picture></figure>
 <p>Manchmal verändert ein einziger Tag das ganze Leben. Im November 2022 erlitt meine Frau Aylin nach einer Tumor-OP eine Teilquerschnittslähmung. Unser Sohn war damals gerade ein Jahr alt. Seitdem kämpfen wir uns Schritt für Schritt durch einen neuen Alltag – voller zusätzlicher Herausforderungen und Kosten, die weit über das hinausgehen, was ein Pflegegrad abdeckt.</p>
 <p>Umbauten am Haus, ein größeres Auto, Therapien und Hilfsmittel – vieles mussten wir bereits stemmen. Doch eine zentrale Maßnahme steht noch bevor:</p>
 <p>Wir möchten unseren Anbau im Garten barrierefrei zum Wohnraum umbauen, damit Aylin alles Notwendige im Erdgeschoss hat.</p>
 <p>Dafür starten wir eine GoFundMe-Kampagne. Jeder Beitrag hilft uns, unserem Ziel näher zu kommen – sei es durch eine Spende oder das Teilen des Links in eurem Netzwerk.</p>
-<p>Hier geht's zur Kampagne: <a href="https://lnkd.in/eX8HATQ9">https://lnkd.in/eX8HATQ9</a></p>
+<p>Hier geht's zur Kampagne: <a href="https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE" target="_blank" rel="noopener">https://www.gofundme.com/f/barrierefreier-wohnraum-fur-aylin-hilf-uns-beim-umbau?lang=de_DE</a></p>
 <p>Vielen Dank für jede Form der Unterstützung!</p>
 <p><em>Niklas</em></p>
       ]]></description>
@@ -584,14 +637,16 @@
 
     <item>
       <title>Depression</title>
-      <link>https://niklasfauteck.de/blog/#depression</link>
+      <link>https://niklasfauteck.de/blog/depression.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#depression</guid>
       <pubDate>Thu, 10 Oct 2024 00:00:00 +0200</pubDate>
       <category>Persönlich</category>
       <category>Mental Health</category>
       <description><![CDATA[
+<blockquote>
 <p><strong>Triggerwarnung: Dieser Text handelt von Depression und Panikattacken.</strong></p>
-<p><img src="https://niklasfauteck.de/blog/images/depression/alles-wird-wieder-ok.jpg" alt="Schwarzweiß-Foto: Sticker &#8222;Alles wird wieder ok!&#8220; auf einem Bierkasten" /></p>
+</blockquote>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/depression/alles-wird-wieder-ok.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/depression/alles-wird-wieder-ok.jpg" alt="Schwarzweiß-Foto eines Bierkastens mit aufgeklebtem Sticker „Alles wird wieder ok!" — daneben weitere Aufkleber wie „Bier macht schön"" width="1710" height="1284" loading="lazy"></picture></figure>
 <p>Ich bin in eine Depression gerutscht.</p>
 <p>Ich habe lange überlegt, ob ich das schreiben soll. Zum einen bin ich sowieso nicht mehr wahnsinnig in Social Media aktiv. Zum anderen fühlt es sich bei aller eigenen Akzeptanz, dass ich diese Krankheit habe und es eine ist, an, als würde ich eine Schwäche preisgeben. Was natürlich Blödsinn ist. Denn eine Depression sucht sich niemand aus. Und ich bin in guten Momenten stolz auf mich, das schon erkannt zu haben und aktiv dagegen anzugehen. Und vielleicht hilft es jemandem, der noch nicht weiß, warum er sich mies fühlt.</p>
 <h2>Der Hintergrund</h2>
@@ -599,22 +654,43 @@
 <p>Seitdem ist viel passiert. Das akute Gefühl direkt nach dem Schicksalsschlag, dass alles immer kurz davor ist, gegen die Wand zu fahren, und ich mehr Verantwortung für uns alle trage, um durch die weitere Zeit zu kommen, konnte ich bei allen Fortschritten meiner Frau offenbar nie ganz ablegen. Vermutlich fing da schon die Depression an, an meinen Kräften zu nagen.</p>
 <h2>Die Energiebilanz bei Null</h2>
 <p>Denn egal was wir gemeinsam Schönes unternahmen — es war immer eine riesige Anstrengung für mich. Die Energiebilanz aus Einsatz und Ertrag war für mich meist bei maximal 0. Ich hatte durchgehend eine Grundanspannung in mir, die mir teilweise bis zur Gurgel hochging, auch wenn ich einfach nur nach der Arbeit auf dem Spieleteppich mit meinem Sohn und seinen Autos spielte.</p>
+<p>Ich dachte, naja, okay, so ist das halt mit Kind mit der durchgehenden Anspannung, stell dich nicht an, bist du halt schwach, dass das so anstrengend ist, aber das ist für alle so. Musst du eben aushalten, andere schaffen das ja auch.</p>
+<p>Ich weiß mittlerweile, dass das Quatsch ist.</p>
+<h2>Der Abstieg</h2>
+<p>Ich habe Ende August an einem Mittwochmorgen gemerkt, das ich so antriebslos und unkonzentriert bin, dass ich nicht arbeiten kann — und bin zum Hausarzt gegangen. Ach, reicht, wenn sie mich erstmal diese Woche krank schreiben. Nächste Woche geht es sicher wieder. Ging's nicht. Und es wurde schlechter.</p>
+<p>Ich verstehe, wieso man davon spricht, dass man in eine Depression "rutscht". Obwohl ich durch zwei Jahre Gesprächstherapie wusste, dass es gerade in die falsche Richtung läuft — einmal losgeruscht, war es schwer sie aufzuhalten.</p>
+<p>Ich bekam täglich Panikattacken. Ich konnte keine strukturierten, lösungsorientierten Gedanken mehr fassen. In meinem Kopf waren nur Probleme, es war laut, unorganisiert und schnell. Wie ein Feuerwerk, bei dem jeder grell leuchtende Funke ein Gedanke ist. Kurz da, peng, weg. Tausende gleichzeitig. Und dann direkt die nächste Rakete.</p>
+<p>Ich war bei der kleinsten Anforderung an mich komplett überfordert. "Kannst du gleich noch die Spülmaschine ausräumen?" — zack, gelähmt. Ich konnte nicht. Als hätte ich eine Bleiweste an, die mich daran hindert aufzustehen.</p>
+<p>Ich konnte abends nicht vor 2 Uhr einschlafen, war früh wach, war wahnsinnig platt und erschöpft, aber der Kopf war so laut und ich so unter Spannung, dass ein Mittagsschlaf nahezu ein Ding der Unmöglichkeit war. Ich kam nicht zur Ruhe. Und wenn ich doch kurz eingenickt war, war ich danach niedergeschlagener als vorher. Diese körperliche Anspannung sorgte zudem für ein andauerndes Körpergefühl wie bei einem heftigen Kater nach durchzechter Nacht.</p>
+<h2>Versuche, dagegen anzukämpfen</h2>
+<p>Ich konnte nicht mehr aufs Smartphone schauen, alles überforderte mich. Ich fing an mit Yoga, spazierte stundenlang durch die Felder, versuchte es mit Meditation, Achtsamkeitsübungen, progressiver Muskelentspannung. Ich fuhr Rad. Das powert aus, dachte ich mir, da bist du danach so richtig positiv platt. Denkste. Zehn Minuten nach der Radtour ging's mit gleichlautem Alarm im Oberstübchen wieder weiter. Trotzdem: Beschäftigt bleiben, damit ich kurz die Gedanken zur Ruhe bringen kann — wie fürchterlich anstrengend.</p>
+<p>Ich konnte in den depressivsten Wochen auch nicht mehr meine Lieblingsmusik hören. Punk und Ska haben mich überreizt. Ich fing dann wieder langsam an, bewusst Low Fi oder Klassik zu hören.</p>
+<h2>Medikamente und das Schuldgefühl</h2>
+<p>Mir war klar: Ich brauche auch medikamentöse Unterstützung, um da rauszukommen, weil die vielen Werkzeuge, die ich kannte, um meine Tage trotzdem aktiv zu gestalten, nicht ausreichten. Und dann machte mir aber die Unbekannte "Antidepressivum" Tage vor der ersten Einnahme noch zusätzlich Bauchschmerzen. Unnötig, weiß ich jetzt.</p>
+<p>Ich konnte den meisten Aufgaben im Haushalt und mit Kind nicht mehr nachkommen und meine Frau musste mich hier extrem entlasten. Und dann sagt dir die Depression: Fühl dich doch jetzt mal schuldig dafür, dass du deine Familie gerade im Stich lässt! Was ein Kokolores, weiß ich selbst. Wusste ich im Zweifel auch zwei Stunden vorher und am nächsten Morgen, aber dann sitzt man da abends heulend auf der Couch.</p>
+<h2>Unterstützung</h2>
+<p>Ich bin so dankbar für mein privates Umfeld, in dem ich immer offen über meine Gefühle sprechen kann. Ich habe einen empathischen Hausarzt, eine kompetente Psychiaterin und eine Psychotherapeutin, die seit zwei Jahren meine Umstände und die Themen kennt. Ich fühle mich gut unterstützt.</p>
 <h2>Es wird besser</h2>
-<p>Das Antidepressivum beginnt zu wirken. Faszinierend, dass ich schon innere Ruhe, die ich wirklich gar nicht mehr kannte, in einzelnen Momenten spüre. Dafür lohnt es sich doch, sich da weiter rauszuwühlen.</p>
+<p>Das Antidepressivum beginnt zu wirken. Es ist eben keine Schmerztablette, sondern dauert ein paar Wochen. Faszinierend, dass ich schon innere Ruhe, die ich wirklich gar nicht mehr kannte, in einzelnen Momenten spüre — auch wenn mein Sohn mal zetert, dann bin ich vielleicht genervt, aber mir hängt die Spannung nicht mehr bis zum Hals. Ein krasses Gefühl.</p>
+<p>Wenn meine Frau eine Idee für einen Ausflug hat, ist in guten Momenten nicht mehr spontan der verkrampfte Gedanke an die damit verbundene Anstrengung da, sondern: Ja, können wir machen. Plötzlich ist vorstellbar, dass einem schöne Erlebnisse mehr Energie geben als sie kosten, geil. Dafür lohnt es sich doch, sich da weiter rauszuwühlen.</p>
+<p>Aus drei Tage mal krank geschrieben sind mittlerweile sieben Wochen geworden. Und ein paar kommen sicher noch dazu, bis auch wieder an Arbeit zu denken ist. Bis dahin hole ich mir zuhause Stück für Stück meinen Alltag zurück. Zeit, in der ich mich und diese Krankheit besser kennenlerne.</p>
+<h2>Neu lernen, achtsam zu sein</h2>
+<p>Ich muss neu lernen, achtsam zu mir selbst zu sein und nicht nur zweckmäßig Aufgaben zu erfüllen. Das habe ich in den letzten Jahren verlernt.</p>
+<p>Ich war die Tage morgens in einem Cafe frühstücken. Alleine irgendwo sitzen und essen, hätte ich früher nie gemacht, wie cringe. Ist es aber gar nicht, verrückt. Tut sogar mal ganz gut. Sich eine Badewanne einlassen und dabei Kerzen und Musik anmachen. Den Kaffee nicht to go trinken, sondern bewusst am Morgen in den Garten setzen und Eichhörnchen beobachten. Mit dem Kleinen in Ruhe Duplo bauen.</p>
 <p><strong>Alles wird wieder ok.</strong></p>
       ]]></description>
     </item>
 
     <item>
       <title>Neue Position</title>
-      <link>https://niklasfauteck.de/blog/#neue-position</link>
+      <link>https://niklasfauteck.de/blog/neue-position.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#neue-position</guid>
       <pubDate>Tue, 01 Aug 2023 00:00:00 +0200</pubDate>
       <category>Karriere</category>
       <category>RTL</category>
       <category>Persönlich</category>
       <description><![CDATA[
-<p><img src="https://niklasfauteck.de/blog/images/neue-position/neue-position.png" alt="Illustration: jubelnde Menschen um einen Cupcake, dazu der Schriftzug Neue Position" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/neue-position/neue-position.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/neue-position/neue-position.png" alt="Illustration: vier Menschen springen jubelnd um einen großen Cupcake mit Kirsche, darunter der Schriftzug „Neue Position"." width="506" height="363" loading="lazy"></picture></figure>
 <p>Dieses Jahr ist für mich privat herausfordernd, meine Frau ist nach einer Tumorbehandlung im November letzten Jahres ab der Halswirbelsäule teilquerschnittsgelähmt und kämpft sich zurück ins Leben. Ich war vier Monate lang alleinsorgend mit unserem Sohn zuhause, der zu dem Zeitpunkt gerade 1 Jahr alt geworden war. Da gehen einem tausend Fragen durch den Kopf, selten hatten wir Antworten.</p>
 <p>Danke an RTL Deutschland, dass ich mir zumindest zu meinem Job keine Fragen stellen musste und ich nach den ersten Monaten in Teilzeit zurückkommen konnte.</p>
 <p>Jetzt freue ich mich auf die Aufgaben in meiner neuen Position als Head of Digital Transformation in der Kommunikation, um mit den Teams noch mehr aus unseren Workflows und Tools herauszuholen und die technischen Produkte in der PR auszubauen.</p>
@@ -625,22 +701,33 @@
 
     <item>
       <title>Abschied vom Science Slam</title>
-      <link>https://niklasfauteck.de/blog/#abschied-science-slam</link>
+      <link>https://niklasfauteck.de/blog/abschied-science-slam.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#abschied-science-slam</guid>
       <pubDate>Sun, 06 Mar 2022 00:00:00 +0100</pubDate>
       <category>Science Slam</category>
       <category>Moderation</category>
       <category>Abschied</category>
       <description><![CDATA[
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/abschied-science-slam/science-slam-collage.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/abschied-science-slam/science-slam-collage.jpg" alt="Collage aus vier Science-Slam-Momenten: voller Saal im Bonner Pantheon mit Bühne und Publikum an Tischen; Slammer im Spotlight beim Auftritt (Foto: Daniel Koch); Selfie mit dem LUUPS-Team und Mitstreiter:innen; Slammer vor Tafel mit Formeln, davor das Publikum." width="1280" height="960" loading="lazy"></picture></figure>
 <p><strong>9 Jahre, 38 Events, über 200 Vorträge — und phantastische Menschen kennengelernt. Danke!</strong></p>
-<p><img src="https://niklasfauteck.de/blog/images/abschied-science-slam/science-slam-collage.jpg" alt="Collage aus vier Science-Slam-Momenten: Pantheon-Saal, Spotlight-Auftritt, LUUPS-Team-Selfie, Tafel-Vortrag" /></p>
-<p>Der Bonner Science Slam im Januar 2020 wird voraussichtlich der letzte gewesen sein, den ich moderiert habe. Seit Juli 2013 habe ich insgesamt 38 Science Slams moderiert, 200 Mal Slammer:innen auf die Bühne geholt, die in nur zehn Minuten ihr Forschungsthema möglichst leicht verständlich und unterhaltsam präsentieren mussten.</p>
-<h2>Wertvolle Erfahrung, schöne Erinnerungen</h2>
-<p>Ich habe das Moderieren immer nur zum Spaß gemacht. Für mich war es eine unglaublich wertvolle Erfahrung, die einen vernünftigen Abschluss verdient hätte.</p>
+<p>Der Bonner Science Slam im Januar 2020 wird voraussichtlich der letzte gewesen sein, den ich moderiert habe. Anfang Mai würde zwar der nächste stattfinden, bei dem ich auf der Bühne stehen könnte, aber ich <em>mache die Lena</em>. Bei weiter hohen Infektionszahlen und immer weniger Corona-Maßnahmen ist mein Gefühl: Die Zeit ist noch nicht reif.</p>
+<p>Seit Juli 2013 habe ich insgesamt 38 Science Slams moderiert, 200 Mal Slammer:innen auf die Bühne geholt, die in nur zehn Minuten ihr Forschungsthema möglichst leicht verständlich und unterhaltsam präsentieren mussten. Und der Applaus des Publikums entschied am Ende des Abends, wer die „Goldenen Boxhandschuhe der Wissenschaft" gewann, wem Ruhm und Ehre zuteilwurde.</p>
+<h2>Wertvolle Erfahrung, schöne Erinnerungen — auch ohne vernünftigen Abschluss</h2>
+<p>Wenn mir der Veranstalter LUUPS die nächsten Termine zugerufen hat, war ich am Start. Na klaro. Aber jetzt kommt es wiederholt vor, dass ich (teilweise nur schneller als die Veranstalter:innen) doch ein paar Wochen vorher abgesagt habe, weil mich mein persönliches Empfinden, ob so viel Publikum und die aktuelle Corona-Lage zusammenpassen, zweifeln ließ. Doch ich will nicht unzuverlässig erscheinen. Daher wird sich ein:e andere:r freuen, die Termine zu blocken und der Wissenschaft eine Bühne zu geben.</p>
+<p>Ich habe das Moderieren immer nur zum Spaß gemacht. Das kann nicht jede:r in der Kulturbranche sagen, daher habe ich volles Verständnis, dass Künstler:innen & Co. versuchen, Veranstaltungen auch unter diesen Bedingungen sicher zu planen und durchzuführen.</p>
+<p>Für mich war es eine unglaublich wertvolle Erfahrung, die einen vernünftigen Abschluss verdient hätte. Doch auf Standby zu sein, um doch irgendwann zumindest ein letztes Mal einen Slam zu moderieren, sozusagen zum Finale – das erscheint mir dann nach so langer Pause nicht richtig zu sein. In über zwei Jahren Corona hat sich bei mir so viel verändert, dass ich froh bin über diese schönen Erinnerungen, anstatt Gefahr zu laufen, eingerostet einen für mein Gefühl miesen letzten Slam hinzulegen, mit dem ich eventuell nicht ganz zufrieden wäre.</p>
 <h2>Phantastische Menschen auf und hinter der Bühne</h2>
-<p>Ich habe unglaublich interessante, schlaue, sympathische Menschen kennengelernt. Juli Tkotz, Rufina Fingerhut, Mai Thi Nguyen-Kim, Franca Parianen und viele viele mehr. Alles renommierte Wissenschaftler:innen, erfolgreiche Podcaster:innen, Deutsche Science-Slam-Meister:innen. Es war mir eine Ehre, mit ihnen die Bühne geteilt zu haben.</p>
+<p>Ich habe unglaublich interessante, schlaue, sympathische Menschen kennengelernt. Juli Tkotz, Rufina Fingerhut, Mai Thi Nguyen-Kim, Franca Parianen, Jutta Teuwsen, Elisabeth Mettke, Janina Otto, Carrie Ankerstein, Constantin Wurthmann, Johannes von Borstel, Sebastian Lotzkat, Dong-Seon Chang, Darius Rupalla, Johannes Schildgen, Peter Westerhoff, Reinhard Remfort, Kai Jäger, Johannes Kretzschmar, Aniruddha Dutta und viele viele mehr.</p>
+<p>Alles renommierte Wissenschaftler:innen, erfolgreiche Podcaster:innen, Deutsche Science-Slam-Meister:innen, die Bücher geschrieben haben, TV-Sendungen moderieren, zu denen es Wikipedia-Einträge gibt. Und ich Dödel dazwischen. Es war mir eine Ehre, mit ihnen die Bühne geteilt zu haben.</p>
+<p>Danke auch an das LUUPS-Team hinter der Bühne: Sveda, Julia, Karsten, Sebastian, Nils, Leo, Ronja, Rebecca und alle anderen. Danke für die großartige Organisation und den noch großartigeren Quatsch im Backstage. Das war locker eine 12 von 10 auf der Applaus-Skala.</p>
+<h2>Die Locations</h2>
+<p>Hätte ich vorher auch nicht gedacht, dass ich beispielsweise mal auf der Kleinkunstbühne des Bonner Pantheon stehen werde – und die Location mit insgesamt 18 Abenden sowas wie mein Science-Slam-Wohnzimmer wurde. Geslamt wurde auch in coolen Läden wie dem Club Bahnhof Ehrenfeld in Köln oder dem Franz in Aachen, in Hörsälen in Bonn und Bochum, es gab Auftritte beim „Bochum Total"-Festival, in Museen wie der DASA in Dortmund oder der Bonner Bundeskunsthalle, bei der ExtraSchicht in der Jahrhunderthalle Bochum oder vor fünf Leuten im KulturCafé des AStA Bochum.</p>
+<h2>Eins von vielen Highlights: TV-Aufzeichnung für VOX</h2>
+<p>Eine besondere Erinnerung wird eine Pilotaufzeichnung für VOX bleiben, die ich 2015 moderieren durfte. Eine Mischung aus „Let's Dance" und Science Slam, mit Jury und prominenten Slammer:innen. Eine Idee, die entstand, als ich im Volontariat Station in der VOX-Redaktion gemacht habe und die Kolleg:innen dort Feuer und Flamme für den Science Slam waren – und ihn als Inspiration für eine Showidee sahen.</p>
+<p>Lampenfieber war bei jedem Slam dabei, aber besonders ging mir die Pumpe als sich der damalige VOX-Chefredakteur zum nächsten Slam als Gast ankündigte. Und vor Kameras mit Regie im Ohr war's dann auch noch mal etwas anderes als bloß vor Publikum im Saal. Aus der Showidee wurde zwar nichts, es lag aber angeblich nicht an mir. Ich will das mal glauben, zumindest ließ VOX mich danach sogar durch Pressekonferenzen moderieren. 😉</p>
 <h2>Der Anfang von allem</h2>
-<p>Alles nur, weil ich 2013 meine Bachelor-Arbeit zum Thema geschrieben habe: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen".</p>
+<p>Alles nur, weil ich 2013 meine Bachelor-Arbeit zum Thema geschrieben habe: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen". Sperriger Titel mit einem Kolloquium im Science-Slam-Style.</p>
+<p>---</p>
 <p>Mach's gut, Science Slam! Bis bald – dann als Gast vor der Bühne.</p>
 <p><em>Niklas</em></p>
       ]]></description>
@@ -648,25 +735,33 @@
 
     <item>
       <title>Jahresrückblick 2021</title>
-      <link>https://niklasfauteck.de/blog/#jahresrueckblick-2021</link>
+      <link>https://niklasfauteck.de/blog/jahresrueckblick-2021.html</link>
       <guid isPermaLink="false">https://niklasfauteck.de/blog/#jahresrueckblick-2021</guid>
       <pubDate>Sat, 01 Jan 2022 00:00:00 +0100</pubDate>
       <category>Jahresrückblick</category>
       <category>Persönlich</category>
       <description><![CDATA[
-<p><img src="https://niklasfauteck.de/blog/images/jahresrueckblick-2021/jahresrueckblick-2021.jpg" alt="Jahresrückblick 2021" /></p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/jahresrueckblick-2021/jahresrueckblick-2021.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/jahresrueckblick-2021/jahresrueckblick-2021.jpg" alt="Jahresrückblick 2021" width="1024" height="576" loading="lazy"></picture></figure>
 <p>Zum Start ins neue Jahr ist noch kurz Zeit für einen Rückblick auf 2021. Obwohl die meiste Zeit zuhause hockend ist ganz schön viel passiert.</p>
 <h2>Vater geworden</h2>
-<p>Ich bin Vater geworden. Das ist vor allem eine Leistung meiner Frau, wow. Nicht in Worte zu fassen. Noch nie so viel Glück und Verantwortung gespürt wie jetzt.</p>
+<p>Ich bin Vater geworden. Das ist vor allem eine Leistung meiner Frau, wow. Nicht in Worte zu fassen. Mit einer nicht einfachen Schwangerschaft und turbulenten ersten Wochen nach der Geburt, bei denen ich hoffentlich so gut es geht unterstützt habe.</p>
+<p>Danach kommt erst Mal lange nichts. Noch nie so viel Glück und Verantwortung gespürt wie jetzt. Und so viele Windeln gewechselt. Aber freue mich auf jede weitere. Und alles was kommt. Riesig.</p>
 <h2>Pandemie</h2>
-<p>Pandemie Schmandemie. Scheiße wie für alle. Kaum physische Kontakte, um schwangere Frau und Kind zu schützen. Aber hey: Geboostert. Lasst euch impfen. Wir schaffen das!</p>
+<p>Pandemie Schmandemie. Scheiße wie für alle. Kaum physische Kontakte, um schwangere Frau und Kind zu schützen. Noch vorsichtiger als sowieso schon. Setzt ganz schön zu. Aber hey: Geboostert. Lasst euch impfen. Wir schaffen das!</p>
+<h2>Freunde & Familie</h2>
+<p>Ohne wäre das Jahr ganz schön trist geworden. Egal ob nahezu tägliche Sprachnotizen, feste Sim-Racing-Termine jede Woche, gemeinsame Podcasts, regelmäßige Kaffee-Calls in Teams, schreiben dass man aneinander denkt, auch wenn man sich nicht sieht. Mentale und ganz konkrete Unterstützung im Wochenbett. Unschätzbarer Wert. Dankbar.</p>
+<h2>Sommer</h2>
+<p>Der war sogar richtig gut. Und trägt einen mit Hoffnung auf einen vergleichbar tollen im eigenen Garten in 2022 durch Herbst und Winter.</p>
 <h2>Job</h2>
-<p>Zusammen ein geiles Newsdesk-Team in der RTL Kommunikation geformt. Bin als Leiter stolz, was wir 2021 geschafft haben.</p>
+<p>Zusammen ein geiles Newsdesk-Team in der RTL Kommunikation geformt. Bin als Leiter stolz, was wir 2021 geschafft haben. Und froh, so viel Unterstützung und Rückhalt nicht nur von meinen Vorgesetzten zu spüren, sondern auch aus dem Team. Gutes Gefühl: Die Herausforderungen 2022 werden wir gemeinsam wuppen.</p>
 <h2>Bierbrauen</h2>
-<p>Ziemlich trivial, aber: Ich habe mein erstes eigenes Bier gebraut. Und mein zweites mit besserem Brau-Equipment. Und hat am Ende sogar geschmeckt.</p>
-<p>Man kann sagen: Das war ein gutes Jahr. Jetzt aber auf in ein Jahr 2022, das uns am Ende hoffentlich alle irgendwie positiv überrascht!</p>
+<p>Ziemlich trivial, aber: Ich habe mein erstes eigenes Bier gebraut. Und mein zweites mit besserem Brau-Equipment. Well, das eskalierte schnell. Und hat am Ende sogar geschmeckt. Fast so gut wie die vielen Craftbiere, die ich so bei untappd einscanne.</p>
+<h2>Lego</h2>
+<p>Alte Klemmbausteine vom Speicher meiner Eltern gerettet. Ab in die Waschmaschine und versucht, sie wieder in den originalen Sets zu sortieren. Dann kam die Schwangerschaft dazwischen. Aber Plan steht, dass der Kleine dann irgendwann Papas alte Ritterburg aufbauen kann.</p>
+<p>---</p>
+<p>Man kann sagen: Das war ein gutes Jahr. Ich lass' mir das von "Big C" nicht kaputtdeuten. Aber ohne wäre schon schöner gewesen.</p>
+<p>Jetzt aber auf in ein Jahr 2022, das uns am Ende hoffentlich alle irgendwie positiv überrascht und in dem wir unseren persönlichen Zielen alle näherkommen. Haut rein!</p>
       ]]></description>
     </item>
-
   </channel>
 </rss>

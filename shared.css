@@ -9,6 +9,7 @@
   --primary: #2C3E50;
   --accent: #52b788;
   --accent-dark: #3d9a68;
+  --accent-focus: #2d6a4f;
   --bg: #FFFFFF;
   --bg-light: #F8F9FA;
   --bg-alt: #FAFBFC;
@@ -17,7 +18,41 @@
   --border: #E5E7EB;
   --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Fokus-Ring — DESIGN.md elevation.focus-ring-content.
+     #2d6a4f erreicht 6,5:1 auf Weiss; das Marken-Gruen #52b788 kommt deckend
+     nur auf 2,5:1 und reisst die 3:1 aus WCAG 2.2 SC 1.4.11. */
+  --focus-ring-color: var(--accent-focus);
+
+  /* Schatten — im Content-Layer ins Gruen getoent (DESIGN.md elevation.content-*).
+     Reines Schwarz bleibt dem OS-Layer vorbehalten, wo der Grund fast schwarz ist. */
+  --shadow-1: 0 1px 8px rgba(9, 46, 30, 0.06);
+  --shadow-2: 0 2px 8px rgba(9, 46, 30, 0.16);
+  --shadow-3: 0 4px 12px rgba(9, 46, 30, 0.22);
+  --shadow-modal: 0 20px 60px rgba(9, 46, 30, 0.20);
+
+  /* Druckfeedback — DESIGN.md animation.duration.instant */
+  --press-shift: translateY(1px);
+
+  /* Bestaetigungs-Dialoge — die beiden Ziele haben eigene Marken-Farben.
+     Sie stehen hier als Token, damit sie nicht als Literal in der Komponente
+     kleben und der Guard sie nicht als Drift meldet. */
+  --icon-os-bg:       #F0EBFA;
+  --icon-os-fg:       #6C3FA0;
+  --icon-academy-bg:  #EEF9F6;
+  --icon-academy-fg:  #2D6A4F;
+  --surface-hover:    #eee;
+
+  /* z-index — Skala aus DESIGN.md, gleiche Werte wie im OS-Layer. */
+  --z-panel:     1000;
+  --z-overlay:   5000;
+  --z-skip-link: 10200;
 }
+
+/* <picture> ist nur ein Traeger fuer die WebP-Quelle — es soll im Layout nicht
+   vorkommen. Ohne display:contents schoebe es sich als Inline-Kasten zwischen
+   Container und Bild und braeche jedes Flex-/Grid-Verhaeltnis darueber. */
+picture { display: contents; }
 
 /* Reset */
 * {
@@ -40,9 +75,9 @@ nav[role="navigation"] {
   top: 0;
   width: 100%;
   background: var(--bg);
-  z-index: 1000;
+  z-index: var(--z-panel);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-1);
 }
 
 nav .nav-inner {
@@ -89,10 +124,18 @@ nav a {
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 100ms ease;
 }
 
 nav a:hover { color: var(--accent-dark); }
+
+/* Aktuelle Seite — components.js setzt aria-current zentral.
+   Die Auszeichnung ist beides: programmatisch fuer Screenreader und sichtbar
+   fuer alle anderen. Nur eins davon waere eine halbe Loesung. */
+nav a[aria-current="page"] {
+  color: var(--primary);
+  font-weight: 600;
+}
 
 /* Mobile Toggle */
 .mobile-toggle {
@@ -138,7 +181,7 @@ nav a:hover { color: var(--accent-dark); }
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 2000;
+  z-index: var(--z-overlay);
   background: rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
@@ -156,7 +199,7 @@ nav a:hover { color: var(--accent-dark); }
   padding: 2.5rem;
   max-width: 440px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-modal);
   text-align: center;
 }
 
@@ -171,13 +214,13 @@ nav a:hover { color: var(--accent-dark); }
 }
 
 .confirm-box .confirm-icon.os-icon {
-  background: #F0EBFA;
-  color: #6C3FA0;
+  background: var(--icon-os-bg);
+  color: var(--icon-os-fg);
 }
 
 .confirm-box .confirm-icon.academy-icon {
-  background: #EEF9F6;
-  color: #2D6A4F;
+  background: var(--icon-academy-bg);
+  color: var(--icon-academy-fg);
 }
 
 .confirm-box .confirm-icon svg {
@@ -226,17 +269,17 @@ nav a:hover { color: var(--accent-dark); }
   border: 1px solid var(--border);
 }
 
-.confirm-btn-cancel:hover { background: #eee; }
+.confirm-btn-cancel:hover { background: var(--surface-hover); }
 
 .confirm-btn-ok {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(82, 183, 136, 0.25);
+  box-shadow: var(--shadow-2);
 }
 
 .confirm-btn-ok:hover {
   background: var(--accent-dark);
-  box-shadow: 0 4px 12px rgba(82, 183, 136, 0.35);
+  box-shadow: var(--shadow-3);
 }
 
 /* Responsive Navigation */
@@ -253,7 +296,7 @@ nav a:hover { color: var(--accent-dark); }
     border-bottom: 1px solid var(--border);
     padding: 1rem 2rem;
     gap: 1rem;
-    z-index: 999;
+    z-index: var(--z-panel);
   }
   .mobile-toggle { display: flex; }
 }
@@ -295,15 +338,58 @@ p, li, figcaption, blockquote {
   font-size: 14px;
   font-weight: 600;
   border-radius: 6px;
-  z-index: 1000;
+  z-index: var(--z-skip-link);
   text-decoration: none;
 }
 
-/* Focus-Visible — Tastatur-Fokus-Ring (Accessibility) */
+/* Focus-Visible — Tastatur-Fokus-Ring (Accessibility)
+   WCAG 2.2 SC 1.4.11 verlangt 3:1 gegen den Hintergrund. Der Wert steht als
+   Token in DESIGN.md (elevation.focus-ring-content) — beides aendert man
+   zusammen, sonst kommt der alte Wert ueber die naechste Komponente zurueck.
+   Als outline und nicht als box-shadow: outline belegt eine Eigenschaft, die
+   sonst niemand nutzt, also kann keine Komponentenregel den Ring verdraengen. */
 :focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.25);
-  border-radius: inherit;
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Druckfeedback — ohne :active gibt eine Beruehrung auf Touch gar keine
+   Rueckmeldung, weil es dort kein :hover gibt. 1 px Absenken wirkt bei jeder
+   Elementbreite gleich; scale() haengt von der Breite ab und franst Kanten aus.
+   nav a und .confirm-btn fehlen hier absichtlich: sie haben weiter oben eigene
+   transition-Regeln, die eine zweite Deklaration still abraeumen wuerde. */
+.footer a,
+.mobile-toggle,
+.back-link,
+.rss-cta-btn,
+.contact-btn,
+.header-cta,
+.post-item a,
+button {
+  transition: transform 100ms ease;
+}
+
+nav a:active,
+.footer a:active,
+.confirm-btn:active,
+.mobile-toggle:active,
+.back-link:active,
+.rss-cta-btn:active,
+.contact-btn:active,
+.header-cta:active,
+.post-item a:active,
+button:active {
+  transform: var(--press-shift);
+}
+
+/* Der Skip-Link darf nicht wandern — er ist die Notausfahrt, kein Button. */
+.sr-only-focusable:active { transform: none; }
+
+/* Zahlen, die sich an Ort und Stelle aktualisieren, duerfen nicht zappeln. */
+.tabular,
+time,
+output {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Reduced Motion (Accessibility-Baseline) */

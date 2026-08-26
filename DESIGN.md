@@ -96,18 +96,35 @@ rounded:
   lg:     "8px"
   xl:     "10px"
   "2xl":  "12px"
+  "3xl":  "16px"   # Chat-Blasen, Karten im Mobil-Layer
+  "4xl":  "20px"   # Geraeterahmen des simulierten Telefons
+  "5xl":  "24px"   # Vollflaechige Panels im Mobil-Layer
   pill:   "9999px"
   circle: "50%"
 
 # ── Elevation / shadows ───────────────────────────────────────────────────────
 elevation:
+  # OS-Layer (dunkel): reines Schwarz. Auf #0c1218 traegt eine Toenung nichts
+  # bei — der Grund ist bereits fast schwarz.
   "1": "0 1px 3px rgba(0,0,0,0.06)"
   "2": "0 4px 12px rgba(0,0,0,0.40)"
   "3": "0 8px 32px rgba(0,0,0,0.50)"
   "4": "0 16px 56px rgba(0,0,0,0.55), 0 0 0 1px rgba(82,183,136,0.22)"
   "5": "0 24px 72px rgba(0,0,0,0.65), 0 0 0 1.5px #52b788"
   modal: "0 24px 64px rgba(0,0,0,0.60)"
-  focus-ring: "0 0 0 3px rgba(82,183,136,0.25)"
+
+  # Content-Layer (hell): ins Gruen getoent. Auf weissem Grund liest sich ein
+  # reiner Grauschatten fremd; #092e1e ist os-accent-dark weiter abgedunkelt.
+  content-1: "0 1px 8px rgba(9,46,30,0.06)"
+  content-2: "0 2px 8px rgba(9,46,30,0.16)"
+  content-3: "0 4px 12px rgba(9,46,30,0.22)"
+  content-modal: "0 20px 60px rgba(9,46,30,0.20)"
+
+  # Fokus-Ring je Layer — ein Wert reicht nicht, siehe "Fokus-Ring" unten.
+  # Als outline, nicht als box-shadow: elf OS-Komponenten setzen einen eigenen
+  # box-shadow, den ein Schatten-Ring bei gleicher Spezifitaet verdraengen wuerde.
+  focus-ring-content: "outline: 3px solid #2d6a4f; outline-offset: 2px"
+  focus-ring-os:      "outline: 3px solid #74c69d; outline-offset: 2px"
 
 # ── Z-index scale ─────────────────────────────────────────────────────────────
 z-index:
@@ -119,7 +136,11 @@ z-index:
   panel:      1000
   overlay:    5000
   lockscreen: 8000
-  system:     9999
+  shutdown:   9900   # Herunterfahren-Schirm — unter Login/Lock, ueber allem sonst
+  system:     9999   # Login- und Sperrbildschirm
+  onboarding: 10000  # Ersteinstiegs-Fuehrung, liegt ueber dem Sperrbildschirm
+  toast:      10100  # Achievement-Einblendung
+  skip-link:  10200  # muss ueber allem liegen, sonst ist er nicht erreichbar
 
 # ── Motion ───────────────────────────────────────────────────────────────────
 animation:
@@ -129,6 +150,7 @@ animation:
     normal:       "150ms"
     slow:         "200ms"
     slower:       "300ms"
+    slowest:      "400ms"
     window-open:  "220ms"
     window-close: "150ms"
     progress:     "1200ms"
@@ -309,6 +331,19 @@ The accent-colored border on level 5 (`0 0 0 1.5px #52b788`) is the only
 place the accent color appears on a shadow — it doubles as a focus indicator
 for the window system.
 
+**Two shadow families, not one.** The `1`–`5` levels are black
+(`rgba(0,0,0,…)`) because the OS layer sits on `#0c1218` — on a near-black
+ground a tinted shadow is invisible, and a hue would only fight the surface.
+The content layer is white, and there a neutral grey shadow reads as foreign
+next to a green-accented page. Its `content-*` levels therefore use
+`rgba(9,46,30,…)` — `os-accent-dark` pushed further down. Same geometry,
+different hue; pick the family that matches the layer, never a bare
+`rgba(0,0,0,…)` in `shared.css`.
+
+Pure `#000` remains correct in exactly three places, all in the OS layer:
+the lock screen, the screen-off state, and the Pong canvas. There black is
+the statement, not a default.
+
 ---
 
 ## Shapes
@@ -317,6 +352,19 @@ Corner radii follow the perceived size of the element: small controls get
 `sm` (4 px) or `md` (6 px), application windows get `xl` (10 px), badges get
 `pill` (9999 px). The consistent use of `circle` (50 %) for avatars and
 status dots signals "person or live data" across both layers.
+
+**The scale is closed.** There is no 3 px and no 5 px — at these sizes the
+difference to 4 px or 6 px is not perceivable, so an off-scale value buys
+nothing and costs the scale its meaning. `scripts/guard.mjs` enforces this;
+a new radius value fails the build rather than quietly widening the set.
+
+The three large steps (`3xl`–`5xl`) were added rather than snapped away. The
+audit counted only 3 px and 5 px as off-scale, but the CSS also carried 7, 9,
+13, 14, 15, 18, 20 and 24 px. The small ones snapped to their neighbours — a
+1–2 px move nobody can see. The large ones are real: the simulated phone
+frame, its chat bubbles and its full-bleed panels need radii above 12 px, and
+a scale that stops there forces every one of them off it. A scale you cannot
+follow does not get followed.
 
 ---
 
@@ -334,7 +382,17 @@ Motion is used functionally, not decoratively. Three principles:
    mimics a physical object landing. Used only for the window open; the
    close is a plain `ease` fade to avoid the bounce feeling when dismissing.
 
+4. **Slow fades** (400 ms, `slowest`): screen-level opacity changes —
+   login and lock screen appearing, achievement toasts sliding in. The only
+   tier where the user is meant to notice the transition itself.
+
 `prefers-reduced-motion` must disable all transitions and animations.
+
+`slowest` was added to the scale rather than retiming the CSS: 400 ms was
+already the most-used duration outside the scale, in six places, and all six
+are screen-level fades. A duration that is used deliberately and repeatedly
+belongs in the scale — the scale describing four tiers it does not have was
+the actual error. `scripts/guard.mjs` enforces the closed set.
 
 ---
 
@@ -369,6 +427,57 @@ background in `instant` (100 ms) to feel snappy.
 
 ---
 
+## Focus & interaction states
+
+### Focus ring
+
+WCAG 2.2, SC 1.4.11 (Non-text Contrast) requires a focus indicator to reach
+**3:1** against its background. One value cannot serve both layers, so there
+are two:
+
+| Token | Value | On | Contrast |
+|---|---|---|---|
+| `focus-ring-content` | `3px solid #2d6a4f`, offset 2 px | white (`content-bg`) | 6.5:1 |
+| `focus-ring-os` | `3px solid #74c69d`, offset 2 px | `#0c1218` | 9.4:1 |
+
+Both are `outline`, not `box-shadow`. Eleven components in `style.css` set
+their own `box-shadow`, and a shadow-based ring at equal specificity either
+loses to them or replaces the component's shadow while focused. `outline`
+occupies a property nothing else uses, so the ring cannot be clobbered — and
+it no longer needs the `border-radius: inherit` workaround the shadow ring
+required.
+
+The obvious candidate — the brand green `#52b788` at full opacity — reaches
+only **2.5:1** on white and fails; on the dark OS ground the same green
+reaches 7.7:1 and would pass. The previous single value
+`rgba(82,183,136,0.25)` reached 1.2:1 on white and 1.6:1 on the desktop:
+it failed on both. Both replacements are existing palette tokens
+(`os-accent-dark`, `os-accent-light`) — no new color enters the system.
+
+`outline: none` is only permissible where a `:focus-visible` rule in the
+same file replaces the ring. In `style.css` the global rule at the top of
+the file provides it; a component that removes the outline without offering
+a substitute is a defect, not a style.
+
+### Press feedback
+
+Every interactive element gives a press response — on touch there is no
+hover, so without `:active` a tap has no feedback at all. The gesture is
+`transform: translateY(1px)` over `instant` (100 ms), in both layers.
+
+`scale()` was considered and rejected: on wide buttons it visibly frays the
+edge, and the amount of movement depends on the element's width, so the same
+gesture feels different in different places. A 1 px drop reads the same
+everywhere.
+
+### Numerals
+
+Anything that updates in place — clock, counters, percentages, progress
+readouts — sets `font-variant-numeric: tabular-nums`. Proportional digits
+change width between `1` and `8`, so an updating number visibly jitters.
+
+---
+
 ## Do's and Don'ts
 
 **Do** use `os-accent` exclusively for interactive affordances in the OS
@@ -390,3 +499,16 @@ numerals. Body copy in a mono font degrades readability.
 
 **Don't** add new z-index values ad hoc. Use the defined scale; if a new
 layer is genuinely needed, add it to `z-index` in this file first.
+
+**Do** expect literal hex values inside the OS layer's simulated apps.
+`style.css` carries roughly 640 hex literals against 260 `var()` uses, and
+that ratio is deliberate, not drift: the layer contains some fifty simulated
+applications — a terminal, a file manager, a Confluence clone, two games —
+and each one imitates the palette of the thing it imitates. Forcing them
+onto the site's 30 tokens would erase the joke. The tokens in `:root` govern
+the desktop itself: surfaces, panel, window chrome, accent, focus. Anything
+inside an app window is that app's costume.
+
+The boundary is testable: a hex literal in `shared.css` is a defect, because
+the content layer has no costumes. `scripts/guard.mjs` checks that file, not
+`style.css`.

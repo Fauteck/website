@@ -2,7 +2,8 @@
 
 ## Local development
 
-No build step required. Open any HTML file directly in a browser, or serve
+The delivered site is static: no bundler, no framework, nothing to compile.
+Open any HTML file directly in a browser, or serve
 locally for fetch-based features (blog Markdown loader, RSS):
 
 ```bash
@@ -36,17 +37,49 @@ a reviewed pull request.
 
 ## Deployment
 
-GitHub Pages deploys `main` automatically on every push. No CI pipeline.
+GitHub Pages deploys `main` automatically on every push.
 DNS resolves `niklasfauteck.de` → GitHub Pages via CNAME.
+
+One CI job runs on every push: `.github/workflows/guard.yml` executes
+`node scripts/guard.mjs`. It builds nothing — it checks that the files
+already in the repo still agree with each other (see *Generated files*).
+
+## Generated files
+
+Four things used to be maintained by hand and had to stay in sync with
+`blog/*.md`. They are now derived from it:
+
+| File | Contents |
+|---|---|
+| `blog/posts.json` | the slug list the blog viewers fetch |
+| `blog/images/sizes.json` | width/height of every image used in a post |
+| `feed.xml` | the RSS feed |
+| `sitemap.xml` | static pages plus one URL per post |
+| `blog/<slug>.html` | one real page per post, with its own title, canonical and OG tags |
+
+`node scripts/build.mjs` writes them; `node scripts/guard.mjs` (and CI)
+fails if what is on disk does not match what the sources produce. Do not
+edit any of them by hand — the next build overwrites the change, and the
+guard reports it before that.
+
+Node is needed for those two scripts and for nothing else. The site itself
+still runs from a plain file server.
 
 ## Adding a blog post
 
 1. Create a new Markdown file in `blog/`, e.g. `blog/my-post.md`.
-2. Add front-matter at the top of the file (the blog viewer reads the
-   first `# Heading` as the title and the first paragraph as the summary).
-3. Register the post in the blog index inside `blog/index.html`
-   (the viewer fetches the file list from a hardcoded array in the HTML).
-4. Update `feed.xml` and `sitemap.xml` with the new entry.
+2. Add front-matter at the top: `title`, `date` (YYYY-MM-DD), `tags`,
+   `excerpt`, and optionally `thumb` / `thumbAlt`. Title and date are
+   mandatory — the build refuses a post without them.
+3. Convert any new images to WebP alongside the original
+   (`cwebp -q 82 image.jpg -o image.webp`, or any equivalent) — the guard
+   checks that every JPG/PNG has a smaller WebP sibling.
+4. Run `node scripts/build.mjs`. It updates `posts.json`, the image sizes,
+   the feed, the sitemap and creates `blog/<slug>.html`.
+5. Commit the Markdown, the images and the generated files together.
+
+There is no step for "register the post somewhere" any more. That step was
+the reason the sitemap ran 26 posts behind.
 
 ## Updating the CV / portfolio
 

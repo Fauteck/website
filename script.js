@@ -2422,9 +2422,9 @@ function buildOutlook(body) {
       to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
       body: '<p>Das Ticket <b>KOMM-4821</b> &quot;Media Hub: Bild-Upload optimieren&quot; wurde von Sarah K. auf <span style="color:#10b981;font-weight:600">Done</span> gesetzt.</p><p>Änderungen:<br>- Bildkomprimierung auf WebP umgestellt<br>- Upload-Limit auf 25 MB erhöht<br>- Fortschrittsanzeige implementiert</p>' },
     { from: 'Confluence', subject: 'Seite aktualisiert: Systemarchitektur', time: 'Gestern', date: '18. Mrz 2026, 14:15', unread: false,
-      preview: 'Max Mustermann hat die Seite "Systemarchitektur 2026" bearbeitet.',
+      preview: 'Thomas B. hat die Seite "Systemarchitektur 2026" bearbeitet.',
       to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
-      body: '<p>Max Mustermann hat die Seite <b>&quot;Systemarchitektur 2026&quot;</b> im Bereich Technik-Dokumentation bearbeitet.</p><p>Änderungen: Neues Diagramm für Microservice-Kommunikation hinzugefügt, API-Gateway-Konfiguration aktualisiert.</p><p><a href="#" style="color:#0078d4">Seite anzeigen</a></p>' },
+      body: '<p>Thomas B. hat die Seite <b>&quot;Systemarchitektur 2026&quot;</b> im Bereich Technik-Dokumentation bearbeitet.</p><p>Änderungen: Neues Diagramm für Microservice-Kommunikation hinzugefügt, API-Gateway-Konfiguration aktualisiert.</p><p><a href="#" style="color:#0078d4">Seite anzeigen</a></p>' },
     { from: 'GitHub', subject: '[docker-configs] PR #47 merged', time: 'Di.', date: '17. Mrz 2026, 11:22', unread: false,
       preview: 'Pull Request #47 "Update Home Assistant to 2026.3" wurde gemergt.',
       to: 'Niklas Fauteck &lt;me@fauteck.eu&gt;', cc: null,
@@ -4771,7 +4771,7 @@ function buildPhotos(body) {
           <div class="photos-grid" style="grid-template-columns:repeat(${cols},1fr)">
             ${photos.map(p => `
               <div class="photos-tile" data-post="${p.postId}" role="button" tabindex="0" title="${escapeHtml(p.postTitle)}">
-                <img src="${p.src}" alt="${escapeHtml(p.alt)}" loading="lazy">
+                ${blogImageTag(p.src, escapeHtml(p.alt))}
                 <span class="photos-tile-cap">${escapeHtml(p.postTitle)}</span>
               </div>
             `).join('')}
@@ -5397,6 +5397,24 @@ function closeMobileWindow() {
 // Inhalte werden beim ersten Öffnen geladen und danach zwischengespeichert.
 let _blogCache = null; // Promise<[{ id, title, date, tags, content }]>
 
+// Bildmasse aus blog/images/sizes.json (erzeugt von scripts/build.mjs).
+// Der OS-Layer hat seinen eigenen Renderer und laedt blog/render.js nicht,
+// braucht die Masse aber aus demselben Grund: ohne width/height schiebt jedes
+// nachladende Bild das Layout.
+let _blogImageSizes = {};
+
+// Pfade kommen hier als 'blog/images/…' an (siehe parseBlogMarkdown), die
+// Schluessel in sizes.json stehen relativ zu blog/.
+function blogImageTag(src, alt, extraClass) {
+  const key = String(src || '').replace(/^blog\//, '');
+  const d = _blogImageSizes[key];
+  const size = d ? ` width="${d[0]}" height="${d[1]}"` : '';
+  const cls = extraClass ? ` class="${extraClass}"` : '';
+  const img = `<img src="${src}" alt="${alt}"${cls}${size} loading="lazy">`;
+  if (!/\.(jpe?g|png)$/i.test(src)) return img;
+  return `<picture><source srcset="${src.replace(/\.(jpe?g|png)$/i, '.webp')}" type="image/webp">${img}</picture>`;
+}
+
 function parseBlogMarkdown(md) {
   let title = '', date = '', tags = [];
   let body = md;
@@ -5429,19 +5447,38 @@ function loadBlogPosts() {
   if (_blogCache) return _blogCache;
   // base-relativ (kein ../): <base href="../"> löst os/ bereits auf, daher
   // funktioniert 'blog/…' am Domain-Root, am Projekt-Subpfad und lokal.
-  _blogCache = fetch('blog/posts.json')
+  _blogCache = fetch('blog/images/sizes.json')
+    .then(r => (r.ok ? r.json() : {}))
+    .catch(() => ({}))
+    .then(sizes => {
+      // Bildmasse fuer den Renderer — sonst schiebt jedes nachladende Bild
+      // im Beitragsfenster das Layout.
+      _blogImageSizes = sizes || {};
+      return fetch('blog/posts.json');
+    })
     .then(r => r.json())
     .then(slugs => Promise.all(slugs.map(id =>
       fetch(`blog/${id}.md`)
-        .then(r => r.ok ? r.text() : '')
+        .then(r => r.ok ? r.text() : null)
         .then(md => {
+          if (!md) return null;
           const p = parseBlogMarkdown(md);
           return { id, title: p.title || id, date: p.date, tags: p.tags, content: p.content };
         })
-        .catch(() => ({ id, title: id, date: '', tags: [], content: '' }))
+        // Aussortieren, nicht ersatzweise rendern: ein Beitrag mit dem Slug als
+        // Titel und leerem Inhalt ist von "gibt es nicht" nicht zu unterscheiden.
+        .catch(() => null)
     )))
-    .then(posts => posts.sort((a, b) => (b.date || '').localeCompare(a.date || '')))
-    .catch(() => []);
+    .then(posts => {
+      const ok = posts.filter(Boolean);
+      if (ok.length < posts.length) {
+        console.warn(`Blog: ${posts.length - ok.length} Beitrag/Beitraege nicht ladbar`);
+      }
+      return ok.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    })
+    // Totalausfall bleibt unterscheidbar: null statt [], damit buildBlog den
+    // Fehlerzustand zeigen kann und nicht "keine Beitraege vorhanden".
+    .catch(() => null);
   return _blogCache;
 }
 
@@ -5451,11 +5488,26 @@ function buildBlog(body) {
   body.style.display = 'flex';
   body.style.flexDirection = 'column';
   body.style.background = '#ffffff';
-  body.innerHTML = '<div class="blog-loading" style="padding:40px;color:#888">Lade Beiträge…</div>';
+  // Skelett in Listenform: es reserviert den Platz, den die Liste einnehmen
+  // wird, statt sie aus dem Nichts erscheinen zu lassen.
+  body.innerHTML =
+    '<div class="blog-skeleton" aria-busy="true" aria-label="Beiträge werden geladen">' +
+    Array.from({ length: 4 }, () =>
+      '<div class="blog-skeleton-row">' +
+        '<span class="blog-skeleton-bar blog-skeleton-bar--meta"></span>' +
+        '<span class="blog-skeleton-bar blog-skeleton-bar--title"></span>' +
+        '<span class="blog-skeleton-bar blog-skeleton-bar--text"></span>' +
+      '</div>').join('') +
+    '</div>';
 
   loadBlogPosts().then(allPosts => {
-    if (!allPosts.length) {
-      body.innerHTML = '<div style="padding:40px;color:#888">Beiträge konnten nicht geladen werden.</div>';
+    if (!allPosts || !allPosts.length) {
+      body.innerHTML =
+        '<div class="blog-error">' +
+          '<strong>Die Beiträge konnten nicht geladen werden.</strong>' +
+          '<span>Das liegt an dieser Seite, nicht an dir. Fenster schließen und neu öffnen — ' +
+          'oder den Blog außerhalb des Desktops lesen.</span>' +
+        '</div>';
       return;
     }
     renderBlog(body, allPosts);
@@ -5548,7 +5600,7 @@ function renderBlog(body, allPosts) {
       if (!trimmed) return '<div class="blog-line blog-line-empty">&nbsp;</div>';
       const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
       if (imgMatch) {
-        return `<div class="blog-line blog-line-image"><img src="${imgMatch[2]}" alt="${escapeHtml(imgMatch[1])}" loading="lazy"></div>`;
+        return `<div class="blog-line blog-line-image">${blogImageTag(imgMatch[2], escapeHtml(imgMatch[1]))}</div>`;
       }
       const hMatch = trimmed.match(/^#{1,6}\s+(.*)$/);
       if (hMatch) return `<div class="blog-line blog-line-heading">${blogInline(escapeHtml(hMatch[1]))}</div>`;
