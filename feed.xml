@@ -5,8 +5,74 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 28 Aug 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Die eigene Sprachsteuerung</title>
+      <link>https://niklasfauteck.de/blog/eigene-sprachsteuerung.html</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#eigene-sprachsteuerung</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Familie</category>
+      <category>Maker</category>
+      <description><![CDATA[
+<p>Vor zwei Tagen habe ich hier über einen kleinen Stick am Armband geschrieben. Taste drücken, reinsprechen, Eintrag steht in unserer Familien-App.</p>
+<p>Läuft.</p>
+<p>Und dann steht Aylin abends in der Küche. Kopfhörer im Ohr, Podcast läuft, sie räumt nebenbei auf.</p>
+<p>Zwischendurch tippt sie kurz an den Kopfhörer und spricht eine Sprachnachricht per WhatsApp ein.</p>
+<p>Das Ding kann hören. Das Ding kann sprechen. Und es steckt eh schon in ihrem Ohr.</p>
+<p>Warum kriegen wir da nicht unsere App dran?</p>
+<h2>Die Kopfhörer müssen gar nichts können</h2>
+<p>Beim Stick liegt die ganze Logik gar nicht im Stick. Die liegt auf dem Handy. Der Stick nimmt auf und schickt rüber, das Handy redet mit Todoteck.</p>
+<p>Es lief also längst ein Dienst, der alles kann.</p>
+<p>Der brauchte nur eine zweite Quelle. Statt neuer Hardware also ein paar Zeilen mehr in etwas, das schon da war.</p>
+<h2>Wie sich das anfühlt</h2>
+<p>Langer Druck rechts.</p>
+<p>Reinsprechen.</p>
+<p>Aufhören zu sprechen.</p>
+<p>Zuhören.</p>
+<p>Die Antwort kommt als Stimme ins Ohr.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigene-sprachsteuerung/earbud-im-ohr.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigene-sprachsteuerung/earbud-im-ohr.jpg" alt="Selfie mit grüner Brille, im linken Ohr steckt ein grauer Bluetooth-Earbud" width="1400" height="1400" loading="lazy"></picture></figure>
+<h2>Nichts davon ist neu</h2>
+<p>Und genau da liegt der Punkt.</p>
+<p>Reinsprechen und eine Antwort ins Ohr kriegen, das kann Gemini seit Jahren. Alexa auch. Siri sowieso. Ich erfinde hier gar nichts. Das Problem ist gelöst, von Leuten mit deutlich mehr Zeit und Geld als ich.</p>
+<p>Der Unterschied steckt woanders.</p>
+<p>Bei uns läuft der ganze Weg gegen unsere eigene Instanz. Kein Google-Konto. Kein Amazon-Konto. Kein Assistent, der beim Zuhören nebenbei ein Profil baut. Die Aufgabe landet in unserer App, die Einkaufsliste ist unsere Einkaufsliste, und wer sie sehen darf, entscheiden wir.</p>
+<p>Und es fühlt sich trotzdem an wie bei den Großen. Gleiche Geste, gleiches Tempo, gleiche Stimme im Ohr.</p>
+<p>Das ist der Teil, der mich kickt.</p>
+<h2>Erst messen, dann bauen</h2>
+<p>Ich wusste nicht, wie ein Kopfhörer-Tipp überhaupt am Handy ankommt. Also erst eine kleine Diagnose gebaut und nachgeguckt.</p>
+<p>Ergebnis: Die Gesten kommen als Medientasten an. Play, Pause, vor, zurück. Genau die, mit denen man Musik steuert.</p>
+<p>Heißt: Todoteck und Spotify wollen dieselben vier Tasten. Wer da wann zum Zug kommt, war der eigentliche Aufwand.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/eigene-sprachsteuerung/earbuds-einstellungen.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/eigene-sprachsteuerung/earbuds-einstellungen.jpg" alt="Der Earbuds-Bildschirm der Todoteck-App auf dem Handy, dunkles Design. Eingabegerät Bluetooth-Earbuds, Antwort-Stimme KI vom Server, Auslöser-Taste NEXT, Musiksteuerung durchgereicht, darunter die Earbud-Diagnose" width="760" height="1706" loading="lazy"></picture></figure>
+<h2>Warum ich davon nicht wegkomme</h2>
+<p>Angefangen hat das mit einer Sprachnachricht an einen Telegram-Bot.</p>
+<p>Dann war es ein Knopf am Handgelenk.</p>
+<p>Jetzt sind es die Kopfhörer, die sowieso schon im Ohr stecken.</p>
+<p>Jeder Schritt hat mir gezeigt, wo der nächste liegt. Und jedes Mal, wenn ich denke „so, jetzt reicht's", benutze ich das Ding zwei Tage im Alltag und finde die nächste Kante. Meistens eine, an die ich vorher gar nicht gedacht hätte.</p>
+<p>Was mich dabei am meisten umhaut: Vor ein paar Jahren wäre so ein Ding ein Projekt über Monate gewesen. Abende, Wochenenden, Foren durchwühlen, aufgeben, nochmal anfangen. Für die meisten wäre es bei „wäre schon geil" geblieben.</p>
+<p>Es waren ein paar Abende.</p>
+<p>Ich bin kein Entwickler. Ich vibecode.</p>
+<p>Aber ich merke, wie viel ich dabei über meinen eigenen Job lerne. Anforderungen so formulieren, dass am Ende das rauskommt, was ich gemeint habe. Früh sehen, wo das Risiko liegt. Merken, wann eine Hürde eine Sackgasse ist und wann man nur einmal drumrum muss.</p>
+<p>Das ist Projektmanagement. Nur eben abends in der Küche statt im Büro.</p>
+<p>Und es funktioniert genau dann, wenn man die KI als Sparringspartner behandelt. Wer „mach mal" sagt, kriegt auch „mach mal" zurück.</p>
+<p>Das verschiebt, was überhaupt als Idee durchgeht. Sachen, die früher unter „nice, aber unrealistisch" liefen, sind jetzt einfach das nächste Wochenende.</p>
+<h2>Und dann steht da noch der Nest Hub</h2>
+<p>In der Küche. Seit Jahren. Zeigt die Uhrzeit, stellt Timer, spielt Musik.</p>
+<p>Ein Display. Ein Mikrofon. Ein Lautsprecher. Und ein Konto bei Google.</p>
+<p>Ein Display, das mir unseren Tag anzeigt, habe ich schon. Ein Mikrofon, das mich versteht, seit dieser Woche auch. Eine Stimme, die antwortet, ebenfalls.</p>
+<p>Fehlt eigentlich nur noch das Gehäuse.</p>
+<p>Mal gucken, wie lange der da noch steht.</p>
+<h2>Weiterlesen</h2>
+<ul>
+<li><a href="https://niklasfauteck.de/blog/#sprachgeraet-am-handgelenk" target="_blank" rel="noopener">Der Knopf am Handgelenk</a> — das Sprachgerät, aus dem das hier hervorgegangen ist</li>
+<li><a href="https://niklasfauteck.de/blog/#einfach-reinquatschen" target="_blank" rel="noopener">Einfach reinquatschen</a> — der Telegram-Bot, mit dem alles anfing</li>
+<li><a href="https://niklasfauteck.de/blog/#todoteck" target="_blank" rel="noopener">Todoteck: Vibecoding für die Familie</a> — wie die App überhaupt entstanden ist</li>
+</ul>
+      ]]></description>
+    </item>
 
     <item>
       <title>Der Knopf am Handgelenk</title>
