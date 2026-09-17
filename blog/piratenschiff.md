@@ -25,9 +25,9 @@ Dann passierte erstmal nichts. Klassische Idee für irgendwann.
 
 Bis wir ein neues Bett bekommen haben. Beim Abbau lagen plötzlich zwei große Holzrahmen im Garten. Also: Rumpf.
 
-Rahmen aufgestellt. Alte Bretter als Deck drauf. Kajüte hochgezogen.
+![Die beiden Bettrahmen auf dem Kies, mit verzinkten Winkeln zu einem Rechteck verschraubt. Noch ohne Deck, ohne Kajüte](images/piratenschiff/rumpf.jpg)
 
-![Der rohe Rumpf aus den Bettrahmen auf blauen Bodenmatten, vorne ein Deck aus verwitterten grauen Brettern, dahinter das Gerüst der Kajüte](images/piratenschiff/rumpf.jpg)
+Rahmen aufgestellt. Alte Bretter als Deck drauf. Kajüte hochgezogen.
 
 Sah noch nach Bett aus. Aber schon ein bisschen nach Schiff.
 
