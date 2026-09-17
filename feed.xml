@@ -5,8 +5,49 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Fri, 28 Aug 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Aus einem Bett wird ein Piratenschiff</title>
+      <link>https://niklasfauteck.de/blog/piratenschiff.html</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#piratenschiff</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 +0200</pubDate>
+      <category>Persönlich</category>
+      <category>Familie</category>
+      <category>Maker</category>
+      <description><![CDATA[
+<p>Unser altes Bett hat eine zweite Karriere als Piratenschiff gestartet.</p>
+<h2>Die Anforderung</h2>
+<p>Angefangen hat es auf einem Spielplatz. Mit einem Holzschiff mit Mast und Anker. Unser Sohn, großer Käpt'n-Sharky-Fan, und wir hatten richtig viel Spaß darin.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/piratenschiff/spielplatz.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/piratenschiff/spielplatz.jpg" alt="Das Spielplatz-Schiff aus Holz auf einer Feder, mit Mast, Tauen und eingeschnitztem Anker am Bug" width="757" height="1009" loading="lazy"></picture></figure>
+<p>Und da kam zum ersten Mal der Gedanke: Boah, ein eigenes Schiff bauen. Das wäre doch lustig.</p>
+<p>Dann passierte erstmal nichts. Klassische Idee für irgendwann.</p>
+<h2>Das Material</h2>
+<p>Bis wir ein neues Bett bekommen haben. Beim Abbau lagen plötzlich zwei große Holzrahmen im Garten. Also: Rumpf.</p>
+<p>Rahmen aufgestellt. Alte Bretter als Deck drauf. Kajüte hochgezogen.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/piratenschiff/rumpf.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/piratenschiff/rumpf.jpg" alt="Der rohe Rumpf aus den Bettrahmen auf blauen Bodenmatten, vorne ein Deck aus verwitterten grauen Brettern, dahinter das Gerüst der Kajüte" width="1200" height="1600" loading="lazy"></picture></figure>
+<p>Sah noch nach Bett aus. Aber schon ein bisschen nach Schiff.</p>
+<h2>Das Wireframe</h2>
+<p>Dann Handy raus. Foto gemacht. Mit dem Finger drübergekritzelt. Mast. Segel. Bullaugen. Bug.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/piratenschiff/wireframe.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/piratenschiff/wireframe.jpg" alt="Foto vom rohen Rumpf, darüber schwarz gemalt: Mast mit Segel, Bullaugen an der Kajüte, ein Steuerrad, Wellen am Rumpf und ein spitzer Bug" width="1200" height="1600" loading="lazy"></picture></figure>
+<p>Statt Wireframes für Software diesmal halt für Holz. Funktioniert erstaunlich ähnlich. Man sieht sofort, was fehlt. Und der Auftraggeber kann mit dem Finger drauf zeigen.</p>
+<h2>Das Release</h2>
+<p>Und jetzt steht da plötzlich ein weißes Schiff mit roter Kante. Mit Bullaugen, zwei kleinen Laternen und einem Piratensegel, das man vermutlich bis zum Nachbarn sieht.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/piratenschiff/fertig.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/piratenschiff/fertig.jpg" alt="Das fertig gestrichene Schiff in Weiß und Rot, mit Bullaugen und Laternen an der Kajüte, Tau vom Mast zum Bug und großem schwarzen Piratensegel" width="1600" height="1200" loading="lazy"></picture></figure>
+<h2>Das Backlog</h2>
+<p>Fertig ist es natürlich nicht. Das Backlog ist noch lang:</p>
+<ul>
+<li>ein Anker</li>
+<li>ein Steuerrad</li>
+<li>Tau ringsrum</li>
+<li>ein sprechender Papagei im Mastkorb</li>
+</ul>
+<p>Der Papagei bekommt Arcade-Buttons und einen ESP32. Knopf drücken, Papagei redet. (Ja, ich weiß. Der Papagei wird eskalieren.)</p>
+<h2>Warum gerade jetzt</h2>
+<p>Nach meinem Abschied von RTL habe ich gerade eine berufliche Auszeit. Und damit Zeit für einen sehr anspruchsvollen Auftraggeber. Knapp fünf Jahre alt. Klare Anforderungen. Stakeholder zufrieden. MVP sticht in See.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Die eigene Sprachsteuerung</title>
