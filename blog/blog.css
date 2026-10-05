@@ -381,65 +381,93 @@ picture { display: contents; }
 }
 
 /* ===========================
-   Lade- und Fehlerzustand
-   Vorher: ein Textzeile "Lade Beitraege…" und zwei inline gestylte
-   Fehlermeldungen mit Hex-Literal am Token-System vorbei.
+   Jahresgruppen, Featured-Karte, verwandte Beitraege
+   Die Liste wird von scripts/build.mjs vorgerendert; die Gruppen und die
+   erste, grosse Karte sind reine Darstellung dieser Struktur.
    =========================== */
 
-.post-skeleton {
-  list-style: none;
-  padding: 1.25rem 0;
+.post-year { margin-bottom: 1.5rem; }
+
+.post-year-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border);
+}
+
+.post-year-count {
+  font-size: 0.72rem;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  padding: 0.05rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* Neuester Beitrag: Bild ueber voller Breite, groesserer Titel */
+.post-item--featured a {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.post-item--featured .post-thumb img { aspect-ratio: 16 / 9; }
+.post-item--featured .post-title { font-size: 1.4rem; line-height: 1.3; }
+.post-item--featured .post-excerpt { font-size: 0.95rem; }
+
+.post-item a:focus-visible {
+  outline: 2px solid var(--accent-focus);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.post-related {
+  margin-top: 2rem;
+}
+
+.post-related h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.post-related ul {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.post-related a {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.2rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Das Skelett hat die Form des Ergebnisses — so reserviert es den Platz mit
-   und die Liste springt beim Eintreffen der Daten nicht. */
-.skeleton-bar {
-  height: 0.7rem;
-  border-radius: 4px;
-  background: var(--bg-light);
-  position: relative;
-  overflow: hidden;
+.post-related a:hover,
+.post-related a:focus-visible {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-1);
 }
 
-.skeleton-bar--meta  { width: 30%; height: 0.6rem; }
-.skeleton-bar--title { width: 60%; height: 1.1rem; }
-.skeleton-bar--text  { width: 90%; }
-.skeleton-bar--text-short { width: 72%; }
-
-.skeleton-bar::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent, rgba(82, 183, 136, 0.14), transparent);
-  animation: skeleton-sweep 1.4s ease-in-out infinite;
-}
-
-@keyframes skeleton-sweep {
-  to { transform: translateX(100%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skeleton-bar::after { animation: none; opacity: 0.4; transform: none; }
-}
-
-.blog-message {
-  list-style: none;
-  padding: 2rem 0;
+.post-related-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   color: var(--text-secondary);
 }
 
-.blog-message strong {
-  display: block;
-  color: var(--primary);
-  margin-bottom: 0.35rem;
-}
-
-.blog-message a { color: var(--accent-dark); }
+.post-related-title { font-weight: 600; font-size: 0.95rem; }
 
 /* ===========================
    Beitrags-Navigation

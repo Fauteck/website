@@ -128,12 +128,49 @@ BlogRender.setImageSizes(sizes);
 function absolutize(html, prefix) {
   return html
     .replace(/(<img[^>]+src=")(?!https?:)/g, `$1${prefix}`)
-    .replace(/(<source[^>]+srcset=")(?!https?:)/g, `$1${prefix}`);
+    .replace(/(<source[^>]+srcset=")(?!https?:)/g, `$1${prefix}`)
+    .replace(/(<a href=")(?!https?:|mailto:|#)/g, `$1${prefix}`);
 }
 
 // Ueberschrift 1 steht bereits im <title> und im Seitenkopf; im Rumpf waere sie
 // doppelt.
-const bodyOf = (p) => BlogRender.renderMarkdown(p.md).replace(/^\s*<h1>[\s\S]*?<\/h1>\s*/, '');
+// Aeltere Beitraege verlinken einander als `#slug` (die Hash-Form des frueheren
+// Single-Page-Blogs). Auf einer eigenen Seite waere das ein toter Anker, der
+// obendrein in einem neuen Tab oeffnet — also auf die Beitragsseite umbiegen.
+const slugSet = new Set(posts.map((p) => p.slug));
+const bodyOf = (p) => BlogRender.renderMarkdown(p.md)
+  .replace(/^\s*<h1>[\s\S]*?<\/h1>\s*/, '')
+  .replace(/<a href="#([a-z0-9-]+)" target="_blank" rel="noopener">/g,
+    (m, slug) => (slugSet.has(slug) ? `<a href="${slug}.html">` : m));
+
+const PERSON = { '@type': 'Person', name: 'Niklas Fauteck', url: `${SITE}/` };
+
+// JSON-LD in einem <script>: "<" maskieren, damit ein "</script>" im Text den
+// Block nicht beenden kann.
+const ldScript = (obj) =>
+  `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
+
+const PROFILE_IMG = 'full/niklas-fauteck-profile.jpg';
+const profileSize = imageSize(join(ROOT, PROFILE_IMG));
+
+// Gemeinsame Kopfzeilen fuer Teilen und Suchmaschinen: Open Graph, Twitter-Karte.
+function shareMeta({ image, dims, alt }) {
+  return [
+    `  <meta property="og:image" content="${image}">`,
+    dims ? `  <meta property="og:image:width" content="${dims[0]}">` : '',
+    dims ? `  <meta property="og:image:height" content="${dims[1]}">` : '',
+    alt ? `  <meta property="og:image:alt" content="${esc(alt)}">` : '',
+    '  <meta property="og:locale" content="de_DE">',
+    '  <meta name="twitter:card" content="summary_large_image">',
+    `  <meta name="twitter:image" content="${image}">`,
+  ].filter(Boolean).join('\n');
+}
+
+// Der Font-Preload spart die Kette HTML -> CSS -> @font-face -> woff2: ohne ihn
+// beginnt der Download der Schrift erst, wenn fonts.css geparst ist.
+const FONT_PRELOAD =
+  '<link rel="preload" href="../fonts/ibm-plex-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>';
+
 
 /* ── 1. posts.json — die Slug-Liste ──────────────────────────────────────── */
 
@@ -202,7 +239,81 @@ ${[...staticUrls, ...postUrls].map((u) => `  <url>
 </urlset>
 `);
 
-/* ── 5. blog/<slug>.html — eine echte Seite je Beitrag ───────────────────── */
+/* ── 5. blog/index.html — Kartenliste und Strukturdaten ──────────────────── */
+
+// Die Uebersicht war eine leere Huelle, die per JavaScript 31 Dateien nachlud
+// (posts.json, sizes.json, alle .md) und erst danach eine Liste zeigte. Jetzt
+// steht die Liste fertig im HTML: kein Skelett, keine Requests, lesbar ohne JS
+// und fuer Suchmaschinen sofort vollstaendig. blog/index.html bleibt eine von
+// Hand gepflegte Seite; nur die zwei markierten Bloecke werden hier ersetzt.
+const IMG_RE = /\.(jpe?g|png)$/i;
+
+function cardHtml(p, featured) {
+  let thumb = '';
+  if (p.thumb) {
+    const webp = IMG_RE.test(p.thumb)
+      ? `<source srcset="${esc(p.thumb.replace(IMG_RE, '.webp'))}" type="image/webp">` : '';
+    // Die erste Karte ist das groesste Bild oberhalb der Falz: sofort laden,
+    // statt es wie die uebrigen nachzuladen.
+    const load = featured ? ' fetchpriority="high"' : ' loading="lazy"';
+    thumb = `<div class="post-thumb"><picture>${webp}<img src="${esc(p.thumb)}" alt="${esc(p.thumbAlt)}"` +
+      `${BlogRender.imageAttrs(p.thumb)}${load}></picture></div>`;
+  }
+  const cls = ['post-item', p.thumb && 'post-item--with-image', featured && 'post-item--featured']
+    .filter(Boolean).join(' ');
+  return `<li class="${cls}">` +
+    `<a href="${encodeURIComponent(p.slug)}.html">${thumb}` +
+    '<div class="post-body">' +
+    `<div class="post-meta"><span class="post-date">${BlogRender.formatDateDE(p.date)}</span>` +
+    `${p.tags.map((t) => `<span class="post-tag">${esc(t)}</span>`).join('')}</div>` +
+    `<h3 class="post-title">${esc(p.title)}</h3>` +
+    `<p class="post-excerpt">${esc(p.excerpt)}</p>` +
+    '</div></a></li>';
+}
+
+const years = [...new Set(posts.map((p) => p.date.slice(0, 4)))];
+const listHtml = years.map((y) => {
+  const inYear = posts.filter((p) => p.date.startsWith(y));
+  return `<section class="post-year" aria-labelledby="jahr-${y}">\n` +
+    `  <h2 class="post-year-label" id="jahr-${y}">${y}<span class="post-year-count">${inYear.length}</span></h2>\n` +
+    `  <ul class="post-list">\n${inYear.map((p) => '    ' + cardHtml(p, p === posts[0])).join('\n')}\n  </ul>\n</section>`;
+}).join('\n');
+
+const blogLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${SITE}/blog/`,
+  name: 'Blog — Niklas Fauteck',
+  url: `${SITE}/blog/`,
+  inLanguage: 'de',
+  author: PERSON,
+  blogPost: posts.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    url: `${SITE}/blog/${p.slug}.html`,
+    datePublished: p.date,
+  })),
+};
+
+const seoHead = [
+  shareMeta({ image: `${SITE}/${PROFILE_IMG}`, dims: profileSize && [profileSize.width, profileSize.height] }),
+  '  ' + ldScript(blogLd),
+].join('\n');
+
+function replaceBetween(html, name, content) {
+  const re = new RegExp(`(<!-- ${name}:start[^>]*-->)[\\s\\S]*?(<!-- ${name}:end -->)`);
+  if (!re.test(html)) throw new Error(`blog/index.html: Marker "${name}:start/end" fehlen`);
+  return html.replace(re, (m, a, b) => `${a}\n${content}\n${b}`);
+}
+
+{
+  const src = readFileSync(join(BLOG, 'index.html'), 'utf8');
+  let out = replaceBetween(src, 'seo', seoHead);
+  out = replaceBetween(out, 'posts', listHtml);
+  emit('blog/index.html', out);
+}
+
+/* ── 6. blog/<slug>.html — eine echte Seite je Beitrag ───────────────────── */
 
 const FAVICON = readFileSync(join(BLOG, 'index.html'), 'utf8')
   .match(/<link rel="icon" type="image\/svg\+xml"[^>]*>/)[0];
@@ -210,9 +321,49 @@ const FAVICON = readFileSync(join(BLOG, 'index.html'), 'utf8')
 for (const [i, p] of posts.entries()) {
   const prev = posts[i + 1]; // aelter
   const next = posts[i - 1]; // neuer
-  const body = bodyOf(p);
-  const ogImage = p.thumb ? `${SITE}/blog/${p.thumb}` : `${SITE}/full/niklas-fauteck-profile.jpg`;
+  // Das erste Bild liegt meist oberhalb der Falz und ist damit der LCP-Kandidat:
+  // nicht nachladen, sondern priorisieren.
+  const body = bodyOf(p).replace(' loading="lazy"', ' fetchpriority="high"');
+  const ogImage = p.thumb ? `${SITE}/blog/${p.thumb}` : `${SITE}/${PROFILE_IMG}`;
+  const ogDims = p.thumb ? sizes[p.thumb] : profileSize && [profileSize.width, profileSize.height];
   const desc = p.excerpt || `${p.title} — Blog von Niklas Fauteck.`;
+  const url = `${SITE}/blog/${p.slug}.html`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: p.title,
+    description: desc,
+    datePublished: p.date,
+    dateModified: p.date,
+    inLanguage: 'de',
+    url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    image: [ogImage],
+    keywords: p.tags.join(', '),
+    author: PERSON,
+    publisher: PERSON,
+    isPartOf: { '@type': 'Blog', '@id': `${SITE}/blog/`, name: 'Blog — Niklas Fauteck' },
+  };
+
+  // Verwandte Beitraege: die meisten gemeinsamen Tags, bei Gleichstand der
+  // zeitlich naechste. Ohne gemeinsamen Tag kein Eintrag — lieber nichts als
+  // Beliebiges.
+  const related = posts
+    .filter((q) => q !== p)
+    .map((q) => ({ q, shared: q.tags.filter((t) => p.tags.includes(t)) }))
+    .filter((x) => x.shared.length)
+    .sort((a, b) => b.shared.length - a.shared.length ||
+      Math.abs(Date.parse(a.q.date) - Date.parse(p.date)) - Math.abs(Date.parse(b.q.date) - Date.parse(p.date)))
+    .slice(0, 3);
+  const relatedHtml = related.length
+    ? `            <section class="post-related" aria-labelledby="weiterlesen">
+              <h2 id="weiterlesen">Weiterlesen</h2>
+              <ul>
+${related.map(({ q, shared }) => `                <li><a href="${q.slug}.html"><span class="post-related-meta">${BlogRender.formatDateDE(q.date)} · ${shared.map(esc).join(', ')}</span><span class="post-related-title">${esc(q.title)}</span></a></li>`).join('\n')}
+              </ul>
+            </section>
+`
+    : '';
 
   emit(`blog/${p.slug}.html`, `<!DOCTYPE html>
 <!-- Erzeugt von scripts/build.mjs aus blog/${p.slug}.md — nicht von Hand aendern. -->
@@ -227,18 +378,21 @@ for (const [i, p] of posts.entries()) {
   <meta property="og:title" content="${esc(p.title)}">
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="${SITE}/blog/${p.slug}.html">
-  <meta property="og:image" content="${ogImage}">
+  <meta property="og:url" content="${url}">
+${shareMeta({ image: ogImage, dims: ogDims, alt: p.thumb ? p.thumbAlt : '' })}
   <meta property="article:published_time" content="${p.date}">
+  <meta property="article:author" content="${SITE}/">
 ${p.tags.map((t) => `  <meta property="article:tag" content="${esc(t)}">`).join('\n')}
-  <link rel="canonical" href="${SITE}/blog/${p.slug}.html">
+  <link rel="canonical" href="${url}">
   <link rel="alternate" type="application/rss+xml" title="Blog — Niklas Fauteck" href="../feed.xml">
+  ${FONT_PRELOAD}
   <link rel="stylesheet" href="../fonts/fonts.css">
   <link rel="stylesheet" href="../shared.css">
   ${FAVICON}
   <link rel="icon" type="image/x-icon" href="../full/favicon.ico">
   <link rel="apple-touch-icon" href="../full/favicon-192.png">
   <link rel="stylesheet" href="blog.css">
+  ${ldScript(ld)}
 </head>
 <body>
   <!-- Skip to content (Accessibility) -->
@@ -260,7 +414,7 @@ ${p.tags.map((t) => `  <meta property="article:tag" content="${esc(t)}">`).join(
               <div class="post-content-meta"><time datetime="${p.date}">${BlogRender.formatDateDE(p.date)}</time>${p.tags.map((t) => `<span class="post-tag">${esc(t)}</span>`).join('')}</div>
 ${body}
             </article>
-            <nav class="post-nav" aria-label="Weitere Beiträge">
+${relatedHtml}            <nav class="post-nav" aria-label="Weitere Beiträge">
               ${prev ? `<a class="post-nav-prev" href="${prev.slug}.html" rel="prev"><span>Älterer Beitrag</span>${esc(prev.title)}</a>` : '<span></span>'}
               ${next ? `<a class="post-nav-next" href="${next.slug}.html" rel="next"><span>Neuerer Beitrag</span>${esc(next.title)}</a>` : '<span></span>'}
             </nav>
@@ -295,8 +449,8 @@ ${body}
   </div>
 
   <div id="shared-overlays"></div>
-  <script src="../components.js"></script>
-  <script src="../shared.js"></script>
+  <script src="../components.js" defer></script>
+  <script src="../shared.js" defer></script>
 </body>
 </html>
 `);

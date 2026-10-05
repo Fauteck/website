@@ -40,7 +40,7 @@ describing a repository that no longer exists.
 ├── full/
 │   └── index.html      # Traditional portfolio / CV view
 ├── blog/
-│   ├── index.html      # Post list (links to the generated post pages)
+│   ├── index.html      # Post list — hand-written shell, list block GENERATED
 │   ├── <slug>.html     # One generated page per post — GENERATED
 │   ├── blog.css        # Blog layout, shared by list and post pages
 │   ├── render.js       # The single Markdown renderer — browser and build
@@ -51,8 +51,8 @@ describing a repository that no longer exists.
 ├── design/             # Design-system reference sheets (noindex)
 ├── admin/              # Local post editor (noindex)
 ├── scripts/
-│   ├── build.mjs       # Derives posts.json, feed, sitemap, post pages
-│   ├── guard.mjs       # Checks derived files, design scales, images
+│   ├── build.mjs       # Derives posts.json, feed, sitemap, list block, post pages
+│   ├── guard.mjs       # Checks derived files, design scales, images, post quality
 │   └── lib/            # Dependency-free helpers (image header reader)
 ├── .github/
 │   └── workflows/      # guard.yml — runs scripts/guard.mjs on every push

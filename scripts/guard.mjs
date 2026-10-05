@@ -8,12 +8,15 @@
  *   2. Die Skalen aus DESIGN.md werden in der CSS auch eingehalten.
  *   3. Jedes statische <img> traegt width und height.
  *   4. Zu jedem JPG/PNG gibt es eine WebP-Variante.
+ *   5. Beitraege sind in sich stimmig: Pflichtfelder, Alt-Texte, interne
+ *      Links, Bildbudget.
  *
  * Exit-Code 1 bei jeder Abweichung. Laeuft in GitHub Actions mit nichts ausser
  * Node — deshalb keine Abhaengigkeit, auch nicht fuer die Bildmasse.
  */
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, dirname, extname } from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
@@ -164,6 +167,71 @@ for (const img of walk('.', (p) => /\.(jpe?g|png)$/i.test(p))) {
   }
   if (statSync(join(ROOT, webp)).size >= statSync(join(ROOT, img)).size) {
     fail('webp', `${webp} ist nicht kleiner als ${img} — dann ist die Variante sinnlos`);
+  }
+}
+
+/* ── 5. Beitraege ────────────────────────────────────────────────────────── */
+
+// Dieselbe Frontmatter-Logik wie im Build und im Browser — keine zweite.
+const { BlogRender } = createRequire(import.meta.url)('../blog/render.js');
+
+// Der Anrisstext steht in der Karte und als og:description. Die Untergrenze
+// faengt Platzhalter ab, die Obergrenze Ausreisser, die die Karte sprengen.
+const EXCERPT_MIN = 60;
+const EXCERPT_MAX = 330;
+
+// Bildbudget je WebP-Datei (die Variante, die moderne Browser tatsaechlich
+// laden). Eine Ausnahme mit Grund ist eine Entscheidung; ohne Grund Drift.
+const WEBP_BUDGET_KB = 350;
+const UEBER_BUDGET = {
+  'blog/images/gofundme/gofundme-feldweg.webp':
+    'Bestand bei Einfuehrung des Budgets — bei Gelegenheit neu exportieren',
+};
+
+const blogDir = 'blog';
+const beitraege = readdirSync(join(ROOT, blogDir)).filter((f) => f.endsWith('.md'));
+const bekannteSlugs = new Set(beitraege.map((f) => f.replace(/\.md$/, '')));
+
+for (const file of beitraege) {
+  const rel = `${blogDir}/${file}`;
+  const md = read(rel);
+  const { data, body } = BlogRender.parseFrontmatter(md);
+  const excerptLen = (data.excerpt || '').length;
+
+  if (excerptLen < EXCERPT_MIN || excerptLen > EXCERPT_MAX) {
+    fail('beitrag', `${rel}: excerpt hat ${excerptLen} Zeichen (erlaubt ${EXCERPT_MIN}–${EXCERPT_MAX})`);
+  }
+  if (data.thumb && !(data.thumbAlt || '').trim()) {
+    fail('beitrag', `${rel}: thumb ohne thumbAlt`);
+  }
+  if (!(data.tags || []).length) fail('beitrag', `${rel}: keine tags`);
+
+  for (const m of body.matchAll(/!\[([^\]]*)\]\(([^)\s]+)\)/g)) {
+    if (!m[1].trim()) fail('alt-text', `${rel}: Bild ${m[2]} ohne Alt-Text`);
+  }
+
+  // Interne Links: `#slug` (alte Hash-Form, der Build biegt sie um) muss einen
+  // Beitrag treffen, relative Pfade eine Datei. Externe Links prueft hier niemand.
+  for (const m of body.matchAll(/(?<!!)\[[^\]]*\]\(([^)\s]+)\)/g)) {
+    const ziel = m[1];
+    if (/^(https?:|mailto:|tel:)/.test(ziel)) continue;
+    if (ziel.startsWith('#')) {
+      if (!bekannteSlugs.has(ziel.slice(1))) fail('link', `${rel}: Anker ${ziel} trifft keinen Beitrag`);
+      continue;
+    }
+    const pfad = ziel.split(/[#?]/)[0];
+    const slug = pfad.replace(/\.html$/, '');
+    if (pfad.endsWith('.html') ? !bekannteSlugs.has(slug) : !existsSync(join(ROOT, blogDir, pfad))) {
+      fail('link', `${rel}: ${ziel} existiert nicht`);
+    }
+  }
+}
+
+for (const img of walk('blog/images', (p) => p.endsWith('.webp'))) {
+  if (UEBER_BUDGET[img]) continue;
+  const kb = statSync(join(ROOT, img)).size / 1024;
+  if (kb > WEBP_BUDGET_KB) {
+    fail('bildbudget', `${img}: ${Math.round(kb)} KB (Budget ${WEBP_BUDGET_KB} KB) — verkleinern oder in UEBER_BUDGET begruenden`);
   }
 }
 

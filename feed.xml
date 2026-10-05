@@ -289,12 +289,12 @@
 <p><strong>Skills, die direkt für Codequalität greifen:</strong></p>
 <ul>
 <li>clean-code — Uncle-Bob-Prinzipien. Sprechende Namen, kleine Funktionen, Kommentare vermeiden statt schlechten Code kommentieren. Stammt aus <a href="https://github.com/jackjin1997/ClawForge" target="_blank" rel="noopener">ClawForge</a>.</li>
-<li>security-first-2025 — Security beim Bash-Scripting. Input-Validierung, keine Command-Injection, sichere Temp-Dateien, Secrets niemals hardcoden. Eigener Skill, <a href="downloads/claude-code-setup-codequalitaet/security-first-2025.skill" target="_blank" rel="noopener">zum Download</a>.</li>
+<li>security-first-2025 — Security beim Bash-Scripting. Input-Validierung, keine Command-Injection, sichere Temp-Dateien, Secrets niemals hardcoden. Eigener Skill, <a href="https://niklasfauteck.de/blog/downloads/claude-code-setup-codequalitaet/security-first-2025.skill" target="_blank" rel="noopener">zum Download</a>.</li>
 <li>simplify — Review auf unnötige Komplexität. Keine Bugsuche, reine Aufräumarbeit.</li>
 <li>security-review — komplettes Security-Review der offenen Änderungen im Branch.</li>
 <li>review — Review eines GitHub Pull Requests.</li>
 <li><a href="https://github.com/anthropics/skills/tree/main/frontend-design" target="_blank" rel="noopener">frontend-design</a> — produktionsreife Interfaces, ohne dass man der KI-Optik ansieht.</li>
-<li>home-assistant-best-practices — verhindert Anti-Pattern in Automations, etwa device_id statt entity_id. Eigener Skill, <a href="downloads/claude-code-setup-codequalitaet/home-assistant-best-practices.skill" target="_blank" rel="noopener">zum Download</a>.</li>
+<li>home-assistant-best-practices — verhindert Anti-Pattern in Automations, etwa device_id statt entity_id. Eigener Skill, <a href="https://niklasfauteck.de/blog/downloads/claude-code-setup-codequalitaet/home-assistant-best-practices.skill" target="_blank" rel="noopener">zum Download</a>.</li>
 <li><a href="https://github.com/anthropics/skills/tree/main/mcp-builder" target="_blank" rel="noopener">mcp-builder</a> — Leitfaden für eigene MCP-Server.</li>
 <li><a href="https://github.com/anthropics/skills/tree/main/skill-creator" target="_blank" rel="noopener">skill-creator</a> — zum Bauen eigener Skills.</li>
 <li><a href="https://github.com/obra/superpowers/blob/main/skills/writing-skills/SKILL.md" target="_blank" rel="noopener">writing-skills</a> — testet Skills mit Subagenten, bevor sie scharf geschaltet werden, aus dem <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">obra/superpowers</a>-Framework.</li>
@@ -376,7 +376,7 @@
 <p>Ich hatte nicht trainiert.</p>
 <figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/42-kilometer/route-tourteck.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/42-kilometer/route-tourteck.png" alt="Tracking-App Tourteck zeigt die beendete Tour als grüne Route entlang des Rheins zwischen Köln, Wesseling, Niederkassel und Troisdorf." width="493" height="720" loading="lazy"></picture></figure>
 <h2>Wie das überhaupt passiert ist</h2>
-<p>Im Herbst 2024 habe ich <a href="#depression" target="_blank" rel="noopener">über meine Depression geschrieben</a>. Was ich da nicht ausführlich beschrieben habe: Spazieren war eines der ersten Dinge, die mir in dieser Zeit wirklich geholfen haben. Nicht als Sport. Als Werkzeug. Kopf raus aus den Grübel-Schleifen, Gedanken geordnet kriegen, einfach mal aufhören, stillzusitzen und innerlich zu rotieren.</p>
+<p>Im Herbst 2024 habe ich <a href="https://niklasfauteck.de/blog/depression.html">über meine Depression geschrieben</a>. Was ich da nicht ausführlich beschrieben habe: Spazieren war eines der ersten Dinge, die mir in dieser Zeit wirklich geholfen haben. Nicht als Sport. Als Werkzeug. Kopf raus aus den Grübel-Schleifen, Gedanken geordnet kriegen, einfach mal aufhören, stillzusitzen und innerlich zu rotieren.</p>
 <p>Ich bin viel gelaufen damals. Kurze Strecken, langsame Strecken, Strecken ohne Ziel.</p>
 <p>Ein guter Freund von mir wandert regelmäßig und neigt dazu, bei Touren manchmal ein bisschen zu übertreiben.</p>
 <p>Ich habe ihn irgendwann unverbindlich gefragt, ob wir das nicht auch mal zusammen machen wollen. Wandern. Ein bisschen. Für Einsteiger.</p>
@@ -446,10 +446,10 @@
 <p>Als Nächstes kommt die Ausgleichsmasse auf den Boden und es wird gestrichen. Weiter geht's.</p>
 <h2>Bisherige Updates</h2>
 <ul>
-<li><a href="#gofundme" target="_blank" rel="noopener">GoFundMe: Barrierefreier Umbau für unsere Familie</a></li>
-<li><a href="#umbau-startet" target="_blank" rel="noopener">Der Umbau startet</a></li>
-<li><a href="#danke-2025" target="_blank" rel="noopener">Danke, euer Support bewegt etwas</a></li>
-<li><a href="#fenster-tueren" target="_blank" rel="noopener">Update: Fenster und Türen sind drin</a></li>
+<li><a href="https://niklasfauteck.de/blog/gofundme.html">GoFundMe: Barrierefreier Umbau für unsere Familie</a></li>
+<li><a href="https://niklasfauteck.de/blog/umbau-startet.html">Der Umbau startet</a></li>
+<li><a href="https://niklasfauteck.de/blog/danke-2025.html">Danke, euer Support bewegt etwas</a></li>
+<li><a href="https://niklasfauteck.de/blog/fenster-tueren.html">Update: Fenster und Türen sind drin</a></li>
 </ul>
       ]]></description>
     </item>
@@ -564,7 +564,7 @@
       <category>GoFundMe</category>
       <category>Umbau</category>
       <description><![CDATA[
-<p>Im Oktober haben wir unsere <a href="#gofundme" target="_blank" rel="noopener">GoFundMe-Kampagne</a> für den barrierefreien Umbau unseres Anbaus gestartet. Seitdem ist viel passiert – Schuppen gebaut, Anbau leergeräumt, Fliesen rausgerissen, Dachboden entrümpelt. Und gestern wieder ein großer Meilenstein.</p>
+<p>Im Oktober haben wir unsere <a href="https://niklasfauteck.de/blog/gofundme.html">GoFundMe-Kampagne</a> für den barrierefreien Umbau unseres Anbaus gestartet. Seitdem ist viel passiert – Schuppen gebaut, Anbau leergeräumt, Fliesen rausgerissen, Dachboden entrümpelt. Und gestern wieder ein großer Meilenstein.</p>
 <p>Die Firma Kuse Metallbau aus Königswinter hat die neuen Fenster und Türen im Anbau eingesetzt. Damit weicht der Rohbau-Charakter, und man kann sich erstmals richtig vorstellen, wie Aylins barrierefreier Raum am Ende aussehen wird.</p>
 <figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/fenster-tueren/fenster-tueren-update.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/fenster-tueren/fenster-tueren-update.jpg" alt="Neues Treppengeländer an der Haustür und neue Fenster und Terrassentür im Anbau" width="1086" height="837" loading="lazy"></picture></figure>
 <p>Die Zusammenarbeit mit Kuse war von Anfang bis Ende erstklassig: ehrliche, mitdenkende Beratung und eine saubere, professionelle Umsetzung. Und ein Treppengeländer für die Haustür gab es auch noch dazu. 💛</p>

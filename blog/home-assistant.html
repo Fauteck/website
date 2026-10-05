@@ -13,7 +13,14 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://niklasfauteck.de/blog/home-assistant.html">
   <meta property="og:image" content="https://niklasfauteck.de/blog/images/home-assistant/home-assistant-uebersicht.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="584">
+  <meta property="og:image:alt" content="Home-Assistant-Dashboard mit Räumen, Lampen und Automationen">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://niklasfauteck.de/blog/images/home-assistant/home-assistant-uebersicht.jpg">
   <meta property="article:published_time" content="2026-05-12">
+  <meta property="article:author" content="https://niklasfauteck.de/">
   <meta property="article:tag" content="Persönlich">
   <meta property="article:tag" content="Familie">
   <meta property="article:tag" content="Smart Home">
@@ -21,12 +28,14 @@
   <meta property="article:tag" content="Barrierefreiheit">
   <link rel="canonical" href="https://niklasfauteck.de/blog/home-assistant.html">
   <link rel="alternate" type="application/rss+xml" title="Blog — Niklas Fauteck" href="../feed.xml">
+  <link rel="preload" href="../fonts/ibm-plex-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../fonts/fonts.css">
   <link rel="stylesheet" href="../shared.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%232C3E50'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='700' font-size='18' fill='%2352b788'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="icon" type="image/x-icon" href="../full/favicon.ico">
   <link rel="apple-touch-icon" href="../full/favicon-192.png">
   <link rel="stylesheet" href="blog.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Vom Nerd-Hobby zur Barrierefreiheit","description":"Home Assistant hat bei mir als Spielerei angefangen — Lampe per Sprache schalten, dann zwei, dann das ganze Wohnzimmer. Spätestens seit der Teilquerschnittslähmung meiner Frau ist das aber kein Hobby mehr: Was für mich früher Komfort war, ist für uns inzwischen Barrierefreiheit.","datePublished":"2026-05-12","dateModified":"2026-05-12","inLanguage":"de","url":"https://niklasfauteck.de/blog/home-assistant.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://niklasfauteck.de/blog/home-assistant.html"},"image":["https://niklasfauteck.de/blog/images/home-assistant/home-assistant-uebersicht.jpg"],"keywords":"Persönlich, Familie, Smart Home, Home Assistant, Barrierefreiheit","author":{"@type":"Person","name":"Niklas Fauteck","url":"https://niklasfauteck.de/"},"publisher":{"@type":"Person","name":"Niklas Fauteck","url":"https://niklasfauteck.de/"},"isPartOf":{"@type":"Blog","@id":"https://niklasfauteck.de/blog/","name":"Blog — Niklas Fauteck"}}</script>
 </head>
 <body>
   <!-- Skip to content (Accessibility) -->
@@ -48,7 +57,7 @@
               <div class="post-content-meta"><time datetime="2026-05-12">12.05.2026</time><span class="post-tag">Persönlich</span><span class="post-tag">Familie</span><span class="post-tag">Smart Home</span><span class="post-tag">Home Assistant</span><span class="post-tag">Barrierefreiheit</span></div>
 <p>Mein Smart-Home-System "Home Assistant" hat bei mir angefangen, wie es vermutlich bei den meisten anfängt: als Spielerei.</p>
 <p>Ich wollte ehrlich gesagt nur einmal sehen, ob ich das hinbekomme. Eine Lampe per Sprache schalten. Dann zwei. Dann irgendwann die ganze Beleuchtung im Wohnzimmer abhängig davon, ob der Fernseher läuft und welche App gerade dort offen ist. Klassisches Nerd-Hobby. Braucht kein Mensch. Aber wenn man sich reinfuchst, ziemlich cool.</p>
-<figure class="post-figure"><picture><source srcset="images/home-assistant/home-assistant-uebersicht.webp" type="image/webp"><img src="images/home-assistant/home-assistant-uebersicht.jpg" alt="Mein Home-Assistant-Dashboard mit Räumen, Lampen, Rollos und Automationen im Überblick" width="1024" height="584" loading="lazy"></picture></figure>
+<figure class="post-figure"><picture><source srcset="images/home-assistant/home-assistant-uebersicht.webp" type="image/webp"><img src="images/home-assistant/home-assistant-uebersicht.jpg" alt="Mein Home-Assistant-Dashboard mit Räumen, Lampen, Rollos und Automationen im Überblick" width="1024" height="584" fetchpriority="high"></picture></figure>
 <p>Was ich an Home Assistant gar nicht erwartet hatte: Es verändert, wie man auf Alltagsprozesse schaut.</p>
 <p>Plötzlich ertappt man sich dabei, abends im Schlafzimmer fünf Lampen nacheinander anzuschalten und denkt: Moment, das ist doch eigentlich ein Prozess. Mit Auslöser, Bedingungen, Ergebnis. Und wenn ich diesen Prozess sauber beschreiben kann, kann ich ihn auch automatisieren. Im Job mache ich nichts anderes. Nur dass im Job am Ende selten eine Lampe angeht.</p>
 <p>Spätestens seit der Teilquerschnittslähmung meiner Frau ist Home Assistant für uns aber keine Spielerei mehr.</p>
@@ -56,6 +65,14 @@
 <p>Das Schöne daran: Es ist dieselbe Technik. Dieselben Automationen. Dieselbe YAML-Datei, in der ich abends rumfrickle. Nur der Grund, warum sie da ist, hat sich verschoben.</p>
 <p>Manchmal fängt etwas als Hobby an und wird unterwegs wichtiger, als man gedacht hätte.</p>
             </article>
+            <section class="post-related" aria-labelledby="weiterlesen">
+              <h2 id="weiterlesen">Weiterlesen</h2>
+              <ul>
+                <li><a href="fenster-tueren.html"><span class="post-related-meta">28.04.2026 · Persönlich, Familie</span><span class="post-related-title">Update: Fenster und Türen sind drin</span></a></li>
+                <li><a href="raeuberhoehle.html"><span class="post-related-meta">15.04.2026 · Persönlich, Familie</span><span class="post-related-title">Räuberhöhle</span></a></li>
+                <li><a href="verputzt.html"><span class="post-related-meta">16.06.2026 · Persönlich, Familie</span><span class="post-related-title">Alles verputzt</span></a></li>
+              </ul>
+            </section>
             <nav class="post-nav" aria-label="Weitere Beiträge">
               <a class="post-nav-prev" href="fenster-tueren.html" rel="prev"><span>Älterer Beitrag</span>Update: Fenster und Türen sind drin</a>
               <a class="post-nav-next" href="finanzteck.html" rel="next"><span>Neuerer Beitrag</span>Von Splitwise und Excel zur eigenen Finanz-App</a>
@@ -91,7 +108,7 @@
   </div>
 
   <div id="shared-overlays"></div>
-  <script src="../components.js"></script>
-  <script src="../shared.js"></script>
+  <script src="../components.js" defer></script>
+  <script src="../shared.js" defer></script>
 </body>
 </html>
