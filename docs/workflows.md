@@ -51,11 +51,12 @@ Four things used to be maintained by hand and had to stay in sync with
 
 | File | Contents |
 |---|---|
-| `blog/posts.json` | the slug list the blog viewers fetch |
+| `blog/posts.json` | the slug list the NiklasOS blog viewer fetches |
+| `blog/index.html` | only the two marked blocks: the prerendered post list (year groups, featured first card) and the SEO head (Open Graph, Twitter card, JSON-LD) |
 | `blog/images/sizes.json` | width/height of every image used in a post |
 | `feed.xml` | the RSS feed |
 | `sitemap.xml` | static pages plus one URL per post |
-| `blog/<slug>.html` | one real page per post, with its own title, canonical and OG tags |
+| `blog/<slug>.html` | one real page per post, with its own title, canonical, OG tags, JSON-LD and related posts (shared tags) |
 
 `node scripts/build.mjs` writes them; `node scripts/guard.mjs` (and CI)
 fails if what is on disk does not match what the sources produce. Do not
