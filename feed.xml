@@ -5,8 +5,37 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Tue, 06 Oct 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Karl Klammer am Desktop</title>
+      <link>https://niklasfauteck.de/blog/karl-klammer-am-desktop.html</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#karl-klammer-am-desktop</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Maker</category>
+      <description><![CDATA[
+<p>Seit ein paar Wochen steht auf meinem Windows-Desktop ein Haken mit Augen.</p>
+<p>Das ist Tecki, das Maskottchen von <a href="https://niklasfauteck.de/blog/#todoteck" target="_blank" rel="noopener">Todoteck</a>, meiner selbstgebauten Aufgaben-App. Der Haken und seine Geometrie kommen direkt aus dem Logo und der App. Nur dass er jetzt Augen hat. Und auf dem Schreibtisch sitzt.</p>
+<p>Er zeigt mir zum Beispiel, was Claude gerade tut: denkt nach, wartet auf Freigabe, fertig, Fehler. Er zeigt mir, was in Todoteck fällig ist. Und wenn Claude eine Frage hat, stellt er sie mir.</p>
+<p>Reines Nerd-Projekt. Braucht eigentlich kein Mensch. (Ich wollte ihn trotzdem.)</p>
+<h2>Die Büroklammer</h2>
+<p>Jeder, der um die Jahrtausendwende Word benutzt hat, kennt sie. Karl Klammer. Clippy. Man tippt einen Brief, und plötzlich hüpft unten rechts etwas auf und will helfen.</p>
+<p>Tecki will auch helfen. Nervt aber weniger. Er wartet, bis ich ihn frage. Und Claude darf mir über ihn Fragen stellen.</p>
+<p>Das läuft über <a href="https://niklasfauteck.de/blog/#todoteck-mcp" target="_blank" rel="noopener">MCP, wie schon die Todoteck-Anbindung an Claude</a>. Die Sprechblase bekommt pro Antwort einen Knopf und ich antworte per Klick. Kein Fensterwechsel, kein Suchen nach dem richtigen Tab. Ich tippe weiter, bis ich Lust habe zu antworten.</p>
+<h2>Was er sonst noch kann</h2>
+<p>Die Ampel. Claude Code schickt über ein Hook-Skript seine Zustände an Tecki und an <a href="https://niklasfauteck.de/blog/#home-assistant" target="_blank" rel="noopener">Home Assistant</a>. Im Büro hängt ein LED-Streifen dran. Denkt nach: eine Farbe. Wartet auf meine Freigabe: eine andere. Fehler: rot. Ich sehe vom Flur aus, ob Claude auf mich wartet.</p>
+<p>Die Befehlspalette. Strg+Alt+Leertaste, und ich bin in Todoteck, ohne Browser. „morgen 15 Uhr Müll rausstellen !! @Home" wird zur Aufgabe mit Termin, Priorität und Projekt. „heute" zeigt, was fällig ist, und ich hake direkt ab. „einkauf" die Einkaufsliste. „claude …" stellt eine Frage. Noch ein Eingang in dieselbe App, so wie <a href="https://niklasfauteck.de/blog/#einfach-reinquatschen" target="_blank" rel="noopener">der Telegram-Bot</a> für Aylin.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/karl-klammer-am-desktop/befehlspalette.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/karl-klammer-am-desktop/befehlspalette.png" alt="Die Befehlspalette von Tecki: oben die Kurzschrift-Hinweise, darunter die Befehle „Claude fragen", „Tagesblatt zeigen" und „Was war?"" width="586" height="458" loading="lazy"></picture></figure>
+<p>Und die Physik. Man kann ihn ziehen und werfen. Schwerkraft, die Taskleiste ist der Boden, zwei Hüpfer, Ruhe. Wer ein Fenster schnell über ihn schiebt, stößt ihn um. Das ist der Schubser. Hat keinen Nutzen. Ist aber lustig.</p>
+<p>Bei Regen hat er Tropfen über dem Kopf. Ab 28 Grad gefühlt eine Schweißperle. Die Daten kommen aus Home Assistant. (Ja, ich weiß. Aber es kostet nichts, und ich grinse jedes Mal.)</p>
+<h2>Unter der Haube</h2>
+<p>Tauri 2, Rust plus WebView2, rund 10.000 Zeilen, 77 Tests. Gevibecodet mit Claude Code, Phase für Phase, mit <a href="https://niklasfauteck.de/blog/#claude-code-setup-codequalitaet" target="_blank" rel="noopener">demselben Setup</a>, das auch den Rest von Todoteck prüft.</p>
+<p>Karl Klammer hat Microsoft 2007 in Rente geschickt. Tecki sitzt gerade neben der Uhr und blinzelt.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Alles im Lot</title>
