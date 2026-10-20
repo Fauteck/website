@@ -13,6 +13,8 @@ Seit ein paar Wochen steht auf meinem Windows-Desktop ein Haken mit Augen.
 
 Das ist Tecki, das Maskottchen von [Todoteck](https://niklasfauteck.de/blog/#todoteck), meiner selbstgebauten Aufgaben-App. Der Haken und seine Geometrie kommen direkt aus dem Logo und der App. Nur dass er jetzt Augen hat. Und auf dem Schreibtisch sitzt.
 
+![Tecki, der grüne Haken mit Augen, sitzt unten rechts auf meinem Windows-Desktop direkt auf der Taskleiste.](images/karl-klammer-am-desktop/tecki-desktop.png)
+
 Er zeigt mir zum Beispiel, was Claude gerade tut: denkt nach, wartet auf Freigabe, fertig, Fehler. Er zeigt mir, was in Todoteck fällig ist. Und wenn Claude eine Frage hat, stellt er sie mir.
 
 Reines Nerd-Projekt. Braucht eigentlich kein Mensch. (Ich wollte ihn trotzdem.)
