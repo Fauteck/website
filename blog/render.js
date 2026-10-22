@@ -10,9 +10,11 @@
 (function (global) {
   'use strict';
 
+  var BLOCK_IMAGE = /^!\[([^\]]*)\]\(([^)]+)\)\s*$/;
+
   // Markdown → HTML. Unterstützt Überschriften, Fett/Kursiv, Links, blanke
-  // URLs, Listen, Blockzitate und block-level Bilder — genau der Umfang, den
-  // die Blog-Posts nutzen.
+  // URLs, Listen, Blockzitate, block-level Bilder und Bildergalerien — genau
+  // der Umfang, den die Blog-Posts nutzen.
   function renderMarkdown(md) {
     // Frontmatter entfernen
     md = md.replace(/^---[\s\S]*?---\s*/, '');
@@ -74,11 +76,20 @@
         continue;
       }
 
-      // Block-Bild: ![alt](url)
-      var imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)\s*$/);
+      // Block-Bild: ![alt](url). Stehen mehrere Bildzeilen ohne Leerzeile
+      // direkt untereinander, werden sie zur Galerie (Raster, zwei Spalten).
+      var imgMatch = line.match(BLOCK_IMAGE);
       if (imgMatch) {
         closeList();
-        html.push('<figure class="post-figure">' + imageTag(imgMatch[2], imgMatch[1]) + '</figure>');
+        var figures = [];
+        while (imgMatch) {
+          figures.push('<figure class="post-figure">' + imageTag(imgMatch[2], imgMatch[1]) + '</figure>');
+          imgMatch = i + 1 < lines.length && lines[i + 1].match(BLOCK_IMAGE);
+          if (imgMatch) i++;
+        }
+        html.push(figures.length > 1
+          ? '<div class="post-gallery">' + figures.join('') + '</div>'
+          : figures[0]);
         continue;
       }
 

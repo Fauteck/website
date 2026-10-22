@@ -5,8 +5,40 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Tue, 20 Oct 2026 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Ich hol mir meinen Fernseher zurück</title>
+      <link>https://niklasfauteck.de/blog/fernseher-zurueck.html</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#fernseher-zurueck</guid>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 +0200</pubDate>
+      <category>Vibecoding</category>
+      <category>Selfhosted</category>
+      <category>Familie</category>
+      <description><![CDATA[
+<p>Angefangen hat alles mit einem GitHub-Repo: cleanyourtv von Gathin23. Das sind ein paar Skripte, mit denen man einen Android-Fernseher entrümpelt. Sie schalten Werbung und Datensammler ab und setzen einen schlichten Startbildschirm drauf. Das Ganze läuft über ADB, die Entwickler-Schnittstelle, mit der man ein Android-Gerät vom PC aus steuert. <a href="https://github.com/Gathin23/cleanyourtv" target="_blank" rel="noopener">https://github.com/Gathin23/cleanyourtv</a></p>
+<p>Eigentlich logisch. Ein Android-TV ist halt auch nur ein sehr großes Handy ohne Akku.</p>
+<p>Unser Philips im Wohnzimmer läuft mit Android 11. Also hab ich den Laptop aufgeklappt und einfach mal aus Neugier reingeguckt.</p>
+<h2>Was da eigentlich alles lief</h2>
+<p>Da lief deutlich mehr, als ich gedacht hätte. Philips hat gleich mehrere Programme mitgeliefert, die mitschreiben, wie wir den Fernseher nutzen, und Daten und Logs sammeln. Dazu kam eine Anmeldung, über die Werbung und Inhaltserkennung freigegeben werden. Ein weiterer Dienst zeigte Werbe-Kanäle an, mit eigener Werbe-ID. Und Google und Philips haben beide noch ihre eigenen Empfehlungen eingespielt.</p>
+<p>Dazu kam der ganze Kram, den bei uns keiner braucht: die Ladendemo aus dem Elektromarkt, Alexa, ein Browser, ein Wecker, HD+ und die App-Galerie von Philips.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/fernseher-zurueck/vorher.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/fernseher-zurueck/vorher.jpg" alt="Der alte Startbildschirm von Google TV: oben ein großer Vorschlag für eine Serie, darunter unsere Apps und Reiter für Bestseller, beliebte Filme und Trends auf Google" width="1920" height="1080" loading="lazy"></picture></figure>
+<p>Jetzt sind 18 Pakete raus und der TV fühlt sich sofort flotter an. Und plötzlich war auch auf dem Startbildschirm wieder Platz, den ich mit eigenen Ideen füllen konnte.</p>
+<h2>Ein Startbildschirm, der uns gehört</h2>
+<p>Oben gibt es jetzt eine Leiste mit vier Reitern: Start, Entdecken, Heute und Wetter. Bedient wird alles mit der normalen Fernbedienung. Tagsüber ist die Oberfläche hell und nachts dunkel, umgeschaltet wird nach dem Sonnenstand. Farben, Schrift und Icons hab ich von Todoteck und unseren Home-Assistant-Dashboards übernommen. Der Fernseher sieht jetzt also aus wie alles andere bei uns zu Hause.</p>
+<div class="post-gallery"><figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/fernseher-zurueck/start-nacht.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/fernseher-zurueck/start-nacht.jpg" alt="Start: Gruß, Uhr, Achtsamkeitstipp und Wetter, dahinter ein Foto aus unserem Familienalbum, unten unsere Apps" width="1920" height="1080" loading="lazy"></picture></figure><figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/fernseher-zurueck/entdecken.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/fernseher-zurueck/entdecken.jpg" alt="Entdecken: oben unsere Mediathek aus Jellyfin, darunter Heute im TV mit ARD, ZDF, ProSieben und RTL" width="1920" height="1080" loading="lazy"></picture></figure><figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/fernseher-zurueck/heute.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/fernseher-zurueck/heute.jpg" alt="Heute: links die Termine für morgen und ein Ereignis von heute vor 15 Jahren, rechts unsere Aufgaben, die Einträge sind unscharf gemacht" width="1920" height="1080" loading="lazy"></picture></figure><figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/fernseher-zurueck/wetter.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/fernseher-zurueck/wetter.jpg" alt="Wetter: oben eine amtliche Warnung vor Sturmböen, darunter das Wetter jetzt, die nächsten Tage und die nächsten Stunden als Kurve" width="1920" height="1080" loading="lazy"></picture></figure></div>
+<p>Auf der Startseite begrüßt uns der Fernseher je nach Tageszeit, dazu kommen Uhr und Datum. Die Temperatur kommt von unserer eigenen Wetterstation, Symbol und Vorhersage über Home Assistant. Im Hintergrund ist ein Foto aus unserem Album „TV“ in Immich, unserer eigenen Fotoverwaltung. Darunter liegen unsere acht Lieblings-Apps.</p>
+<p>Unter „Entdecken“ spielt mir kein fremder Algorithmus mehr irgendwas ein. Was dort steht, hab ich selbst über Schnittstellen festgelegt. Oben kommt unsere eigene Mediathek aus Jellyfin. Darunter stehen über die Filmdatenbank TMDB die beliebtesten und neuesten Filme und Serien, und zwar nur von den Plattformen, die wir auch wirklich nutzen. Das Fernsehprogramm von heute hole ich mir von iptv-epg.org, und verpasste Sendungen von ARD und ZDF findet der Fernseher über MediathekViewWeb und spielt sie direkt im VLC Player ab.</p>
+<p>Unter „Heute“ stehen unsere Termine von heute und morgen, die fälligen Aufgaben aus Todoteck und ein Ereignis aus der Wikipedia, das heute vor X Jahren passiert ist.</p>
+<p>Unter „Wetter“ stehen ganz oben in Rot die amtlichen Warnungen aus NINA. Darunter sieht man das aktuelle Wetter mit Temperatur, gefühlter Temperatur, Luftfeuchte, Wind, UV und Regen. Die nächsten zwölf Stunden zeigt eine Kurve mit Regenbalken. Dazu kommen die nächsten Tage und, wenn gerade etwas fliegt, der Pollenflug.</p>
+<h2>Die Schlüssel bleiben im Haus</h2>
+<p>Für all diese Dienste läuft in meinem Home Lab ein eigener kleiner Dienst. Er verwaltet die API-Zugänge und entscheidet, welche Inhalte beim Fernseher ankommen. Auf dem Fernseher selbst liegt keiner dieser Zugänge.</p>
+<p>Welche Daten wohin fließen und wo die Schlüssel liegen, hab ich festgelegt. Den Code hat Claude Code geschrieben, an drei Tagen in ein paar Stunden. Herausgekommen sind rund 6.700 Zeilen Java und 1.600 Zeilen TypeScript.</p>
+<p>Im Kleinen ist das genau das, was ich sonst beruflich mache. Erst schauen, was da eigentlich läuft. Abschalten, was keiner braucht. Und die eigenen Daten so anbinden, dass die Schlüssel im Haus bleiben.</p>
+<p>Jetzt zeigt der größte Bildschirm im Haus unsere Fotos und unsere Termine. Und abends nur Filme, für deren Anzeige nicht Amazon & Co. bezahlt haben, sondern die wir wirklich schauen wollen.</p>
+      ]]></description>
+    </item>
 
     <item>
       <title>Karl Klammer am Desktop</title>
