@@ -449,6 +449,7 @@ ${relatedHtml}            <nav class="post-nav" aria-label="Weitere Beiträge">
   </div>
 
   <div id="shared-overlays"></div>
+  <script src="lightbox.js" defer></script>
   <script src="../components.js" defer></script>
   <script src="../shared.js" defer></script>
 </body>
