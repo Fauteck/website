@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { createHash } from 'node:crypto';
 import { imageSize } from './lib/image-size.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -31,6 +32,12 @@ const BLOG = join(ROOT, 'blog');
 // die auseinanderlaeuft.
 const require = createRequire(import.meta.url);
 const { BlogRender } = require('../blog/render.js');
+
+// Beitragsseiten binden blog.css und lightbox.js mit einem Inhalts-Hash ein.
+// GitHub Pages erlaubt Browsern zehn Minuten Cache; ohne den Hash traf neues
+// Skript auf alte Styles (passiert 2026-10-23 mit der Bild-Großansicht).
+const versioned = (file) =>
+  `${file}?v=${createHash('sha256').update(readFileSync(join(BLOG, file))).digest('hex').slice(0, 8)}`;
 
 const check = process.argv.includes('--check');
 const drift = [];
@@ -391,7 +398,7 @@ ${p.tags.map((t) => `  <meta property="article:tag" content="${esc(t)}">`).join(
   ${FAVICON}
   <link rel="icon" type="image/x-icon" href="../full/favicon.ico">
   <link rel="apple-touch-icon" href="../full/favicon-192.png">
-  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="${versioned('blog.css')}">
   ${ldScript(ld)}
 </head>
 <body>
@@ -449,7 +456,7 @@ ${relatedHtml}            <nav class="post-nav" aria-label="Weitere Beiträge">
   </div>
 
   <div id="shared-overlays"></div>
-  <script src="lightbox.js" defer></script>
+  <script src="${versioned('lightbox.js')}" defer></script>
   <script src="../components.js" defer></script>
   <script src="../shared.js" defer></script>
 </body>
