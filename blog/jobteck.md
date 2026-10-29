@@ -1,6 +1,6 @@
 ---
 title: "Jobteck: Meine Jobsuche hat jetzt eine eigene App"
-date: 2026-11-02
+date: 2026-10-29
 tags: [Vibecoding, KI, Karriere, Selfhosted]
 excerpt: "Statt mich durch fünf Jobportale zu klicken, habe ich mir mit Claude Code eine eigene App bauen lassen. Sie sammelt Stellen, rechnet nach und bewertet. Entscheiden muss ich trotzdem selbst."
 thumb: images/jobteck/jobteck-treffer.png
