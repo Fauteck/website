@@ -438,11 +438,6 @@
 
         .project-links a:hover { text-decoration: underline; }
 
-        /* Eigene Projekte: Karte ohne Bild-Spalte */
-        .project-card--compact {
-            grid-template-columns: 1fr;
-        }
-
         /* Einleitungstext unter einer Sektion-Überschrift */
         .section-intro {
             color: var(--text-secondary);
@@ -992,67 +987,142 @@
         </div>
         <div class="section-body">
         <p class="section-intro">
-            <strong>Vibecoding</strong> heißt für mich: Software mit KI als Werkzeug bauen –
-            von der Idee über den Prototyp bis zum lauffähigen Tool, ohne klassische
-            Entwickler-Laufbahn. Was ich bei RTL strategisch verantworte, setze ich privat
-            selbst um. Diese Projekte laufen real – selfhosted, im täglichen Einsatz.
+            <strong>Vibecoding</strong> heißt für mich: Software mit KI als Werkzeug bauen.
+            Von der Idee über den Prototyp bis zum lauffähigen Tool, ohne klassische
+            Entwickler-Laufbahn. Was ich bei RTL strategisch verantwortet habe, setze ich
+            privat selbst um. Diese Projekte laufen real: selfhosted, im täglichen Einsatz.
         </p>
-
         <div class="projects-grid">
-            <div class="project-card project-card--compact">
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/todoteck/todoteck-desktop.webp" type="image/webp"><img src="../blog/images/todoteck/todoteck-desktop.png" alt="Todoteck Desktop-Ansicht mit Sidebar und Heute-Übersicht" loading="lazy" width="1189" height="763"></picture>
+                </div>
                 <div class="project-content">
                     <div class="project-tag">Eigenes Projekt · Vibecoding</div>
-                    <h3>Todoteck — Aufgaben & Notizen für die Familie</h3>
+                    <h3>Todoteck: Aufgaben &amp; Notizen für die Familie</h3>
                     <p>
-                        Keine App brachte To-dos und Notizen sinnvoll zusammen. Also habe ich
-                        sie gebaut – mit eigener Programmierschnittstelle und angebunden an
-                        unseren Alltag: Google Kalender, Sprachassistent und ein E-Ink-Display
-                        im Flur greifen auf dieselben Daten zu.
+                        Keine App brachte To-dos und Notizen sinnvoll zusammen. Also habe ich sie gebaut, mit eigener Programmierschnittstelle und angebunden an unseren Alltag: Google Kalender, Sprachassistent und ein E-Ink-Display im Flur greifen auf dieselben Daten zu.
                     </p>
-                    <span class="project-result">Tägliche Familien-App – im echten Einsatz</span>
+                    <span class="project-result">Tägliche Familien-App, im echten Einsatz</span>
                     <div class="project-stack">
                         <span class="skill-tag">Selfhosted Web-App</span>
                         <span class="skill-tag">REST-API</span>
                         <span class="skill-tag">MCP-Server</span>
                         <span class="skill-tag">Android-Widget</span>
-                        <span class="skill-tag">Google Kalender & Keep</span>
+                        <span class="skill-tag">Google Kalender &amp; Keep</span>
+                        <span class="skill-tag">Desktop-Companion</span>
                     </div>
                     <div class="project-links">
-                        <a href="../blog/index.html#todoteck">Die Idee →</a>
-                        <a href="../blog/index.html#todoteck-mcp">API, MCP & Alltag →</a>
+                        <a href="../blog/todoteck.html">Die Idee →</a>
+                        <a href="../blog/todoteck-mcp.html">API, MCP &amp; Alltag →</a>
+                        <a href="../blog/karl-klammer-am-desktop.html">Tecki am Desktop →</a>
                     </div>
                 </div>
             </div>
-
-            <div class="project-card project-card--compact">
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/jobteck/jobteck-treffer.webp" type="image/webp"><img src="../blog/images/jobteck/jobteck-treffer.png" alt="Trefferliste in Jobteck mit Demodaten: eine Stelle aufgeklappt, 91 Punkte, Begründung und Häkchen für Fachlich, Ebene, Gehalt, Home-Office und Entfernung" loading="lazy" width="1600" height="1000"></picture>
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · Vibecoding · KI</div>
+                    <h3>Jobteck: Die Jobsuche als eigene App</h3>
+                    <p>
+                        Jeden Tag dieselben Anzeigen auf fünf Portalen. Jobteck sammelt Stellen an einem Ort, erkennt Dubletten und lässt Claude jede Stelle gegen mein Suchprofil bewerten: fachlich, Ebene, Gehalt, Home-Office, Entfernung. Entscheiden muss ich selbst.
+                    </p>
+                    <span class="project-result">Eine Trefferliste statt fünf Portale</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Selfhosted Web-App</span>
+                        <span class="skill-tag">Claude API mit Kostenprotokoll</span>
+                        <span class="skill-tag">Dublettenerkennung</span>
+                        <span class="skill-tag">Bewertung nach Suchprofil</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/jobteck.html">Zum Artikel →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/sprachgeraet-am-handgelenk/tecki-armband.webp" type="image/webp"><img src="../blog/images/sprachgeraet-am-handgelenk/tecki-armband.jpg" alt="Der kleine Stick am Armband, auf dem Display schaut Tecki nach oben, darunter steht die Antwort" loading="lazy" width="1400" height="1867"></picture>
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · Barrierefreiheit</div>
+                    <h3>Sprachsteuerung: Eintragen ohne Tippen</h3>
+                    <p>
+                        Für meine Frau ist Tippen auf dem Handy mühsam. Also drei Wege in dieselbe Familien-App, jeder niedrigschwelliger als der davor: Sprachnachricht an einen Telegram-Bot, ein Knopf am Handgelenk, zuletzt die Taste am Kopfhörer. Reinsprechen, Eintrag steht.
+                    </p>
+                    <span class="project-result">Quittung oder Aufgabe per Stimme, das Handy bleibt in der Tasche</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Telegram-Bot</span>
+                        <span class="skill-tag">Spracherkennung</span>
+                        <span class="skill-tag">Quittungsfoto per Vision-Modell</span>
+                        <span class="skill-tag">Sprachgerät am Armband</span>
+                        <span class="skill-tag">Bluetooth-Earbuds</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/einfach-reinquatschen.html">Einfach reinquatschen →</a>
+                        <a href="../blog/sprachgeraet-am-handgelenk.html">Der Knopf am Handgelenk →</a>
+                        <a href="../blog/eigene-sprachsteuerung.html">Die eigene Sprachsteuerung →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/wiki-fuer-die-ki/todoteck-llm-wiki.webp" type="image/webp"><img src="../blog/images/wiki-fuer-die-ki/todoteck-llm-wiki.jpg" alt="Handy mit der Todoteck-App, geöffnet im Projekt llm-wiki mit den Notizen _schema, _index und _log" loading="lazy" width="1097" height="824"></picture>
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · KI-Arbeitsweise</div>
+                    <h3>Arbeiten mit KI: Wiki, Regeln, Audits</h3>
+                    <p>
+                        Ein Nachmittag reicht für einen Prototyp. Ob er auch was aushält, ist die andere Frage. Deshalb hat jedes Projekt feste Regeln für die KI, Audits für Sicherheit und Performance laufen immer wieder, und das Grundwissen liegt in einem Wiki, das die KI selbst pflegt. Nach einer Idee von Andrej Karpathy.
+                    </p>
+                    <span class="project-result">Kein Projekt fängt bei null an</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Regeldatei je Repo</span>
+                        <span class="skill-tag">LLM-Wiki, selbst gehostet</span>
+                        <span class="skill-tag">Sicherheits- und Performance-Audits</span>
+                        <span class="skill-tag">MCP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/wiki-fuer-die-ki.html">Ein Wiki nur für die KI →</a>
+                        <a href="../blog/claude-code-setup-codequalitaet.html">Man fährt ja auch nicht ohne Helm →</a>
+                        <a href="../blog/nachmittag-reicht.html">Ein Nachmittag statt drei Konzeptionsrunden →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/finanzteck/finanzteck-desktop.webp" type="image/webp"><img src="../blog/images/finanzteck/finanzteck-desktop.jpg" alt="Finanzteck Desktop-Ansicht" loading="lazy" width="1435" height="1183"></picture>
+                </div>
                 <div class="project-content">
                     <div class="project-tag">Eigenes Projekt · Vibecoding</div>
-                    <h3>Finanzteck — Haushaltsfinanzen statt Excel-Gefrickel</h3>
+                    <h3>Finanzteck: Haushaltsfinanzen statt Excel-Gefrickel</h3>
                     <p>
-                        Splitwise plus Excel war jeden Monat Handarbeit. Finanzteck verbucht
-                        geteilte Ausgaben, teilt sie flexibel mit Prozent-Anteilen auf und
-                        rechnet am Monatsende automatisch aus, wer wem was überweisen muss.
+                        Splitwise plus Excel war jeden Monat Handarbeit. Finanzteck verbucht geteilte Ausgaben, teilt sie flexibel mit Prozent-Anteilen auf und rechnet am Monatsende automatisch aus, wer wem was überweisen muss.
                     </p>
                     <span class="project-result">Zwei Tools ersetzt durch eine eigene App</span>
                     <div class="project-stack">
                         <span class="skill-tag">Selfhosted Web-App</span>
                         <span class="skill-tag">SQLite</span>
                         <span class="skill-tag">Automatische Ausgleichsrechnung</span>
+                        <span class="skill-tag">KI-Assistent</span>
                     </div>
                     <div class="project-links">
-                        <a href="../blog/index.html#finanzteck">Zum Artikel →</a>
+                        <a href="../blog/finanzteck.html">Zum Artikel →</a>
+                        <a href="../blog/nachmittag-reicht.html">KI-Assistent in einem Nachmittag →</a>
+                        <a href="../blog/einfach-reinquatschen.html">Quittung per Telegram →</a>
                     </div>
                 </div>
             </div>
-
-            <div class="project-card project-card--compact">
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/eigenes-dashboard/1776855823535.webp" type="image/webp"><img src="../blog/images/eigenes-dashboard/1776855823535.jpg" alt="Eigenes Dashboard in der Desktop-Ansicht" loading="lazy" width="1280" height="660"></picture>
+                </div>
                 <div class="project-content">
                     <div class="project-tag">Eigenes Projekt · Vibecoding</div>
-                    <h3>Eigenes Dashboard — eine Startseite für alles</h3>
+                    <h3>Eigenes Dashboard: eine Startseite für alles</h3>
                     <p>
-                        Zu viele Tabs. Also ein selfhosted Dashboard, das sich über eine
-                        einzige YAML-Datei konfigurieren lässt: Wetter, Kalender, RSS, Docker,
-                        Server-Stats, GitHub, Tailscale und eigene APIs an einem Ort.
+                        Zu viele Tabs. Also ein selfhosted Dashboard, das sich über eine einzige YAML-Datei konfigurieren lässt: Wetter, Kalender, RSS, Docker, Server-Stats, GitHub, Tailscale und eigene APIs an einem Ort.
                     </p>
                     <span class="project-result">Ersetzt ein Dutzend Browser-Tabs</span>
                     <div class="project-stack">
@@ -1062,21 +1132,19 @@
                         <span class="skill-tag">Eigene API-Integrationen</span>
                     </div>
                     <div class="project-links">
-                        <a href="../blog/index.html#eigenes-dashboard">Zum Artikel →</a>
+                        <a href="../blog/eigenes-dashboard.html">Zum Artikel →</a>
                     </div>
                 </div>
             </div>
-
-            <div class="project-card project-card--compact">
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/home-assistant/home-assistant-uebersicht.webp" type="image/webp"><img src="../blog/images/home-assistant/home-assistant-uebersicht.jpg" alt="Home-Assistant-Dashboard mit Räumen, Lampen und Automationen" loading="lazy" width="1024" height="584"></picture>
+                </div>
                 <div class="project-content">
                     <div class="project-tag">Eigenes Projekt · Smart Home</div>
-                    <h3>Home Assistant — vom Hobby zur Barrierefreiheit</h3>
+                    <h3>Home Assistant: vom Hobby zur Barrierefreiheit</h3>
                     <p>
-                        Angefangen als Spielerei, heute Alltagshilfe: Seit der
-                        Teilquerschnittslähmung meiner Frau automatisiert unser Smart Home
-                        Wege, die sonst Hürden wären. Prozesse denken, sauber beschreiben,
-                        automatisieren – dasselbe Handwerk wie im Job, nur dass hier am Ende
-                        jemandem der Alltag leichter fällt.
+                        Angefangen als Spielerei, heute Alltagshilfe: Seit der Teilquerschnittslähmung meiner Frau automatisiert unser Smart Home Wege, die sonst Hürden wären. Prozesse denken, sauber beschreiben, automatisieren. Dasselbe Handwerk wie im Job, nur dass hier am Ende jemandem der Alltag leichter fällt.
                     </p>
                     <span class="project-result">Technik, die echte Teilhabe ermöglicht</span>
                     <div class="project-stack">
@@ -1086,14 +1154,34 @@
                         <span class="skill-tag">Barrierefreiheit</span>
                     </div>
                     <div class="project-links">
-                        <a href="../blog/index.html#home-assistant">Zum Artikel →</a>
+                        <a href="../blog/home-assistant.html">Zum Artikel →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-visual">
+                    <picture><source srcset="../blog/images/miez/wohnzimmer.webp" type="image/webp"><img src="../blog/images/miez/wohnzimmer.jpg" alt="Mein Sohn liegt auf dem Sofa, das Handy quer in der Hand, auf dem Fernseher läuft Miez" loading="lazy" width="1600" height="1200"></picture>
+                </div>
+                <div class="project-content">
+                    <div class="project-tag">Eigenes Projekt · Vibecoding · Familie</div>
+                    <h3>Miez: Ein Katzenspiel mit meinem Sohn</h3>
+                    <p>
+                        Die Katzenspiele für die Switch passten nicht zu einem Kind von fast fünf: Missionen, Zeitlimit, komplexe Steuerung. Also haben wir unser eigenes gebaut. Das Handy ist der Controller, der Fernseher der Bildschirm, und die Katze erkundet einfach die Gegend.
+                    </p>
+                    <span class="project-result">Ein Spiel, das zum Kind passt</span>
+                    <div class="project-stack">
+                        <span class="skill-tag">Browser-Spiel</span>
+                        <span class="skill-tag">Handy als Controller</span>
+                        <span class="skill-tag">Fernseher als Bildschirm</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/miez.html">Zum Artikel →</a>
                     </div>
                 </div>
             </div>
         </div>
         </div>
     </section>
-
     <!-- Career Section -->
     <section id="career">
         <div class="section-header collapsible collapsed">
@@ -1118,7 +1206,7 @@
                         RTL Deutschland ist das führende Entertainment-Unternehmen in Deutschland – mit 15 TV-Sendern, mehr als 10 Premium-Magazinen, dem Streamingdienst RTL+ (über 6 Mio. Abonnenten) sowie einem breiten Portfolio aus Radio, Podcast und Digitalangeboten.
                     </p>
                     <p class="timeline-description">
-                        Ich habe digitale Systeme und Prozesse innerhalb der Unternehmenskommunikation weiterentwickelt - von der Strategie bis zur Umsetzung. Dabei habe ich bereichsübergreifende Projekte an der Schnittstelle zwischen Kommunikation, IT und Management gesteuert.
+                        Verantwortlich für die digitalen Systeme und Prozesse der Unternehmenskommunikation, von der technischen Roadmap bis zum Rollout. Die Projekte liefen bereichsübergreifend, zwischen Kommunikation, RTL Tech und Management.
                     </p>
                     <ul class="project-highlights">
                         <li>Product Owner für Media Hub, PICTRON und MDC: Roadmap, Anforderungen, Priorisierung, Go-Live. Fachliche Steuerung der Product Owner bei RTL Tech und des Developer-Teams</li>
@@ -1139,7 +1227,7 @@
                     <h3>Leiter Newsdesk Kommunikation / Senior Manager Kommunikation & PR</h3>
                     <div class="timeline-company">RTL Deutschland</div>
                     <p class="timeline-description">
-                        Ich habe den zentralen Newsdesk Kommunikation geleitet und die inhaltliche sowie strukturelle Weiterentwicklung der Kommunikationsprozesse verantwortet.
+                        Leitung des zentralen Newsdesk Kommunikation. Dazu die Weiterentwicklung der Kommunikationsprozesse, inhaltlich wie strukturell.
                     </p>
                     <ul class="project-highlights">
                         <li>Weiterentwicklung des Media Hub als zentrale digitale Plattform für Presse- und Unternehmenskommunikation</li>
@@ -1158,7 +1246,7 @@
                     <h3>Senior Manager Kommunikation & PR</h3>
                     <div class="timeline-company">VOX / RTL+</div>
                     <p class="timeline-description">
-                        Ich habe die strategische und operative Kommunikationsarbeit im Umfeld nationaler TV- und Streamingformate verantwortet.
+                        Strategische und operative Kommunikation für nationale TV- und Streamingformate: Themenplanung, Formatkommunikation, Krisenfälle.
                     </p>
                     <ul class="project-highlights">
                         <li>Themenkoordination und strategische Planung der externen Kommunikation</li>
@@ -1177,7 +1265,7 @@
                     <h3>Presse- & Junior-Pressereferent</h3>
                     <div class="timeline-company">VOX</div>
                     <p class="timeline-description">
-                        Ich habe in der Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation mitgearbeitet.
+                        Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation, zwischen Redaktion, Produktion und externen Partnern.
                     </p>
                     <ul class="project-highlights">
                         <li>Planung und Umsetzung von Pressearbeit und Kommunikationskampagnen</li>
@@ -1195,7 +1283,7 @@
                     <h3>Volontär Kommunikation</h3>
                     <div class="timeline-company">VOX</div>
                     <p class="timeline-description">
-                        Ich habe mein Volontariat in der VOX Kommunikation absolviert.
+                        Volontariat in der VOX Kommunikation, der Einstieg in die Pressearbeit für TV-Formate.
                     </p>
                     <ul class="project-highlights">
                         <li>Hospitanzen u. a. in der VOX Entwicklungsredaktion, der RTL Kommunikation und bei den VOD-Angeboten von RTL Interactive</li>
@@ -1212,7 +1300,7 @@
                     <h3>Bachelor of Science Technikjournalismus / PR</h3>
                     <div class="timeline-company">Hochschule Bonn-Rhein-Sieg</div>
                     <p class="timeline-description">
-                        Ich habe Technikjournalismus / PR mit Schwerpunkt auf Technik-, Wissenschafts- und Unternehmenskommunikation studiert.
+                        Technikjournalismus / PR an der Hochschule Bonn-Rhein-Sieg, Schwerpunkt Technik-, Wissenschafts- und Unternehmenskommunikation.
                     </p>
                     <ul class="project-highlights">
                         <li>Bachelorarbeit: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen"</li>

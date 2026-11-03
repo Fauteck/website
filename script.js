@@ -605,7 +605,7 @@ const CAREER_DATA = [
     company: 'RTL Deutschland',
     period: '08/2023 – 07/2026',
     responsibilities: [
-      'Ich habe die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation verantwortet.',
+      'Verantwortlich für die digitalen Systeme und Prozesse der Unternehmenskommunikation, von der technischen Roadmap bis zum Rollout. Die Projekte liefen bereichsübergreifend, zwischen Kommunikation, RTL Tech und Management.',
       'Product Owner für Media Hub, PICTRON und MDC: Roadmap, Anforderungen, Priorisierung, Go-Live. Fachliche Steuerung der Product Owner bei RTL Tech und des Developer-Teams',
       'Konzeption und Umsetzung digitaler Plattformen und Workflows, von der Idee bis zum Betrieb',
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
@@ -627,7 +627,7 @@ const CAREER_DATA = [
     company: 'RTL Deutschland',
     period: '08/2020 – 08/2023',
     responsibilities: [
-      'Ich habe den zentralen Newsdesk Kommunikation geleitet und die Weiterentwicklung der Kommunikationsprozesse verantwortet.',
+      'Leitung des zentralen Newsdesk Kommunikation. Dazu die Weiterentwicklung der Kommunikationsprozesse, inhaltlich wie strukturell.',
       'Weiterentwicklung des Media Hub als zentrale digitale Plattform für Presse- und Unternehmenskommunikation',
       'Steuerung komplexer Kommunikations- und Digitalprojekte in enger Zusammenarbeit mit IT und Fachbereichen',
       'Etablierung klarer Prozesse, Rollen und Schnittstellen zur Verbesserung von Effizienz und Transparenz',
@@ -646,7 +646,7 @@ const CAREER_DATA = [
     company: 'VOX / RTL+',
     period: '03/2019 – 08/2020',
     responsibilities: [
-      'Ich habe die strategische und operative Kommunikationsarbeit im Umfeld nationaler TV- und Streamingformate verantwortet.',
+      'Strategische und operative Kommunikation für nationale TV- und Streamingformate: Themenplanung, Formatkommunikation, Krisenfälle.',
       'Themenkoordination und strategische Planung der externen Kommunikation',
       'Krisenkommunikation sowie Entwicklung konsistenter Narrative über verschiedene Kanäle',
       'Digitale Formatkommunikation in enger Abstimmung mit Redaktion, Marketing und Produktion',
@@ -665,7 +665,7 @@ const CAREER_DATA = [
     company: 'VOX',
     period: '08/2015 – 03/2019',
     responsibilities: [
-      'Ich habe in der Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation mitgearbeitet.',
+      'Presse- und Öffentlichkeitsarbeit für TV-Formate und Senderkommunikation, zwischen Redaktion, Produktion und externen Partnern.',
       'Planung und Umsetzung von Pressearbeit und Kommunikationskampagnen',
       'Koordination von Inhalten zwischen Redaktion, Produktion und externen Partnern',
     ],
@@ -683,7 +683,7 @@ const CAREER_DATA = [
     company: 'VOX',
     period: '08/2013 – 07/2015',
     responsibilities: [
-      'Ich habe mein Volontariat in der VOX Kommunikation absolviert.',
+      'Volontariat in der VOX Kommunikation, der Einstieg in die Pressearbeit für TV-Formate.',
       'Hospitanzen u. a. in der VOX Entwicklungsredaktion, der RTL Kommunikation und bei den VOD-Angeboten von RTL Interactive',
     ],
     impact: [],
@@ -697,7 +697,7 @@ const CAREER_DATA = [
     company: 'Hochschule Bonn-Rhein-Sieg',
     period: '2009 – 2013',
     responsibilities: [
-      'Ich habe Technikjournalismus / PR an der Hochschule Bonn-Rhein-Sieg studiert.',
+      'Technikjournalismus / PR an der Hochschule Bonn-Rhein-Sieg, Schwerpunkt Technik-, Wissenschafts- und Unternehmenskommunikation.',
       'Schwerpunkt: Vermittlung komplexer technischer und wissenschaftlicher Inhalte für unterschiedliche Zielgruppen',
       'Bachelorarbeit: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen"',
       'Parallel bei VOX: Praktikum Kommunikation (10/2011 – 02/2012), Werkstudent Bildredaktion (03/2012 – 07/2013)',
