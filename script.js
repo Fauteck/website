@@ -597,13 +597,13 @@ const CAREER_DATA = [
   {
     id: 'rtl',
     icon: '🏢',
-    name: 'seit 08/2023',
+    name: '01/2024 – 07/2026',
     sub: 'RTL Deutschland',
     title: 'Head of Digital Transformation Kommunikation',
     company: 'RTL Deutschland',
-    period: 'seit 08/2023',
+    period: '01/2024 – 07/2026',
     responsibilities: [
-      'Ich verantworte die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation.',
+      'Ich habe die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation verantwortet.',
       'Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows (Media Hub, PICTRON, MDC)',
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
       'Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung und Go-Live-Verantwortung',
@@ -1429,7 +1429,7 @@ function renderTmProzesse(el) {
     <div class="tm-proc">
       <div class="tm-proc-header">
         <div class="tm-proc-title">PROZESSE — Niklas Fauteck</div>
-        <div class="tm-proc-uptime">UPTIME: 15 Jahre</div>
+        <div class="tm-proc-uptime">UPTIME: 11 Jahre</div>
       </div>
       <table>
         <thead><tr>
