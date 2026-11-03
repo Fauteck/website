@@ -1,0 +1,5 @@
+
+# Secrets (dev-einrichten.ps1)
+.env
+.env.*
+!.env.example
