@@ -575,7 +575,7 @@ function buildAbout(body) {
         <div class="about-focus"><span class="nowrap">Digitale Transformation</span> · <span class="nowrap">Projekt- &amp; Produktmanagement</span> · <span class="nowrap">KI-Automatisierung</span></div>
         <p class="about-intro">15 Jahre RTL Deutschland, die letzten drei als Head of Digital Transformation Kommunikation. Product Owner für Media Hub, PICTRON und MDC. Ich hole Anforderungen aus den Fachbereichen, steuere die Entwicklungsteams und bringe KI dahin, wo sie Handarbeit spart. Mein Platz ist die Stelle zwischen Fachbereich und IT.</p>
         <hr class="about-hr">
-        <h2>Digitale Ideen werden Realität — mit Strategie, KI und dem richtigen Sparringspartner.</h2>
+        <h2>Digitale Ideen werden Realität. Mit Strategie, KI und jemandem, der sie baut.</h2>
         <p>Digitale Transformation entscheidet sich für mich nicht in Strategie-Runden, sondern an dem Tag, an dem jemand den ersten Prototyp ins Laufen bringt.</p>
         <p>Ich kenne die Stelle, an der die meisten Unternehmen ins Stocken geraten: zwischen Fachabteilung und IT. Als Head of Digital Transformation Kommunikation bei RTL Deutschland habe ich gebaut, automatisiert und erklärt. Bis aus Ideen funktionierende Systeme wurden. Jetzt suche ich die nächste Festanstellung: Senior, Lead oder Head, dort, wo Digitalisierung an Plattformen, Prozessen und Anforderungen hängt.</p>
         <p>Zuvor durfte ich viele Jahre in der PR für VOX und RTL+ dafür sorgen, dass Formate wie „Sing meinen Song", „Kitchen Impossible" oder „Goodbye Deutschland!" die Aufmerksamkeit bekommen, die sie verdienen – on air, online und überall dazwischen.</p>
@@ -951,7 +951,7 @@ const TERM_COMMANDS = {
   whoami: () => [
     { t: 'out', v: 'niklas-fauteck' },
     { t: 'empty' },
-    { t: 'out', v: 'Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding.' },
+    { t: 'out', v: 'Projektmanager Digitalisierung · Digitale Transformation, Produktmanagement, KI-Automatisierung.' },
     { t: 'out', v: 'Verbindet Kommunikation, Technologie und digitale Transformation.' },
     { t: 'empty' },
     { t: 'dim', v: 'Systemdenker. Pragmatiker. Neugierig.' },
