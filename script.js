@@ -609,12 +609,12 @@ const CAREER_DATA = [
       'Product Owner für Media Hub, PICTRON und MDC: Roadmap, Anforderungen, Priorisierung, Go-Live. Fachliche Steuerung der Product Owner bei RTL Tech und des Developer-Teams',
       'Konzeption und Umsetzung digitaler Plattformen und Workflows, von der Idee bis zum Betrieb',
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
-      'Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams',
-      'Fachliche und organisatorische Führung eines Teams aus Werkstudierenden',
+      'Budget im sechsstelligen Bereich mitgeplant, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams',
+      'Fachliche und organisatorische Führung eines Teams aus 5 Werkstudierenden',
     ],
     impact: [
       'Zentrale digitale Plattform für 1.700+ Journalist:innen aufgebaut und weiterentwickelt',
-      'Systematische Prozessautomation und KI-Integration im redaktionellen Umfeld',
+      'Rund 5 Stunden Handarbeit pro Woche durch KI-Automatisierung eingespart',
       'Kulturwandel hin zu datengetriebenen, pragmatisch umgesetzten Entscheidungen',
     ],
   },
@@ -627,15 +627,12 @@ const CAREER_DATA = [
     company: 'RTL Deutschland',
     period: '08/2020 – 08/2023',
     responsibilities: [
-      'Leitung des zentralen Newsdesk Kommunikation. Dazu die Weiterentwicklung der Kommunikationsprozesse, inhaltlich wie strukturell.',
+      'Fachliche Leitung des zentralen Newsdesk Kommunikation mit 8 Kolleg:innen. Dazu die Weiterentwicklung der Kommunikationsprozesse, inhaltlich wie strukturell.',
       'Weiterentwicklung des Media Hub als zentrale digitale Plattform für Presse- und Unternehmenskommunikation',
       'Steuerung komplexer Kommunikations- und Digitalprojekte in enger Zusammenarbeit mit IT und Fachbereichen',
       'Etablierung klarer Prozesse, Rollen und Schnittstellen zur Verbesserung von Effizienz und Transparenz',
     ],
-    impact: [
-      'Erfolgreiche Tool-Rollouts mit hoher Nutzerakzeptanz und nachhaltiger Nutzung',
-      'Strukturierte digitale Kommunikationsprozesse mit messbarer Effizienzsteigerung',
-    ],
+    impact: [],
   },
   {
     id: 'vox2',
@@ -5752,7 +5749,7 @@ const PROJECTS_DATA = [
     role: 'Product Owner & Projektleitung',
     desc: 'Zentrale digitale Plattform für Presse- und Unternehmenskommunikation bei RTL Deutschland. Aufgebaut als Single Point of Truth für 1.700+ Journalist:innen.',
     tech: ['Confluence', 'Jira', 'Custom CMS', 'Analytics'],
-    impact: 'Nutzung durch 1.700+ Journalist:innen · Messbare Effizienzsteigerung in der Kommunikation',
+    impact: 'Nutzung durch 1.700+ Journalist:innen · Pressematerial zu 15 Sendern und RTL+ an einem Ort',
   },
   {
     name: 'KI-Workflow-Integration',
@@ -5760,7 +5757,7 @@ const PROJECTS_DATA = [
     role: 'Strategische Leitung & Umsetzung',
     desc: 'Systematische Integration von KI-Tools in redaktionelle und kommunikative Workflows. Fokus auf echte Prozessverbesserung statt Tool-Showcase.',
     tech: ['Claude', 'ChatGPT', 'n8n', 'Make.com', 'Custom APIs'],
-    impact: 'Automatisierte Content-Prozesse · Spürbar weniger manuelle Redaktions-Workflows',
+    impact: 'Rund 5 Stunden Handarbeit pro Woche eingespart · Textkürzung von 20 Minuten auf unter eine Minute je Text',
   },
   {
     name: 'Prozessautomation Kommunikation',
