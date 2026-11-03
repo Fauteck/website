@@ -577,10 +577,10 @@ function buildAbout(body) {
         <hr class="about-hr">
         <h2>Digitale Ideen werden Realität — mit Strategie, KI und dem richtigen Sparringspartner.</h2>
         <p>Digitale Transformation entscheidet sich für mich nicht in Strategie-Runden, sondern an dem Tag, an dem jemand den ersten Prototyp ins Laufen bringt.</p>
-        <p>Ich kenne die Stelle, an der die meisten Unternehmen ins Stocken geraten: zwischen Fachabteilung und IT. Als Head of Digital Transformation Kommunikation bei RTL Deutschland habe ich gebaut, automatisiert und erklärt – bis aus Ideen funktionierende Systeme wurden. Dieses Wissen bringe ich jetzt zu Organisationen und Menschen, die digitale Transformation nicht nur verwalten wollen.</p>
+        <p>Ich kenne die Stelle, an der die meisten Unternehmen ins Stocken geraten: zwischen Fachabteilung und IT. Als Head of Digital Transformation Kommunikation bei RTL Deutschland habe ich gebaut, automatisiert und erklärt. Bis aus Ideen funktionierende Systeme wurden. Jetzt suche ich die nächste Festanstellung: Senior, Lead oder Head, dort, wo Digitalisierung an Plattformen, Prozessen und Anforderungen hängt.</p>
         <p>Zuvor durfte ich viele Jahre in der PR für VOX und RTL+ dafür sorgen, dass Formate wie „Sing meinen Song", „Kitchen Impossible" oder „Goodbye Deutschland!" die Aufmerksamkeit bekommen, die sie verdienen – on air, online und überall dazwischen.</p>
         <p>Mein Antrieb: Kommunikation, die wirkt. Prozesse, die laufen. Und Projekte, die nicht nur auf dem Papier gut aussehen, sondern echten Mehrwert schaffen.</p>
-        <p>Und ich bleibe nicht in der Strategie: Mit KI als Werkzeug baue ich Prototypen und kleine Tools selbst – „Vibecoding“ nenne ich das. So weiß ich aus erster Hand, was zwischen Idee und lauffähigem System wirklich passiert.</p>
+        <p>Und ich bleibe nicht in der Strategie: Mit KI als Werkzeug baue ich Prototypen und kleine Tools selbst. „Vibecoding“ nenne ich das. So weiß ich aus erster Hand, was zwischen Idee und lauffähigem System wirklich passiert. Die Vibecoding Academy ist daraus entstanden, als Nebenprojekt.</p>
         <p>Andere planen. Ich starte.</p>
         <div class="about-cta">
           <button class="btn-primary" onclick="openWindow('career')">💼 Arbeitsplatz öffnen</button>
