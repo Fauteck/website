@@ -606,9 +606,9 @@ const CAREER_DATA = [
     period: '08/2023 – 07/2026',
     responsibilities: [
       'Ich habe die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation verantwortet.',
-      'Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows (Media Hub, PICTRON, MDC)',
+      'Product Owner für Media Hub, PICTRON und MDC: Roadmap, Anforderungen, Priorisierung, Go-Live. Fachliche Steuerung der Product Owner bei RTL Tech und des Developer-Teams',
+      'Konzeption und Umsetzung digitaler Plattformen und Workflows, von der Idee bis zum Betrieb',
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
-      'Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung und Go-Live-Verantwortung',
       'Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams',
       'Fachliche und organisatorische Führung eines Teams aus Werkstudierenden',
     ],
