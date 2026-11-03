@@ -68,6 +68,7 @@ describing a repository that no longer exists.
 ├── NOTICE              # Third-party licences (fonts)
 ├── CNAME               # Custom domain for GitHub Pages
 ├── .nojekyll           # Serve files starting with an underscore
+├── .gitignore          # Keeps .env files out of the repository
 ├── robots.txt          # Crawler rules (blocks AI scrapers)
 ├── sitemap.xml         # GENERATED
 └── feed.xml            # RSS feed — GENERATED

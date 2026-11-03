@@ -572,6 +572,8 @@ function buildAbout(body) {
       <div class="about-content">
         <h1>Niklas Fauteck</h1>
         <div class="about-role">Andere planen die Transformation. Ich starte sie. Mit Strategie, KI und einem Faible fürs Liefern.</div>
+        <div class="about-focus"><span class="nowrap">Digitale Transformation</span> · <span class="nowrap">Projekt- &amp; Produktmanagement</span> · <span class="nowrap">KI-Automatisierung</span></div>
+        <p class="about-intro">15 Jahre RTL Deutschland, die letzten drei als Head of Digital Transformation Kommunikation. Product Owner für Media Hub, PICTRON und MDC. Ich hole Anforderungen aus den Fachbereichen, steuere die Entwicklungsteams und bringe KI dahin, wo sie Handarbeit spart. Mein Platz ist die Stelle zwischen Fachbereich und IT.</p>
         <hr class="about-hr">
         <h2>Digitale Ideen werden Realität — mit Strategie, KI und dem richtigen Sparringspartner.</h2>
         <p>Digitale Transformation entscheidet sich für mich nicht in Strategie-Runden, sondern an dem Tag, an dem jemand den ersten Prototyp ins Laufen bringt.</p>

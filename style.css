@@ -763,6 +763,22 @@ a:hover { text-decoration: underline; }
   margin-bottom: 20px;
   font-weight: 500;
 }
+.about-content .about-focus {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 8px;
+}
+.about-content .about-focus .nowrap {
+  white-space: nowrap;
+}
+.about-content .about-intro {
+  font-size: 14.5px;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
 .about-content .about-hr {
   height: 1px;
   background: linear-gradient(to right, var(--accent), transparent);
