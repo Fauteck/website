@@ -572,13 +572,15 @@ function buildAbout(body) {
       <div class="about-content">
         <h1>Niklas Fauteck</h1>
         <div class="about-role">Andere planen die Transformation. Ich starte sie. Mit Strategie, KI und einem Faible fürs Liefern.</div>
+        <div class="about-focus"><span class="nowrap">Digitale Transformation</span> · <span class="nowrap">Projekt- &amp; Produktmanagement</span> · <span class="nowrap">KI-Automatisierung</span></div>
+        <p class="about-intro">15 Jahre RTL Deutschland, die letzten drei als Head of Digital Transformation Kommunikation. Product Owner für Media Hub, PICTRON und MDC. Ich hole Anforderungen aus den Fachbereichen, steuere die Entwicklungsteams und bringe KI dahin, wo sie Handarbeit spart. Mein Platz ist die Stelle zwischen Fachbereich und IT.</p>
         <hr class="about-hr">
-        <h2>Digitale Ideen werden Realität — mit Strategie, KI und dem richtigen Sparringspartner.</h2>
+        <h2>Digitale Ideen werden Realität. Mit Strategie, KI und jemandem, der sie baut.</h2>
         <p>Digitale Transformation entscheidet sich für mich nicht in Strategie-Runden, sondern an dem Tag, an dem jemand den ersten Prototyp ins Laufen bringt.</p>
-        <p>Ich kenne die Stelle, an der die meisten Unternehmen ins Stocken geraten: zwischen Fachabteilung und IT. Als Head of Digital Transformation Kommunikation bei RTL Deutschland habe ich gebaut, automatisiert und erklärt – bis aus Ideen funktionierende Systeme wurden. Dieses Wissen bringe ich jetzt zu Organisationen und Menschen, die digitale Transformation nicht nur verwalten wollen.</p>
+        <p>Ich kenne die Stelle, an der die meisten Unternehmen ins Stocken geraten: zwischen Fachabteilung und IT. Als Head of Digital Transformation Kommunikation bei RTL Deutschland habe ich gebaut, automatisiert und erklärt. Bis aus Ideen funktionierende Systeme wurden. Jetzt suche ich die nächste Festanstellung: Senior, Lead oder Head, dort, wo Digitalisierung an Plattformen, Prozessen und Anforderungen hängt.</p>
         <p>Zuvor durfte ich viele Jahre in der PR für VOX und RTL+ dafür sorgen, dass Formate wie „Sing meinen Song", „Kitchen Impossible" oder „Goodbye Deutschland!" die Aufmerksamkeit bekommen, die sie verdienen – on air, online und überall dazwischen.</p>
         <p>Mein Antrieb: Kommunikation, die wirkt. Prozesse, die laufen. Und Projekte, die nicht nur auf dem Papier gut aussehen, sondern echten Mehrwert schaffen.</p>
-        <p>Und ich bleibe nicht in der Strategie: Mit KI als Werkzeug baue ich Prototypen und kleine Tools selbst – „Vibecoding“ nenne ich das. So weiß ich aus erster Hand, was zwischen Idee und lauffähigem System wirklich passiert.</p>
+        <p>Und ich bleibe nicht in der Strategie: Mit KI als Werkzeug baue ich Prototypen und kleine Tools selbst. „Vibecoding“ nenne ich das. So weiß ich aus erster Hand, was zwischen Idee und lauffähigem System wirklich passiert. Die Vibecoding Academy ist daraus entstanden, als Nebenprojekt.</p>
         <p>Andere planen. Ich starte.</p>
         <div class="about-cta">
           <button class="btn-primary" onclick="openWindow('career')">💼 Arbeitsplatz öffnen</button>
@@ -604,9 +606,9 @@ const CAREER_DATA = [
     period: '08/2023 – 07/2026',
     responsibilities: [
       'Ich habe die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation verantwortet.',
-      'Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows (Media Hub, PICTRON, MDC)',
+      'Product Owner für Media Hub, PICTRON und MDC: Roadmap, Anforderungen, Priorisierung, Go-Live. Fachliche Steuerung der Product Owner bei RTL Tech und des Developer-Teams',
+      'Konzeption und Umsetzung digitaler Plattformen und Workflows, von der Idee bis zum Betrieb',
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
-      'Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung und Go-Live-Verantwortung',
       'Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams',
       'Fachliche und organisatorische Führung eines Teams aus Werkstudierenden',
     ],
@@ -949,7 +951,7 @@ const TERM_COMMANDS = {
   whoami: () => [
     { t: 'out', v: 'niklas-fauteck' },
     { t: 'empty' },
-    { t: 'out', v: 'Projektmanager & Coach für Digitale Transformation und KI-gestütztes Vibecoding.' },
+    { t: 'out', v: 'Projektmanager Digitalisierung · Digitale Transformation, Produktmanagement, KI-Automatisierung.' },
     { t: 'out', v: 'Verbindet Kommunikation, Technologie und digitale Transformation.' },
     { t: 'empty' },
     { t: 'dim', v: 'Systemdenker. Pragmatiker. Neugierig.' },
