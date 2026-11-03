@@ -626,9 +626,11 @@
             transform: rotate(-45deg);
         }
 
+        /* Aufgeklappt ohne Höhengrenze; die Klapp-Animation setzt die Höhe
+           per Skript nur für die Dauer des Übergangs. */
         .section-body {
             overflow: hidden;
-            max-height: 5000px;
+            max-height: none;
             opacity: 1;
             transition: max-height 0.5s ease, opacity 0.3s ease;
             background: linear-gradient(135deg, #fff 60%, #f8fffe);
@@ -1540,7 +1542,22 @@
             header.addEventListener('click', () => {
                 header.classList.toggle('collapsed');
                 const body = header.nextElementSibling;
-                if (body) body.classList.toggle('collapsed');
+                if (!body) return;
+                if (body.classList.contains('collapsed')) {
+                    // Aufklappen: von 0 auf die echte Höhe, danach Grenze wieder lösen
+                    body.classList.remove('collapsed');
+                    const h = body.scrollHeight;
+                    body.style.maxHeight = '0px';
+                    void body.offsetHeight;
+                    body.style.maxHeight = h + 'px';
+                    setTimeout(() => { body.style.maxHeight = ''; }, 550);
+                } else {
+                    // Zuklappen: von der echten Höhe auf 0
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                    void body.offsetHeight;
+                    body.style.maxHeight = '';
+                    body.classList.add('collapsed');
+                }
             });
         });
 
