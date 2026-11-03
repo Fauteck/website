@@ -597,17 +597,18 @@ const CAREER_DATA = [
   {
     id: 'rtl',
     icon: '🏢',
-    name: 'seit 08/2023',
+    name: '08/2023 – 07/2026',
     sub: 'RTL Deutschland',
     title: 'Head of Digital Transformation Kommunikation',
     company: 'RTL Deutschland',
-    period: 'seit 08/2023',
+    period: '08/2023 – 07/2026',
     responsibilities: [
-      'Ich verantworte die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation.',
+      'Ich habe die strategische und operative Weiterentwicklung digitaler Systeme und Prozesse innerhalb der Unternehmenskommunikation verantwortet.',
       'Konzeption und Umsetzung skalierbarer digitaler Plattformen und Workflows (Media Hub, PICTRON, MDC)',
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
       'Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung und Go-Live-Verantwortung',
       'Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams',
+      'Fachliche und organisatorische Führung eines Teams aus Werkstudierenden',
     ],
     impact: [
       'Zentrale digitale Plattform für 1.700+ Journalist:innen aufgebaut und weiterentwickelt',
@@ -672,6 +673,20 @@ const CAREER_DATA = [
     ],
   },
   {
+    id: 'volontariat',
+    icon: '📝',
+    name: '08/2013 – 07/2015',
+    sub: 'VOX',
+    title: 'Volontär Kommunikation',
+    company: 'VOX',
+    period: '08/2013 – 07/2015',
+    responsibilities: [
+      'Ich habe mein Volontariat in der VOX Kommunikation absolviert.',
+      'Hospitanzen u. a. in der VOX Entwicklungsredaktion, der RTL Kommunikation und bei den VOD-Angeboten von RTL Interactive',
+    ],
+    impact: [],
+  },
+  {
     id: 'hbrs',
     icon: '🎓',
     name: '2009 – 2013',
@@ -683,6 +698,7 @@ const CAREER_DATA = [
       'Ich habe Technikjournalismus / PR an der Hochschule Bonn-Rhein-Sieg studiert.',
       'Schwerpunkt: Vermittlung komplexer technischer und wissenschaftlicher Inhalte für unterschiedliche Zielgruppen',
       'Bachelorarbeit: "Technikkommunikation in populärkulturellen Referaten. Eine Untersuchung zum Unterhaltungswert und zur wissenschaftlichen Informationsvermittlung in Science Slam Kurzvorträgen"',
+      'Parallel bei VOX: Praktikum Kommunikation (10/2011 – 02/2012), Werkstudent Bildredaktion (03/2012 – 07/2013)',
     ],
     impact: [
       'Fundiertes Fundament für die Verbindung von Technologie, Wissenschaftskommunikation und PR',
