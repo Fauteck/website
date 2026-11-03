@@ -608,6 +608,7 @@ const CAREER_DATA = [
       'Einführung und Weiterentwicklung automatisierter sowie KI-gestützter Prozesse',
       'Product Owner für zentrale Kommunikationssysteme inkl. Roadmap-Planung und Go-Live-Verantwortung',
       'Budget-, Stakeholder- und Schnittstellenmanagement in interdisziplinären Projektteams',
+      'Fachliche und organisatorische Führung eines Teams aus Werkstudierenden',
     ],
     impact: [
       'Zentrale digitale Plattform für 1.700+ Journalist:innen aufgebaut und weiterentwickelt',
