@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!-- Erzeugt von scripts/build.mjs aus blog/launchteck.md — nicht von Hand aendern. -->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launchteck: ein Startbildschirm zum Weglegen — Blog — Niklas Fauteck</title>
+  <meta name="description" content="Ich wollte weniger aufs Handy schauen. Also habe ich mir einen eigenen Android-Startbildschirm gebaut, genauer: einen bestehenden umgebaut. Er sieht aus wie Todoteck und holt sich alles Wichtige aus Todoteck.">
+  <meta name="author" content="Niklas Fauteck">
+  <meta property="og:title" content="Launchteck: ein Startbildschirm zum Weglegen">
+  <meta property="og:description" content="Ich wollte weniger aufs Handy schauen. Also habe ich mir einen eigenen Android-Startbildschirm gebaut, genauer: einen bestehenden umgebaut. Er sieht aus wie Todoteck und holt sich alles Wichtige aus Todoteck.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://niklasfauteck.de/blog/launchteck.html">
+  <meta property="og:image" content="https://niklasfauteck.de/blog/images/launchteck/hand-startbildschirm.jpg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Eine Hand hält ein Handy mit dem Launchteck-Startbildschirm: große Uhr, darunter vier Favoriten und fünf runde Icons">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://niklasfauteck.de/blog/images/launchteck/hand-startbildschirm.jpg">
+  <meta property="article:published_time" content="2026-11-04">
+  <meta property="article:author" content="https://niklasfauteck.de/">
+  <meta property="article:tag" content="Vibecoding">
+  <meta property="article:tag" content="KI">
+  <meta property="article:tag" content="Maker">
+  <link rel="canonical" href="https://niklasfauteck.de/blog/launchteck.html">
+  <link rel="alternate" type="application/rss+xml" title="Blog — Niklas Fauteck" href="../feed.xml">
+  <link rel="preload" href="../fonts/ibm-plex-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%232C3E50'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='700' font-size='18' fill='%2352b788'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/x-icon" href="../full/favicon.ico">
+  <link rel="apple-touch-icon" href="../full/favicon-192.png">
+  <link rel="stylesheet" href="blog.css?v=8d984494">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Launchteck: ein Startbildschirm zum Weglegen","description":"Ich wollte weniger aufs Handy schauen. Also habe ich mir einen eigenen Android-Startbildschirm gebaut, genauer: einen bestehenden umgebaut. Er sieht aus wie Todoteck und holt sich alles Wichtige aus Todoteck.","datePublished":"2026-11-04","dateModified":"2026-11-04","inLanguage":"de","url":"https://niklasfauteck.de/blog/launchteck.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://niklasfauteck.de/blog/launchteck.html"},"image":["https://niklasfauteck.de/blog/images/launchteck/hand-startbildschirm.jpg"],"keywords":"Vibecoding, KI, Maker","author":{"@type":"Person","name":"Niklas Fauteck","url":"https://niklasfauteck.de/"},"publisher":{"@type":"Person","name":"Niklas Fauteck","url":"https://niklasfauteck.de/"},"isPartOf":{"@type":"Blog","@id":"https://niklasfauteck.de/blog/","name":"Blog — Niklas Fauteck"}}</script>
+</head>
+<body>
+  <!-- Skip to content (Accessibility) -->
+  <a href="#inhalt" class="sr-only sr-only-focusable">Zum Inhalt springen</a>
+
+  <div id="shared-nav"></div>
+
+  <div class="container">
+    <main id="inhalt">
+      <div class="post-view active">
+        <a href="./" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Alle Beiträge
+        </a>
+        <div class="blog-layout">
+          <div class="blog-main">
+            <article class="post-content">
+              <h1>Launchteck: ein Startbildschirm zum Weglegen</h1>
+              <div class="post-content-meta"><time datetime="2026-11-04">04.11.2026</time><span class="post-tag">Vibecoding</span><span class="post-tag">KI</span><span class="post-tag">Maker</span></div>
+<p>Ich nehme mein Handy zu oft in die Hand.</p>
+<p>Fast hätte ich mir ein Dumbphone gekauft. Eins, das gerade smart genug ist für WhatsApp und Co. Nur kosten die so viel wie ein richtiges Smartphone. Sah ich nicht ein.</p>
+<p>Also mache ich es mir selbst ein bisschen umständlicher. Mit einem Startbildschirm, der zum Weglegen einlädt.</p>
+<p>Keine Badges.</p>
+<p>Keine Wand aus Apps.</p>
+<p>Nur die Uhr, ein paar Favoriten und Ruhe.</p>
+<figure class="post-figure"><picture><source srcset="images/launchteck/hand-startbildschirm.webp" type="image/webp"><img src="images/launchteck/hand-startbildschirm.jpg" alt="Eine Hand hält ein Handy mit dem Launchteck-Startbildschirm: große Uhr, darunter vier Favoriten und fünf runde Icons" width="1600" height="900" fetchpriority="high"></picture></figure>
+<h2>Lieber umbauen</h2>
+<p>Es gibt unzählige Android-Launcher da draußen (bei Android lässt sich der Startbildschirm austauschen). Niagara hat die schlichte Liste, die ich mag. Aber keine Gesten für Aktionen. Lawnchair hat die Einstellungen, die ich mag. Keiner sieht aus wie Todoteck, unsere selbst gehostete Familien-App. Und keiner redet mit ihr.</p>
+<p>Neu bauen musste ich trotzdem nicht. Aufgebaut ist Launchteck auf <a href="https://github.com/jrpie/Launcher" target="_blank" rel="noopener">µLauncher</a>, einem schlanken Open-Source-Launcher. Gesten und App-Liste habe ich behalten, Gestaltung und Einstellungen neu gemacht. Farben, Schrift und Icons kommen direkt aus Todoteck.</p>
+<p>Gevibecodet mit Claude Code, an zwei Tagen.</p>
+<h2>Was er kann</h2>
+<p>Ganz oben steht eine stille Zeile: wie oft ich das Handy heute entsperrt habe und wie lange es an war. Ab drei Stunden gähnt mein Maskottchen <a href="https://niklasfauteck.de/blog/#karl-klammer-am-desktop" target="_blank" rel="noopener">Tecki</a>.</p>
+<p>Darunter Uhr, Datum und meine Favoriten. Alles andere ist eingeklappt.</p>
+<p>Widgets liegen dort keine. Die stecken in Schubladen. So heißen bei mir die Widget-Stapel, die eine Geste von unten hochschiebt. Dann wische ich durch:</p>
+<p>Licht schalten.</p>
+<p>Termine von heute.</p>
+<p>Einkaufsliste abhaken.</p>
+<p>Wetter, Drucker, Energie, Pool.</p>
+<div class="post-gallery"><figure class="post-figure"><picture><source srcset="images/launchteck/hand-schublade-heute.webp" type="image/webp"><img src="images/launchteck/hand-schublade-heute.jpg" alt="Eine Hand hält das Handy, unten ist die Schublade Cockpits aufgezogen, auf der Karte Heute stehen zwei Termine und drei Aufgaben" width="1600" height="900" loading="lazy"></picture></figure><figure class="post-figure"><picture><source srcset="images/launchteck/hand-schublade-einkauf.webp" type="image/webp"><img src="images/launchteck/hand-schublade-einkauf.jpg" alt="Dieselbe Schublade, jetzt die Karte Einkauf mit fünf offenen Einträgen und zwei Vorschlägen, Eier und Butter" width="1600" height="900" loading="lazy"></picture></figure></div>
+<p>Rein, Licht aus, weg. Ohne dass sich eine App öffnet und mich festhält.</p>
+<p>Und die Suche findet mehr als Apps. Ein Größer-Zeichen davor, und „Milch kaufen morgen" landet als Aufgabe in Todoteck. Mit „# pool" sehe ich die offenen Pool-Aufgaben, ein Tipp hakt sie ab.</p>
+<figure class="post-figure"><picture><source srcset="images/launchteck/hand-suche.webp" type="image/webp"><img src="images/launchteck/hand-suche.jpg" alt="Das Handy zeigt die App-Liste, im Suchfeld steht Milch kaufen morgen mit einem Größer-Zeichen davor, darüber der Vorschlag Neue Aufgabe: Milch kaufen morgen" width="1600" height="900" loading="lazy"></picture></figure>
+<p>Zwei Tage auf den Bildschirm gestarrt, damit ich weniger auf den Bildschirm starre.</p>
+<p>(Ja, ich weiß. Ich lege es jetzt weg. Gleich.)</p>
+<h2>Weiterlesen</h2>
+<ul>
+<li><a href="https://niklasfauteck.de/blog/#todoteck" target="_blank" rel="noopener">Todoteck: Vibecoding für die Familie</a>: wo das alles herkommt</li>
+<li><a href="https://niklasfauteck.de/blog/#todoteck-mcp" target="_blank" rel="noopener">Todoteck: API, MCP und der Alltag</a>: die Schnittstelle, über die Launchteck redet</li>
+<li><a href="https://niklasfauteck.de/blog/#sprachgeraet-am-handgelenk" target="_blank" rel="noopener">Der Knopf am Handgelenk</a>: noch ein Gerät, das an Todoteck hängt</li>
+<li><a href="https://github.com/jrpie/Launcher" target="_blank" rel="noopener">µLauncher von jrpie</a>: das Original</li>
+</ul>
+            </article>
+            <section class="post-related" aria-labelledby="weiterlesen">
+              <h2 id="weiterlesen">Weiterlesen</h2>
+              <ul>
+                <li><a href="karl-klammer-am-desktop.html"><span class="post-related-meta">20.10.2026 · Vibecoding, KI, Maker</span><span class="post-related-title">Karl Klammer am Desktop</span></a></li>
+                <li><a href="eigene-sprachsteuerung.html"><span class="post-related-meta">28.08.2026 · Vibecoding, KI, Maker</span><span class="post-related-title">Die eigene Sprachsteuerung</span></a></li>
+                <li><a href="sprachgeraet-am-handgelenk.html"><span class="post-related-meta">26.08.2026 · Vibecoding, KI, Maker</span><span class="post-related-title">Der Knopf am Handgelenk</span></a></li>
+              </ul>
+            </section>
+            <nav class="post-nav" aria-label="Weitere Beiträge">
+              <a class="post-nav-prev" href="jobteck.html" rel="prev"><span>Älterer Beitrag</span>Jobteck: Meine Jobsuche hat jetzt eine eigene App</a>
+              <span></span>
+            </nav>
+          </div>
+          <aside class="blog-sidebar">
+            <div class="rss-cta rss-cta-sidebar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
+              <div>
+                <strong>Keine neuen Beiträge verpassen</strong>
+                <p>Abonniere den Blog per RSS Feed und erhalte neue Posts direkt in deinem Feedreader.</p>
+              </div>
+              <a href="../feed.xml" class="rss-cta-btn" target="_blank" rel="noopener">RSS Feed abonnieren</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <div id="shared-footer">
+      <!-- Statische Fassung: components.js ersetzt diesen Block per outerHTML.
+           Steht hier, damit die Pflichtangaben nicht am JavaScript haengen. -->
+      <footer class="footer">
+        <a href="../kontakt.html" class="footer-contact">Kontakt</a>
+        <a href="../impressum.html">Impressum</a>
+        &middot;
+        <a href="../datenschutz.html">Datenschutz</a>
+        &middot;
+        <a href="../agb.html">AGB</a>
+        &middot;
+        <a href="../NOTICE" target="_blank" rel="noopener">Open-Source-Lizenzen</a>
+      </footer>
+    </div>
+  </div>
+
+  <div id="shared-overlays"></div>
+  <script src="lightbox.js?v=ffe5b732" defer></script>
+  <script src="../components.js" defer></script>
+  <script src="../shared.js" defer></script>
+</body>
+</html>
