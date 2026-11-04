@@ -21,7 +21,7 @@ Keine Wand aus Apps.
 
 Nur die Uhr, ein paar Favoriten und Ruhe.
 
-![Eine Hand hält ein Handy mit dem Launchteck-Startbildschirm: große Uhr, darunter vier Favoriten und fünf runde Icons](images/launchteck/hand-startbildschirm.jpg)
+![Video, 78 Sekunden: Eine Hand hält das Handy mit Launchteck. Zu sehen sind der Startbildschirm mit aufgeklappter App-Liste, die Schubladen mit den Karten aus Todoteck und die Suche, die eine Aufgabe anlegt und erledigt](images/launchteck/launchteck-video.mp4)
 
 ## Lieber umbauen
 

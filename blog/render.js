@@ -13,8 +13,8 @@
   var BLOCK_IMAGE = /^!\[([^\]]*)\]\(([^)]+)\)\s*$/;
 
   // Markdown → HTML. Unterstützt Überschriften, Fett/Kursiv, Links, blanke
-  // URLs, Listen, Blockzitate, block-level Bilder und Bildergalerien — genau
-  // der Umfang, den die Blog-Posts nutzen.
+  // URLs, Listen, Blockzitate, block-level Bilder, Videos (.mp4) und
+  // Bildergalerien — genau der Umfang, den die Blog-Posts nutzen.
   function renderMarkdown(md) {
     // Frontmatter entfernen
     md = md.replace(/^---[\s\S]*?---\s*/, '');
@@ -192,9 +192,27 @@
     return d ? ' width="' + d[0] + '" height="' + d[1] + '"' : '';
   }
 
+  // Video: `![Alt-Text](images/<slug>/datei.mp4)`. Daneben liegt ein
+  // Vorschaubild mit demselben Namen (datei.jpg plus datei.webp). Es liefert die
+  // Masse (sizes.json fuehrt es unter dem .jpg-Pfad) und ist alles, was ein
+  // Feedreader zeigt. scripts/guard.mjs prueft, dass es nicht fehlt.
+  var VIDEO_RE = /\.mp4$/i;
+
+  function posterOf(src) {
+    return String(src).replace(VIDEO_RE, '.jpg');
+  }
+
+  function videoTag(src, alt) {
+    var poster = posterOf(src);
+    return '<video controls muted playsinline preload="none" src="' + src + '" poster="' +
+      poster.replace(/\.jpg$/i, '.webp') + '" aria-label="' + alt + '"' + imageAttrs(poster) + '>' +
+      '<a href="' + src + '">Video ansehen</a></video>';
+  }
+
   // <picture> mit WebP-Quelle. Fehlt die .webp-Datei, faellt der Browser still
   // auf das <img> zurueck — scripts/guard.mjs sorgt dafuer, dass sie nicht fehlt.
   function imageTag(src, alt) {
+    if (VIDEO_RE.test(src)) return videoTag(src, alt);
     var img = '<img src="' + src + '" alt="' + alt + '"' + imageAttrs(src) + ' loading="lazy">';
     if (!/\.(jpe?g|png)$/i.test(src)) return img;
     return '<picture><source srcset="' + src.replace(/\.(jpe?g|png)$/i, '.webp') +
@@ -226,6 +244,7 @@
     slugify: slugify,
     setImageSizes: setImageSizes,
     imageAttrs: imageAttrs,
-    imageTag: imageTag
+    imageTag: imageTag,
+    posterOf: posterOf
   };
 })(typeof window !== 'undefined' ? window : this);

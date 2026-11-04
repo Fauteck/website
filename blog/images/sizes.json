@@ -1,7 +1,7 @@
 {
-  "images/launchteck/hand-startbildschirm.jpg": [
-    1600,
-    900
+  "images/launchteck/launchteck-video.jpg": [
+    1280,
+    720
   ],
   "images/launchteck/hand-schublade-heute.jpg": [
     1600,
@@ -12,6 +12,10 @@
     900
   ],
   "images/launchteck/hand-suche.jpg": [
+    1600,
+    900
+  ],
+  "images/launchteck/hand-startbildschirm.jpg": [
     1600,
     900
   ],

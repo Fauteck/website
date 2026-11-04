@@ -75,6 +75,10 @@ still runs from a plain file server.
 3. Convert any new images to WebP alongside the original
    (`cwebp -q 82 image.jpg -o image.webp`, or any equivalent) — the guard
    checks that every JPG/PNG has a smaller WebP sibling.
+   A video is written like an image, `![Alt text](images/<slug>/clip.mp4)`,
+   and needs a poster with the same name next to it (`clip.jpg` plus
+   `clip.webp`). The poster provides the dimensions and replaces the video in
+   the feed. Keep the MP4 under the guard's budget (H.264, about 720p, AAC).
 4. Run `node scripts/build.mjs`. It updates `posts.json`, the image sizes,
    the feed, the sitemap and creates `blog/<slug>.html`.
 5. Commit the Markdown, the images and the generated files together.
