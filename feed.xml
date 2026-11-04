@@ -23,7 +23,7 @@
 <p>Keine Badges.</p>
 <p>Keine Wand aus Apps.</p>
 <p>Nur die Uhr, ein paar Favoriten und Ruhe.</p>
-<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/launchteck/hand-startbildschirm.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/launchteck/hand-startbildschirm.jpg" alt="Eine Hand hält ein Handy mit dem Launchteck-Startbildschirm: große Uhr, darunter vier Favoriten und fünf runde Icons" width="1600" height="900" loading="lazy"></picture></figure>
+<figure class="post-figure"><a href="https://niklasfauteck.de/blog/launchteck.html"><img src="https://niklasfauteck.de/blog/images/launchteck/launchteck-video.jpg" alt="Video, 78 Sekunden: Eine Hand hält das Handy mit Launchteck. Zu sehen sind der Startbildschirm mit aufgeklappter App-Liste, die Schubladen mit den Karten aus Todoteck und die Suche, die eine Aufgabe anlegt und erledigt" width="1280" height="720" loading="lazy"></a></figure>
 <h2>Lieber umbauen</h2>
 <p>Es gibt unzählige Android-Launcher da draußen (bei Android lässt sich der Startbildschirm austauschen). Niagara hat die schlichte Liste, die ich mag. Aber keine Gesten für Aktionen. Lawnchair hat die Einstellungen, die ich mag. Keiner sieht aus wie Todoteck, unsere selbst gehostete Familien-App. Und keiner redet mit ihr.</p>
 <p>Neu bauen musste ich trotzdem nicht. Aufgebaut ist Launchteck auf <a href="https://github.com/jrpie/Launcher" target="_blank" rel="noopener">µLauncher</a>, einem schlanken Open-Source-Launcher. Gesten und App-Liste habe ich behalten, Gestaltung und Einstellungen neu gemacht. Farben, Schrift und Icons kommen direkt aus Todoteck.</p>

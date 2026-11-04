@@ -85,8 +85,14 @@ const posts = readdirSync(BLOG)
 const sizes = {};
 for (const p of posts) {
   for (const m of p.md.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)) {
-    const src = m[1];
-    if (/^https?:/.test(src) || sizes[src]) continue;
+    let src = m[1];
+    if (/^https?:/.test(src)) continue;
+    // Ein Video wird ueber sein Vorschaubild vermessen (siehe render.js, videoTag).
+    if (/\.mp4$/i.test(src)) {
+      if (!existsSync(join(BLOG, src))) throw new Error(`blog/${p.slug}.md verweist auf ${src} — Datei fehlt`);
+      src = BlogRender.posterOf(src);
+    }
+    if (sizes[src]) continue;
     const abs = join(BLOG, src);
     if (!existsSync(abs)) throw new Error(`blog/${p.slug}.md verweist auf ${src} — Datei fehlt`);
     const d = imageSize(abs);
@@ -189,8 +195,17 @@ emit('blog/images/sizes.json', JSON.stringify(sizes, null, 2) + '\n');
 
 /* ── 3. feed.xml ─────────────────────────────────────────────────────────── */
 
+// Feedreader spielen kein <video> ab (die meisten entfernen es). Dort steht
+// stattdessen das Vorschaubild, verlinkt auf die Beitragsseite.
+const videoToPoster = (html, slug) => html.replace(
+  /<video\b[^>]*\bposter="([^"]+)"[^>]*\baria-label="([^"]*)"([^>]*)>[\s\S]*?<\/video>/g,
+  (m, poster, alt, rest) => {
+    const dims = (rest.match(/ width="\d+" height="\d+"/) || [''])[0];
+    return `<a href="${slug}.html"><img src="${poster.replace(/\.webp$/i, '.jpg')}" alt="${alt}"${dims} loading="lazy"></a>`;
+  });
+
 const feedItems = posts.map((p) => {
-  const body = absolutize(bodyOf(p), `${SITE}/blog/`);
+  const body = absolutize(videoToPoster(bodyOf(p), p.slug), `${SITE}/blog/`);
   return [
     '    <item>',
     `      <title>${esc(p.title)}</title>`,

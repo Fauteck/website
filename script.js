@@ -4745,7 +4745,8 @@ function buildPhotos(body) {
       let m;
       imgRe.lastIndex = 0;
       while ((m = imgRe.exec(post.content)) !== null) {
-        const photo = { alt: m[1], src: m[2], postId: post.id, postTitle: post.title, date: post.date };
+        // Videos zeigt die Foto-App als ihr Vorschaubild (gleichnamiges .jpg)
+        const photo = { alt: m[1], src: m[2].replace(/\.mp4$/i, '.jpg'), postId: post.id, postTitle: post.title, date: post.date };
         imgs.push(photo);
         photos.push(photo);
       }
@@ -5425,6 +5426,13 @@ function blogImageTag(src, alt, extraClass) {
   const d = _blogImageSizes[key];
   const size = d ? ` width="${d[0]}" height="${d[1]}"` : '';
   const cls = extraClass ? ` class="${extraClass}"` : '';
+  // Video (.mp4): wie in blog/render.js, Masse und Vorschau vom gleichnamigen .jpg
+  if (/\.mp4$/i.test(src)) {
+    const poster = src.replace(/\.mp4$/i, '.jpg');
+    const pd = _blogImageSizes[poster.replace(/^blog\//, '')];
+    const psize = pd ? ` width="${pd[0]}" height="${pd[1]}"` : '';
+    return `<video controls muted playsinline preload="none" src="${src}" poster="${poster.replace(/\.jpg$/i, '.webp')}" aria-label="${alt}"${cls}${psize}></video>`;
+  }
   const img = `<img src="${src}" alt="${alt}"${cls}${size} loading="lazy">`;
   if (!/\.(jpe?g|png)$/i.test(src)) return img;
   return `<picture><source srcset="${src.replace(/\.(jpe?g|png)$/i, '.webp')}" type="image/webp">${img}</picture>`;

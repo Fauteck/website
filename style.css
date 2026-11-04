@@ -5756,7 +5756,8 @@ kbd.search-esc {
   padding: 10px 0;
   min-height: auto;
 }
-.blog-line-image img {
+.blog-line-image img,
+.blog-line-image video {
   max-width: 100%;
   height: auto;
   display: block;

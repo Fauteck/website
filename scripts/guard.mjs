@@ -6,10 +6,10 @@
  *   1. Abgeleitete Dateien (posts.json, feed.xml, sitemap.xml, die
  *      Beitragsseiten) passen zum Bestand in blog/*.md.
  *   2. Die Skalen aus DESIGN.md werden in der CSS auch eingehalten.
- *   3. Jedes statische <img> traegt width und height.
+ *   3. Jedes statische <img> und <video> traegt width und height.
  *   4. Zu jedem JPG/PNG gibt es eine WebP-Variante.
  *   5. Beitraege sind in sich stimmig: Pflichtfelder, Alt-Texte, interne
- *      Links, Bildbudget.
+ *      Links, Bildbudget, Vorschaubild und Budget je Video.
  *
  * Exit-Code 1 bei jeder Abweichung. Laeuft in GitHub Actions mit nichts ausser
  * Node — deshalb keine Abhaengigkeit, auch nicht fuer die Bildmasse.
@@ -125,6 +125,14 @@ for (const file of htmlFiles) {
       fail('bildmasse', `${file}: <img> ohne width/height — ${tag.slice(0, 80)}…`);
     }
   }
+  // Videos genauso: ohne Masse springt das Layout, sobald die Vorschau da ist.
+  for (const m of html.matchAll(/<video\s[^>]*>/g)) {
+    const tag = m[0];
+    if (tag.includes('${') || tag.includes("' +")) continue;
+    if (!/\bwidth="\d+"/.test(tag) || !/\bheight="\d+"/.test(tag) || !/\bposter="/.test(tag)) {
+      fail('bildmasse', `${file}: <video> ohne width/height oder poster — ${tag.slice(0, 80)}…`);
+    }
+  }
 }
 
 // Ein Verzeichnisbaum in Prosa ist eine handgepflegte Aufzaehlung und damit
@@ -233,6 +241,16 @@ for (const img of walk('blog/images', (p) => p.endsWith('.webp'))) {
   if (kb > WEBP_BUDGET_KB) {
     fail('bildbudget', `${img}: ${Math.round(kb)} KB (Budget ${WEBP_BUDGET_KB} KB) — verkleinern oder in UEBER_BUDGET begruenden`);
   }
+}
+
+// Videos: ein Vorschaubild mit gleichem Namen (.jpg, die .webp prueft Abschnitt 4)
+// und ein Budget. Jedes Video bleibt fuer immer in der Git-Historie.
+const VIDEO_BUDGET_MB = 6;
+for (const vid of walk('blog/images', (p) => /\.mp4$/i.test(p))) {
+  const poster = vid.replace(/\.mp4$/i, '.jpg');
+  if (!existsSync(join(ROOT, poster))) fail('video', `${vid}: kein Vorschaubild ${poster}`);
+  const mb = statSync(join(ROOT, vid)).size / 1024 / 1024;
+  if (mb > VIDEO_BUDGET_MB) fail('video', `${vid}: ${mb.toFixed(1)} MB (Budget ${VIDEO_BUDGET_MB} MB) — kleiner kodieren`);
 }
 
 /* ── Ergebnis ────────────────────────────────────────────────────────────── */
