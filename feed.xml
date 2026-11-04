@@ -5,8 +5,52 @@
     <link>https://niklasfauteck.de/</link>
     <description>Projektmanager &amp; Coach für Digitale Transformation und KI-gestütztes Vibecoding. Niklas Fauteck verbindet seit über zehn Jahren Kommunikation, Technologie und digitale Transformation.</description>
     <language>de-de</language>
-    <lastBuildDate>Thu, 29 Oct 2026 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 00:00:00 +0100</lastBuildDate>
     <atom:link href="https://niklasfauteck.de/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Launchteck: ein Startbildschirm zum Weglegen</title>
+      <link>https://niklasfauteck.de/blog/launchteck.html</link>
+      <guid isPermaLink="false">https://niklasfauteck.de/blog/#launchteck</guid>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 +0100</pubDate>
+      <category>Vibecoding</category>
+      <category>KI</category>
+      <category>Maker</category>
+      <description><![CDATA[
+<p>Ich nehme mein Handy zu oft in die Hand.</p>
+<p>Fast hätte ich mir ein Dumbphone gekauft. Eins, das gerade smart genug ist für WhatsApp und Co. Nur kosten die so viel wie ein richtiges Smartphone. Sah ich nicht ein.</p>
+<p>Also mache ich es mir selbst ein bisschen umständlicher. Mit einem Startbildschirm, der zum Weglegen einlädt.</p>
+<p>Keine Badges.</p>
+<p>Keine Wand aus Apps.</p>
+<p>Nur die Uhr, ein paar Favoriten und Ruhe.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/launchteck/hand-startbildschirm.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/launchteck/hand-startbildschirm.jpg" alt="Eine Hand hält ein Handy mit dem Launchteck-Startbildschirm: große Uhr, darunter vier Favoriten und fünf runde Icons" width="1600" height="900" loading="lazy"></picture></figure>
+<h2>Lieber umbauen</h2>
+<p>Es gibt unzählige Android-Launcher da draußen (bei Android lässt sich der Startbildschirm austauschen). Niagara hat die schlichte Liste, die ich mag. Aber keine Gesten für Aktionen. Lawnchair hat die Einstellungen, die ich mag. Keiner sieht aus wie Todoteck, unsere selbst gehostete Familien-App. Und keiner redet mit ihr.</p>
+<p>Neu bauen musste ich trotzdem nicht. Aufgebaut ist Launchteck auf <a href="https://github.com/jrpie/Launcher" target="_blank" rel="noopener">µLauncher</a>, einem schlanken Open-Source-Launcher. Gesten und App-Liste habe ich behalten, Gestaltung und Einstellungen neu gemacht. Farben, Schrift und Icons kommen direkt aus Todoteck.</p>
+<p>Gevibecodet mit Claude Code, an zwei Tagen.</p>
+<h2>Was er kann</h2>
+<p>Ganz oben steht eine stille Zeile: wie oft ich das Handy heute entsperrt habe und wie lange es an war. Ab drei Stunden gähnt mein Maskottchen <a href="https://niklasfauteck.de/blog/#karl-klammer-am-desktop" target="_blank" rel="noopener">Tecki</a>.</p>
+<p>Darunter Uhr, Datum und meine Favoriten. Alles andere ist eingeklappt.</p>
+<p>Widgets liegen dort keine. Die stecken in Schubladen. So heißen bei mir die Widget-Stapel, die eine Geste von unten hochschiebt. Dann wische ich durch:</p>
+<p>Licht schalten.</p>
+<p>Termine von heute.</p>
+<p>Einkaufsliste abhaken.</p>
+<p>Wetter, Drucker, Energie, Pool.</p>
+<div class="post-gallery"><figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/launchteck/hand-schublade-heute.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/launchteck/hand-schublade-heute.jpg" alt="Eine Hand hält das Handy, unten ist die Schublade Cockpits aufgezogen, auf der Karte Heute stehen zwei Termine und drei Aufgaben" width="1600" height="900" loading="lazy"></picture></figure><figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/launchteck/hand-schublade-einkauf.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/launchteck/hand-schublade-einkauf.jpg" alt="Dieselbe Schublade, jetzt die Karte Einkauf mit fünf offenen Einträgen und zwei Vorschlägen, Eier und Butter" width="1600" height="900" loading="lazy"></picture></figure></div>
+<p>Rein, Licht aus, weg. Ohne dass sich eine App öffnet und mich festhält.</p>
+<p>Und die Suche findet mehr als Apps. Ein Größer-Zeichen davor, und „Milch kaufen morgen" landet als Aufgabe in Todoteck. Mit „# pool" sehe ich die offenen Pool-Aufgaben, ein Tipp hakt sie ab.</p>
+<figure class="post-figure"><picture><source srcset="https://niklasfauteck.de/blog/images/launchteck/hand-suche.webp" type="image/webp"><img src="https://niklasfauteck.de/blog/images/launchteck/hand-suche.jpg" alt="Das Handy zeigt die App-Liste, im Suchfeld steht Milch kaufen morgen mit einem Größer-Zeichen davor, darüber der Vorschlag Neue Aufgabe: Milch kaufen morgen" width="1600" height="900" loading="lazy"></picture></figure>
+<p>Zwei Tage auf den Bildschirm gestarrt, damit ich weniger auf den Bildschirm starre.</p>
+<p>(Ja, ich weiß. Ich lege es jetzt weg. Gleich.)</p>
+<h2>Weiterlesen</h2>
+<ul>
+<li><a href="https://niklasfauteck.de/blog/#todoteck" target="_blank" rel="noopener">Todoteck: Vibecoding für die Familie</a>: wo das alles herkommt</li>
+<li><a href="https://niklasfauteck.de/blog/#todoteck-mcp" target="_blank" rel="noopener">Todoteck: API, MCP und der Alltag</a>: die Schnittstelle, über die Launchteck redet</li>
+<li><a href="https://niklasfauteck.de/blog/#sprachgeraet-am-handgelenk" target="_blank" rel="noopener">Der Knopf am Handgelenk</a>: noch ein Gerät, das an Todoteck hängt</li>
+<li><a href="https://github.com/jrpie/Launcher" target="_blank" rel="noopener">µLauncher von jrpie</a>: das Original</li>
+</ul>
+      ]]></description>
+    </item>
 
     <item>
       <title>Jobteck: Meine Jobsuche hat jetzt eine eigene App</title>
