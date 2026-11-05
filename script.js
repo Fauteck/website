@@ -615,7 +615,6 @@ const CAREER_DATA = [
     impact: [
       'Zentrale digitale Plattform für 1.700+ Journalist:innen aufgebaut und weiterentwickelt',
       'Rund 5 Stunden Handarbeit pro Woche durch KI-Automatisierung eingespart',
-      'Kulturwandel hin zu datengetriebenen, pragmatisch umgesetzten Entscheidungen',
     ],
   },
   {
@@ -5768,20 +5767,12 @@ const PROJECTS_DATA = [
     impact: 'Rund 5 Stunden Handarbeit pro Woche eingespart · Textkürzung von 20 Minuten auf unter eine Minute je Text',
   },
   {
-    name: 'Prozessautomation Kommunikation',
-    period: '2023 – heute',
-    role: 'Konzeption & Implementierung',
-    desc: 'Aufbau automatisierter Workflows für wiederkehrende Kommunikationsprozesse — von Monitoring über Distribution bis Reporting.',
-    tech: ['n8n', 'Power BI', 'GitHub Actions', 'Docker'],
-    impact: 'Durchgängig automatisierte Pipelines · Echtzeit-Dashboards für Entscheidungsträger',
-  },
-  {
     name: 'Tool-Adoption & Change Management',
     period: '2020 – heute',
     role: 'Strategische Steuerung',
     desc: 'Planung und Durchführung von Tool-Einführungen mit Fokus auf nachhaltige Nutzerakzeptanz. Vom Onboarding über Schulung bis zur iterativen Weiterentwicklung.',
-    tech: ['Confluence', 'Notion', 'Miro', 'Custom Trainings'],
-    impact: 'Hohe Adoptionsraten bei allen Tool-Rollouts · Nachhaltige Nutzung statt Shelf-Ware',
+    tech: ['Confluence', 'Miro'],
+    impact: 'Rund 10 Releases im Jahr, vom Testsystem bis zur Schulung der Nutzer:innen',
   },
 ];
 
