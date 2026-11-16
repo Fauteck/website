@@ -65,12 +65,21 @@
       border-bottom: 1px solid var(--border);
       color: var(--text);
       text-decoration: none;
-      transition: background 0.15s, padding-left 0.15s;
+      transition: background-color 0.15s ease;
+    }
+
+    /* Einruecken per transform statt padding-left: kein Layout pro Frame,
+       die Hintergrundflaeche bleibt stehen, nur der Inhalt rueckt nach. */
+    .ways a > * {
+      transition: transform 0.15s ease;
     }
 
     .ways a:hover {
       background: var(--bg-alt);
-      padding-left: 0.75rem;
+    }
+
+    .ways a:hover > * {
+      transform: translateX(0.5rem);
     }
 
     .ways a:active {
