@@ -12,7 +12,7 @@ Zero build tooling — all code runs directly in the browser.
 | Markup | HTML5 |
 | Styles | CSS3 (custom properties, no preprocessor) |
 | Logic | Vanilla JavaScript ES6+ |
-| Fonts | Self-hosted DM Sans + JetBrains Mono (OFL 1.1) |
+| Fonts | Self-hosted IBM Plex Sans + JetBrains Mono (OFL 1.1) |
 | Hosting | GitHub Pages via CNAME `niklasfauteck.de` |
 | Feed | RSS 2.0 (`feed.xml`) |
 
@@ -92,7 +92,7 @@ CSS variable sets:
 ### Content layer (light)
 - Shared base: `shared.css` (included by `/full/`, `/blog/`, root `index.html`)
 - Clean, document-style layout
-- Accent: `#4ECDC4` (teal)
+- Accent: `#52b788` (brand green, same as OS); text and buttons use `#2d7d55`
 
 ## NiklasOS features
 

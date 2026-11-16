@@ -143,7 +143,7 @@ Anpassungen erfolgen direkt in den Quelldateien:
 | Markup | HTML5 (semantisch, ARIA-Labels) |
 | Styling | CSS3 (Custom Properties, Grid, Flexbox, Animationen) |
 | Logik | Vanilla JavaScript (ES6+, zero dependencies) |
-| Fonts | DM Sans, JetBrains Mono (selbst-gehostet, WOFF2) |
+| Fonts | IBM Plex Sans, JetBrains Mono (selbst-gehostet, WOFF2) |
 | SEO | Schema.org (Person), Open Graph, Canonical URL |
 | Hosting | Statisch (beliebiger Webserver) |
 
@@ -225,7 +225,7 @@ Die Website verwendet folgende selbst-gehostete Schriften unter der
 
 | Schrift | Urheber | Lizenz |
 |---|---|---|
-| [DM Sans](https://fonts.google.com/specimen/DM+Sans) | The DM Sans Project Authors | OFL 1.1 |
+| [IBM Plex Sans](https://github.com/IBM/plex) | IBM Corp. | OFL 1.1 |
 | [JetBrains Mono](https://www.jetbrains.com/lp/mono/) | The JetBrains Mono Project Authors | OFL 1.1 |
 
 Details und vollständiger Lizenztext: [`NOTICE`](./NOTICE) und [`fonts/OFL.txt`](./fonts/OFL.txt).

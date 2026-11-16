@@ -12,10 +12,24 @@
   }
 
   // --- Mobile Menu Toggle ---
+  // Zustand liegt an zwei Stellen: .open fuer das CSS, aria-expanded fuer
+  // Screenreader. setMenu() haelt beide gemeinsam, damit sie nie auseinanderlaufen.
   var toggle = document.querySelector('.mobile-toggle');
-  if (toggle) {
+  var menu = document.getElementById('main-nav-list');
+  if (toggle && menu) {
+    var setMenu = function(open) {
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    };
     toggle.addEventListener('click', function() {
-      document.querySelector('nav ul').classList.toggle('open');
+      setMenu(!menu.classList.contains('open'));
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        setMenu(false);
+        toggle.focus();
+      }
     });
   }
 

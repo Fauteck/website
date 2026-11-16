@@ -8,7 +8,10 @@
 :root {
   --primary: #2C3E50;
   --accent: #52b788;
-  --accent-dark: #3d9a68;
+  /* Textgruen: #2d7d55 erreicht 5,0:1 auf Weiss und 4,8:1 auf --bg-light (AA).
+     Das fruehere #3d9a68 kam nur auf 3,5:1. Auch Hintergrund fuer Buttons mit
+     weisser Schrift — #52b788 traegt weisse Schrift nur mit 2,5:1. */
+  --accent-dark: #2d7d55;
   --accent-focus: #2d6a4f;
   --bg: #FFFFFF;
   --bg-light: #F8F9FA;
@@ -137,11 +140,23 @@ nav a[aria-current="page"] {
   font-weight: 600;
 }
 
-/* Mobile Toggle */
+/* Mobile Toggle — echter <button>: per Tastatur erreichbar, Zustand ueber
+   aria-expanded. 44x44 px ist die Mindest-Tap-Flaeche; die drei Striche
+   bleiben optisch gleich und sitzen mittig darin. */
 .mobile-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  margin-right: -10px;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  color: inherit;
   cursor: pointer;
 }
 
@@ -272,13 +287,13 @@ nav a[aria-current="page"] {
 .confirm-btn-cancel:hover { background: var(--surface-hover); }
 
 .confirm-btn-ok {
-  background: var(--accent);
+  background: var(--accent-dark);
   color: #fff;
   box-shadow: var(--shadow-2);
 }
 
 .confirm-btn-ok:hover {
-  background: var(--accent-dark);
+  background: var(--accent-focus);
   box-shadow: var(--shadow-3);
 }
 
@@ -332,7 +347,7 @@ p, li, figcaption, blockquote {
   overflow: visible;
   clip: auto;
   white-space: normal;
-  background: var(--accent);
+  background: var(--accent-dark);
   color: #fff;
   font-family: var(--font-sans);
   font-size: 14px;

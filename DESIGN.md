@@ -42,8 +42,11 @@ colors:
   os-btn-max:          "#28c840"
 
   # Content layer — accent
-  content-accent:      "#4ECDC4"
-  content-accent-dark: "#3AB0A7"
+  # Same green family as the OS layer. accent-dark carries text and
+  # white-label buttons (5.0:1 on white, AA); accent-focus is the focus ring.
+  content-accent:       "#52b788"
+  content-accent-dark:  "#2d7d55"
+  content-accent-focus: "#2d6a4f"
 
   # Content layer — surfaces
   content-bg:          "#FFFFFF"
@@ -268,9 +271,10 @@ is part of the joke.
 ### Content layer (light)
 The content layer (`shared.css`) serves `/full/`, `/blog/`, and the root hub
 on all viewports that load those pages. White surfaces with `#F8F9FA`
-alternates keep the CV readable in ambient light. The accent shifts to
-`#4ECDC4` (teal) — warmer and more approachable than the OS green, matching
-the coaching / human-side of the brand.
+alternates keep the CV readable in ambient light. The accent stays in the
+brand green of the OS layer (`#52b788`). On white it only works as a surface
+or border: text and buttons with white labels use `content-accent-dark`
+(`#2d7d55`, 5.0:1), focus rings use `content-accent-focus` (`#2d6a4f`).
 
 ### Semantic color roles
 | Token | Hex | Role |
@@ -487,8 +491,10 @@ with this?"
 
 **Do** keep the OS layer completely dark. No light surfaces inside `os/`.
 
-**Don't** mix OS-layer tokens (`os-*`) into content-layer pages and vice
-versa. The two palettes are intentionally separate.
+**Don't** reference OS-layer variables (`style.css`) from content-layer pages
+or vice versa. Content pages use the `--accent*` variables from `shared.css`.
+Both layers share the brand green, so values may match — the variables stay
+separate so either layer can change without touching the other.
 
 **Don't** animate elements that are off-screen or hidden. Respect
 `prefers-reduced-motion` with a single media query block at the end of each
