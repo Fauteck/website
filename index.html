@@ -199,11 +199,11 @@
     /* Persoenlich */
     .persoenlich {
       margin-top: 2rem;
-      background: linear-gradient(135deg, #fff 60%, #f8fffe);
-      border: 1.5px solid var(--border);
+      background: var(--bg);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 2rem;
-      box-shadow: 0 2px 12px rgba(9, 46, 30, 0.06);
+      box-shadow: var(--shadow-1);
     }
 
     .persoenlich h2 {
@@ -279,24 +279,24 @@
       flex-direction: column;
       align-items: flex-start;
       padding: 2rem;
-      background: linear-gradient(135deg, #fff 60%, #f8fffe);
-      border: 1.5px solid var(--border);
+      background: var(--bg);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(9, 46, 30, 0.06);
+      box-shadow: var(--shadow-1);
       text-decoration: none;
       color: var(--text);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 32px rgba(9, 46, 30, 0.10);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2);
       border-color: var(--accent);
     }
 
     .card--primary {
       border-color: var(--accent);
-      box-shadow: 0 6px 20px rgba(82, 183, 136, 0.16);
+      box-shadow: var(--shadow-2);
     }
 
 

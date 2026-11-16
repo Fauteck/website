@@ -114,24 +114,25 @@
       font-size: 0.95rem;
       font-weight: 500;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       cursor: pointer;
       border: none;
       font-family: var(--font-sans);
-      border-radius: 50px;
+      border-radius: 9999px;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: var(--primary);
+      background: var(--accent-dark);
+      color: #fff;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(82, 183, 136, 0.35);
+      background: var(--accent-focus);
+      box-shadow: var(--shadow-2);
     }
 
     .footer {
