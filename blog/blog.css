@@ -167,7 +167,7 @@ picture { display: contents; }
 
 .rss-cta-btn {
   flex-shrink: 0;
-  background: var(--accent);
+  background: var(--accent-dark);
   color: #fff;
   text-decoration: none;
   font-size: 0.82rem;
@@ -178,7 +178,7 @@ picture { display: contents; }
 }
 
 .rss-cta-btn:hover {
-  background: var(--accent-dark);
+  background: var(--accent-focus);
 }
 
 .rss-cta-sidebar {
