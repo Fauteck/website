@@ -33,15 +33,15 @@
             '<span class="logo-name">Niklas Fauteck</span>' +
             '<span class="logo-subtitle">Digital Transformation</span>' +
           '</a>' +
-          '<ul>' +
+          '<ul id="main-nav-list">' +
             '<li><a href="' + base + 'full/"' + mark('cv') + '>CV</a></li>' +
             '<li><a href="https://fauteck.github.io/vibecoding-academy/" target="_blank" rel="noopener" data-overlay="academy">Vibecoding Academy</a></li>' +
             '<li><a href="' + base + 'blog/"' + mark('blog') + '>Blog</a></li>' +
             '<li><a href="' + base + 'os/" data-overlay="os"' + mark('os') + '>OS</a></li>' +
           '</ul>' +
-          '<div class="mobile-toggle" aria-label="Menu Toggle">' +
-            '<span></span><span></span><span></span>' +
-          '</div>' +
+          '<button type="button" class="mobile-toggle" aria-expanded="false" aria-controls="main-nav-list" aria-label="Menü öffnen">' +
+            '<span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>' +
+          '</button>' +
         '</div>' +
       '</nav>';
   }
