@@ -229,7 +229,6 @@
       font-size: 0.8rem;
       color: var(--text-secondary);
       margin-bottom: 0.75rem;
-      font-style: italic;
     }
 
     .coffee-list {
@@ -248,21 +247,11 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--bg-light);
+      /* Weiss statt --bg-light: das Grau erreicht so 4,7:1 (AA) statt 4,45:1.
+         Kein Hover - die Eintraege sind nicht klickbar. */
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      transition: border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .coffee-list li:hover {
-      border-color: var(--accent);
-      color: var(--accent-dark);
-    }
-
-    .coffee-list li::before {
-      content: '\2615';
-      font-size: 0.9rem;
-      flex-shrink: 0;
     }
 
     /* Card Grid */
@@ -487,7 +476,7 @@
       <p>Abseits des Schreibtischs baue ich Smart-Home-Systeme, experimentiere mit 3D-Druckern und habe viele Jahre Science Slams moderiert. Die Überzeugung dahinter: Dinge einfach anfangen, scheitern, besser machen. Dieselbe Mentalität steckt in jedem Projekt, das ich anfasse.</p>
 
       <h3 class="coffee-heading">Kaffeepausen-Themen</h3>
-      <p class="coffee-subtitle">Worüber wir uns unterhalten könnten...</p>
+      <p class="coffee-subtitle">Worüber wir uns unterhalten könnten …</p>
       <ul class="coffee-list">
         <li>Science Slams & Live-Moderation</li>
         <li>Smart-Home-Lösungen, die wirklich Sinn machen</li>
