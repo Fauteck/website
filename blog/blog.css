@@ -605,11 +605,9 @@ html.lightbox-open { overflow: hidden; }
 .post-nav a:active { transform: var(--press-shift); }
 
 .post-nav a span {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   color: var(--text-secondary);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .post-nav-next { text-align: right; align-items: flex-end; }
